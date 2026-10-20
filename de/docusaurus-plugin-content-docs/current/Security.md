@@ -8,25 +8,25 @@ WebdriverIO berücksichtigt bei der Bereitstellung von Lösungen den Sicherheits
 
 ## Best Practice
 
-- Hinterlegen Sie niemals sensible Daten fest im Code, die Ihrer Organisation schaden können, wenn sie im Klartext offengelegt werden.
+- Codieren Sie niemals sensible Daten fest im Code, die Ihrer Organisation schaden können, wenn sie im Klartext offengelegt werden.
 - Verwenden Sie einen Mechanismus (z. B. einen Vault), um Schlüssel und Passwörter sicher zu speichern und sie beim Start Ihrer End-to-End-Tests abzurufen.
-- Überprüfen Sie, dass keine sensiblen Daten in Logs und durch den Cloud-Anbieter offengelegt werden, wie z. B. Authentifizierungstokens in Netzwerk-Logs.
+- Überprüfen Sie, dass keine sensiblen Daten in Logs und beim Cloud-Anbieter offengelegt werden, wie beispielsweise Authentifizierungstokens in Netzwerk-Logs.
 
 :::info
 
-Selbst bei Testdaten ist es wichtig zu fragen, ob eine böswillige Person, in deren Hände diese Daten gelangen, Informationen abrufen oder diese Ressourcen mit böswilliger Absicht nutzen könnte.
+Selbst bei Testdaten ist es wichtig zu hinterfragen, ob eine böswillige Person in den falschen Händen Informationen abrufen oder diese Ressourcen mit böswilliger Absicht nutzen könnte.
 
 :::
 
-## Maskieren sensibler Daten
+## Maskierung sensibler Daten
 
-Wenn Sie während Ihres Tests sensible Daten verwenden, ist es wichtig sicherzustellen, dass sie nicht für jeden sichtbar sind, beispielsweise in Logs. Außerdem sind bei der Nutzung eines Cloud-Anbieters häufig private Schlüssel im Spiel. Diese Informationen müssen in Logs, Reportern und anderen Berührungspunkten maskiert werden. Im Folgenden finden Sie einige Maskierungslösungen, um Tests auszuführen, ohne diese Werte offenzulegen.
+Wenn Sie während Ihres Tests sensible Daten verwenden, ist es wichtig sicherzustellen, dass diese nicht für jeden sichtbar sind, beispielsweise in Logs. Außerdem sind bei der Nutzung eines Cloud-Anbieters häufig private Schlüssel im Spiel. Diese Informationen müssen in Logs, Reportern und anderen Berührungspunkten maskiert werden. Im Folgenden werden einige Maskierungslösungen vorgestellt, um Tests auszuführen, ohne diese Werte offenzulegen.
 
 ### WebDriverIO
 
 #### Textwerte von Befehlen maskieren
 
-Die Befehle `addValue` und `setValue` unterstützen einen booleschen Maskierungswert, um Werte in Logs sowie in Reportern zu maskieren. Darüber hinaus erhalten auch andere Tools, wie Performance-Tools und Drittanbieter-Tools, die maskierte Version, was die Sicherheit erhöht.
+Die Befehle `addValue` und `setValue` unterstützen einen booleschen Wert `mask`, um Werte in Logs sowie in Reportern zu maskieren. Darüber hinaus erhalten auch andere Tools, wie Performance-Tools und Tools von Drittanbietern, die maskierte Version, was die Sicherheit erhöht.
 
 Wenn Sie beispielsweise einen echten Produktionsbenutzer verwenden und ein Passwort eingeben müssen, das Sie maskieren möchten, ist dies nun wie folgt möglich:
 
@@ -34,7 +34,7 @@ Wenn Sie beispielsweise einen echten Produktionsbenutzer verwenden und ein Passw
   async enterPassword(userPassword) {
     const passwordInputElement = $('Password');
 
-    // Get focus
+    // Fokus setzen
     await passwordInputElement.click();
 
     await passwordInputElement.setValue(userPassword, { mask: true });
@@ -48,15 +48,15 @@ Log-Beispiel:
 INFO webdriver: DATA { text: "**MASKED**" }
 ```
 
-Reporter, wie z. B. Allure-Reporter, und Drittanbieter-Tools wie Percy von BrowserStack verarbeiten ebenfalls die maskierte Version.
-In Kombination mit der passenden Appium-Version bleiben auch die Appium-Logs frei von Ihren sensiblen Daten.
+Reporter, wie Allure-Reporter, und Tools von Drittanbietern wie Percy von BrowserStack verarbeiten ebenfalls die maskierte Version.
+In Kombination mit der passenden Appium-Version enthalten auch die Appium-Logs Ihre sensiblen Daten nicht.
 
 :::info
 
 Einschränkungen:
   - In Appium könnten zusätzliche Plugins Daten preisgeben, obwohl wir die Maskierung der Informationen anfordern.
-  - Cloud-Anbieter könnten einen Proxy für HTTP-Logging verwenden, der den eingerichteten Maskierungsmechanismus umgeht.
-  - Der Befehl `getValue` wird nicht unterstützt. Darüber hinaus kann er, wenn er auf demselben Element verwendet wird, den Wert offenlegen, der bei der Verwendung von `addValue` oder `setValue` maskiert werden sollte.
+  - Cloud-Anbieter könnten einen Proxy für das HTTP-Logging verwenden, der den eingerichteten Maskierungsmechanismus umgeht.
+  - Der Befehl `getValue` wird nicht unterstützt. Wird er zudem auf demselben Element verwendet, kann er den Wert offenlegen, der bei der Verwendung von `addValue` oder `setValue` maskiert werden sollte.
 
 Mindestens erforderliche Version:
  - WDIO v9.15.0
@@ -64,9 +64,9 @@ Mindestens erforderliche Version:
 
 :::
 
-#### Maskieren in WDIO-Logs
+#### In WDIO-Logs maskieren
 
-Mit der Konfiguration `maskingPatterns` können wir sensible Informationen in WDIO-Logs maskieren. Appium-Logs werden jedoch nicht abgedeckt.
+Mit der Konfiguration `maskingPatterns` können wir sensible Informationen in den WDIO-Logs maskieren. Appium-Logs werden dabei jedoch nicht abgedeckt.
 
 Wenn Sie beispielsweise einen Cloud-Anbieter verwenden und das Log-Level info nutzen, werden Sie mit großer Sicherheit den Schlüssel des Benutzers „preisgeben“, wie unten gezeigt:
 
@@ -81,7 +81,7 @@ INFO @wdio/local-runner: Start worker 0-0 with arg: ./wdio.conf.ts --user=cloud_
 ```
 
 Sie erreichen dies, indem Sie den regulären Ausdruck im Feld `maskingPatterns` der Konfiguration angeben.
-  - Für mehrere reguläre Ausdrücke verwenden Sie einen einzelnen String, jedoch mit kommagetrennten Werten.
+  - Für mehrere reguläre Ausdrücke verwenden Sie einen einzelnen String mit kommagetrennten Werten.
   - Weitere Details zu Maskierungsmustern finden Sie im [Abschnitt Masking Patterns in der README des WDIO Loggers](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-logger/README.md#masking-patterns).
 
 ```ts
@@ -113,7 +113,7 @@ Mindestens erforderliche Version:
 :::
 
 :::warning
-Bei Geheimnissen, die über die Kommandozeile übergeben werden, kann die Maskierung fehlschlagen, da die Datei wdio.conf.ts erst später im Ausführungszyklus geparst wird. Für diese Fälle wird die Verwendung von Umgebungsvariablen dringend empfohlen und ist deutlich sicherer.
+Bei Geheimnissen, die über die Kommandozeile übergeben werden, kann die Maskierung fehlschlagen, da die Datei wdio.conf.ts erst später im Ausführungszyklus geparst wird. Die Verwendung von Umgebungsvariablen wird in diesen Fällen dringend empfohlen und ist deutlich sicherer.
 :::
 
 #### WDIO-Logger deaktivieren
@@ -139,15 +139,15 @@ export const withSilentLogger = async <T>(promise: () => Promise<T>): Promise<T>
 };
 ```
 
-### Drittanbieter-Lösungen
+### Lösungen von Drittanbietern
 
 #### Appium
 Appium bietet eine eigene Maskierungslösung an; siehe [Log filter](https://appium.io/docs/en/latest/guides/log-filters/)
- - Die Verwendung dieser Lösung kann knifflig sein. Eine Möglichkeit besteht, wenn möglich, darin, ein Token wie `@mask@` in Ihren String einzufügen und es als regulären Ausdruck zu verwenden
- - In einigen Appium-Versionen werden die Werte zusätzlich mit kommagetrennten einzelnen Zeichen protokolliert, daher müssen wir vorsichtig sein.
- - Leider unterstützt BrowserStack diese Lösung nicht, sie ist aber lokal dennoch nützlich
+ - Die Verwendung dieser Lösung kann knifflig sein. Eine Möglichkeit besteht, falls machbar, darin, ein Token wie `@mask@` in Ihren String einzufügen und es als regulären Ausdruck zu verwenden.
+ - In einigen Appium-Versionen werden die Werte zusätzlich mit jedem Zeichen kommagetrennt protokolliert, daher müssen wir vorsichtig sein.
+ - Leider unterstützt BrowserStack diese Lösung nicht, lokal ist sie jedoch trotzdem nützlich.
 
-Unter Verwendung des zuvor erwähnten `@mask@`-Beispiels können wir die folgende JSON-Datei mit dem Namen `appiumMaskLogFilters.json` verwenden
+Anhand des zuvor erwähnten `@mask@`-Beispiels können wir die folgende JSON-Datei mit dem Namen `appiumMaskLogFilters.json` verwenden
 ```json
 [
   {
@@ -163,7 +163,7 @@ Unter Verwendung des zuvor erwähnten `@mask@`-Beispiels können wir die folgend
 ]
 ```
 
-Übergeben Sie dann den Namen der JSON-Datei an das Feld `logFilters` in der Appium-Service-Konfiguration:
+Übergeben Sie dann den Namen der JSON-Datei an das Feld `logFilters` in der Konfiguration des Appium-Service:
 ```ts
 import { AppiumServerArguments, AppiumServiceConfig } from '@wdio/appium-service';
 import { ServiceEntry } from '@wdio/types/build/Services';

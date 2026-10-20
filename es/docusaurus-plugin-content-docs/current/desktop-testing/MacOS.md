@@ -16,7 +16,7 @@ npm create wdio@latest ./
 
 Un asistente de instalación te guiará a través del proceso. Asegúrate de seleccionar _"Desktop Testing - of MacOS Applications"_ cuando te pregunte qué tipo de pruebas te gustaría realizar. Después, simplemente mantén los valores predeterminados o modifícalos según tus preferencias.
 
-El asistente de configuración instalará todos los paquetes de Appium necesarios y creará un `wdio.conf.js` o `wdio.conf.ts` con la configuración necesaria para probar en MacOS. Si aceptaste generar automáticamente algunos archivos de prueba, puedes ejecutar tu primera prueba mediante `npm run wdio`.
+El asistente de configuración instalará todos los paquetes de Appium necesarios y creará un `wdio.conf.js` o `wdio.conf.ts` con la configuración necesaria para realizar pruebas en MacOS. Si aceptaste generar automáticamente algunos archivos de prueba, puedes ejecutar tu primera prueba mediante `npm run wdio`.
 
 <CreateMacOSProjectAnimation />
 
@@ -38,7 +38,7 @@ describe('My Login application', () => {
 })
 ```
 
-__Nota:__ la aplicación de la calculadora se abrió automáticamente al comienzo de la sesión porque `'appium:bundleId': 'com.apple.calculator'` se definió como opción de capability. Puedes cambiar de aplicación durante la sesión en cualquier momento.
+__Nota:__ la aplicación Calculadora se abrió automáticamente al inicio de la sesión porque se definió `'appium:bundleId': 'com.apple.calculator'` como opción de capability. Puedes cambiar de aplicación en cualquier momento durante la sesión.
 
 ## Más información
 

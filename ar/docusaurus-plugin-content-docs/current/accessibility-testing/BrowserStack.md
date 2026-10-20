@@ -1,27 +1,27 @@
 ---
 id: browserstack
-title: اختبار إمكانية الوصول باستخدام BrowserStack
-description: "أضف عمليات فحص آلية لإمكانية الوصول إلى اختبارات WebdriverIO التي تعمل على BrowserStack Automate، وراجع المشكلات المكتشفة في تقارير BrowserStack."
+title: اختبار إمكانية الوصول من BrowserStack
+description: "أضف فحوصات آلية لإمكانية الوصول إلى اختبارات WebdriverIO التي تعمل على BrowserStack Automate، وراجع المشكلات المكتشفة في تقارير BrowserStack."
 ---
 
-# اختبار إمكانية الوصول باستخدام BrowserStack
+# اختبار إمكانية الوصول من BrowserStack
 
-يمكنك بسهولة دمج اختبارات إمكانية الوصول في مجموعات اختبارات WebdriverIO الخاصة بك باستخدام [ميزة الاختبارات الآلية في BrowserStack Accessibility Testing](https://www.browserstack.com/docs/accessibility/automated-tests?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation).
+يمكنك بسهولة دمج اختبارات إمكانية الوصول في مجموعات اختبارات WebdriverIO الخاصة بك باستخدام [ميزة الاختبارات الآلية في اختبار إمكانية الوصول من BrowserStack](https://www.browserstack.com/docs/accessibility/automated-tests?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation).
 
-## مزايا الاختبارات الآلية في BrowserStack Accessibility Testing
+## مزايا الاختبارات الآلية في اختبار إمكانية الوصول من BrowserStack
 
-لاستخدام الاختبارات الآلية في BrowserStack Accessibility Testing، يجب أن تعمل اختباراتك على BrowserStack Automate.
+لاستخدام الاختبارات الآلية في اختبار إمكانية الوصول من BrowserStack، يجب أن تعمل اختباراتك على BrowserStack Automate.
 
 فيما يلي مزايا الاختبارات الآلية:
 
-* تتكامل بسلاسة مع مجموعة اختبارات الأتمتة الموجودة لديك مسبقًا.
+* تندمج بسلاسة في مجموعة اختبارات الأتمتة الموجودة لديك مسبقًا.
 * لا تتطلب أي تغييرات في الكود ضمن حالات الاختبار.
 * لا تتطلب أي صيانة إضافية لاختبار إمكانية الوصول.
-* تتيح لك فهم الاتجاهات التاريخية والحصول على رؤى حول حالات الاختبار.
+* تتيح لك فهم الاتجاهات التاريخية واكتساب رؤى حول حالات الاختبار.
 
-## البدء مع BrowserStack Accessibility Testing
+## البدء مع اختبار إمكانية الوصول من BrowserStack
 
-اتبع الخطوات التالية لدمج مجموعات اختبارات WebdriverIO الخاصة بك مع BrowserStack Accessibility Testing:
+اتبع هذه الخطوات لدمج مجموعات اختبارات WebdriverIO الخاصة بك مع اختبار إمكانية الوصول من BrowserStack:
 
 1. ثبّت حزمة npm ‏`@wdio/browserstack-service`.
 
@@ -61,4 +61,4 @@ exports.config = {
   };
 ```
 
-يمكنك الاطلاع على التعليمات المفصلة [هنا](https://www.browserstack.com/docs/accessibility/automated-tests/get-started/webdriverio?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation).
+يمكنك الاطلاع على التعليمات التفصيلية [هنا](https://www.browserstack.com/docs/accessibility/automated-tests/get-started/webdriverio?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation).

@@ -1,7 +1,7 @@
 ---
 id: ocr-wait-for-text-displayed
 title: ocrWaitForTextDisplayed
-description: "Warten Sie mit ocrWaitForTextDisplayed aus dem OCR-Service, bis ein bestimmter Text auf dem Bildschirm angezeigt wird."
+description: "Mit ocrWaitForTextDisplayed aus dem OCR-Service warten, bis ein bestimmter Text auf dem Bildschirm angezeigt wird."
 ---
 
 Wartet, bis ein bestimmter Text auf dem Bildschirm angezeigt wird.
@@ -92,7 +92,7 @@ await browser.ocrWaitForTextDisplayed({
 
 <Option type="number" required="WebdriverIO.Element | ChainablePromiseElement | Rectangle">
 
-Dies ist der Suchbereich auf dem Bildschirm, in dem die OCR nach Text suchen soll. Dies kann ein Element oder ein Rechteck sein, das `x`, `y`, `width` und `height` enthält.
+Dies ist der Suchbereich auf dem Bildschirm, in dem die OCR nach Text suchen soll. Dies kann ein Element oder ein Rechteck mit `x`, `y`, `width` und `height` sein.
 
 </Option>
 #### Beispiel
@@ -147,7 +147,7 @@ Mit den folgenden Optionen können Sie die Fuzzy-Logik zum Finden von Text anpas
 
 <Option type="number" default="100" required="no">
 
-Bestimmt, wie nah die Übereinstimmung an der Fuzzy-Position (angegeben durch `location`) liegen muss. Eine exakte Buchstabenübereinstimmung, die `distance` Zeichen von der Fuzzy-Position entfernt ist, würde als vollständige Nichtübereinstimmung gewertet. Eine Distanz von 0 erfordert, dass die Übereinstimmung genau an der angegebenen Position liegt. Eine Distanz von 1000 würde erfordern, dass eine perfekte Übereinstimmung innerhalb von 800 Zeichen von der Position liegt, um bei einem Schwellenwert von 0.8 gefunden zu werden.
+Bestimmt, wie nah die Übereinstimmung an der Fuzzy-Position (angegeben durch location) liegen muss. Eine exakte Buchstabenübereinstimmung, die distance Zeichen von der Fuzzy-Position entfernt ist, würde als vollständige Nichtübereinstimmung gewertet. Eine distance von 0 erfordert, dass die Übereinstimmung genau an der angegebenen Position liegt. Eine distance von 1000 würde erfordern, dass eine perfekte Übereinstimmung innerhalb von 800 Zeichen von der Position liegt, um bei einem threshold von 0.8 gefunden zu werden.
 
 </Option>
 ##### Beispiel
@@ -183,7 +183,7 @@ await browser.ocrWaitForTextDisplayed({
 
 <Option type="number" default="0.6" required="no">
 
-Ab welchem Punkt der Matching-Algorithmus aufgibt. Ein Schwellenwert von 0 erfordert eine perfekte Übereinstimmung (sowohl der Buchstaben als auch der Position), ein Schwellenwert von 1.0 würde auf alles passen.
+Ab welchem Punkt der Matching-Algorithmus aufgibt. Ein threshold von 0 erfordert eine perfekte Übereinstimmung (sowohl der Buchstaben als auch der Position), ein threshold von 1.0 würde auf alles passen.
 
 </Option>
 ##### Beispiel

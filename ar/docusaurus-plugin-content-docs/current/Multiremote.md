@@ -1,23 +1,23 @@
 ---
 id: multiremote
 title: التحكم المتعدد عن بُعد (Multi-remote)
-description: "تحكّم في جلسات متعددة لمتصفحات أو أجهزة من اختبار واحد باستخدام multi-remote، سواء في الوضع المستقل أو مع مُشغّل اختبارات WDIO."
+description: "تحكّم في جلسات متعددة لمتصفحات أو أجهزة من اختبار واحد باستخدام multi-remote، سواء في الوضع المستقل أو مع مشغّل اختبارات WDIO."
 ---
 
-يتيح لك WebdriverIO تشغيل جلسات آلية متعددة في اختبار واحد. يصبح هذا مفيدًا عند اختبار ميزات تتطلب عدة مستخدمين (على سبيل المثال، تطبيقات الدردشة أو WebRTC).
+يتيح لك WebdriverIO تشغيل عدة جلسات آلية في اختبار واحد. يصبح هذا مفيدًا عند اختبار ميزات تتطلب عدة مستخدمين (على سبيل المثال، تطبيقات الدردشة أو WebRTC).
 
 بدلًا من إنشاء عدة نسخ بعيدة تحتاج فيها إلى تنفيذ أوامر مشتركة مثل [`newSession`](/docs/api/webdriver#newsession) أو [`url`](/docs/api/browser/url) على كل نسخة، يمكنك ببساطة إنشاء نسخة **multi-remote** والتحكم في جميع المتصفحات في الوقت نفسه.
 
-للقيام بذلك، استخدم فقط الدالة `multiRemote()`، ومرّر إليها كائنًا مفاتيحه أسماء وقيمه `capabilities`. من خلال إعطاء كل capability اسمًا، يمكنك بسهولة تحديد تلك النسخة المفردة والوصول إليها عند تنفيذ الأوامر على نسخة واحدة.
+للقيام بذلك، استخدم فقط الدالة `multiRemote()`، ومرّر إليها كائنًا مفاتيحه أسماء وقيمه `capabilities`. من خلال إعطاء كل capability اسمًا، يمكنك بسهولة تحديد تلك النسخة الواحدة والوصول إليها عند تنفيذ أوامر على نسخة واحدة.
 
 :::info
 
 MultiRemote _ليس_ مخصصًا لتنفيذ جميع اختباراتك بالتوازي.
-بل يهدف إلى المساعدة في تنسيق عدة متصفحات و/أو أجهزة محمولة لاختبارات تكامل خاصة (مثل تطبيقات الدردشة).
+بل هو مصمم للمساعدة في تنسيق عدة متصفحات و/أو أجهزة محمولة لاختبارات تكامل خاصة (مثل تطبيقات الدردشة).
 
 :::
 
-تُرجع معظم أوامر multi-remote مصفوفة من النتائج. تمثل النتيجة الأولى الـ capability المُعرَّفة أولًا في كائن الـ capabilities، والنتيجة الثانية الـ capability الثانية، وهكذا. أما `mock()` فتُرجع `MultiRemoteMock` بدلًا من مصفوفة. راجع [ما الذي تُرجعه mock()](#what-mock-returns).
+تُرجع معظم أوامر multi-remote مصفوفة من النتائج. تمثل النتيجة الأولى الـ capability المعرّفة أولًا في كائن الـ capabilities، والنتيجة الثانية الـ capability الثانية، وهكذا. تُرجع `mock()` كائن `MultiRemoteMock` بدلًا من مصفوفة. راجع [ما الذي تُرجعه mock()](#what-mock-returns).
 
 ## استخدام الوضع المستقل
 
@@ -56,9 +56,9 @@ import { multiRemote } from 'webdriverio'
 })()
 ```
 
-## استخدام مُشغّل اختبارات WDIO
+## استخدام مشغّل اختبارات WDIO
 
-لاستخدام multi-remote في مُشغّل اختبارات WDIO، عرّف فقط كائن `capabilities` في ملف `wdio.conf.js` ككائن تكون فيه أسماء المتصفحات هي المفاتيح (بدلًا من قائمة من الـ capabilities):
+لاستخدام multi-remote في مشغّل اختبارات WDIO، عرّف فقط كائن `capabilities` في ملف `wdio.conf.js` ككائن تكون مفاتيحه أسماء المتصفحات (بدلًا من قائمة من الـ capabilities):
 
 ```js
 export const config = {
@@ -79,9 +79,9 @@ export const config = {
 }
 ```
 
-سيؤدي هذا إلى إنشاء جلستي WebDriver باستخدام Chrome وFirefox. بدلًا من Chrome وFirefox فقط، يمكنك أيضًا تشغيل جهازين محمولين باستخدام [Appium](http://appium.io) أو جهاز محمول واحد ومتصفح واحد.
+سيؤدي هذا إلى إنشاء جلستي WebDriver مع Chrome وFirefox. بدلًا من Chrome وFirefox فقط، يمكنك أيضًا تشغيل جهازين محمولين باستخدام [Appium](http://appium.io) أو جهاز محمول واحد ومتصفح واحد.
 
-يمكنك أيضًا تشغيل multi-remote بالتوازي عن طريق وضع كائن capabilities المتصفحات داخل مصفوفة. يُرجى التأكد من تضمين الحقل `capabilities` في كل متصفح، لأن هذه هي الطريقة التي نميّز بها بين الوضعين.
+يمكنك أيضًا تشغيل multi-remote بالتوازي عن طريق وضع كائن capabilities المتصفحات في مصفوفة. يرجى التأكد من تضمين الحقل `capabilities` في كل متصفح، إذ هكذا نميّز بين كل وضع.
 
 ```js
 export const config = {
@@ -113,7 +113,7 @@ export const config = {
 }
 ```
 
-يمكنك حتى تشغيل إحدى [الخدمات السحابية الخلفية](https://webdriver.io/docs/cloudservices.html) جنبًا إلى جنب مع نسخ Webdriver/Appium المحلية أو نسخ Selenium Standalone. يكتشف WebdriverIO تلقائيًا capabilities الخدمات السحابية الخلفية إذا حددت أيًّا من `bstack:options` ([Browserstack](https://webdriver.io/docs/browserstack-service.html))، أو `sauce:options` ([SauceLabs](https://webdriver.io/docs/sauce-service.html))، أو `tb:options` ([TestingBot](https://webdriver.io/docs/testingbot-service.html)) في capabilities المتصفح.
+يمكنك حتى تشغيل إحدى [الخدمات السحابية الخلفية](https://webdriver.io/docs/cloudservices.html) جنبًا إلى جنب مع نسخ Webdriver/Appium المحلية، أو نسخ Selenium Standalone. يكتشف WebdriverIO تلقائيًا capabilities الخدمات السحابية الخلفية إذا حددت أيًّا من `bstack:options` ([Browserstack](https://webdriver.io/docs/browserstack-service.html))، أو `sauce:options` ([SauceLabs](https://webdriver.io/docs/sauce-service.html))، أو `tb:options` ([TestingBot](https://webdriver.io/docs/testingbot-service.html)) في capabilities المتصفح.
 
 ```js
 export const config = {
@@ -142,7 +142,7 @@ export const config = {
 }
 ```
 
-أي تركيبة من نظام التشغيل/المتصفح ممكنة هنا (بما في ذلك متصفحات الأجهزة المحمولة وسطح المكتب). تُنفَّذ جميع الأوامر التي تستدعيها اختباراتك عبر المتغير `browser` بالتوازي مع كل نسخة. يساعد هذا في تبسيط اختبارات التكامل الخاصة بك وتسريع تنفيذها.
+أي نوع من تركيبات نظام التشغيل/المتصفح ممكن هنا (بما في ذلك متصفحات الأجهزة المحمولة وسطح المكتب). جميع الأوامر التي تستدعيها اختباراتك عبر المتغير `browser` تُنفَّذ بالتوازي مع كل نسخة. يساعد هذا في تبسيط اختبارات التكامل وتسريع تنفيذها.
 
 على سبيل المثال، إذا فتحت رابطًا:
 
@@ -150,10 +150,10 @@ export const config = {
 browser.url('https://socketio-chat-h9jt.herokuapp.com/')
 ```
 
-ستكون نتيجة كل أمر كائنًا تكون فيه أسماء المتصفحات هي المفاتيح، ونتيجة الأمر هي القيمة، هكذا:
+ستكون نتيجة كل أمر كائنًا تكون مفاتيحه أسماء المتصفحات، وقيمه نتيجة الأمر، هكذا:
 
 ```js
-// مثال على مُشغّل اختبارات wdio
+// مثال على مشغّل اختبارات wdio
 await browser.url('https://www.whatismybrowser.com')
 
 const elem = await $('.string-major')
@@ -167,14 +167,14 @@ console.log(result[1]) // يُرجع: 'Firefox 35 on Mac OS X (Yosemite)'
 
 في بعض الأحيان يكون من الضروري القيام بأشياء مختلفة في كل متصفح من أجل اختبار شيء ما. على سبيل المثال، إذا أردنا اختبار تطبيق دردشة، فلا بد من وجود متصفح يرسل رسالة نصية بينما ينتظر متصفح آخر استلامها، ثم إجراء تحقق (assertion) عليها.
 
-عند استخدام مُشغّل اختبارات WDIO، فإنه يسجّل أسماء المتصفحات مع نسخها في النطاق العام:
+عند استخدام مشغّل اختبارات WDIO، فإنه يسجّل أسماء المتصفحات مع نسخها في النطاق العام:
 
 ```js
 const myChromeBrowser = browser.getInstance('myChromeBrowser')
 await myChromeBrowser.$('#message').setValue('Hi, I am Chrome')
 await myChromeBrowser.$('#send').click()
 
-// الانتظار حتى وصول الرسائل
+// الانتظار حتى تصل الرسائل
 await $('.messages').waitForExist()
 // التحقق مما إذا كانت إحدى الرسائل تحتوي على رسالة Chrome
 assert.true(
@@ -184,13 +184,13 @@ assert.true(
 )
 ```
 
-في هذا المثال، ستبدأ النسخة `myFirefoxBrowser` بانتظار رسالة بمجرد أن تنقر النسخة `myChromeBrowser` على الزر `#send`.
+في هذا المثال، ستبدأ النسخة `myFirefoxBrowser` في انتظار رسالة بمجرد أن تنقر النسخة `myChromeBrowser` على الزر `#send`.
 
-يجعل MultiRemote التحكم في متصفحات متعددة سهلًا ومريحًا، سواء أردت أن تقوم بالشيء نفسه بالتوازي، أو بأشياء مختلفة بشكل منسّق.
+يجعل MultiRemote التحكم في عدة متصفحات أمرًا سهلًا ومريحًا، سواء أردتها أن تقوم بالشيء نفسه بالتوازي، أو بأشياء مختلفة بشكل منسّق.
 
 ### ما الذي تُرجعه `$`
 
-في متصفح multi-remote، تُرجع `$` و`custom$` و`react$` عنصر `MultiRemoteElement` واحدًا. وفي عنصر multi-remote، تُرجع `shadow$` و`nextElement` و`previousElement` و`parentElement` أيضًا عنصرًا واحدًا. تُنفَّذ أوامره على كل نسخة، وتعطيك `getInstance` عنصر متصفح واحد.
+على متصفح multi-remote، تُرجع `$` و`custom$` و`react$` عنصر `MultiRemoteElement` واحدًا. وعلى عنصر multi-remote، تُرجع `shadow$` و`nextElement` و`previousElement` و`parentElement` أيضًا عنصرًا واحدًا. تُنفَّذ أوامره على كل نسخة، وتعطيك `getInstance` العنصر الخاص بمتصفح واحد.
 
 ```js
 const host = await $('my-component')
@@ -202,31 +202,31 @@ await button.getInstance('myChromeBrowser').click()  // ينقر في Chrome ف�
 
 ### ما الذي تُرجعه `$$`
 
-في متصفح multi-remote، تُرجع `$$` قيمة من نوع `MultiRemoteElementArray`. كل مُدخل فيها هو `MultiRemoteElement` يخاطب جميع النسخ في آن واحد، وتحمل المصفوفة نفسها المعلومات ذاتها التي تحملها `ElementArray` العادية. تُرجع `custom$$` و`react$$`، و`shadow$$` في عنصر multi-remote، النوع نفسه من القوائم.
+على متصفح multi-remote، تُرجع `$$` كائن `MultiRemoteElementArray`. كل عنصر فيها هو `MultiRemoteElement` يخاطب جميع النسخ في آنٍ واحد، والمصفوفة نفسها تحمل المعلومات نفسها التي تحملها `ElementArray` العادية. تُرجع `custom$$` و`react$$`، وكذلك `shadow$$` على عنصر multi-remote، النوع نفسه من القوائم.
 
 ```js
 const messages = await $$('.messages')
 
-messages.length      // أكبر عدد من العناصر عثرت عليه نسخة واحدة
+messages.length      // أكبر عدد من العناصر وجدته نسخة واحدة
 messages[0]          // عنصر MultiRemoteElement يخاطب جميع النسخ
 messages.selector    // '.messages'
 messages.foundWith   // '$$'
 messages.parent      // متصفح أو عنصر multi-remote الذي جُلبت منه
-messages.isMultiRemote // true، لتمييزها عن ElementArray العادية
+messages.isMultiRemote // true، لذا يمكن تمييزها عن ElementArray العادية
 
-// دوال المصفوفات غير المتزامنة المساعدة متاحة، كما في المتصفح المفرد
+// دوال المصفوفات غير المتزامنة المساعدة متاحة، كما في المتصفح الواحد
 await messages.map((m) => m.getText())
 await messages.filter(async (m) => await m.isDisplayed())
 ```
 
-عندما تعثر النسخ على أعداد مختلفة من العناصر، لا يحتوي المُدخل على عنصر للنسخة التي عثرت على عدد أقل. بالنسبة لتلك النسخة، تُطلق `getInstance()` خطأً، ويفشل أي أمر على المُدخل. استخدم `select()` مع النسخ التي تحتوي على العنصر. يتحقق مُطابِق `expect` على القائمة بأكملها من كل نسخة مع عناصرها الخاصة:
+عندما تجد النسخ أعدادًا مختلفة من العناصر، لا يحتوي الإدخال على عنصر للنسخة التي وجدت عددًا أقل. بالنسبة لتلك النسخة، تُلقي `getInstance()` خطأً، ويفشل أي أمر على ذلك الإدخال. استخدم `select()` مع النسخ التي تحتوي على العنصر. يتحقق مُطابِق `expect` على القائمة بأكملها من كل نسخة بعناصرها الخاصة:
 
 ```js
-// يعثر myChromeBrowser على 3 رسائل، ويعثر myFirefoxBrowser على رسالتين
+// myChromeBrowser يجد 3 رسائل، وmyFirefoxBrowser يجد رسالتين
 const messages = await $$('.messages')
 
 messages.length                                       // 3
-await messages[2].select('myChromeBrowser').click()  // Chrome وحده لديه رسالة ثالثة
+await messages[2].select('myChromeBrowser').click()  // Chrome فقط لديه رسالة ثالثة
 await expect(messages).toBeElementsArrayOfSize(expect.multiRemote({
     myChromeBrowser: 3,
     myFirefoxBrowser: 2
@@ -235,13 +235,13 @@ await expect(messages).toBeElementsArrayOfSize(expect.multiRemote({
 
 :::info
 
-قبل الإصدار v10، كانت هذه تُرجع مصفوفة عادية ما لم يتم تعيين `WDIO_ENABLE_MULTI_REMOTE_ELEMENT_ARRAY=true`. أصبحت المصفوفة الآن هي الإعداد الافتراضي وأُزيل متغير البيئة. لم يتغير الوصول عبر الفهرس، لذا فإن الشيفرة التي كانت تقرأ `elements[0]` فقط تستمر في العمل.
+قبل الإصدار v10، كان هذا يُرجع مصفوفة عادية ما لم يُضبط `WDIO_ENABLE_MULTI_REMOTE_ELEMENT_ARRAY=true`. أصبحت هذه المصفوفة الآن هي الافتراضية وأُزيل متغير البيئة. لم يتغير الوصول عبر الفهرس، لذا فإن الشيفرة التي تقرأ `elements[0]` فقط تستمر في العمل.
 
 :::
 
 ### ما الذي تُرجعه mock() {#what-mock-returns}
 
-في متصفح multi-remote، تُرجع `mock()` قيمة من نوع `MultiRemoteMock`. وهي ليست مصفوفة. تُنفَّذ `respond()` و`restore()` وغيرها من دوال الـ mock على كل نسخة. تبقى الطلبات الملتقطة على الـ mock الخاص بمتصفح واحد، لذا اقرأها باستخدام `getInstance`:
+على متصفح multi-remote، تُرجع `mock()` كائن `MultiRemoteMock`. وهو ليس مصفوفة. تُنفَّذ `respond()` و`restore()` وتوابع mock الأخرى على كل نسخة. تبقى الطلبات الملتقطة على الـ mock الخاص بمتصفح واحد، لذا اقرأها باستخدام `getInstance`:
 
 ```ts
 const mock = await browser.mock('*/users/list')
@@ -253,7 +253,7 @@ const chromeCalls = mock.getInstance('myChromeBrowser').calls
 const firefoxCalls = mock.getInstance('myFirefoxBrowser').calls
 ```
 
-يُشغّل `examples/bidi/multiremote-mock.js` هذا المثال على جلستي Chrome بدون واجهة (headless).
+يُشغّل `examples/bidi/multiremote-mock.js` هذا على جلستي Chrome بدون واجهة (headless).
 
 تتبع `instances` ترتيب إنشاء الـ mocks. بعد `select()`، قد يختلف هذا الترتيب عن `browser.instances`:
 
@@ -264,7 +264,7 @@ selected.instances // ['myFirefoxBrowser', 'myChromeBrowser']
 selected.getInstance('myChromeBrowser') // الـ mock الخاص بـ Chrome، أيًّا كان الترتيب
 ```
 
-تُطلق `getInstance` الخطأ `Multi-remote object has no instance named "<name>"` عندما لا يكون `name` ضمن `instances`.
+تُلقي `getInstance` الخطأ `Multi-remote object has no instance named "<name>"` عندما لا يكون `name` موجودًا في `instances`.
 
 لعمل mock لمتصفح واحد فقط، استدعِ `mock()` على تلك النسخة:
 
@@ -272,8 +272,8 @@ selected.getInstance('myChromeBrowser') // الـ mock الخاص بـ Chrome، 
 const chromeOnly = await browser.getInstance('myChromeBrowser').mock('*/users/list')
 ```
 
-## الوصول إلى نسخ المتصفح باستخدام النصوص عبر كائن browser
-بالإضافة إلى الوصول إلى نسخة المتصفح عبر متغيراتها العامة (مثل `myChromeBrowser` و`myFirefoxBrowser`)، يمكنك أيضًا الوصول إليها عبر كائن `browser`، مثل `browser["myChromeBrowser"]` أو `browser["myFirefoxBrowser"]`. يمكنك الحصول على قائمة بجميع نسخك عبر `browser.instances`. هذا مفيد بشكل خاص عند كتابة خطوات اختبار قابلة لإعادة الاستخدام يمكن تنفيذها في أي من المتصفحين، على سبيل المثال:
+## الوصول إلى نسخ المتصفح باستخدام السلاسل النصية عبر كائن browser
+بالإضافة إلى الوصول إلى نسخة المتصفح عبر متغيراتها العامة (مثل `myChromeBrowser` و`myFirefoxBrowser`)، يمكنك أيضًا الوصول إليها عبر الكائن `browser`، مثل `browser["myChromeBrowser"]` أو `browser["myFirefoxBrowser"]`. يمكنك الحصول على قائمة بجميع نسخك عبر `browser.instances`. هذا مفيد بشكل خاص عند كتابة خطوات اختبار قابلة لإعادة الاستخدام يمكن تنفيذها في أي من المتصفحين، مثلًا:
 
 wdio.conf.js:
 ```js
@@ -306,7 +306,7 @@ When(/^User (.) types a message into the chat/, async (userId) => {
 
 ## التحققات (Assertions)
 
-تدعم مُطابِقات `expect` متصفحات وعناصر وmocks الـ multi-remote. افتراضيًا، يجب أن تطابق كل نسخة القيمة المتوقعة:
+تدعم مُطابِقات `expect` متصفحات وعناصر وmocks الخاصة بـ multi-remote. افتراضيًا، يجب أن تطابق كل نسخة القيمة المتوقعة:
 
 ```js
 import { multiRemoteBrowser, expect } from '@wdio/globals'
@@ -326,11 +326,11 @@ await expect(multiRemoteBrowser).toHaveTitle(expect.multiRemote({
 }))
 ```
 
-للاطلاع على جميع المُطابِقات المدعومة والإعدادات المطلوبة، راجع [دليل multi-remote في expect-webdriverio](https://github.com/webdriverio/expect-webdriverio/blob/main/docs/MultiRemote.md).
+للاطلاع على جميع المُطابِقات المدعومة والإعدادات المطلوبة، راجع [دليل multi-remote الخاص بـ expect-webdriverio](https://github.com/webdriverio/expect-webdriverio/blob/main/docs/MultiRemote.md).
 
 ## الوصول إلى نسخة واحدة
 
-أسماء النسخ ليست خصائص لمتصفح multi-remote أو لعنصر multi-remote. لا يتم تعيين `browser.myChromeBrowser` و`elem.myChromeDriver`. اطلب الجلسة باستخدام `getInstance`، أو قلّص كائن multi-remote باستخدام `select`:
+أسماء النسخ ليست خصائص لمتصفح multi-remote ولا لعنصر multi-remote. لا يتم تعيين `browser.myChromeBrowser` ولا `elem.myChromeDriver`. اطلب الجلسة باستخدام `getInstance`، أو قلّص كائن multi-remote باستخدام `select`:
 
 ```ts
 const myChromeBrowser = browser.getInstance('myChromeBrowser')
@@ -342,4 +342,4 @@ await myChromeElement.click()
 await browser.select('myChromeBrowser').url('https://webdriver.io')
 ```
 
-لا يزال مُشغّل الاختبارات يعيّن اسم كل نسخة كمتغير عام خاص بها عندما يُترك `injectGlobals` مفعّلًا، بحيث يمكن للاختبار استدعاء `myChromeBrowser.$('button')` دون المرور عبر `browser`. هذا المتغير العام هو الجلسة المفردة نفسها التي تُرجعها `getInstance`، وليس حقلًا في كائن multi-remote.
+لا يزال مشغّل الاختبارات يعيّن اسم كل نسخة كمتغير عام خاص بها عندما يُترك `injectGlobals` مفعّلًا، لذا يمكن للاختبار استدعاء `myChromeBrowser.$('button')` دون المرور عبر `browser`. هذا المتغير العام هو الجلسة الواحدة نفسها التي تُرجعها `getInstance`، وليس حقلًا في كائن multi-remote.

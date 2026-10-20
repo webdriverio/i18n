@@ -4,7 +4,7 @@ title: Benutzerdefinierte Befehle
 description: "Fügen Sie mit addCommand eigene Browser- und Element-Befehle hinzu, überschreiben Sie bestehende Befehle und erweitern Sie die TypeScript-Typdefinitionen."
 ---
 
-Wenn Sie die `browser`-Instanz um eigene Befehle erweitern möchten, steht Ihnen dafür die Browser-Methode `addCommand` zur Verfügung. Sie können Ihren Befehl asynchron schreiben, genau wie in Ihren Specs.
+Wenn Sie die `browser`-Instanz mit Ihren eigenen Befehlen erweitern möchten, steht Ihnen die Browser-Methode `addCommand` zur Verfügung. Sie können Ihren Befehl asynchron schreiben, genau wie in Ihren Specs.
 
 ## Parameter
 
@@ -20,7 +20,7 @@ Ein Name, der den Befehl definiert und an den Browser- oder Element-Scope angeh�
 
 <Option type="Function">
 
-Eine Funktion, die ausgeführt wird, wenn der Befehl aufgerufen wird. Der `this`-Scope ist [`WebdriverIO.Browser`](/docs/api/browser), [`WebdriverIO.Element`](/docs/api/element) oder `WebdriverIO.BrowsingContext`, je nachdem, ob der Befehl an den Browser, an Elemente oder an Browsing Contexts angehängt wird.
+Eine Funktion, die ausgeführt wird, wenn der Befehl aufgerufen wird. Der `this`-Scope ist [`WebdriverIO.Browser`](/docs/api/browser), [`WebdriverIO.Element`](/docs/api/element) oder `WebdriverIO.BrowsingContext`, je nachdem, ob der Befehl an den Browser, an Elemente oder an Browsing-Kontexte angehängt wird.
 
 </Option>
 
@@ -32,13 +32,13 @@ Objekt mit Konfigurationsoptionen, die das Verhalten des benutzerdefinierten Bef
 
 <Option type="Boolean" default="false" name="attachToElement">
 
-Flag, das festlegt, ob der Befehl an den Browser- oder Element-Scope angehängt wird. Wenn es auf `true` gesetzt ist, wird der Befehl ein Element-Befehl.
+Flag, das festlegt, ob der Befehl an den Browser- oder den Element-Scope angehängt wird. Wenn auf `true` gesetzt, wird der Befehl ein Element-Befehl.
 
 </Option>
 
 <Option type="Boolean" default="false" name="attachToBrowsingContext">
 
-Flag, um den Befehl an jeden Browsing Context anzuhängen: die Tabs, Fenster und Frames, die `browser.url()`, `browser.newWindow()`, `browser.browsingContexts()` und `context.frame()` in einer WebDriver-BiDi-Session zurückgeben. Es kann nicht mit `attachToElement` kombiniert werden. Siehe [Browsing Contexts](#browsing-contexts).
+Flag, um den Befehl an jeden Browsing-Kontext anzuhängen: die Tabs, Fenster und Frames, die `browser.url()`, `browser.newWindow()`, `browser.browsingContexts()` und `context.frame()` in einer WebDriver-BiDi-Session zurückgeben. Es kann nicht mit `attachToElement` kombiniert werden. Siehe [Browsing-Kontexte](#browsing-contexts).
 
 </Option>
 
@@ -46,7 +46,7 @@ Flag, um den Befehl an jeden Browsing Context anzuhängen: die Tabs, Fenster und
 
 <Option type="Boolean" default="false" name="disableElementImplicitWait">
 
-Flag, das festlegt, ob implizit darauf gewartet wird, dass das Element existiert, bevor der benutzerdefinierte Befehl aufgerufen wird.
+Flag, das festlegt, ob implizit darauf gewartet werden soll, dass das Element existiert, bevor der benutzerdefinierte Befehl aufgerufen wird.
 
 </Option>
 
@@ -65,7 +65,7 @@ browser.addCommand('getUrlAndTitle', async function (customVar) {
 })
 ```
 
-Zusätzlich können Sie die Element-Instanz um eigene Befehle erweitern, indem Sie `attachToElement` auf `true` setzen. Der Scope (`this`) ist in diesem Fall ein [`WebdriverIO.Element`](/docs/api/element)-Objekt.
+Zusätzlich können Sie die Element-Instanz mit eigenen Befehlen erweitern, indem Sie `attachToElement` auf `true` setzen. Der Scope (`this`) ist in diesem Fall ein [`WebdriverIO.Element`](/docs/api/element)-Objekt.
 
 ```js
 browser.addCommand("waitAndClick", async function () {
@@ -75,7 +75,7 @@ browser.addCommand("waitAndClick", async function () {
 }, { attachToElement: true })
 ```
 
-Standardmäßig warten benutzerdefinierte Element-Befehle darauf, dass das Element existiert, bevor der benutzerdefinierte Befehl aufgerufen wird. Auch wenn dies meistens erwünscht ist, kann es bei Bedarf mit `disableImplicitWait` deaktiviert werden:
+Standardmäßig warten benutzerdefinierte Element-Befehle darauf, dass das Element existiert, bevor der benutzerdefinierte Befehl aufgerufen wird. Auch wenn dies meistens erwünscht ist, kann es andernfalls mit `disableImplicitWait` deaktiviert werden:
 
 ```js
 browser.addCommand("waitAndClick", async function () {
@@ -85,9 +85,9 @@ browser.addCommand("waitAndClick", async function () {
 }, { attachToElement: true, disableElementImplicitWait: true })
 ```
 
-Benutzerdefinierte Befehle bieten Ihnen die Möglichkeit, eine bestimmte Abfolge häufig verwendeter Befehle in einem einzigen Aufruf zu bündeln. Sie können benutzerdefinierte Befehle an jeder Stelle Ihrer Testsuite definieren; stellen Sie nur sicher, dass der Befehl *vor* seiner ersten Verwendung definiert ist. (Der `before`-Hook in Ihrer `wdio.conf.js` ist ein guter Ort, um sie zu erstellen.)
+Benutzerdefinierte Befehle bieten Ihnen die Möglichkeit, eine bestimmte, häufig verwendete Abfolge von Befehlen in einem einzigen Aufruf zu bündeln. Sie können benutzerdefinierte Befehle an jeder Stelle Ihrer Testsuite definieren; stellen Sie nur sicher, dass der Befehl *vor* seiner ersten Verwendung definiert ist. (Der `before`-Hook in Ihrer `wdio.conf.js` ist ein guter Ort, um sie zu erstellen.)
 
-Sobald sie definiert sind, können Sie sie wie folgt verwenden:
+Einmal definiert, können Sie sie wie folgt verwenden:
 
 ```js
 it('should use my custom command', async () => {
@@ -131,9 +131,9 @@ Achten Sie darauf, den `browser`-Scope nicht mit zu vielen benutzerdefinierten B
 
 Wir empfehlen, benutzerdefinierte Logik in [Page Objects](pageobjects) zu definieren, damit sie an eine bestimmte Seite gebunden ist.
 
-### Browsing Contexts
+### Browsing-Kontexte
 
-In einer WebDriver-BiDi-Session sind ein Tab, ein Fenster und ein Frame jeweils ein `WebdriverIO.BrowsingContext`. Setzen Sie `attachToBrowsingContext` auf `true`, um allen von ihnen einen Befehl hinzuzufügen. Der Scope (`this`) ist der Context, auf dem der Befehl aufgerufen wurde, und `this.browser` ist der Browser, zu dem er gehört:
+In einer WebDriver-BiDi-Session sind ein Tab, ein Fenster und ein Frame jeweils ein `WebdriverIO.BrowsingContext`. Setzen Sie `attachToBrowsingContext` auf `true`, um allen von ihnen einen Befehl hinzuzufügen. Der Scope (`this`) ist der Kontext, auf dem der Befehl aufgerufen wurde, und `this.browser` ist der Browser, zu dem er gehört:
 
 ```js
 browser.addCommand('heading', async function () {
@@ -148,9 +148,9 @@ const frame = await page.frame('iframe')
 console.log(await frame.heading())
 ```
 
-Der Befehl ist auf bereits existierenden Contexts sowie auf jedem später erstellten Context verfügbar, einschließlich Frames von einem anderen Origin. Ein Befehl, der nur für einen Tab oder ein Fenster sinnvoll ist, kann `this.isFrame` prüfen.
+Der Befehl ist auf bereits existierenden Kontexten und auf jedem später erstellten Kontext verfügbar, einschließlich Frames von einem anderen Origin. Ein Befehl, der nur für einen Tab oder ein Fenster sinnvoll ist, kann `this.isFrame` prüfen.
 
-`addCommand` und `overwriteCommand` auf einem Browsing Context selbst werfen einen Fehler. Registrieren Sie den Befehl auf dem Browser.
+`addCommand` und `overwriteCommand` auf einem Browsing-Kontext selbst werfen einen Fehler. Registrieren Sie den Befehl auf dem Browser.
 
 ### Multi-remote
 
@@ -196,12 +196,12 @@ multiRemoteBrowser.getInstance('browserA').getUrlAndTitle()
 
 ## Typdefinitionen erweitern
 
-Mit TypeScript ist es einfach, WebdriverIO-Interfaces zu erweitern. Fügen Sie Ihren benutzerdefinierten Befehlen wie folgt Typen hinzu:
+Mit TypeScript ist es einfach, WebdriverIO-Interfaces zu erweitern. Fügen Sie Ihren benutzerdefinierten Befehlen Typen wie folgt hinzu:
 
 1. Erstellen Sie eine Typdefinitionsdatei (z. B. `./src/types/wdio.d.ts`)
-2. a. Wenn Sie eine Typdefinitionsdatei im Modulstil verwenden (mit import/export und `declare global WebdriverIO` in der Typdefinitionsdatei), stellen Sie sicher, dass der Dateipfad in der `include`-Eigenschaft der `tsconfig.json` enthalten ist.
+2. a. Wenn Sie eine Typdefinitionsdatei im Modul-Stil verwenden (mit import/export und `declare global WebdriverIO` in der Typdefinitionsdatei), stellen Sie sicher, dass der Dateipfad in der `include`-Eigenschaft der `tsconfig.json` enthalten ist.
 
-   b. Wenn Sie Typdefinitionsdateien im Ambient-Stil verwenden (kein import/export in den Typdefinitionsdateien und `declare namespace WebdriverIO` für benutzerdefinierte Befehle), stellen Sie sicher, dass die `tsconfig.json` *keinen* `include`-Abschnitt enthält, da sonst alle Typdefinitionsdateien, die nicht im `include`-Abschnitt aufgeführt sind, von TypeScript nicht erkannt werden.
+   b. Wenn Sie Typdefinitionsdateien im Ambient-Stil verwenden (kein import/export in den Typdefinitionsdateien und `declare namespace WebdriverIO` für benutzerdefinierte Befehle), stellen Sie sicher, dass die `tsconfig.json` *keinen* `include`-Abschnitt enthält, da dies dazu führt, dass alle Typdefinitionsdateien, die nicht im `include`-Abschnitt aufgeführt sind, von TypeScript nicht erkannt werden.
 
 <Tabs
   defaultValue="modules"
@@ -295,7 +295,7 @@ declare namespace WebdriverIO {
 
 ## Bibliotheken von Drittanbietern integrieren
 
-Wenn Sie externe Bibliotheken verwenden (z. B. für Datenbankaufrufe), die Promises unterstützen, ist es ein guter Ansatz, bestimmte API-Methoden mit einem benutzerdefinierten Befehl zu umschließen.
+Wenn Sie externe Bibliotheken verwenden (z. B. für Datenbankaufrufe), die Promises unterstützen, ist es ein guter Ansatz, bestimmte API-Methoden mit einem benutzerdefinierten Befehl zu umschließen, um sie zu integrieren.
 
 Wenn das Promise zurückgegeben wird, stellt WebdriverIO sicher, dass es nicht mit dem nächsten Befehl fortfährt, bis das Promise aufgelöst ist. Wenn das Promise abgelehnt wird, wirft der Befehl einen Fehler.
 
@@ -320,11 +320,11 @@ it('execute external library in a sync way', async () => {
 
 ## Befehle überschreiben
 
-Sie können native Befehle auch mit `overwriteCommand` überschreiben.
+Sie können auch native Befehle mit `overwriteCommand` überschreiben.
 
 Es wird nicht empfohlen, dies zu tun, da es zu unvorhersehbarem Verhalten des Frameworks führen kann!
 
-Der grundsätzliche Ansatz ähnelt `addCommand`. Der einzige Unterschied besteht darin, dass das erste Argument der Befehlsfunktion die ursprüngliche Funktion ist, die Sie überschreiben möchten. Bitte sehen Sie sich einige Beispiele unten an.
+Der grundsätzliche Ansatz ist ähnlich wie bei `addCommand`, der einzige Unterschied ist, dass das erste Argument der Befehlsfunktion die ursprüngliche Funktion ist, die Sie überschreiben möchten. Sehen Sie sich dazu die folgenden Beispiele an.
 
 ### Browser-Befehle überschreiben
 
@@ -354,7 +354,7 @@ Das Überschreiben von Befehlen auf Element-Ebene funktioniert fast genauso. Set
 ```js
 /**
  * Versuchen, zum Element zu scrollen, wenn es nicht klickbar ist.
- * { force: true } übergeben, um per JS zu klicken, auch wenn das Element nicht sichtbar oder klickbar ist.
+ * { force: true } übergeben, um mit JS zu klicken, auch wenn das Element nicht sichtbar oder klickbar ist.
  * Zeigen, dass der ursprüngliche Argumenttyp der Funktion mit `options?: ClickOptions` beibehalten werden kann
  *
  * @param this of func - das Element, auf dem die ursprüngliche Funktion aufgerufen wurde
@@ -382,7 +382,7 @@ browser.overwriteCommand(
             }
         }
 
-        // Klicken mit JS
+        // mit JS klicken
         console.warn('WARN: Using force click for', this.selector)
         await browser.execute((el) => {
             el.click()
@@ -399,9 +399,9 @@ await elem.click()
 await elem.click({ force: true })
 ```
 
-### Browsing-Context-Befehle überschreiben
+### Browsing-Kontext-Befehle überschreiben
 
-Setzen Sie `attachToBrowsingContext` auf `true`, um einen eingebauten oder benutzerdefinierten Befehl jedes Tabs, Fensters und Frames zu überschreiben. Der ursprüngliche Befehl ist an den Context gebunden, auf dem er aufgerufen wurde:
+Setzen Sie `attachToBrowsingContext` auf `true`, um einen eingebauten oder benutzerdefinierten Befehl jedes Tabs, Fensters und Frames zu überschreiben. Der ursprüngliche Befehl ist an den Kontext gebunden, auf dem er aufgerufen wurde:
 
 ```js
 browser.overwriteCommand('getTitle', async function (this, originalGetTitle) {
@@ -416,7 +416,7 @@ console.log(await frame.getTitle()) // "frame: ..."
 
 ## Weitere WebDriver-Befehle hinzufügen
 
-Wenn Sie das WebDriver-Protokoll verwenden und Tests auf einer Plattform ausführen, die zusätzliche Befehle unterstützt, die in keiner der Protokolldefinitionen in [`@wdio/protocols`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-protocols/src/protocols) definiert sind, können Sie diese manuell über die `addCommand`-Schnittstelle hinzufügen. Das `webdriver`-Paket bietet einen Befehls-Wrapper, mit dem diese neuen Endpunkte auf die gleiche Weise wie andere Befehle registriert werden können, mit denselben Parameterprüfungen und derselben Fehlerbehandlung. Um diesen neuen Endpunkt zu registrieren, importieren Sie den Befehls-Wrapper und registrieren Sie damit wie folgt einen neuen Befehl:
+Wenn Sie das WebDriver-Protokoll verwenden und Tests auf einer Plattform ausführen, die zusätzliche Befehle unterstützt, die in keiner der Protokolldefinitionen in [`@wdio/protocols`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-protocols/src/protocols) definiert sind, können Sie diese manuell über das `addCommand`-Interface hinzufügen. Das `webdriver`-Paket bietet einen Befehls-Wrapper, mit dem diese neuen Endpunkte auf dieselbe Weise wie andere Befehle registriert werden können, mit denselben Parameterprüfungen und derselben Fehlerbehandlung. Um diesen neuen Endpunkt zu registrieren, importieren Sie den Befehls-Wrapper und registrieren damit einen neuen Befehl wie folgt:
 
 ```js
 import { command } from 'webdriver'
@@ -459,7 +459,7 @@ await browser.myNewCommand()
  */
 ```
 
-Ein korrekter Aufruf des Befehls, z. B. `browser.myNewCommand('foo', 'bar')`, führt korrekt einen WebDriver-Request an z. B. `http://localhost:4444/session/7bae3c4c55c3bf82f54894ddc83c5f31/foobar/foo` mit einer Payload wie `{ foo: 'bar' }` aus.
+Ein korrekter Aufruf des Befehls, z. B. `browser.myNewCommand('foo', 'bar')`, sendet korrekt eine WebDriver-Anfrage an z. B. `http://localhost:4444/session/7bae3c4c55c3bf82f54894ddc83c5f31/foobar/foo` mit einem Payload wie `{ foo: 'bar' }`.
 
 :::note
 Der URL-Parameter `:sessionId` wird automatisch durch die Session-ID der WebDriver-Session ersetzt. Weitere URL-Parameter können verwendet werden, müssen aber innerhalb von `variables` definiert werden.

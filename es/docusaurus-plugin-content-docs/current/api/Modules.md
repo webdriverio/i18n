@@ -7,11 +7,11 @@ WebdriverIO publica varios módulos en NPM y otros registros que puedes usar par
 
 ## `webdriver` y `devtools`
 
-Los paquetes de protocolo ([`webdriver`](https://www.npmjs.com/package/webdriver) y [`devtools`](https://www.npmjs.com/package/devtools)) exponen una clase con las siguientes funciones estáticas adjuntas que te permiten iniciar sesiones:
+Los paquetes de protocolo ([`webdriver`](https://www.npmjs.com/package/webdriver) y [`devtools`](https://www.npmjs.com/package/devtools)) exponen una clase con las siguientes funciones estáticas que te permiten iniciar sesiones:
 
 #### `newSession(options, modifier, userPrototype, customCommandWrapper)`
 
-Inicia una nueva sesión con capacidades específicas. Según la respuesta de la sesión, se proporcionarán comandos de diferentes protocolos.
+Inicia una nueva sesión con capacidades específicas. En función de la respuesta de la sesión, se proporcionarán comandos de diferentes protocolos.
 
 ##### Parámetros
 
@@ -20,7 +20,7 @@ Inicia una nueva sesión con capacidades específicas. Según la respuesta de la
 - `userPrototype`: objeto de propiedades que permite extender el prototipo de la instancia
 - `customCommandWrapper`: función que permite envolver funcionalidad alrededor de las llamadas a funciones
 
-##### Retorna
+##### Devuelve
 
 - Objeto [Browser](/docs/api/browser)
 
@@ -43,7 +43,7 @@ Se conecta a una sesión de WebDriver o DevTools en ejecución.
 - `userPrototype`: objeto de propiedades que permite extender el prototipo de la instancia
 - `customCommandWrapper`: función que permite envolver funcionalidad alrededor de las llamadas a funciones
 
-##### Retorna
+##### Devuelve
 
 - Objeto [Browser](/docs/api/browser)
 
@@ -71,7 +71,7 @@ await WebDriver.reloadSession(client)
 
 ## `webdriverio`
 
-De forma similar a los paquetes de protocolo (`webdriver` y `devtools`), también puedes usar las APIs del paquete WebdriverIO para gestionar sesiones. Las APIs se pueden importar usando `import { remote, attach, multiRemote } from 'webdriverio` y contienen la siguiente funcionalidad:
+Al igual que con los paquetes de protocolo (`webdriver` y `devtools`), también puedes usar las APIs del paquete WebdriverIO para gestionar sesiones. Las APIs se pueden importar usando `import { remote, attach, multiRemote } from 'webdriverio` y contienen la siguiente funcionalidad:
 
 #### `remote(options, modifier)`
 
@@ -82,7 +82,7 @@ Inicia una sesión de WebdriverIO. La instancia contiene todos los comandos del 
 - `options`: [Opciones de WebdriverIO](/docs/configuration#webdriverio)
 - `modifier`: función que permite modificar la instancia del cliente antes de que sea devuelta
 
-##### Retorna
+##### Devuelve
 
 - Objeto [Browser](/docs/api/browser)
 
@@ -104,7 +104,7 @@ Se conecta a una sesión de WebdriverIO en ejecución.
 
 - `attachOptions`: instancia a la que conectar una sesión o al menos un objeto con una propiedad `sessionId` (p. ej. `{ sessionId: 'xxx' }`)
 
-##### Retorna
+##### Devuelve
 
 - Objeto [Browser](/docs/api/browser)
 
@@ -125,7 +125,7 @@ Inicia una instancia multi-remote que te permite controlar múltiples sesiones d
 
 - `multiRemoteOptions`: un objeto con claves que representan el nombre del navegador y sus [Opciones de WebdriverIO](/docs/configuration#webdriverio).
 
-##### Retorna
+##### Devuelve
 
 - Objeto [Browser](/docs/api/browser)
 
@@ -158,7 +158,7 @@ Un objeto que contiene constantes de caracteres especiales para usar con el coma
 ```js
 import { Key } from 'webdriverio'
 
-// Presionar la tecla Enter
+// Pulsar la tecla Enter
 await browser.keys(Key.Enter)
 
 // Usar Ctrl+A para seleccionar todo (funciona en todas las plataformas)
@@ -181,17 +181,17 @@ Las siguientes teclas especiales están disponibles a través del objeto `Key`:
 | `Key.Shift` | Tecla Shift |
 | `Key.Alt` | Tecla Alt |
 | `Key.Command` | Tecla Command (Mac) |
-| `Key.NULL` | Tecla nula/de liberación — libera todas las teclas modificadoras mantenidas actualmente |
+| `Key.NULL` | Tecla nula/de liberación — libera todas las teclas modificadoras actualmente presionadas |
 
 **Teclas de navegación:**
 
 | Constante | Descripción |
 |----------|-------------|
-| `Key.Cancel` | Tecla Cancel |
-| `Key.Help` | Tecla Help |
+| `Key.Cancel` | Tecla Cancelar |
+| `Key.Help` | Tecla Ayuda |
 | `Key.Backspace` | Tecla Retroceso |
-| `Key.Tab` | Tecla Tab |
-| `Key.Clear` | Tecla Clear |
+| `Key.Tab` | Tecla Tabulador |
+| `Key.Clear` | Tecla Borrar |
 | `Key.Return` | Tecla Return |
 | `Key.Enter` | Tecla Enter |
 | `Key.Pause` | Tecla Pausa |
@@ -205,7 +205,7 @@ Las siguientes teclas especiales están disponibles a través del objeto `Key`:
 | `Key.ArrowUp` | Tecla Flecha arriba |
 | `Key.ArrowRight` | Tecla Flecha derecha |
 | `Key.ArrowDown` | Tecla Flecha abajo |
-| `Key.Insert` | Tecla Insert |
+| `Key.Insert` | Tecla Insertar |
 | `Key.Delete` | Tecla Suprimir |
 
 **Teclas de caracteres:**
@@ -231,7 +231,7 @@ Las siguientes teclas especiales están disponibles a través del objeto `Key`:
 
 | Constante | Descripción |
 |----------|-------------|
-| `Key.F1` - `Key.F12` | Teclas de función F1 a F12 |
+| `Key.F1` - `Key.F12` | Teclas de función de F1 a F12 |
 
 **Otras teclas:**
 
@@ -241,13 +241,13 @@ Las siguientes teclas especiales están disponibles a través del objeto `Key`:
 
 :::info Teclas modificadoras multiplataforma
 
-La constante `Key.Ctrl` proporciona una forma conveniente de usar el modificador "control" en diferentes sistemas operativos. En macOS, se asigna a la tecla `Command`, mientras que en Windows y Linux se asigna a la tecla `Control`. Esto es útil al escribir pruebas que necesitan funcionar en múltiples plataformas, p. ej., para operaciones de seleccionar todo (`Ctrl+A`), copiar (`Ctrl+C`) o pegar (`Ctrl+V`).
+La constante `Key.Ctrl` proporciona una forma práctica de usar el modificador "control" en diferentes sistemas operativos. En macOS, se asigna a la tecla `Command`, mientras que en Windows y Linux se asigna a la tecla `Control`. Esto es útil al escribir pruebas que necesitan funcionar en múltiples plataformas, p. ej., para operaciones de seleccionar todo (`Ctrl+A`), copiar (`Ctrl+C`) o pegar (`Ctrl+V`).
 
 :::
 
 ## `@wdio/cli`
 
-En lugar de llamar al comando `wdio`, también puedes incluir el test runner como módulo y ejecutarlo en un entorno arbitrario. Para ello, necesitarás requerir el paquete `@wdio/cli` como módulo, así:
+En lugar de llamar al comando `wdio`, también puedes incluir el test runner como módulo y ejecutarlo en un entorno arbitrario. Para ello, necesitarás requerir el paquete `@wdio/cli` como módulo, de esta manera:
 
 <Tabs
   defaultValue="esm"
@@ -299,7 +299,7 @@ wdio.run().then((exitCode) => {
 })
 ```
 
-El comando `run` devuelve una [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise). Se resuelve si las pruebas se ejecutaron correctamente o fallaron, y se rechaza si el launcher no pudo iniciar la ejecución de las pruebas.
+El comando `run` devuelve una [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise). Se resuelve si las pruebas se ejecutaron con éxito o fallaron, y se rechaza si el launcher no pudo iniciar la ejecución de las pruebas.
 
 ## `@wdio/browser-runner`
 
@@ -317,15 +317,15 @@ Función mock, consulta más en la [documentación oficial de Vitest](https://vi
 
 #### `spyOn`
 
-Función spy, consulta más en la [documentación oficial de Vitest](https://vitest.dev/api/mock.html#mock-functions).
+Función espía, consulta más en la [documentación oficial de Vitest](https://vitest.dev/api/mock.html#mock-functions).
 
 #### `mock`
 
-Método para simular (mock) un archivo o un módulo de dependencia.
+Método para hacer mock de un archivo o módulo de dependencia.
 
 ##### Parámetros
 
-- `moduleName`: una ruta relativa al archivo a simular o un nombre de módulo.
+- `moduleName`: una ruta relativa al archivo del que se hará mock o un nombre de módulo.
 - `factory`: función que devuelve el valor simulado (opcional)
 
 ##### Ejemplo

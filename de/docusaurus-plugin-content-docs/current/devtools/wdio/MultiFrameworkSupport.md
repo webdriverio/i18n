@@ -1,10 +1,10 @@
 ---
 id: multi-framework-support
 title: Unterstützung mehrerer Frameworks
-description: "Verwenden Sie den DevTools-Service mit Mocha, Jasmine oder Cucumber ohne framework-spezifische Konfiguration."
+description: "Verwenden Sie den DevTools-Service mit Mocha, Jasmine oder Cucumber ohne Framework-spezifische Konfiguration."
 ---
 
-DevTools funktioniert automatisch mit Mocha, Jasmine und Cucumber, ohne dass eine framework-spezifische Konfiguration erforderlich ist. Fügen Sie einfach den Service zu Ihrer WebDriverIO-Konfiguration hinzu, und alle Funktionen arbeiten nahtlos, unabhängig davon, welches Test-Framework Sie verwenden.
+DevTools funktioniert automatisch mit Mocha, Jasmine und Cucumber, ohne dass eine Framework-spezifische Konfiguration erforderlich ist. Fügen Sie einfach den Service zu Ihrer WebDriverIO-Konfiguration hinzu, und alle Funktionen arbeiten nahtlos, unabhängig davon, welches Test-Framework Sie verwenden.
 
 **Unterstützte Frameworks:**
 - **Mocha** - Ausführung auf Test- und Suite-Ebene mit Grep-Filterung

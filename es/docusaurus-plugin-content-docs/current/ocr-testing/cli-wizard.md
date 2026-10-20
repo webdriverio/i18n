@@ -34,7 +34,7 @@ Esta es una ruta directa a un archivo en algún lugar de tu máquina local
 
 ### ¿Te gustaría usar un haystack?
 
-Aquí tienes la opción de seleccionar un área que debe procesarse. Esto puede acelerar el proceso o reducir/acotar la cantidad de texto que el motor OCR podría encontrar. Debes proporcionar los datos `x`, `y`, `width`, `height` según las siguientes preguntas:
+Aquí tienes la opción de seleccionar un área que necesita ser procesada. Esto puede acelerar el proceso o reducir/acotar la cantidad de texto que el motor OCR podría encontrar. Debes proporcionar los datos `x`, `y`, `width`, `height` según las siguientes preguntas:
 
 -   Introduce la coordenada x:
 -   Introduce la coordenada y:
@@ -45,12 +45,12 @@ Aquí tienes la opción de seleccionar un área que debe procesarse. Esto puede 
 
 El modo avanzado incluirá funciones adicionales como:
 
--   configurar el contraste
--   más funciones en el futuro
+-   ajustar el contraste
+-   más por venir en el futuro
 
-## Demostración
+## Demo
 
-Aquí tienes una demostración
+Aquí tienes una demo
 
 <video controls width="100%">
   <source src="/img/ocr/ocr-service-cli.mp4" />

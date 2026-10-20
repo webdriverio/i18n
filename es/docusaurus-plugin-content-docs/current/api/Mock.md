@@ -18,7 +18,7 @@ Puedes leer más sobre cómo simular solicitudes y respuestas en WebdriverIO en 
 
 ## Multi-remote
 
-En un navegador [multi-remote](/docs/multiremote), [`browser.mock()`](/docs/api/browser/mock) devuelve un `MultiRemoteMock` en lugar de este objeto. `instances` enumera los nombres de los navegadores, y `getInstance(name)` devuelve el `Mock` para ese navegador. `respond()`, `restore()` y los demás métodos que se describen a continuación se ejecutan en cada instancia. `calls` permanece en el mock de cada instancia: `mock.getInstance('myChromeBrowser').calls`.
+En un navegador [multi-remote](/docs/multiremote), [`browser.mock()`](/docs/api/browser/mock) devuelve un `MultiRemoteMock` en lugar de este objeto. `instances` enumera los nombres de los navegadores, y `getInstance(name)` devuelve el `Mock` para ese navegador. `respond()`, `restore()` y los demás métodos que se indican a continuación se ejecutan en cada instancia. `calls` permanece en el mock de cada instancia: `mock.getInstance('myChromeBrowser').calls`.
 
 `getInstance` lanza `Multi-remote object has no instance named "<name>"` cuando `name` no es uno de los valores de `instances`.
 
@@ -49,13 +49,13 @@ Los objetos mock proporcionan varios comandos, enumerados en la sección `mock`,
 
 ## Eventos
 
-El objeto mock es un EventEmitter y emite un par de eventos para tus casos de uso.
+El objeto mock es un EventEmitter y se emiten un par de eventos para tus casos de uso.
 
 Aquí hay una lista de eventos.
 
 ### `request`
 
-Este evento se emite al iniciar una solicitud de red que coincide con los patrones del mock. La solicitud se pasa en el callback del evento.
+Este evento se emite al lanzar una solicitud de red que coincide con los patrones del mock. La solicitud se pasa en el callback del evento.
 
 Interfaz de la solicitud:
 ```ts
@@ -106,7 +106,7 @@ interface MatchEvent {
     headers: Record<string, string> // Encabezados de la solicitud HTTP.
     postData?: string // Datos de la solicitud HTTP POST.
     hasPostData?: boolean // True cuando la solicitud tiene datos POST.
-    mixedContentType?: MixedContentType // El tipo de contenido mixto de la solicitud.
+    mixedContentType?: MixedContentType // El tipo de exportación de contenido mixto de la solicitud.
     initialPriority: ResourcePriority // Prioridad de la solicitud del recurso en el momento en que se envía la solicitud.
     referrerPolicy: ReferrerPolicy // La política de referencia de la solicitud, según se define en https://www.w3.org/TR/referrer-policy/
     isLinkPreload?: boolean // Si se carga mediante link preload.
@@ -119,7 +119,7 @@ interface MatchEvent {
 
 ### `continue`
 
-Este evento se emite cuando la respuesta de red no ha sido sobrescrita ni interrumpida, o si la respuesta ya fue enviada por otro mock. `requestId` se pasa en el callback del evento.
+Este evento se emite cuando la respuesta de red no ha sido sobrescrita ni interrumpida, o si la respuesta ya fue enviada por otro mock. Se pasa `requestId` en el callback del evento.
 
 ## Ejemplos
 
@@ -127,7 +127,7 @@ Obtener el número de solicitudes pendientes:
 
 ```js
 let pendingRequests = 0
-const mock = await browser.mock('**') // es importante que coincida con todas las solicitudes; de lo contrario, el valor resultante puede ser muy confuso.
+const mock = await browser.mock('**') // es importante coincidir con todas las solicitudes; de lo contrario, el valor resultante puede ser muy confuso.
 mock.on('request', ({request}) => {
     pendingRequests++
     console.log(`matched request to ${request.url}, pending ${pendingRequests} requests`)
@@ -189,4 +189,4 @@ secondMock.on('continue', () => {
 })
 ```
 
-En este ejemplo, `firstMock` se definió primero y tiene una llamada a `respondOnce`, por lo que el valor de respuesta de `secondMock` no se usará para la primera solicitud, pero sí para el resto.
+En este ejemplo, `firstMock` se definió primero y tiene una llamada a `respondOnce`, por lo que el valor de respuesta de `secondMock` no se usará para la primera solicitud, pero sí se usará para el resto.

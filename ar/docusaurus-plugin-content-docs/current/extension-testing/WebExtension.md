@@ -1,12 +1,12 @@
 ---
 id: web-extensions
 title: اختبار إضافات الويب
-description: "تحميل إضافة ويب في Chrome أو Firefox لجلسة WebdriverIO، بما في ذلك التثبيت وإلغاء التثبيت عبر BiDi في منتصف الجلسة."
+description: "تحميل إضافة ويب في Chrome أو Firefox لجلسة WebdriverIO، بما في ذلك تثبيتها وإلغاء تثبيتها عبر BiDi أثناء الجلسة."
 ---
 
-يُعد WebdriverIO الأداة المثالية لأتمتة المتصفح. إضافات الويب (Web Extensions) هي جزء من المتصفح ويمكن أتمتتها بالطريقة نفسها. فكلما استخدمت إضافة الويب الخاصة بك سكربتات المحتوى (content scripts) لتشغيل JavaScript على المواقع أو لعرض نافذة منبثقة، يمكنك تشغيل اختبار e2e لذلك باستخدام WebdriverIO.
+يُعد WebdriverIO الأداة المثالية لأتمتة المتصفح. وإضافات الويب (Web Extensions) جزء من المتصفح ويمكن أتمتتها بالطريقة نفسها. فكلما استخدمت إضافة الويب الخاصة بك سكربتات المحتوى (content scripts) لتشغيل JavaScript على المواقع أو لعرض نافذة منبثقة، يمكنك تشغيل اختبار e2e لذلك باستخدام WebdriverIO.
 
-حمِّل الإضافة قبل أول عملية تنقل باستخدام إعداد القدرات (capabilities) الموضح أدناه. ولتثبيت إضافة وإزالتها في منتصف جلسة [WebDriver BiDi](https://w3c.github.io/webdriver-bidi/#module-webExtension)، استخدم [`installExtension`](/docs/api/browser/installExtension) و[`uninstallExtension`](/docs/api/browser/uninstallExtension).
+حمّل الإضافة قبل أول عملية تنقل باستخدام إعداد الإمكانيات (capabilities) الموضح أدناه. ولتثبيت إضافة وإزالتها في منتصف جلسة [WebDriver BiDi](https://w3c.github.io/webdriver-bidi/#module-webExtension)، استخدم [`installExtension`](/docs/api/browser/installExtension) و[`uninstallExtension`](/docs/api/browser/uninstallExtension).
 
 ## تحميل إضافة ويب في المتصفح
 
@@ -14,13 +14,13 @@ description: "تحميل إضافة ويب في Chrome أو Firefox لجلسة W
 
 :::info
 
-تستثني هذه الوثائق إضافات الويب الخاصة بـ Safari، لأن دعمه لها متأخر كثيرًا والطلب عليها من المستخدمين ليس مرتفعًا. كما أن Safari لا يوفر جلسة WebDriver BiDi، لذا لا يغطي [`installExtension`](/docs/api/browser/installExtension) متصفح Safari. إذا كنت تبني إضافة ويب لـ Safari، يُرجى [فتح مشكلة](https://github.com/webdriverio/webdriverio/issues/new?assignees=&labels=Docs+%F0%9F%93%96%2CNeeds+Triaging+%E2%8F%B3&template=documentation.yml&title=%5B%F0%9F%93%96+Docs%5D%3A+%3Ctitle%3E) والتعاون على تضمينها هنا أيضًا.
+تستثني هذه الوثائق إضافات الويب الخاصة بـ Safari لأن دعمه لها متأخر كثيرًا والطلب عليها من المستخدمين ليس مرتفعًا. كما أن Safari لا يملك جلسة WebDriver BiDi، لذا فإن [`installExtension`](/docs/api/browser/installExtension) لا يشمل Safari. إذا كنت تبني إضافة ويب لـ Safari، يُرجى [فتح مشكلة](https://github.com/webdriverio/webdriverio/issues/new?assignees=&labels=Docs+%F0%9F%93%96%2CNeeds+Triaging+%E2%8F%B3&template=documentation.yml&title=%5B%F0%9F%93%96+Docs%5D%3A+%3Ctitle%3E) والتعاون على تضمينها هنا أيضًا.
 
 :::
 
 ### Chrome
 
-يمكن تحميل إضافة ويب في Chrome إما بتوفير سلسلة نصية مُرمَّزة بـ `base64` لملف `crx`، أو بتوفير مسار إلى مجلد إضافة الويب. الطريقة الأسهل هي الثانية، وذلك بتعريف قدرات Chrome الخاصة بك كما يلي:
+يمكن تحميل إضافة ويب في Chrome إما بتوفير سلسلة نصية مُرمّزة بـ `base64` لملف `crx` أو بتوفير مسار إلى مجلد إضافة الويب. الطريقة الأسهل هي الثانية، وذلك بتعريف إمكانيات Chrome على النحو التالي:
 
 ```js wdio.conf.js
 import path from 'node:path'
@@ -43,7 +43,7 @@ export const config = {
 
 :::info
 
-إذا كنت تؤتمت متصفحًا غير Chrome، مثل Brave أو Edge أو Opera، فمن المرجح أن تتطابق خيارات المتصفح مع المثال أعلاه، مع استخدام اسم قدرة مختلف فقط، مثل `ms:edgeOptions`.
+إذا كنت تقوم بأتمتة متصفح غير Chrome، مثل Brave أو Edge أو Opera، فمن المرجح أن خيارات المتصفح تتطابق مع المثال أعلاه، مع استخدام اسم إمكانية مختلف فقط، مثل `ms:edgeOptions`.
 
 :::
 
@@ -70,7 +70,7 @@ export const config = {
 
 ### Firefox
 
-لإنشاء ملف تعريف Firefox يتضمن إضافات، يمكنك استخدام [Firefox Profile Service](/docs/firefox-profile-service) لإعداد جلستك وفقًا لذلك. لكن قد تواجه مشكلات تمنع تحميل إضافتك المطوَّرة محليًا بسبب مشكلات في التوقيع. في هذه الحالة يمكنك أيضًا تحميل الإضافة في خطاف `before` عبر الأمر [`installAddOn`](/docs/api/gecko#installaddon)، على سبيل المثال:
+لإنشاء ملف تعريف (profile) لـ Firefox يتضمن إضافات، يمكنك استخدام [Firefox Profile Service](/docs/firefox-profile-service) لإعداد جلستك وفقًا لذلك. ومع ذلك، قد تواجه مشكلات حيث لا يمكن تحميل إضافتك المطوّرة محليًا بسبب مشكلات في التوقيع. في هذه الحالة، يمكنك أيضًا تحميل إضافة في خطاف `before` عبر أمر [`installAddOn`](/docs/api/gecko#installaddon)، على سبيل المثال:
 
 ```js wdio.conf.js
 import path from 'node:path'
@@ -99,9 +99,9 @@ npx web-ext build -s dist/ -a . -n web-extension-firefox.xpi
 
 ## تثبيت إضافة أثناء الجلسة
 
-منذ الإصدار v10، يقوم [`browser.installExtension`](/docs/api/browser/installExtension) و[`browser.uninstallExtension`](/docs/api/browser/uninstallExtension) بتثبيت إضافة ويب في منتصف جلسة WebDriver BiDi ويُعيدان معرّفها. استخدمهما عندما يجب ألا تكون الإضافة موجودة عند التشغيل، أو عندما يقوم الاختبار نفسه بتثبيتها وتجربتها ثم إزالتها.
+منذ الإصدار v10، يقوم [`browser.installExtension`](/docs/api/browser/installExtension) و[`browser.uninstallExtension`](/docs/api/browser/uninstallExtension) بتثبيت إضافة ويب في منتصف جلسة WebDriver BiDi وإرجاع معرّفها. استخدمهما عندما يجب ألا تكون الإضافة موجودة عند التشغيل، أو عندما يقوم الاختبار نفسه بتثبيتها واختبارها ثم إزالتها.
 
-يبقى إعداد القدرات و`installAddOn` المذكوران أعلاه الطريقة المعتمدة لتحميل إضافة قبل أول عملية تنقل، ولا يحل `installExtension` محلهما. ويظل `browser.webExtensionInstall` و`browser.webExtensionUninstall` متاحين عندما تريد إرسال [حمولة المواصفة](https://w3c.github.io/webdriver-bidi/#command-webExtension-install) بنفسك.
+يظل إعداد الإمكانيات و`installAddOn` الموضحان أعلاه هما الطريقة لتحميل إضافة قبل أول عملية تنقل، ولا يحل `installExtension` محلهما. كما يظل `browser.webExtensionInstall` و`browser.webExtensionUninstall` متاحين عندما تريد إنشاء [حمولة المواصفة](https://w3c.github.io/webdriver-bidi/#command-webExtension-install) بنفسك.
 
 ```ts title="test/specs/extension.e2e.ts"
 import path from 'node:path'
@@ -132,19 +132,19 @@ describe('web extension', () => {
 | مسار ملف `.zip` أو `.xpi` أو `.crx` | `{ type: 'archivePath', path }` بعد `path.resolve`. |
 | `{ base64: string }` | `{ type: 'base64', value }`. بايتات الأرشيف. يُرفض أي كائن آخر. |
 
-يُحلّ المسار النصي دائمًا على مشغّل الاختبارات. ففي الجلسة البعيدة — أي اسم مضيف غير `localhost` أو `127.0.0.1` أو `::1`، أو عند استخدام `user` و`key` لخدمة سحابية — لا يكون ذلك المسار مسارًا على جهاز المتصفح. لذا يقرأ الأمر الأرشيف، أو يضغط المجلد في الذاكرة، ويرسله بصيغة `base64`. لست بحاجة إلى التفريق بين الجلسة المحلية والبعيدة بنفسك. أما الجلسات المحلية فترسل `path` أو `archivePath` ولا تقرأ البايتات.
+يُحَل المسار النصي دائمًا على مُشغّل الاختبارات. في الجلسة البعيدة — أي اسم مضيف غير `localhost` أو `127.0.0.1` أو `::1`، أو عند استخدام `user` و`key` لخدمة سحابية — لا يكون ذلك المسار مسارًا على جهاز المتصفح. يقوم الأمر بقراءة الأرشيف، أو ضغط المجلد في الذاكرة، ثم يرسل `base64`. لست بحاجة إلى التفريق بين الجلسة المحلية والبعيدة بنفسك. أما الجلسات المحلية فترسل `path` أو `archivePath` ولا تقرأ البايتات.
 
 وجّه مسار المجلد إلى جذر الإضافة، أي المجلد الذي يحتوي على `manifest.json`.
 
-يجب أن تدعم الجلسة WebDriver BiDi. فالجلسة الكلاسيكية تُطلق الخطأ `installExtension requires a WebDriver BiDi session (webExtension.install)`. والمتصفح الذي يطبّق BiDi دون هذه الوحدة يُفشل الأمر بالخطأ `unsupported operation` (أو `unknown command` عندما تكون الوحدة غائبة). ويفشل الأرشيف التالف بالخطأ `invalid web extension`. أما إلغاء تثبيت معرّف لا يعرفه المتصفح فيفشل بالخطأ `no such web extension`.
+يجب أن تدعم الجلسة WebDriver BiDi. تُطلق الجلسة الكلاسيكية الخطأ `installExtension requires a WebDriver BiDi session (webExtension.install)`. أما المتصفح الذي يطبّق BiDi دون هذه الوحدة فيُفشل الأمر بالخطأ `unsupported operation` (أو `unknown command` عندما تكون الوحدة غير موجودة). ويفشل الأرشيف التالف بالخطأ `invalid web extension`. كما يفشل إلغاء تثبيت معرّف لا يعرفه المتصفح بالخطأ `no such web extension`.
 
-يأخذ `uninstallExtension` سلسلة المعرّف التي أعادها `installExtension`.
+يأخذ `uninstallExtension` سلسلة المعرّف النصية التي أرجعها `installExtension`.
 
 ### Chromium
 
-يطبّق Chrome وEdge الأمر `webExtension.install` لكنهما يُبقيانه معطّلًا حتى تشغّل المتصفح باستخدام `--enable-unsafe-extension-debugging` و`--remote-debugging-pipe`. كما يتطلب Chrome 136 والإصدارات الأحدث `--user-data-dir` كلما تم تعيين `--remote-debugging-pipe`. ومن دون هذه الوسائط يفشل الأمر بالخطأ `unknown error - Method not available`.
+يطبّق Chrome وEdge الأمر `webExtension.install` لكنهما يبقيانه معطّلًا حتى تبدأ المتصفح باستخدام `--enable-unsafe-extension-debugging` و`--remote-debugging-pipe`. كما يتطلب Chrome 136 والإصدارات الأحدث `--user-data-dir` كلما تم تعيين `--remote-debugging-pipe`. وبدون هذه الوسائط يفشل الأمر بالخطأ `unknown error - Method not available`.
 
-يمثّل `--remote-debugging-pipe` قناة الاتصال بين المُشغِّل (driver) والمتصفح. أما جلسة BiDi فلا تزال تستخدم `webSocketUrl`.
+يمثل `--remote-debugging-pipe` قناة الاتصال (pipe) بين برنامج التشغيل (driver) والمتصفح. ولا تزال جلسة BiDi تستخدم `webSocketUrl`.
 
 ```ts title="wdio.conf.ts"
 import fs from 'node:fs'
@@ -168,17 +168,17 @@ export const config: WebdriverIO.Config = {
 }
 ```
 
-استخدم `ms:edgeOptions` لمتصفح Edge. أما Firefox فيحمّل الإضافة في جلسة BiDi عادية ولا يحتاج إلى هذه الوسائط.
+استخدم `ms:edgeOptions` لـ Edge. أما Firefox فيحمّل الإضافة في جلسة BiDi عادية ولا يحتاج إلى هذه الوسائط.
 
 ## نصائح وحيل
 
-يحتوي القسم التالي على مجموعة من النصائح والحيل المفيدة التي قد تساعدك عند اختبار إضافة ويب.
+يحتوي القسم التالي على مجموعة من النصائح والحيل المفيدة التي يمكن أن تساعد عند اختبار إضافة ويب.
 
 ### اختبار النافذة المنبثقة في Chrome
 
-إذا عرّفت مُدخل إجراء المتصفح `default_popup` في [ملف بيان الإضافة](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/browser_action)، فيمكنك اختبار صفحة HTML تلك مباشرة، إذ إن النقر على أيقونة الإضافة في الشريط العلوي للمتصفح لن يعمل. بدلًا من ذلك، عليك فتح ملف html الخاص بالنافذة المنبثقة مباشرة.
+إذا قمت بتعريف مدخل إجراء المتصفح `default_popup` في [ملف بيان الإضافة](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/browser_action)، يمكنك اختبار صفحة HTML تلك مباشرةً، إذ إن النقر على أيقونة الإضافة في الشريط العلوي للمتصفح لن يعمل. بدلًا من ذلك، عليك فتح ملف HTML الخاص بالنافذة المنبثقة مباشرةً.
 
-في Chrome يتم ذلك عبر استرداد معرّف الإضافة وفتح صفحة النافذة المنبثقة من خلال `browser.url('...')`. وسيكون السلوك في تلك الصفحة مماثلًا لسلوكها داخل النافذة المنبثقة. ولتحقيق ذلك نوصي بكتابة الأمر المخصص التالي:
+يتم ذلك في Chrome عن طريق استرداد معرّف الإضافة وفتح صفحة النافذة المنبثقة عبر `browser.url('...')`. سيكون السلوك في تلك الصفحة هو نفسه داخل النافذة المنبثقة. ولتحقيق ذلك، نوصي بكتابة الأمر المخصص التالي:
 
 ```ts customCommand.ts
 export async function openExtensionPopup (this: WebdriverIO.Browser, extensionName: string, popupUrl = 'index.html') {
@@ -225,7 +225,7 @@ export const config: WebdriverIO.Config = {
 }
 ```
 
-والآن، في اختبارك، يمكنك الوصول إلى صفحة النافذة المنبثقة عبر:
+الآن، يمكنك في اختبارك الوصول إلى صفحة النافذة المنبثقة عبر:
 
 ```ts
 await browser.openExtensionPopup('My Web Extension')

@@ -10,7 +10,7 @@ Puedes integrar fácilmente pruebas de accesibilidad en tus suites de pruebas de
 
 ## Ventajas de las pruebas de accesibilidad con TestMu AI
 
-Las pruebas de accesibilidad de TestMu AI te ayudan a identificar y corregir problemas de accesibilidad en tus aplicaciones web. Estas son sus principales ventajas:
+Las pruebas de accesibilidad de TestMu AI te ayudan a identificar y corregir problemas de accesibilidad en tus aplicaciones web. Las siguientes son sus principales ventajas:
 
 * Se integra perfectamente con tu automatización de pruebas de WebdriverIO existente.
 * Escaneo automatizado de accesibilidad durante la ejecución de las pruebas.
@@ -23,7 +23,7 @@ Las pruebas de accesibilidad de TestMu AI te ayudan a identificar y corregir pro
 
 Sigue estos pasos para integrar tus suites de pruebas de WebdriverIO con las pruebas de accesibilidad de TestMu AI:
 
-1. Instala el paquete del servicio de WebdriverIO de TestMu AI.
+1. Instala el paquete del servicio de TestMu AI para WebdriverIO.
 
 ```bash npm2yarn
 npm install --save-dev @lambdatest/wdio-lambdatest-service
@@ -42,7 +42,7 @@ exports.config = {
         'LT:Options': {
             platform: 'Windows 10',
             version: 'latest',
-            accessibility: true, // Habilitar pruebas de accesibilidad
+            accessibility: true, // Habilitar las pruebas de accesibilidad
             accessibilityOptions: {
                 wcagVersion: 'wcag21a', // Versión de WCAG (wcag20, wcag21a, wcag21aa, wcag22aa)
                 bestPractice: false,
@@ -82,7 +82,7 @@ El objeto `accessibilityOptions` admite los siguientes parámetros:
 
 ## Visualización de los informes de accesibilidad
 
-Una vez finalizadas tus pruebas, puedes consultar informes detallados de accesibilidad en el [panel de TestMu AI](https://automation.lambdatest.com/):
+Una vez finalizadas tus pruebas, puedes consultar informes de accesibilidad detallados en el [panel de TestMu AI](https://automation.lambdatest.com/):
 
 1. Navega hasta la ejecución de tu prueba
 2. Haz clic en la pestaña "Accessibility"

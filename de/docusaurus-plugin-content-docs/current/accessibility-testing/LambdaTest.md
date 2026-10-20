@@ -6,18 +6,18 @@ description: "Aktivieren Sie TestMu AI (ehemals LambdaTest) Barrierefreiheitstes
 
 # TestMu AI Barrierefreiheitstests
 
-Sie können Barrierefreiheitstests ganz einfach in Ihre WebdriverIO-Testsuites integrieren, indem Sie [TestMu AI Accessibility Testing](https://www.testmuai.com/support/docs/accessibility-automation-settings/) verwenden.
+Sie können Barrierefreiheitstests ganz einfach mit [TestMu AI Accessibility Testing](https://www.testmuai.com/support/docs/accessibility-automation-settings/) in Ihre WebdriverIO-Testsuites integrieren.
 
 ## Vorteile von TestMu AI Barrierefreiheitstests
 
-TestMu AI Barrierefreiheitstests helfen Ihnen, Barrierefreiheitsprobleme in Ihren Webanwendungen zu identifizieren und zu beheben. Die folgenden sind die wichtigsten Vorteile:
+TestMu AI Accessibility Testing hilft Ihnen, Barrierefreiheitsprobleme in Ihren Webanwendungen zu erkennen und zu beheben. Die wichtigsten Vorteile sind:
 
 * Nahtlose Integration in Ihre bestehende WebdriverIO-Testautomatisierung.
-* Automatisierte Barrierefreiheitsscans während der Testausführung.
+* Automatisiertes Barrierefreiheits-Scanning während der Testausführung.
 * Umfassende Berichte zur WCAG-Konformität.
 * Detaillierte Problemverfolgung mit Hinweisen zur Behebung.
-* Unterstützung für mehrere WCAG-Standards (WCAG 2.0, WCAG 2.1, WCAG 2.2).
-* Echtzeit-Einblicke in die Barrierefreiheit im TestMu AI-Dashboard.
+* Unterstützung mehrerer WCAG-Standards (WCAG 2.0, WCAG 2.1, WCAG 2.2).
+* Echtzeit-Einblicke in die Barrierefreiheit im TestMu AI Dashboard.
 
 ## Erste Schritte mit TestMu AI Barrierefreiheitstests
 
@@ -70,7 +70,7 @@ npx wdio run wdio.conf.js
 
 Das Objekt `accessibilityOptions` unterstützt die folgenden Parameter:
 
-* **wcagVersion**: Geben Sie die WCAG-Standardversion an, gegen die getestet werden soll
+* **wcagVersion**: Gibt die WCAG-Standardversion an, gegen die getestet werden soll
   - `wcag20` - WCAG 2.0 Level A
   - `wcag21a` - WCAG 2.1 Level A
   - `wcag21aa` - WCAG 2.1 Level AA (Standard)
@@ -82,11 +82,11 @@ Das Objekt `accessibilityOptions` unterstützt die folgenden Parameter:
 
 ## Barrierefreiheitsberichte anzeigen
 
-Nachdem Ihre Tests abgeschlossen sind, können Sie detaillierte Barrierefreiheitsberichte im [TestMu AI Dashboard](https://automation.lambdatest.com/) einsehen:
+Nach Abschluss Ihrer Tests können Sie detaillierte Barrierefreiheitsberichte im [TestMu AI Dashboard](https://automation.lambdatest.com/) einsehen:
 
 1. Navigieren Sie zu Ihrer Testausführung
-2. Klicken Sie auf den Tab "Accessibility"
-3. Überprüfen Sie die identifizierten Probleme mit ihren Schweregraden
-4. Erhalten Sie Hinweise zur Behebung für jedes Problem
+2. Klicken Sie auf den Tab „Accessibility“
+3. Überprüfen Sie die erkannten Probleme mit ihren Schweregraden
+4. Erhalten Sie Hinweise zur Behebung jedes Problems
 
-Für ausführlichere Informationen besuchen Sie die [TestMu AI Accessibility Automation-Dokumentation](https://www.testmuai.com/support/docs/accessibility-automation-settings/).
+Weitere detaillierte Informationen finden Sie in der [TestMu AI Accessibility Automation-Dokumentation](https://www.testmuai.com/support/docs/accessibility-automation-settings/).

@@ -4,9 +4,9 @@ title: استخدام الخدمات السحابية
 description: "تشغيل اختبارات WebdriverIO على Sauce Labs وBrowserStack وTestingBot وTestMu AI (المعروفة سابقًا باسم LambdaTest) وPerfecto وغيرها من مزودي الخدمات السحابية."
 ---
 
-استخدام الخدمات حسب الطلب مثل Sauce Labs أو Browserstack أو TestingBot أو TestMu AI (المعروفة سابقًا باسم LambdaTest) أو Perfecto مع WebdriverIO بسيط للغاية. كل ما عليك فعله هو تعيين `user` و`key` الخاصين بخدمتك في الخيارات.
+إن استخدام الخدمات حسب الطلب مثل Sauce Labs أو Browserstack أو TestingBot أو TestMu AI (المعروفة سابقًا باسم LambdaTest) أو Perfecto مع WebdriverIO أمر بسيط للغاية. كل ما عليك فعله هو تعيين `user` و`key` الخاصين بالخدمة في خياراتك.
 
-اختياريًا، يمكنك أيضًا تخصيص اختبارك من خلال تعيين قدرات خاصة بالخدمة السحابية مثل `build`. إذا كنت تريد تشغيل الخدمات السحابية في Travis فقط، يمكنك استخدام متغير البيئة `CI` للتحقق مما إذا كنت في Travis وتعديل الإعدادات وفقًا لذلك.
+اختياريًا، يمكنك أيضًا إضافة معاملات إلى اختبارك عن طريق تعيين قدرات خاصة بالخدمة السحابية مثل `build`. إذا كنت تريد تشغيل الخدمات السحابية في Travis فقط، يمكنك استخدام متغير البيئة `CI` للتحقق مما إذا كنت في Travis وتعديل الإعدادات وفقًا لذلك.
 
 ```js
 // wdio.conf.js
@@ -23,15 +23,15 @@ if (process.env.CI) {
 
 المتطلب الوحيد هو تعيين `user` و`key` في إعداداتك (سواء المُصدَّرة من `wdio.conf.js` أو الممررة إلى `webdriverio.remote(...)`) إلى اسم المستخدم ومفتاح الوصول الخاصين بك في Sauce Labs.
 
-يمكنك أيضًا تمرير أي [خيار من خيارات إعداد الاختبار](https://docs.saucelabs.com/dev/test-configuration-options/) الاختيارية كزوج مفتاح/قيمة في القدرات (capabilities) لأي متصفح.
+يمكنك أيضًا تمرير أي [خيار اختياري من خيارات إعداد الاختبار](https://docs.saucelabs.com/dev/test-configuration-options/) كمفتاح/قيمة في القدرات (capabilities) لأي متصفح.
 
 ### Sauce Connect
 
-إذا كنت تريد تشغيل الاختبارات على خادم لا يمكن الوصول إليه عبر الإنترنت (مثل `localhost`)، فستحتاج إلى استخدام [Sauce Connect](https://docs.saucelabs.com/secure-connections/#sauce-connect-proxy).
+إذا كنت تريد تشغيل الاختبارات على خادم لا يمكن الوصول إليه من الإنترنت (مثل `localhost`)، فأنت بحاجة إلى استخدام [Sauce Connect](https://docs.saucelabs.com/secure-connections/#sauce-connect-proxy).
 
 دعم ذلك خارج نطاق WebdriverIO، لذا سيتعين عليك تشغيله بنفسك.
 
-إذا كنت تستخدم مشغل اختبارات WDIO، فقم بتنزيل وإعداد [`@wdio/sauce-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-sauce-service) في ملف `wdio.conf.js` الخاص بك. فهو يساعد في تشغيل Sauce Connect ويأتي مع ميزات إضافية تُحسّن دمج اختباراتك في خدمة Sauce.
+إذا كنت تستخدم مشغل اختبارات WDIO، فقم بتنزيل وإعداد [`@wdio/sauce-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-sauce-service) في ملف `wdio.conf.js` الخاص بك. فهو يساعد على تشغيل Sauce Connect ويأتي بميزات إضافية تدمج اختباراتك بشكل أفضل في خدمة Sauce.
 
 ### مع Travis CI
 
@@ -41,7 +41,7 @@ if (process.env.CI) {
 
 أيضًا، إذا كنت تريد أن يقوم Sauce Labs بتجميع اختباراتك حسب رقم البناء، يمكنك تعيين `build` إلى `TRAVIS_BUILD_NUMBER`.
 
-أخيرًا، إذا قمت بتعيين `name`، فسيؤدي ذلك إلى تغيير اسم هذا الاختبار في Sauce Labs لهذا البناء. إذا كنت تستخدم مشغل اختبارات WDIO مع [`@wdio/sauce-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-sauce-service)، فإن WebdriverIO يقوم تلقائيًا بتعيين اسم مناسب للاختبار.
+أخيرًا، إذا قمت بتعيين `name`، فإن ذلك يغير اسم هذا الاختبار في Sauce Labs لهذا البناء. إذا كنت تستخدم مشغل اختبارات WDIO مع [`@wdio/sauce-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-sauce-service)، فإن WebdriverIO يعيّن تلقائيًا اسمًا مناسبًا للاختبار.
 
 مثال على `capabilities`:
 
@@ -54,9 +54,9 @@ name: 'integration',
 build: process.env.TRAVIS_BUILD_NUMBER
 ```
 
-### المهلات الزمنية
+### المهل الزمنية
 
-نظرًا لأنك تقوم بتشغيل اختباراتك عن بُعد، فقد يكون من الضروري زيادة بعض المهلات الزمنية.
+نظرًا لأنك تقوم بتشغيل اختباراتك عن بُعد، فقد يكون من الضروري زيادة بعض المهل الزمنية.
 
 يمكنك تغيير [مهلة الخمول](https://docs.saucelabs.com/dev/test-configuration-options/#idletimeout) عن طريق تمرير `idle-timeout` كخيار لإعداد الاختبار. يتحكم هذا في المدة التي سينتظرها Sauce بين الأوامر قبل إغلاق الاتصال.
 
@@ -64,23 +64,23 @@ build: process.env.TRAVIS_BUILD_NUMBER
 
 يحتوي WebdriverIO أيضًا على تكامل مدمج مع [Browserstack](https://www.browserstack.com).
 
-المتطلب الوحيد هو تعيين `user` و`key` في إعداداتك (سواء المُصدَّرة من `wdio.conf.js` أو الممررة إلى `webdriverio.remote(...)`) إلى اسم المستخدم ومفتاح الوصول الخاصين بك في Browserstack automate.
+المتطلب الوحيد هو تعيين `user` و`key` في إعداداتك (سواء المُصدَّرة من `wdio.conf.js` أو الممررة إلى `webdriverio.remote(...)`) إلى اسم المستخدم ومفتاح الوصول الخاصين بك في Browserstack Automate.
 
-يمكنك أيضًا تمرير أي من [القدرات المدعومة](https://www.browserstack.com/automate/capabilities) الاختيارية كزوج مفتاح/قيمة في القدرات لأي متصفح. إذا قمت بتعيين `browserstack.debug` إلى `true` فسيتم تسجيل فيديو لشاشة الجلسة، وهو ما قد يكون مفيدًا.
+يمكنك أيضًا تمرير أي من [القدرات المدعومة](https://www.browserstack.com/automate/capabilities) الاختيارية كمفتاح/قيمة في القدرات لأي متصفح. إذا قمت بتعيين `browserstack.debug` إلى `true` فسيتم تسجيل فيديو للشاشة خلال الجلسة، وهو ما قد يكون مفيدًا.
 
 ### الاختبار المحلي
 
-إذا كنت تريد تشغيل الاختبارات على خادم لا يمكن الوصول إليه عبر الإنترنت (مثل `localhost`)، فستحتاج إلى استخدام [الاختبار المحلي](https://www.browserstack.com/local-testing#command-line).
+إذا كنت تريد تشغيل الاختبارات على خادم لا يمكن الوصول إليه من الإنترنت (مثل `localhost`)، فأنت بحاجة إلى استخدام [الاختبار المحلي](https://www.browserstack.com/local-testing#command-line).
 
 دعم ذلك خارج نطاق WebdriverIO، لذا يجب عليك تشغيله بنفسك.
 
 إذا كنت تستخدم الاختبار المحلي، فيجب عليك تعيين `browserstack.local` إلى `true` في القدرات الخاصة بك.
 
-إذا كنت تستخدم مشغل اختبارات WDIO، فقم بتنزيل وإعداد [`@wdio/browserstack-service`](https://github.com/browserstack/wdio-browserstack-service) في ملف `wdio.conf.js` الخاص بك. فهو يساعد في تشغيل BrowserStack، ويأتي مع ميزات إضافية تُحسّن دمج اختباراتك في خدمة BrowserStack.
+إذا كنت تستخدم مشغل اختبارات WDIO، فقم بتنزيل وإعداد [`@wdio/browserstack-service`](https://github.com/browserstack/wdio-browserstack-service) في ملف `wdio.conf.js` الخاص بك. فهو يساعد على تشغيل BrowserStack، ويأتي بميزات إضافية تدمج اختباراتك بشكل أفضل في خدمة BrowserStack.
 
 ### مع Travis CI
 
-إذا كنت تريد إضافة الاختبار المحلي في Travis، فعليك تشغيله بنفسك.
+إذا كنت تريد إضافة الاختبار المحلي في Travis، فيجب عليك تشغيله بنفسك.
 
 سيقوم السكريبت التالي بتنزيله وتشغيله في الخلفية. يجب عليك تشغيل هذا في Travis قبل بدء الاختبارات.
 
@@ -108,15 +108,15 @@ build: `myApp #${process.env.TRAVIS_BUILD_NUMBER}.${process.env.TRAVIS_JOB_NUMBE
 
 المتطلب الوحيد هو تعيين `user` و`key` في إعداداتك (سواء المُصدَّرة من `wdio.conf.js` أو الممررة إلى `webdriverio.remote(...)`) إلى اسم المستخدم والمفتاح السري الخاصين بك في [TestingBot](https://testingbot.com).
 
-يمكنك أيضًا تمرير أي من [القدرات المدعومة](https://testingbot.com/support/other/test-options) الاختيارية كزوج مفتاح/قيمة في القدرات لأي متصفح.
+يمكنك أيضًا تمرير أي من [القدرات المدعومة](https://testingbot.com/support/other/test-options) الاختيارية كمفتاح/قيمة في القدرات لأي متصفح.
 
 ### الاختبار المحلي
 
-إذا كنت تريد تشغيل الاختبارات على خادم لا يمكن الوصول إليه عبر الإنترنت (مثل `localhost`)، فستحتاج إلى استخدام [الاختبار المحلي](https://testingbot.com/support/other/tunnel). توفر TestingBot نفقًا مبنيًا على Java يتيح لك اختبار مواقع الويب التي لا يمكن الوصول إليها من الإنترنت.
+إذا كنت تريد تشغيل الاختبارات على خادم لا يمكن الوصول إليه من الإنترنت (مثل `localhost`)، فأنت بحاجة إلى استخدام [الاختبار المحلي](https://testingbot.com/support/other/tunnel). يوفر TestingBot نفقًا (tunnel) مبنيًا على Java للسماح لك باختبار المواقع التي لا يمكن الوصول إليها من الإنترنت.
 
 تحتوي صفحة دعم النفق الخاصة بهم على المعلومات اللازمة لإعداده وتشغيله.
 
-إذا كنت تستخدم مشغل اختبارات WDIO، فقم بتنزيل وإعداد [`@wdio/testingbot-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-testingbot-service) في ملف `wdio.conf.js` الخاص بك. فهو يساعد في تشغيل TestingBot، ويأتي مع ميزات إضافية تُحسّن دمج اختباراتك في خدمة TestingBot.
+إذا كنت تستخدم مشغل اختبارات WDIO، فقم بتنزيل وإعداد [`@wdio/testingbot-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-testingbot-service) في ملف `wdio.conf.js` الخاص بك. فهو يساعد على تشغيل TestingBot، ويأتي بميزات إضافية تدمج اختباراتك بشكل أفضل في خدمة TestingBot.
 
 ## TestMu AI (المعروفة سابقًا باسم LambdaTest)
 
@@ -124,21 +124,21 @@ build: `myApp #${process.env.TRAVIS_BUILD_NUMBER}.${process.env.TRAVIS_JOB_NUMBE
 
 المتطلب الوحيد هو تعيين `user` و`key` في إعداداتك (سواء المُصدَّرة من `wdio.conf.js` أو الممررة إلى `webdriverio.remote(...)`) إلى اسم المستخدم ومفتاح الوصول الخاصين بحسابك في TestMu AI.
 
-يمكنك أيضًا تمرير أي من [القدرات المدعومة](https://www.testmuai.com/capabilities-generator/) الاختيارية كزوج مفتاح/قيمة في القدرات لأي متصفح. إذا قمت بتعيين `visual` إلى `true` فسيتم تسجيل فيديو لشاشة الجلسة، وهو ما قد يكون مفيدًا.
+يمكنك أيضًا تمرير أي من [القدرات المدعومة](https://www.testmuai.com/capabilities-generator/) الاختيارية كمفتاح/قيمة في القدرات لأي متصفح. إذا قمت بتعيين `visual` إلى `true` فسيتم تسجيل فيديو للشاشة خلال الجلسة، وهو ما قد يكون مفيدًا.
 
 ### النفق للاختبار المحلي
 
-إذا كنت تريد تشغيل الاختبارات على خادم لا يمكن الوصول إليه عبر الإنترنت (مثل `localhost`)، فستحتاج إلى استخدام [الاختبار المحلي](https://www.testmuai.com/support/docs/testing-locally-hosted-pages/).
+إذا كنت تريد تشغيل الاختبارات على خادم لا يمكن الوصول إليه من الإنترنت (مثل `localhost`)، فأنت بحاجة إلى استخدام [الاختبار المحلي](https://www.testmuai.com/support/docs/testing-locally-hosted-pages/).
 
 دعم ذلك خارج نطاق WebdriverIO، لذا يجب عليك تشغيله بنفسك.
 
 إذا كنت تستخدم الاختبار المحلي، فيجب عليك تعيين `tunnel` إلى `true` في القدرات الخاصة بك.
 
-إذا كنت تستخدم مشغل اختبارات WDIO، فقم بتنزيل وإعداد [`wdio-lambdatest-service`](https://github.com/LambdaTest/wdio-lambdatest-service) في ملف `wdio.conf.js` الخاص بك. فهو يساعد في تشغيل TestMu AI، ويأتي مع ميزات إضافية تُحسّن دمج اختباراتك في خدمة TestMu AI.
+إذا كنت تستخدم مشغل اختبارات WDIO، فقم بتنزيل وإعداد [`wdio-lambdatest-service`](https://github.com/LambdaTest/wdio-lambdatest-service) في ملف `wdio.conf.js` الخاص بك. فهو يساعد على تشغيل TestMu AI، ويأتي بميزات إضافية تدمج اختباراتك بشكل أفضل في خدمة TestMu AI.
 
 ### مع Travis CI
 
-إذا كنت تريد إضافة الاختبار المحلي في Travis، فعليك تشغيله بنفسك.
+إذا كنت تريد إضافة الاختبار المحلي في Travis، فيجب عليك تشغيله بنفسك.
 
 سيقوم السكريبت التالي بتنزيله وتشغيله في الخلفية. يجب عليك تشغيل هذا في Travis قبل بدء الاختبارات.
 
@@ -164,7 +164,7 @@ build: `myApp #${process.env.TRAVIS_BUILD_NUMBER}.${process.env.TRAVIS_JOB_NUMBE
 
 ## Perfecto
 
-عند استخدام wdio مع [`Perfecto`](https://www.perfecto.io)، تحتاج إلى إنشاء رمز أمان (security token) لكل مستخدم وإضافته في بنية القدرات (بالإضافة إلى القدرات الأخرى)، على النحو التالي:
+عند استخدام wdio مع [`Perfecto`](https://www.perfecto.io)، تحتاج إلى إنشاء رمز أمان (security token) لكل مستخدم وإضافته في بنية القدرات (بالإضافة إلى القدرات الأخرى)، كما يلي:
 
 ```js
 export const config = {
@@ -174,7 +174,7 @@ export const config = {
   }],
 ```
 
-بالإضافة إلى ذلك، تحتاج إلى إضافة إعدادات السحابة، على النحو التالي:
+بالإضافة إلى ذلك، تحتاج إلى إضافة إعدادات السحابة، كما يلي:
 
 ```js
   hostname: "your_cloud_name.perfectomobile.com",
@@ -185,7 +185,7 @@ export const config = {
 
 ## RobotActions
 
-توفر [RobotActions](https://robotactions.com) أجهزة Android وiOS حقيقية إلى جانب عُقد المتصفحات خلف نقطة نهاية واحدة. وهي تقوم بالمصادقة باستخدام رمز API بدلًا من زوج `user` و`key`. أرسل الرمز كترويسة bearer:
+يوفر [RobotActions](https://robotactions.com) أجهزة Android وiOS حقيقية إلى جانب عُقد المتصفحات خلف نقطة نهاية واحدة. وهو يقوم بالمصادقة باستخدام رمز API بدلاً من زوج `user` و`key`. أرسل الرمز كترويسة bearer:
 
 ```js
 export const config = {
@@ -202,7 +202,7 @@ export const config = {
 }
 ```
 
-بدلًا من ذلك، مرّر الرمز كبادئة للمسار، والتي تقوم الشبكة (grid) بإزالتها قبل إعادة توجيه الطلب:
+بدلاً من ذلك، مرّر الرمز كبادئة للمسار، والتي تقوم الشبكة (grid) بإزالتها قبل إعادة توجيه الطلب:
 
 ```js
 export const config = {
@@ -216,7 +216,7 @@ export const config = {
 }
 ```
 
-تقبل الشبكة أيضًا بيانات الاعتماد المضمّنة في عنوان URL (`https://user:token@host`) لعملاء WebDriver الآخرين، لكن لا يمكن استخدام هذا الشكل من WebdriverIO: فهو يعتمد على fetch، ويرفض Node.js بيانات الاعتماد المضمّنة في عنوان URL.
+تقبل الشبكة أيضًا بيانات الاعتماد المضمنة في عنوان URL (`https://user:token@host`) لعملاء WebDriver الآخرين، لكن لا يمكن استخدام هذه الصيغة من WebdriverIO: فهو يعتمد على fetch، وNode.js يرفض بيانات الاعتماد المضمنة في عنوان URL.
 
 للتشغيل على جهاز حقيقي، مرّر المتصفح كقدرة Appium إلى جانب أي من أسلوبي الاتصال المذكورين أعلاه:
 

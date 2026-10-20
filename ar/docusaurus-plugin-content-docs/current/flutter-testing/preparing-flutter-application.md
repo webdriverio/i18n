@@ -1,20 +1,20 @@
 ---
 id: preparing-flutter-application
 title: تجهيز تطبيق Flutter
-description: "قم بتفعيل امتداد flutter_driver في تطبيق Flutter وأنشئ نسخة اختبارية حتى يتمكن WebdriverIO وAppium من التفاعل مع عناصر الواجهة (widgets) الخاصة به."
+description: "فعّل امتداد flutter_driver في تطبيق Flutter وأنشئ نسخة اختبارية حتى يتمكن WebdriverIO وAppium من التفاعل مع عناصر الواجهة (widgets) الخاصة به."
 ---
 
-لكي يتمكن WebdriverIO وAppium من فحص العناصر الداخلية داخل لوحة رسم Flutter (canvas) والتفاعل معها، يجب أن يوفر التطبيق قناة اتصال. ويتحقق ذلك عن طريق تفعيل امتداد الاختبار الخاص بـ Flutter في الشيفرة المصدرية للتطبيق.
+لكي يتمكن WebdriverIO وAppium من فحص العناصر الداخلية داخل لوحة رسم Flutter (canvas) والتفاعل معها، يجب أن يوفّر التطبيق قناة اتصال. ويتحقق ذلك عبر تفعيل امتداد الاختبار الخاص بـ Flutter في الشيفرة المصدرية للتطبيق.
 
 :::info المشاركة مع فرق التطوير
-غالبًا لا يملك مهندسو الأتمتة (QA) وصولًا مباشرًا إلى الشيفرة المصدرية لتطبيق Flutter. إذا لم تكن أنت من يدير شيفرة التطبيق، فشارك هذه الصفحة مع فريق التطوير لديك حتى يتمكنوا من إضافة امتداد `flutter_driver` وتوفير نسخة اختبارية (`.apk` أو `.app` أو `.ipa`).
+غالبًا لا يملك مهندسو الأتمتة (QA) وصولًا مباشرًا إلى قاعدة شيفرة تطبيق Flutter. إذا لم تكن أنت من يتولى صيانة شيفرة التطبيق، فشارك هذه الصفحة مع فريق التطوير لديك حتى يتمكنوا من إضافة امتداد `flutter_driver` وتزويدك بنسخة اختبارية (`.apk` أو `.app` أو `.ipa`).
 :::
 
 :::note امتداد قديم
-المسار الموصى به من Flutter لاختبار التطبيقات الأحدث هو حزمة `integration_test`. ومع ذلك، يتكامل Appium Flutter Driver مع امتداد `flutter_driver` القديم، ولهذا السبب يستخدم هذا الدليل `enableFlutterDriverExtension()`.
+المسار الموصى به من Flutter لاختبار التطبيقات الأحدث هو الحزمة `integration_test`. ومع ذلك، يتكامل Appium Flutter Driver مع الامتداد القديم `flutter_driver`، ولهذا يستخدم هذا الدليل `enableFlutterDriverExtension()`.
 :::
 
-### إعداد ملف `pubspec.yaml`
+### إعداد `pubspec.yaml`
 
 أضف `flutter_driver` ضمن `dev_dependencies` في ملف `pubspec.yaml` الخاص بمشروع Flutter:
 
@@ -26,7 +26,7 @@ dev_dependencies:
     sdk: flutter
 ```
 
-قم بجلب الاعتماديات:
+اجلب الاعتماديات:
 
 ```bash
 flutter pub get
@@ -34,14 +34,14 @@ flutter pub get
 
 ### تفعيل الامتداد في `main.dart`
 
-لتشغيل خادم القياس (instrumentation server) الذي يستجيب للأوامر الواردة من WebdriverIO، استدعِ `enableFlutterDriverExtension()` قبل `runApp`:
+لتشغيل خادم القياس (instrumentation server) الذي يستجيب للأوامر الصادرة من WebdriverIO، استدعِ `enableFlutterDriverExtension()` قبل `runApp`:
 
 ```dart
 import 'package:flutter/material.dart';
 import 'package:flutter_driver/driver_extension.dart';
 
 void main() {
-  // تفعيل امتداد Flutter driver قبل تشغيل التطبيق
+  // فعّل امتداد Flutter driver قبل تشغيل التطبيق
   enableFlutterDriverExtension();
 
   runApp(const MyApp());
@@ -63,7 +63,7 @@ class MyApp extends StatelessWidget {
 ```
 
 :::tip أفضل ممارسة: نقطة دخول منفصلة للاختبار
-لمنع دخول شيفرة القياس الخاصة بالاختبار إلى نسخ الإنتاج، أنشئ ملف نقطة دخول منفصلًا (مثل `lib/main_e2e.dart`) يقوم بتفعيل الامتداد ثم يستدعي التطبيق الرئيسي. يحافظ ذلك على نظافة نسخ الإنتاج وأمانها:
+لمنع دخول شيفرة القياس الخاصة بالاختبار إلى نسخ الإنتاج، أنشئ ملف نقطة دخول منفصلًا (مثل `lib/main_e2e.dart`) يفعّل الامتداد ثم يستدعي التطبيق الرئيسي. يحافظ ذلك على نظافة نسخ الإنتاج وأمانها:
 
 ```dart
 import 'package:flutter_driver/driver_extension.dart';

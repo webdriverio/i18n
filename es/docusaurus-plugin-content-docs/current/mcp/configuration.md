@@ -1,18 +1,18 @@
 ---
 id: configuration
 title: Configuración
-description: "Configura el servidor MCP de WebdriverIO, incluidas las opciones de sesión, navegador, dispositivos móviles, proveedores en la nube, detección de elementos y Appium."
+description: "Configura el servidor MCP de WebdriverIO, incluyendo opciones de sesión, navegador, móvil, proveedor en la nube, detección de elementos y Appium."
 ---
 
 Esta página documenta todas las opciones de configuración del servidor MCP de WebdriverIO.
 
 ## Configuración del servidor MCP
 
-El servidor MCP se configura mediante archivos de configuración o comandos.
+El servidor MCP se configura mediante los archivos de configuración o comandos.
 
 ### Configuración básica
 
-Edita tu archivo de configuración de MCP (p. ej., `./.mcp.json`) y añade lo siguiente:
+Edita tu archivo de configuración MCP (p. ej., `./.mcp.json`) y añade lo siguiente:
 
 ```json
 {
@@ -33,9 +33,9 @@ Todas las opciones de sesión se pasan a la herramienta `start_session`. Existe 
 
 #### `platform`
 
-<Option type={`"browser" | "ios" | "android"`} required="Yes">
+<Option type={`"browser" | "ios" | "android"`} required="Sí">
 
-La plataforma que se va a automatizar.
+La plataforma a automatizar.
 
 </Option>
 #### `provider`
@@ -51,9 +51,9 @@ Opciones para sesiones con `platform: "browser"`.
 
 ### `browser`
 
-<Option type={`"chrome" | "firefox" | "edge" | "safari"`} required="Yes (for browser platform)">
+<Option type={`"chrome" | "firefox" | "edge" | "safari"`} required="Sí (para la plataforma de navegador)">
 
-Navegador que se va a iniciar.
+Navegador que se iniciará.
 
 </Option>
 ### `browserVersion`
@@ -99,7 +99,7 @@ Alto inicial de la ventana del navegador en píxeles.
 
 <Option type="string" required="No">
 
-URL a la que navegar inmediatamente después de iniciar el navegador. Es más eficiente que llamar a `start_session` y luego a `navigate` por separado.
+URL a la que navegar inmediatamente después de iniciar el navegador. Es más eficiente que llamar a `start_session` seguido de `navigate` por separado.
 
 </Option>
 ### `attach`
@@ -122,7 +122,7 @@ Opciones para sesiones con `platform: "ios"` o `platform: "android"`.
 
 ### `deviceName`
 
-<Option type="string" required="Yes (for mobile platforms)">
+<Option type="string" required="Sí (para plataformas móviles)">
 
 Nombre del dispositivo, simulador o emulador.
 
@@ -143,12 +143,12 @@ Versión del sistema operativo del dispositivo/simulador/emulador (p. ej., `"18.
 
 <Option type={`"XCUITest" | "UiAutomator2"`} required="No">
 
-Driver de automatización. De forma predeterminada es `XCUITest` para iOS y `UiAutomator2` para Android.
+Driver de automatización. El valor predeterminado es `XCUITest` para iOS y `UiAutomator2` para Android.
 
 </Option>
 ### `udid`
 
-<Option type="string" required="No (Required for real iOS devices)">
+<Option type="string" required="No (obligatorio para dispositivos iOS reales)">
 
 Identificador único del dispositivo (Unique Device Identifier). Obligatorio para dispositivos iOS reales (identificador de 40 caracteres).
 
@@ -161,14 +161,14 @@ Identificador único del dispositivo (Unique Device Identifier). Obligatorio par
 
 <Option type="string" required="No">
 
-Ruta al archivo de la aplicación que se va a instalar e iniciar.
+Ruta al archivo de la aplicación que se instalará e iniciará.
 
 **Formatos compatibles:**
 -   Simulador de iOS: directorio `.app`
 -   Dispositivo iOS real: archivo `.ipa`
 -   Android: archivo `.apk`
 
-Se debe proporcionar `appPath`, o bien `noReset: true` para conectarse a una aplicación que ya se esté ejecutando.
+Se debe proporcionar `appPath`, o bien `noReset: true` para conectarse a una aplicación que ya está en ejecución.
 
 </Option>
 ### `app`
@@ -180,9 +180,9 @@ URL de la aplicación en el proveedor en la nube (`bs://...` para BrowserStack, 
 </Option>
 ### `appWaitActivity`
 
-<Option type="string" required="No (Android only)">
+<Option type="string" required="No (solo Android)">
 
-Activity que se debe esperar al iniciar la aplicación. Si no se especifica, se usa la activity principal/launcher de la aplicación.
+Activity que se esperará al iniciar la aplicación. Si no se especifica, se usa la activity principal/launcher de la aplicación.
 
 **Ejemplo:** `"com.example.app.MainActivity"`
 
@@ -194,9 +194,9 @@ Activity que se debe esperar al iniciar la aplicación. Si no se especifica, se 
 <Option type="boolean" required="No">
 
 Conserva el estado de la aplicación entre sesiones. Cuando es `true`:
--   Se conservan los datos de la aplicación (estado de inicio de sesión, preferencias, etc.)
--   La sesión se **desconectará (detach)** en lugar de cerrarse (mantiene la aplicación en ejecución)
--   Se puede usar sin `appPath` para conectarse a una aplicación que ya se esté ejecutando
+-   Los datos de la aplicación se conservan (estado de inicio de sesión, preferencias, etc.)
+-   La sesión se **desconectará** en lugar de cerrarse (mantiene la aplicación en ejecución)
+-   Se puede usar sin `appPath` para conectarse a una aplicación que ya está en ejecución
 
 </Option>
 #### `fullReset`
@@ -207,7 +207,7 @@ Restablece completamente la aplicación antes de la sesión:
 -   iOS: desinstala y vuelve a instalar la aplicación
 -   Android: borra los datos y la caché de la aplicación
 
-Establece `fullReset: false` junto con `noReset: true` para conservar por completo el estado de la aplicación.
+Establece `fullReset: false` con `noReset: true` para conservar completamente el estado de la aplicación.
 
 </Option>
 ### Tiempo de espera de la sesión
@@ -228,7 +228,7 @@ Cuánto tiempo (en segundos) esperará Appium un nuevo comando antes de finaliza
 Concede automáticamente los permisos de la aplicación al instalarla/iniciarla (cámara, micrófono, ubicación, etc.).
 
 :::note Solo Android
-Esta opción afecta principalmente a Android. Los permisos de iOS deben gestionarse de otra manera debido a restricciones del sistema.
+Esta opción afecta principalmente a Android. Los permisos de iOS deben gestionarse de otra forma debido a restricciones del sistema.
 :::
 
 </Option>
@@ -246,9 +246,9 @@ Acepta automáticamente las alertas del sistema (diálogos) durante la automatiz
 Descarta las alertas del sistema en lugar de aceptarlas. Tiene prioridad sobre `autoAcceptAlerts` cuando es `true`.
 
 </Option>
-### Conexión al servidor Appium
+### Conexión con el servidor Appium
 
-Sobrescribe la conexión al servidor Appium para cada sesión usando `appiumConfig`:
+Sobrescribe la conexión con el servidor Appium por sesión usando `appiumConfig`:
 
 ```js
 start_session({
@@ -263,7 +263,7 @@ start_session({
 
 <Option type={`{ host?: string; port?: number; path?: string }`} required="No">
 
-Conexión al servidor Appium. De forma predeterminada es `{ host: "127.0.0.1", port: 4723, path: "/" }`.
+Conexión con el servidor Appium. El valor predeterminado es `{ host: "127.0.0.1", port: 4723, path: "/" }`.
 
 </Option>
 ## Opciones de proveedores en la nube
@@ -304,7 +304,7 @@ Antes de usar `true`, lee el recurso local-binary del proveedor (`wdio://browser
 
 <Option type="string" required="No">
 
-Nombre identificador del túnel. Obligatorio cuando `tunnel: "external"` para que coincida con el túnel en ejecución. Cuando `tunnel: true`, se genera automáticamente un nombre único si no se proporciona.
+Nombre identificador del túnel. Obligatorio cuando `tunnel: "external"` para coincidir con el túnel en ejecución. Cuando `tunnel: true`, se genera automáticamente un nombre único si no se proporciona.
 
 </Option>
 ### `reporting`
@@ -347,23 +347,23 @@ Incluye elementos contenedores/de diseño en los resultados:
 
 <Option type="boolean" default="false" required="No">
 
-Incluye las coordenadas del cuadro delimitador del elemento (x, y, ancho, alto) en la respuesta.
+Incluye en la respuesta las coordenadas del cuadro delimitador del elemento (x, y, ancho, alto).
 
 </Option>
 ### Paginación
 
 #### `limit`
 
-<Option type="number" default="0 (unlimited)" required="No">
+<Option type="number" default="0 (ilimitado)" required="No">
 
-Número máximo de elementos que se devolverán.
+Número máximo de elementos a devolver.
 
 </Option>
 #### `offset`
 
 <Option type="number" default="0" required="No">
 
-Número de elementos que se omitirán antes de devolver resultados.
+Número de elementos a omitir antes de devolver resultados.
 
 **Ejemplo:** Obtener los elementos 21–40:
 ```text
@@ -377,21 +377,21 @@ Opciones para la herramienta `get_accessibility_tree` (solo navegador).
 
 ### `limit`
 
-<Option type="number" default="0 (unlimited)" required="No">
+<Option type="number" default="0 (ilimitado)" required="No">
 
-Número máximo de nodos que se devolverán.
+Número máximo de nodos a devolver.
 
 </Option>
 ### `offset`
 
 <Option type="number" default="0" required="No">
 
-Número de nodos que se omitirán para la paginación.
+Número de nodos a omitir para la paginación.
 
 </Option>
 ### `roles`
 
-<Option type="string[]" default="All roles" required="No">
+<Option type="string[]" default="Todos los roles" required="No">
 
 Filtra por roles de accesibilidad específicos.
 
@@ -407,21 +407,21 @@ Get accessibility tree filtered to button and link roles
 
 La herramienta `get_screenshot` no recibe parámetros. Las capturas de pantalla se procesan automáticamente:
 
-| Optimización         | Valor    | Descripción                                                      |
-| -------------------- | -------- | ---------------------------------------------------------------- |
-| Dimensión máxima     | 2000px   | Las imágenes de más de 2000px se reducen                         |
-| Tamaño máximo        | 1MB      | Las imágenes se comprimen para mantenerse por debajo de 1MB      |
-| Formato              | PNG/JPEG | PNG con compresión máxima; JPEG si es necesario por el tamaño    |
+| Optimización         | Valor    | Descripción                                                        |
+| -------------------- | -------- | ------------------------------------------------------------------ |
+| Dimensión máxima     | 2000px   | Las imágenes de más de 2000px se reducen                           |
+| Tamaño máximo        | 1MB      | Las imágenes se comprimen para mantenerse por debajo de 1MB        |
+| Formato              | PNG/JPEG | PNG con compresión máxima; JPEG si es necesario por tamaño         |
 
 ## Comportamiento de la sesión
 
 ### Tipos de sesión
 
-| Tipo      | Descripción                  | Desconexión automática                    |
-| --------- | ---------------------------- | ----------------------------------------- |
-| `browser` | Sesión de navegador          | No                                        |
-| `ios`     | Sesión de aplicación iOS     | Sí (si `noReset: true` o no hay `appPath`) |
-| `android` | Sesión de aplicación Android | Sí (si `noReset: true` o no hay `appPath`) |
+| Tipo      | Descripción                    | Desconexión automática                    |
+| --------- | ------------------------------ | ----------------------------------------- |
+| `browser` | Sesión de navegador            | No                                        |
+| `ios`     | Sesión de aplicación iOS       | Sí (si `noReset: true` o sin `appPath`)   |
+| `android` | Sesión de aplicación Android   | Sí (si `noReset: true` o sin `appPath`)   |
 
 ### Modelo de sesión única
 
@@ -429,21 +429,21 @@ El servidor MCP funciona con un **modelo de sesión única**:
 
 -   Solo puede haber una sesión de navegador O de aplicación activa a la vez
 -   Iniciar una nueva sesión cerrará/desconectará la sesión actual
--   El estado de la sesión se mantiene de forma global entre llamadas a herramientas
+-   El estado de la sesión se mantiene globalmente entre llamadas a herramientas
 
 ### Desconectar vs. cerrar
 
-| Acción          | `detach: false` (Cerrar)               | `detach: true` (Desconectar)                         |
-| --------------- | -------------------------------------- | ---------------------------------------------------- |
-| Navegador       | Cierra el navegador por completo       | Mantiene el navegador en ejecución, desconecta WebDriver |
-| App móvil       | Finaliza la aplicación                 | Mantiene la aplicación en ejecución en su estado actual |
-| Caso de uso     | Empezar de cero en la siguiente sesión | Conservar el estado, inspección manual               |
+| Acción             | `detach: false` (Cerrar)                  | `detach: true` (Desconectar)                              |
+| ------------------ | ----------------------------------------- | --------------------------------------------------------- |
+| Navegador          | Cierra el navegador por completo          | Mantiene el navegador en ejecución, desconecta WebDriver  |
+| Aplicación móvil   | Finaliza la aplicación                    | Mantiene la aplicación en ejecución en su estado actual   |
+| Caso de uso        | Empezar de cero en la siguiente sesión    | Conservar el estado, inspección manual                    |
 
 ## Consideraciones de rendimiento
 
 ### Automatización de navegador
 
--   El **modo headless** es más rápido, pero no renderiza los elementos visuales
+-   El **modo headless** es más rápido pero no renderiza elementos visuales
 -   Los **tamaños de ventana más pequeños** reducen el tiempo de captura de pantalla
 -   La **detección de elementos** está optimizada con una única ejecución de script
 -   La **optimización de capturas de pantalla** mantiene las imágenes por debajo de 1MB para un procesamiento eficiente
@@ -457,12 +457,12 @@ El servidor MCP funciona con un **modelo de sesión única**:
 
 ### Consejos sobre el uso de tokens
 
-| Ajuste                     | Impacto                                                        |
-| -------------------------- | -------------------------------------------------------------- |
-| `inViewportOnly: true`     | Filtra los elementos fuera de pantalla, reduciendo el tamaño de la respuesta |
-| `includeContainers: false` | Excluye los elementos de diseño (ViewGroup, etc.)              |
-| `includeBounds: false`     | Omite los datos de x/y/ancho/alto                              |
-| `limit` con paginación     | Procesa los elementos por lotes en lugar de todos a la vez     |
+| Configuración              | Impacto                                                                  |
+| -------------------------- | ------------------------------------------------------------------------ |
+| `inViewportOnly: true`     | Filtra los elementos fuera de pantalla, reduciendo el tamaño de respuesta |
+| `includeContainers: false` | Excluye elementos de diseño (ViewGroup, etc.)                            |
+| `includeBounds: false`     | Omite los datos de x/y/ancho/alto                                        |
+| `limit` con paginación     | Procesa los elementos por lotes en lugar de todos a la vez               |
 
 ## Configuración del servidor Appium
 

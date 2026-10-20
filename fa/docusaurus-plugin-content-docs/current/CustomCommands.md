@@ -1,10 +1,10 @@
 ---
 id: customcommands
 title: دستورات سفارشی
-description: "دستورات سفارشی خود را برای مرورگر و عناصر با addCommand اضافه کنید، دستورات موجود را بازنویسی کنید و تعاریف نوع TypeScript را گسترش دهید."
+description: "دستورات مرورگر و عنصر خودتان را با addCommand اضافه کنید، دستورات موجود را بازنویسی کنید و تعاریف نوع TypeScript را گسترش دهید."
 ---
 
-اگر می‌خواهید نمونهٔ `browser` را با مجموعه‌ای از دستورات خودتان گسترش دهید، متد `addCommand` مرورگر در اختیار شماست. می‌توانید دستور خود را به‌صورت ناهمگام (asynchronous) بنویسید، درست همان‌طور که در specهای خود می‌نویسید.
+اگر می‌خواهید نمونه `browser` را با مجموعه‌ای از دستورات خودتان گسترش دهید، متد مرورگر `addCommand` برای شما در دسترس است. می‌توانید دستور خود را به صورت ناهمگام بنویسید، درست مانند مشخصات تست (specs) خود.
 
 ## پارامترها
 
@@ -12,7 +12,7 @@ description: "دستورات سفارشی خود را برای مرورگر و �
 
 <Option type="String">
 
-نامی که دستور را تعریف می‌کند و به حوزهٔ (scope) مرورگر یا عنصر متصل خواهد شد.
+نامی که دستور را تعریف می‌کند و به حوزه مرورگر یا عنصر متصل خواهد شد.
 
 </Option>
 
@@ -20,7 +20,7 @@ description: "دستورات سفارشی خود را برای مرورگر و �
 
 <Option type="Function">
 
-تابعی که هنگام فراخوانی دستور اجرا می‌شود. حوزهٔ `this` بسته به اینکه دستور به مرورگر، عناصر یا زمینه‌های مرور (browsing contexts) متصل شود، [`WebdriverIO.Browser`](/docs/api/browser)، [`WebdriverIO.Element`](/docs/api/element) یا `WebdriverIO.BrowsingContext` است.
+تابعی که هنگام فراخوانی دستور اجرا می‌شود. حوزه `this` بسته به اینکه دستور به مرورگر، عناصر یا زمینه‌های مرور (browsing contexts) متصل شود، [`WebdriverIO.Browser`](/docs/api/browser)، [`WebdriverIO.Element`](/docs/api/element) یا `WebdriverIO.BrowsingContext` است.
 
 </Option>
 
@@ -28,17 +28,17 @@ description: "دستورات سفارشی خود را برای مرورگر و �
 
 شیئی با گزینه‌های پیکربندی که رفتار دستور سفارشی را تغییر می‌دهد
 
-#### حوزهٔ هدف
+#### حوزه هدف
 
 <Option type="Boolean" default="false" name="attachToElement">
 
-پرچمی برای تعیین اینکه دستور به حوزهٔ مرورگر متصل شود یا به حوزهٔ عنصر. اگر روی `true` تنظیم شود، دستور یک دستور عنصر خواهد بود.
+پرچمی برای تصمیم‌گیری درباره اینکه دستور به حوزه مرورگر متصل شود یا عنصر. اگر روی `true` تنظیم شود، دستور یک دستور عنصر خواهد بود.
 
 </Option>
 
 <Option type="Boolean" default="false" name="attachToBrowsingContext">
 
-پرچمی برای متصل کردن دستور به هر زمینهٔ مرور: تب‌ها، پنجره‌ها و فریم‌هایی که `browser.url()`، `browser.newWindow()`، `browser.browsingContexts()` و `context.frame()` در یک نشست WebDriver BiDi برمی‌گردانند. این گزینه را نمی‌توان با `attachToElement` ترکیب کرد. به [زمینه‌های مرور](#browsing-contexts) مراجعه کنید.
+پرچمی برای اتصال دستور به هر زمینه مرور: تب‌ها، پنجره‌ها و فریم‌هایی که `browser.url()`، `browser.newWindow()`، `browser.browsingContexts()` و `context.frame()` در یک نشست WebDriver BiDi برمی‌گردانند. این گزینه را نمی‌توان با `attachToElement` ترکیب کرد. به [زمینه‌های مرور](#browsing-contexts) مراجعه کنید.
 
 </Option>
 
@@ -46,17 +46,17 @@ description: "دستورات سفارشی خود را برای مرورگر و �
 
 <Option type="Boolean" default="false" name="disableElementImplicitWait">
 
-پرچمی برای تعیین اینکه آیا پیش از فراخوانی دستور سفارشی، به‌طور ضمنی منتظر وجود عنصر بماند یا نه.
+پرچمی برای تصمیم‌گیری درباره اینکه آیا قبل از فراخوانی دستور سفارشی، به طور ضمنی منتظر وجود عنصر بماند یا نه.
 
 </Option>
 
 ## مثال‌ها
 
-این مثال نشان می‌دهد چگونه یک دستور جدید اضافه کنید که URL و عنوان فعلی را به‌عنوان یک نتیجه برمی‌گرداند. حوزه (`this`) یک شیء [`WebdriverIO.Browser`](/docs/api/browser) است.
+این مثال نشان می‌دهد چگونه یک دستور جدید اضافه کنید که URL و عنوان فعلی را به عنوان یک نتیجه برمی‌گرداند. حوزه (`this`) یک شیء [`WebdriverIO.Browser`](/docs/api/browser) است.
 
 ```js
 browser.addCommand('getUrlAndTitle', async function (customVar) {
-    // `this` به حوزهٔ `browser` اشاره دارد
+    // `this` به حوزه `browser` اشاره دارد
     return {
         url: await this.getUrl(),
         title: await this.getTitle(),
@@ -65,7 +65,7 @@ browser.addCommand('getUrlAndTitle', async function (customVar) {
 })
 ```
 
-علاوه بر این، می‌توانید با تنظیم `attachToElement` روی `true`، نمونهٔ عنصر را با مجموعه‌ای از دستورات خودتان گسترش دهید. در این حالت حوزه (`this`) یک شیء [`WebdriverIO.Element`](/docs/api/element) است.
+علاوه بر این، می‌توانید با تنظیم `attachToElement` روی `true`، نمونه عنصر را با مجموعه‌ای از دستورات خودتان گسترش دهید. در این حالت حوزه (`this`) یک شیء [`WebdriverIO.Element`](/docs/api/element) است.
 
 ```js
 browser.addCommand("waitAndClick", async function () {
@@ -75,7 +75,7 @@ browser.addCommand("waitAndClick", async function () {
 }, { attachToElement: true })
 ```
 
-به‌طور پیش‌فرض، دستورات سفارشی عنصر پیش از فراخوانی دستور سفارشی منتظر وجود عنصر می‌مانند. هرچند در بیشتر مواقع این رفتار مطلوب است، اما در غیر این صورت می‌توان آن را با `disableImplicitWait` غیرفعال کرد:
+به طور پیش‌فرض، دستورات سفارشی عنصر قبل از فراخوانی دستور سفارشی منتظر وجود عنصر می‌مانند. اگرچه در بیشتر مواقع این رفتار مطلوب است، اما در غیر این صورت می‌توان آن را با `disableImplicitWait` غیرفعال کرد:
 
 ```js
 browser.addCommand("waitAndClick", async function () {
@@ -85,9 +85,9 @@ browser.addCommand("waitAndClick", async function () {
 }, { attachToElement: true, disableElementImplicitWait: true })
 ```
 
-دستورات سفارشی به شما این امکان را می‌دهند که توالی مشخصی از دستوراتی را که به‌طور مکرر استفاده می‌کنید، به‌صورت یک فراخوانی واحد بسته‌بندی کنید. می‌توانید دستورات سفارشی را در هر نقطه‌ای از مجموعهٔ تست خود تعریف کنید؛ فقط مطمئن شوید که دستور *پیش از* اولین استفاده تعریف شده باشد. (هوک `before` در فایل `wdio.conf.js` یکی از مکان‌های مناسب برای ایجاد آن‌هاست.)
+دستورات سفارشی به شما این امکان را می‌دهند که توالی خاصی از دستوراتی را که به طور مکرر استفاده می‌کنید، به عنوان یک فراخوانی واحد بسته‌بندی کنید. می‌توانید دستورات سفارشی را در هر نقطه‌ای از مجموعه تست خود تعریف کنید؛ فقط مطمئن شوید که دستور *قبل* از اولین استفاده‌اش تعریف شده باشد. (هوک `before` در فایل `wdio.conf.js` شما یک مکان مناسب برای ایجاد آن‌هاست.)
 
-پس از تعریف، می‌توانید به شکل زیر از آن‌ها استفاده کنید:
+پس از تعریف، می‌توانید از آن‌ها به صورت زیر استفاده کنید:
 
 ```js
 it('should use my custom command', async () => {
@@ -100,26 +100,26 @@ it('should use my custom command', async () => {
 })
 ```
 
-__توجه:__ اگر یک دستور سفارشی را در حوزهٔ `browser` ثبت کنید، آن دستور برای عناصر در دسترس نخواهد بود. به همین ترتیب، اگر دستوری را در حوزهٔ عنصر ثبت کنید، در حوزهٔ `browser` در دسترس نخواهد بود:
+__نکته:__ اگر یک دستور سفارشی را در حوزه `browser` ثبت کنید، آن دستور برای عناصر قابل دسترسی نخواهد بود. به همین ترتیب، اگر دستوری را در حوزه عنصر ثبت کنید، در حوزه `browser` قابل دسترسی نخواهد بود:
 
 ```js
 browser.addCommand("myCustomBrowserCommand", () => { return 1 })
 const elem = await $('body')
-console.log(typeof browser.myCustomBrowserCommand) // خروجی: "function"
-console.log(typeof elem.myCustomBrowserCommand()) // خروجی: "undefined"
+console.log(typeof browser.myCustomBrowserCommand) // خروجی "function"
+console.log(typeof elem.myCustomBrowserCommand()) // خروجی "undefined"
 
 browser.addCommand("myCustomElementCommand", () => { return 1 }, { attachToElement: true })
 const elem2 = await $('body')
-console.log(typeof browser.myCustomElementCommand) // خروجی: "undefined"
-console.log(await elem2.myCustomElementCommand('foobar')) // خروجی: "1"
+console.log(typeof browser.myCustomElementCommand) // خروجی "undefined"
+console.log(await elem2.myCustomElementCommand('foobar')) // خروجی "1"
 
 const elem3 = await $('body')
 elem3.addCommand("myCustomElementCommand2", () => { return 2 })
-console.log(typeof browser.myCustomElementCommand2) // خروجی: "undefined"
-console.log(await elem3.myCustomElementCommand2('foobar')) // خروجی: "2"
+console.log(typeof browser.myCustomElementCommand2) // خروجی "undefined"
+console.log(await elem3.myCustomElementCommand2('foobar')) // خروجی "2"
 ```
 
-__توجه:__ اگر نیاز دارید یک دستور سفارشی را زنجیره‌ای کنید، نام دستور باید با `$` پایان یابد،
+__نکته:__ اگر نیاز دارید یک دستور سفارشی را زنجیره‌ای کنید، دستور باید با `$` پایان یابد،
 
 ```js
 browser.addCommand("user$", (locator) => { return ele })
@@ -127,17 +127,17 @@ browser.addCommand("user$", (locator) => { return ele }, { attachToElement: true
 await browser.user$('foo').user$('bar').click()
 ```
 
-مراقب باشید حوزهٔ `browser` را با دستورات سفارشی بیش از حد سربار نکنید.
+مراقب باشید که حوزه `browser` را با دستورات سفارشی بیش از حد شلوغ نکنید.
 
-توصیه می‌کنیم منطق سفارشی را در [page objectها](pageobjects) تعریف کنید تا به یک صفحهٔ مشخص وابسته باشند.
+توصیه می‌کنیم منطق سفارشی را در [page objects](pageobjects) تعریف کنید تا به یک صفحه خاص متصل باشند.
 
-### زمینه‌های مرور {#browsing-contexts}
+### زمینه‌های مرور
 
-در یک نشست WebDriver BiDi، هر تب، پنجره و فریم یک `WebdriverIO.BrowsingContext` است. برای افزودن یک دستور به همهٔ آن‌ها، `attachToBrowsingContext` را روی `true` تنظیم کنید. حوزه (`this`) زمینه‌ای است که دستور روی آن فراخوانی شده و `this.browser` مرورگری است که آن زمینه به آن تعلق دارد:
+در یک نشست WebDriver BiDi، هر تب، پنجره و فریم یک `WebdriverIO.BrowsingContext` است. برای افزودن یک دستور به همه آن‌ها، `attachToBrowsingContext` را روی `true` تنظیم کنید. حوزه (`this`) زمینه‌ای است که دستور روی آن فراخوانی شده، و `this.browser` مرورگری است که به آن تعلق دارد:
 
 ```js
 browser.addCommand('heading', async function () {
-    // `this` همان تب، پنجره یا فریم است
+    // `this` تب، پنجره یا فریم است
     return this.$('h1').getText()
 }, { attachToBrowsingContext: true })
 
@@ -148,13 +148,13 @@ const frame = await page.frame('iframe')
 console.log(await frame.heading())
 ```
 
-این دستور روی زمینه‌هایی که از قبل وجود دارند و روی هر زمینه‌ای که بعداً ایجاد شود، از جمله فریم‌هایی از یک origin دیگر، در دسترس است. دستوری که فقط برای یک تب یا پنجره معنا دارد می‌تواند `this.isFrame` را بررسی کند.
+این دستور روی زمینه‌هایی که از قبل وجود دارند و روی هر زمینه‌ای که بعداً ایجاد شود، از جمله فریم‌هایی از مبدأ دیگر، در دسترس است. دستوری که فقط برای یک تب یا پنجره معنا دارد می‌تواند `this.isFrame` را بررسی کند.
 
-فراخوانی `addCommand` و `overwriteCommand` روی خود یک زمینهٔ مرور خطا ایجاد می‌کند. دستور را روی مرورگر ثبت کنید.
+فراخوانی `addCommand` و `overwriteCommand` روی خود یک زمینه مرور خطا ایجاد می‌کند. دستور را روی مرورگر ثبت کنید.
 
 ### Multi-remote
 
-`addCommand` در حالت multi-remote نیز به شکل مشابهی کار می‌کند، با این تفاوت که دستور جدید به نمونه‌های فرزند نیز منتقل می‌شود. هنگام استفاده از شیء `this` باید دقت کنید، زیرا `browser` در حالت multi-remote و نمونه‌های فرزند آن `this` متفاوتی دارند.
+`addCommand` برای multi-remote به روشی مشابه کار می‌کند، با این تفاوت که دستور جدید به نمونه‌های فرزند نیز منتقل می‌شود. هنگام استفاده از شیء `this` باید دقت کنید، زیرا `browser` در multi-remote و نمونه‌های فرزند آن `this` متفاوتی دارند.
 
 این مثال نشان می‌دهد چگونه یک دستور جدید برای multi-remote اضافه کنید.
 
@@ -163,8 +163,8 @@ import { multiRemoteBrowser } from '@wdio/globals'
 
 multiRemoteBrowser.addCommand('getUrlAndTitle', async function (this: WebdriverIO.MultiRemoteBrowser, customVar: any) {
     // `this` اشاره دارد به:
-    //      - حوزهٔ MultiRemoteBrowser برای browser
-    //      - حوزهٔ Browser برای نمونه‌ها
+    //      - حوزه MultiRemoteBrowser برای مرورگر
+    //      - حوزه Browser برای نمونه‌ها
     return {
         url: await this.getUrl(),
         title: await this.getTitle(),
@@ -196,12 +196,12 @@ multiRemoteBrowser.getInstance('browserA').getUrlAndTitle()
 
 ## گسترش تعاریف نوع
 
-با TypeScript، گسترش اینترفیس‌های WebdriverIO آسان است. انواع (types) را به این شکل به دستورات سفارشی خود اضافه کنید:
+با TypeScript، گسترش رابط‌های WebdriverIO آسان است. انواع را به دستورات سفارشی خود به این شکل اضافه کنید:
 
 1. یک فایل تعریف نوع ایجاد کنید (مثلاً `./src/types/wdio.d.ts`)
-2. a. اگر از فایل تعریف نوع به سبک ماژول استفاده می‌کنید (استفاده از import/export و `declare global WebdriverIO` در فایل تعریف نوع)، مطمئن شوید که مسیر فایل را در ویژگی `include` فایل `tsconfig.json` قرار داده‌اید.
+2. الف. اگر از فایل تعریف نوع به سبک ماژول استفاده می‌کنید (با استفاده از import/export و `declare global WebdriverIO` در فایل تعریف نوع)، مطمئن شوید که مسیر فایل را در ویژگی `include` فایل `tsconfig.json` قرار داده‌اید.
 
-   b. اگر از فایل‌های تعریف نوع به سبک ambient استفاده می‌کنید (بدون import/export در فایل‌های تعریف نوع و با `declare namespace WebdriverIO` برای دستورات سفارشی)، مطمئن شوید که `tsconfig.json` هیچ بخش `include` *ندارد*، زیرا این باعث می‌شود همهٔ فایل‌های تعریف نوعی که در بخش `include` فهرست نشده‌اند توسط TypeScript شناسایی نشوند.
+   ب. اگر از فایل‌های تعریف نوع به سبک ambient استفاده می‌کنید (بدون import/export در فایل‌های تعریف نوع و `declare namespace WebdriverIO` برای دستورات سفارشی)، مطمئن شوید که `tsconfig.json` هیچ بخش `include` *ندارد*، زیرا این باعث می‌شود همه فایل‌های تعریف نوعی که در بخش `include` فهرست نشده‌اند توسط TypeScript شناسایی نشوند.
 
 <Tabs
   defaultValue="modules"
@@ -295,9 +295,9 @@ declare namespace WebdriverIO {
 
 ## یکپارچه‌سازی کتابخانه‌های شخص ثالث
 
-اگر از کتابخانه‌های خارجی (مثلاً برای فراخوانی‌های پایگاه داده) استفاده می‌کنید که از promiseها پشتیبانی می‌کنند، یک رویکرد خوب برای یکپارچه‌سازی آن‌ها این است که برخی متدهای API را درون یک دستور سفارشی قرار دهید.
+اگر از کتابخانه‌های خارجی استفاده می‌کنید (مثلاً برای انجام فراخوانی‌های پایگاه داده) که از promiseها پشتیبانی می‌کنند، یک رویکرد خوب برای یکپارچه‌سازی آن‌ها، پوشاندن برخی متدهای API با یک دستور سفارشی است.
 
-هنگام بازگرداندن promise، WebdriverIO اطمینان حاصل می‌کند که تا زمان resolve شدن promise به دستور بعدی نمی‌رود. اگر promise رد (reject) شود، دستور یک خطا پرتاب می‌کند.
+هنگام بازگرداندن promise، WebdriverIO اطمینان حاصل می‌کند که تا زمان resolve شدن promise، به دستور بعدی ادامه ندهد. اگر promise رد (reject) شود، دستور یک خطا پرتاب خواهد کرد.
 
 ```js
 browser.addCommand('makeRequest', async (url) => {
@@ -306,36 +306,36 @@ browser.addCommand('makeRequest', async (url) => {
 })
 ```
 
-سپس، کافی است از آن در specهای تست WDIO خود استفاده کنید:
+سپس، کافی است از آن در مشخصات تست WDIO خود استفاده کنید:
 
 ```js
 it('execute external library in a sync way', async () => {
     await browser.url('...')
     const body = await browser.makeRequest('http://...')
-    console.log(body) // بدنهٔ پاسخ را برمی‌گرداند
+    console.log(body) // بدنه پاسخ را برمی‌گرداند
 })
 ```
 
-**توجه:** نتیجهٔ دستور سفارشی شما، نتیجهٔ promise‌ای است که برمی‌گردانید.
+**نکته:** نتیجه دستور سفارشی شما، نتیجه promiseای است که برمی‌گردانید.
 
 ## بازنویسی دستورات
 
 همچنین می‌توانید دستورات بومی را با `overwriteCommand` بازنویسی کنید.
 
-انجام این کار توصیه نمی‌شود، زیرا ممکن است به رفتار غیرقابل پیش‌بینی فریم‌ورک منجر شود!
+انجام این کار توصیه نمی‌شود، زیرا ممکن است منجر به رفتار غیرقابل پیش‌بینی فریم‌ورک شود!
 
-رویکرد کلی مشابه `addCommand` است، تنها تفاوت این است که اولین آرگومان در تابع دستور، تابع اصلی‌ای است که قصد بازنویسی آن را دارید. لطفاً چند مثال را در ادامه ببینید.
+رویکرد کلی مشابه `addCommand` است، تنها تفاوت این است که اولین آرگومان در تابع دستور، تابع اصلی است که قصد بازنویسی آن را دارید. لطفاً چند مثال را در زیر ببینید.
 
 ### بازنویسی دستورات مرورگر
 
 ```js
 /**
- * چاپ میلی‌ثانیه‌ها پیش از توقف و بازگرداندن مقدار آن.
+ * چاپ میلی‌ثانیه‌ها قبل از توقف و بازگرداندن مقدار آن.
  *
  * @param pause - نام دستوری که باید بازنویسی شود
- * @param this of func - نمونهٔ اصلی مرورگر که تابع روی آن فراخوانی شده است
- * @param originalPauseFunction of func - تابع اصلی pause
- * @param ms of func - پارامترهای واقعی ارسال‌شده
+ * @param this of func - نمونه اصلی مرورگر که تابع روی آن فراخوانی شده است
+ * @param originalPauseFunction of func - تابع pause اصلی
+ * @param ms of func - پارامترهای واقعی ارسال شده
   */
 browser.overwriteCommand('pause', async function (this, originalPauseFunction, ms) {
     console.log(`sleeping for ${ms}`)
@@ -353,13 +353,13 @@ console.log(`was sleeping for ${await browser.pause(1000)}`)
 
 ```js
 /**
- * اگر عنصر قابل کلیک نیست، تلاش برای اسکرول به سمت آن.
+ * اگر عنصر قابل کلیک نیست، تلاش برای اسکرول به آن.
  * برای کلیک با JS حتی اگر عنصر قابل مشاهده یا قابل کلیک نباشد، { force: true } را ارسال کنید.
  * نشان می‌دهد که نوع آرگومان تابع اصلی را می‌توان با `options?: ClickOptions` حفظ کرد
  *
  * @param this of func - عنصری که تابع اصلی روی آن فراخوانی شده است
- * @param originalClickFunction of func - تابع اصلی pause
- * @param options of func - پارامترهای واقعی ارسال‌شده
+ * @param originalClickFunction of func - تابع pause اصلی
+ * @param options of func - پارامترهای واقعی ارسال شده
  */
 browser.overwriteCommand(
     'click',
@@ -374,7 +374,7 @@ browser.overwriteCommand(
                 if ((err as Error).message.includes('not clickable at point')) {
                     console.warn('WARN: Element', this.selector, 'is not clickable.', 'Scrolling to it before clicking again.')
 
-                    // اسکرول به عنصر و کلیک مجدد
+                    // اسکرول به عنصر و کلیک دوباره
                     await this.scrollIntoView()
                     return originalClickFunction(options)
                 }
@@ -399,9 +399,9 @@ await elem.click()
 await elem.click({ force: true })
 ```
 
-### بازنویسی دستورات زمینهٔ مرور
+### بازنویسی دستورات زمینه مرور
 
-برای بازنویسی یک دستور داخلی یا سفارشی در هر تب، پنجره و فریم، `attachToBrowsingContext` را روی `true` تنظیم کنید. دستور اصلی به زمینه‌ای که روی آن فراخوانی شده متصل (bind) می‌شود:
+برای بازنویسی یک دستور داخلی یا سفارشی در هر تب، پنجره و فریم، `attachToBrowsingContext` را روی `true` تنظیم کنید. دستور اصلی به زمینه‌ای که روی آن فراخوانی شده متصل است:
 
 ```js
 browser.overwriteCommand('getTitle', async function (this, originalGetTitle) {
@@ -416,7 +416,7 @@ console.log(await frame.getTitle()) // "frame: ..."
 
 ## افزودن دستورات WebDriver بیشتر
 
-اگر از پروتکل WebDriver استفاده می‌کنید و تست‌ها را روی پلتفرمی اجرا می‌کنید که از دستورات اضافه‌ای پشتیبانی می‌کند که در هیچ‌یک از تعاریف پروتکل در [`@wdio/protocols`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-protocols/src/protocols) تعریف نشده‌اند، می‌توانید آن‌ها را به‌صورت دستی از طریق اینترفیس `addCommand` اضافه کنید. بستهٔ `webdriver` یک wrapper دستور ارائه می‌دهد که امکان ثبت این endpointهای جدید را به همان روش سایر دستورات فراهم می‌کند و همان بررسی‌های پارامتر و مدیریت خطا را ارائه می‌دهد. برای ثبت این endpoint جدید، wrapper دستور را import کرده و یک دستور جدید را به شکل زیر با آن ثبت کنید:
+اگر از پروتکل WebDriver استفاده می‌کنید و تست‌ها را روی پلتفرمی اجرا می‌کنید که از دستورات اضافی پشتیبانی می‌کند که توسط هیچ‌یک از تعاریف پروتکل در [`@wdio/protocols`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-protocols/src/protocols) تعریف نشده‌اند، می‌توانید آن‌ها را به صورت دستی از طریق رابط `addCommand` اضافه کنید. بسته `webdriver` یک پوشش‌دهنده دستور (command wrapper) ارائه می‌دهد که امکان ثبت این endpointهای جدید را به همان روش سایر دستورات فراهم می‌کند و همان بررسی‌های پارامتر و مدیریت خطا را ارائه می‌دهد. برای ثبت این endpoint جدید، پوشش‌دهنده دستور را import کرده و یک دستور جدید با آن به صورت زیر ثبت کنید:
 
 ```js
 import { command } from 'webdriver'
@@ -438,7 +438,7 @@ browser.addCommand('myNewCommand', command('POST', '/session/:sessionId/foobar/:
 }))
 ```
 
-فراخوانی این دستور با پارامترهای نامعتبر منجر به همان مدیریت خطای دستورات پروتکل از پیش تعریف‌شده می‌شود، برای مثال:
+فراخوانی این دستور با پارامترهای نامعتبر منجر به همان مدیریت خطای دستورات پروتکل از پیش تعریف شده می‌شود، به عنوان مثال:
 
 ```js
 // فراخوانی دستور بدون پارامتر url الزامی و payload
@@ -459,10 +459,10 @@ await browser.myNewCommand()
  */
 ```
 
-فراخوانی صحیح دستور، مثلاً `browser.myNewCommand('foo', 'bar')`، به‌درستی یک درخواست WebDriver به آدرسی مانند `http://localhost:4444/session/7bae3c4c55c3bf82f54894ddc83c5f31/foobar/foo` با payloadی مانند `{ foo: 'bar' }` ارسال می‌کند.
+فراخوانی صحیح دستور، مثلاً `browser.myNewCommand('foo', 'bar')`، به درستی یک درخواست WebDriver به عنوان مثال به `http://localhost:4444/session/7bae3c4c55c3bf82f54894ddc83c5f31/foobar/foo` با payloadی مانند `{ foo: 'bar' }` ارسال می‌کند.
 
 :::note
-پارامتر url با نام `:sessionId` به‌طور خودکار با شناسهٔ نشست WebDriver جایگزین می‌شود. سایر پارامترهای url را نیز می‌توان اعمال کرد، اما باید در `variables` تعریف شوند.
+پارامتر url `:sessionId` به طور خودکار با شناسه نشست WebDriver جایگزین می‌شود. سایر پارامترهای url را می‌توان اعمال کرد، اما باید در `variables` تعریف شوند.
 :::
 
-نمونه‌هایی از نحوهٔ تعریف دستورات پروتکل را در بستهٔ [`@wdio/protocols`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-protocols/src/protocols) ببینید.
+نمونه‌هایی از نحوه تعریف دستورات پروتکل را در بسته [`@wdio/protocols`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-protocols/src/protocols) ببینید.

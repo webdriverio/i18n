@@ -7,7 +7,7 @@ description: "Instala WebdriverIO DevTools y ejecuta tu primera prueba en modo e
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-WebdriverIO DevTools proporciona a tus pruebas de navegador de extremo a extremo una interfaz de herramientas de desarrollo para ejecutar, depurar e inspeccionar la automatización: reproducción del DOM, capturas de pantalla por comando, captura de red y consola, y grabaciones de pantalla de la sesión. Funciona en dos modos. El **modo en vivo** abre un [panel](/docs/devtools/dashboard) interactivo en una ventana del navegador mientras se ejecutan tus pruebas, para que puedas observarlas y volver a ejecutarlas en tiempo real. El **modo de traza** omite la interfaz y genera un [artefacto de traza](/docs/devtools/wdio/trace-mode) portátil y sin conexión (`trace.zip`) que puedes abrir más tarde en el reproductor `show-trace`, ideal para CI. Esta página te permite empezar rápidamente con el modo en vivo; el modo de traza está a solo una opción de distancia.
+WebdriverIO DevTools proporciona a tus pruebas de navegador end-to-end una interfaz de herramientas para desarrolladores con la que ejecutar, depurar e inspeccionar la automatización: reproducción del DOM, capturas de pantalla por comando, captura de red y consola, y grabaciones de pantalla de la sesión. Funciona en dos modos. El **modo en vivo** abre un [panel](/docs/devtools/dashboard) interactivo en una ventana del navegador mientras se ejecutan tus pruebas, para que puedas observarlas y volver a ejecutarlas en tiempo real. El **modo de traza** omite la interfaz y genera un [artefacto de traza](/docs/devtools/wdio/trace-mode) portátil y sin conexión (`trace.zip`) que puedes abrir más tarde en el reproductor `show-trace`, ideal para CI. Esta página te pone en marcha rápidamente con el modo en vivo; el modo de traza está a solo una opción de distancia.
 
 ## Instalación y primera ejecución
 
@@ -29,7 +29,7 @@ Instala el servicio:
 npm install @wdio/devtools-service --save-dev
 ```
 
-Añádelo a la configuración de tu ejecutor de pruebas:
+Añádelo a la configuración de tu test runner:
 
 ```ts
 // wdio.conf.ts
@@ -43,13 +43,13 @@ Ejecuta tus pruebas de WebdriverIO de forma normal: la interfaz de DevTools se a
 </TabItem>
 <TabItem value="selenium">
 
-Funciona con Mocha, Jest, Cucumber o un script `node` simple; el plugin detecta automáticamente el ejecutor. Instálalo:
+Funciona con Mocha, Jest, Cucumber o un script `node` simple: el plugin detecta automáticamente el runner. Instálalo:
 
 ```bash
 npm install @wdio/selenium-devtools
 ```
 
-Añade una sola importación y una llamada a `configure` al principio de tu archivo de prueba (se muestra Mocha):
+Añade un único import y una llamada a `configure` al principio de tu archivo de pruebas (se muestra Mocha):
 
 ```js
 // tests/example.test.js
@@ -86,7 +86,7 @@ Ejecútalo: la interfaz de DevTools se abre en una nueva ventana de Chrome:
 mocha --timeout 60000 tests/example.test.js
 ```
 
-Consulta la [página de Selenium](/docs/devtools/selenium) para ver las configuraciones de Jest, Cucumber y Node simple.
+Consulta la [página de Selenium](/docs/devtools/selenium) para las configuraciones con Jest, Cucumber y Node simple.
 
 </TabItem>
 <TabItem value="nightwatch">
@@ -97,7 +97,7 @@ Instala el adaptador:
 npm install @wdio/nightwatch-devtools
 ```
 
-Intégralo en tu configuración de Nightwatch mediante `globals`; no es necesario modificar los archivos de prueba:
+Intégralo en tu configuración de Nightwatch mediante `globals`; no es necesario modificar los archivos de pruebas:
 
 ```js
 // nightwatch.conf.cjs
@@ -125,7 +125,7 @@ Ejecuta tus pruebas de forma normal: la interfaz de DevTools se abre automática
 nightwatch
 ```
 
-Consulta la [página de Nightwatch](/docs/devtools/nightwatch) para ver la configuración de Cucumber/BDD.
+Consulta la [página de Nightwatch](/docs/devtools/nightwatch) para la configuración con Cucumber/BDD.
 
 </TabItem>
 </Tabs>

@@ -4,11 +4,11 @@ title: Recursos
 description: "Lee el estado de la sesión en vivo, el historial de sesiones y los detalles de configuración de proveedores en la nube a través de los recursos de solo lectura wdio:// del servidor MCP de WebdriverIO."
 ---
 
-Los recursos MCP proporcionan acceso de solo lectura al estado de la sesión en vivo. A diferencia de las herramientas, el modelo de IA consulta los recursos a voluntad; no ejecutan acciones. Todos los recursos utilizan el esquema de URI `wdio://`.
+Los recursos MCP proporcionan acceso de solo lectura al estado de la sesión en vivo. A diferencia de las herramientas, el modelo de IA consulta los recursos cuando lo considera necesario; no ejecutan acciones. Todos los recursos utilizan el esquema de URI `wdio://`.
 
 ## Cuándo usar recursos frente a herramientas
 
-- **Recursos**: estado ambiental que cambia a medida que interactúas: elementos actuales, captura de pantalla, cookies, árbol de accesibilidad. Léelos antes de actuar para entender lo que hay en pantalla.
+- **Recursos**: estado del entorno que cambia a medida que interactúas: elementos actuales, captura de pantalla, cookies, árbol de accesibilidad. Léelos antes de actuar para entender lo que hay en pantalla.
 - **Herramientas**: acciones que cambian el estado: hacer clic, navegar, establecer un valor.
 
 Prefiere `wdio://session/current/elements` en lugar de `get_screenshot` para descubrir elementos; devuelve selectores listos para usar y consume muchos menos tokens.
@@ -38,7 +38,7 @@ Prefiere `wdio://session/current/elements` en lugar de `get_screenshot` para des
 
 ### `wdio://session/current/steps`
 
-Registro de pasos en JSON de la sesión activa actual. Contiene todos los pasos de automatización registrados con nombres de herramientas, parámetros y marcas de tiempo.
+Registro de pasos en JSON de la sesión activa actual. Contiene todos los pasos de automatización registrados con los nombres de las herramientas, los parámetros y las marcas de tiempo.
 
 ---
 
@@ -50,29 +50,29 @@ JavaScript de WebdriverIO generado para la sesión activa actual. Se genera auto
 
 ### `wdio://session/{sessionId}/steps`
 
-Registro de pasos de una sesión específica por ID. Plantilla de URI: reemplaza `{sessionId}` con el ID de `wdio://sessions`.
+Registro de pasos de una sesión específica por ID. Plantilla de URI: reemplaza `{sessionId}` con el ID obtenido de `wdio://sessions`.
 
 ---
 
 ### `wdio://session/{sessionId}/code`
 
-JavaScript de WebdriverIO generado para una sesión específica por ID. Plantilla de URI: reemplaza `{sessionId}` con el ID de `wdio://sessions`.
+JavaScript de WebdriverIO generado para una sesión específica por ID. Plantilla de URI: reemplaza `{sessionId}` con el ID obtenido de `wdio://sessions`.
 
 ## Estado de la página en vivo (sesión actual)
 
 ### `wdio://session/current/elements`
 
-Elementos interactuables en la página actual. Devuelve selectores listos para usar, el texto de los elementos e información de visibilidad.
+Elementos interactuables de la página actual. Devuelve selectores listos para usar, el texto de los elementos e información de visibilidad.
 
 **Este es el recurso principal para entender lo que hay en pantalla.** Léelo antes de hacer clic o escribir. Es mucho más rápido y económico que una captura de pantalla.
 
-Para un filtrado avanzado (solo viewport, contenedores, cuadros delimitadores, paginación), usa en su lugar la herramienta `get_elements`.
+Para un filtrado avanzado (solo viewport, contenedores, cuadros delimitadores, paginación), utiliza en su lugar la herramienta `get_elements`.
 
 ---
 
 ### `wdio://session/current/accessibility`
 
-Árbol de accesibilidad de la página actual. Devuelve todos los nodos de forma predeterminada con los atributos de rol, nombre, selector y estado. Solo para navegador. En móvil, usa `wdio://session/current/elements`.
+Árbol de accesibilidad de la página actual. Devuelve todos los nodos de forma predeterminada con los atributos de rol, nombre, selector y estado. Solo para navegador. En dispositivos móviles, utiliza `wdio://session/current/elements`.
 
 ```json
 {
@@ -90,13 +90,13 @@ Para un filtrado avanzado (solo viewport, contenedores, cuadros delimitadores, p
 }
 ```
 
-Para resultados filtrados (por rol, paginados), usa la herramienta `get_accessibility_tree`.
+Para obtener resultados filtrados (por rol, paginados), utiliza la herramienta `get_accessibility_tree`.
 
 ---
 
 ### `wdio://session/current/screenshot`
 
-Captura de pantalla de la página o pantalla actual como imagen codificada en base64. Se redimensiona automáticamente (máx. 2000px) y se comprime (máx. 1 MB).
+Captura de la página o pantalla actual como imagen codificada en base64. Se redimensiona automáticamente (máximo 2000px) y se comprime (máximo 1 MB).
 
 Úsala para verificación visual o para depurar el diseño. Para descubrir elementos, prefiere `wdio://session/current/elements`.
 
@@ -136,13 +136,13 @@ Todas las pestañas del navegador abiertas en la sesión actual. Solo para naveg
 ]
 ```
 
-Úsalo antes de `switch_tab` para encontrar el handle o índice de destino.
+Úsalo antes de `switch_tab` para encontrar el handle o el índice de destino.
 
 ---
 
 ### `wdio://session/current/contexts`
 
-Contextos de automatización disponibles (NATIVE_APP, WEBVIEW). Solo para móvil.
+Contextos de automatización disponibles (NATIVE_APP, WEBVIEW). Solo para móviles.
 
 ```json
 ["NATIVE_APP", "WEBVIEW_com.example.app"]
@@ -152,7 +152,7 @@ Contextos de automatización disponibles (NATIVE_APP, WEBVIEW). Solo para móvil
 
 ### `wdio://session/current/context`
 
-Contexto de automatización activo actualmente. Solo para móvil.
+Contexto de automatización activo actualmente. Solo para móviles.
 
 ```json
 "NATIVE_APP"
@@ -162,22 +162,22 @@ Contexto de automatización activo actualmente. Solo para móvil.
 
 ### `wdio://session/current/app-state/{bundleId}`
 
-Estado del ciclo de vida de la aplicación para un bundle ID dado. Solo para móvil. Plantilla de URI: reemplaza `{bundleId}` con un bundle ID de iOS o un nombre de paquete de Android.
+Estado del ciclo de vida de la aplicación para un bundle ID determinado. Solo para móviles. Plantilla de URI: reemplaza `{bundleId}` con un bundle ID de iOS o un nombre de paquete de Android.
 
 Devuelve uno de los siguientes valores:
 - `0`: no instalada
-- `1`: no está en ejecución
-- `2`: en ejecución en segundo plano (suspendida)
-- `3`: en ejecución en segundo plano
-- `4`: en ejecución en primer plano
+- `1`: no se está ejecutando
+- `2`: ejecutándose en segundo plano (suspendida)
+- `3`: ejecutándose en segundo plano
+- `4`: ejecutándose en primer plano
 
-Para obtener una salida con nombres, usa en su lugar la herramienta `get_app_state`.
+Para obtener una salida con nombres, utiliza en su lugar la herramienta `get_app_state`.
 
 ---
 
 ### `wdio://session/current/geolocation`
 
-Geolocalización actual del dispositivo sobrescrita mediante `set_geolocation`.
+Geolocalización simulada actual del dispositivo establecida mediante `set_geolocation`.
 
 ```json
 {
@@ -191,7 +191,7 @@ Geolocalización actual del dispositivo sobrescrita mediante `set_geolocation`.
 
 ### `wdio://session/current/logs`
 
-Registros de la sesión actual. Devuelve mensajes de la consola del navegador y excepciones de JavaScript (sesiones de Chromium), salida de logcat (Android) o registros de fallos/syslog (iOS).
+Registros de la sesión actual. Devuelve los mensajes de la consola del navegador y las excepciones de JavaScript (sesiones de Chromium), la salida de logcat (Android) o los registros de fallos/syslog (iOS).
 
 ```json
 {
@@ -207,7 +207,7 @@ Registros de la sesión actual. Devuelve mensajes de la consola del navegador y 
 
 ### `wdio://session/current/capabilities`
 
-Capabilities sin procesar devueltas por el servidor WebDriver o Appium para la sesión actual. Úsalo para depuración; muestra los valores reales que aceptó el driver, incluidos los valores predeterminados aplicados por el proveedor en la nube o Appium.
+Capabilities sin procesar devueltas por el servidor WebDriver o Appium para la sesión actual. Úsalo para depurar; muestra los valores reales que aceptó el driver, incluidos los valores predeterminados aplicados por el proveedor en la nube o por Appium.
 
 ## Proveedores en la nube
 

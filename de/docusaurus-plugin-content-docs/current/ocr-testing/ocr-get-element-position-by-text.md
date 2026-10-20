@@ -4,7 +4,7 @@ title: ocrGetElementPositionByText
 description: "Ermitteln Sie die Bildschirmposition eines Textes mit ocrGetElementPositionByText, das OCR und Fuzzy-Matching verwendet, um ihn zu finden."
 ---
 
-Ermittelt die Position eines Textes auf dem Bildschirm. Der Befehl sucht nach dem angegebenen Text und versucht, eine Übereinstimmung auf Basis der Fuzzy-Logik von [Fuse.js](https://fusejs.io/) zu finden. Das bedeutet, dass auch dann versucht wird, ein Element zurückzugeben, wenn Sie einen Selektor mit einem Tippfehler angeben oder der gefundene Text nicht zu 100 % übereinstimmt. Siehe die [Logs](#logs) unten.
+Ermittelt die Position eines Textes auf dem Bildschirm. Der Befehl sucht nach dem angegebenen Text und versucht, eine Übereinstimmung basierend auf der Fuzzy-Logik von [Fuse.js](https://fusejs.io/) zu finden. Das bedeutet, dass selbst wenn Sie einen Selektor mit einem Tippfehler angeben oder der gefundene Text keine 100%ige Übereinstimmung ist, trotzdem versucht wird, Ihnen ein Element zurückzugeben. Siehe die [Logs](#logs) unten.
 
 ## Verwendung
 
@@ -83,7 +83,7 @@ await browser.ocrGetElementPositionByText({
 
 <Option type="number" required="WebdriverIO.Element | ChainablePromiseElement | Rectangle">
 
-Dies ist der Suchbereich auf dem Bildschirm, in dem die OCR nach Text suchen soll. Dies kann ein Element oder ein Rechteck mit `x`, `y`, `width` und `height` sein.
+Dies ist der Suchbereich auf dem Bildschirm, in dem die OCR nach Text suchen soll. Dies kann ein Element oder ein Rechteck sein, das `x`, `y`, `width` und `height` enthält.
 
 </Option>
 #### Beispiel
@@ -138,7 +138,7 @@ Mit den folgenden Optionen können Sie die Fuzzy-Logik zum Finden von Text anpas
 
 <Option type="number" default="100" required="no">
 
-Bestimmt, wie nah die Übereinstimmung an der Fuzzy-Position (angegeben durch location) liegen muss. Eine exakte Buchstabenübereinstimmung, die distance Zeichen von der Fuzzy-Position entfernt ist, würde als völlige Nichtübereinstimmung gewertet. Eine distance von 0 erfordert, dass die Übereinstimmung genau an der angegebenen Position liegt. Eine distance von 1000 würde erfordern, dass eine perfekte Übereinstimmung innerhalb von 800 Zeichen von der Position liegt, um bei einem threshold von 0.8 gefunden zu werden.
+Bestimmt, wie nah die Übereinstimmung an der unscharfen Position (angegeben durch location) liegen muss. Eine exakte Buchstabenübereinstimmung, die distance Zeichen von der unscharfen Position entfernt ist, würde als vollständige Nichtübereinstimmung gewertet. Eine distance von 0 erfordert, dass die Übereinstimmung genau an der angegebenen Position liegt. Eine distance von 1000 würde erfordern, dass eine perfekte Übereinstimmung innerhalb von 800 Zeichen von der Position liegt, um bei einem threshold von 0.8 gefunden zu werden.
 
 </Option>
 ##### Beispiel
@@ -156,7 +156,7 @@ await browser.ocrGetElementPositionByText({
 
 <Option type="number" default="0" required="no">
 
-Bestimmt ungefähr, an welcher Stelle im Text das Muster erwartet wird.
+Bestimmt ungefähr, wo im Text das Muster erwartet wird.
 
 </Option>
 ##### Beispiel
@@ -210,7 +210,7 @@ await browser.ocrGetElementPositionByText({
 
 <Option type="number" default="2" required="no">
 
-Es werden nur Übereinstimmungen zurückgegeben, deren Länge diesen Wert überschreitet. (Wenn Sie beispielsweise Übereinstimmungen mit nur einem Zeichen im Ergebnis ignorieren möchten, setzen Sie den Wert auf 2)
+Es werden nur Übereinstimmungen zurückgegeben, deren Länge diesen Wert überschreitet. (Wenn Sie beispielsweise Übereinstimmungen mit einzelnen Zeichen im Ergebnis ignorieren möchten, setzen Sie den Wert auf 2)
 
 </Option>
 ##### Beispiel
@@ -228,7 +228,7 @@ await browser.ocrGetElementPositionByText({
 
 <Option type="number" default="false" required="no">
 
-Bei `true` setzt die Matching-Funktion die Suche bis zum Ende eines Suchmusters fort, selbst wenn bereits eine perfekte Übereinstimmung im String gefunden wurde.
+Wenn `true`, setzt die Matching-Funktion die Suche bis zum Ende eines Suchmusters fort, selbst wenn bereits eine perfekte Übereinstimmung im String gefunden wurde.
 
 </Option>
 ##### Beispiel

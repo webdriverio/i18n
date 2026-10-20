@@ -14,4 +14,4 @@ Die folgenden globalen Objekte werden gesetzt, sofern nicht anders konfiguriert:
 - `$$`: Befehl zum Abrufen von Elementen (mehr dazu in der [API-Dokumentation](/docs/api/browser/$$))
 - `expect`: Assertion-Framework für WebdriverIO (siehe [API-Dokumentation](/docs/api/expect-webdriverio))
 
-__Hinweis:__ WebdriverIO hat keine Kontrolle darüber, ob verwendete Frameworks (z. B. Mocha oder Jasmine) beim Initialisieren ihrer Umgebung globale Variablen setzen.
+__Hinweis:__ WebdriverIO hat keine Kontrolle darüber, dass verwendete Frameworks (z. B. Mocha oder Jasmine) beim Initialisieren ihrer Umgebung globale Variablen setzen.

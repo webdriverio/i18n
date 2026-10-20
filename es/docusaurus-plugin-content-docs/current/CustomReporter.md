@@ -86,9 +86,9 @@ export default class CustomReporter extends WDIOReporter {
 }
 ```
 
-Los nombres de los métodos se explican por sí solos.
+Los nombres de los métodos se explican por sí mismos.
 
-Para imprimir algo en un evento determinado, usa el método `this.write(...)`, que proporciona la clase padre `WDIOReporter`. Este envía el contenido a `stdout` o a un archivo de log (según las opciones del reporter).
+Para imprimir algo en un evento determinado, usa el método `this.write(...)`, que proporciona la clase padre `WDIOReporter`. Este envía el contenido a `stdout` o a un archivo de log (dependiendo de las opciones del reporter).
 
 ```js
 import WDIOReporter from '@wdio/reporter'
@@ -100,7 +100,7 @@ export default class CustomReporter extends WDIOReporter {
 }
 ```
 
-Ten en cuenta que no puedes retrasar la ejecución de las pruebas de ninguna manera.
+Ten en cuenta que no puedes aplazar la ejecución de las pruebas de ninguna manera.
 
 Todos los manejadores de eventos deben ejecutar rutinas síncronas (o te encontrarás con condiciones de carrera).
 
@@ -108,7 +108,7 @@ Asegúrate de revisar la [sección de ejemplos](https://github.com/webdriverio/w
 
 Si has implementado un reporter personalizado que podría ser útil para la comunidad, ¡no dudes en hacer un Pull Request para que podamos poner el reporter a disposición del público!
 
-Además, si ejecutas el testrunner de WDIO mediante la interfaz `Launcher`, no puedes aplicar un reporter personalizado como función de la siguiente manera:
+Además, si ejecutas el testrunner de WDIO a través de la interfaz `Launcher`, no puedes aplicar un reporter personalizado como función de la siguiente manera:
 
 ```js
 import Launcher from '@wdio/cli'
@@ -119,6 +119,28 @@ const launcher = new Launcher('/path/to/config.file.js', {
     // esto NO funcionará, porque CustomReporter no es serializable
     reporters: ['dot', CustomReporter]
 })
+```
+
+## Reporters y pruebas en paralelo
+
+Con [pruebas en paralelo dentro de un archivo spec](./ParallelTests.md), las pruebas de un mismo archivo spec se solapan: el `onTestStart` de una prueba puede llegar antes que el `onTestEnd` de otra, y los comandos de distintas pruebas se intercalan. `WDIOReporter` se encarga de esto por ti. En modo paralelo, los eventos del framework incluyen dos campos adicionales:
+
+- `parentUid` en `suite:start`, `hook:start` y `test:start`: el uid de la suite propietaria (`null` para una suite de nivel superior). El reporter añade la suite, el hook o la prueba a esa suite, y no a la suite que se inició en último lugar.
+- `contextId` en los eventos de pruebas y comandos: el contexto de navegación de la prueba. El reporter añade la salida de los comandos a la prueba que se ejecutó en ese contexto.
+
+Por lo tanto, los árboles `suites`, `tests` y `hooks` del reporter son correctos. Si tu reporter mantiene su propio estado, indexa ese estado por el `uid` de la prueba o de la suite en lugar de hacer seguimiento de una única prueba actual.
+
+```js
+import WDIOReporter from '@wdio/reporter'
+
+export default class CustomReporter extends WDIOReporter {
+    onTestStart(test) {
+        this.write(`start ${test.uid} ${test.title}\n`)
+    }
+    onTestEnd(test) {
+        this.write(`end   ${test.uid} ${test.state}\n`)
+    }
+}
 ```
 
 ## Esperar hasta `isSynchronised`
@@ -166,14 +188,14 @@ De esta forma, el runner esperará hasta que toda la información de log se haya
 
 ## Publicar el reporter en NPM
 
-Para que el reporter sea más fácil de usar y descubrir por la comunidad de WebdriverIO, sigue estas recomendaciones:
+Para que el reporter sea más fácil de usar y de descubrir por la comunidad de WebdriverIO, sigue estas recomendaciones:
 
 * Los servicios deben usar esta convención de nombres: `wdio-*-reporter`
 * Usa las palabras clave de NPM: `wdio-plugin`, `wdio-reporter`
 * La entrada `main` debe hacer `export` de una instancia del reporter
 * Reporter de ejemplo: [`@wdio/dot-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-dot-reporter)
 
-Seguir el patrón de nombres recomendado permite añadir servicios por nombre:
+Seguir el patrón de nombres recomendado permite añadir servicios por su nombre:
 
 ```js
 // Añadir wdio-custom-reporter
@@ -184,11 +206,11 @@ export const config = {
 }
 ```
 
-### Añadir el servicio publicado a la CLI y la documentación de WDIO
+### Añadir el servicio publicado a la CLI y a la documentación de WDIO
 
-¡Apreciamos mucho cada nuevo plugin que pueda ayudar a otras personas a ejecutar mejores pruebas! Si has creado un plugin así, considera añadirlo a nuestra CLI y a la documentación para que sea más fácil de encontrar.
+¡Agradecemos mucho cada nuevo plugin que pueda ayudar a otras personas a ejecutar mejores pruebas! Si has creado un plugin así, considera añadirlo a nuestra CLI y a la documentación para que sea más fácil de encontrar.
 
 Abre un pull request con los siguientes cambios:
 
-- añade tu servicio a la lista de [reporters compatibles](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/constants.ts#L74-L91)) en el módulo de la CLI
+- añade tu servicio a la lista de [reporters soportados](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/constants.ts#L74-L91)) en el módulo de la CLI
 - amplía la [lista de reporters](https://github.com/webdriverio/webdriverio/blob/main/infra/docs/src/3rd-party/reporters.json) para añadir tu documentación a la página oficial de Webdriver.io

@@ -1,10 +1,10 @@
 ---
 id: ai-steps
 title: KI-Schritte in Tests
-description: Schreibe Testschritte als Absicht mit browser.act() und lies typisierte Daten mit browser.extract() über @wdio/ai-service aus, spiele sie anschließend ohne Modell aus einem committeten Cache ab und prüfe jede Reparatur.
+description: Schreibe Testschritte als Absicht mit browser.act() und lies typisierte Daten mit browser.extract() über @wdio/ai-service, spiele sie anschließend ohne Modell aus einem eingecheckten Cache ab und prüfe jede Reparatur.
 ---
 
-Mit `@wdio/ai-service` kann ein Test einen Schritt beschreiben, statt ihn zu skripten: `browser.act('Add a blue shirt to the cart')` bittet dein Modell, den Schritt auszuführen, zeichnet die ausgeführten WebdriverIO-Befehle auf und spielt sie bei jedem weiteren Lauf aus einer Cache-Datei ab. Das Modell wird erst wieder aufgerufen, wenn sich die Seite geändert hat und ein aufgezeichneter Schritt ohne das Modell nicht mehr repariert werden kann. Verwende es für Abläufe, deren Markup sich häufig ändert, oder um einen Test zum Laufen zu bringen, bevor du die Selektoren kennst. Verwende einfache WebdriverIO-Befehle für alles, was du bereits zu skripten weißt.
+Mit `@wdio/ai-service` kann ein Test einen Schritt beschreiben, statt ihn zu skripten: `browser.act('Add a blue shirt to the cart')` bittet dein Modell, ihn auszuführen, zeichnet die ausgeführten WebdriverIO-Befehle auf und spielt sie bei jedem späteren Lauf aus einer Cache-Datei ab. Das Modell wird nur dann erneut aufgerufen, wenn sich die Seite geändert hat und ein aufgezeichneter Schritt ohne das Modell nicht mehr repariert werden kann. Verwende den Service für Abläufe, deren Markup sich häufig ändert, oder um einen Test zum Laufen zu bringen, bevor du die Selektoren kennst. Verwende normale WebdriverIO-Befehle für alles, was du bereits skripten kannst.
 
 ## Den Service einrichten
 
@@ -52,9 +52,9 @@ describe('cart', () => {
 })
 ```
 
-- `act` führt den Schritt aus und macht niemals Assertions. Prüfe das Ergebnis mit `expect`.
-- `extract` liest die Seite nur aus und validiert die Antwort gegen das Schema. Es wird nie gecacht.
-- Geheimnisse kommen in Platzhalter. Das Modell sieht `{{password}}`, niemals den Wert:
+- `act` führt den Schritt aus und prüft niemals etwas. Überprüfe das Ergebnis mit `expect`.
+- `extract` liest die Seite nur und validiert die Antwort gegen das Schema. Es wird nie gecacht.
+- Geheimnisse gehören in Platzhalter. Das Modell sieht `{{password}}`, niemals den Wert:
 
 ```ts
 await browser.act('Log in as {{email}} with password {{password}}', {
@@ -62,7 +62,7 @@ await browser.act('Log in as {{email}} with password {{password}}', {
 })
 ```
 
-- Rufe `act` auf einem Element auf, um das Modell innerhalb dieses Elements zu halten, oder auf einem gehaltenen Frame oder Tab:
+- Rufe `act` auf einem Element auf, um das Modell darauf zu beschränken, oder auf einem gehaltenen Frame oder Tab:
 
 ```ts
 await $('form#billing').act('Fill in a valid German address')
@@ -76,12 +76,12 @@ Der erste Lauf zeichnet die Schritte jedes `act`-Aufrufs in `__act__/<spec file>
 npx wdio run wdio.conf.ts --spec test/specs/cart.e2e.ts
 ```
 
-Committe das Verzeichnis `__act__`. Spätere Läufe spielen die aufgezeichneten Befehle ab, sodass ein erfolgreicher Lauf keine Modellaufrufe macht und keine Tokens kostet.
+Checke das Verzeichnis `__act__` ein. Spätere Läufe spielen die aufgezeichneten Befehle ab, sodass ein erfolgreicher Lauf keine Modellaufrufe macht und keine Tokens kostet.
 
-| `cache` | Verwende es für |
+| `cache` | Verwenden für |
 | --- | --- |
 | `auto` (Standard) | lokal `write`, `heal`, wenn `process.env.CI` gesetzt ist |
-| `write` | das Aufzeichnen und Aktualisieren der Cache-Dateien |
+| `write` | Aufzeichnen und Aktualisieren der Cache-Dateien |
 | `heal` | CI: fehlschlagende Schritte reparieren, die reparierten Einträge nach `<outputDir>/act-cache/` schreiben und die Cache-Dateien unverändert lassen |
 | `locked` | CI-Läufe, die kein Modell aufrufen dürfen: nur abspielen, fehlschlagen, wenn ein Schritt ohne das Modell nicht repariert werden kann |
 | `off` | immer das Modell fragen |
@@ -90,7 +90,7 @@ Führe `npx wdio run wdio.conf.ts -s` aus, um jeden `act`-Aufruf erneut aufzuzei
 
 ## Reparaturen prüfen
 
-Wenn ein aufgezeichneter Schritt fehlschlägt, versucht der Service zunächst die anderen Selektoren, die er für das Element aufgezeichnet hat, und dann dessen Rolle und zugänglichen Namen. Nur wenn das fehlschlägt, setzt das Modell ab dem fehlschlagenden Schritt fort. Jeder abgespielte oder reparierte Schritt muss dasselbe tun wie bei der Aufzeichnung: dieselben Requests senden, zur selben Seite navigieren und dieselben Teile der Seite verändern. Eine Reparatur auf einen ähnlichen, aber falschen Button wird abgelehnt.
+Wenn ein aufgezeichneter Schritt fehlschlägt, probiert der Service zuerst die anderen Selektoren, die er für das Element aufgezeichnet hat, und dann dessen Rolle und zugänglichen Namen. Erst wenn das fehlschlägt, macht das Modell ab dem fehlschlagenden Schritt weiter. Jeder abgespielte oder reparierte Schritt muss das bewirken, was er bei der Aufzeichnung bewirkt hat: dieselben Requests senden, zur selben Seite navigieren und dieselben Teile der Seite ändern. Eine Reparatur auf einen ähnlichen, aber falschen Button wird abgelehnt.
 
 Der Lauf endet mit einer Zusammenfassung:
 
@@ -101,9 +101,9 @@ Healed:
     evidence: ./logs/ai/heals/cart.e2e.ts-cart-adds-a-shirt-1c71c48d
 ```
 
-Der Evidence-Ordner enthält einen Screenshot der Seite zum Zeitpunkt des Fehlschlags, einen nach jedem Reparaturschritt und ein Video der Reparatur in Browsern, die einen WebDriver-BiDi-Screencast aufzeichnen (derzeit Firefox). Prüfe die Reparatur und committe dann die aktualisierte Cache-Datei.
+Der Evidence-Ordner enthält einen Screenshot der Seite zum Zeitpunkt des Fehlschlags, einen nach jedem Reparaturschritt und ein Video der Reparatur in Browsern, die einen WebDriver-BiDi-Screencast aufzeichnen (derzeit Firefox). Prüfe die Reparatur und checke dann die aktualisierte Cache-Datei ein.
 
-## Schritte in einfachen Code umwandeln
+## Schritte in normalen Code umwandeln
 
 Sobald ein Ablauf stabil ist, ersetze seine `act`-Aufrufe durch die aufgezeichneten Befehle:
 
@@ -124,13 +124,13 @@ await $('role/button[name="Add to cart"]').click()
 | --- | --- |
 | `act("…") failed: no model is configured. Set the `model` option of the service or the WDIO_AI_MODEL environment variable.` | Setze `model` in den Service-Optionen oder exportiere `WDIO_AI_MODEL=anthropic:claude-sonnet-5-5`. |
 | `[@wdio/ai-service] The "anthropic" provider needs "@langchain/anthropic". Install it with `npm install --save-dev @langchain/anthropic`.` | Installiere das Anbieterpaket. |
-| `[@wdio/ai-service] No API key for "anthropic". Set ANTHROPIC_API_KEY or pass `apiKey` in the model config.` | Exportiere den Schlüssel in der Shell oder im CI-Secret, mit dem die Tests ausgeführt werden. |
-| `act("…") failed: no cached steps for "…" and the cache is locked` | Zeichne den Aufruf lokal mit `cache: 'write'` auf und committe die `__act__`-Datei. |
-| `act("…") failed: cached step 1 (…) ran, but the step no longer causes POST /api/cart → 2xx. The app may have changed behavior, not just markup.` | Das Element ist noch vorhanden, macht aber etwas anderes: eine Regression, keine Markup-Änderung. Überprüfe die App. |
-| `act("…") failed: …` gefolgt von `Evidence: <folder>` | Das Modell konnte die Anweisung nicht abschließen. Der Ordner enthält jeden erstellten Snapshot, die Konsolen- und Netzwerkereignisse sowie die ausgeführten Schritte. |
+| `[@wdio/ai-service] No API key for "anthropic". Set ANTHROPIC_API_KEY or pass `apiKey` in the model config.` | Exportiere den Schlüssel in der Shell oder im CI-Secret, das die Tests ausführt. |
+| `act("…") failed: no cached steps for "…" and the cache is locked` | Zeichne den Aufruf lokal mit `cache: 'write'` auf und checke die `__act__`-Datei ein. |
+| `act("…") failed: cached step 1 (…) ran, but the step no longer causes POST /api/cart → 2xx. The app may have changed behavior, not just markup.` | Das Element ist noch vorhanden, bewirkt aber etwas anderes: eine Regression, keine Markup-Änderung. Überprüfe die App. |
+| `act("…") failed: …` gefolgt von `Evidence: <folder>` | Das Modell konnte die Anweisung nicht ausführen. Der Ordner enthält jeden Snapshot, den es erstellt hat, die Konsolen- und Netzwerkereignisse sowie die ausgeführten Schritte. |
 
 ## Nächste Schritte
 
 - [AI Service](/docs/ai-service): alle Optionen, das Cache-Format, Schritteffekte und der Workspace
 - [Selektoren](/docs/selectors#role-selector): der `role/`-Selektor, den aufgezeichnete Schritte verwenden
-- [WebdriverIO für Coding Agents](/docs/ai-agents): Tests gemeinsam mit einem Coding Agent schreiben
+- [WebdriverIO für Coding-Agents](/docs/ai-agents): Tests gemeinsam mit einem Coding-Agent schreiben

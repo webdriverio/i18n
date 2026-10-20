@@ -28,11 +28,11 @@ Verwenden Sie stdio für lokale Setups mit Claude Desktop, Claude Code, Cursor u
 Im HTTP-Modus läuft der Server als eigenständiger Prozess, der auf einem Port lauscht. Clients verbinden sich über HTTP mit ihm, anstatt ihn als Subprozess zu starten. Verwenden Sie diesen Modus, wenn:
 
 - Ihr Client kein subprozessbasiertes MCP unterstützt (z. B. die Web-UI von llama.cpp)
-- Sie eine Serverinstanz für mehrere Clients gemeinsam nutzen möchten
+- Sie eine Serverinstanz mit mehreren Clients teilen möchten
 - Sie im Codex Secure Mode arbeiten, in dem die Ausführung von Subprozessen eingeschränkt ist
 - Sie den Server über mehrere Client-Sitzungen hinweg laufen lassen möchten
 
-### Start im HTTP-Modus
+### Starten im HTTP-Modus
 
 ```bash
 npx @wdio/mcp --http --port 3000
@@ -58,17 +58,17 @@ npx @wdio/mcp --http \
 
 ### Sicherheit
 
-**`--allowedHosts`** — Schützt vor DNS-Rebinding-Angriffen. Es werden nur Anfragen akzeptiert, deren `Host`-Header mit einem Eintrag dieser Liste übereinstimmt. Der Standardwert (`localhost,127.0.0.1,::1`) ist für die lokale Nutzung sicher. Wenn Sie den Server auf einer öffentlichen Schnittstelle bereitstellen, fügen Sie hier Ihren Hostnamen hinzu.
+**`--allowedHosts`** — Schützt vor DNS-Rebinding-Angriffen. Nur Anfragen mit einem `Host`-Header, der zu dieser Liste passt, werden akzeptiert. Der Standardwert (`localhost,127.0.0.1,::1`) ist für die lokale Nutzung sicher. Wenn Sie den Server auf einer öffentlichen Schnittstelle bereitstellen, fügen Sie hier Ihren Hostnamen hinzu.
 
-**`--allowedOrigins`** — Legt fest, welche Browser-Origins Cross-Origin-Anfragen (CORS) stellen dürfen. Standardmäßig sind keine Browser-Origins erlaubt. Dies blockiert den Zugriff von beliebigen Websites, während Nicht-Browser-Clients (CLI-Tools, API-Clients) weiterhin zugelassen werden. Setzen Sie den Wert auf `*`, um alle Origins zu erlauben, oder listen Sie bestimmte Origins auf.
+**`--allowedOrigins`** — Legt fest, welche Browser-Origins Cross-Origin-Anfragen (CORS) stellen dürfen. Standardmäßig sind keine Browser-Origins erlaubt. Dadurch wird der Zugriff von beliebigen Websites blockiert, während Nicht-Browser-Clients (CLI-Tools, API-Clients) weiterhin zugelassen werden. Setzen Sie den Wert auf `*`, um alle Origins zu erlauben, oder listen Sie bestimmte Origins auf.
 
-Anfragen von Nicht-Browser-Clients (ohne `Origin`-Header) unterliegen nicht der CORS-Prüfung; hier gilt nur `--allowedHosts`.
+Anfragen von Nicht-Browser-Clients (ohne `Origin`-Header) unterliegen nicht der CORS-Prüfung; es gilt nur `--allowedHosts`.
 
 ## Anwendungsfälle
 
 ### llama.cpp Web-UI
 
-Die Web-UI von llama.cpp läuft im Browser und sendet bei jeder Anfrage einen `Origin`-Header. Starten Sie den Server mit einem `--allowedOrigins`-Wert, der dem Origin der UI entspricht:
+Die Web-UI von llama.cpp läuft im Browser und sendet bei jeder Anfrage einen `Origin`-Header. Starten Sie den Server mit `--allowedOrigins` passend zum Origin der UI:
 
 ```bash
 # llama.cpp web UI runs at http://localhost:8080
@@ -78,7 +78,7 @@ npx @wdio/mcp --http --port 3000 --allowedOrigins "http://localhost:8080"
 npx @wdio/mcp --http --port 3000 --allowedOrigins "*"
 ```
 
-Fügen Sie in den Einstellungen von llama.cpp einen MCP-Server hinzu, der auf `http://localhost:3000/mcp` verweist.
+Fügen Sie in den Einstellungen von llama.cpp einen MCP-Server hinzu, der auf `http://localhost:3000/mcp` zeigt.
 
 ---
 
@@ -91,7 +91,7 @@ OpenAI Codex läuft in einer Sandbox-Umgebung ohne Unterstützung für Subprozes
 npx @wdio/mcp --http --port 3000
 ```
 
-Setzen Sie in Ihrer Codex-MCP-Konfiguration die Server-URL auf `http://localhost:3000/mcp` (oder auf die IP-Adresse Ihres Hosts, falls Codex in einer VM läuft).
+Setzen Sie in Ihrer Codex-MCP-Konfiguration die Server-URL auf `http://localhost:3000/mcp` (oder auf die IP Ihres Hosts, falls Codex in einer VM läuft).
 
 ---
 

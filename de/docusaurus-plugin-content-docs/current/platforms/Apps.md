@@ -4,7 +4,7 @@ title: Erweiterungen & Editoren
 description: Laden Sie eine Browser-Erweiterung oder eine VS Code-Erweiterung in eine WebdriverIO-Session und testen Sie sie End-to-End.
 ---
 
-WebdriverIO testet Browser-Erweiterungen und Editor-Erweiterungen, indem es sie in die echte Host-Anwendung lädt. Browser-(Web-)Erweiterungen laufen innerhalb von Chrome oder Firefox. Sie laden sie über Browser-Capabilities: `--load-extension` oder eine base64-kodierte `.crx` über `goog:chromeOptions` in Chrome, oder `browser.installAddOn()` für eine `.xpi` in Firefox. In einer WebDriver BiDi-Session können Sie eine Erweiterung auch während der Session mit `browser.installExtension()` und `browser.uninstallExtension()` installieren und entfernen. Safari hat keine BiDi-Session, daher deckt dieser Befehl Safari nicht ab. Von dort aus testen Sie Content-Scripts und Popup-Seiten mit den normalen WebDriver-Befehlen. VS Code-Erweiterungen werden mit dem Community-Service [`wdio-vscode-service`](/docs/wdio-vscode-service) getestet. Er lädt VS Code (stable, insiders oder eine bestimmte Version) und den passenden Chromedriver herunter und startet anschließend VS Code mit Ihrer Erweiterung und benutzerdefinierten Benutzereinstellungen. Page Objects für die Workbench sind über `browser.getWorkbench()` verfügbar, und `browser.executeWorkbench()` führt Code gegen die VS Code API aus. Derselbe Service kann VS Code auch in einem Browser bereitstellen, um Web-Erweiterungen zu testen. Für Obsidian-Plugins gibt es ebenfalls einen Community-Service.
+WebdriverIO testet Browser-Erweiterungen und Editor-Erweiterungen, indem es sie in die echte Host-Anwendung lädt. Browser-(Web-)Erweiterungen laufen in Chrome oder Firefox. Sie laden sie über Browser-Capabilities: `--load-extension` oder eine base64-kodierte `.crx` über `goog:chromeOptions` in Chrome, oder `browser.installAddOn()` für eine `.xpi` in Firefox. In einer WebDriver-BiDi-Session können Sie eine Erweiterung außerdem mitten in der Session mit `browser.installExtension()` und `browser.uninstallExtension()` installieren und entfernen. Safari hat keine BiDi-Session, daher deckt dieser Befehl Safari nicht ab. Anschließend testen Sie Content-Scripts und Popup-Seiten mit den normalen WebDriver-Befehlen. VS Code-Erweiterungen werden mit dem Community-Service [`wdio-vscode-service`](/docs/wdio-vscode-service) getestet. Er lädt VS Code (stable, insiders oder eine bestimmte Version) und den passenden Chromedriver herunter und startet dann VS Code mit Ihrer Erweiterung und benutzerdefinierten Benutzereinstellungen. Page Objects für die Workbench stehen über `browser.getWorkbench()` zur Verfügung, und `browser.executeWorkbench()` führt Code gegen die VS Code API aus. Derselbe Service kann VS Code auch in einem Browser bereitstellen, um Web-Erweiterungen zu testen. Für Obsidian-Plugins gibt es ebenfalls einen Community-Service.
 
 ## Schnellstart
 
@@ -62,7 +62,7 @@ describe('My Web Extension', () => {
 })
 ```
 
-Das Klicken auf das Erweiterungssymbol in der Symbolleiste funktioniert nicht. Um ein `default_popup` zu testen, ermitteln Sie die Erweiterungs-ID auf `chrome://extensions/` und öffnen Sie `chrome-extension://<id>/<popup>.html` mit `browser.url()`. Der [Leitfaden für Web-Erweiterungen](/docs/extension-testing/web-extensions#test-popup-modal-in-chrome) enthält dafür einen fertigen benutzerdefinierten Befehl `openExtensionPopup`.
+Das Klicken auf das Erweiterungssymbol in der Symbolleiste funktioniert nicht. Um ein `default_popup` zu testen, ermitteln Sie die Erweiterungs-ID unter `chrome://extensions/` und öffnen Sie `chrome-extension://<id>/<popup>.html` mit `browser.url()`. Der [Web Extension Guide](/docs/extension-testing/web-extensions#test-popup-modal-in-chrome) enthält dafür einen fertigen Custom Command `openExtensionPopup`.
 
 ### VS Code-Erweiterung
 
@@ -70,7 +70,7 @@ Das Klicken auf das Erweiterungssymbol in der Symbolleiste funktioniert nicht. U
 npm install --save-dev wdio-vscode-service
 ```
 
-Fügen Sie `"wdio-vscode-service"` zum `types`-Array in `tsconfig.json` hinzu.
+Fügen Sie `"wdio-vscode-service"` zum `types`-Array in der `tsconfig.json` hinzu.
 
 ```ts title="wdio.conf.ts"
 import url from 'node:url'
@@ -113,28 +113,28 @@ describe('VS Code Extension Testing', () => {
 })
 ```
 
-Um die Erweiterung als VS Code-Web-Erweiterung zu testen, setzen Sie `browserName: 'chrome'` und behalten Sie `wdio:vscodeOptions` bei. In diesem Modus kann `browserVersion` nur `stable` oder `insiders` sein. `npm create wdio@latest ./` mit "VS Code Extension Testing" erstellt dieses Setup für Sie.
+Um die Erweiterung als VS Code-Web-Erweiterung zu testen, setzen Sie `browserName: 'chrome'` und behalten Sie `wdio:vscodeOptions` bei. In diesem Modus kann `browserVersion` nur `stable` oder `insiders` sein. `npm create wdio@latest ./` mit „VS Code Extension Testing“ generiert dieses Setup für Sie.
 
 ## Wählen Sie Ihren Weg
 
-- [Testen von Web-Erweiterungen](/docs/extension-testing/web-extensions): Erweiterungen in Chrome (Ordner oder `.crx`) und Firefox (`.xpi` über [`installAddOn`](/docs/api/gecko#installaddon)) laden oder eine Erweiterung während der Session mit [`installExtension`](/docs/api/browser/installExtension) installieren und entfernen. Safari-Web-Erweiterungen werden nicht abgedeckt.
+- [Web Extension Testing](/docs/extension-testing/web-extensions): Erweiterungen in Chrome (Ordner oder `.crx`) und Firefox (`.xpi` über [`installAddOn`](/docs/api/gecko#installaddon)) laden oder mitten in der Session mit [`installExtension`](/docs/api/browser/installExtension) installieren und entfernen. Safari-Web-Erweiterungen werden nicht abgedeckt.
 - [Firefox Profile Service](/docs/firefox-profile-service): ein Firefox-Profil erstellen, das Erweiterungen enthält.
-- [Testen von VS Code-Erweiterungen](/docs/extension-testing/vscode-extensions): Konfiguration, TypeScript-Setup, Workbench-Page-Objects und `executeWorkbench`.
-- [VS Code Service](/docs/wdio-vscode-service): alle Service-Optionen, wie `cachePath`, und wie man benutzerdefinierte Page Objects schreibt.
+- [VS Code Extension Testing](/docs/extension-testing/vscode-extensions): Konfiguration, TypeScript-Setup, Workbench-Page-Objects und `executeWorkbench`.
+- [VS Code Service](/docs/wdio-vscode-service): alle Service-Optionen, wie z. B. `cachePath`, und wie man eigene Page Objects schreibt.
 - [Obsidian Plugin Testing Service](/docs/wdio-obsidian-service): ein Community-Service, der Obsidian-Plugins über verschiedene Obsidian-Versionen hinweg unter Windows, macOS, Linux und Android testet.
-- [Benutzerdefinierte Befehle](/docs/customcommands): Hilfsfunktionen wie `openExtensionPopup` zur Wiederverwendung bündeln.
+- [Custom Commands](/docs/customcommands): Hilfsfunktionen wie `openExtensionPopup` zur Wiederverwendung bündeln.
 
-Tests von Web-Erweiterungen laufen in einer regulären Chrome- oder Firefox-Session, daher gilt alles unter [Webbrowser](/docs/platforms/web), einschließlich Selektoren, Netzwerk-Mocking und visuellem Testen.
+Tests von Web-Erweiterungen laufen in einer regulären Chrome- oder Firefox-Session, daher gilt alles unter [Web Browsers](/docs/platforms/web), einschließlich Selektoren, Network Mocking und Visual Testing.
 
 ## Fehlerbehebung
 
-- Firefox verweigert eine lokal gebaute Erweiterung wegen der Signierung: Installieren Sie sie im `before`-Hook mit `browser.installAddOn(extension.toString('base64'), true)` statt über ein Profil. Bauen Sie die `.xpi` mit `npx web-ext build`.
+- Firefox lehnt eine lokal gebaute Erweiterung wegen fehlender Signierung ab: Installieren Sie sie im `before`-Hook mit `browser.installAddOn(extension.toString('base64'), true)` statt über ein Profil. Bauen Sie die `.xpi` mit `npx web-ext build`.
 - Verwendung von Edge, Brave oder Opera statt Chrome: Dieselben Argumente funktionieren in der Regel mit der Options-Capability des jeweiligen Browsers, z. B. `ms:edgeOptions`.
-- VS Code- und Chromedriver-Binärdateien werden in ein Cache-Verzeichnis heruntergeladen. Um zu steuern, wo sie gespeichert werden, z. B. um sie in CI zu cachen, setzen Sie `services: [['vscode', { cachePath: __dirname }]]`.
+- Die Binärdateien von VS Code und Chromedriver werden in ein Cache-Verzeichnis heruntergeladen. Um festzulegen, wo sie gespeichert werden, z. B. um sie im CI zu cachen, setzen Sie `services: [['vscode', { cachePath: __dirname }]]`.
 - TypeScript findet `getWorkbench` oder `executeWorkbench` nicht: Fügen Sie `wdio-vscode-service` zu `compilerOptions.types` hinzu.
 
 ## Nächste Schritte
 
 - [Konfiguration](/docs/configuration): Referenz für jede `wdio.conf.ts`-Option.
-- [Electron](/docs/desktop-testing/electron) zum Testen vollständiger Desktop-Apps, die auf Chromium basieren.
-- Weitere Plattformen: [Webbrowser](/docs/platforms/web), [Mobile Apps](/docs/platforms/mobile), [Desktop-Apps](/docs/platforms/desktop).
+- [Electron](/docs/desktop-testing/electron) zum Testen vollständiger, auf Chromium basierender Desktop-Apps.
+- Weitere Plattformen: [Web Browsers](/docs/platforms/web), [Mobile Apps](/docs/platforms/mobile), [Desktop Apps](/docs/platforms/desktop).

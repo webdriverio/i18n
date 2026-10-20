@@ -13,7 +13,7 @@ await $('aria/Cart (1)').waitForDisplayed()
 JS
 ```
 
-Verwenden Sie bei Befehlen immer `await`. `$` gibt ein Element zurück und wirft einen Fehler, wenn es nicht vorhanden ist. `$$` gibt eine Liste zurück. Es gibt keinen Sync-Modus und kein `browser.element`.
+Verwenden Sie bei Befehlen immer `await`. `$` gibt ein Element zurück und wirft einen Fehler, wenn es fehlt. `$$` gibt eine Liste zurück. Es gibt keinen Sync-Modus und kein `browser.element`.
 
 Namen, die Sie deklarieren, bleiben im nächsten `exec` verfügbar. Ein `import` auf oberster Ebene wird aus dem Projektverzeichnis geladen.
 
@@ -33,9 +33,9 @@ npx wdio session visual check cart
 
 `visual accept cart` kopiert das neueste tatsächliche Bild für diesen Tag über die Baseline. Ältere Bilder, die dasselbe Tag-Präfix haben, werden nicht kopiert.
 
-## Wann stattdessen eine Abkürzung verwenden
+## Wann stattdessen ein Shortcut sinnvoll ist
 
-`click`, `fill`, `type`, `press` und `tap` sind für eine einzelne Interaktion kürzer als `exec` und geben die WebdriverIO-Zeile aus, die sie ausgeführt haben. Bevorzugen Sie diese mit einer Ref aus dem neuesten [Snapshot](/docs/session/snapshots). Verwenden Sie `exec` für Wartevorgänge, Assertions und alles, was mehr als einen Befehl benötigt.
+`click`, `fill`, `type`, `press` und `tap` sind für eine einzelne Interaktion kürzer als `exec` und geben die WebdriverIO-Zeile aus, die sie ausgeführt haben. Bevorzugen Sie diese mit einer Ref aus dem neuesten [Snapshot](/docs/session/snapshots). Verwenden Sie `exec` für Wartevorgänge, Assertions und alles, was mehr als einen Befehl erfordert.
 
 ## Nächste Schritte
 

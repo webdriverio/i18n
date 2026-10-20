@@ -1,66 +1,66 @@
 ---
 id: capabilities
 title: القدرات
-description: "حدّد القدرات لاختيار بيئة المتصفح أو الجوال التي تعمل فيها اختباراتك، بما في ذلك قدرات المورّدين المخصصة وحالات الاستخدام الخاصة."
+description: "عرّف القدرات لاختيار بيئة المتصفح أو الهاتف المحمول التي تعمل فيها اختباراتك، بما في ذلك قدرات المزودين المخصصة وحالات الاستخدام الخاصة."
 ---
 
-القدرة (capability) هي تعريف لواجهة بعيدة. تساعد WebdriverIO على فهم المتصفح أو بيئة الجوال التي ترغب في تشغيل اختباراتك عليها. تكون القدرات أقل أهمية عند تطوير الاختبارات محليًا لأنك تشغلها على واجهة بعيدة واحدة في معظم الأحيان، لكنها تصبح أكثر أهمية عند تشغيل مجموعة كبيرة من اختبارات التكامل في CI/CD.
+القدرة (capability) هي تعريف لواجهة بعيدة. تساعد WebdriverIO على فهم المتصفح أو بيئة الهاتف المحمول التي تريد تشغيل اختباراتك فيها. تكون القدرات أقل أهمية عند تطوير الاختبارات محليًا لأنك تشغلها على واجهة بعيدة واحدة في معظم الأوقات، لكنها تصبح أكثر أهمية عند تشغيل مجموعة كبيرة من اختبارات التكامل في CI/CD.
 
 :::info
 
-تنسيق كائن القدرة محدد بشكل جيد في [مواصفات WebDriver](https://w3c.github.io/webdriver/#capabilities). سيفشل مشغل اختبارات WebdriverIO مبكرًا إذا لم تلتزم القدرات التي يحددها المستخدم بتلك المواصفات.
+تنسيق كائن القدرة محدد بدقة في [مواصفات WebDriver](https://w3c.github.io/webdriver/#capabilities). سيفشل مشغل اختبارات WebdriverIO مبكرًا إذا كانت القدرات التي يحددها المستخدم لا تلتزم بتلك المواصفات.
 
 :::
 
 ## القدرات المخصصة
 
-بينما يكون عدد القدرات المعرّفة الثابتة منخفضًا جدًا، يمكن لأي شخص توفير وقبول قدرات مخصصة خاصة بمشغل الأتمتة أو الواجهة البعيدة:
+بينما عدد القدرات الثابتة المحددة قليل جدًا، يمكن للجميع توفير وقبول قدرات مخصصة خاصة بمشغل الأتمتة أو الواجهة البعيدة:
 
-### امتدادات القدرات الخاصة بالمتصفح
+### امتدادات القدرات الخاصة بالمتصفحات
 
-- `goog:chromeOptions`: امتدادات [Chromedriver](https://chromedriver.chromium.org/capabilities)، قابلة للتطبيق فقط للاختبار في Chrome
-- `moz:firefoxOptions`: امتدادات [Geckodriver](https://firefox-source-docs.mozilla.org/testing/geckodriver/Capabilities.html)، قابلة للتطبيق فقط للاختبار في Firefox
+- `goog:chromeOptions`: امتدادات [Chromedriver](https://chromedriver.chromium.org/capabilities)، قابلة للتطبيق فقط عند الاختبار في Chrome
+- `moz:firefoxOptions`: امتدادات [Geckodriver](https://firefox-source-docs.mozilla.org/testing/geckodriver/Capabilities.html)، قابلة للتطبيق فقط عند الاختبار في Firefox
 - `ms:edgeOptions`: [EdgeOptions](https://learn.microsoft.com/en-us/microsoft-edge/webdriver-chromium/capabilities-edge-options) لتحديد البيئة عند استخدام EdgeDriver لاختبار Chromium Edge
 
-### امتدادات القدرات الخاصة بمورّدي الخدمات السحابية
+### امتدادات القدرات الخاصة بمزودي الخدمات السحابية
 
 - `sauce:options`: [Sauce Labs](https://docs.saucelabs.com/dev/test-configuration-options/#w3c-webdriver-browser-capabilities--optional)
 - `bstack:options`: [BrowserStack](https://www.browserstack.com/docs/automate/selenium/organize-tests)
 - `tb:options`: [TestingBot](https://testingbot.com/support/other/test-options)
 - `LT:Options`: [LambdaTest](https://www.lambdatest.com/support/docs/webdriverio-with-selenium-running-webdriverio-automation-scripts-on-lambdatest-selenium-grid/)
-- وغيرها الكثير...
+- والعديد غيرها...
 
 ### امتدادات القدرات الخاصة بمحركات الأتمتة
 
 - `appium:xxx`: [Appium](https://appium.io/docs/en/latest/guides/caps/)
 - `selenoid:xxx`: [Selenoid](https://github.com/aerokube/selenoid/blob/master/docs/special-capabilities.adoc)
-- وغيرها الكثير...
+- والعديد غيرها...
 
 ### قدرات WebdriverIO لإدارة خيارات مشغل المتصفح
 
-تتولى WebdriverIO تثبيت مشغل المتصفح وتشغيله نيابةً عنك. تستخدم WebdriverIO قدرة مخصصة تتيح لك تمرير معاملات إلى المشغل.
+تتولى WebdriverIO تثبيت وتشغيل مشغل المتصفح نيابةً عنك. تستخدم WebdriverIO قدرة مخصصة تتيح لك تمرير معلمات إلى المشغل.
 
 #### `wdio:chromedriverOptions`
 
-خيارات محددة تُمرَّر إلى Chromedriver عند بدء تشغيله.
+خيارات محددة تُمرَّر إلى Chromedriver عند تشغيله.
 
 #### `wdio:geckodriverOptions`
 
-خيارات محددة تُمرَّر إلى Geckodriver عند بدء تشغيله.
+خيارات محددة تُمرَّر إلى Geckodriver عند تشغيله.
 
 #### `wdio:edgedriverOptions`
 
-خيارات محددة تُمرَّر إلى Edgedriver عند بدء تشغيله.
+خيارات محددة تُمرَّر إلى Edgedriver عند تشغيله.
 
 #### `wdio:safaridriverOptions`
 
-خيارات محددة تُمرَّر إلى Safari عند بدء تشغيله.
+خيارات محددة تُمرَّر إلى Safari عند تشغيله.
 
 #### `wdio:maxInstances`
 
 <Option type="number">
 
-الحد الأقصى لإجمالي العمّال (workers) الذين يعملون بالتوازي للمتصفح/القدرة المحددة. له الأولوية على [maxInstances](#configuration#maxInstances) و[maxInstancesPerCapability](configuration/#maxinstancespercapability).
+الحد الأقصى لإجمالي العمال (workers) العاملين بالتوازي للمتصفح/القدرة المحددة. له الأولوية على [maxInstances](configuration/#maxinstances) و[maxInstancesPerCapability](configuration/#maxinstancespercapability).
 
 </Option>
 
@@ -68,7 +68,7 @@ description: "حدّد القدرات لاختيار بيئة المتصفح أ�
 
 <Option type="(String | String[])[]">
 
-حدّد ملفات المواصفات (specs) لتنفيذ الاختبارات لذلك المتصفح/القدرة. مماثل [لخيار التكوين `specs` العادي](configuration#specs)، لكنه خاص بالمتصفح/القدرة. له الأولوية على `specs`.
+حدد ملفات المواصفات (specs) لتنفيذ الاختبارات لذلك المتصفح/القدرة. مماثل لـ[خيار الإعداد `specs` العادي](configuration#specs)، لكنه خاص بالمتصفح/القدرة. له الأولوية على `specs`.
 
 </Option>
 
@@ -76,7 +76,7 @@ description: "حدّد القدرات لاختيار بيئة المتصفح أ�
 
 <Option type="String[]">
 
-استبعد ملفات المواصفات من تنفيذ الاختبارات لذلك المتصفح/القدرة. مماثل [لخيار التكوين `exclude` العادي](configuration#exclude)، لكنه خاص بالمتصفح/القدرة. يتم الاستبعاد بعد تطبيق خيار التكوين العام `exclude`.
+استبعد ملفات المواصفات من تنفيذ الاختبارات لذلك المتصفح/القدرة. مماثل لـ[خيار الإعداد `exclude` العادي](configuration#exclude)، لكنه خاص بالمتصفح/القدرة. يتم الاستبعاد بعد تطبيق خيار الإعداد `exclude` العام.
 
 </Option>
 
@@ -88,11 +88,26 @@ description: "حدّد القدرات لاختيار بيئة المتصفح أ�
 
 </Option>
 
+#### `wdio:experimentalBiDiCommands`
+
+<Option type="boolean" default="false">
+
+في جلسة WebDriver BiDi، يشغّل أوامر العناصر وأوامر المتصفح مثل `getTitle` و`getUrl` و`refresh` و`takeScreenshot` عبر WebDriver BiDi بدلًا من WebDriver Classic. مطلوب لـ[الاختبارات المتوازية في ملف مواصفات واحد](./ParallelTests.md). تجريبي: يغيّر سلوك بعض الأوامر في كل اختبار، على سبيل المثال `addValue` و`clearValue` تُطلقان أحداث DOM اصطناعية و`click` يُرسَل عبر Actions API. راجع [تغييرات سلوك أوامر عناصر BiDi](./ParallelTests.md#behavior-changes-of-the-bidi-element-commands).
+
+```ts
+{
+    browserName: 'chrome',
+    'wdio:experimentalBiDiCommands': true
+}
+```
+
+</Option>
+
 #### `wdio:electronVersion`
 
 <Option type="string">
 
-ينزّل Chromedriver المضمّن مع إصدار Electron هذا بدلًا من ذلك الموجود في Chrome for Testing، وذلك لاختبار تطبيق Electron المعيّن كـ `goog:chromeOptions.binary`. إذا تم تعيين `browserVersion` أيضًا، فستستخدم WebdriverIO بدلًا من ذلك Chromedriver الخاص بذلك الإصدار عندما يتعذر تنزيل إصدار Electron أو عند تعيين `CHROMEDRIVER_CDNURL`. تأتي الإصدارات الليلية (Nightly) من [electron/nightlies](https://github.com/electron/nightlies/releases). تقوم خدمة Electron بتعيينه لك بناءً على إصدار Electron الخاص بالتطبيق.
+ينزّل Chromedriver المرفق مع إصدار Electron هذا بدلًا من الإصدار القادم من Chrome for Testing، لاختبار تطبيق Electron المعيّن كـ `goog:chromeOptions.binary`. إذا تم تعيين `browserVersion` أيضًا، تستخدم WebdriverIO مشغل Chromedriver الخاص بذلك الإصدار بدلًا من ذلك عندما يتعذر تنزيل إصدار Electron أو عند تعيين `CHROMEDRIVER_CDNURL`. تأتي الإصدارات الليلية من [electron/nightlies](https://github.com/electron/nightlies/releases). تقوم خدمة Electron بتعيينه نيابةً عنك بناءً على إصدار Electron الخاص بالتطبيق.
 
 ```ts
 {
@@ -110,13 +125,13 @@ description: "حدّد القدرات لاختيار بيئة المتصفح أ�
 
 #### خيارات المشغل الشائعة
 
-بينما توفر جميع المشغلات معاملات مختلفة للتكوين، هناك بعض المعاملات الشائعة التي تفهمها WebdriverIO وتستخدمها لإعداد المشغل أو المتصفح:
+بينما تقدم جميع المشغلات معلمات مختلفة للإعداد، هناك بعض المعلمات الشائعة التي تفهمها WebdriverIO وتستخدمها لإعداد المشغل أو المتصفح:
 
 ##### `cacheDir`
 
 <Option type="string" default="process.env.WEBDRIVER_CACHE_DIR || os.tmpdir()">
 
-المسار إلى جذر دليل ذاكرة التخزين المؤقت. يُستخدم هذا الدليل لتخزين جميع المشغلات التي يتم تنزيلها عند محاولة بدء جلسة.
+المسار إلى جذر دليل التخزين المؤقت. يُستخدم هذا الدليل لتخزين جميع المشغلات التي يتم تنزيلها عند محاولة بدء جلسة.
 
 </Option>
 
@@ -137,33 +152,33 @@ description: "حدّد القدرات لاختيار بيئة المتصفح أ�
 
 #### مضيف مخصص لتنزيل المشغل
 
-إذا تعذّر الوصول إلى شبكات CDN العامة للمشغلات من بيئتك، على سبيل المثال لأنك تشغّل اختباراتك خلف وكيل (proxy) خاص بالشركة أو تنسخ المشغلات في سجل عناصر (artifact registry) داخلي، يمكنك توجيه التنزيل إلى مضيف مخصص باستخدام متغيرات البيئة التالية:
+إذا تعذر الوصول إلى شبكات CDN العامة للمشغلات من بيئتك، على سبيل المثال لأنك تشغّل اختباراتك خلف وكيل (proxy) خاص بالشركة أو تنسخ المشغلات في سجل عناصر (artifact registry) داخلي، يمكنك توجيه التنزيل إلى مضيف مخصص باستخدام متغيرات البيئة التالية:
 
 - Chrome: `CHROMEDRIVER_CDNURL`، القيمة الافتراضية `https://storage.googleapis.com/chrome-for-testing-public`
 - Microsoft Edge: `EDGEDRIVER_CDNURL`، القيمة الافتراضية `https://msedgedriver.microsoft.com`
 
-يُتوقع أن تقدّم النسخة المرآة (mirror) أرشيفات المشغل تحت نفس المسارات الموجودة في شبكة CDN الأصلية، على سبيل المثال لـ Chrome:
+يُتوقع أن يقدّم الخادم البديل (mirror) أرشيفات المشغل تحت نفس المسارات الموجودة في CDN الأصلي، على سبيل المثال لـ Chrome:
 
 ```sh
 CHROMEDRIVER_CDNURL=https://artifactory.company.com/chrome-for-testing npx wdio run wdio.conf.js
 ```
 
-والذي يحدد موقع المشغل على `https://artifactory.company.com/chrome-for-testing/<buildId>/<platform>/chromedriver-<platform>.zip`، حيث `<platform>` هي إحدى القيم `linux64` أو `linux-arm64` أو `mac-x64` أو `mac-arm64` أو `win32` أو `win64`، على سبيل المثال `.../140.0.7339.207/mac-arm64/chromedriver-mac-arm64.zip`.
+والذي يحلّ المشغل إلى `https://artifactory.company.com/chrome-for-testing/<buildId>/<platform>/chromedriver-<platform>.zip`، حيث `<platform>` هو أحد `linux64` أو `linux-arm64` أو `mac-x64` أو `mac-arm64` أو `win32` أو `win64`، على سبيل المثال `.../140.0.7339.207/mac-arm64/chromedriver-mac-arm64.zip`.
 
-:::info البيئات غير المتصلة بالإنترنت بالكامل
+:::info البيئات غير المتصلة بالكامل
 
 تعيد هذه المتغيرات توجيه تنزيل المشغل فقط. لمنع WebdriverIO من الوصول إلى الإنترنت العام نهائيًا، يجب استيفاء أربعة شروط إضافية:
 
 - **يجب أن يكون المتصفح متاحًا محليًا.** إذا لم تتمكن WebdriverIO من العثور على Chrome أو Firefox مثبت، فإنها تنزّل المتصفح أيضًا، وهذا التنزيل لا يلتزم بهذه المتغيرات. إما أن تثبّت المتصفح على الجهاز أو توجّه WebdriverIO إليه عبر `goog:chromeOptions.binary` / `moz:firefoxOptions.binary`.
-- **استخدم رقم إصدار كامل.** إذا تم حذف `browserVersion`، تقرأ WebdriverIO الإصدار الدقيق من المتصفح المحلي ولا حاجة للبحث عن الإصدار. إذا قمت بتعيينه، فاستخدم الإصدار الكامل المكوّن من أربعة أجزاء، على سبيل المثال `140.0.7339.207`. تتطلب قناة الإصدار (`stable`) أو الإصدار الرئيسي (`140`) أو الإصدار الجزئي (`140.0.7339`) البحث عن الإصدار عبر نقطة نهاية عامة تابعة لـ Google لا يمكن إعادة توجيهها.
-- **يجب أن يأتي Chromedriver من Chrome for Testing.** بالنسبة لإصدارات Chrome الأقدم من `153.0.8001.0` على Linux ARM64، وعند استخدام `wdio:electronVersion` بدون `browserVersion`، يتم تنزيل Chromedriver من إصدارات Electron على GitHub، والتي لا تعيد هذه المتغيرات توجيهها.
-- **تأكد من أن النسخة المرآة تحتوي فعلًا على الإصدار الذي تحتاجه.** إذا تعذّر جلب المشغل من مضيفك — لأن الإصدار غير منسوخ، أو بالقدر نفسه لأن عنوان URL خاطئ أو تم رفض بيانات الاعتماد — تسجّل WebdriverIO تحذيرًا ثم تبحث عن أقرب إصدار معروف وصالح، وهو ما يستعلم مجددًا من نقطة النهاية العامة. تحقق من التحذير لمعرفة المضيف الذي تمت محاولة الوصول إليه إذا وصل التشغيل إلى الإنترنت بشكل غير متوقع أو اختار إصدارًا لم تطلبه.
+- **استخدم رقم إصدار كاملًا.** إذا تم حذف `browserVersion`، تقرأ WebdriverIO الإصدار الدقيق من المتصفح المحلي ولا حاجة للبحث عن الإصدار. إذا قمت بتعيينه، فاستخدم الإصدار الكامل المكوّن من أربعة أجزاء، على سبيل المثال `140.0.7339.207`. تتطلب قناة الإصدار (`stable`) أو المرحلة الرئيسية (`140`) أو الإصدار الجزئي (`140.0.7339`) البحث عن الإصدار عبر نقطة نهاية عامة لـ Google لا يمكن إعادة توجيهها.
+- **يجب أن يأتي Chromedriver من Chrome for Testing.** بالنسبة لإصدارات Chrome الأقدم من `153.0.8001.0` على Linux ARM64، ومع `wdio:electronVersion` دون `browserVersion`، يتم تنزيل Chromedriver من إصدارات Electron على GitHub، والتي لا تعيد هذه المتغيرات توجيهها.
+- **تأكد من أن الخادم البديل يحتوي فعلًا على الإصدار الذي تحتاجه.** إذا تعذر جلب المشغل من مضيفك — لأن الإصدار غير منسوخ، أو بالقدر نفسه لأن عنوان URL خاطئ أو تم رفض بيانات الاعتماد — تسجّل WebdriverIO تحذيرًا ثم تبحث عن أقرب إصدار معروف بأنه جيد، والذي يستعلم مرة أخرى من نقطة النهاية العامة. تحقق من التحذير لمعرفة المضيف الذي جرّبته إذا وصل التشغيل إلى الإنترنت بشكل غير متوقع أو اختار إصدارًا لم تطلبه.
 
 :::
 
-#### خيارات المشغل الخاصة بالمتصفح
+#### خيارات المشغل الخاصة بالمتصفحات
 
-لتمرير الخيارات إلى المشغل، يمكنك استخدام القدرات المخصصة التالية:
+لتمرير الخيارات إلى المشغل يمكنك استخدام القدرات المخصصة التالية:
 
 - Chrome أو Chromium: `wdio:chromedriverOptions`
 - Firefox: `wdio:geckodriverOptions`
@@ -221,7 +236,7 @@ CHROMEDRIVER_CDNURL=https://artifactory.company.com/chrome-for-testing npx wdio 
 
 <Option type="boolean">
 
-تسجيل مفصّل (مكافئ لـ `--log-level=ALL`)
+تسجيل مفصّل (يعادل `--log-level=ALL`)
 
 </Option>
 
@@ -229,7 +244,7 @@ CHROMEDRIVER_CDNURL=https://artifactory.company.com/chrome-for-testing npx wdio 
 
 <Option type="boolean">
 
-عدم تسجيل أي شيء (مكافئ لـ `--log-level=OFF`)
+عدم تسجيل أي شيء (يعادل `--log-level=OFF`)
 
 </Option>
 
@@ -269,7 +284,7 @@ CHROMEDRIVER_CDNURL=https://artifactory.company.com/chrome-for-testing npx wdio 
 
 <Option type="string">
 
-مسار مخصص لـ bidi mapper.
+مسار bidi mapper مخصص.
 
 </Option>
 
@@ -299,28 +314,28 @@ CHROMEDRIVER_CDNURL=https://artifactory.company.com/chrome-for-testing npx wdio 
 </TabItem>
 <TabItem value="firefox">
 
-اطلع على جميع خيارات Geckodriver في [حزمة المشغل](https://github.com/webdriverio-community/node-geckodriver#options) الرسمية.
+اطّلع على جميع خيارات Geckodriver في [حزمة المشغل](https://github.com/webdriverio-community/node-geckodriver#options) الرسمية.
 
 </TabItem>
 <TabItem value="msedge">
 
-اطلع على جميع خيارات Edgedriver في [حزمة المشغل](https://github.com/webdriverio-community/node-edgedriver#options) الرسمية.
+اطّلع على جميع خيارات Edgedriver في [حزمة المشغل](https://github.com/webdriverio-community/node-edgedriver#options) الرسمية.
 
 </TabItem>
 <TabItem value="safari">
 
-اطلع على جميع خيارات Safaridriver في [حزمة المشغل](https://github.com/webdriverio-community/node-safaridriver#options) الرسمية.
+اطّلع على جميع خيارات Safaridriver في [حزمة المشغل](https://github.com/webdriverio-community/node-safaridriver#options) الرسمية.
 
 </TabItem>
 </Tabs>
 
 ## قدرات خاصة لحالات استخدام محددة
 
-هذه قائمة بالأمثلة التي توضح القدرات التي يجب تطبيقها لتحقيق حالة استخدام معينة.
+هذه قائمة بأمثلة توضح القدرات التي يجب تطبيقها لتحقيق حالة استخدام معينة.
 
 ### تشغيل المتصفح بدون واجهة (Headless)
 
-تشغيل متصفح بدون واجهة يعني تشغيل نسخة من المتصفح بدون نافذة أو واجهة مستخدم. يُستخدم هذا غالبًا في بيئات CI/CD حيث لا تُستخدم شاشة عرض. لتشغيل متصفح في الوضع بدون واجهة، طبّق القدرات التالية:
+تشغيل متصفح بدون واجهة يعني تشغيل نسخة من المتصفح بدون نافذة أو واجهة مستخدم. يُستخدم هذا غالبًا في بيئات CI/CD حيث لا توجد شاشة عرض. لتشغيل متصفح في وضع headless، طبّق القدرات التالية:
 
 <Tabs
   defaultValue="chrome"
@@ -365,14 +380,14 @@ CHROMEDRIVER_CDNURL=https://artifactory.company.com/chrome-for-testing npx wdio 
 </TabItem>
 <TabItem value="safari">
 
-يبدو أن Safari [لا يدعم](https://discussions.apple.com/thread/251837694) التشغيل في الوضع بدون واجهة.
+يبدو أن Safari [لا يدعم](https://discussions.apple.com/thread/251837694) التشغيل في وضع headless.
 
 </TabItem>
 </Tabs>
 
 ### أتمتة قنوات المتصفح المختلفة
 
-إذا كنت ترغب في اختبار إصدار متصفح لم يُطلق بعد كإصدار مستقر، مثل Chrome Canary، يمكنك القيام بذلك عن طريق تعيين القدرات والإشارة إلى المتصفح الذي ترغب في تشغيله، على سبيل المثال:
+إذا كنت ترغب في اختبار إصدار متصفح لم يُطلق بعد كإصدار مستقر، على سبيل المثال Chrome Canary، يمكنك فعل ذلك عن طريق تعيين القدرات والإشارة إلى المتصفح الذي تريد تشغيله، على سبيل المثال:
 
 <Tabs
   defaultValue="chrome"
@@ -385,7 +400,7 @@ CHROMEDRIVER_CDNURL=https://artifactory.company.com/chrome-for-testing npx wdio 
 }>
 <TabItem value="chrome">
 
-عند الاختبار على Chrome، ستقوم WebdriverIO تلقائيًا بتنزيل إصدار المتصفح والمشغل المطلوبين لك بناءً على `browserVersion` المحدد، على سبيل المثال:
+عند الاختبار على Chrome، ستنزّل WebdriverIO تلقائيًا إصدار المتصفح والمشغل المطلوبين نيابةً عنك بناءً على `browserVersion` المحدد، على سبيل المثال:
 
 ```ts
 {
@@ -419,7 +434,7 @@ CHROMEDRIVER_CDNURL=https://artifactory.company.com/chrome-for-testing npx wdio 
 </TabItem>
 <TabItem value="firefox">
 
-عند الاختبار على Firefox، ستقوم WebdriverIO تلقائيًا بتنزيل إصدار المتصفح والمشغل المطلوبين لك بناءً على `browserVersion` المحدد، على سبيل المثال:
+عند الاختبار على Firefox، ستنزّل WebdriverIO تلقائيًا إصدار المتصفح والمشغل المطلوبين نيابةً عنك بناءً على `browserVersion` المحدد، على سبيل المثال:
 
 ```ts
 {
@@ -464,7 +479,7 @@ CHROMEDRIVER_CDNURL=https://artifactory.company.com/chrome-for-testing npx wdio 
 }
 ```
 
-ستقوم WebdriverIO تلقائيًا بتنزيل إصدار المشغل المطلوب لك بناءً على `browserVersion` المحدد، على سبيل المثال:
+ستنزّل WebdriverIO تلقائيًا إصدار المشغل المطلوب نيابةً عنك بناءً على `browserVersion` المحدد، على سبيل المثال:
 
 ```ts
 {
@@ -500,7 +515,7 @@ CHROMEDRIVER_CDNURL=https://artifactory.company.com/chrome-for-testing npx wdio 
 
 ## توسيع القدرات المخصصة
 
-إذا كنت ترغب في تعريف مجموعتك الخاصة من القدرات، على سبيل المثال لتخزين بيانات عشوائية لاستخدامها داخل الاختبارات لتلك القدرة المحددة، يمكنك القيام بذلك على سبيل المثال عن طريق تعيين:
+إذا كنت ترغب في تعريف مجموعتك الخاصة من القدرات، على سبيل المثال لتخزين بيانات عشوائية لاستخدامها داخل الاختبارات لتلك القدرة المحددة، يمكنك فعل ذلك عن طريق التعيين مثلًا:
 
 ```js title=wdio.conf.ts
 export const config = {
@@ -508,19 +523,19 @@ export const config = {
     capabilities: [{
         browserName: 'chrome',
         'custom:caps': {
-            // تكوينات مخصصة
+            // إعدادات مخصصة
         }
     }]
 }
 ```
 
-يُنصح باتباع [بروتوكول W3C](https://w3c.github.io/webdriver/#dfn-extension-capability) فيما يتعلق بتسمية القدرات، والذي يتطلب حرف `:` (النقطتان)، للدلالة على مساحة أسماء خاصة بالتنفيذ. داخل اختباراتك، يمكنك الوصول إلى قدرتك المخصصة من خلال، على سبيل المثال:
+يُنصح باتباع [بروتوكول W3C](https://w3c.github.io/webdriver/#dfn-extension-capability) فيما يتعلق بتسمية القدرات، والذي يتطلب حرف `:` (النقطتين)، للدلالة على مساحة أسماء خاصة بالتنفيذ. داخل اختباراتك يمكنك الوصول إلى قدرتك المخصصة عبر، على سبيل المثال:
 
 ```ts
 browser.capabilities['custom:caps']
 ```
 
-لضمان أمان الأنواع (type safety)، يمكنك توسيع واجهة القدرات الخاصة بـ WebdriverIO عبر:
+لضمان سلامة الأنواع (type safety) يمكنك توسيع واجهة القدرات في WebdriverIO عبر:
 
 ```ts
 declare global {

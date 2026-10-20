@@ -1,12 +1,12 @@
 ---
 id: selectors
 title: Selectores
-description: "Encuentra elementos con CSS, texto, XPath, nombre accesible, rol ARIA y otras estrategias de selectores, y aprende cuáles son las más resistentes."
+description: "Encuentra elementos con CSS, texto, XPath, nombre accesible, rol ARIA y otras estrategias de selectores, y descubre cuáles son las más resistentes."
 ---
 
 El [Protocolo WebDriver](https://w3c.github.io/webdriver/) proporciona varias estrategias de selectores para consultar un elemento. WebdriverIO las simplifica para que seleccionar elementos siga siendo sencillo. Ten en cuenta que, aunque los comandos para consultar elementos se llaman `$` y `$$`, no tienen nada que ver con jQuery ni con el [Sizzle Selector Engine](https://github.com/jquery/sizzle).
 
-Aunque hay muchísimos selectores diferentes disponibles, solo unos pocos ofrecen una forma resistente de encontrar el elemento correcto. Por ejemplo, dado el siguiente botón:
+Aunque hay muchísimos selectores disponibles, solo unos pocos ofrecen una forma resistente de encontrar el elemento correcto. Por ejemplo, dado el siguiente botón:
 
 ```html
 <button
@@ -25,11 +25,11 @@ __Sí__ y __no__ recomendamos los siguientes selectores:
 | Selector | Recomendado | Notas |
 | -------- | ----------- | ----- |
 | `$('button')` | 🚨 Nunca | El peor: demasiado genérico, sin contexto. |
-| `$('.btn.btn-large')` | 🚨 Nunca | Malo. Acoplado a los estilos. Muy propenso a cambios. |
+| `$('.btn.btn-large')` | 🚨 Nunca | Malo. Acoplado a los estilos. Muy propenso a cambiar. |
 | `$('#main')` | ⚠️ Con moderación | Mejor. Pero sigue acoplado a los estilos o a los event listeners de JS. |
 | `$(() => document.queryElement('button'))` | ⚠️ Con moderación | Consulta eficaz, compleja de escribir. |
 | `$('button[name="submission"]')` | ⚠️ Con moderación | Acoplado al atributo `name`, que tiene semántica HTML. |
-| `$('button[data-testid="submit"]')` | ✅ Bueno | Requiere un atributo adicional, no está conectado con la a11y. |
+| `$('button[data-testid="submit"]')` | ✅ Bueno | Requiere un atributo adicional, no está relacionado con a11y. |
 | `$('aria/Submit')` | ✅ Bueno | Bueno. Se asemeja a cómo el usuario interactúa con la página. Se recomienda usar archivos de traducción para que tus pruebas no fallen cuando se actualicen las traducciones. En sesiones WebDriver BiDi utiliza el árbol de accesibilidad del navegador. En sesiones Classic recurre a XPath y puede ser más lento en páginas grandes. |
 | `$('button=Submit')` | ✅ Siempre | El mejor. Se asemeja a cómo el usuario interactúa con la página y es rápido. Se recomienda usar archivos de traducción para que tus pruebas no fallen cuando se actualicen las traducciones. |
 
@@ -43,16 +43,16 @@ await $('button').click()
 // StrictSelectorError: strict mode violation: `$("button")` resolved to 12 elements, expected 1.
 ```
 
-Este es el mismo comportamiento que el de los [locators de Playwright](https://playwright.dev/docs/locators#strictness). Cypress es diferente: sus consultas pueden resolverse en varios elementos, y son los comandos de acción como [`.click()`](https://docs.cypress.io/api/commands/click#Click-all-elements-with-id-starting-with-btn) los que rechazan por defecto un sujeto con varios elementos. El modo estricto pone de manifiesto los selectores demasiado amplios, que de otro modo interactuarían silenciosamente con el elemento equivocado en cuanto la página creciera.
+Este es el mismo comportamiento que el de los [locators de Playwright](https://playwright.dev/docs/locators#strictness). Cypress es diferente: sus consultas pueden resolverse en varios elementos, y son los comandos de acción como [`.click()`](https://docs.cypress.io/api/commands/click#Click-all-elements-with-id-starting-with-btn) los que rechazan por defecto un sujeto con varios elementos. El modo estricto pone de manifiesto los selectores demasiado amplios, que de otro modo interactuarían silenciosamente con el elemento equivocado en cuanto la página crezca.
 
-La regla se aplica a cada paso de una [cadena](#chain-selectors) y a cada tipo de selector que acepta `$`: selectores de tipo string (incluidos los que atraviesan el shadow DOM), [funciones JS](#js-function), [selectores móviles](#mobile-selectors) y referencias a [estrategias personalizadas](#custom-selector-strategies).
+La regla se aplica a cada paso de una [cadena](#chain-selectors) y a todos los tipos de selector que acepta `$`: selectores de cadena (incluidos los que atraviesan el shadow DOM), [funciones JS](#js-function), [selectores móviles](#mobile-selectors) y referencias a [estrategias personalizadas](#custom-selector-strategies).
 
 ### Lo que no se ve afectado
 
-- `$$` sigue devolviendo cero o varios elementos, como un [`ElementArray`](/docs/api/browser/$$). Espera con await la lista (o su `.length`) antes de leer el recuento o usar `for...of`. `for await` funciona directamente sobre la lista.
+- `$$` sigue devolviendo cero o varios elementos, como un [`ElementArray`](/docs/api/browser/$$). Espera (await) la lista (o su `.length`) antes de leer el recuento o usar `for...of`. `for await` funciona directamente sobre la lista.
 - Los comandos auxiliares dedicados `custom$`, `shadow$` y `react$` no son estrictos: siguen devolviendo su primera coincidencia, al igual que sus equivalentes `$$`.
 - Un selector que no coincide con nada sigue devolviendo un elemento resuelto de forma diferida, por lo que [`waitForExist`](/docs/api/element/waitForExist) y el comportamiento de [espera automática](/docs/autowait) no cambian.
-- Pasar una referencia de elemento, p. ej. `$(await browser.getActiveElement())`, siempre hace referencia a un único nodo y nunca se comprueba.
+- Pasar una referencia a un elemento, p. ej. `$(await browser.getActiveElement())`, siempre hace referencia a un único nodo y nunca se comprueba.
 
 :::info Migración a v10
 
@@ -103,9 +103,9 @@ const elem = await $('header h1*=Welcome') // ¡¡¡no funciona!!!
 const elem = await $('header').$('*=driver')
 ```
 
-## Elemento con un texto determinado
+## Elemento con cierto texto
 
-La misma técnica se puede aplicar también a elementos. Además, también es posible hacer una coincidencia sin distinguir mayúsculas y minúsculas usando `.=` o `.*=` dentro de la consulta.
+La misma técnica también se puede aplicar a los elementos. Además, también es posible hacer una coincidencia sin distinguir mayúsculas y minúsculas usando `.=` o `.*=` dentro de la consulta.
 
 Por ejemplo, aquí hay una consulta para un encabezado de nivel 1 con el texto "Welcome to my Page":
 
@@ -203,7 +203,7 @@ En sesiones [WebDriver BiDi](https://w3c.github.io/webdriver-bidi/) (Chrome, Edg
 
 :::info
 
-Puedes leer más sobre este selector en nuestra [entrada del blog del lanzamiento](/blog/2022/09/05/accessibility-selector)
+Puedes leer más sobre este selector en nuestra [publicación del blog sobre el lanzamiento](/blog/2022/09/05/accessibility-selector)
 
 :::
 
@@ -259,7 +259,7 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 
 ## Selector de rol
 
-Consulta elementos por su rol ARIA y su nombre accesible, de la forma en que los describe un lector de pantalla: "el botón *Add to cart*". Un rol junto con un nombre sigue coincidiendo aunque cambien los nombres de clase, los test ids o la estructura del DOM.
+Consulta elementos por su rol ARIA y su nombre accesible, del mismo modo que los describe un lector de pantalla: "el botón *Add to cart*". Un rol más un nombre siguen coincidiendo cuando cambian los nombres de clase, los test ids o la estructura del DOM.
 
 ```js
 await $('role/button[name="Add to cart"]').click()
@@ -273,20 +273,20 @@ const dialog = $('role/dialog[name="Checkout"]')
 await dialog.$('role/button[name="Pay now"]').click()
 ```
 
-La sintaxis es `role/<role>` o `role/<role>[name="<accessible name>"]`. Las comillas simples también funcionan, y una comilla dentro del nombre se escapa con una barra invertida: `role/button[name="Say \"hi\""]`.
+La sintaxis es `role/<role>` o `role/<role>[name="<accessible name>"]`. También funcionan las comillas simples, y una comilla dentro del nombre se escapa con una barra invertida: `role/button[name="Say \"hi\""]`.
 
 - El nombre tiene que coincidir con el nombre accesible completo.
 - El rol tiene que ser un rol ARIA. Un error tipográfico falla indicando el rol válido más cercano, por ejemplo `"buton" is not an ARIA role. Did you mean "button"?`.
 - `img` y su nombre en ARIA 1.3, `image`, son el mismo rol.
 - El selector sigue el [modo estricto](#strict-mode) de `$` como cualquier otro selector.
 
-En una sesión [WebDriver BiDi](https://w3c.github.io/webdriver-bidi/), WebdriverIO pasa el rol y el nombre a [`browsingContext.locateNodes`](https://w3c.github.io/webdriver-bidi/#command-browsingContext-locateNodes). El propio navegador calcula ambos, de la misma forma en que la tecnología de asistencia ve la página. Se encuentran los elementos dentro de shadow roots abiertos y dentro de frames, incluidos los frames de otro origen. Si el navegador no encuentra ningún elemento, no se recurre a ninguna heurística. Ten en cuenta que es el navegador quien decide el rol: por ejemplo, una `<table>` sin encabezados ni caption puede ser una tabla de maquetación, y entonces sus filas no tienen el rol `row`.
+En una sesión [WebDriver BiDi](https://w3c.github.io/webdriver-bidi/), WebdriverIO pasa el rol y el nombre a [`browsingContext.locateNodes`](https://w3c.github.io/webdriver-bidi/#command-browsingContext-locateNodes). El propio navegador calcula ambos, de la misma forma en que la tecnología de asistencia ve la página. Se encuentran elementos dentro de shadow roots abiertos y dentro de frames, incluidos frames de otro origen. Si el navegador no encuentra ningún elemento, no se recurre a ninguna heurística. Ten en cuenta que es el navegador quien decide el rol: por ejemplo, una `<table>` sin encabezados ni título puede ser una tabla de diseño, y entonces sus filas no tienen el rol `row`.
 
-En una sesión WebDriver Classic, y cuando un navegador no admite el localizador de rol, WebdriverIO calcula el rol y el nombre accesible en la página con [`dom-accessibility-api`](https://github.com/eps1lon/dom-accessibility-api), la implementación que usa Testing Library. Un campo de texto sin etiqueta recibe como nombre su `placeholder`, como hacen los navegadores. El selector de rol no está disponible en un contexto de aplicación móvil nativa. Usa allí un [accessibility id](#accessibility-id).
+En una sesión WebDriver Classic, y cuando un navegador no admite el localizador de rol, WebdriverIO calcula el rol y el nombre accesible en la página con [`dom-accessibility-api`](https://github.com/eps1lon/dom-accessibility-api), la implementación que usa Testing Library. Un campo de texto sin etiqueta recibe su nombre de su `placeholder`, como hacen los navegadores. El selector de rol no está disponible en un contexto de aplicación móvil nativa. Usa allí un [accessibility id](#accessibility-id).
 
 ## ARIA - Atributo role
 
-Para consultar elementos basándote en [roles ARIA](https://www.w3.org/TR/html-aria/#docconformance), puedes especificar directamente el rol del elemento, como `[role=button]`, como parámetro del selector. Este selector aproxima el rol a partir del nombre y los atributos del elemento. Es preferible el [selector de rol](#role-selector), que usa el rol que calcula el navegador y también puede coincidir con el nombre accesible:
+Para consultar elementos basándote en [roles ARIA](https://www.w3.org/TR/html-aria/#docconformance), puedes especificar directamente el rol del elemento como `[role=button]` como parámetro del selector. Este selector aproxima el rol a partir del nombre y los atributos del elemento. Es preferible el [selector de rol](#role-selector), que usa el rol que calcula el navegador y también puede coincidir con el nombre accesible:
 
 ```html reference
 https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7efbd9ae292201d/selectors/aria.html#L13
@@ -298,7 +298,7 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 
 ## Atributo ID
 
-La estrategia de localización "id" no es compatible con el protocolo WebDriver; en su lugar, se deben usar las estrategias de selectores CSS o xPath para encontrar elementos por ID.
+La estrategia de localización "id" no es compatible con el protocolo WebDriver; en su lugar se deben usar las estrategias de selectores CSS o xPath para encontrar elementos mediante su ID.
 
 Sin embargo, algunos drivers (p. ej. [Appium You.i Engine Driver](https://github.com/YOU-i-Labs/appium-youiengine-driver#selector-strategies)) todavía podrían [admitir](https://github.com/YOU-i-Labs/appium-youiengine-driver#selector-strategies) este selector.
 
@@ -310,13 +310,13 @@ const button = await $('#someid')
 //localizador xpath
 const button = await $('//*[@id="someid"]')
 //estrategia id
-// Nota: solo funciona en Appium o frameworks similares que admiten la estrategia de localización "ID"
+// Nota: solo funciona en Appium o frameworks similares que admitan la estrategia de localización "ID"
 const button = await $('id=resource-id/iosname')
 ```
 
 ## Función JS
 
-También puedes usar funciones de JavaScript para obtener elementos mediante APIs web nativas. Por supuesto, solo puedes hacerlo dentro de un contexto web (p. ej., `browser`, o un contexto web en móvil).
+También puedes usar funciones de JavaScript para obtener elementos mediante APIs nativas web. Por supuesto, solo puedes hacer esto dentro de un contexto web (p. ej., `browser`, o un contexto web en móvil).
 
 Dada la siguiente estructura HTML:
 
@@ -334,9 +334,11 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 
 :::warning
 
-A partir de la `v9` de WebdriverIO no es necesario este selector especial, ya que WebdriverIO atraviesa automáticamente el Shadow DOM por ti. Se recomienda dejar de usar este selector eliminando el `>>>` que lo precede.
+A partir de la `v9` de WebdriverIO ya no es necesario este selector especial, ya que WebdriverIO atraviesa automáticamente el Shadow DOM por ti. Se recomienda dejar de usar este selector eliminando el `>>>` que lo precede.
 
 :::
+
+En una sesión WebDriver BiDi, `$` y `$$` buscan en todos los shadow roots abiertos: los roots creados con `attachShadow()` y los shadow roots declarativos (`<template shadowrootmode="open">`) que la página o `setHTMLUnsafe()` añaden al documento. No buscan en un shadow root declarativo cerrado, ni en un shadow root declarativo que `setHTMLUnsafe()` crea en un elemento que todavía no está en el documento. Para estos casos, usa [`shadow$`](https://webdriver.io/docs/api/element/shadow$) sobre el elemento anfitrión.
 
 Muchas aplicaciones frontend dependen en gran medida de elementos con [shadow DOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM). Técnicamente es imposible consultar elementos dentro del shadow DOM sin soluciones alternativas. [`shadow$`](https://webdriver.io/docs/api/element/shadow$) y [`shadow$$`](https://webdriver.io/docs/api/element/shadow$$) han sido soluciones alternativas de este tipo que tenían sus [limitaciones](https://github.com/Georgegriff/query-selector-shadow-dom#how-is-this-different-to-shadow). Con el selector profundo ahora puedes consultar todos los elementos dentro de cualquier shadow DOM usando el comando de consulta habitual.
 
@@ -354,11 +356,11 @@ https://github.com/webdriverio/example-recipes/blob/e8b147e88e7a38351b0918b4f7ef
 
 Para las pruebas móviles híbridas, es importante que el servidor de automatización esté en el *contexto* correcto antes de ejecutar comandos. Para automatizar gestos, lo ideal es que el driver esté configurado en el contexto nativo. Pero para seleccionar elementos del DOM, el driver tendrá que estar configurado en el contexto webview de la plataforma. Solo *entonces* se pueden usar los métodos mencionados anteriormente.
 
-Para las pruebas móviles nativas no hay cambio entre contextos, ya que tienes que usar estrategias móviles y utilizar directamente la tecnología de automatización subyacente del dispositivo. Esto es especialmente útil cuando una prueba necesita un control detallado sobre la búsqueda de elementos.
+Para las pruebas móviles nativas, no hay cambio entre contextos, ya que tienes que usar estrategias móviles y utilizar directamente la tecnología de automatización subyacente del dispositivo. Esto es especialmente útil cuando una prueba necesita un control detallado sobre la búsqueda de elementos.
 
 ### Android UiAutomator
 
-El framework UI Automator de Android ofrece varias formas de encontrar elementos. Puedes usar la [API de UI Automator](https://developer.android.com/tools/testing-support-library/index.html#uia-apis), en particular la [clase UiSelector](https://developer.android.com/reference/androidx/test/uiautomator/UiSelector), para localizar elementos. En Appium envías el código Java, como una cadena, al servidor, que lo ejecuta en el entorno de la aplicación y devuelve el elemento o los elementos.
+El framework UI Automator de Android ofrece varias formas de encontrar elementos. Puedes usar la [API de UI Automator](https://developer.android.com/tools/testing-support-library/index.html#uia-apis), en particular la [clase UiSelector](https://developer.android.com/reference/androidx/test/uiautomator/UiSelector) para localizar elementos. En Appium envías el código Java, como una cadena, al servidor, que lo ejecuta en el entorno de la aplicación y devuelve el elemento o los elementos.
 
 ```js
 const selector = 'new UiSelector().text("Cancel").className("android.widget.Button")'
@@ -402,7 +404,7 @@ await elem.click()
 
 Al automatizar una aplicación iOS, se puede usar el [framework UI Automation](https://developer.apple.com/library/prerelease/tvos/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/UIAutomation.html) de Apple para encontrar elementos.
 
-Esta [API](https://developer.apple.com/library/ios/documentation/DeveloperTools/Reference/UIAutomationRef/index.html#//apple_ref/doc/uid/TP40009771) de JavaScript tiene métodos para acceder a la vista y a todo lo que hay en ella.
+Esta [API](https://developer.apple.com/library/ios/documentation/DeveloperTools/Reference/UIAutomationRef/index.html#//apple_ref/doc/uid/TP40009771) de JavaScript tiene métodos para acceder a la vista y a todo lo que contiene.
 
 ```js
 const selector = 'UIATarget.localTarget().frontMostApp().mainWindow().buttons()[0]'
@@ -412,9 +414,9 @@ await button.click()
 
 También puedes usar búsquedas con predicados dentro de iOS UI Automation en Appium para refinar aún más la selección de elementos. Consulta [aquí](https://github.com/appium/appium/blob/master/docs/en/writing-running-appium/ios/ios-predicate.md) para más detalles.
 
-### Predicate strings y class chains de iOS XCUITest
+### Cadenas de predicados y cadenas de clases de iOS XCUITest
 
-Con iOS 10 y versiones posteriores (usando el driver `XCUITest`), puedes usar [predicate strings](https://github.com/facebook/WebDriverAgent/wiki/Predicate-Queries-Construction-Rules):
+Con iOS 10 y versiones posteriores (usando el driver `XCUITest`), puedes usar [cadenas de predicados](https://github.com/facebook/WebDriverAgent/wiki/Predicate-Queries-Construction-Rules):
 
 ```js
 const selector = `type == 'XCUIElementTypeSwitch' && name CONTAINS 'Allow'`
@@ -422,7 +424,7 @@ const switch = await $(`-ios predicate string:${selector}`)
 await switch.click()
 ```
 
-Y [class chains](https://github.com/facebook/WebDriverAgent/wiki/Class-Chain-Queries-Construction-Rules):
+Y [cadenas de clases](https://github.com/facebook/WebDriverAgent/wiki/Class-Chain-Queries-Construction-Rules):
 
 ```js
 const selector = '**/XCUIElementTypeCell[`name BEGINSWITH "D"`]/**/XCUIElementTypeButton'
@@ -432,25 +434,25 @@ await button.click()
 
 ### Accessibility ID
 
-La estrategia de localización `accessibility id` está diseñada para leer un identificador único de un elemento de la interfaz. Esto tiene la ventaja de que no cambia durante la localización ni durante ningún otro proceso que pueda cambiar el texto. Además, puede ser de ayuda para crear pruebas multiplataforma, si los elementos que son funcionalmente iguales tienen el mismo accessibility id.
+La estrategia de localización `accessibility id` está diseñada para leer un identificador único de un elemento de la interfaz. Esto tiene la ventaja de no cambiar durante la localización ni durante ningún otro proceso que pueda cambiar el texto. Además, puede ayudar a crear pruebas multiplataforma, si los elementos que son funcionalmente iguales tienen el mismo accessibility id.
 
-- En iOS es el `accessibility identifier` descrito por Apple [aquí](https://developer.apple.com/library/prerelease/ios/documentation/UIKit/Reference/UIAccessibilityIdentification_Protocol/index.html).
-- En Android, el `accessibility id` corresponde a la `content-description` del elemento, como se describe [aquí](https://developer.android.com/training/accessibility/accessible-app.html).
+- En iOS, este es el `accessibility identifier` descrito por Apple [aquí](https://developer.apple.com/library/prerelease/ios/documentation/UIKit/Reference/UIAccessibilityIdentification_Protocol/index.html).
+- En Android, el `accessibility id` se corresponde con el `content-description` del elemento, como se describe [aquí](https://developer.android.com/training/accessibility/accessible-app.html).
 
-En ambas plataformas, obtener un elemento (o varios elementos) por su `accessibility id` suele ser el mejor método. También es la forma preferida frente a la estrategia obsoleta `name`.
+En ambas plataformas, obtener un elemento (o varios elementos) por su `accessibility id` suele ser el mejor método. También es la opción preferida frente a la estrategia obsoleta `name`.
 
 ```js
 const elem = await $('~my_accessibility_identifier')
 await elem.click()
 ```
 
-### Class Name
+### Nombre de clase
 
 La estrategia `class name` es un `string` que representa un elemento de la interfaz en la vista actual.
 
 - En iOS es el nombre completo de una [clase de UIAutomation](https://developer.apple.com/library/prerelease/tvos/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/UIAutomation.html), y comenzará por `UIA-`, como `UIATextField` para un campo de texto. Puedes encontrar una referencia completa [aquí](https://developer.apple.com/library/ios/navigation/#section=Frameworks&topic=UIAutomation).
-- En Android es el nombre completo cualificado de una [clase](https://developer.android.com/reference/android/widget/package-summary.html) de [UI Automator](https://developer.android.com/tools/testing-support-library/index.html#UIAutomator), como `android.widget.EditText` para un campo de texto. Puedes encontrar una referencia completa [aquí](https://developer.android.com/reference/android/widget/package-summary.html).
-- En Youi.tv es el nombre completo de una clase de Youi.tv, y comenzará por `CYI-`, como `CYIPushButtonView` para un elemento de botón. Puedes encontrar una referencia completa en la [página de GitHub de You.i Engine Driver](https://github.com/YOU-i-Labs/appium-youiengine-driver)
+- En Android es el nombre completamente cualificado de una [clase](https://developer.android.com/reference/android/widget/package-summary.html) de [UI Automator](https://developer.android.com/tools/testing-support-library/index.html#UIAutomator), como `android.widget.EditText` para un campo de texto. Puedes encontrar una referencia completa [aquí](https://developer.android.com/reference/android/widget/package-summary.html).
+- En Youi.tv es el nombre completo de una clase de Youi.tv, y comenzará por `CYI-`, como `CYIPushButtonView` para un elemento de botón pulsador. Puedes encontrar una referencia completa en la [página de GitHub de You.i Engine Driver](https://github.com/YOU-i-Labs/appium-youiengine-driver)
 
 ```js
 // Ejemplo de iOS
@@ -463,8 +465,8 @@ await $('CYIPushButtonView').click()
 
 ## Encadenar selectores
 
-Si quieres ser más específico en tu consulta, puedes encadenar selectores hasta encontrar el elemento
-correcto. Si llamas a `element` antes de tu comando real, WebdriverIO inicia la consulta desde ese elemento.
+Si quieres ser más específico en tu consulta, puedes encadenar selectores hasta encontrar el
+elemento correcto. Si llamas a `element` antes de tu comando real, WebdriverIO inicia la consulta desde ese elemento.
 
 Por ejemplo, si tienes una estructura DOM como:
 
@@ -488,7 +490,7 @@ Por ejemplo, si tienes una estructura DOM como:
 </div>
 ```
 
-Y quieres añadir el producto B al carrito, sería difícil hacerlo usando únicamente el selector CSS.
+Y quieres añadir el producto B al carrito, sería difícil hacerlo usando solo el selector CSS.
 
 Con el encadenamiento de selectores es mucho más fácil. Simplemente acota el elemento deseado paso a paso:
 
@@ -500,7 +502,7 @@ await $('.row .entry:nth-child(2)').$('button*=Add').click()
 
 Usando la estrategia de localización `-image`, es posible enviar a Appium un archivo de imagen que represente un elemento al que quieres acceder.
 
-Formatos de archivo admitidos: `jpg,png,gif,bmp,svg`
+Formatos de archivo admitidos `jpg,png,gif,bmp,svg`
 
 Puedes encontrar la referencia completa [aquí](https://github.com/appium/appium/blob/master/packages/images-plugin/docs/find-by-image.md)
 
@@ -516,17 +518,17 @@ Ten en cuenta que Appium podría redimensionar la captura de pantalla (de la app
 en iPhones, pero también en equipos Mac con pantalla Retina, porque el DPR es mayor que 1). Esto hará que no se encuentre ninguna coincidencia, porque
 el selector de imagen proporcionado podría haberse tomado de la captura de pantalla original.
 Puedes solucionarlo actualizando la configuración del servidor de Appium; consulta la [documentación de Appium](https://github.com/appium/appium/blob/master/packages/images-plugin/docs/find-by-image.md#related-settings)
-para ver la configuración y [este comentario](https://github.com/webdriverio/webdriverio/issues/6097#issuecomment-726675579) para una explicación detallada.
+para conocer la configuración y [este comentario](https://github.com/webdriverio/webdriverio/issues/6097#issuecomment-726675579) para una explicación detallada.
 
 ## Selectores de React
 
-WebdriverIO proporciona una forma de seleccionar componentes de React basándose en el nombre del componente. Para ello, puedes elegir entre dos comandos: `react$` y `react$$`.
+WebdriverIO ofrece una forma de seleccionar componentes de React según el nombre del componente. Para ello, puedes elegir entre dos comandos: `react$` y `react$$`.
 
 Estos comandos te permiten seleccionar componentes del [VirtualDOM de React](https://reactjs.org/docs/faq-internals.html) y devuelven un único elemento de WebdriverIO o un array de elementos (según la función que se use).
 
 **Nota**: Los comandos `react$` y `react$$` tienen una funcionalidad similar, excepto que `react$$` devolverá *todas* las instancias coincidentes como un array de elementos de WebdriverIO, y `react$` devolverá la primera instancia encontrada.
 
-Los comandos funcionan con React 16 a 19, para una app que se inicia con `createRoot` o con `ReactDOM.render`. Leen los componentes del renderizado actual, por lo que también encuentran componentes añadidos por un cambio de estado. Si React aún no ha renderizado una raíz de la página, esperan hasta 5 segundos a que lo haga.
+Los comandos funcionan con React 16 a 19, para una app que se inicia con `createRoot` o con `ReactDOM.render`. Leen los componentes del renderizado actual, por lo que también encuentran componentes añadidos por un cambio de estado. Si React aún no ha renderizado un root de la página, esperan hasta 5 segundos a que lo haga.
 
 #### Ejemplo básico
 
@@ -550,9 +552,9 @@ function App() {
 createRoot(document.querySelector('#root')).render(<App />)
 ```
 
-En el código anterior hay una instancia sencilla de `MyComponent` dentro de la aplicación, que React renderiza dentro de un elemento HTML con `id="root"`.
+En el código anterior hay una instancia simple de `MyComponent` dentro de la aplicación, que React renderiza dentro de un elemento HTML con `id="root"`.
 
-Con el comando `browser.react$` puedes seleccionar una instancia de `MyComponent`:
+Con el comando `browser.react$`, puedes seleccionar una instancia de `MyComponent`:
 
 ```js
 const myCmp = await browser.react$('MyComponent')
@@ -589,7 +591,7 @@ function App() {
 ReactDOM.render(<App />, document.querySelector('#root'))
 ```
 
-Si quieres seleccionar la instancia de `MyComponent` que tiene una prop `name` con el valor `WebdriverIO`, puedes ejecutar el comando así:
+Si quieres seleccionar la instancia de `MyComponent` que tiene una prop `name` con valor `WebdriverIO`, puedes ejecutar el comando así:
 
 ```js
 const myCmp = await browser.react$('MyComponent', {
@@ -597,7 +599,7 @@ const myCmp = await browser.react$('MyComponent', {
 })
 ```
 
-Si quisieras filtrar la selección por estado, el comando de `browser` sería algo así:
+Si quisieras filtrar la selección por estado, el comando de `browser` se vería más o menos así:
 
 ```js
 const myCmp = await browser.react$('MyComponent', {
@@ -605,26 +607,26 @@ const myCmp = await browser.react$('MyComponent', {
 })
 ```
 
-Un filtro coincide cuando cada una de sus claves que también tiene el componente coincide. Una clave que el componente no tiene se ignora. Un objeto anidado coincide de la misma forma, y un array coincide cuando tiene un valor en común con el array del componente. `null`, `false` y `0` coinciden con el mismo valor. Para un componente de función con hooks, el estado es el estado del primer hook (`useState` o `useReducer`): si el primer hook es otro hook, por ejemplo `useRef`, el filtro de estado no coincide. Con `props` y `state` a la vez, un componente debe coincidir con ambos.
+Un filtro coincide cuando coinciden todas sus claves que el componente también tiene. Una clave que el componente no tiene se ignora. Un objeto anidado coincide de la misma manera, y un array coincide cuando tiene un valor en común con el array del componente. `null`, `false` y `0` coinciden con el mismo valor. En un componente de función con hooks, el estado es el estado del primer hook (`useState` o `useReducer`): si el primer hook es otro hook, por ejemplo `useRef`, el filtro de estado no coincide. Con `props` y `state` a la vez, un componente debe coincidir con ambos.
 
-#### Reglas del selector
+#### Reglas de los selectores
 
 - `*` coincide con uno o más caracteres: `browser.react$$('My*')` encuentra `MyComponent` y `MyOtherComponent`.
 - Los nombres separados por espacios encuentran un componente dentro de otro: `browser.react$$('List Item')` encuentra cada `Item` dentro de un `List`.
-- El nombre de un componente es su `displayName` o, en su defecto, el nombre de su función o clase. Un componente de `React.memo` tiene el nombre de su función (la build de desarrollo de React 17 también le asigna el `displayName` del objeto memo). Un componente de `React.forwardRef` no tiene nombre, a menos que tenga un `displayName`.
-- Para un componente de orden superior con un nombre como `withRouter(MyComponent)`, se usa el nombre que está entre paréntesis: `MyComponent`.
-- Sin un ámbito de elemento, los comandos buscan en todas las raíces de React de la página, en el orden del documento, incluidas las raíces dentro de otras raíces y las raíces en shadow roots abiertos. `react$` devuelve la primera coincidencia. Para buscar solo en una raíz, llama al comando sobre su contenedor o sobre un elemento de esa raíz: `$('#other-root').react$$('MyComponent')`.
-- Los resultados se devuelven raíz tras raíz. Dentro de una raíz, se devuelven en el orden del árbol de componentes, nivel por nivel, no en el orden del documento. `react$$` devuelve cada nodo DOM una sola vez.
-- Para una app en un frame, llama al comando sobre el contexto de navegación del frame, o sobre un elemento del frame: `(await page.frame({ selector: 'iframe' })).react$$('MyComponent')`.
+- El nombre de un componente es su `displayName` o, en su defecto, el nombre de su función o clase. Un componente de `React.memo` tiene el nombre de su función (la compilación de desarrollo de React 17 también le asigna el `displayName` del objeto memo). Un componente de `React.forwardRef` no tiene nombre, a menos que tenga un `displayName`.
+- Para un componente de orden superior con un nombre como `withRouter(MyComponent)`, se usa el nombre entre paréntesis: `MyComponent`.
+- Sin un ámbito de elemento, los comandos buscan en todos los roots de React de la página, en el orden del documento, incluidos los roots dentro de otros roots y los roots en shadow roots abiertos. `react$` devuelve la primera coincidencia. Para buscar solo en un root, llama al comando sobre su contenedor o sobre un elemento de ese root: `$('#other-root').react$$('MyComponent')`.
+- Los resultados se devuelven root tras root. Dentro de un root, se devuelven en el orden del árbol de componentes, nivel por nivel, no en el orden del documento. `react$$` devuelve cada nodo del DOM una sola vez.
+- Para una app dentro de un frame, llama al comando sobre el browsing context del frame, o sobre un elemento del frame: `(await page.frame({ selector: 'iframe' })).react$$('MyComponent')`.
 
 Limitaciones conocidas:
 
 - Un componente que solo renderiza texto devuelve un nodo de texto. Con WebDriver Classic, un nodo de texto no se puede devolver, y el comando falla con `javascript error: circular reference`.
-- Mientras React hidrata un límite `Suspense` de una página renderizada en el servidor, los componentes que contiene aún no existen. Espera hasta que la página haya terminado de hidratarse.
+- Mientras React hidrata un límite `Suspense` de una página renderizada en el servidor, los componentes que contiene aún no existen. Espera a que la página haya terminado de hidratarse.
 
 #### Trabajar con `React.Fragment`
 
-Al usar el comando `react$` para seleccionar [fragmentos](https://reactjs.org/docs/fragments.html) de React, WebdriverIO devolverá el primer hijo de ese componente como nodo del componente. Si usas `react$$`, recibirás un array que contiene todos los nodos HTML dentro de los fragmentos que coinciden con el selector.
+Al usar el comando `react$` para seleccionar [fragments](https://reactjs.org/docs/fragments.html) de React, WebdriverIO devolverá el primer hijo de ese componente como nodo del componente. Si usas `react$$`, recibirás un array que contiene todos los nodos HTML dentro de los fragments que coinciden con el selector.
 
 ```jsx
 // index.jsx
@@ -658,7 +660,7 @@ await browser.react$('MyComponent') // devuelve el elemento de WebdriverIO para 
 await browser.react$$('MyComponent') // devuelve los elementos de WebdriverIO para el array [<div />, <div />]
 ```
 
-**Nota:** Si tienes varias instancias de `MyComponent` y usas `react$$` para seleccionar estos componentes de fragmento, se te devolverá un array unidimensional con todos los nodos. En otras palabras, si tienes 3 instancias de `<MyComponent />`, se te devolverá un array con seis elementos de WebdriverIO.
+**Nota:** Si tienes varias instancias de `MyComponent` y usas `react$$` para seleccionar estos componentes fragment, se te devolverá un array unidimensional con todos los nodos. En otras palabras, si tienes 3 instancias de `<MyComponent />`, se te devolverá un array con seis elementos de WebdriverIO.
 
 ## Estrategias de selectores personalizadas
 

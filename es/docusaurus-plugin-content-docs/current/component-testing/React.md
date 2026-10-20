@@ -1,14 +1,14 @@
 ---
 id: react
 title: React
-description: "Configura el browser runner de WebdriverIO para un proyecto de React con el preset react y escribe pruebas de componentes con Testing Library."
+description: "Configura el browser runner de WebdriverIO para un proyecto React con el preset react y escribe pruebas de componentes con Testing Library."
 ---
 
-[React](https://reactjs.org/) hace que sea sencillo crear interfaces de usuario interactivas. Diseña vistas simples para cada estado de tu aplicación y React actualizará y renderizará de manera eficiente solo los componentes adecuados cuando cambien tus datos. Puedes probar componentes de React directamente en un navegador real usando WebdriverIO y su [browser runner](/docs/runner#browser-runner).
+[React](https://reactjs.org/) hace que crear interfaces de usuario interactivas sea sencillo. Diseña vistas simples para cada estado de tu aplicación, y React actualizará y renderizará de manera eficiente solo los componentes adecuados cuando cambien tus datos. Puedes probar componentes de React directamente en un navegador real usando WebdriverIO y su [browser runner](/docs/runner#browser-runner).
 
 ## Configuración
 
-Para configurar WebdriverIO en tu proyecto de React, sigue las [instrucciones](/docs/component-testing#set-up) en nuestra documentación de pruebas de componentes. Asegúrate de seleccionar `react` como preset dentro de las opciones de tu runner, por ejemplo:
+Para configurar WebdriverIO dentro de tu proyecto React, sigue las [instrucciones](/docs/component-testing#set-up) en nuestra documentación de pruebas de componentes. Asegúrate de seleccionar `react` como preset dentro de las opciones de tu runner, por ejemplo:
 
 ```js
 // wdio.conf.js
@@ -23,7 +23,7 @@ export const config = {
 
 :::info
 
-Si ya estás usando [Vite](https://vitejs.dev/) como servidor de desarrollo, también puedes reutilizar tu configuración de `vite.config.ts` dentro de tu configuración de WebdriverIO. Para más información, consulta `viteConfig` en las [opciones del runner](/docs/runner#runner-options).
+Si ya estás utilizando [Vite](https://vitejs.dev/) como servidor de desarrollo, también puedes reutilizar tu configuración de `vite.config.ts` dentro de tu configuración de WebdriverIO. Para más información, consulta `viteConfig` en las [opciones del runner](/docs/runner#runner-options).
 
 :::
 
@@ -41,7 +41,7 @@ npx wdio run ./wdio.conf.js
 
 ## Escribir pruebas
 
-Supongamos que tienes el siguiente componente de React:
+Dado que tienes el siguiente componente de React:
 
 ```tsx title="./components/Component.jsx"
 import React, { useState } from 'react'
@@ -62,7 +62,7 @@ function App() {
 export default App
 ```
 
-En tu prueba, usa el método `render` de `@testing-library/react` para adjuntar el componente a la página de prueba. Para interactuar con el componente, recomendamos usar los comandos de WebdriverIO, ya que se comportan de forma más parecida a las interacciones reales del usuario, por ejemplo:
+En tu prueba, usa el método `render` de `@testing-library/react` para adjuntar el componente a la página de prueba. Para interactuar con el componente, recomendamos usar los comandos de WebdriverIO, ya que se comportan de forma más parecida a las interacciones reales de un usuario, por ejemplo:
 
 ```ts title="app.test.tsx"
 import { expect } from '@wdio/globals'

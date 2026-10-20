@@ -3,12 +3,12 @@ id: mock
 title: كائن المحاكاة (Mock)
 ---
 
-كائن المحاكاة هو كائن يمثل محاكاة للشبكة ويحتوي على معلومات حول الطلبات التي تطابق `url` و `filterOptions` المحددة. يمكن الحصول عليه باستخدام الأمر [`mock`](/docs/api/browser/mock).
+كائن المحاكاة هو كائن يمثل محاكاة للشبكة ويحتوي على معلومات حول الطلبات التي تطابق `url` و`filterOptions` المحددين. يمكن الحصول عليه باستخدام الأمر [`mock`](/docs/api/browser/mock).
 
 :::info
 
 لاحظ أن استخدام الأمر `mock` يتطلب دعم بروتوكول Chrome DevTools.
-يتوفر هذا الدعم إذا كنت تشغل الاختبارات محليًا في متصفح قائم على Chromium أو إذا
+يتوفر هذا الدعم إذا قمت بتشغيل الاختبارات محليًا في متصفح مبني على Chromium أو إذا
 كنت تستخدم Selenium Grid الإصدار 4 أو أعلى. __لا__ يمكن استخدام هذا الأمر عند تشغيل
 الاختبارات الآلية في السحابة. اكتشف المزيد في قسم [بروتوكولات الأتمتة](/docs/automationProtocols).
 
@@ -16,9 +16,9 @@ title: كائن المحاكاة (Mock)
 
 يمكنك قراءة المزيد حول محاكاة الطلبات والاستجابات في WebdriverIO في دليل [المحاكاة والتجسس](/docs/mocksandspies) الخاص بنا.
 
-## التحكم المتعدد عن بُعد (Multi-remote)
+## التحكم عن بُعد المتعدد (Multi-remote)
 
-في متصفح [multi-remote](/docs/multiremote)، يُرجع [`browser.mock()`](/docs/api/browser/mock) كائن `MultiRemoteMock` بدلاً من هذا الكائن. تسرد `instances` أسماء المتصفحات، ويُرجع `getInstance(name)` كائن `Mock` الخاص بذلك المتصفح. يتم تنفيذ `respond()` و `restore()` والطرق الأخرى أدناه على كل نسخة. تبقى `calls` على كائن المحاكاة الخاص بكل نسخة: `mock.getInstance('myChromeBrowser').calls`.
+في متصفح [multi-remote](/docs/multiremote)، يُرجع [`browser.mock()`](/docs/api/browser/mock) كائن `MultiRemoteMock` بدلاً من هذا الكائن. تسرد `instances` أسماء المتصفحات، ويُرجع `getInstance(name)` كائن `Mock` الخاص بذلك المتصفح. يتم تشغيل `respond()` و`restore()` والطرق الأخرى أدناه على كل نسخة. تبقى `calls` على كائن المحاكاة الخاص بكل نسخة: `mock.getInstance('myChromeBrowser').calls`.
 
 يُطلق `getInstance` الخطأ `Multi-remote object has no instance named "<name>"` عندما لا يكون `name` أحد عناصر `instances`.
 
@@ -31,7 +31,7 @@ title: كائن المحاكاة (Mock)
 | `url` | `String` | عنوان URL الذي تم تمريره إلى أمر المحاكاة |
 | `filterOptions` | `Object` | خيارات تصفية الموارد التي تم تمريرها إلى أمر المحاكاة |
 | `browser` | `Object` | [كائن المتصفح](/docs/api/browser) المستخدم للحصول على كائن المحاكاة. |
-| `calls` | `Object[]` | معلومات حول طلبات المتصفح المطابقة، تحتوي على خصائص مثل `url` و `method` و `headers` و `initialPriority` و `referrerPolic` و `statusCode` و `responseHeaders` و `body` |
+| `calls` | `Object[]` | معلومات حول طلبات المتصفح المطابقة، تحتوي على خصائص مثل `url` و`method` و`headers` و`initialPriority` و`referrerPolic` و`statusCode` و`responseHeaders` و`body` |
 
 ## الطرق
 
@@ -51,7 +51,7 @@ title: كائن المحاكاة (Mock)
 
 كائن المحاكاة هو EventEmitter ويتم إطلاق عدد من الأحداث لحالات الاستخدام الخاصة بك.
 
-إليك قائمة بالأحداث.
+فيما يلي قائمة بالأحداث.
 
 ### `request`
 
@@ -100,26 +100,26 @@ interface FailEvent {
 واجهة التطابق:
 ```ts
 interface MatchEvent {
-    url: string // عنوان URL للطلب (بدون الجزء).
-    urlFragment?: string // جزء عنوان URL المطلوب بدءًا من علامة #، إن وجد.
+    url: string // عنوان URL للطلب (بدون الجزء المعرّف).
+    urlFragment?: string // الجزء المعرّف من عنوان URL المطلوب بدءًا من علامة #، إن وجد.
     method: string // طريقة طلب HTTP.
     headers: Record<string, string> // ترويسات طلب HTTP.
     postData?: string // بيانات طلب HTTP POST.
-    hasPostData?: boolean // تكون True عندما يحتوي الطلب على بيانات POST.
+    hasPostData?: boolean // تكون true عندما يحتوي الطلب على بيانات POST.
     mixedContentType?: MixedContentType // نوع المحتوى المختلط للطلب.
     initialPriority: ResourcePriority // أولوية طلب المورد في وقت إرسال الطلب.
     referrerPolicy: ReferrerPolicy // سياسة المُحيل للطلب، كما هو محدد في https://www.w3.org/TR/referrer-policy/
-    isLinkPreload?: boolean // ما إذا كان يتم التحميل عبر link preload.
+    isLinkPreload?: boolean // ما إذا كان يتم تحميله عبر التحميل المسبق للرابط.
     body: string | Buffer | JsonCompatible // محتوى استجابة المورد الفعلي.
     responseHeaders: Record<string, string> // ترويسات استجابة HTTP.
     statusCode: number // رمز حالة استجابة HTTP.
-    mockedResponse?: string | Buffer // إذا كانت المحاكاة التي أطلقت الحدث قد عدّلت استجابته أيضًا.
+    mockedResponse?: string | Buffer // إذا قام كائن المحاكاة الذي أطلق الحدث بتعديل استجابته أيضًا.
 }
 ```
 
 ### `continue`
 
-يتم إطلاق هذا الحدث عندما لا تكون استجابة الشبكة قد تم استبدالها أو مقاطعتها، أو إذا كانت الاستجابة قد أُرسلت بالفعل بواسطة محاكاة أخرى. يتم تمرير `requestId` في دالة رد النداء الخاصة بالحدث.
+يتم إطلاق هذا الحدث عندما لا يتم استبدال استجابة الشبكة ولا مقاطعتها، أو إذا تم إرسال الاستجابة بالفعل بواسطة كائن محاكاة آخر. يتم تمرير `requestId` في دالة رد النداء الخاصة بالحدث.
 
 ## أمثلة
 
@@ -152,7 +152,7 @@ browser.addCommand('loadPageWithout404', (url, {selector, predicate}) => new Pro
 
     await this.url(url).catch(reject)
 
-    // الانتظار هنا، لأن بعض الطلبات قد تظل معلقة
+    // ننتظر هنا، لأن بعض الطلبات قد تكون لا تزال معلقة
     if (selector) {
         await this.$(selector).waitForExist().catch(reject)
     }

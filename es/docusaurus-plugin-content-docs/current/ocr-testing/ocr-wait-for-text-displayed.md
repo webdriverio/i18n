@@ -31,7 +31,7 @@ await browser.ocrWaitForTextDisplayed({
 
 <Option type="string" required="yes">
 
-El texto que quieres buscar para hacer clic en él.
+El texto que deseas buscar para hacer clic en él.
 
 </Option>
 #### Ejemplo
@@ -147,7 +147,7 @@ Puedes modificar la lógica difusa para encontrar texto con las siguientes opcio
 
 <Option type="number" default="100" required="no">
 
-Determina qué tan cerca debe estar la coincidencia de la ubicación difusa (especificada por location). Una coincidencia exacta de letras que esté a distance caracteres de la ubicación difusa se puntuaría como una falta total de coincidencia. Una distancia de 0 requiere que la coincidencia esté en la ubicación exacta especificada. Una distancia de 1000 requeriría que una coincidencia perfecta esté dentro de 800 caracteres de la ubicación para ser encontrada usando un umbral de 0.8.
+Determina qué tan cerca debe estar la coincidencia de la ubicación difusa (especificada por location). Una coincidencia exacta de letras que esté a distance caracteres de la ubicación difusa se puntuaría como una falta total de coincidencia. Una distancia de 0 requiere que la coincidencia esté en la ubicación exacta especificada. Una distancia de 1000 requeriría que una coincidencia perfecta esté dentro de los 800 caracteres de la ubicación para ser encontrada usando un umbral de 0.8.
 
 </Option>
 ##### Ejemplo
@@ -219,7 +219,7 @@ await browser.ocrWaitForTextDisplayed({
 
 <Option type="number" default="2" required="no">
 
-Solo se devolverán las coincidencias cuya longitud supere este valor. (Por ejemplo, si quieres ignorar las coincidencias de un solo carácter en el resultado, configúralo en 2)
+Solo se devolverán las coincidencias cuya longitud supere este valor. (Por ejemplo, si deseas ignorar las coincidencias de un solo carácter en el resultado, configúralo en 2)
 
 </Option>
 ##### Ejemplo

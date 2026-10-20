@@ -1,7 +1,7 @@
 ---
 id: testexecution
 title: Testausführung
-description: "Folgen Sie einem Flussdiagramm des Testausführungsprozesses und sehen Sie, wie @wdio/runner mit den anderen WebdriverIO-Paketen interagiert."
+description: "Ein Flussdiagramm des Testausführungsprozesses und wie @wdio/runner mit den anderen WebdriverIO-Paketen interagiert."
 ---
 Dieses Flussdiagramm erklärt den Testausführungsprozess und die Interaktion zwischen @wdio/runner und den meisten anderen WebdriverIO-Paketen.
 
@@ -27,5 +27,4 @@ graph TD
     SENDRESULTS[Send results to reporter instance<br>for processing.]-->
     INTERFACE["@wdio/cli:interface printSummary() called<br>Test results printed to terminal"]-->
     KILLWORKERSESSION[Kill worker session.]
-```
 ```

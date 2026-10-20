@@ -41,7 +41,7 @@ npx wdio run ./wdio.conf.js
 
 ## Escribir pruebas
 
-Dado que tienes el siguiente componente de Vue.js:
+Supongamos que tienes el siguiente componente de Vue.js:
 
 ```tsx title="./components/Component.vue"
 <template>
@@ -66,7 +66,7 @@ export default {
 </script>
 ```
 
-En tu prueba, renderiza el componente en el DOM y ejecuta aserciones sobre él. Recomendamos usar [`@vue/test-utils`](https://test-utils.vuejs.org/) o [`@testing-library/vue`](https://testing-library.com/docs/vue-testing-library/intro/) para adjuntar el componente a la página de prueba. Para interactuar con el componente, usa los comandos de WebdriverIO, ya que se comportan de forma más cercana a las interacciones reales del usuario, por ejemplo:
+En tu prueba, renderiza el componente en el DOM y ejecuta aserciones sobre él. Recomendamos usar [`@vue/test-utils`](https://test-utils.vuejs.org/) o [`@testing-library/vue`](https://testing-library.com/docs/vue-testing-library/intro/) para adjuntar el componente a la página de prueba. Para interactuar con el componente, usa los comandos de WebdriverIO, ya que se comportan de forma más cercana a las interacciones reales de un usuario, por ejemplo:
 
 
 <Tabs
@@ -96,7 +96,7 @@ describe('Vue Component Testing', () => {
         await button.click()
 
         expect(wrapper.text()).toContain('Times clicked: 2')
-        await expect($('p=Times clicked: 2')).toExist() // la misma aserción con WebdriverIO
+        await expect($('p=Times clicked: 2')).toExist() // misma aserción con WebdriverIO
     })
 })
 ```
@@ -217,7 +217,7 @@ describe('Testing Async Components', () => {
 
 ## Probar componentes de Vue en Nuxt
 
-Si estás usando el framework web [Nuxt](https://nuxt.com/), WebdriverIO habilitará automáticamente la función de [auto-import](https://nuxt.com/docs/guide/concepts/auto-imports) y facilitará la prueba de tus componentes de Vue y páginas de Nuxt. Sin embargo, no se pueden soportar los [módulos de Nuxt](https://nuxt.com/modules) que definas en tu configuración y que requieran contexto de la aplicación Nuxt.
+Si estás usando el framework web [Nuxt](https://nuxt.com/), WebdriverIO habilitará automáticamente la función de [auto-import](https://nuxt.com/docs/guide/concepts/auto-imports) y facilitará la prueba de tus componentes de Vue y páginas de Nuxt. Sin embargo, no se pueden admitir los [módulos de Nuxt](https://nuxt.com/modules) que puedas definir en tu configuración y que requieran contexto de la aplicación Nuxt.
 
 __Las razones son:__
 - WebdriverIO no puede iniciar una aplicación Nuxt únicamente en un entorno de navegador
@@ -229,9 +229,9 @@ WebdriverIO también proporciona un servicio para ejecutar pruebas e2e en aplica
 
 :::
 
-### Mockear composables integrados
+### Simular composables integrados
 
-En caso de que tu componente use un composable nativo de Nuxt, por ejemplo [`useNuxtData`](https://nuxt.com/docs/api/composables/use-nuxt-data), WebdriverIO mockeará automáticamente estas funciones y te permitirá modificar su comportamiento o hacer aserciones sobre ellas, por ejemplo:
+En caso de que tu componente use un composable nativo de Nuxt, por ejemplo [`useNuxtData`](https://nuxt.com/docs/api/composables/use-nuxt-data), WebdriverIO simulará automáticamente estas funciones y te permitirá modificar su comportamiento o realizar aserciones sobre ellas, por ejemplo:
 
 ```ts
 import { mocked } from '@wdio/browser-runner'
@@ -248,7 +248,7 @@ mocked(useNuxtData).mockReturnValue({
 
 ### Manejar composables de terceros
 
-Todos los [módulos de terceros](https://nuxt.com/modules) que pueden potenciar tu proyecto Nuxt no pueden mockearse automáticamente. En esos casos necesitas mockearlos manualmente, por ejemplo, si tu aplicación usa el plugin del módulo [Supabase](https://nuxt.com/modules/supabase):
+Todos los [módulos de terceros](https://nuxt.com/modules) que pueden potenciar tu proyecto Nuxt no pueden simularse automáticamente. En esos casos, necesitas simularlos manualmente; por ejemplo, si tu aplicación usa el plugin del módulo [Supabase](https://nuxt.com/modules/supabase):
 
 ```js title=""
 export default defineNuxtConfig({
@@ -272,7 +272,7 @@ la prueba fallará debido a:
 ReferenceError: useSupabaseClient is not defined
 ```
 
-Aquí recomendamos mockear todo el módulo que usa la función `useSupabaseClient` o crear una variable global que mockee esta función, por ejemplo:
+Aquí, recomendamos simular todo el módulo que usa la función `useSupabaseClient` o crear una variable global que simule esta función, por ejemplo:
 
 ```ts
 import { fn } from '@wdio/browser-runner'

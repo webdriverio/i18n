@@ -4,7 +4,7 @@ title: Netzwerkprotokolle
 description: "Untersuchen Sie jede HTTP-Anfrage und -Antwort, die DevTools während eines Tests erfasst, um API-Aufrufe, Payloads und langsame Anfragen zu debuggen."
 ---
 
-Überwachen und untersuchen Sie sämtliche Netzwerkaktivitäten während Ihrer Tests. DevTools erfasst jede HTTP-Anfrage und -Antwort und bietet Ihnen so vollständigen Einblick in API-Aufrufe, das Laden von Ressourcen und das Netzwerk-Timing – genau wie die DevTools des Browsers.
+Überwachen und untersuchen Sie sämtliche Netzwerkaktivitäten während Ihrer Tests. DevTools erfasst jede HTTP-Anfrage und -Antwort und verschafft Ihnen so vollständige Einblicke in API-Aufrufe, das Laden von Ressourcen und das Netzwerk-Timing – genau wie die DevTools im Browser.
 
 **Was erfasst wird:**
 - **Anfragedetails** – URL, Methode, Header, Query-Parameter, Request-Body

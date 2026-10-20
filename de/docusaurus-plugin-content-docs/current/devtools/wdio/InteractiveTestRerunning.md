@@ -1,17 +1,17 @@
 ---
 id: interactive-test-rerunning
 title: Interaktives erneutes Ausführen und Visualisieren von Tests
-description: "Verfolgen Sie Testläufe mit Live-Browservorschauen und Screenshots nach jedem Befehl und führen Sie anschließend einzelne Tests oder Suites direkt über die DevTools-Oberfläche erneut aus."
+description: "Verfolgen Sie die Testausführung mit Live-Browservorschauen und Screenshots nach jedem Befehl und führen Sie anschließend einzelne Tests oder Suites direkt über die DevTools-Oberfläche erneut aus."
 ---
 
-Verfolgen Sie die Ausführung Ihrer Tests in Echtzeit mit Live-Browservorschauen und automatischen Screenshots, die nach jedem WebDriver-Befehl aufgenommen werden. Die Oberfläche zeigt eine vollständige visuelle Zeitleiste Ihrer Testausführung und stellt den genauen Zustand des Browsers bei jedem Schritt dar.
+Verfolgen Sie die Ausführung Ihrer Tests in Echtzeit mit Live-Browservorschauen und automatischen Screenshots, die nach jedem WebDriver-Befehl erstellt werden. Die Oberfläche zeigt eine vollständige visuelle Zeitleiste Ihrer Testausführung und bildet den genauen Zustand des Browsers bei jedem Schritt ab.
 
-Nach Abschluss Ihres ersten Testlaufs können Sie in der DevTools-Oberfläche auf einen beliebigen Testfall oder eine Suite klicken, um diese sofort erneut auszuführen. Dadurch müssen Sie weder Ihren gesamten Test-Runner neu starten noch Ihren Code ändern, was Debugging-Zyklen erheblich beschleunigt.
+Nach Abschluss Ihres ersten Testlaufs können Sie in der DevTools-Oberfläche auf einen beliebigen Testfall oder eine Suite klicken, um sie sofort erneut auszuführen. Dadurch müssen Sie weder Ihren gesamten Test-Runner neu starten noch Ihren Code ändern, was die Debugging-Zyklen erheblich beschleunigt.
 
 **Hauptfunktionen:**
-- **Echtzeit-Visualisierung** - Automatische Screenshot-Erfassung nach jedem Befehl (click, toBeExisting usw.)
+- **Echtzeit-Visualisierung** - Automatische Screenshots nach jedem Befehl (click, toBeExisting usw.)
 - **Live-Browservorschau** - Sehen Sie den aktuellen Zustand Ihrer Anwendung während der Testausführung
-- **Befehls-Zeitleiste** - Detaillierte Logs mit Zeitstempeln für jede Aktion
+- **Befehlszeitleiste** - Detaillierte Logs mit Zeitstempeln für jede Aktion
 - **Interaktives erneutes Ausführen** - Klicken Sie auf einen beliebigen Test oder eine Suite, um sie sofort erneut auszuführen
 - **Ausführung in derselben Session** - Tests werden in derselben Browser-Session erneut ausgeführt, was schnelleres Feedback ermöglicht
 - **Scrollbarer Verlauf** - Überprüfen Sie jeden beliebigen Zeitpunkt der Testausführung
@@ -27,5 +27,5 @@ Nach Abschluss Ihres ersten Testlaufs können Sie in der DevTools-Oberfläche au
 ### 🛑 Test-Runner stoppen
 ![Stop Test Runner Demo](/img/devtools/stop-runner.gif)
 
-### ⚡ Aktionen, Snapshot & Befehls-Logs
+### ⚡ Aktionen, Snapshot und Befehlslogs
 ![Actions, Snapshot & Command Logs Demo](/img/devtools/actions-command-logs.gif)

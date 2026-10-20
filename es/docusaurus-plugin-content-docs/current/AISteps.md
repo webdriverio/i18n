@@ -1,14 +1,14 @@
 ---
 id: ai-steps
 title: Pasos de IA en las pruebas
-description: Escribe pasos de prueba como intenciones con browser.act() y lee datos tipados con browser.extract() usando @wdio/ai-service; después, reprodúcelos desde una caché versionada sin modelo y revisa cada reparación.
+description: Escribe los pasos de las pruebas como intenciones con browser.act() y lee datos tipados con browser.extract() usando @wdio/ai-service; después, reprodúcelos desde una caché versionada sin un modelo y revisa cada reparación.
 ---
 
-`@wdio/ai-service` permite que una prueba describa un paso en lugar de programarlo: `browser.act('Add a blue shirt to the cart')` le pide a tu modelo que lo realice, registra los comandos de WebdriverIO que ejecutó y los reproduce desde un archivo de caché en cada ejecución posterior. Solo se vuelve a llamar al modelo cuando la página cambió y un paso registrado ya no puede repararse sin él. Úsalo para flujos cuyo marcado cambia con frecuencia, o para tener una prueba funcionando antes de conocer los selectores. Usa comandos normales de WebdriverIO para todo lo que ya sabes programar.
+`@wdio/ai-service` permite que una prueba describa un paso en lugar de programarlo: `browser.act('Add a blue shirt to the cart')` le pide a tu modelo que lo realice, registra los comandos de WebdriverIO que ejecutó y los reproduce desde un archivo de caché en cada ejecución posterior. Solo se vuelve a llamar al modelo cuando la página ha cambiado y un paso registrado ya no se puede reparar sin él. Úsalo para flujos cuyo marcado cambia con frecuencia, o para poner en marcha una prueba antes de conocer los selectores. Usa comandos normales de WebdriverIO para todo lo que ya sepas programar.
 
 ## Configurar el servicio
 
-Instala el servicio y el paquete de LangChain del proveedor de tu modelo:
+Instala el servicio y el paquete de LangChain de tu proveedor de modelos:
 
 ```sh
 npm install --save-dev @wdio/ai-service @langchain/anthropic zod
@@ -30,7 +30,7 @@ export const config: WebdriverIO.Config = {
 }
 ```
 
-`webSocketUrl: true` abre una sesión de WebDriver BiDi. El servicio también funciona con WebDriver Classic, pero BiDi le permite comprobar qué hizo cada paso y leer las respuestas de la API de la página. Consulta la página [AI Service](/docs/ai-service) para ver todas las opciones y proveedores, incluidos los modelos locales mediante Ollama.
+`webSocketUrl: true` abre una sesión de WebDriver BiDi. El servicio también funciona con WebDriver Classic, pero BiDi le permite comprobar lo que hizo cada paso y leer las respuestas de la API de la página. Consulta la página [AI Service](/docs/ai-service) para ver todas las opciones y proveedores, incluidos los modelos locales mediante Ollama.
 
 ## Escribir una prueba
 
@@ -53,7 +53,7 @@ describe('cart', () => {
 ```
 
 - `act` realiza el paso y nunca hace aserciones. Comprueba el resultado con `expect`.
-- `extract` solo lee la página y valida la respuesta contra el esquema. Nunca se almacena en caché.
+- `extract` solo lee la página y valida la respuesta con el esquema. Nunca se almacena en caché.
 - Los secretos van en marcadores de posición. El modelo ve `{{password}}`, nunca el valor:
 
 ```ts
@@ -62,35 +62,35 @@ await browser.act('Log in as {{email}} with password {{password}}', {
 })
 ```
 
-- Llama a `act` sobre un elemento para mantener al modelo dentro de él, o sobre un frame o pestaña que tengas seleccionados:
+- Llama a `act` sobre un elemento para mantener al modelo dentro de él, o sobre un frame o pestaña retenidos:
 
 ```ts
 await $('form#billing').act('Fill in a valid German address')
 ```
 
-## Grabar una vez, reproducir sin modelo
+## Grabar una vez, reproducir sin un modelo
 
-La primera ejecución graba los pasos de cada llamada a `act` en `__act__/<spec file>.json`, junto al archivo de especificación:
+La primera ejecución registra los pasos de cada llamada a `act` en `__act__/<spec file>.json`, junto al archivo de especificación:
 
 ```sh
 npx wdio run wdio.conf.ts --spec test/specs/cart.e2e.ts
 ```
 
-Haz commit del directorio `__act__`. Las ejecuciones posteriores reproducen los comandos grabados, por lo que una ejecución exitosa no hace llamadas al modelo ni consume tokens.
+Haz commit del directorio `__act__`. Las ejecuciones posteriores reproducen los comandos registrados, por lo que una ejecución exitosa no realiza llamadas al modelo ni consume tokens.
 
 | `cache` | Úsalo para |
 | --- | --- |
 | `auto` (predeterminado) | `write` en local, `heal` cuando `process.env.CI` está definido |
 | `write` | grabar y actualizar los archivos de caché |
 | `heal` | CI: reparar los pasos que fallan, escribir las entradas reparadas en `<outputDir>/act-cache/` y no modificar los archivos de caché |
-| `locked` | ejecuciones de CI que no deben llamar a un modelo: solo reproducir, fallar cuando un paso no puede repararse sin el modelo |
+| `locked` | ejecuciones de CI que no deben llamar a un modelo: solo reproducir, fallar cuando un paso no se pueda reparar sin el modelo |
 | `off` | preguntar siempre al modelo |
 
 Ejecuta `npx wdio run wdio.conf.ts -s` para volver a grabar todas las llamadas a `act`.
 
 ## Revisar las reparaciones
 
-Cuando un paso grabado falla, el servicio primero prueba los otros selectores que grabó para el elemento y después su rol y nombre accesible. Solo si eso falla, el modelo continúa a partir del paso que falló. Cada paso reproducido o reparado tiene que hacer lo mismo que hacía cuando se grabó: enviar las mismas peticiones, navegar a la misma página y cambiar las mismas partes de la página. Se rechaza una reparación sobre un botón parecido pero incorrecto.
+Cuando un paso registrado falla, el servicio prueba primero los otros selectores que registró para el elemento y después su rol y su nombre accesible. Solo si eso falla, el modelo continúa a partir del paso que falló. Cada paso reproducido o reparado tiene que hacer lo mismo que hizo cuando se grabó: enviar las mismas peticiones, navegar a la misma página y cambiar las mismas partes de la página. Una reparación que apunte a un botón parecido pero incorrecto se rechaza.
 
 La ejecución termina con un resumen:
 
@@ -101,18 +101,18 @@ Healed:
     evidence: ./logs/ai/heals/cart.e2e.ts-cart-adds-a-shirt-1c71c48d
 ```
 
-La carpeta de evidencias contiene una captura de pantalla de la página en el momento en que falló el paso, una después de cada paso de reparación y un vídeo de la reparación en los navegadores que graban un screencast de WebDriver BiDi (actualmente Firefox). Revisa la reparación y luego haz commit del archivo de caché actualizado.
+La carpeta de evidencias contiene una captura de pantalla de la página en el momento en que falló el paso, una después de cada paso de reparación y un vídeo de la reparación en los navegadores que graban un screencast de WebDriver BiDi (actualmente Firefox). Revisa la reparación y después haz commit del archivo de caché actualizado.
 
 ## Convertir los pasos en código normal
 
-Una vez que un flujo sea estable, sustituye sus llamadas a `act` por los comandos grabados:
+Una vez que un flujo es estable, sustituye sus llamadas a `act` por los comandos registrados:
 
 ```sh
 npx wdio-ai eject test/specs/cart.e2e.ts
 ```
 
 ```ts
-// act: Añadir una camisa azul en talla M al carrito de compras
+// act: Add a blue shirt in size M to the shopping cart
 await $('role/link[name="Blue Shirt"]').click()
 await $('role/combobox[name="Size"]').selectByVisibleText('M')
 await $('role/button[name="Add to cart"]').click()
@@ -125,12 +125,12 @@ await $('role/button[name="Add to cart"]').click()
 | `act("…") failed: no model is configured. Set the `model` option of the service or the WDIO_AI_MODEL environment variable.` | Define `model` en las opciones del servicio o exporta `WDIO_AI_MODEL=anthropic:claude-sonnet-5-5`. |
 | `[@wdio/ai-service] The "anthropic" provider needs "@langchain/anthropic". Install it with `npm install --save-dev @langchain/anthropic`.` | Instala el paquete del proveedor. |
 | `[@wdio/ai-service] No API key for "anthropic". Set ANTHROPIC_API_KEY or pass `apiKey` in the model config.` | Exporta la clave en la shell o en el secreto de CI que ejecuta las pruebas. |
-| `act("…") failed: no cached steps for "…" and the cache is locked` | Graba la llamada en local con `cache: 'write'` y haz commit del archivo `__act__`. |
+| `act("…") failed: no cached steps for "…" and the cache is locked` | Graba la llamada en local con `cache: 'write'` y haz commit del archivo de `__act__`. |
 | `act("…") failed: cached step 1 (…) ran, but the step no longer causes POST /api/cart → 2xx. The app may have changed behavior, not just markup.` | El elemento sigue ahí, pero hace otra cosa: es una regresión, no un cambio de marcado. Revisa la aplicación. |
 | `act("…") failed: …` seguido de `Evidence: <folder>` | El modelo no pudo completar la instrucción. La carpeta contiene todas las instantáneas que tomó, los eventos de consola y de red, y los pasos que se ejecutaron. |
 
 ## Próximos pasos
 
 - [AI Service](/docs/ai-service): todas las opciones, el formato de la caché, los efectos de los pasos y el espacio de trabajo
-- [Selectores](/docs/selectors#role-selector): el selector `role/` que usan los pasos grabados
+- [Selectores](/docs/selectors#role-selector): el selector `role/` que usan los pasos registrados
 - [WebdriverIO para agentes de programación](/docs/ai-agents): escribe pruebas junto con un agente de programación

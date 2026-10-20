@@ -1,16 +1,16 @@
 ---
 id: ocr-set-value
 title: ocrSetValue
-description: "Mit ocrSetValue in ein Eingabefeld tippen, das anhand seines sichtbaren Textes gefunden wird – das Feld wird per OCR und Fuzzy-Matching ermittelt."
+description: "Tippen Sie mit ocrSetValue in ein Eingabefeld, das anhand seines sichtbaren Textes lokalisiert wird, wobei das Feld mittels OCR und Fuzzy-Matching gefunden wird."
 ---
 
-Sendet eine Folge von Tastenanschlägen an ein Element. Der Befehl wird:
+Sendet eine Abfolge von Tastenanschlägen an ein Element. Der Befehl wird:
 
 -   das Element automatisch erkennen
--   den Fokus auf das Feld setzen, indem er darauf klickt
+-   den Fokus auf das Feld setzen, indem darauf geklickt wird
 -   den Wert in das Feld eintragen
 
-Der Befehl sucht nach dem angegebenen Text und versucht, eine Übereinstimmung auf Basis der Fuzzy-Logik von [Fuse.js](https://fusejs.io/) zu finden. Das bedeutet, dass er auch dann versucht, Ihnen ein Element zurückzugeben, wenn Sie einen Selektor mit einem Tippfehler angeben oder der gefundene Text keine 100%ige Übereinstimmung ist. Siehe die [Logs](#logs) unten.
+Der Befehl sucht nach dem angegebenen Text und versucht, eine Übereinstimmung basierend auf der Fuzzy-Logik von [Fuse.js](https://fusejs.io/) zu finden. Das bedeutet, dass Sie auch dann ein Element zurückerhalten, wenn Sie einen Selektor mit einem Tippfehler angeben oder der gefundene Text keine 100%ige Übereinstimmung ist. Siehe die [Logs](#logs) unten.
 
 ## Verwendung
 
@@ -37,7 +37,7 @@ await brower.ocrSetValue({
 
 <Option type="string" required="yes">
 
-Der Text, nach dem gesucht werden soll, um darauf zu klicken.
+Der Text, nach dem Sie suchen möchten, um darauf zu klicken.
 
 </Option>
 #### Beispiel
@@ -53,7 +53,7 @@ await browser.ocrSetValue({
 
 <Option type="string" required="yes">
 
-Der Wert, der hinzugefügt werden soll.
+Der hinzuzufügende Wert.
 
 </Option>
 #### Beispiel
@@ -69,7 +69,7 @@ await browser.ocrSetValue({
 
 <Option type="boolean" default="false" required="no">
 
-Gibt an, ob der Wert im Eingabefeld auch abgeschickt werden soll. Das bedeutet, dass am Ende der Zeichenfolge ein "ENTER" gesendet wird.
+Ob der Wert auch im Eingabefeld abgesendet werden soll. Das bedeutet, dass am Ende der Zeichenkette ein "ENTER" gesendet wird.
 
 </Option>
 #### Beispiel
@@ -175,7 +175,7 @@ await browser.ocrSetValue({
 
 <Option type="object" required="no">
 
-Sie können relativ zum gefundenen Element auf den Bildschirm klicken. Dies kann auf Basis relativer Pixel `above`, `right`, `below` oder `left` vom gefundenen Element erfolgen.
+Sie können relativ zum gefundenen Element auf den Bildschirm klicken. Dies kann basierend auf relativen Pixeln `above` (oberhalb), `right` (rechts), `below` (unterhalb) oder `left` (links) vom gefundenen Element erfolgen.
 
 :::note
 
@@ -277,7 +277,7 @@ Mit den folgenden Optionen können Sie die Fuzzy-Logik zum Finden von Text anpas
 
 <Option type="number" default="100" required="no">
 
-Bestimmt, wie nah die Übereinstimmung an der Fuzzy-Position (angegeben durch location) liegen muss. Eine exakte Buchstabenübereinstimmung, die distance Zeichen von der Fuzzy-Position entfernt ist, würde als vollständige Nichtübereinstimmung gewertet. Eine distance von 0 erfordert, dass die Übereinstimmung genau an der angegebenen Position liegt. Eine distance von 1000 würde erfordern, dass eine perfekte Übereinstimmung innerhalb von 800 Zeichen von der Position liegt, um bei einem threshold von 0.8 gefunden zu werden.
+Bestimmt, wie nah die Übereinstimmung an der unscharfen Position (angegeben durch location) liegen muss. Eine exakte Buchstabenübereinstimmung, die distance Zeichen von der unscharfen Position entfernt ist, würde als vollständige Nichtübereinstimmung gewertet. Eine distance von 0 erfordert, dass die Übereinstimmung genau an der angegebenen Position liegt. Eine distance von 1000 würde erfordern, dass eine perfekte Übereinstimmung innerhalb von 800 Zeichen von der Position liegt, um bei einem threshold von 0.8 gefunden zu werden.
 
 </Option>
 ##### Beispiel
@@ -315,7 +315,7 @@ await browser.ocrSetValue({
 
 <Option type="number" default="0.6" required="no">
 
-An welchem Punkt der Matching-Algorithmus aufgibt. Ein threshold von 0 erfordert eine perfekte Übereinstimmung (sowohl der Buchstaben als auch der Position), ein threshold von 1.0 würde auf alles passen.
+Ab welchem Punkt der Matching-Algorithmus aufgibt. Ein threshold von 0 erfordert eine perfekte Übereinstimmung (sowohl der Buchstaben als auch der Position), ein threshold von 1.0 würde auf alles passen.
 
 </Option>
 ##### Beispiel
@@ -334,7 +334,7 @@ await browser.ocrSetValue({
 
 <Option type="boolean" default="false" required="no">
 
-Gibt an, ob bei der Suche zwischen Groß- und Kleinschreibung unterschieden werden soll.
+Ob bei der Suche zwischen Groß- und Kleinschreibung unterschieden werden soll.
 
 </Option>
 ##### Beispiel
@@ -353,7 +353,7 @@ await browser.ocrSetValue({
 
 <Option type="number" default="2" required="no">
 
-Es werden nur Übereinstimmungen zurückgegeben, deren Länge diesen Wert überschreitet. (Wenn Sie beispielsweise Übereinstimmungen mit nur einem Zeichen im Ergebnis ignorieren möchten, setzen Sie den Wert auf 2.)
+Nur Übereinstimmungen, deren Länge diesen Wert überschreitet, werden zurückgegeben. (Wenn Sie beispielsweise Übereinstimmungen mit einzelnen Zeichen im Ergebnis ignorieren möchten, setzen Sie den Wert auf 2.)
 
 </Option>
 ##### Beispiel
@@ -372,7 +372,7 @@ await browser.ocrSetValue({
 
 <Option type="number" default="false" required="no">
 
-Wenn `true`, setzt die Matching-Funktion die Suche bis zum Ende eines Suchmusters fort, auch wenn bereits eine perfekte Übereinstimmung in der Zeichenfolge gefunden wurde.
+Wenn `true`, setzt die Matching-Funktion die Suche bis zum Ende eines Suchmusters fort, auch wenn bereits eine perfekte Übereinstimmung in der Zeichenkette gefunden wurde.
 
 </Option>
 ##### Beispiel

@@ -1,16 +1,16 @@
 ---
 id: arm64-chromedriver
 title: Chromedriver en ARM64
-description: Cómo WebdriverIO configura Chromedriver en macOS, Windows y Linux ARM64, y qué hacer cuando no existe un driver de Linux ARM64 compatible.
+description: Cómo WebdriverIO configura Chromedriver en ARM64 para macOS, Windows y Linux, y qué hacer cuando no existe un driver de Linux ARM64 compatible.
 ---
 
-WebdriverIO configura Chromedriver automáticamente en ARM64. En **macOS** (Apple silicon), Chrome for Testing publica un Chromedriver nativo `mac-arm64` para cada versión, por lo que no hay nada que configurar. En **Windows 11 on Arm** también funciona sin configuración: Chrome for Testing no publica ningún Chromedriver `win-arm64`, pero su Chromedriver `win64` (x64) se ejecuta bajo la [emulación x64](https://learn.microsoft.com/en-us/windows/arm/apps-on-arm-x86-emulation) transparente de Windows y controla tanto un Chrome ARM64 instalado como el navegador x64 de Chrome for Testing que WebdriverIO descarga en caso contrario. En **Linux ARM64**, las versiones de Chrome anteriores a `153.0.8001.0` requieren más atención, como se explica a continuación.
+WebdriverIO configura Chromedriver automáticamente en ARM64. En **macOS** (Apple silicon), Chrome for Testing publica un Chromedriver nativo `mac-arm64` para cada versión, por lo que no hay nada que configurar. En **Windows 11 on Arm** también funciona sin ninguna configuración: Chrome for Testing no publica ningún Chromedriver `win-arm64`, pero su Chromedriver `win64` (x64) se ejecuta bajo la [emulación x64](https://learn.microsoft.com/en-us/windows/arm/apps-on-arm-x86-emulation) transparente de Windows y controla tanto un Chrome ARM64 instalado como el navegador x64 de Chrome for Testing que WebdriverIO descarga en caso contrario. En **Linux ARM64**, las versiones de Chrome anteriores a `153.0.8001.0` requieren un análisis más detallado, que se describe a continuación.
 
 ## Linux ARM64
 
-Chrome for Testing compila Chromedriver para `linux-arm64` a partir de Chrome **`153.0.8001.0`**, y WebdriverIO lo usa directamente. Para un Chrome o Chromium más antiguo, como uno definido en `goog:chromeOptions.binary`, descarga el Chromedriver incluido en una [versión de Electron](https://github.com/electron/electron/releases) que coincida con la versión mayor de Chromium requerida. Esta descarga proviene de GitHub incluso cuando `CHROMEDRIVER_CDNURL` está definido, porque Chrome for Testing no tiene Chromedriver `linux-arm64` por debajo de `153.0.8001.0` que un mirror pueda servir; sin conexión, usa el Chromium y el driver de tu distribución como se muestra [más abajo](#no-electron-release-ships-a-matching-chromedriver).
+Chrome for Testing compila Chromedriver para `linux-arm64` a partir de Chrome **`153.0.8001.0`**, y WebdriverIO lo utiliza directamente. Para un Chrome o Chromium más antiguo, como uno establecido en `goog:chromeOptions.binary`, descarga el Chromedriver incluido en una [versión de Electron](https://github.com/electron/electron/releases) que coincida con la versión mayor de Chromium requerida. Esta descarga proviene de GitHub incluso cuando `CHROMEDRIVER_CDNURL` está configurado, ya que Chrome for Testing no tiene ningún Chromedriver `linux-arm64` anterior a `153.0.8001.0` que un mirror pueda servir; sin conexión, utiliza el Chromium y el driver de tu distribución como se muestra [más abajo](#no-electron-release-ships-a-matching-chromedriver).
 
-Chrome for Testing tampoco tiene compilaciones del navegador para `linux-arm64` anteriores a `153.0.8001.0`, así que fija `browserVersion` por debajo de esa versión solo junto con `goog:chromeOptions.binary` apuntando a un navegador ARM64.
+Chrome for Testing tampoco tiene compilaciones del navegador para `linux-arm64` anteriores a `153.0.8001.0`, por lo que solo debes fijar `browserVersion` por debajo de esa versión junto con `goog:chromeOptions.binary` apuntando a un navegador ARM64.
 
 ## Aplicaciones Electron
 
@@ -29,7 +29,7 @@ Chrome for Testing has no linux-arm64 Chromedriver before v153.0.8001.0, and no 
 Para resolverlo:
 
 - **Usa Chrome/Chromium `153.0.8001.0` o posterior** para que Chrome for Testing sirva el driver directamente.
-- **En Debian, usa su Chromium y su driver**, una pareja arm64 compatible:
+- **En Debian, usa su Chromium y su driver**, un par arm64 compatible:
   ```bash
   sudo apt-get install -y chromium chromium-driver
   ```
@@ -47,5 +47,5 @@ Para resolverlo:
 
 ## Relacionado
 
-- [Driver Binaries](driverbinaries): cómo WebdriverIO descarga y almacena en caché los drivers de navegador, incluida la alternativa cuando Chrome for Testing falla.
+- [Driver Binaries](driverbinaries): cómo WebdriverIO descarga y almacena en caché los drivers de navegador, incluido el mecanismo alternativo cuando Chrome for Testing falla.
 - [Capabilities](capabilities#wdioelectronversion): la opción `wdio:electronVersion`.

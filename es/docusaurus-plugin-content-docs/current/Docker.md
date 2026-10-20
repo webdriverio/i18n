@@ -4,7 +4,7 @@ title: Docker
 description: "Ejecuta tu suite de pruebas de WebdriverIO dentro de un contenedor Docker con un navegador preinstalado para obtener resultados consistentes en todas las máquinas."
 ---
 
-Docker es una potente tecnología de contenedorización que permite encapsular tu suite de pruebas en un contenedor que se comporta igual en todos los sistemas. Esto puede evitar inestabilidad debido a diferentes versiones de navegador o plataforma. Para ejecutar tus pruebas dentro de un contenedor, crea un `Dockerfile` en el directorio de tu proyecto, por ejemplo:
+Docker es una potente tecnología de contenedorización que permite encapsular tu suite de pruebas en un contenedor que se comporta igual en todos los sistemas. Esto puede evitar inestabilidad debida a diferentes versiones de navegador o plataforma. Para ejecutar tus pruebas dentro de un contenedor, crea un `Dockerfile` en el directorio de tu proyecto, por ejemplo:
 
 ```Dockerfile
 FROM selenium/standalone-chrome:134.0-20250323 # Cambia el navegador y la versión según tus necesidades
@@ -16,7 +16,7 @@ RUN npm install
 CMD npx wdio
 ```
 
-Asegúrate de no incluir tus `node_modules` en tu imagen de Docker y de que estos se instalen al construir la imagen. Para ello, añade un archivo `.dockerignore` con el siguiente contenido:
+Asegúrate de no incluir tu `node_modules` en tu imagen de Docker y de que se instalen al construir la imagen. Para ello, añade un archivo `.dockerignore` con el siguiente contenido:
 
 ```
 node_modules
@@ -62,4 +62,15 @@ Luego, para ejecutar las pruebas, ejecuta:
 docker run -it mytest
 ```
 
-Para obtener más información sobre cómo configurar la imagen de Docker, consulta la [documentación de Docker](https://docs.docker.com/).
+Para más información sobre cómo configurar la imagen de Docker, consulta la [documentación de Docker](https://docs.docker.com/).
+
+## Imágenes en las que WebdriverIO descarga el navegador
+
+Cuando la imagen no tiene navegador, WebdriverIO descarga por sí mismo Chrome, Chromium, Firefox y Chromedriver. Chrome, Chromium y Chromedriver vienen como archivos zip, y WebdriverIO los extrae con el comando `unzip` en Linux y macOS (`tar.exe` o PowerShell en Windows). Las imágenes slim, como `node:24-slim`, y las imágenes mínimas de Alpine no tienen `unzip`, así que instálalo en tu `Dockerfile`:
+
+```Dockerfile
+FROM node:24-slim
+RUN apt-get update && apt-get install -y --no-install-recommends unzip && rm -rf /var/lib/apt/lists/*
+```
+
+En Alpine, usa `RUN apk add --no-cache unzip`. Sin él, la descarga falla con `Extraction failed: no zip archiver is available`.

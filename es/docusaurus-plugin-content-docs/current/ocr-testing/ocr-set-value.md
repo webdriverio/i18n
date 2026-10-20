@@ -10,7 +10,7 @@ Envía una secuencia de pulsaciones de teclas a un elemento. Este comando:
 -   pondrá el foco en el campo haciendo clic en él
 -   establecerá el valor en el campo
 
-El comando buscará el texto proporcionado e intentará encontrar una coincidencia basada en la lógica difusa de [Fuse.js](https://fusejs.io/). Esto significa que, si proporcionas un selector con un error tipográfico o el texto encontrado no coincide al 100%, aun así intentará devolverte un elemento. Consulta los [logs](#logs) a continuación.
+El comando buscará el texto proporcionado e intentará encontrar una coincidencia basada en la lógica difusa de [Fuse.js](https://fusejs.io/). Esto significa que, si proporcionas un selector con un error tipográfico o si el texto encontrado no coincide al 100%, aun así intentará devolverte un elemento. Consulta los [logs](#logs) a continuación.
 
 ## Uso
 
@@ -69,7 +69,7 @@ await browser.ocrSetValue({
 
 <Option type="boolean" default="false" required="no">
 
-Indica si el valor también debe enviarse en el campo de entrada. Esto significa que se enviará un "ENTER" al final de la cadena.
+Si el valor también debe enviarse en el campo de entrada. Esto significa que se enviará un "ENTER" al final de la cadena.
 
 </Option>
 #### Ejemplo
@@ -103,7 +103,7 @@ await browser.ocrSetValue({
 
 <Option type="number" default="0.25" required="no">
 
-Cuanto mayor sea el contraste, más oscura será la imagen, y viceversa. Esto puede ayudar a encontrar texto en una imagen. Acepta valores entre `-1` y `1`.
+Cuanto mayor sea el contraste, más oscura será la imagen y viceversa. Esto puede ayudar a encontrar texto en una imagen. Acepta valores entre `-1` y `1`.
 
 </Option>
 #### Ejemplo
@@ -156,7 +156,7 @@ await browser.ocrSetValue({
 
 <Option type="string" default="eng" required="No">
 
-El idioma que Tesseract reconocerá. Puedes encontrar más información [aquí](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) y los idiomas compatibles [aquí](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
+El idioma que reconocerá Tesseract. Puedes encontrar más información [aquí](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) y los idiomas compatibles [aquí](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
 
 </Option>
 #### Ejemplo
@@ -175,7 +175,7 @@ await browser.ocrSetValue({
 
 <Option type="object" required="no">
 
-Puedes hacer clic en la pantalla de forma relativa al elemento coincidente. Esto se puede hacer en función de píxeles relativos `above`, `right`, `below` o `left` del elemento coincidente
+Puedes hacer clic en la pantalla de forma relativa al elemento coincidente. Esto se puede hacer en base a píxeles relativos `above` (arriba), `right` (a la derecha), `below` (debajo) o `left` (a la izquierda) del elemento coincidente
 
 :::note
 
@@ -277,7 +277,7 @@ Puedes modificar la lógica difusa para encontrar texto con las siguientes opcio
 
 <Option type="number" default="100" required="no">
 
-Determina qué tan cerca debe estar la coincidencia de la ubicación difusa (especificada por location). Una coincidencia exacta de letras que esté a distance caracteres de la ubicación difusa se puntuaría como una falta total de coincidencia. Una distancia de 0 requiere que la coincidencia esté en la ubicación exacta especificada. Una distancia de 1000 requeriría que una coincidencia perfecta estuviera dentro de los 800 caracteres de la ubicación para ser encontrada usando un umbral de 0.8.
+Determina qué tan cerca debe estar la coincidencia de la ubicación difusa (especificada por location). Una coincidencia exacta de letras que esté a distance caracteres de distancia de la ubicación difusa se puntuaría como una falta total de coincidencia. Una distance de 0 requiere que la coincidencia esté en la ubicación exacta especificada. Una distance de 1000 requeriría que una coincidencia perfecta estuviera dentro de 800 caracteres de la ubicación para ser encontrada usando un threshold de 0.8.
 
 </Option>
 ##### Ejemplo
@@ -315,7 +315,7 @@ await browser.ocrSetValue({
 
 <Option type="number" default="0.6" required="no">
 
-En qué punto se rinde el algoritmo de coincidencia. Un umbral de 0 requiere una coincidencia perfecta (tanto de letras como de ubicación), un umbral de 1.0 coincidiría con cualquier cosa.
+En qué punto se rinde el algoritmo de coincidencia. Un threshold de 0 requiere una coincidencia perfecta (tanto de letras como de ubicación), un threshold de 1.0 coincidiría con cualquier cosa.
 
 </Option>
 ##### Ejemplo
@@ -334,7 +334,7 @@ await browser.ocrSetValue({
 
 <Option type="boolean" default="false" required="no">
 
-Indica si la búsqueda debe distinguir entre mayúsculas y minúsculas.
+Si la búsqueda debe distinguir entre mayúsculas y minúsculas.
 
 </Option>
 ##### Ejemplo
@@ -372,7 +372,7 @@ await browser.ocrSetValue({
 
 <Option type="number" default="false" required="no">
 
-Cuando es `true`, la función de coincidencia continuará hasta el final de un patrón de búsqueda incluso si ya se ha localizado una coincidencia perfecta en la cadena.
+Cuando es `true`, la función de coincidencia continuará hasta el final de un patrón de búsqueda incluso si ya se ha encontrado una coincidencia perfecta en la cadena.
 
 </Option>
 ##### Ejemplo

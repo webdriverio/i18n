@@ -1,7 +1,7 @@
 ---
 id: faq
 title: FAQ
-description: "Finden Sie Antworten auf häufige Fragen zur Installation, Verwendung und Fehlerbehebung des WebdriverIO MCP-Servers für Browser- und Mobile-Automatisierung."
+description: "Finden Sie Antworten auf häufige Fragen zur Installation, Nutzung und Fehlerbehebung des WebdriverIO MCP-Servers für Browser- und Mobile-Automatisierung."
 ---
 
 Häufig gestellte Fragen zu WebdriverIO MCP.
@@ -15,27 +15,27 @@ MCP (Model Context Protocol) ist ein offenes Protokoll, das es KI-Assistenten wi
 ### Was kann ich mit WebdriverIO MCP automatisieren?
 
 Sie können Folgendes automatisieren:
--   **Desktop-Browser** (Chrome, Firefox, Edge, Safari) – Navigation, Klicken, Tippen, Screenshots
--   **iOS-Apps** – auf Simulatoren oder echten Geräten
--   **Android-Apps** – auf Emulatoren oder echten Geräten
--   **Hybride Apps** – Wechsel zwischen nativen und Web-Kontexten
--   **Cloud-Geräte** – über die Geräte-Clouds von BrowserStack, Sauce Labs, TestMu und TestingBot
+-   **Desktop-Browser** (Chrome, Firefox, Edge, Safari) - Navigation, Klicken, Tippen, Screenshots
+-   **iOS-Apps** - auf Simulatoren oder echten Geräten
+-   **Android-Apps** - auf Emulatoren oder echten Geräten
+-   **Hybrid-Apps** - Wechsel zwischen nativen und Web-Kontexten
+-   **Cloud-Geräte** - über die Geräte-Clouds von BrowserStack, Sauce Labs, TestMu und TestingBot
 
 ### Muss ich Code schreiben?
 
 Nein! Das ist der Hauptvorteil von MCP. Sie können in natürlicher Sprache beschreiben, was Sie tun möchten, und Claude verwendet die passenden Tools, um die Aufgabe zu erledigen.
 
 **Beispiel-Prompts:**
--   "Open Chrome and navigate to webdriver.io"
--   "Click the Get Started button"
--   "Take a screenshot of the current page"
--   "Start my iOS app and log in as test user"
+-   "Öffne Chrome und navigiere zu webdriver.io"
+-   "Klicke auf den Get Started-Button"
+-   "Mache einen Screenshot der aktuellen Seite"
+-   "Starte meine iOS-App und melde dich als Testbenutzer an"
 
 ## Installation & Einrichtung
 
 ### Wie installiere ich WebdriverIO MCP?
 
-Sie müssen es nicht separat installieren. Der MCP-Server wird automatisch über npx ausgeführt, wenn Sie ihn in Ihrem Harness konfigurieren. Fügen Sie dies zu Ihrer Konfiguration hinzu:
+Sie müssen es nicht separat installieren. Der MCP-Server wird automatisch über npx ausgeführt, wenn Sie ihn in Ihrem Harness konfigurieren. Fügen Sie Folgendes zu Ihrer Konfiguration hinzu:
 
 ```json
 {
@@ -62,7 +62,7 @@ Nein. Für die Browser-Automatisierung muss lediglich der Zielbrowser installier
 Ja. Die Mobile-Automatisierung erfordert:
 1. Einen laufenden Appium-Server (`npm install -g appium && appium`)
 2. Installierte Plattformtreiber (`appium driver install xcuitest` für iOS, `appium driver install uiautomator2` für Android)
-3. Passende Entwicklungswerkzeuge (Xcode für iOS, Android SDK für Android)
+3. Passende Entwicklungstools (Xcode für iOS, Android SDK für Android)
 
 ## Browser-Automatisierung
 
@@ -77,31 +77,31 @@ Chrome, Firefox, Edge und Safari werden alle unterstützt. Verwenden Sie den Par
 
 ### Kann ich den Browser im Headless-Modus ausführen?
 
-Ja. Headless ist der Standard (`headless: true`). Bitten Sie Claude, den Browser im Headed-Modus auszuführen, wenn Sie ihn sehen möchten:
+Ja. Headless ist die Standardeinstellung (`headless: true`). Bitten Sie Claude, den Browser im Headed-Modus auszuführen, wenn Sie ihn sehen möchten:
 
-"Start Chrome in headed mode (not headless)"
+"Starte Chrome im Headed-Modus (nicht headless)"
 
 ### Kann ich die Größe des Browserfensters festlegen?
 
 Ja. Sie können beim Starten des Browsers Abmessungen angeben:
 
-"Start Chrome with a window size of 1920x1080"
+"Starte Chrome mit einer Fenstergröße von 1920x1080"
 
 Unterstützte Abmessungen: 400–3840 Pixel Breite, 400–2160 Pixel Höhe. Standard ist 1920×1080.
 
-### Kann ich den Browser starten und in einem Schritt navigieren?
+### Kann ich den Browser in einem Schritt starten und navigieren?
 
 Ja! Verwenden Sie den Parameter `navigationUrl`:
 
-"Start Chrome and navigate to https://webdriver.io"
+"Starte Chrome und navigiere zu https://webdriver.io"
 
 Das ist effizienter, als den Browser zu starten und anschließend separat zu navigieren.
 
-### Wie erstelle ich Screenshots?
+### Wie mache ich Screenshots?
 
 Fragen Sie einfach:
 
-"Take a screenshot of the current page"
+"Mache einen Screenshot der aktuellen Seite"
 
 Screenshots werden automatisch optimiert:
 - Skaliert auf maximal 2000px Kantenlänge
@@ -110,27 +110,27 @@ Screenshots werden automatisch optimiert:
 
 ### Kann ich mit iframes interagieren?
 
-Ja. Verwenden Sie das Tool `switch_frame`, um per CSS- oder XPath-Selektor in einen iframe zu wechseln. Alle nachfolgenden Aufrufe von `click_element`, `set_value` und `get_elements` arbeiten innerhalb des gewechselten Frames. Lassen Sie den Selektor weg, um zum obersten Frame zurückzukehren. Iframes müssen denselben Ursprung wie die Hauptseite haben.
+Ja. Verwenden Sie das Tool `switch_frame`, um per CSS- oder XPath-Selektor in einen iframe zu wechseln. Alle nachfolgenden Aufrufe von `click_element`, `set_value` und `get_elements` werden innerhalb des gewechselten Frames ausgeführt. Lassen Sie den Selektor weg, um zum Frame der obersten Ebene zurückzukehren. iframes müssen denselben Ursprung wie die Hauptseite haben.
 
 ### Kann ich benutzerdefiniertes JavaScript ausführen?
 
 Ja! Verwenden Sie das Tool `execute_script`:
 
-"Execute script to get the page title"
-"Execute script: return document.querySelectorAll('button').length"
+"Führe ein Skript aus, um den Seitentitel abzurufen"
+"Führe Skript aus: return document.querySelectorAll('button').length"
 
 ### Kann ich mich an eine bestehende Chrome-Sitzung anhängen?
 
-Ja. Verwenden Sie zuerst `launch_chrome` (öffnet Chrome mit Remote-Debugging) und dann `start_session` mit `attach: true`.
+Ja. Verwenden Sie zuerst `launch_chrome` (öffnet Chrome mit Remote-Debugging) und anschließend `start_session` mit `attach: true`.
 
-"Launch Chrome with remote debugging, then attach to it"
+"Starte Chrome mit Remote-Debugging und hänge dich dann daran an"
 
 ### Kann ich mit mehreren Tabs arbeiten?
 
 Ja. Verwenden Sie `get_tabs`, um geöffnete Tabs aufzulisten, und `switch_tab`, um einen bestimmten Tab zu fokussieren:
 
-"Get all open tabs"
-"Switch to the tab at index 1"
+"Rufe alle geöffneten Tabs ab"
+"Wechsle zum Tab mit Index 1"
 
 ## Mobile-Automatisierung
 
@@ -138,30 +138,30 @@ Ja. Verwenden Sie `get_tabs`, um geöffnete Tabs aufzulisten, und `switch_tab`, 
 
 Verwenden Sie `start_session` mit der entsprechenden Plattform:
 
-"Start my iOS app located at /path/to/MyApp.app on the iPhone 15 simulator"
+"Starte meine iOS-App unter /path/to/MyApp.app auf dem iPhone 15-Simulator"
 
-"Start my Android app at /path/to/app.apk on the Pixel 7 emulator"
+"Starte meine Android-App unter /path/to/app.apk auf dem Pixel 7-Emulator"
 
 Oder für eine bereits installierte App:
 
-"Start the app with noReset enabled on the iPhone 15 simulator"
+"Starte die App mit aktiviertem noReset auf dem iPhone 15-Simulator"
 
 ### Kann ich auf echten Geräten testen?
 
 Ja! Für echte Geräte benötigen Sie die UDID des Geräts:
 
--   **iOS:** Gerät verbinden, Finder öffnen, auf das Gerät klicken und auf die Seriennummer klicken, um die UDID anzuzeigen
+-   **iOS:** Gerät verbinden, Finder öffnen, auf das Gerät klicken, auf die Seriennummer klicken, um die UDID anzuzeigen
 -   **Android:** `adb devices` im Terminal ausführen
 
 Fragen Sie dann:
 
-"Start my iOS app on the real device with UDID abc123..."
+"Starte meine iOS-App auf dem echten Gerät mit der UDID abc123..."
 
 ### Wie gehe ich mit Berechtigungsdialogen um?
 
 Standardmäßig werden Berechtigungen automatisch erteilt (`autoGrantPermissions: true`). Wenn Sie Berechtigungsabläufe testen müssen, können Sie dies deaktivieren:
 
-"Start my app without automatically granting permissions"
+"Starte meine App, ohne Berechtigungen automatisch zu erteilen"
 
 ### Welche Gesten werden unterstützt?
 
@@ -175,30 +175,30 @@ Hinweis: `long_press` ist über `execute_script` mit Appium-Mobile-Befehlen verf
 
 Verwenden Sie Wischgesten:
 
-"Swipe up to scroll down"
-"Swipe down to scroll up"
+"Wische nach oben, um nach unten zu scrollen"
+"Wische nach unten, um nach oben zu scrollen"
 
 ### Kann ich das Gerät drehen?
 
 Ja:
 
-"Rotate the device to landscape"
-"Rotate the device to portrait"
+"Drehe das Gerät ins Querformat"
+"Drehe das Gerät ins Hochformat"
 
-### Wie gehe ich mit hybriden Apps um?
+### Wie gehe ich mit Hybrid-Apps um?
 
 Bei Apps mit Webviews können Sie den Kontext wechseln:
 
-"Get available contexts"
-"Switch to the webview context"
-"Switch back to native context"
+"Rufe die verfügbaren Kontexte ab"
+"Wechsle zum Webview-Kontext"
+"Wechsle zurück zum nativen Kontext"
 
 ### Kann ich Appium-Mobile-Befehle ausführen?
 
 Ja! Verwenden Sie das Tool `execute_script`:
 
 ```text
-Execute script "mobile: pressKey" with args [{ keycode: 4 }]  // Press BACK on Android
+Execute script "mobile: pressKey" with args [{ keycode: 4 }]  // Drückt BACK auf Android
 Execute script "mobile: activateApp" with args [{ bundleId: "com.example.app" }]
 Execute script "mobile: terminateApp" with args [{ bundleId: "com.example.app" }]
 ```
@@ -207,40 +207,40 @@ Execute script "mobile: terminateApp" with args [{ bundleId: "com.example.app" }
 
 ### Woher weiß der KI-Assistent, mit welchem Element er interagieren soll?
 
-Er verwendet die Ressource `wdio://session/current/elements` oder das Tool `get_elements`, um interaktive Elemente auf der Seite bzw. dem Bildschirm zu identifizieren. Jedes Element wird mit sofort einsetzbaren Selektoren geliefert.
+Er verwendet die Ressource `wdio://session/current/elements` oder das Tool `get_elements`, um interaktive Elemente auf der Seite bzw. dem Bildschirm zu identifizieren. Jedes Element wird mit sofort verwendbaren Selektoren geliefert.
 
 ### Was ist, wenn sich zu viele Elemente auf der Seite befinden?
 
 Verwenden Sie Paginierung, um große Elementlisten zu verwalten:
 
-"Get the first 20 elements"
-"Get elements with offset 20 and limit 20"
+"Rufe die ersten 20 Elemente ab"
+"Rufe Elemente mit Offset 20 und Limit 20 ab"
 
 Die Antwort enthält `total`, `showing` und `hasMore`, um die Navigation durch die Elemente zu erleichtern.
 
 ### Was ist, wenn Claude auf das falsche Element klickt?
 
-Sie können präziser sein:
+Sie können genauer sein:
 
--   Exakten Text angeben: "Click the button that says 'Submit Order'"
--   Selektor angeben: "Click the element with selector #submit-btn"
--   Accessibility-ID angeben: "Click the element with accessibility ID loginButton"
+-   Exakten Text angeben: "Klicke auf den Button mit der Aufschrift 'Submit Order'"
+-   Selektor angeben: "Klicke auf das Element mit dem Selektor #submit-btn"
+-   Accessibility ID angeben: "Klicke auf das Element mit der Accessibility ID loginButton"
 
-### Was ist die beste Selektor-Strategie für Mobile?
+### Was ist die beste Selektorstrategie für Mobile?
 
-1. **Accessibility ID** (am besten) – `~loginButton`
-2. **Resource ID** (Android) – `id=login_button`
-3. **Predicate String** (iOS) – `-ios predicate string:label == "Login"`
-4. **XPath** (letzter Ausweg) – langsamer, funktioniert aber überall
+1. **Accessibility ID** (am besten) - `~loginButton`
+2. **Resource ID** (Android) - `id=login_button`
+3. **Predicate String** (iOS) - `-ios predicate string:label == "Login"`
+4. **XPath** (letzter Ausweg) - langsamer, funktioniert aber überall
 
-### Was ist der Accessibility-Tree und wann sollte ich ihn verwenden?
+### Was ist der Accessibility Tree und wann sollte ich ihn verwenden?
 
-Der Accessibility-Tree liefert semantische Informationen über Seitenelemente (Rollen, Namen, Zustände). Verwenden Sie `get_accessibility_tree`, wenn:
+Der Accessibility Tree liefert semantische Informationen über Seitenelemente (Rollen, Namen, Zustände). Verwenden Sie `get_accessibility_tree`, wenn:
 - `get_elements` nicht die erwarteten Elemente zurückgibt
 - Sie Elemente anhand ihrer Accessibility-Rolle finden müssen (button, link, textbox usw.)
 - Sie detaillierte semantische Informationen über Elemente benötigen
 
-"Get accessibility tree filtered to button and link roles"
+"Rufe den Accessibility Tree gefiltert nach den Rollen button und link ab"
 
 ## Sitzungsverwaltung
 
@@ -260,7 +260,7 @@ Das hängt vom Sitzungstyp und den Einstellungen ab:
 
 Ja! Verwenden Sie die Option `noReset`:
 
-"Start my app with noReset enabled"
+"Starte meine App mit aktiviertem noReset"
 
 Dadurch bleiben Anmeldestatus, Einstellungen und andere App-Daten erhalten.
 
@@ -269,15 +269,15 @@ Dadurch bleiben Anmeldestatus, Einstellungen und andere App-Daten erhalten.
 -   **Schließen (Close):** Beendet den Browser bzw. die App vollständig
 -   **Trennen (Detach):** Trennt die Automatisierung, lässt den Browser bzw. die App aber weiterlaufen
 
-Trennen ist nützlich, wenn Sie den Zustand nach der Automatisierung manuell untersuchen möchten.
+Trennen ist nützlich, wenn Sie den Zustand nach der Automatisierung manuell überprüfen möchten.
 
-### Meine Sitzung läuft beim Debuggen ständig in einen Timeout
+### Meine Sitzung läuft beim Debuggen ständig ab
 
-Erhöhen Sie den Befehls-Timeout:
+Erhöhen Sie das Befehls-Timeout:
 
-"Start my app with newCommandTimeout of 300 seconds"
+"Starte meine App mit einem newCommandTimeout von 300 Sekunden"
 
-Der Standard ist 300 Sekunden. Für sehr lange Debugging-Sitzungen versuchen Sie 600 Sekunden.
+Der Standardwert beträgt 300 Sekunden. Für sehr lange Debugging-Sitzungen versuchen Sie 600 Sekunden.
 
 ## Fehlerbehebung
 
@@ -285,16 +285,16 @@ Der Standard ist 300 Sekunden. Für sehr lange Debugging-Sitzungen versuchen Sie
 
 Das bedeutet, dass keine aktive Sitzung existiert. Starten Sie zuerst eine Browser- oder App-Sitzung:
 
-"Start Chrome and navigate to google.com"
+"Starte Chrome und navigiere zu google.com"
 
 ### Fehler "Element not found"
 
-Das Element ist möglicherweise nicht sichtbar oder hat einen anderen Selektor. Versuchen Sie:
+Das Element ist möglicherweise nicht sichtbar oder hat einen anderen Selektor. Versuchen Sie Folgendes:
 
-1. Claude zu bitten, zuerst alle sichtbaren Elemente abzurufen
-2. Einen spezifischeren Selektor anzugeben
-3. Zu warten, bis die Seite bzw. App vollständig geladen ist
-4. `inViewportOnly: false` zu verwenden, um Elemente außerhalb des sichtbaren Bereichs zu finden
+1. Bitten Sie Claude, zuerst alle sichtbaren Elemente abzurufen
+2. Geben Sie einen spezifischeren Selektor an
+3. Warten Sie, bis die Seite bzw. App vollständig geladen ist
+4. Verwenden Sie `inViewportOnly: false`, um Elemente außerhalb des sichtbaren Bereichs zu finden
 
 ### Browser startet nicht
 
@@ -304,7 +304,7 @@ Das Element ist möglicherweise nicht sichtbar oder hat einen anderen Selektor. 
 
 ### Appium-Verbindung fehlgeschlagen
 
-Dies ist das häufigste Problem beim Starten der Mobile-Automatisierung.
+Dies ist das häufigste Problem beim Start der Mobile-Automatisierung.
 
 1. **Prüfen Sie, ob Appium läuft**: `curl http://localhost:4723/status`
 2. Starten Sie Appium bei Bedarf: `appium`
@@ -316,21 +316,21 @@ Der MCP-Server erfordert, dass Appium läuft, bevor mobile Sitzungen gestartet w
 ```sh
 appium
 ```
-Zukünftige Versionen enthalten möglicherweise eine automatische Verwaltung des Appium-Dienstes.
+Zukünftige Versionen könnten eine automatische Verwaltung des Appium-Dienstes enthalten.
 :::
 
 ### iOS-Simulator startet nicht
 
 1. Stellen Sie sicher, dass Xcode installiert ist: `xcode-select --install`
-2. Verfügbare Simulatoren auflisten: `xcrun simctl list devices`
-3. Prüfen Sie Console.app auf spezifische Simulator-Fehler
+2. Listen Sie verfügbare Simulatoren auf: `xcrun simctl list devices`
+3. Suchen Sie in Console.app nach spezifischen Simulatorfehlern
 
 ### Android-Emulator startet nicht
 
 1. Setzen Sie `ANDROID_HOME`: `export ANDROID_HOME=$HOME/Library/Android/sdk`
-2. Emulatoren prüfen: `emulator -list-avds`
-3. Emulator manuell starten: `emulator -avd <avd-name>`
-4. Prüfen, ob das Gerät verbunden ist: `adb devices`
+2. Prüfen Sie die Emulatoren: `emulator -list-avds`
+3. Starten Sie den Emulator manuell: `emulator -avd <avd-name>`
+4. Prüfen Sie, ob das Gerät verbunden ist: `adb devices`
 
 ### Screenshots funktionieren nicht
 
@@ -338,26 +338,26 @@ Zukünftige Versionen enthalten möglicherweise eine automatische Verwaltung des
 2. Versuchen Sie beim Browser eine andere Seite (manche Seiten blockieren Screenshots)
 3. Prüfen Sie die Logs von Claude Desktop auf Fehler
 
-Screenshots werden automatisch auf maximal 1MB komprimiert, sodass auch große Screenshots funktionieren, jedoch möglicherweise in geringerer Qualität.
+Screenshots werden automatisch auf maximal 1MB komprimiert, sodass große Screenshots funktionieren, aber möglicherweise eine geringere Qualität aufweisen.
 
 ## Performance
 
 ### Warum ist die Mobile-Automatisierung langsam?
 
-Mobile-Automatisierung umfasst:
+Die Mobile-Automatisierung umfasst:
 1. Netzwerkkommunikation mit dem Appium-Server
 2. Kommunikation von Appium mit dem Gerät bzw. Simulator
 3. Rendering und Reaktion des Geräts
 
-Tipps für schnellere Automatisierung:
+Tipps für eine schnellere Automatisierung:
 -   Verwenden Sie für die Entwicklung Emulatoren/Simulatoren statt echter Geräte
--   Verwenden Sie Accessibility-IDs statt XPath
+-   Verwenden Sie Accessibility IDs statt XPath
 -   Aktivieren Sie `inViewportOnly: true` für die Elementerkennung
 -   Verwenden Sie Paginierung (`limit`), um den Token-Verbrauch zu reduzieren
 
 ### Wie kann ich die Elementerkennung beschleunigen?
 
-Der MCP-Server optimiert die Elementerkennung bereits durch das Parsen des XML-Seitenquelltexts (2 HTTP-Aufrufe gegenüber 600+ bei herkömmlichen Elementabfragen). Weitere Tipps:
+Der MCP-Server optimiert die Elementerkennung bereits durch das Parsen des XML-Page-Source (2 HTTP-Aufrufe gegenüber 600+ bei herkömmlichen Elementabfragen). Weitere Tipps:
 
 -   Setzen Sie `inViewportOnly: true`, um Elemente außerhalb des sichtbaren Bereichs herauszufiltern
 -   Setzen Sie `includeContainers: false` (Standard)
@@ -378,10 +378,10 @@ Diese Optimierung verkürzt die Verarbeitungszeit und stellt sicher, dass Claude
 ### Was sind die aktuellen Einschränkungen?
 
 -   **Einzelne Sitzung:** Nur ein Browser bzw. eine App gleichzeitig
--   **iframe-Unterstützung:** iframes mit demselben Ursprung werden über `switch_frame` unterstützt; iframes mit anderem Ursprung sind aufgrund von Browser-Sicherheitsbeschränkungen nicht zugänglich
--   **Datei-Uploads:** Nicht direkt über Tools unterstützt
+-   **iframe-Unterstützung:** iframes mit gleichem Ursprung werden über `switch_frame` unterstützt; Cross-Origin-iframes sind aufgrund von Browser-Sicherheitsbeschränkungen nicht zugänglich
+-   **Datei-Uploads:** Werden über Tools nicht direkt unterstützt
 -   **Audio/Video:** Keine Interaktion mit der Medienwiedergabe möglich
--   **Browser-Erweiterungen:** Nicht unterstützt
+-   **Browser-Erweiterungen:** Werden nicht unterstützt
 
 ### Kann ich dies für Produktionstests verwenden?
 
@@ -391,9 +391,9 @@ WebdriverIO MCP ist für interaktive, KI-gestützte Automatisierung konzipiert. 
 
 ### Sind meine Daten sicher?
 
-Der MCP-Server läuft lokal auf Ihrem Rechner. Die gesamte Automatisierung erfolgt über lokale Browser- bzw. Appium-Verbindungen. Es werden keine Daten an externe Server gesendet, außer an die, zu denen Sie explizit navigieren.
+Der MCP-Server läuft lokal auf Ihrem Rechner. Die gesamte Automatisierung erfolgt über lokale Browser- bzw. Appium-Verbindungen. Es werden keine Daten an externe Server gesendet, abgesehen von denen, zu denen Sie explizit navigieren.
 
-Im HTTP-Transportmodus (`--http`) akzeptiert der Server standardmäßig nur Verbindungen von `localhost`; verwenden Sie `--allowedHosts` und `--allowedOrigins`, um den Zugriff zu steuern. Weitere Details finden Sie unter [Transport](./transport).
+Bei Verwendung des HTTP-Transportmodus (`--http`) akzeptiert der Server standardmäßig nur Verbindungen von `localhost`; verwenden Sie `--allowedHosts` und `--allowedOrigins`, um den Zugriff zu steuern. Weitere Details finden Sie unter [Transport](./transport).
 
 ### Kann Claude auf meine Passwörter zugreifen?
 
@@ -408,10 +408,10 @@ Claude kann Seiteninhalte sehen und mit Elementen interagieren, aber:
 
 Besuchen Sie das [GitHub-Repository](https://github.com/webdriverio/mcp), um:
 -   Fehler zu melden
--   Funktionen anzufragen
+-   Features anzufragen
 -   Pull Requests einzureichen
 
-### Wo bekomme ich Hilfe?
+### Wo erhalte ich Hilfe?
 
 -   [WebdriverIO Discord](https://discord.webdriver.io/)
 -   [GitHub Issues](https://github.com/webdriverio/mcp/issues)

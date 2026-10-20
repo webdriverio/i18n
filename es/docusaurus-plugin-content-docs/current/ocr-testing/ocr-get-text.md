@@ -4,7 +4,7 @@ title: ocrGetText
 description: "Lee el texto que se muestra en la pantalla o en un área específica con ocrGetText del servicio OCR."
 ---
 
-Obtiene el texto de una imagen.
+Obtén el texto de una imagen.
 
 ### Uso
 
@@ -22,7 +22,7 @@ console.log("result = ", JSON.stringify(result, null, 2));
 result = "VS docs API Blog Contribute Community Sponsor v8 *Engishy CV} Q OQ G asearch Next-gen browser and mobile automation Welcome! How can | help? i test framework for Node.js Get Started Why WebdriverI0? View on GitHub Watch on YouTube"
 ```
 
-### Registros
+### Logs
 
 ```log
 [0-0] 2024-05-25T17:38:25.970Z INFO webdriver: COMMAND ocrGetText()
@@ -75,7 +75,7 @@ await browser.ocrGetText({
 
 <Option type="string" default="eng" required="No">
 
-El idioma que reconocerá Tesseract. Puedes encontrar más información [aquí](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) y los idiomas compatibles [aquí](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
+El idioma que Tesseract reconocerá. Puedes encontrar más información [aquí](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) y los idiomas compatibles [aquí](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
 
 </Option>
 #### Ejemplo

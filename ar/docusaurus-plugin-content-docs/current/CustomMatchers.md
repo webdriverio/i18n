@@ -4,23 +4,23 @@ title: المطابقات المخصصة
 description: "سجّل مطابقات مخصصة للمتصفح والعناصر باستخدام expect.extend وأضف أنواع TypeScript الخاصة بها."
 ---
 
-يستخدم WebdriverIO مكتبة تأكيدات [`expect`](https://webdriver.io/docs/api/expect-webdriverio) بأسلوب Jest، تأتي مع ميزات خاصة ومطابقات (matchers) مخصصة لتشغيل اختبارات الويب والهاتف المحمول. ورغم أن مكتبة المطابقات كبيرة، فإنها بالتأكيد لا تغطي جميع الحالات الممكنة. لذلك يمكنك توسيع المطابقات الموجودة بمطابقات مخصصة تُعرّفها بنفسك.
+يستخدم WebdriverIO مكتبة تأكيدات [`expect`](https://webdriver.io/docs/api/expect-webdriverio) بأسلوب Jest، تأتي مع ميزات خاصة ومطابقات مخصصة لتشغيل اختبارات الويب والأجهزة المحمولة. ورغم أن مكتبة المطابقات كبيرة، فإنها بالتأكيد لا تناسب جميع الحالات الممكنة. لذلك يمكنك توسيع المطابقات الموجودة بمطابقات مخصصة تعرّفها بنفسك.
 
 :::warning
 
-رغم أنه لا يوجد حاليًا أي اختلاف في طريقة تعريف المطابقات الخاصة بكائن [`browser`](/docs/api/browser) أو بنسخة من [عنصر](/docs/api/element)، فقد يتغير هذا بالتأكيد في المستقبل. تابع [`webdriverio/expect-webdriverio#1408`](https://github.com/webdriverio/expect-webdriverio/issues/1408) للحصول على مزيد من المعلومات حول هذا التطوير.
+رغم أنه لا يوجد حاليًا أي فرق في طريقة تعريف المطابقات الخاصة بكائن [`browser`](/docs/api/browser) أو بمثيل [element](/docs/api/element)، فإن هذا قد يتغير بالتأكيد في المستقبل. تابع [`webdriverio/expect-webdriverio#1408`](https://github.com/webdriverio/expect-webdriverio/issues/1408) لمزيد من المعلومات حول هذا التطوير.
 
 :::
 
 :::info Jasmine
 
-مع إطار عمل Jasmine، استدعِ `expect.extend` في ملف المواصفات (spec) أو في خطاف `before`، قبل تشغيل الاختبارات. تصبح المطابقات مطابقات Jasmine غير متزامنة، لذا استخدم `await` معها. المطابق الذي يحمل اسم مطابق Jasmine متزامن يعمل مع قيم WebdriverIO فقط، مثل مطابقات WebdriverIO. المطابقات غير المتماثلة المخصصة (`expect.myMatcher()`) غير متاحة. يمكنك أيضًا استخدام `jasmine.addMatchers` لمطابق متزامن أو `jasmine.addAsyncMatchers` لمطابق غير متزامن، راجع [دليل المطابقات المخصصة في Jasmine](https://jasmine.github.io/tutorials/custom_matchers).
+مع إطار عمل Jasmine، استدعِ `expect.extend` في ملف الاختبار أو في خطاف `before`، قبل تشغيل الاختبارات. تصبح المطابقات مطابقات Jasmine غير متزامنة، لذا استخدم `await` معها. المطابق الذي يحمل اسم مطابق Jasmine متزامن يعمل مع قيم WebdriverIO فقط، مثل مطابقات WebdriverIO. المطابقات غير المتماثلة المخصصة (`expect.myMatcher()`) غير متاحة. يمكنك أيضًا استخدام `jasmine.addMatchers` لمطابق متزامن أو `jasmine.addAsyncMatchers` لمطابق غير متزامن، راجع [دليل المطابقات المخصصة في Jasmine](https://jasmine.github.io/tutorials/custom_matchers).
 
 :::
 
 ## مطابقات المتصفح المخصصة
 
-لتسجيل مطابق متصفح مخصص، استدعِ `extend` على كائن `expect` إما في ملف المواصفات مباشرةً أو كجزء من خطاف `before` مثلًا في ملف `wdio.conf.js` الخاص بك:
+لتسجيل مطابق مخصص للمتصفح، استدعِ `extend` على كائن `expect` إما في ملف الاختبار مباشرةً أو كجزء من خطاف `before` مثلًا في ملف `wdio.conf.js` الخاص بك:
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e719632df8f241f923c8d9301aab6bccee5cb109/customMatchers/example.ts#L3-L18
@@ -48,7 +48,7 @@ https://github.com/webdriverio/example-recipes/blob/e719632df8f241f923c8d9301aab
 
 ## دعم TypeScript
 
-إذا كنت تستخدم TypeScript، فهناك خطوة إضافية مطلوبة لضمان أمان الأنواع لمطابقاتك المخصصة. من خلال توسيع واجهة `Matcher` بمطابقاتك المخصصة، تختفي جميع مشكلات الأنواع:
+إذا كنت تستخدم TypeScript، فهناك خطوة إضافية مطلوبة لضمان سلامة الأنواع في مطابقاتك المخصصة. من خلال توسيع واجهة `Matcher` بمطابقاتك المخصصة، تختفي جميع مشكلات الأنواع:
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e719632df8f241f923c8d9301aab6bccee5cb109/customMatchers/example.ts#L40-L47
@@ -60,7 +60,7 @@ https://github.com/webdriverio/example-recipes/blob/e719632df8f241f923c8d9301aab
 declare global {
   namespace ExpectWebdriverIO {
     interface AsymmetricMatchers {
-      myCustomMatcher(value: string): ExpectWebdriverIO.PartialMatcher;
+      myCustomMatcher(value: string): ExpectWebdriverIO.PartialMatcher<string>;
     }
   }
 }

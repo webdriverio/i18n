@@ -1,20 +1,20 @@
 ---
 id: preparing-flutter-application
-title: Vorbereiten der Flutter-App
+title: Vorbereitung der Flutter-App
 description: "Aktivieren Sie die flutter_driver-Erweiterung in einer Flutter-App und erstellen Sie einen Test-Build, damit WebdriverIO und Appium mit ihren Widgets interagieren können."
 ---
 
 Damit WebdriverIO und Appium interne Elemente innerhalb des Flutter-Canvas untersuchen und mit ihnen interagieren können, muss die Anwendung einen Kommunikationskanal bereitstellen. Dies wird erreicht, indem die Test-Erweiterung von Flutter im Quellcode der Anwendung aktiviert wird.
 
-:::info Teilen mit Entwicklungsteams
+:::info Mit Entwicklungsteams teilen
 Automatisierungsingenieure (QAs) haben oft keinen direkten Zugriff auf die Codebasis der Flutter-App. Wenn Sie den App-Code nicht selbst pflegen, teilen Sie diese Seite mit Ihrem Entwicklungsteam, damit es die `flutter_driver`-Erweiterung hinzufügen und einen Test-Build (`.apk`, `.app` oder `.ipa`) bereitstellen kann.
 :::
 
 :::note Legacy-Erweiterung
-Der von Flutter empfohlene Testansatz für neuere Apps ist das `integration_test`-Paket. Der Appium Flutter Driver integriert sich jedoch mit der Legacy-Erweiterung `flutter_driver`, weshalb dieser Leitfaden `enableFlutterDriverExtension()` verwendet.
+Der von Flutter empfohlene Testweg für neuere Apps ist das `integration_test`-Paket. Der Appium Flutter Driver integriert sich jedoch mit der älteren `flutter_driver`-Erweiterung, weshalb diese Anleitung `enableFlutterDriverExtension()` verwendet.
 :::
 
-### Konfigurieren von `pubspec.yaml`
+### Konfiguration von `pubspec.yaml`
 
 Fügen Sie `flutter_driver` unter `dev_dependencies` in der Datei `pubspec.yaml` Ihres Flutter-Projekts hinzu:
 
@@ -63,7 +63,7 @@ class MyApp extends StatelessWidget {
 ```
 
 :::tip Best Practice: Separater Test-Einstiegspunkt
-Um zu verhindern, dass Test-Instrumentierungscode in Produktions-Builds gelangt, erstellen Sie eine separate Einstiegspunktdatei (z. B. `lib/main_e2e.dart`), die die Erweiterung aktiviert und die Haupt-App aufruft. So bleiben Produktions-Builds sauber und sicher:
+Um zu verhindern, dass Test-Instrumentierungscode in Produktions-Builds gelangt, erstellen Sie eine separate Einstiegspunkt-Datei (z. B. `lib/main_e2e.dart`), die die Erweiterung aktiviert und die Haupt-App aufruft. So bleiben Produktions-Builds sauber und sicher:
 
 ```dart
 import 'package:flutter_driver/driver_extension.dart';

@@ -8,7 +8,7 @@ description: "Richten Sie den WebdriverIO Browser-Runner für ein React-Projekt 
 
 ## Einrichtung
 
-Um WebdriverIO in Ihrem React-Projekt einzurichten, folgen Sie den [Anweisungen](/docs/component-testing#set-up) in unserer Dokumentation zum Komponententesten. Stellen Sie sicher, dass Sie `react` als Preset in Ihren Runner-Optionen auswählen, z. B.:
+Um WebdriverIO in Ihrem React-Projekt einzurichten, folgen Sie den [Anweisungen](/docs/component-testing#set-up) in unserer Dokumentation zum Testen von Komponenten. Stellen Sie sicher, dass Sie `react` als Preset in Ihren Runner-Optionen auswählen, z. B.:
 
 ```js
 // wdio.conf.js
@@ -27,13 +27,13 @@ Wenn Sie bereits [Vite](https://vitejs.dev/) als Entwicklungsserver verwenden, k
 
 :::
 
-Das React-Preset erfordert, dass `@vitejs/plugin-react` installiert ist. Außerdem empfehlen wir, [Testing Library](https://testing-library.com/) zum Rendern der Komponente in die Testseite zu verwenden. Dafür müssen Sie die folgenden zusätzlichen Abhängigkeiten installieren:
+Das React-Preset erfordert, dass `@vitejs/plugin-react` installiert ist. Außerdem empfehlen wir, [Testing Library](https://testing-library.com/) zu verwenden, um die Komponente in die Testseite zu rendern. Daher müssen Sie die folgenden zusätzlichen Abhängigkeiten installieren:
 
 ```sh npm2yarn
 npm install --save-dev @testing-library/react @vitejs/plugin-react
 ```
 
-Sie können die Tests dann starten, indem Sie Folgendes ausführen:
+Anschließend können Sie die Tests starten, indem Sie Folgendes ausführen:
 
 ```sh
 npx wdio run ./wdio.conf.js
@@ -62,7 +62,7 @@ function App() {
 export default App
 ```
 
-Verwenden Sie in Ihrem Test die `render`-Methode aus `@testing-library/react`, um die Komponente an die Testseite anzuhängen. Für die Interaktion mit der Komponente empfehlen wir die Verwendung von WebdriverIO-Befehlen, da diese sich näher an tatsächlichen Benutzerinteraktionen verhalten, z. B.:
+Verwenden Sie in Ihrem Test die Methode `render` aus `@testing-library/react`, um die Komponente an die Testseite anzuhängen. Für die Interaktion mit der Komponente empfehlen wir, WebdriverIO-Befehle zu verwenden, da diese sich näher an tatsächlichen Benutzerinteraktionen verhalten, z. B.:
 
 ```ts title="app.test.tsx"
 import { expect } from '@wdio/globals'

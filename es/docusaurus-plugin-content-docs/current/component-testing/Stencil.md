@@ -4,11 +4,11 @@ title: Stencil
 description: "Configura el browser runner de WebdriverIO para componentes de Stencil, renderízalos con el helper render y espera las actualizaciones de los elementos."
 ---
 
-[Stencil](https://stenciljs.com/) es una biblioteca para crear bibliotecas de componentes reutilizables y escalables. Puedes probar componentes de Stencil directamente en un navegador real usando WebdriverIO y su [browser runner](/docs/runner#browser-runner).
+[Stencil](https://stenciljs.com/) es una biblioteca para construir bibliotecas de componentes reutilizables y escalables. Puedes probar los componentes de Stencil directamente en un navegador real usando WebdriverIO y su [browser runner](/docs/runner#browser-runner).
 
 ## Configuración
 
-Para configurar WebdriverIO dentro de tu proyecto de Stencil, sigue las [instrucciones](/docs/component-testing#set-up) en nuestra documentación de pruebas de componentes. Asegúrate de seleccionar `stencil` como preset dentro de las opciones de tu runner, por ejemplo:
+Para configurar WebdriverIO dentro de tu proyecto de Stencil, sigue las [instrucciones](/docs/component-testing#set-up) de nuestra documentación sobre pruebas de componentes. Asegúrate de seleccionar `stencil` como preset dentro de las opciones de tu runner, por ejemplo:
 
 ```js
 // wdio.conf.js
@@ -23,11 +23,11 @@ export const config = {
 
 :::info
 
-En caso de que uses Stencil con un framework como React o Vue, deberías mantener el preset de esos frameworks.
+En caso de que uses Stencil con un framework como React o Vue, debes mantener el preset de esos frameworks.
 
 :::
 
-Luego puedes iniciar las pruebas ejecutando:
+Después puedes iniciar las pruebas ejecutando:
 
 ```sh
 npx wdio run ./wdio.conf.ts
@@ -66,7 +66,7 @@ export class MyName {
 
 ### `render`
 
-En tu prueba, usa el método `render` de `@wdio/browser-runner/stencil` para adjuntar el componente a la página de prueba. Para interactuar con el componente, recomendamos usar comandos de WebdriverIO, ya que se comportan de forma más parecida a las interacciones reales de un usuario, por ejemplo:
+En tu prueba, usa el método `render` de `@wdio/browser-runner/stencil` para adjuntar el componente a la página de prueba. Para interactuar con el componente, recomendamos usar los comandos de WebdriverIO, ya que se comportan de forma más parecida a las interacciones reales de un usuario, por ejemplo:
 
 ```tsx title="app.test.tsx"
 import { expect } from '@wdio/globals'
@@ -93,7 +93,7 @@ El método `render` ofrece las siguientes opciones:
 
 ##### `components`
 
-Un array de componentes a probar. Las clases de los componentes pueden importarse en el archivo de especificación y luego su referencia debe añadirse al array `component` para usarse a lo largo de la prueba.
+Un array de componentes para probar. Las clases de los componentes se pueden importar en el archivo de especificación y luego su referencia debe añadirse al array `component` para usarse a lo largo de la prueba.
 
 __Tipo:__ `CustomElementConstructor[]`<br />
 __Valor predeterminado:__ `[]`
@@ -113,19 +113,19 @@ __Tipo:__ `JSX.Template`
 
 ##### `html`
 
-El HTML inicial usado para generar la prueba. Esto puede ser útil para construir una colección de componentes que funcionan juntos y asignar atributos HTML.
+El HTML inicial que se usa para generar la prueba. Esto puede ser útil para construir una colección de componentes que funcionan juntos y asignar atributos HTML.
 
 __Tipo:__ `string`
 
 ##### `language`
 
-Establece el atributo `lang` simulado en `<html>`.
+Establece el atributo simulado `lang` en `<html>`.
 
 __Tipo:__ `string`
 
 ##### `autoApplyChanges`
 
-Por defecto, cualquier cambio en las propiedades y atributos del componente requiere `env.waitForChanges()` para probar las actualizaciones. Como alternativa, `autoApplyChanges` vacía continuamente la cola en segundo plano.
+Por defecto, cualquier cambio en las propiedades y atributos de un componente debe llamar a `env.waitForChanges()` para probar las actualizaciones. Como opción, `autoApplyChanges` vacía continuamente la cola en segundo plano.
 
 __Tipo:__ `boolean`<br />
 __Valor predeterminado:__ `false`
@@ -139,11 +139,11 @@ __Valor predeterminado:__ `false`
 
 #### Entorno de render
 
-El método `render` devuelve un objeto de entorno que proporciona ciertos helpers de utilidad para gestionar el entorno del componente.
+El método `render` devuelve un objeto de entorno que proporciona ciertas utilidades auxiliares para gestionar el entorno del componente.
 
 ##### `flushAll`
 
-Después de realizar cambios en un componente, como una actualización de una propiedad o atributo, la página de prueba no aplica automáticamente los cambios. Para esperar y aplicar la actualización, llama a `await flushAll()`
+Después de realizar cambios en un componente, como una actualización de una propiedad o atributo, la página de prueba no aplica los cambios automáticamente. Para esperar y aplicar la actualización, llama a `await flushAll()`
 
 __Tipo:__ `() => void`
 
@@ -167,7 +167,7 @@ __Tipo:__ `HTMLElement`
 
 ##### `$container`
 
-El elemento contenedor como un elemento de WebdriverIO.
+El elemento contenedor como elemento de WebdriverIO.
 
 __Tipo:__ `WebdriverIO.Element`
 
@@ -179,7 +179,7 @@ __Tipo:__ `HTMLElement`
 
 ##### `$root`
 
-El componente raíz como un elemento de WebdriverIO.
+El componente raíz como elemento de WebdriverIO.
 
 __Tipo:__ `WebdriverIO.Element`
 
@@ -203,9 +203,9 @@ expect(page.root.querySelector('div')).toBeDefined()
 
 ## Actualizaciones de elementos
 
-Si defines propiedades o estados en tu componente de Stencil, debes gestionar cuándo se deben aplicar estos cambios al componente para que se vuelva a renderizar.
+Si defines propiedades o estados en tu componente de Stencil, tienes que gestionar cuándo deben aplicarse estos cambios al componente para que se vuelva a renderizar.
 
 
 ## Ejemplos
 
-Puedes encontrar un ejemplo completo de un conjunto de pruebas de componentes de WebdriverIO para Stencil en nuestro [repositorio de ejemplos](https://github.com/webdriverio/component-testing-examples/tree/main/stencil-component-starter).
+Puedes encontrar un ejemplo completo de una suite de pruebas de componentes de WebdriverIO para Stencil en nuestro [repositorio de ejemplos](https://github.com/webdriverio/component-testing-examples/tree/main/stencil-component-starter).

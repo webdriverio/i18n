@@ -1,10 +1,10 @@
 ---
 id: ocr-get-text
 title: ocrGetText
-description: "Lesen Sie mit ocrGetText aus dem OCR-Service den Text, der auf dem Bildschirm oder in einem bestimmten Bereich angezeigt wird."
+description: "Lies mit ocrGetText aus dem OCR-Service den Text, der auf dem Bildschirm oder in einem bestimmten Bereich angezeigt wird."
 ---
 
-Den Text auf einem Bild abrufen.
+Den Text auf einem Bild ermitteln.
 
 ### Verwendung
 
@@ -49,7 +49,7 @@ await browser.ocrGetText({ contrast: 0.5 });
 
 <Option type="number" required="WebdriverIO.Element | ChainablePromiseElement | Rectangle">
 
-Dies ist der Suchbereich auf dem Bildschirm, in dem die OCR nach Text suchen soll. Dies kann ein Element oder ein Rechteck sein, das `x`, `y`, `width` und `height` enthält.
+Dies ist der Suchbereich auf dem Bildschirm, in dem die OCR nach Text suchen soll. Dies kann ein Element oder ein Rechteck mit `x`, `y`, `width` und `height` sein.
 
 </Option>
 #### Beispiel
@@ -75,7 +75,7 @@ await browser.ocrGetText({
 
 <Option type="string" default="eng" required="No">
 
-Die Sprache, die Tesseract erkennen soll. Weitere Informationen finden Sie [hier](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) und die unterstützten Sprachen finden Sie [hier](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
+Die Sprache, die Tesseract erkennen soll. Weitere Informationen findest du [hier](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) und die unterstützten Sprachen findest du [hier](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
 
 </Option>
 #### Beispiel

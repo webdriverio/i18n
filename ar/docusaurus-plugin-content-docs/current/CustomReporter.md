@@ -1,12 +1,12 @@
 ---
 id: customreporter
-title: مُبلِّغ مخصص
-description: "أنشئ مُبلِّغًا مخصصًا لمشغّل اختبارات WDIO بالاعتماد على @wdio/reporter، وتعامل مع أحداث المشغّل وانشره على NPM."
+title: مُعِدّ تقارير مخصص
+description: "أنشئ مُعِدّ تقارير مخصصًا لمشغّل اختبارات WDIO بالاعتماد على @wdio/reporter، وتعامل مع أحداث المشغّل وانشره على NPM."
 ---
 
-يمكنك كتابة مُبلِّغ (reporter) مخصص خاص بك لمشغّل اختبارات WDIO مُصمَّم وفقًا لاحتياجاتك. والأمر سهل!
+يمكنك كتابة مُعِدّ تقارير مخصص خاص بك لمشغّل اختبارات WDIO يكون مصممًا وفقًا لاحتياجاتك. والأمر سهل!
 
-كل ما عليك فعله هو إنشاء وحدة node ترث من الحزمة `@wdio/reporter`، حتى تتمكن من استقبال الرسائل من الاختبار.
+كل ما عليك فعله هو إنشاء وحدة node ترث من حزمة `@wdio/reporter`، حتى تتمكن من استقبال الرسائل من الاختبار.
 
 يجب أن يبدو الإعداد الأساسي كما يلي:
 
@@ -16,7 +16,7 @@ import WDIOReporter from '@wdio/reporter'
 export default class CustomReporter extends WDIOReporter {
     constructor(options) {
         /*
-         * اجعل المُبلِّغ يكتب إلى مجرى الإخراج افتراضيًا
+         * اجعل مُعِدّ التقارير يكتب إلى مجرى الإخراج افتراضيًا
          */
         options = Object.assign(options, { stdout: true })
         super(options)
@@ -28,7 +28,7 @@ export default class CustomReporter extends WDIOReporter {
 }
 ```
 
-لاستخدام هذا المُبلِّغ، كل ما عليك فعله هو تعيينه إلى الخاصية `reporter` في الإعدادات الخاصة بك.
+لاستخدام مُعِدّ التقارير هذا، كل ما عليك فعله هو تعيينه إلى خاصية `reporter` في الإعدادات الخاصة بك.
 
 
 يجب أن يبدو ملف `wdio.conf.js` الخاص بك كما يلي:
@@ -40,13 +40,13 @@ export const config = {
     // ...
     reporters: [
         /**
-         * استخدم صنف المُبلِّغ المستورد
+         * استخدم فئة مُعِدّ التقارير المستوردة
          */
         [CustomReporter, {
             someOption: 'foobar'
         }],
         /**
-         * استخدم المسار المطلق إلى المُبلِّغ
+         * استخدم المسار المطلق لمُعِدّ التقارير
          */
         ['/path/to/reporter.js', {
             someOption: 'foobar'
@@ -56,15 +56,15 @@ export const config = {
 }
 ```
 
-يمكنك أيضًا نشر المُبلِّغ على NPM ليتمكن الجميع من استخدامه. سمِّ الحزمة مثل المُبلِّغات الأخرى `wdio-<reportername>-reporter`، وضع عليها وسومًا بكلمات مفتاحية مثل `wdio` أو `wdio-reporter`.
+يمكنك أيضًا نشر مُعِدّ التقارير على NPM حتى يتمكن الجميع من استخدامه. قم بتسمية الحزمة مثل مُعِدّات التقارير الأخرى `wdio-<reportername>-reporter`، وضع عليها كلمات مفتاحية مثل `wdio` أو `wdio-reporter`.
 
 ## معالج الأحداث
 
-يمكنك تسجيل معالج أحداث لعدة أحداث يتم إطلاقها أثناء الاختبار. ستتلقى جميع المعالجات التالية حمولات (payloads) تحتوي على معلومات مفيدة حول الحالة الحالية والتقدم.
+يمكنك تسجيل معالج أحداث لعدة أحداث يتم تشغيلها أثناء الاختبار. ستتلقى جميع المعالجات التالية حمولات تحتوي على معلومات مفيدة حول الحالة الحالية والتقدم.
 
-تعتمد بنية كائنات الحمولة هذه على الحدث، وهي موحدة عبر أطر العمل (Mocha وJasmine وCucumber). بمجرد تنفيذك لمُبلِّغ مخصص، يجب أن يعمل مع جميع أطر العمل.
+تعتمد بنية كائنات الحمولة هذه على الحدث، وهي موحدة عبر أطر العمل (Mocha وJasmine وCucumber). بمجرد تنفيذ مُعِدّ تقارير مخصص، يجب أن يعمل مع جميع أطر العمل.
 
-تحتوي القائمة التالية على جميع الدوال الممكنة التي يمكنك إضافتها إلى صنف المُبلِّغ الخاص بك:
+تحتوي القائمة التالية على جميع الطرق الممكنة التي يمكنك إضافتها إلى فئة مُعِدّ التقارير الخاصة بك:
 
 ```js
 import WDIOReporter from '@wdio/reporter'
@@ -86,9 +86,9 @@ export default class CustomReporter extends WDIOReporter {
 }
 ```
 
-أسماء الدوال واضحة بذاتها إلى حد كبير.
+أسماء الطرق واضحة بذاتها إلى حد كبير.
 
-لطباعة شيء ما عند حدث معين، استخدم الدالة `this.write(...)`، التي يوفرها الصنف الأب `WDIOReporter`. فهي إما تبث المحتوى إلى `stdout`، أو إلى ملف سجل (اعتمادًا على خيارات المُبلِّغ).
+لطباعة شيء ما عند حدث معين، استخدم طريقة `this.write(...)`، التي توفرها الفئة الأم `WDIOReporter`. فهي إما تبث المحتوى إلى `stdout`، أو إلى ملف سجل (حسب خيارات مُعِدّ التقارير).
 
 ```js
 import WDIOReporter from '@wdio/reporter'
@@ -102,13 +102,13 @@ export default class CustomReporter extends WDIOReporter {
 
 لاحظ أنه لا يمكنك تأجيل تنفيذ الاختبار بأي شكل من الأشكال.
 
-يجب أن تنفذ جميع معالجات الأحداث إجراءات متزامنة (وإلا ستواجه حالات تسابق race conditions).
+يجب أن تنفذ جميع معالجات الأحداث إجراءات متزامنة (وإلا ستواجه حالات تسابق).
 
-تأكد من الاطلاع على [قسم الأمثلة](https://github.com/webdriverio/webdriverio/tree/main/examples/wdio) حيث يمكنك العثور على مثال لمُبلِّغ مخصص يطبع اسم الحدث لكل حدث.
+تأكد من الاطلاع على [قسم الأمثلة](https://github.com/webdriverio/webdriverio/tree/main/examples/wdio) حيث يمكنك العثور على مثال لمُعِدّ تقارير مخصص يطبع اسم الحدث لكل حدث.
 
-إذا قمت بتنفيذ مُبلِّغ مخصص يمكن أن يكون مفيدًا للمجتمع، فلا تتردد في تقديم طلب سحب (Pull Request) حتى نتمكن من إتاحة المُبلِّغ للعامة!
+إذا قمت بتنفيذ مُعِدّ تقارير مخصص قد يكون مفيدًا للمجتمع، فلا تتردد في تقديم Pull Request حتى نتمكن من إتاحة مُعِدّ التقارير للعامة!
 
-أيضًا، إذا قمت بتشغيل مشغّل اختبارات WDIO عبر واجهة `Launcher`، فلا يمكنك تطبيق مُبلِّغ مخصص كدالة على النحو التالي:
+أيضًا، إذا قمت بتشغيل مشغّل اختبارات WDIO عبر واجهة `Launcher`، فلا يمكنك تطبيق مُعِدّ تقارير مخصص كدالة على النحو التالي:
 
 ```js
 import Launcher from '@wdio/cli'
@@ -116,14 +116,36 @@ import Launcher from '@wdio/cli'
 import CustomReporter from './reporter/my.custom.reporter'
 
 const launcher = new Launcher('/path/to/config.file.js', {
-    // هذا لن يعمل، لأن CustomReporter غير قابل للتسلسل
+    // لن يعمل هذا، لأن CustomReporter غير قابل للتسلسل
     reporters: ['dot', CustomReporter]
 })
 ```
 
+## مُعِدّات التقارير والاختبارات المتوازية
+
+مع [الاختبارات المتوازية في ملف المواصفات](./ParallelTests.md)، تتداخل اختبارات ملف المواصفات الواحد: فقد يأتي `onTestStart` لاختبار ما قبل `onTestEnd` لاختبار آخر، وتتشابك أوامر الاختبارات المختلفة. يتولى `WDIOReporter` معالجة ذلك نيابةً عنك. في الوضع المتوازي، تحمل أحداث إطار العمل حقلين إضافيين:
+
+- `parentUid` في `suite:start` و`hook:start` و`test:start`: وهو uid المجموعة المالكة (`null` للمجموعة ذات المستوى الأعلى). يضيف مُعِدّ التقارير المجموعة أو الخطاف أو الاختبار إلى تلك المجموعة، وليس إلى المجموعة التي بدأت أخيرًا.
+- `contextId` في أحداث الاختبار والأوامر: وهو سياق التصفح الخاص بالاختبار. يضيف مُعِدّ التقارير مخرجات الأوامر إلى الاختبار الذي تم تشغيله في ذلك السياق.
+
+وبالتالي تكون أشجار `suites` و`tests` و`hooks` الخاصة بمُعِدّ التقارير صحيحة. إذا كان مُعِدّ التقارير الخاص بك يحتفظ بحالته الخاصة، فاجعل مفتاحها هو `uid` الخاص بالاختبار أو المجموعة بدلاً من تتبع اختبار حالي واحد.
+
+```js
+import WDIOReporter from '@wdio/reporter'
+
+export default class CustomReporter extends WDIOReporter {
+    onTestStart(test) {
+        this.write(`start ${test.uid} ${test.title}\n`)
+    }
+    onTestEnd(test) {
+        this.write(`end   ${test.uid} ${test.state}\n`)
+    }
+}
+```
+
 ## الانتظار حتى `isSynchronised`
 
-إذا كان على المُبلِّغ الخاص بك تنفيذ عمليات غير متزامنة للإبلاغ عن البيانات (مثل رفع ملفات السجل أو أصول أخرى)، يمكنك إعادة تعريف الدالة `isSynchronised` في المُبلِّغ المخصص الخاص بك لجعل مشغّل WebdriverIO ينتظر حتى تنتهي من معالجة كل شيء. يمكن رؤية مثال على ذلك في [`@wdio/sumologic-reporter`](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-sumologic-reporter/src/index.ts):
+إذا كان على مُعِدّ التقارير الخاص بك تنفيذ عمليات غير متزامنة للإبلاغ عن البيانات (مثل تحميل ملفات السجل أو الأصول الأخرى)، يمكنك إعادة كتابة طريقة `isSynchronised` في مُعِدّ التقارير المخصص الخاص بك للسماح لمشغّل WebdriverIO بالانتظار حتى تنتهي من حساب كل شيء. يمكن رؤية مثال على ذلك في [`@wdio/sumologic-reporter`](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-sumologic-reporter/src/index.ts):
 
 ```js
 export default class SumoLogicReporter extends WDIOReporter {
@@ -135,7 +157,7 @@ export default class SumoLogicReporter extends WDIOReporter {
     }
 
     /**
-     * إعادة تعريف الدالة isSynchronised
+     * إعادة كتابة طريقة isSynchronised
      */
     get isSynchronised () {
         return this.unsynced.length === 0
@@ -162,16 +184,16 @@ export default class SumoLogicReporter extends WDIOReporter {
 }
 ```
 
-بهذه الطريقة سينتظر المشغّل حتى يتم رفع جميع معلومات السجل.
+بهذه الطريقة سينتظر المشغّل حتى يتم تحميل جميع معلومات السجل.
 
-## نشر المُبلِّغ على NPM
+## نشر مُعِدّ التقارير على NPM
 
-لتسهيل استخدام المُبلِّغ واكتشافه من قبل مجتمع WebdriverIO، يُرجى اتباع هذه التوصيات:
+لتسهيل استخدام مُعِدّ التقارير واكتشافه من قبل مجتمع WebdriverIO، يرجى اتباع هذه التوصيات:
 
 * يجب أن تستخدم الخدمات اصطلاح التسمية هذا: `wdio-*-reporter`
 * استخدم كلمات NPM المفتاحية: `wdio-plugin`، `wdio-reporter`
-* يجب أن يقوم مدخل `main` بعمل `export` لنسخة من المُبلِّغ
-* مثال على مُبلِّغ: [`@wdio/dot-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-dot-reporter)
+* يجب أن يقوم المُدخل `main` بعمل `export` لنسخة من مُعِدّ التقارير
+* مثال على مُعِدّ تقارير: [`@wdio/dot-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-dot-reporter)
 
 يتيح اتباع نمط التسمية الموصى به إضافة الخدمات بالاسم:
 
@@ -184,11 +206,11 @@ export const config = {
 }
 ```
 
-### إضافة الخدمة المنشورة إلى WDIO CLI والتوثيق
+### إضافة الخدمة المنشورة إلى WDIO CLI والوثائق
 
-نحن نقدّر حقًا كل إضافة جديدة يمكن أن تساعد الآخرين على تشغيل اختبارات أفضل! إذا كنت قد أنشأت مثل هذه الإضافة، يُرجى التفكير في إضافتها إلى واجهة سطر الأوامر (CLI) والتوثيق الخاص بنا لتسهيل العثور عليها.
+نحن نقدّر حقًا كل إضافة جديدة يمكن أن تساعد الآخرين على تشغيل اختبارات أفضل! إذا قمت بإنشاء مثل هذه الإضافة، فيرجى التفكير في إضافتها إلى واجهة CLI والوثائق الخاصة بنا لتسهيل العثور عليها.
 
-يُرجى تقديم طلب سحب يتضمن التغييرات التالية:
+يرجى تقديم pull request يتضمن التغييرات التالية:
 
-- أضف خدمتك إلى قائمة [المُبلِّغات المدعومة](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/constants.ts#L74-L91)) في وحدة CLI
-- حسِّن [قائمة المُبلِّغات](https://github.com/webdriverio/webdriverio/blob/main/infra/docs/src/3rd-party/reporters.json) لإضافة توثيقك إلى صفحة Webdriver.io الرسمية
+- أضف خدمتك إلى قائمة [مُعِدّات التقارير المدعومة](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/constants.ts#L74-L91)) في وحدة CLI
+- قم بتحسين [قائمة مُعِدّات التقارير](https://github.com/webdriverio/webdriverio/blob/main/infra/docs/src/3rd-party/reporters.json) لإضافة وثائقك إلى صفحة Webdriver.io الرسمية

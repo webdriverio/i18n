@@ -15,19 +15,19 @@ npx wdio run wdio.conf.ts --spec test/specs/cart.e2e.ts
 
 ## Page objects
 
-`--page-objects` escribe un page object junto al spec. Los selectores se agrupan según la ruta en la que se ejecutaron. Un `$('…')` literal en un paso grabado se convierte en un getter. `$$`, las cadenas que casualmente contienen `$('…')` y un `$(selector)` dinámico se quedan como están.
+`--page-objects` escribe un page object junto al spec. Los selectores se agrupan según la ruta en la que se ejecutaron. Un `$('…')` literal en un paso grabado se convierte en un getter. `$$`, las cadenas que casualmente contienen `$('…')` y un `$(selector)` dinámico se mantienen tal cual.
 
 ```sh
 npx wdio session export --page-objects --out test/specs/cart.e2e.ts
 ```
 
-El comando se niega a sobrescribir un page object que ya existe en el directorio de salida. Cambia `--out` o elimina primero ese archivo. El archivo spec en sí se vuelve a escribir.
+El comando se niega a sobrescribir un page object que ya existe en el directorio de salida. Cambia `--out` o elimina ese archivo primero. El archivo spec en sí se vuelve a escribir.
 
-Un `import` al principio de un paso `exec` se eleva al principio del spec, fuera de la función de prueba.
+Un `import` al inicio de un paso `exec` se eleva al inicio del spec, fuera de la función de prueba.
 
 ## Helpers
 
-Añade un archivo en `.wdio/helpers/` cuando un paso sea demasiado largo para `exec`. Cada archivo exporta por defecto una función que recibe el navegador y registra comandos con `addCommand`. Las importaciones relativas siguen siendo relativas a ese archivo. Las importaciones de paquetes sin ruta se resuelven desde el proyecto.
+Añade un archivo en `.wdio/helpers/` cuando un paso sea demasiado largo para `exec`. Cada archivo exporta por defecto una función que recibe el navegador y registra comandos con `addCommand`. Los imports relativos siguen siendo relativos a ese archivo. Los imports de paquetes sin ruta se resuelven desde el proyecto.
 
 ```js title=".wdio/helpers/login.js"
 import { mark } from './util.js'
@@ -39,9 +39,9 @@ export default function login (browser) {
 }
 ```
 
-Los helpers se cargan cuando se abre la sesión y de nuevo con `npx wdio session helpers --reload`. Si `.wdio/helpers` aún no existe, la sesión lo vigila hasta que se cree. Los helpers se convierten en comandos personalizados en la prueba exportada.
+Los helpers se cargan cuando se abre la sesión y de nuevo con `npx wdio session helpers --reload`. Si `.wdio/helpers` todavía no existe, la sesión vigila su creación. Los helpers se convierten en comandos personalizados en la prueba exportada.
 
 ## Próximos pasos
 
-- [Ejecutar código](/docs/session/exec) — los pasos que graba `export`
-- [Comandos](/docs/session-commands) — flags de `export`, `history` y `helpers`
+- [Ejecutar código](/docs/session/exec): los pasos que graba `export`
+- [Comandos](/docs/session-commands): flags de `export`, `history` y `helpers`

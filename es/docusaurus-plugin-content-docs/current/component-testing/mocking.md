@@ -1,7 +1,7 @@
 ---
 id: mocking
 title: Mocking
-description: "Simula funciones, módulos y peticiones de red en pruebas de componentes del browser runner con fn, spyOn y mock de @wdio/browser-runner."
+description: "Simula funciones, módulos y solicitudes de red en pruebas de componentes del browser runner con fn, spyOn y mock de @wdio/browser-runner."
 ---
 
 Al escribir pruebas, es solo cuestión de tiempo antes de que necesites crear una versión "falsa" de un servicio interno o externo. Esto se conoce comúnmente como mocking. WebdriverIO proporciona funciones de utilidad para ayudarte. Puedes usar `import { fn, spyOn, mock, unmock } from '@wdio/browser-runner'` para acceder a ellas. Consulta más información sobre las utilidades de mocking disponibles en la [documentación de la API](/docs/api/modules#wdiobrowser-runner).
@@ -14,7 +14,7 @@ Para validar si ciertos manejadores de funciones se llaman como parte de tus pru
 import { fn, spyOn } from '@wdio/browser-runner'
 ```
 
-Al importar `fn` puedes crear una función espía (mock) para rastrear su ejecución, y con `spyOn` rastrear un método en un objeto ya creado.
+Al importar `fn` puedes crear una función espía (mock) para rastrear su ejecución, y con `spyOn` puedes rastrear un método de un objeto ya creado.
 
 <Tabs
   defaultValue="mocks"
@@ -25,7 +25,7 @@ Al importar `fn` puedes crear una función espía (mock) para rastrear su ejecuc
 }>
 <TabItem value="mocks">
 
-El ejemplo completo se puede encontrar en el repositorio [Component Testing Example](https://github.com/webdriverio/component-testing-examples/blob/main/react-typescript-vite/src/tests/LoginForm.test.tsx).
+El ejemplo completo se puede encontrar en el repositorio de [Component Testing Example](https://github.com/webdriverio/component-testing-examples/blob/main/react-typescript-vite/src/tests/LoginForm.test.tsx).
 
 ```ts
 import React from 'react'
@@ -96,13 +96,13 @@ describe('Lit Component testing', () => {
 </TabItem>
 </Tabs>
 
-Aquí WebdriverIO simplemente reexporta [`@vitest/spy`](https://www.npmjs.com/package/@vitest/spy), que es una implementación de espías ligera y compatible con Jest que puede usarse con los matchers de [`expect`](/docs/api/expect-webdriverio) de WebdriverIO. Puedes encontrar más documentación sobre estas funciones mock en la [página del proyecto Vitest](https://vitest.dev/api/mock.html).
+WebdriverIO simplemente reexporta aquí [`@vitest/spy`](https://www.npmjs.com/package/@vitest/spy), que es una implementación de espías ligera y compatible con Jest que se puede usar con los matchers de [`expect`](/docs/api/expect-webdriverio) de WebdriverIO. Puedes encontrar más documentación sobre estas funciones mock en la [página del proyecto Vitest](https://vitest.dev/api/mock.html).
 
-Por supuesto, también puedes instalar e importar cualquier otro framework de espías, p. ej. [SinonJS](https://sinonjs.org/), siempre que sea compatible con el entorno del navegador.
+Por supuesto, también puedes instalar e importar cualquier otro framework de espías, por ejemplo [SinonJS](https://sinonjs.org/), siempre que sea compatible con el entorno del navegador.
 
 ## Módulos
 
-Simula módulos locales u observa bibliotecas de terceros que se invocan en algún otro código, lo que te permite probar argumentos, salidas o incluso redeclarar su implementación.
+Simula módulos locales u observa bibliotecas de terceros que se invocan en algún otro código, lo que te permite probar argumentos, resultados o incluso redeclarar su implementación.
 
 Hay dos formas de simular funciones: creando una función mock para usar en el código de prueba, o escribiendo un mock manual para sobrescribir una dependencia de módulo.
 
@@ -140,7 +140,7 @@ import { SimpleButton } from './LitComponent.ts'
 import { handleClick } from './utils.js'
 
 /**
- * simula la exportación nombrada "handleClick" del archivo `utils.ts`
+ * simula la exportación con nombre "handleClick" del archivo `utils.ts`
  */
 mock('./utils.ts', () => ({
     handleClick: fn()
@@ -171,7 +171,7 @@ class Users {
 export default Users
 ```
 
-Ahora, para probar este método sin llegar a llamar realmente a la API (y así evitar crear pruebas lentas y frágiles), podemos usar la función `mock(...)` para simular automáticamente el módulo axios.
+Ahora, para probar este método sin llamar realmente a la API (y así evitar crear pruebas lentas y frágiles), podemos usar la función `mock(...)` para simular automáticamente el módulo axios.
 
 Una vez que simulamos el módulo, podemos proporcionar un [`mockResolvedValue`](https://vitest.dev/api/mock.html#mockresolvedvalue) para `.get` que devuelva los datos contra los que queremos que nuestra prueba haga las aserciones. En efecto, estamos diciendo que queremos que `axios.get('/users.json')` devuelva una respuesta falsa.
 
@@ -196,7 +196,7 @@ describe('User API', () => {
         const resp = {data: users}
         axios.get.mockResolvedValue(resp)
 
-        // o podrías usar lo siguiente dependiendo de tu caso de uso:
+        // o podrías usar lo siguiente según tu caso de uso:
         // axios.get.mockImplementation(() => Promise.resolve(resp))
 
         const data = await Users.all()
@@ -215,15 +215,15 @@ export const bar = () => 'bar';
 export default () => 'baz';
 ```
 
-El módulo original se pasará a la factoría del mock, que puedes usar, p. ej., para simular parcialmente una dependencia:
+El módulo original se pasará a la fábrica del mock, que puedes usar, por ejemplo, para simular parcialmente una dependencia:
 
 ```js
 import { mock, fn } from '@wdio/browser-runner'
 import defaultExport, { bar, foo } from './foo-bar-baz.js';
 
 mock('./foo-bar-baz.js', async (originalModule) => {
-    // Simula la exportación por defecto y la exportación nombrada 'foo'
-    // y propaga la exportación nombrada del módulo original
+    // Simula la exportación por defecto y la exportación con nombre 'foo'
+    // y propaga las exportaciones con nombre del módulo original
     return {
         __esModule: true,
         ...originalModule,
@@ -246,7 +246,7 @@ describe('partial mock', () => {
 
 ## Mocks manuales
 
-Los mocks manuales se definen escribiendo un módulo en un subdirectorio `__mocks__/` (consulta también la opción `automockDir`). Si el módulo que estás simulando es un módulo de Node (p. ej.: `lodash`), el mock debe colocarse en el directorio `__mocks__` y se simulará automáticamente. No es necesario llamar explícitamente a `mock('module_name')`.
+Los mocks manuales se definen escribiendo un módulo en un subdirectorio `__mocks__/` (consulta también la opción `automockDir`). Si el módulo que estás simulando es un módulo de Node (por ejemplo: `lodash`), el mock debe colocarse en el directorio `__mocks__` y se simulará automáticamente. No es necesario llamar explícitamente a `mock('module_name')`.
 
 Los módulos con ámbito (también conocidos como paquetes con ámbito o scoped packages) se pueden simular creando un archivo en una estructura de directorios que coincida con el nombre del módulo con ámbito. Por ejemplo, para simular un módulo con ámbito llamado `@scope/project-name`, crea un archivo en `__mocks__/@scope/project-name.js`, creando el directorio `@scope/` en consecuencia.
 
@@ -262,7 +262,7 @@ Los módulos con ámbito (también conocidos como paquetes con ámbito o scoped 
 └── views
 ```
 
-Cuando existe un mock manual para un módulo determinado, WebdriverIO usará ese módulo al llamar explícitamente a `mock('moduleName')`. Sin embargo, cuando automock está establecido en true, se usará la implementación del mock manual en lugar del mock creado automáticamente, incluso si no se llama a `mock('moduleName')`. Para desactivar este comportamiento, tendrás que llamar explícitamente a `unmock('moduleName')` en las pruebas que deban usar la implementación real del módulo, p. ej.:
+Cuando existe un mock manual para un módulo determinado, WebdriverIO usará ese módulo al llamar explícitamente a `mock('moduleName')`. Sin embargo, cuando automock está establecido en true, se usará la implementación del mock manual en lugar del mock creado automáticamente, incluso si no se llama a `mock('moduleName')`. Para desactivar este comportamiento, deberás llamar explícitamente a `unmock('moduleName')` en las pruebas que deban usar la implementación real del módulo, por ejemplo:
 
 ```js
 import { unmock } from '@wdio/browser-runner'
@@ -272,14 +272,14 @@ unmock('lodash')
 
 ## Hoisting
 
-Para que el mocking funcione en el navegador, WebdriverIO reescribe los archivos de prueba y eleva (hoisting) las llamadas a mock por encima de todo lo demás (consulta también [esta entrada de blog](https://www.coolcomputerclub.com/posts/jest-hoist-await/) sobre el problema del hoisting en Jest). Esto limita la forma en que puedes pasar variables al resolver del mock, p. ej.:
+Para que el mocking funcione en el navegador, WebdriverIO reescribe los archivos de prueba y eleva (hoisting) las llamadas a mock por encima de todo lo demás (consulta también [esta publicación de blog](https://www.coolcomputerclub.com/posts/jest-hoist-await/) sobre el problema del hoisting en Jest). Esto limita la forma en que puedes pasar variables al resolvedor del mock, por ejemplo:
 
 ```js title=component.test.js
 import dep from 'dependency'
 const variable = 'foobar'
 
 /**
- * ❌ esto falla porque `dep` y `variable` no están definidas dentro del resolver del mock
+ * ❌ esto falla porque `dep` y `variable` no están definidos dentro del resolvedor del mock
  */
 mock('./some/module.ts', () => ({
     exportA: dep,
@@ -287,11 +287,11 @@ mock('./some/module.ts', () => ({
 }))
 ```
 
-Para solucionarlo, debes definir todas las variables utilizadas dentro del resolver, p. ej.:
+Para solucionarlo, debes definir todas las variables utilizadas dentro del resolvedor, por ejemplo:
 
 ```js title=component.test.js
 /**
- * ✔️ esto funciona porque todas las variables están definidas dentro del resolver
+ * ✔️ esto funciona porque todas las variables están definidas dentro del resolvedor
  */
 mock('./some/module.ts', async () => {
     const dep = await import('dependency')
@@ -304,10 +304,10 @@ mock('./some/module.ts', async () => {
 })
 ```
 
-## Peticiones
+## Solicitudes
 
-Si buscas simular peticiones del navegador, p. ej. llamadas a API, dirígete a la sección [Request Mock and Spies](/docs/mocksandspies).
+Si buscas simular solicitudes del navegador, por ejemplo llamadas a una API, dirígete a la sección [Request Mock and Spies](/docs/mocksandspies).
 
-En las pruebas de componentes, usa un patrón de URL absoluto con un protocolo y un nombre de host fijos para `browser.mock()`, como `https://api.webdriver.io/api/*`. Un patrón sin host como `*/api/*` intercepta todas las peticiones de la página, incluido el tráfico propio de Vite y del driver del browser runner.
+En las pruebas de componentes, usa un patrón de URL absoluto con un protocolo y un nombre de host fijos para `browser.mock()`, como `https://api.webdriver.io/api/*`. Un patrón sin host como `*/api/*` intercepta todas las solicitudes de la página, incluido el propio tráfico de Vite y del driver del browser runner.
 
-Usa un único `*`, que también coincide con barras. Los comodines consecutivos antes de un texto fijo, como `**/api/**` o `**/data.json`, pueden provocar un retroceso (backtracking) excesivo de expresiones regulares en URLs no relacionadas y congelar una prueba. Consulta el [issue #13548](https://github.com/webdriverio/webdriverio/issues/13548), el [issue #15739](https://github.com/webdriverio/webdriverio/issues/15739) y la [advertencia sobre comodines en URLs](/docs/mocksandspies#creating-a-mock).
+Un solo `*` también coincide con barras. En un patrón de cadena, `**` es lo mismo que `*`; en un objeto `URLPattern`, usa un solo `*`. Consulta [crear un mock](/docs/mocksandspies#creating-a-mock).

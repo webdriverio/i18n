@@ -1,18 +1,18 @@
 ---
 id: tauri
 title: Tauri
-description: "اختبر تطبيقات سطح المكتب المبنية بـ Tauri على Windows وmacOS وLinux باستخدام خدمة WebdriverIO الخاصة بـ Tauri، عبر معالج الإعداد أو من خلال إعداد يدوي."
+description: "اختبر تطبيقات سطح المكتب المبنية بـ Tauri على Windows وmacOS وLinux باستخدام خدمة Tauri من WebdriverIO، سواء عبر معالج الإعداد أو من خلال إعداد يدوي."
 ---
 
-[Tauri](https://tauri.app/) هو إطار عمل لبناء تطبيقات سطح مكتب خفيفة وآمنة ومتعددة المنصات باستخدام واجهة خلفية مكتوبة بلغة Rust وعارض الويب (webview) الأصلي لنظام التشغيل. تعمل خدمة Tauri في WebdriverIO على أتمتة اكتشاف تطبيقات Tauri وتشغيلها والتحكم بها على Windows ‏(WebView2) وmacOS ‏(WKWebView) وLinux ‏(WebKitGTK)، بحيث تعمل مجموعة الاختبارات نفسها في كل مكان.
+[Tauri](https://tauri.app/) هو إطار عمل لبناء تطبيقات سطح مكتب خفيفة وآمنة ومتعددة المنصات باستخدام واجهة خلفية مكتوبة بلغة Rust وعرض الويب (webview) الأصلي لنظام التشغيل. تعمل خدمة Tauri من WebdriverIO على أتمتة اكتشاف تطبيقات Tauri وتشغيلها والتحكم بها على Windows (WebView2) وmacOS (WKWebView) وLinux (WebKitGTK)، بحيث تعمل مجموعة الاختبارات نفسها في كل مكان.
 
 مزايا استخدام WebdriverIO لاختبار تطبيقات Tauri هي:
 
-- 🚗 توفير طبقة WebDriver تلقائيًا — اختر `tauri-driver`، أو مشغّل CrabNebula، أو الإضافة المضمّنة داخل التطبيق
-- 📦 اكتشاف الملفات الثنائية عبر المنصات المختلفة (مشغّل Edge WebView2 مرفق على Windows)
-- 🧩 إضافة `@wdio/tauri-plugin` اختيارية لتكامل أغنى داخل عارض الويب (`browser.tauri.execute`، والمحاكاة mocking)
+- 🚗 توفير طبقة WebDriver تلقائيًا — اختر `tauri-driver` أو مشغل CrabNebula أو الإضافة المدمجة داخل التطبيق
+- 📦 اكتشاف الملفات الثنائية عبر المنصات المختلفة (مشغل Edge WebView2 مضمَّن على Windows)
+- 🧩 إضافة `@wdio/tauri-plugin` اختيارية لتكامل أغنى داخل عرض الويب (`browser.tauri.execute`، والمحاكاة)
 - 🔗 اختبار الروابط العميقة (deeplinks) ومعالجات البروتوكولات
-- 🪵 تمرير سجلات Rust والواجهة الأمامية إلى مُبلِّغ اختبارات WebdriverIO
+- 🪵 تمرير سجلات Rust والواجهة الأمامية إلى مُعِدّ تقارير اختبارات WebdriverIO
 
 ## البدء
 
@@ -22,9 +22,9 @@ description: "اختبر تطبيقات سطح المكتب المبنية بـ 
 npm create wdio@latest ./
 ```
 
-عندما يسألك المعالج عن نوع الاختبار الذي تريد إجراءه، اختر _"Desktop Testing - of Electron, Tauri, or macOS Applications"_، ثم اختر _Tauri_ عند سؤالك عن إطار العمل. سيسألك المعالج بعد ذلك عن مزوّد WebDriver الذي تريد استخدامه (`tauri-driver` الرسمي، أو CrabNebula، أو الإضافة المضمّنة)، وما إذا كنت ترغب في إضافة `@wdio/tauri-plugin` الاختيارية لتكامل أغنى.
+عندما يسألك المعالج عن نوع الاختبار الذي ترغب في إجرائه، اختر _"Desktop Testing - of Electron, Tauri, or macOS Applications"_، ثم اختر _Tauri_ عند سؤالك عن إطار العمل. سيسألك المعالج بعد ذلك عن مزود WebDriver الذي تريد استخدامه (`tauri-driver` الرسمي، أو CrabNebula، أو الإضافة المدمجة)، وما إذا كنت ترغب في إضافة `@wdio/tauri-plugin` الاختيارية للحصول على تكامل أغنى.
 
-يثبّت المعالج حزم npm تلقائيًا، ويطبع أي إضافات مطلوبة لـ Cargo في المخرجات القياسية (stdout) لتقوم بلصقها في ملف `src-tauri/Cargo.toml` الخاص بك.
+يقوم المعالج بتثبيت حزم npm تلقائيًا ويطبع أي إضافات Cargo مطلوبة في المخرجات القياسية (stdout) لكي تلصقها في ملف `src-tauri/Cargo.toml` الخاص بك.
 
 ## الإعداد اليدوي
 
@@ -32,11 +32,11 @@ npm create wdio@latest ./
 
 ```sh
 npm install --save-dev @wdio/tauri-service
-# optional: richer in-webview integration
+# اختياري: تكامل أغنى داخل عرض الويب
 npm install --save-dev @wdio/tauri-plugin
 ```
 
-بالنسبة لإضافة WebDriver المضمّنة (موصى بها — تشغّل خادم W3C داخل تطبيقك، دون الحاجة إلى `tauri-driver` خارجي)، أضف حزمة Cargo إلى `src-tauri/Cargo.toml`:
+بالنسبة لإضافة WebDriver المدمجة (موصى بها — تشغّل خادم W3C داخل تطبيقك، دون الحاجة إلى `tauri-driver` خارجي)، أضف حزمة Cargo إلى `src-tauri/Cargo.toml`:
 
 ```toml
 [dependencies]

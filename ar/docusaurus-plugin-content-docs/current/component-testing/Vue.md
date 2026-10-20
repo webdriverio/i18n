@@ -1,14 +1,14 @@
 ---
 id: vue
 title: Vue.js
-description: "إعداد مشغّل المتصفح في WebdriverIO لـ Vue.js، وكتابة اختبارات المكونات باستخدام Testing Library، واختبار المكونات غير المتزامنة وتطبيقات Nuxt."
+description: "إعداد مُشغّل المتصفح في WebdriverIO لـ Vue.js، وكتابة اختبارات المكونات باستخدام Testing Library، واختبار المكونات غير المتزامنة وتطبيقات Nuxt."
 ---
 
-[Vue.js](https://vuejs.org/) هو إطار عمل سهل التعلم وعالي الأداء ومتعدد الاستخدامات لبناء واجهات مستخدم الويب. يمكنك اختبار مكونات Vue.js مباشرةً في متصفح حقيقي باستخدام WebdriverIO و[مشغّل المتصفح](/docs/runner#browser-runner) الخاص به.
+[Vue.js](https://vuejs.org/) هو إطار عمل سهل الاستخدام وعالي الأداء ومتعدد الاستخدامات لبناء واجهات مستخدم الويب. يمكنك اختبار مكونات Vue.js مباشرةً في متصفح حقيقي باستخدام WebdriverIO و[مُشغّل المتصفح](/docs/runner#browser-runner) الخاص به.
 
 ## الإعداد
 
-لإعداد WebdriverIO داخل مشروع Vue.js الخاص بك، اتبع [التعليمات](/docs/component-testing#set-up) الموجودة في وثائق اختبار المكونات لدينا. تأكد من اختيار `vue` كإعداد مسبق (preset) ضمن خيارات المشغّل، على سبيل المثال:
+لإعداد WebdriverIO داخل مشروع Vue.js الخاص بك، اتبع [التعليمات](/docs/component-testing#set-up) في وثائق اختبار المكونات لدينا. تأكد من اختيار `vue` كإعداد مسبق (preset) ضمن خيارات المُشغّل، على سبيل المثال:
 
 ```js
 // wdio.conf.js
@@ -23,11 +23,11 @@ export const config = {
 
 :::info
 
-إذا كنت تستخدم بالفعل [Vite](https://vitejs.dev/) كخادم تطوير، فيمكنك أيضًا ببساطة إعادة استخدام إعداداتك الموجودة في `vite.config.ts` ضمن إعدادات WebdriverIO. لمزيد من المعلومات، راجع `viteConfig` في [خيارات المشغّل](/docs/runner#runner-options).
+إذا كنت تستخدم بالفعل [Vite](https://vitejs.dev/) كخادم تطوير، يمكنك أيضًا ببساطة إعادة استخدام إعداداتك الموجودة في `vite.config.ts` ضمن إعدادات WebdriverIO. لمزيد من المعلومات، راجع `viteConfig` في [خيارات المُشغّل](/docs/runner#runner-options).
 
 :::
 
-يتطلب الإعداد المسبق لـ Vue تثبيت `@vitejs/plugin-vue`. كما نوصي باستخدام [Testing Library](https://testing-library.com/) لعرض المكون في صفحة الاختبار. لذلك ستحتاج إلى تثبيت التبعيات الإضافية التالية:
+يتطلب الإعداد المسبق لـ Vue تثبيت `@vitejs/plugin-vue`. كما نوصي باستخدام [Testing Library](https://testing-library.com/) لعرض المكوّن في صفحة الاختبار. لذلك ستحتاج إلى تثبيت التبعيات الإضافية التالية:
 
 ```sh npm2yarn
 npm install --save-dev @testing-library/vue @vitejs/plugin-vue
@@ -41,7 +41,7 @@ npx wdio run ./wdio.conf.js
 
 ## كتابة الاختبارات
 
-بافتراض أن لديك مكون Vue.js التالي:
+لنفترض أن لديك مكوّن Vue.js التالي:
 
 ```tsx title="./components/Component.vue"
 <template>
@@ -66,7 +66,7 @@ export default {
 </script>
 ```
 
-في اختبارك، قم بعرض المكون في DOM ونفّذ التحققات عليه. نوصي باستخدام [`@vue/test-utils`](https://test-utils.vuejs.org/) أو [`@testing-library/vue`](https://testing-library.com/docs/vue-testing-library/intro/) لإرفاق المكون بصفحة الاختبار. للتفاعل مع المكون، استخدم أوامر WebdriverIO لأنها تتصرف بشكل أقرب إلى تفاعلات المستخدم الفعلية، على سبيل المثال:
+في اختبارك، اعرض المكوّن في DOM ونفّذ عمليات التحقق (assertions) عليه. نوصي باستخدام إما [`@vue/test-utils`](https://test-utils.vuejs.org/) أو [`@testing-library/vue`](https://testing-library.com/docs/vue-testing-library/intro/) لإرفاق المكوّن بصفحة الاختبار. للتفاعل مع المكوّن، استخدم أوامر WebdriverIO لأنها تتصرف بشكل أقرب إلى تفاعلات المستخدم الفعلية، على سبيل المثال:
 
 
 <Tabs
@@ -85,18 +85,18 @@ import Component from './components/Component.vue'
 
 describe('Vue Component Testing', () => {
     it('increments value on click', async () => {
-        // تُرجع دالة العرض مجموعة من الأدوات للاستعلام عن المكون الخاص بك.
+        // تُرجع دالة العرض مجموعة من الأدوات للاستعلام عن المكوّن الخاص بك.
         const wrapper = mount(Component, { attachTo: document.body })
         expect(wrapper.text()).toContain('Times clicked: 0')
 
         const button = await $('aria/increment')
 
-        // إرسال حدث نقر أصلي إلى عنصر الزر.
+        // إرسال حدث نقر أصلي إلى عنصر الزر الخاص بنا.
         await button.click()
         await button.click()
 
         expect(wrapper.text()).toContain('Times clicked: 2')
-        await expect($('p=Times clicked: 2')).toExist() // نفس التحقق باستخدام WebdriverIO
+        await expect($('p=Times clicked: 2')).toExist() // نفس عملية التحقق باستخدام WebdriverIO
     })
 })
 ```
@@ -111,16 +111,16 @@ import Component from './components/Component.vue'
 
 describe('Vue Component Testing', () => {
     it('increments value on click', async () => {
-        // تُرجع دالة العرض مجموعة من الأدوات للاستعلام عن المكون الخاص بك.
+        // تُرجع دالة العرض مجموعة من الأدوات للاستعلام عن المكوّن الخاص بك.
         const { getByText } = render(Component)
 
         // تُرجع getByText أول عقدة مطابقة للنص المُقدَّم، و
-        // تُطلق خطأً إذا لم تتطابق أي عناصر أو إذا وُجد أكثر من تطابق واحد.
+        // تُطلق خطأً إذا لم تتطابق أي عناصر أو إذا تم العثور على أكثر من تطابق واحد.
         getByText('Times clicked: 0')
 
         const button = await $(getByText('increment'))
 
-        // إرسال حدث نقر أصلي إلى عنصر الزر.
+        // إرسال حدث نقر أصلي إلى عنصر الزر الخاص بنا.
         await button.click()
         await button.click()
 
@@ -137,7 +137,7 @@ describe('Vue Component Testing', () => {
 
 ## اختبار المكونات غير المتزامنة في Vue3
 
-إذا كنت تستخدم Vue v3 وتختبر [مكونات غير متزامنة](https://vuejs.org/guide/built-ins/suspense.html#async-setup) مثل التالي:
+إذا كنت تستخدم Vue v3 وتختبر [مكونات غير متزامنة](https://vuejs.org/guide/built-ins/suspense.html#async-setup) مثل ما يلي:
 
 ```vue
 <script setup>
@@ -150,7 +150,7 @@ const posts = await res.json()
 </template>
 ```
 
-نوصي باستخدام [`@vue/test-utils`](https://www.npmjs.com/package/@vue/test-utils) وغلاف suspense صغير لعرض المكون. للأسف، لا يدعم [`@testing-library/vue`](https://github.com/testing-library/vue-testing-library/issues/230) هذا الأمر حتى الآن. أنشئ ملف `helper.ts` بالمحتوى التالي:
+نوصي باستخدام [`@vue/test-utils`](https://www.npmjs.com/package/@vue/test-utils) وغلاف suspense صغير لعرض المكوّن. للأسف، لا يدعم [`@testing-library/vue`](https://github.com/testing-library/vue-testing-library/issues/230) هذا الأمر بعد. أنشئ ملف `helper.ts` بالمحتوى التالي:
 
 ```ts
 import { mount, type VueWrapper as VueWrapperImport } from '@vue/test-utils'
@@ -191,7 +191,7 @@ export function renderAsyncComponent(vueComponent: ReturnType<typeof defineCompo
 }
 ```
 
-ثم استورد المكون واختبره على النحو التالي:
+ثم استورد المكوّن واختبره على النحو التالي:
 
 ```ts
 import { $, expect } from '@wdio/globals'
@@ -217,11 +217,11 @@ describe('Testing Async Components', () => {
 
 ## اختبار مكونات Vue في Nuxt
 
-إذا كنت تستخدم إطار عمل الويب [Nuxt](https://nuxt.com/)، فسيقوم WebdriverIO تلقائيًا بتفعيل ميزة [الاستيراد التلقائي](https://nuxt.com/docs/guide/concepts/auto-imports) مما يجعل اختبار مكونات Vue وصفحات Nuxt أمرًا سهلًا. ومع ذلك، لا يمكن دعم أي [وحدات Nuxt](https://nuxt.com/modules) قد تقوم بتعريفها في إعداداتك وتتطلب سياقًا لتطبيق Nuxt.
+إذا كنت تستخدم إطار عمل الويب [Nuxt](https://nuxt.com/)، فسيقوم WebdriverIO تلقائيًا بتفعيل ميزة [الاستيراد التلقائي](https://nuxt.com/docs/guide/concepts/auto-imports) مما يجعل اختبار مكونات Vue وصفحات Nuxt أمرًا سهلًا. ومع ذلك، لا يمكن دعم أي [وحدات Nuxt](https://nuxt.com/modules) قد تقوم بتعريفها في إعداداتك وتتطلب سياق تطبيق Nuxt.
 
 __أسباب ذلك هي:__
-- لا يستطيع WebdriverIO تشغيل تطبيق Nuxt في بيئة المتصفح وحدها
-- إن جعل اختبارات المكونات تعتمد بشكل كبير على بيئة Nuxt يُنشئ تعقيدًا، لذا نوصي بتشغيل هذه الاختبارات كاختبارات شاملة (e2e)
+- لا يستطيع WebdriverIO تشغيل تطبيق Nuxt في بيئة المتصفح فقط
+- إن جعل اختبارات المكونات تعتمد بشكل كبير على بيئة Nuxt يخلق تعقيدًا، ولذلك نوصي بتشغيل هذه الاختبارات كاختبارات شاملة (e2e)
 
 :::info
 
@@ -229,26 +229,26 @@ __أسباب ذلك هي:__
 
 :::
 
-### محاكاة الـ composables المدمجة
+### محاكاة الدوال القابلة للتركيب (composables) المدمجة
 
-في حال كان المكون الخاص بك يستخدم composable أصليًا من Nuxt، على سبيل المثال [`useNuxtData`](https://nuxt.com/docs/api/composables/use-nuxt-data)، فسيقوم WebdriverIO تلقائيًا بمحاكاة هذه الدوال ويتيح لك تعديل سلوكها أو التحقق منها، على سبيل المثال:
+في حال كان المكوّن الخاص بك يستخدم دالة قابلة للتركيب (composable) أصلية من Nuxt، مثل [`useNuxtData`](https://nuxt.com/docs/api/composables/use-nuxt-data)، فسيقوم WebdriverIO تلقائيًا بمحاكاة (mock) هذه الدوال ويتيح لك تعديل سلوكها أو التحقق منها، على سبيل المثال:
 
 ```ts
 import { mocked } from '@wdio/browser-runner'
 
-// على سبيل المثال، يستدعي المكون الخاص بك `useNuxtData` بالطريقة التالية
+// على سبيل المثال، يستدعي المكوّن الخاص بك `useNuxtData` بالطريقة التالية
 // `const { data: posts } = useNuxtData('posts')`
-// في اختبارك يمكنك التحقق منه
+// في اختبارك يمكنك التحقق منها
 expect(useNuxtData).toBeCalledWith('posts')
-// وتغيير سلوكه
+// وتغيير سلوكها
 mocked(useNuxtData).mockReturnValue({
     data: [...]
 })
 ```
 
-### التعامل مع الـ composables الخاصة بالأطراف الثالثة
+### التعامل مع الدوال القابلة للتركيب (composables) من جهات خارجية
 
-لا يمكن محاكاة جميع [وحدات الأطراف الثالثة](https://nuxt.com/modules) التي يمكنها تعزيز مشروع Nuxt الخاص بك تلقائيًا. في هذه الحالات، تحتاج إلى محاكاتها يدويًا، على سبيل المثال بافتراض أن تطبيقك يستخدم إضافة وحدة [Supabase](https://nuxt.com/modules/supabase):
+لا يمكن محاكاة جميع [الوحدات الخارجية](https://nuxt.com/modules) التي يمكنها تعزيز مشروع Nuxt الخاص بك تلقائيًا. في تلك الحالات، تحتاج إلى محاكاتها يدويًا، على سبيل المثال، بافتراض أن تطبيقك يستخدم إضافة وحدة [Supabase](https://nuxt.com/modules/supabase):
 
 ```js title=""
 export default defineNuxtConfig({
@@ -260,7 +260,7 @@ export default defineNuxtConfig({
 });
 ```
 
-وأنك تُنشئ نسخة من Supabase في مكان ما ضمن الـ composables الخاصة بك، على سبيل المثال:
+وأنك تُنشئ نسخة من Supabase في مكان ما ضمن الدوال القابلة للتركيب الخاصة بك، على سبيل المثال:
 
 ```ts
 const superbase = useSupabaseClient()

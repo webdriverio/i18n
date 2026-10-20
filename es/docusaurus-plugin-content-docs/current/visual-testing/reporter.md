@@ -4,9 +4,9 @@ title: Visual Reporter
 description: "Genera y explora el Visual Reporter para revisar las diferencias de las pruebas visuales a partir de la salida JSON de @wdio/visual-service, de forma local o en CI."
 ---
 
-El Visual Reporter es una nueva funcionalidad introducida en `@wdio/visual-service`, a partir de la versión [v5.2.0](https://github.com/webdriverio/visual-testing/releases/tag/%40wdio%2Fvisual-service%405.2.0). Este reporter permite a los usuarios visualizar los informes de diferencias en JSON generados por el servicio de Visual Testing y transformarlos en un formato legible para humanos. Ayuda a los equipos a analizar y gestionar mejor los resultados de las pruebas visuales, proporcionando una interfaz gráfica para revisar la salida.
+El Visual Reporter es una nueva funcionalidad introducida en `@wdio/visual-service`, a partir de la versión [v5.2.0](https://github.com/webdriverio/visual-testing/releases/tag/%40wdio%2Fvisual-service%405.2.0). Este reporter permite a los usuarios visualizar los informes de diferencias en JSON generados por el servicio de Visual Testing y transformarlos en un formato legible para las personas. Ayuda a los equipos a analizar y gestionar mejor los resultados de las pruebas visuales al proporcionar una interfaz gráfica para revisar la salida.
 
-Para utilizar esta funcionalidad, asegúrate de tener la configuración necesaria para generar el archivo `output.json` requerido. Este documento te guiará en la configuración, ejecución y comprensión del Visual Reporter.
+Para utilizar esta funcionalidad, asegúrate de tener la configuración necesaria para generar el archivo `output.json` requerido. Este documento te guiará a través de la configuración, la ejecución y la comprensión del Visual Reporter.
 
 # Requisitos previos
 
@@ -26,7 +26,7 @@ export const config = {
 };
 ```
 
-Para instrucciones de configuración más detalladas, consulta la [Documentación de Visual Testing](./) de WebdriverIO o [`createJsonReportFiles`](./service-options.md#createjsonreportfiles-new)
+Para obtener instrucciones de configuración más detalladas, consulta la [Documentación de Visual Testing](./) de WebdriverIO o [`createJsonReportFiles`](./service-options.md#createjsonreportfiles-new)
 
 # Instalación
 
@@ -36,7 +36,7 @@ Para instalar el Visual Reporter, agrégalo como dependencia de desarrollo a tu 
 npm install @wdio/visual-reporter --save-dev
 ```
 
-Esto garantizará que los archivos necesarios estén disponibles para generar informes de tus pruebas visuales.
+Esto garantizará que los archivos necesarios estén disponibles para generar informes a partir de tus pruebas visuales.
 
 # Uso
 
@@ -54,12 +54,12 @@ npx wdio-visual-reporter --jsonOutput=<path-to-output.json> --reportFolder=<path
 
 #### Opciones obligatorias:
 
--   `--jsonOutput`: La ruta relativa al archivo `output.json` generado por el servicio de Visual Testing. Esta ruta es relativa al directorio desde el que ejecutas el comando.
--   `--reportFolder`: El directorio relativo donde se almacenará el informe generado. Esta ruta también es relativa al directorio desde el que ejecutas el comando.
+-   `--jsonOutput`: La ruta relativa al archivo `output.json` generado por el servicio de Visual Testing. Esta ruta es relativa al directorio desde el cual ejecutas el comando.
+-   `--reportFolder`: El directorio relativo donde se almacenará el informe generado. Esta ruta también es relativa al directorio desde el cual ejecutas el comando.
 
 #### Opciones opcionales:
 
--   `--logLevel`: Establécelo en `debug` para obtener un registro detallado, especialmente útil para la resolución de problemas.
+-   `--logLevel`: Establécelo en `debug` para obtener registros detallados, especialmente útil para la resolución de problemas.
 
 #### Ejemplo
 
@@ -120,7 +120,7 @@ Los prompts te guiarán para proporcionar las rutas y opciones necesarias. Al fi
 Abrir `path/to/report/index.html` directamente en un navegador **sin servirlo desde un servidor local** **NO** funcionará.
 :::
 
-Si optaste por **no** iniciar el servidor mediante el prompt interactivo, aún puedes ver el informe ejecutando manualmente el siguiente comando:
+Si optaste por **no** iniciar el servidor a través del prompt interactivo, aún puedes ver el informe ejecutando manualmente el siguiente comando:
 
 ```bash
 npx sirv-cli /path/to/report --single
@@ -145,7 +145,7 @@ Para ver un ejemplo de cómo se ve el informe, visita nuestra [demo en GitHub Pa
 
 # Comprender el informe visual
 
-El Visual Reporter ofrece una vista organizada de los resultados de tus pruebas visuales. Para cada ejecución de pruebas, podrás:
+El Visual Reporter proporciona una vista organizada de los resultados de tus pruebas visuales. Para cada ejecución de pruebas, podrás:
 
 -   Navegar fácilmente entre los casos de prueba y ver los resultados agregados.
 -   Revisar metadatos como los nombres de las pruebas, los navegadores utilizados y los resultados de las comparaciones.
@@ -155,4 +155,4 @@ Esta representación visual simplifica el análisis de los resultados de tus pru
 
 # Integraciones con CI
 
-Estamos trabajando para dar soporte a diferentes herramientas de CI como Jenkins, GitHub Actions, etc. Si te gustaría ayudarnos, contáctanos en [Discord - Visual Testing](https://discord.com/channels/1097401827202445382/1186908940286574642).
+Estamos trabajando para dar soporte a diferentes herramientas de CI como Jenkins, GitHub Actions, etc. Si deseas ayudarnos, contáctanos en [Discord - Visual Testing](https://discord.com/channels/1097401827202445382/1186908940286574642).

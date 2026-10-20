@@ -1,17 +1,17 @@
 ---
 id: cloud-providers
 title: Proveedores en la nube
-description: "Ejecuta sesiones de navegador y móviles de WebdriverIO MCP en granjas de dispositivos en la nube, incluyendo credenciales, carga de aplicaciones, túneles e informes."
+description: "Ejecuta sesiones de navegador y móviles de WebdriverIO MCP en granjas de dispositivos en la nube, incluyendo credenciales, carga de aplicaciones, túneles y reportes."
 ---
 
-El servidor MCP de WebdriverIO tiene soporte nativo para ejecutar sesiones de automatización de navegador y móviles en granjas de dispositivos en la nube. No se requieren drivers, emuladores ni simuladores locales. Se admiten cuatro proveedores:
+El servidor WebdriverIO MCP tiene soporte nativo para ejecutar sesiones de automatización de navegador y móviles en granjas de dispositivos en la nube. No se requieren drivers locales, emuladores ni simuladores. Se admiten cuatro proveedores:
 
 - **BrowserStack** — [Automate](https://www.browserstack.com/automate) (navegadores) y [App Automate](https://www.browserstack.com/app-automate) (aplicaciones móviles)
 - **Sauce Labs** — nube de dispositivos reales y navegadores virtuales de [Sauce Labs](https://saucelabs.com)
 - **TestMu (anteriormente LambdaTest)** — nube de dispositivos reales y navegadores de [TestMu](https://www.lambdatest.com)
 - **TestingBot** — nube de dispositivos reales y grid de navegadores de [TestingBot](https://testingbot.com)
 
-Los cuatro proveedores comparten el mismo flujo de trabajo: configurar las credenciales, opcionalmente subir una aplicación móvil y luego llamar a `start_session` con el nombre del proveedor. Las etiquetas de informes, la configuración del túnel y el ciclo de vida de la aplicación móvil son idénticos en todos los proveedores.
+Los cuatro proveedores comparten el mismo flujo de trabajo: configurar las credenciales, opcionalmente cargar una aplicación móvil y luego llamar a `start_session` con el nombre del proveedor. Las etiquetas de reportes, la configuración del túnel y el ciclo de vida de las aplicaciones móviles son idénticos entre proveedores.
 
 ## Requisitos previos
 
@@ -35,12 +35,12 @@ export TESTINGBOT_KEY="your_key"
 export TESTINGBOT_SECRET="your_secret"
 ```
 
-| Proveedor    | Variable de usuario     | Variable de clave de acceso | Dónde encontrarla                                                          |
-| ------------ | ----------------------- | --------------------------- | -------------------------------------------------------------------------- |
+| Proveedor    | Variable de usuario     | Variable de clave de acceso | Dónde encontrarlas                                                       |
+| ------------ | ----------------------- | --------------------------- | ------------------------------------------------------------------------ |
 | BrowserStack | `BROWSERSTACK_USERNAME` | `BROWSERSTACK_ACCESS_KEY`   | [Configuración de la cuenta](https://www.browserstack.com/accounts/settings) |
-| Sauce Labs   | `SAUCE_USERNAME`        | `SAUCE_ACCESS_KEY`          | [Configuración de usuario](https://app.saucelabs.com/user-settings)        |
+| Sauce Labs   | `SAUCE_USERNAME`        | `SAUCE_ACCESS_KEY`          | [Configuración del usuario](https://app.saucelabs.com/user-settings)     |
 | TestMu       | `TESTMU_USERNAME`       | `TESTMU_ACCESS_KEY`         | [Configuración de la cuenta](https://accounts.lambdatest.com/detail/profile) |
-| TestingBot   | `TESTINGBOT_KEY`        | `TESTINGBOT_SECRET`         | [Configuración de la cuenta](https://testingbot.com/membership)            |
+| TestingBot   | `TESTINGBOT_KEY`        | `TESTINGBOT_SECRET`         | [Configuración de la cuenta](https://testingbot.com/membership)          |
 
 ## Automatización de navegadores
 
@@ -87,7 +87,7 @@ start_session({
 })
 ```
 
-Todos los proveedores admiten `browser`: `"chrome"`, `"firefox"`, `"edge"`, `"safari"`. Si omites `os` / `osVersion`, el proveedor utiliza valores predeterminados razonables (normalmente la última versión de Linux para sesiones de navegador).
+Todos los proveedores admiten `browser`: `"chrome"`, `"firefox"`, `"edge"`, `"safari"`. Si omites `os` / `osVersion`, el proveedor utiliza valores predeterminados razonables (normalmente la versión más reciente de Linux para sesiones de navegador).
 
 ### Regiones de Sauce Labs
 
@@ -108,7 +108,7 @@ Valores admitidos: `"us-west-1"`, `"eu-central-1"` (predeterminado), `"apac-sout
 
 El flujo de trabajo móvil tiene tres pasos, idénticos en todos los proveedores:
 
-### Paso 1: Sube tu aplicación
+### Paso 1: Carga tu aplicación
 
 ```js
 upload_app({ provider: "browserstack", path: "/absolute/path/to/app.apk" })
@@ -148,7 +148,7 @@ BrowserStack también admite `organizationWide: true` para listar todas las carg
 
 ### Paso 3: Inicia la sesión
 
-Usa la referencia de la aplicación de `upload_app`, o un `customId`:
+Usa la referencia de la aplicación obtenida de `upload_app`, o un `customId`:
 
 ```js
 // BrowserStack — Android
@@ -190,7 +190,7 @@ start_session({
 
 ## Túnel local
 
-Todos los proveedores admiten un túnel local para que las sesiones en la nube puedan acceder a servidores en tu máquina (localhost, entornos de staging, servicios internos).
+Los proveedores admiten un túnel local para que las sesiones en la nube puedan acceder a servidores en tu máquina (localhost, entornos de staging, servicios internos).
 
 El servidor MCP utiliza un **parámetro `tunnel` unificado** que funciona de forma idéntica en todos los proveedores:
 
@@ -207,7 +207,7 @@ start_session({
 })
 ```
 
-Antes de tu primera sesión con `tunnel: true`, el servidor MCP se encarga de descargar e iniciar el binario del túnel. Si quieres verificar la configuración manualmente, consulta el recurso del binario local del proveedor:
+Antes de tu primera sesión con `tunnel: true`, el servidor MCP se encarga de descargar e iniciar el binario del túnel. Si quieres verificar la configuración manualmente, lee el recurso local-binary del proveedor:
 
 - `wdio://browserstack/local-binary`
 - `wdio://saucelabs/local-binary`
@@ -230,21 +230,21 @@ start_session({
 })
 ```
 
-`"external"` indica al servidor MCP que ya hay un túnel en ejecución; establece los indicadores de capacidades apropiados, pero no inicia ni detiene ningún proceso. Configura `tunnelName` para que coincida con el túnel en ejecución.
+`"external"` indica al servidor MCP que ya hay un túnel en ejecución; establece los indicadores de capacidades correspondientes, pero no inicia ni detiene ningún proceso. Configura `tunnelName` para que coincida con el túnel en ejecución.
 
 ### Configuración manual del túnel
 
-Si prefieres ejecutar el túnel manualmente, consulta las instrucciones de configuración en el recurso MCP de tu proveedor y plataforma. Por ejemplo:
+Si prefieres ejecutar el túnel manualmente, lee las instrucciones de configuración desde el recurso MCP de tu proveedor y plataforma. Por ejemplo:
 
 ```text
-// Read setup instructions (from your AI client)
+// Lee las instrucciones de configuración (desde tu cliente de IA)
 wdio://saucelabs/local-binary
 wdio://testingbot/local-binary
 ```
 
 Cada recurso devuelve la URL de descarga, los comandos específicos de la plataforma y las instrucciones para ejecutarlo como daemon.
 
-## Informes
+## Reportes
 
 Etiqueta las sesiones con etiquetas de proyecto, build y sesión para el panel del proveedor. Esto funciona de forma idéntica en todos los proveedores:
 
@@ -261,7 +261,7 @@ start_session({
 })
 ```
 
-Las sesiones aparecen en el panel del proveedor bajo el proyecto y el build especificados:
+Las sesiones aparecen en el panel del proveedor bajo el proyecto y la build especificados:
 - BrowserStack: [Panel de Automate](https://automate.browserstack.com)
 - Sauce Labs: [Resultados de pruebas](https://app.saucelabs.com/dashboard/builds)
 - TestMu: [Panel de automatización](https://automation.lambdatest.com)
@@ -276,8 +276,8 @@ Las sesiones aparecen en el panel del proveedor bajo el proyecto y el build espe
 
 ### Sauce Labs
 
-- **Las regiones importan.** La región predeterminada es `eu-central-1`. Si tu cuenta está en una región diferente, configura `region` en `start_session`, `list_apps` y `upload_app` para que coincida.
-- Las sesiones móviles admiten `automationName` (`"XCUITest"` o `"UiAutomator2"`); los valores predeterminados son razonables para cada plataforma.
+- **Las regiones importan.** La región predeterminada es `eu-central-1`. Si tu cuenta está en otra región, configura `region` en `start_session`, `list_apps` y `upload_app` para que coincida.
+- Las sesiones móviles admiten `automationName` (`"XCUITest"` o `"UiAutomator2"`); los valores predeterminados son adecuados para cada plataforma.
 - El túnel Sauce Connect se gestiona automáticamente mediante el paquete npm `saucelabs`. No se necesita ningún binario externo para `tunnel: true`.
 
 ### TestMu
@@ -294,4 +294,4 @@ Las sesiones aparecen en el panel del proveedor bajo el proyecto y el build espe
 - Las credenciales usan `TESTINGBOT_KEY` y `TESTINGBOT_SECRET` (no un par de usuario/clave de acceso como los demás proveedores).
 - El túnel se gestiona automáticamente mediante el paquete npm `testingbot-tunnel-launcher` (requiere Java 11+).
 - No hay parámetro de región: el hub de TestingBot es global.
-- Se admite el modo de navegador/emulador móvil: configura `platform: "android"` o `"ios"` con un nombre de `browser` (p. ej., `"chrome"`) en lugar de `app`.
+- Se admite el modo de navegador móvil/emulador: configura `platform: "android"` o `"ios"` con un nombre de `browser` (p. ej., `"chrome"`) en lugar de `app`.

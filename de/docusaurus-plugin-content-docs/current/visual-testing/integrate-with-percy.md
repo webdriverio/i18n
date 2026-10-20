@@ -1,7 +1,7 @@
 ---
 id: integrate-with-percy
 title: Für Webanwendungen
-description: "Integrieren Sie WebdriverIO-Tests für Webanwendungen mit BrowserStack Percy für visuelles Testen, von der Erstellung eines Projekts bis zur Ausführung von Builds."
+description: "Integrieren Sie WebdriverIO-Tests für Webanwendungen mit BrowserStack Percy für visuelles Testen – von der Erstellung eines Projekts bis zur Ausführung von Builds."
 ---
 
 ## Integrieren Sie Ihre WebdriverIO-Tests mit Percy
@@ -10,13 +10,13 @@ Vor der Integration können Sie sich [Percys Beispiel-Build-Tutorial für Webdri
 Integrieren Sie Ihre automatisierten WebdriverIO-Tests mit BrowserStack Percy. Hier ist ein Überblick über die Integrationsschritte:
 
 ### Schritt 1: Ein Percy-Projekt erstellen
-[Melden Sie sich](https://percy.io/signup/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation) bei Percy an. Erstellen Sie in Percy ein Projekt vom Typ Web und geben Sie dem Projekt einen Namen. Nachdem das Projekt erstellt wurde, generiert Percy ein Token. Notieren Sie es sich. Sie benötigen es, um im nächsten Schritt Ihre Umgebungsvariable zu setzen.
+[Melden Sie sich](https://percy.io/signup/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation) bei Percy an. Erstellen Sie in Percy ein Projekt vom Typ Web und geben Sie dem Projekt einen Namen. Nachdem das Projekt erstellt wurde, generiert Percy ein Token. Notieren Sie es sich. Sie benötigen es im nächsten Schritt, um Ihre Umgebungsvariable zu setzen.
 
 Weitere Informationen zum Erstellen eines Projekts finden Sie unter [Ein Percy-Projekt erstellen](https://www.browserstack.com/docs/percy/get-started/create-project/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation).
 
 ### Schritt 2: Das Projekt-Token als Umgebungsvariable setzen
 
-Führen Sie den folgenden Befehl aus, um PERCY_TOKEN als Umgebungsvariable zu setzen:
+Führen Sie den angegebenen Befehl aus, um PERCY_TOKEN als Umgebungsvariable zu setzen:
 
 ```sh
 export PERCY_TOKEN="<your token here>"   // macOS oder Linux
@@ -26,7 +26,7 @@ set PERCY_TOKEN="<your token here>"    // Windows CMD
 
 ### Schritt 3: Percy-Abhängigkeiten installieren
 
-Installieren Sie die Komponenten, die zum Einrichten der Integrationsumgebung für Ihre Testsuite erforderlich sind.
+Installieren Sie die Komponenten, die erforderlich sind, um die Integrationsumgebung für Ihre Testsuite einzurichten.
 
 Um die Abhängigkeiten zu installieren, führen Sie den folgenden Befehl aus:
 
@@ -125,4 +125,4 @@ percy exec -- wdio wdio.conf.js
 | [Offizielle Dokumentation](https://www.browserstack.com/docs/percy/integrate/webdriverio/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)  | Percys WebdriverIO-Dokumentation     |
 | [Beispiel-Build - Tutorial](https://www.browserstack.com/docs/percy/sample-build/webdriverio/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation) | Percys WebdriverIO-Tutorial          |
 | [Offizielles Video](https://youtu.be/1Sr_h9_3MI0/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)                                           | Visuelles Testen mit Percy           |
-| [Blog](https://www.browserstack.com/blog/introducing-visual-reviews-2-0/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)                    | Einführung von Visual Reviews 2.0    |
+| [Blog](https://www.browserstack.com/blog/introducing-visual-reviews-2-0/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)                    | Vorstellung von Visual Reviews 2.0   |

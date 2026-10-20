@@ -4,7 +4,7 @@ title: افزونه‌ها و ویرایشگرها
 description: یک افزونه مرورگر یا افزونه VS Code را در یک نشست WebdriverIO بارگذاری کنید و آن را به‌صورت سرتاسری (end to end) تست کنید.
 ---
 
-WebdriverIO افزونه‌های مرورگر و افزونه‌های ویرایشگر را با بارگذاری آن‌ها در برنامه میزبان واقعی تست می‌کند. افزونه‌های مرورگر (وب) درون Chrome یا Firefox اجرا می‌شوند. شما آن‌ها را از طریق قابلیت‌های (capabilities) مرورگر بارگذاری می‌کنید: در Chrome با `--load-extension` یا یک فایل `.crx` به‌صورت base64 از طریق `goog:chromeOptions`، یا در Firefox با `browser.installAddOn()` برای یک فایل `.xpi`. در یک نشست WebDriver BiDi همچنین می‌توانید با `browser.installExtension()` و `browser.uninstallExtension()` یک افزونه را در میانه نشست نصب و حذف کنید. Safari نشست BiDi ندارد، بنابراین این دستور Safari را پوشش نمی‌دهد. از آن پس، اسکریپت‌های محتوا (content scripts) و صفحات popup را با دستورات معمول WebDriver تست می‌کنید. افزونه‌های VS Code با سرویس جامعه‌محور [`wdio-vscode-service`](/docs/wdio-vscode-service) تست می‌شوند. این سرویس VS Code (نسخه stable، insiders یا یک نسخه مشخص) و Chromedriver متناظر را دانلود می‌کند، سپس VS Code را با افزونه شما و تنظیمات کاربری سفارشی اجرا می‌کند. Page objectها برای workbench از طریق `browser.getWorkbench()` در دسترس هستند و `browser.executeWorkbench()` کد را روی API مربوط به VS Code اجرا می‌کند. همین سرویس می‌تواند VS Code را در مرورگر نیز ارائه دهد تا افزونه‌های وب را تست کنید. پلاگین‌های Obsidian نیز یک سرویس جامعه‌محور دارند.
+WebdriverIO افزونه‌های مرورگر و افزونه‌های ویرایشگر را با بارگذاری آن‌ها در برنامه میزبان واقعی تست می‌کند. افزونه‌های مرورگر (وب) درون Chrome یا Firefox اجرا می‌شوند. شما آن‌ها را از طریق قابلیت‌های (capabilities) مرورگر بارگذاری می‌کنید: در Chrome با `--load-extension` یا یک فایل `.crx` به‌صورت base64 از طریق `goog:chromeOptions`، یا در Firefox با `browser.installAddOn()` برای یک فایل `.xpi`. در یک نشست WebDriver BiDi همچنین می‌توانید یک افزونه را در میانه نشست با `browser.installExtension()` و `browser.uninstallExtension()` نصب و حذف کنید. Safari نشست BiDi ندارد، بنابراین این دستور Safari را پوشش نمی‌دهد. از آنجا به بعد، اسکریپت‌های محتوا (content scripts) و صفحات پاپ‌آپ را با دستورات معمول WebDriver تست می‌کنید. افزونه‌های VS Code با سرویس جامعه‌محور [`wdio-vscode-service`](/docs/wdio-vscode-service) تست می‌شوند. این سرویس VS Code (نسخه stable، insiders یا یک نسخه مشخص) و Chromedriver متناظر را دانلود می‌کند، سپس VS Code را با افزونه شما و تنظیمات سفارشی کاربر اجرا می‌کند. Page objectهای مربوط به workbench از طریق `browser.getWorkbench()` در دسترس هستند و `browser.executeWorkbench()` کد را روی API مربوط به VS Code اجرا می‌کند. همین سرویس می‌تواند VS Code را در مرورگر نیز ارائه دهد تا افزونه‌های وب را تست کنید. برای افزونه‌های Obsidian نیز یک سرویس جامعه‌محور وجود دارد.
 
 ## شروع سریع
 
@@ -24,7 +24,7 @@ npm install --save-dev @wdio/cli @wdio/local-runner @wdio/mocha-framework @wdio/
 
 ### افزونه Chrome
 
-افزونه خود را در یک پوشه (در اینجا `./dist`) build کنید و آن را با آرگومان Chrome یعنی `--load-extension` بارگذاری کنید:
+افزونه خود را در یک پوشه (در اینجا `./dist`) بیلد کنید و آن را با آرگومان `--load-extension` در Chrome بارگذاری کنید:
 
 ```ts title="wdio.conf.ts"
 import path from 'node:path'
@@ -82,7 +82,7 @@ export const config: WebdriverIO.Config = {
     specs: ['./test/specs/**/*.ts'],
     capabilities: [{
         browserName: 'vscode',
-        browserVersion: 'stable', // همچنین ممکن است: "insiders" یا یک نسخه مشخص مثلاً "1.80.0"
+        browserVersion: 'stable', // همچنین ممکن است: "insiders" یا یک نسخه مشخص مانند "1.80.0"
         'wdio:vscodeOptions': {
             // به پوشه‌ای اشاره می‌کند که package.json افزونه در آن قرار دارد
             extensionPath: __dirname,
@@ -120,21 +120,21 @@ describe('VS Code Extension Testing', () => {
 - [تست افزونه وب](/docs/extension-testing/web-extensions): بارگذاری افزونه‌ها در Chrome (پوشه یا `.crx`) و Firefox (`.xpi` از طریق [`installAddOn`](/docs/api/gecko#installaddon))، یا نصب و حذف یک افزونه در میانه نشست با [`installExtension`](/docs/api/browser/installExtension). افزونه‌های وب Safari پوشش داده نمی‌شوند.
 - [سرویس پروفایل Firefox](/docs/firefox-profile-service): ساخت یک پروفایل Firefox که شامل افزونه‌ها باشد.
 - [تست افزونه VS Code](/docs/extension-testing/vscode-extensions): پیکربندی، راه‌اندازی TypeScript، page objectهای workbench و `executeWorkbench`.
-- [سرویس VS Code](/docs/wdio-vscode-service): همه گزینه‌های سرویس، مانند `cachePath`، و نحوه نوشتن page objectهای سفارشی.
-- [سرویس تست پلاگین Obsidian](/docs/wdio-obsidian-service): یک سرویس جامعه‌محور که پلاگین‌های Obsidian را در نسخه‌های مختلف Obsidian روی Windows، macOS، Linux و Android تست می‌کند.
+- [سرویس VS Code](/docs/wdio-vscode-service): تمام گزینه‌های سرویس، مانند `cachePath`، و نحوه نوشتن page objectهای سفارشی.
+- [سرویس تست افزونه Obsidian](/docs/wdio-obsidian-service): یک سرویس جامعه‌محور که افزونه‌های Obsidian را در نسخه‌های مختلف Obsidian روی Windows، macOS، Linux و Android تست می‌کند.
 - [دستورات سفارشی](/docs/customcommands): بسته‌بندی توابع کمکی مانند `openExtensionPopup` برای استفاده مجدد.
 
-تست‌های افزونه وب در یک نشست معمولی Chrome یا Firefox اجرا می‌شوند، بنابراین همه موارد مطرح‌شده در [مرورگرهای وب](/docs/platforms/web) نیز صدق می‌کنند، از جمله selectorها، شبیه‌سازی شبکه (network mocking) و تست بصری.
+تست‌های افزونه وب در یک نشست معمولی Chrome یا Firefox اجرا می‌شوند، بنابراین همه موارد مربوط به [مرورگرهای وب](/docs/platforms/web) نیز صدق می‌کند، از جمله سلکتورها، شبیه‌سازی شبکه (network mocking) و تست بصری.
 
 ## عیب‌یابی
 
-- Firefox به دلیل امضا (signing) یک افزونه build‌شده محلی را نمی‌پذیرد: به جای استفاده از پروفایل، آن را در هوک `before` با `browser.installAddOn(extension.toString('base64'), true)` نصب کنید. فایل `.xpi` را با `npx web-ext build` بسازید.
-- استفاده از Edge، Brave یا Opera به جای Chrome: معمولاً همان آرگومان‌ها با قابلیت گزینه‌های آن مرورگر کار می‌کنند، مثلاً `ms:edgeOptions`.
-- فایل‌های اجرایی VS Code و Chromedriver در یک پوشه cache دانلود می‌شوند. برای کنترل محل ذخیره آن‌ها، مثلاً برای cache کردن در CI، مقدار `services: [['vscode', { cachePath: __dirname }]]` را تنظیم کنید.
+- Firefox یک افزونه بیلدشده محلی را به دلیل امضا (signing) نمی‌پذیرد: به‌جای استفاده از پروفایل، آن را در هوک `before` با `browser.installAddOn(extension.toString('base64'), true)` نصب کنید. فایل `.xpi` را با `npx web-ext build` بیلد کنید.
+- استفاده از Edge، Brave یا Opera به‌جای Chrome: معمولاً همان آرگومان‌ها با قابلیت options آن مرورگر کار می‌کنند، مثلاً `ms:edgeOptions`.
+- فایل‌های اجرایی VS Code و Chromedriver در یک پوشه کش دانلود می‌شوند. برای کنترل محل ذخیره آن‌ها، مثلاً برای کش کردن آن‌ها در CI، مقدار `services: [['vscode', { cachePath: __dirname }]]` را تنظیم کنید.
 - TypeScript نمی‌تواند `getWorkbench` یا `executeWorkbench` را پیدا کند: `wdio-vscode-service` را به `compilerOptions.types` اضافه کنید.
 
 ## گام‌های بعدی
 
-- مرجع [پیکربندی](/docs/configuration) برای همه گزینه‌های `wdio.conf.ts`.
+- مرجع [پیکربندی](/docs/configuration) برای تمام گزینه‌های `wdio.conf.ts`.
 - [Electron](/docs/desktop-testing/electron) برای تست برنامه‌های دسکتاپ کامل ساخته‌شده بر پایه Chromium.
-- پلتفرم‌های دیگر: [مرورگرهای وب](/docs/platforms/web)، [اپلیکیشن‌های موبایل](/docs/platforms/mobile)، [اپلیکیشن‌های دسکتاپ](/docs/platforms/desktop).
+- سایر پلتفرم‌ها: [مرورگرهای وب](/docs/platforms/web)، [برنامه‌های موبایل](/docs/platforms/mobile)، [برنامه‌های دسکتاپ](/docs/platforms/desktop).

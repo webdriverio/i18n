@@ -1,7 +1,7 @@
 ---
 id: integrate-with-percy
-title: برای برنامه وب
-description: "یکپارچه‌سازی تست‌های WebdriverIO برای برنامه‌های وب با BrowserStack Percy جهت تست بصری، از ایجاد پروژه تا اجرای بیلدها."
+title: برای برنامه‌های وب
+description: "تست‌های WebdriverIO برای برنامه‌های وب را برای تست بصری با BrowserStack Percy یکپارچه کنید، از ایجاد پروژه تا اجرای بیلدها."
 ---
 
 ## تست‌های WebdriverIO خود را با Percy یکپارچه کنید
@@ -10,13 +10,13 @@ description: "یکپارچه‌سازی تست‌های WebdriverIO برای ب�
 تست‌های خودکار WebdriverIO خود را با BrowserStack Percy یکپارچه کنید. در ادامه مروری بر مراحل یکپارچه‌سازی آمده است:
 
 ### مرحله ۱: ایجاد یک پروژه Percy
-به Percy [وارد شوید](https://percy.io/signup/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation). در Percy، یک پروژه از نوع Web ایجاد کنید و سپس برای پروژه نامی تعیین کنید. پس از ایجاد پروژه، Percy یک توکن تولید می‌کند. آن را یادداشت کنید. باید از آن برای تنظیم متغیر محیطی خود در مرحله بعد استفاده کنید.
+به Percy [وارد شوید](https://percy.io/signup/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation). در Percy، یک پروژه از نوع Web ایجاد کنید و سپس برای پروژه نامی انتخاب کنید. پس از ایجاد پروژه، Percy یک توکن تولید می‌کند. آن را یادداشت کنید. در مرحله بعد باید از آن برای تنظیم متغیر محیطی خود استفاده کنید.
 
-برای جزئیات درباره ایجاد پروژه، به [ایجاد یک پروژه Percy](https://www.browserstack.com/docs/percy/get-started/create-project/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation) مراجعه کنید.
+برای جزئیات بیشتر درباره ایجاد پروژه، به [ایجاد یک پروژه Percy](https://www.browserstack.com/docs/percy/get-started/create-project/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation) مراجعه کنید.
 
-### مرحله ۲: تنظیم توکن پروژه به عنوان متغیر محیطی
+### مرحله ۲: تنظیم توکن پروژه به‌عنوان متغیر محیطی
 
-دستور زیر را برای تنظیم PERCY_TOKEN به عنوان متغیر محیطی اجرا کنید:
+دستور زیر را برای تنظیم PERCY_TOKEN به‌عنوان متغیر محیطی اجرا کنید:
 
 ```sh
 export PERCY_TOKEN="<your token here>"   // macOS or Linux
@@ -50,7 +50,7 @@ describe('webdriver.io page', () => {
 });
 ```
 
-هنگام استفاده از WebdriverIO در [حالت standalone](https://webdriver.io/docs/setuptypes.html/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)، شیء browser را به عنوان اولین آرگومان به تابع `percySnapshot` ارسال کنید:
+هنگام استفاده از WebdriverIO در [حالت standalone](https://webdriver.io/docs/setuptypes.html/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)، شیء browser را به‌عنوان اولین آرگومان به تابع `percySnapshot` ارسال کنید:
 
 ```sh
 import { remote } from 'webdriverio'
@@ -91,7 +91,7 @@ percySnapshot(browser, name[, options])
 برای اطلاعات بیشتر، به [Percy snapshot](https://www.browserstack.com/docs/percy/take-percy-snapshots/overview/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation) مراجعه کنید.
 
 ### مرحله ۵: اجرای Percy
-تست‌های خود را با استفاده از دستور `percy exec` مطابق زیر اجرا کنید:
+تست‌های خود را با استفاده از دستور `percy exec` مطابق نمونه زیر اجرا کنید:
 
 اگر نمی‌توانید از دستور `percy:exec` استفاده کنید یا ترجیح می‌دهید تست‌های خود را با گزینه‌های اجرای IDE اجرا کنید، می‌توانید از دستورات `percy:exec:start` و `percy:exec:stop` استفاده کنید. برای اطلاعات بیشتر، به [اجرای Percy](https://www.browserstack.com/docs/percy/integrate/webdriverio/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation) مراجعه کنید.
 
@@ -114,7 +114,7 @@ percy exec -- wdio wdio.conf.js
 
 ```
 
-## برای جزئیات بیشتر به صفحات زیر مراجعه کنید:
+## برای جزئیات بیشتر از صفحات زیر دیدن کنید:
 - [تست‌های WebdriverIO خود را با Percy یکپارچه کنید](https://www.browserstack.com/docs/percy/integrate/webdriverio/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)
 - [صفحه متغیرهای محیطی](https://www.browserstack.com/docs/percy/get-started/set-env-var/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation)
 - [یکپارچه‌سازی با استفاده از BrowserStack SDK](https://www.browserstack.com/docs/percy/integrate-bstack-sdk/webdriverio/?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation) در صورتی که از BrowserStack Automate استفاده می‌کنید.

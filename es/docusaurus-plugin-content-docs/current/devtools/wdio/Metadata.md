@@ -12,7 +12,7 @@ Inspecciona el contexto completo de cada sesión del navegador que abre tu prueb
 - **Tiempos de ejecución** - Duración de la prueba, estado y marcas de tiempo de inicio/fin
 - **Vista por sesión** - Cada sesión del navegador (incluidas las sesiones creadas por `browser.reloadSession()`) se conserva de forma independiente y se puede seleccionar desde un menú desplegable
 
-Esto es de gran valor para diagnosticar fallos específicos del entorno, verificar que se aplicaron las capacidades correctas y comprender cómo se comportaron las pruebas con múltiples sesiones.
+Esto es muy valioso para diagnosticar fallos específicos del entorno, verificar que se aplicaron las capacidades correctas y comprender cómo se comportaron las pruebas con múltiples sesiones.
 
 ## Demo
 

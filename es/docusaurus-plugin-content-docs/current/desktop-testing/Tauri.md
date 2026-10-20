@@ -24,7 +24,7 @@ npm create wdio@latest ./
 
 Cuando el asistente te pregunte qué tipo de pruebas deseas realizar, selecciona _"Desktop Testing - of Electron, Tauri, or macOS Applications"_ y luego elige _Tauri_ cuando se te pida el framework. A continuación, el asistente te preguntará qué proveedor de WebDriver quieres usar (el `tauri-driver` oficial, CrabNebula o el plugin integrado) y si deseas el `@wdio/tauri-plugin` opcional para una integración más completa.
 
-El asistente instala automáticamente los paquetes de npm e imprime en stdout las adiciones de Cargo necesarias para que las pegues en tu `src-tauri/Cargo.toml`.
+El asistente instala los paquetes npm automáticamente e imprime en stdout las adiciones de Cargo necesarias para que las pegues en tu `src-tauri/Cargo.toml`.
 
 ## Configuración manual
 
@@ -32,7 +32,7 @@ Si ya tienes un proyecto de WebdriverIO, instala el servicio:
 
 ```sh
 npm install --save-dev @wdio/tauri-service
-# opcional: integración más completa dentro del webview
+# optional: richer in-webview integration
 npm install --save-dev @wdio/tauri-plugin
 ```
 
@@ -64,6 +64,6 @@ export const config: WebdriverIO.Config = {
 }
 ```
 
-¡Eso es todo! 🎉
+¡Eso es todo 🎉!
 
-Obtén más información sobre [cómo configurar el servicio Tauri](/docs/desktop-testing/tauri/configuration), [la configuración del plugin de Tauri](/docs/desktop-testing/tauri/plugin-setup), [las notas específicas de cada plataforma](/docs/desktop-testing/tauri/platform-support) y [los patrones de uso comunes](/docs/desktop-testing/tauri/usage-examples).
+Obtén más información sobre [cómo configurar el servicio Tauri](/docs/desktop-testing/tauri/configuration), [la configuración del plugin de Tauri](/docs/desktop-testing/tauri/plugin-setup), [notas específicas de cada plataforma](/docs/desktop-testing/tauri/platform-support) y [patrones de uso comunes](/docs/desktop-testing/tauri/usage-examples).

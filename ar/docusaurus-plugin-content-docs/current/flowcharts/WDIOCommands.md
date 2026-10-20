@@ -1,11 +1,11 @@
 ---
 id: wdiocommands
 title: أوامر WDIO
-description: "اتبع المخططات الانسيابية التي توضح كيفية تحليل أوامر run وrepl وinstall وconfig في @wdio/cli للوسائط وتنفيذها."
+description: "تتبّع المخططات الانسيابية التي توضح كيف تحلّل أوامر run وrepl وinstall وconfig في @wdio/cli الوسائطَ وكيف تُنفَّذ."
 ---
-يقدم هذا المخطط الانسيابي نظرة عامة عالية المستوى على أوامر run وrepl وconfig وinstall في @wdio/cli.
+يقدّم هذا المخطط الانسيابي نظرة عامة عالية المستوى على أوامر run وrepl وconfig وinstall في @wdio/cli.
 
-## تحليل وسائط CLI
+## تحليل وسائط سطر الأوامر
 
 ```mermaid
 graph TD

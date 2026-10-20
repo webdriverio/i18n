@@ -1,10 +1,10 @@
 ---
 id: ocr-get-element-position-by-text
 title: ocrGetElementPositionByText
-description: "Obtén la posición en pantalla de un texto con ocrGetElementPositionByText, utilizando OCR y coincidencia difusa para encontrarlo."
+description: "Obtén la posición en pantalla de un texto con ocrGetElementPositionByText, usando OCR y coincidencia difusa para encontrarlo."
 ---
 
-Obtiene la posición de un texto en la pantalla. El comando buscará el texto proporcionado e intentará encontrar una coincidencia basada en la Lógica Difusa de [Fuse.js](https://fusejs.io/). Esto significa que, si proporcionas un selector con un error tipográfico o si el texto encontrado no coincide al 100%, igualmente intentará devolverte un elemento. Consulta los [logs](#logs) a continuación.
+Obtiene la posición de un texto en la pantalla. El comando buscará el texto proporcionado e intentará encontrar una coincidencia basada en la lógica difusa (Fuzzy Logic) de [Fuse.js](https://fusejs.io/). Esto significa que, aunque proporciones un selector con un error tipográfico o el texto encontrado no coincida al 100%, intentará devolverte un elemento de todos modos. Consulta los [logs](#logs) a continuación.
 
 ## Uso
 
@@ -83,7 +83,7 @@ await browser.ocrGetElementPositionByText({
 
 <Option type="number" required="WebdriverIO.Element | ChainablePromiseElement | Rectangle">
 
-Esta es el área de búsqueda en la pantalla donde el OCR debe buscar texto. Puede ser un elemento o un rectángulo que contenga `x`, `y`, `width` y `height`
+Es el área de búsqueda en la pantalla donde el OCR debe buscar el texto. Puede ser un elemento o un rectángulo que contenga `x`, `y`, `width` y `height`
 
 </Option>
 #### Ejemplo
@@ -94,13 +94,13 @@ await browser.ocrGetElementPositionByText({
     haystack: $("elementSelector"),
 });
 
-// OR
+// O
 await browser.ocrGetElementPositionByText({
     text: "WebdriverIO",
     haystack: await $("elementSelector"),
 });
 
-// OR
+// O
 await browser.ocrGetElementPositionByText({
     text: "WebdriverIO",
     haystack: {
@@ -138,7 +138,7 @@ Puedes modificar la lógica difusa para encontrar texto con las siguientes opcio
 
 <Option type="number" default="100" required="no">
 
-Determina qué tan cerca debe estar la coincidencia de la ubicación difusa (especificada por location). Una coincidencia exacta de letras que esté a distance caracteres de la ubicación difusa se puntuaría como una falta total de coincidencia. Una distancia de 0 requiere que la coincidencia esté en la ubicación exacta especificada. Una distancia de 1000 requeriría que una coincidencia perfecta esté dentro de los 800 caracteres de la ubicación para ser encontrada usando un umbral de 0.8.
+Determina qué tan cerca debe estar la coincidencia de la ubicación difusa (especificada por location). Una coincidencia exacta de letras que esté a distance caracteres de la ubicación difusa se puntuaría como una falta total de coincidencia. Una distance de 0 requiere que la coincidencia esté en la ubicación exacta especificada. Una distance de 1000 requeriría que una coincidencia perfecta estuviera dentro de 800 caracteres de la ubicación para ser encontrada usando un threshold de 0.8.
 
 </Option>
 ##### Ejemplo
@@ -174,7 +174,7 @@ await browser.ocrGetElementPositionByText({
 
 <Option type="number" default="0.6" required="no">
 
-En qué punto se rinde el algoritmo de coincidencia. Un umbral de 0 requiere una coincidencia perfecta (tanto de letras como de ubicación), un umbral de 1.0 coincidiría con cualquier cosa.
+En qué punto se rinde el algoritmo de coincidencia. Un threshold de 0 requiere una coincidencia perfecta (tanto de letras como de ubicación), un threshold de 1.0 coincidiría con cualquier cosa.
 
 </Option>
 ##### Ejemplo

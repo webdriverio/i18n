@@ -1,22 +1,22 @@
 ---
 id: gettingstarted
 title: Erste Schritte
-description: Erstellen Sie ein WebdriverIO-Projekt mit npm init wdio@latest, führen Sie Ihren ersten Test aus und finden Sie den nächsten Leitfaden für Ihre Plattform.
+description: Erstelle ein WebdriverIO-Projekt mit npm init wdio@latest, führe deinen ersten Test aus und finde die nächste Anleitung für deine Plattform.
 ---
 
-Richten Sie WebdriverIO mit einem einzigen Befehl in einem bestehenden oder neuen Projekt ein und führen Sie dann Ihren ersten Test aus. Der Konfigurationsassistent fragt, was Sie testen möchten (Web, Mobile, Desktop oder VS Code-Erweiterungen), welches Framework und welche Reporter verwendet werden sollen, und installiert alles für Sie.
+Richte WebdriverIO mit einem einzigen Befehl in einem bestehenden oder neuen Projekt ein und führe dann deinen ersten Test aus. Der Konfigurationsassistent fragt, was du testen möchtest (Web, Mobile, Desktop oder VS Code-Erweiterungen), welches Framework und welche Reporter verwendet werden sollen, und installiert alles für dich.
 
 :::info
-Dies ist die Dokumentation für WebdriverIO __v10__. Sie verwenden noch v9? Nutzen Sie die [v9-Dokumentation](https://v9.webdriver.io) oder folgen Sie dem [v10-Migrationsleitfaden](/docs/v10-migration).
+Dies ist die Dokumentation für WebdriverIO __v10__. Noch auf v9? Verwende die [v9-Dokumentation](https://v9.webdriver.io) oder folge dem [v10-Migrationsleitfaden](/docs/v10-migration).
 :::
 
-:::tip Verwenden Sie einen Coding-Agent?
-Verweisen Sie ihn auf [`https://webdriver.io/llms.txt`](https://webdriver.io/llms.txt) oder verbinden Sie den Docs-MCP-Server unter `https://webdriver.io/mcp`. Siehe [WebdriverIO für Coding-Agents](/docs/ai-agents).
+:::tip Verwendest du einen Coding Agent?
+Verweise ihn auf [`https://webdriver.io/llms.txt`](https://webdriver.io/llms.txt) oder verbinde den Docs-MCP-Server unter `https://webdriver.io/mcp`. Siehe [WebdriverIO für Coding Agents](/docs/ai-agents).
 :::
 
 ## Ein WebdriverIO-Setup initiieren
 
-Das [WebdriverIO Starter Toolkit](https://www.npmjs.com/package/create-wdio) fügt einem bestehenden oder neuen Projekt ein vollständiges WebdriverIO-Setup hinzu. Führen Sie im Stammverzeichnis eines bestehenden Projekts Folgendes aus:
+Das [WebdriverIO Starter Toolkit](https://www.npmjs.com/package/create-wdio) fügt einem bestehenden oder neuen Projekt ein vollständiges WebdriverIO-Setup hinzu. Führe im Stammverzeichnis eines bestehenden Projekts Folgendes aus:
 
 <Tabs
   defaultValue="npm"
@@ -33,7 +33,7 @@ Das [WebdriverIO Starter Toolkit](https://www.npmjs.com/package/create-wdio) fü
 npm init wdio@latest .
 ```
 
-oder wenn Sie ein neues Projekt erstellen möchten:
+oder wenn du ein neues Projekt erstellen möchtest:
 
 ```sh
 npm init wdio@latest ./path/to/new/project
@@ -46,7 +46,7 @@ npm init wdio@latest ./path/to/new/project
 yarn create wdio .
 ```
 
-oder wenn Sie ein neues Projekt erstellen möchten:
+oder wenn du ein neues Projekt erstellen möchtest:
 
 ```sh
 yarn create wdio ./path/to/new/project
@@ -59,7 +59,7 @@ yarn create wdio ./path/to/new/project
 pnpm create wdio@latest .
 ```
 
-oder wenn Sie ein neues Projekt erstellen möchten:
+oder wenn du ein neues Projekt erstellen möchtest:
 
 ```sh
 pnpm create wdio@latest ./path/to/new/project
@@ -72,7 +72,7 @@ pnpm create wdio@latest ./path/to/new/project
 bun create wdio@latest .
 ```
 
-oder wenn Sie ein neues Projekt erstellen möchten:
+oder wenn du ein neues Projekt erstellen möchtest:
 
 ```sh
 bun create wdio@latest ./path/to/new/project
@@ -81,11 +81,11 @@ bun create wdio@latest ./path/to/new/project
 </TabItem>
 </Tabs>
 
-Dieser einzelne Befehl lädt das WebdriverIO-CLI-Tool herunter und startet einen Konfigurationsassistenten, der Ihnen bei der Konfiguration Ihrer Testsuite hilft.
+Dieser eine Befehl lädt das WebdriverIO-CLI-Tool herunter und startet einen Konfigurationsassistenten, der dir hilft, deine Testsuite zu konfigurieren.
 
 <CreateProjectAnimation />
 
-Der Assistent stellt eine Reihe von Fragen, die Sie durch die Einrichtung führen. Sie können einen `--yes`-Parameter übergeben, um ein Standard-Setup zu wählen, das Mocha mit Chrome und dem [Page Object](https://martinfowler.com/bliki/PageObject.html)-Muster verwendet.
+Der Assistent stellt eine Reihe von Fragen, die dich durch die Einrichtung führen. Du kannst einen `--yes`-Parameter übergeben, um ein Standard-Setup zu wählen, das Mocha mit Chrome und dem [Page Object](https://martinfowler.com/bliki/PageObject.html)-Muster verwendet.
 
 <Tabs
   defaultValue="npm"
@@ -128,7 +128,7 @@ bun create wdio@latest . --yes
 
 ### Den Assistenten mit Flags beantworten
 
-Jede Frage im Assistenten hat ein entsprechendes Kommandozeilen-Flag. Ein Flag beantwortet seine Frage, und der Assistent fragt nur noch den Rest ab. Zusammen mit `--yes` verwendet der Assistent für den Rest die Standardwerte und fragt nie nach – genau das, was ein Coding-Agent oder ein CI-Job benötigt:
+Jede Frage im Assistenten hat ein Kommandozeilen-Flag. Ein Flag beantwortet seine Frage, und der Assistent fragt nur noch den Rest ab. Zusammen mit `--yes` verwendet der Assistent für den Rest die Standardwerte und stellt keine Fragen, was ein Coding Agent oder ein CI-Job benötigt:
 
 ```sh
 # Cucumber in JavaScript, mit den Spec- und JUnit-Reportern
@@ -143,11 +143,11 @@ npm init wdio@latest . -- --yes --mobile-environment android
 # React-Komponententests
 npm init wdio@latest . -- --yes --runner component --preset react
 
-# Die Konfiguration schreiben, die Abhängigkeiten aber selbst installieren
+# Die Konfiguration schreiben, aber die Abhängigkeiten selbst installieren
 npm init wdio@latest . -- --yes --no-npm-install
 ```
 
-Übergeben Sie die Flags bei Yarn, pnpm und bun ohne das `--`-Trennzeichen, z. B. `pnpm create wdio@latest . --yes --framework cucumber`.
+Übergib die Flags bei Yarn, pnpm und bun ohne das Trennzeichen `--`, z. B. `pnpm create wdio@latest . --yes --framework cucumber`.
 
 Die gängigsten Flags:
 
@@ -162,12 +162,12 @@ Die gängigsten Flags:
 | `--preset` | `lit`, `vue`, `svelte`, `solid`, `stencil`, `react`, `preact`, `other`, mit `--runner component` |
 | `--desktop-framework` | `electron`, `tauri`, `dioxus`, `macos`, mit `--runner desktop` |
 | `--reporters`, `--services`, `--plugins` | Kommagetrennte Kurznamen, z. B. `--reporters spec,junit --services visual` |
-| `--agent-support` / `--no-agent-support` | Schreibt den `AGENTS.md`-Abschnitt und den `wdio-session`-Skill (standardmäßig aktiviert) |
-| `--npm-install` / `--no-npm-install` | Installiert die Abhängigkeiten (standardmäßig aktiviert) |
+| `--agent-support` / `--no-agent-support` | Den `AGENTS.md`-Abschnitt und den `wdio-session`-Skill schreiben (standardmäßig aktiviert) |
+| `--npm-install` / `--no-npm-install` | Die Abhängigkeiten installieren (standardmäßig aktiviert) |
 
-`npm init wdio@latest -- --help` listet jedes Flag, die akzeptierten Werte und die Frage auf, die es beantwortet. Boolesche Flags akzeptieren ein `--no-`-Präfix. Dieselben Flags funktionieren auch mit `npx wdio config`.
+`npm init wdio@latest -- --help` listet jedes Flag, die akzeptierten Werte und die Frage auf, die es beantwortet. Boolesche Flags werden mit dem Präfix `--no-` negiert. Dieselben Flags funktionieren auch mit `npx wdio config`.
 
-Der Assistent prüft jedes Flag anhand Ihres Setups. Ein unbekannter Wert, ein Flag für eine Frage, die er nicht stellen würde, oder ein Wert, den er für Ihr Setup nicht anbieten würde, bricht den Vorgang mit Exit-Code 2 ab, bevor eine Datei geschrieben wird:
+Der Assistent prüft jedes Flag anhand deines Setups. Ein unbekannter Wert, ein Flag für eine Frage, die er nicht stellen würde, oder ein Wert, den er für dein Setup nicht anbieten würde, bricht ihn mit Exit-Code 2 ab, bevor er eine Datei schreibt:
 
 ```
 Error: --preset does not apply to this setup. UI framework of your components (with --runner component).
@@ -175,31 +175,31 @@ Error: --preset does not apply to this setup. UI framework of your components (w
 
 ## CLI manuell installieren
 
-Sie können das CLI-Paket auch manuell zu Ihrem Projekt hinzufügen:
+Du kannst das CLI-Paket auch manuell zu deinem Projekt hinzufügen:
 
 ```sh
 npm i --save-dev @wdio/cli
 npx wdio --version # gibt z. B. `8.13.10` aus
 
-# Konfigurationsassistent ausführen
+# Konfigurationsassistenten ausführen
 npx wdio config
 ```
 
 ## Test ausführen
 
-Sie können Ihre Testsuite mit dem Befehl `run` starten, indem Sie auf die soeben erstellte WebdriverIO-Konfiguration verweisen:
+Du kannst deine Testsuite mit dem `run`-Befehl starten, indem du auf die WebdriverIO-Konfiguration verweist, die du gerade erstellt hast:
 
 ```sh
 npx wdio run ./wdio.conf.js
 ```
 
-Wenn Sie bestimmte Testdateien ausführen möchten, können Sie einen `--spec`-Parameter hinzufügen:
+Wenn du bestimmte Testdateien ausführen möchtest, kannst du einen `--spec`-Parameter hinzufügen:
 
 ```sh
 npx wdio run ./wdio.conf.js --spec example.e2e.js
 ```
 
-oder Sie definieren Suites in Ihrer Konfigurationsdatei und führen nur die in einer Suite definierten Testdateien aus:
+oder Suites in deiner Konfigurationsdatei definieren und nur die in einer Suite definierten Testdateien ausführen:
 
 ```sh
 npx wdio run ./wdio.conf.js --suite exampleSuiteName
@@ -207,7 +207,7 @@ npx wdio run ./wdio.conf.js --suite exampleSuiteName
 
 ## In einem Skript ausführen
 
-Wenn Sie WebdriverIO als Automatisierungs-Engine im [Standalone-Modus](/docs/setuptypes#standalone-mode) innerhalb eines Node.JS-Skripts verwenden möchten, können Sie WebdriverIO auch direkt installieren und als Paket nutzen, z. B. um einen Screenshot einer Website zu erstellen:
+Wenn du WebdriverIO als Automatisierungs-Engine im [Standalone-Modus](/docs/setuptypes#standalone-mode) innerhalb eines Node.JS-Skripts verwenden möchtest, kannst du WebdriverIO auch direkt installieren und als Paket verwenden, z. B. um einen Screenshot einer Website zu erstellen:
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/fc362f2f8dd823d294b9bb5f92bd5991339d4591/getting-started/run-in-script.js#L2-L19
@@ -217,16 +217,16 @@ __Hinweis:__ Alle WebdriverIO-Befehle sind asynchron und müssen mit [`async/awa
 
 ## Tests aufzeichnen
 
-WebdriverIO bietet Werkzeuge, die Ihnen den Einstieg erleichtern, indem sie Ihre Testaktionen auf dem Bildschirm aufzeichnen und automatisch WebdriverIO-Testskripte generieren. Weitere Informationen finden Sie unter [Tests mit dem Chrome DevTools Recorder aufzeichnen](/docs/record).
+WebdriverIO bietet Tools, die dir den Einstieg erleichtern, indem sie deine Testaktionen auf dem Bildschirm aufzeichnen und automatisch WebdriverIO-Testskripte generieren. Weitere Informationen findest du unter [Tests mit dem Chrome DevTools Recorder aufzeichnen](/docs/record).
 
 ## Systemanforderungen
 
-Sie benötigen eine Installation von [Node.js](http://nodejs.org).
+Du benötigst eine Installation von [Node.js](http://nodejs.org).
 
-- Installieren Sie mindestens v22.19.0 oder höher, da dies die älteste unterstützte LTS-Version ist
+- Installiere mindestens v22.19.0 oder höher, da dies die älteste unterstützte LTS-Version ist
 - Offiziell unterstützt werden nur Releases, die LTS-Releases sind oder werden
 
-Falls Node derzeit nicht auf Ihrem System installiert ist, empfehlen wir ein Tool wie [NVM](https://github.com/creationix/nvm) oder [Volta](https://volta.sh/), um mehrere aktive Node.js-Versionen zu verwalten. NVM ist eine beliebte Wahl, während Volta ebenfalls eine gute Alternative ist.
+Falls Node derzeit nicht auf deinem System installiert ist, empfehlen wir die Verwendung eines Tools wie [NVM](https://github.com/creationix/nvm) oder [Volta](https://volta.sh/), um mehrere aktive Node.js-Versionen zu verwalten. NVM ist eine beliebte Wahl, aber auch Volta ist eine gute Alternative.
 
 ## Die Einführung ansehen
 
@@ -235,11 +235,11 @@ Falls Node derzeit nicht auf Ihrem System installiert ist, empfehlen wir ein Too
     title="Getting Started with WebdriverIO"
 />
 
-Weitere Videos finden Sie auf dem [offiziellen YouTube-Kanal](https://youtube.com/@webdriverio).
+Weitere Videos findest du auf dem [offiziellen YouTube-Kanal](https://youtube.com/@webdriverio).
 
 ## Nächste Schritte
 
-- Wählen Sie Ihre Plattform: [Webbrowser](/docs/platforms/web), [Mobile Apps](/docs/platforms/mobile), [Desktop-Apps](/docs/platforms/desktop) oder [Erweiterungen & Editoren](/docs/platforms/apps-and-extensions)
-- Lernen Sie, wie Sie [Elemente auswählen](/docs/selectors) und [Assertions](/docs/assertion) schreiben
-- Konfigurieren Sie den Testrunner in [`wdio.conf.ts`](/docs/configurationfile)
-- Holen Sie sich Hilfe auf [Discord](https://discord.webdriver.io)
+- Wähle deine Plattform: [Webbrowser](/docs/platforms/web), [Mobile Apps](/docs/platforms/mobile), [Desktop-Apps](/docs/platforms/desktop) oder [Erweiterungen & Editoren](/docs/platforms/apps-and-extensions)
+- Lerne, wie du [Elemente auswählst](/docs/selectors) und [Assertions](/docs/assertion) schreibst
+- Konfiguriere den Testrunner in [`wdio.conf.ts`](/docs/configurationfile)
+- Hol dir Hilfe auf [Discord](https://discord.webdriver.io)

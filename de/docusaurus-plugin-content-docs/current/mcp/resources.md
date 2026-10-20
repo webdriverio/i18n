@@ -1,15 +1,15 @@
 ---
 id: resources
 title: Ressourcen
-description: "Lesen Sie den Live-Sitzungsstatus, den Sitzungsverlauf und Details zur Einrichtung von Cloud-Anbietern über die schreibgeschützten wdio://-Ressourcen des WebdriverIO MCP-Servers."
+description: "Lesen Sie den Live-Sitzungsstatus, den Sitzungsverlauf und Einrichtungsdetails von Cloud-Anbietern über die schreibgeschützten wdio://-Ressourcen des WebdriverIO MCP-Servers."
 ---
 
 MCP-Ressourcen bieten schreibgeschützten Zugriff auf den Live-Sitzungsstatus. Im Gegensatz zu Tools werden Ressourcen vom KI-Modell nach Bedarf abgerufen; sie führen keine Aktionen aus. Alle Ressourcen verwenden das URI-Schema `wdio://`.
 
 ## Wann Ressourcen und wann Tools verwenden
 
-- **Ressourcen** — Umgebungszustand, der sich während der Interaktion ändert: aktuelle Elemente, Screenshot, Cookies, Accessibility-Baum. Lesen Sie diese vor einer Aktion, um zu verstehen, was auf dem Bildschirm zu sehen ist.
-- **Tools** — Aktionen, die den Zustand ändern: klicken, navigieren, Wert setzen.
+- **Ressourcen** — Umgebungsstatus, der sich während der Interaktion ändert: aktuelle Elemente, Screenshot, Cookies, Accessibility-Baum. Lesen Sie diese vor dem Handeln, um zu verstehen, was auf dem Bildschirm zu sehen ist.
+- **Tools** — Aktionen, die den Status ändern: Klicken, Navigieren, Wert setzen.
 
 Bevorzugen Sie `wdio://session/current/elements` gegenüber `get_screenshot` für die Elementerkennung; es liefert sofort verwendbare Selektoren und verbraucht deutlich weniger Tokens.
 
@@ -38,25 +38,25 @@ Index aller Browser- und App-Sitzungen mit Metadaten und Schrittanzahl.
 
 ### `wdio://session/current/steps`
 
-JSON-Schrittprotokoll der aktuell aktiven Sitzung. Enthält alle aufgezeichneten Automatisierungsschritte mit Tool-Namen, Parametern und Zeitstempeln.
+JSON-Schrittprotokoll für die aktuell aktive Sitzung. Enthält alle aufgezeichneten Automatisierungsschritte mit Tool-Namen, Parametern und Zeitstempeln.
 
 ---
 
 ### `wdio://session/current/code`
 
-Generiertes WebdriverIO-JavaScript für die aktuell aktive Sitzung. Wird automatisch aus den aufgezeichneten Schritten erzeugt. Fügen Sie es in eine WebdriverIO-Testdatei ein, um die Sitzung erneut abzuspielen.
+Generiertes WebdriverIO-JavaScript für die aktuell aktive Sitzung. Wird automatisch aus den aufgezeichneten Schritten generiert. Fügen Sie es in eine WebdriverIO-Testdatei ein, um die Sitzung erneut abzuspielen.
 
 ---
 
 ### `wdio://session/{sessionId}/steps`
 
-Schrittprotokoll einer bestimmten Sitzung anhand ihrer ID. URI-Template — ersetzen Sie `{sessionId}` durch die ID aus `wdio://sessions`.
+Schrittprotokoll für eine bestimmte Sitzung anhand der ID. URI-Template — ersetzen Sie `{sessionId}` durch die ID aus `wdio://sessions`.
 
 ---
 
 ### `wdio://session/{sessionId}/code`
 
-Generiertes WebdriverIO-JavaScript für eine bestimmte Sitzung anhand ihrer ID. URI-Template — ersetzen Sie `{sessionId}` durch die ID aus `wdio://sessions`.
+Generiertes WebdriverIO-JavaScript für eine bestimmte Sitzung anhand der ID. URI-Template — ersetzen Sie `{sessionId}` durch die ID aus `wdio://sessions`.
 
 ## Live-Seitenstatus (aktuelle Sitzung)
 
@@ -72,7 +72,7 @@ Für erweiterte Filterung (nur Viewport, Container, Bounding Boxes, Paginierung)
 
 ### `wdio://session/current/accessibility`
 
-Accessibility-Baum der aktuellen Seite. Liefert standardmäßig alle Knoten mit Rolle, Name, Selektor und Statusattributen. Nur für Browser. Verwenden Sie auf Mobilgeräten `wdio://session/current/elements`.
+Accessibility-Baum für die aktuelle Seite. Liefert standardmäßig alle Knoten mit Rolle, Name, Selektor und Statusattributen. Nur für Browser. Verwenden Sie auf Mobilgeräten `wdio://session/current/elements`.
 
 ```json
 {
@@ -96,7 +96,7 @@ Für gefilterte Ergebnisse (nach Rolle, paginiert) verwenden Sie das Tool `get_a
 
 ### `wdio://session/current/screenshot`
 
-Screenshot der aktuellen Seite bzw. des aktuellen Bildschirms als base64-kodiertes Bild. Wird automatisch skaliert (max. 2000px) und komprimiert (max. 1 MB).
+Screenshot der aktuellen Seite oder des aktuellen Bildschirms als base64-kodiertes Bild. Wird automatisch skaliert (max. 2000px) und komprimiert (max. 1 MB).
 
 Verwenden Sie dies zur visuellen Überprüfung oder zum Debuggen des Layouts. Für die Elementerkennung bevorzugen Sie `wdio://session/current/elements`.
 
@@ -136,7 +136,7 @@ Alle geöffneten Browser-Tabs in der aktuellen Sitzung. Nur für Browser.
 ]
 ```
 
-Verwenden Sie dies vor `switch_tab`, um das Ziel-Handle oder den Index zu finden.
+Verwenden Sie dies vor `switch_tab`, um das Ziel-Handle oder den Index zu ermitteln.
 
 ---
 
@@ -164,14 +164,14 @@ Aktuell aktiver Automatisierungskontext. Nur für Mobilgeräte.
 
 App-Lebenszyklusstatus für eine bestimmte Bundle-ID. Nur für Mobilgeräte. URI-Template — ersetzen Sie `{bundleId}` durch eine iOS-Bundle-ID oder einen Android-Paketnamen.
 
-Gibt einen der folgenden Werte zurück:
+Liefert einen der folgenden Werte:
 - `0` — nicht installiert
 - `1` — läuft nicht
 - `2` — läuft im Hintergrund (angehalten)
 - `3` — läuft im Hintergrund
 - `4` — läuft im Vordergrund
 
-Für eine benannte Ausgabe verwenden Sie stattdessen das Tool `get_app_state`.
+Für eine Ausgabe mit Namen verwenden Sie stattdessen das Tool `get_app_state`.
 
 ---
 
@@ -191,7 +191,7 @@ Aktuelle Überschreibung der Geräte-Geolokalisierung, die durch `set_geolocatio
 
 ### `wdio://session/current/logs`
 
-Sitzungsprotokolle der aktuellen Sitzung. Liefert Browser-Konsolenmeldungen und JavaScript-Exceptions (Chromium-Sitzungen), Logcat-Ausgabe (Android) oder Crash-/Syslog (iOS).
+Sitzungsprotokolle für die aktuelle Sitzung. Liefert Browser-Konsolenmeldungen und JavaScript-Ausnahmen (Chromium-Sitzungen), Logcat-Ausgabe (Android) oder Crash-/Syslog (iOS).
 
 ```json
 {
@@ -207,7 +207,7 @@ Sitzungsprotokolle der aktuellen Sitzung. Liefert Browser-Konsolenmeldungen und 
 
 ### `wdio://session/current/capabilities`
 
-Rohe Capabilities, die vom WebDriver- oder Appium-Server für die aktuelle Sitzung zurückgegeben wurden. Verwenden Sie dies zum Debuggen; es zeigt die tatsächlichen Werte, die der Treiber akzeptiert hat, einschließlich der vom Cloud-Anbieter oder von Appium angewendeten Standardwerte.
+Rohe Capabilities, die vom WebDriver- oder Appium-Server für die aktuelle Sitzung zurückgegeben werden. Zum Debuggen gedacht; zeigt die tatsächlichen Werte, die der Treiber akzeptiert hat, einschließlich der vom Cloud-Anbieter oder Appium angewendeten Standardwerte.
 
 ## Cloud-Anbieter
 
@@ -273,7 +273,7 @@ Plattformspezifische Download-URL und Anweisungen zur Daemon-Einrichtung für Te
 
 ### `wdio://testingbot/local-binary`
 
-Download-URL und Anweisungen zur Daemon-Einrichtung für TestingBot Tunnel. Der Tunnel ist ein plattformübergreifendes Java-JAR (erfordert Java 11+). Nur erforderlich für `tunnel: "external"` mit `provider: "testingbot"` — bei `tunnel: true` verwaltet das SDK den Tunnel automatisch über `testingbot-tunnel-launcher`.
+Download-URL und Anweisungen zur Daemon-Einrichtung für TestingBot Tunnel. Der Tunnel ist eine plattformübergreifende Java-JAR (erfordert Java 11+). Nur erforderlich für `tunnel: "external"` mit `provider: "testingbot"` — bei `tunnel: true` verwaltet das SDK den Tunnel automatisch über `testingbot-tunnel-launcher`.
 
 ```json
 {

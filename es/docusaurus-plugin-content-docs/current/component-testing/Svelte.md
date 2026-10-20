@@ -1,14 +1,14 @@
 ---
 id: svelte
 title: Svelte
-description: "Configura el browser runner de WebdriverIO para un proyecto Svelte con el preset de svelte y escribe pruebas de componentes con Testing Library."
+description: "Configura el browser runner de WebdriverIO para un proyecto Svelte con el preset svelte y escribe pruebas de componentes con Testing Library."
 ---
 
-[Svelte](https://svelte.dev/) es un enfoque nuevo y radical para construir interfaces de usuario. Mientras que los frameworks tradicionales como React y Vue realizan la mayor parte de su trabajo en el navegador, Svelte traslada ese trabajo a un paso de compilación que ocurre cuando construyes tu aplicación. Puedes probar componentes de Svelte directamente en un navegador real usando WebdriverIO y su [browser runner](/docs/runner#browser-runner).
+[Svelte](https://svelte.dev/) es un enfoque radicalmente nuevo para construir interfaces de usuario. Mientras que los frameworks tradicionales como React y Vue realizan la mayor parte de su trabajo en el navegador, Svelte traslada ese trabajo a un paso de compilación que ocurre cuando construyes tu aplicación. Puedes probar componentes Svelte directamente en un navegador real usando WebdriverIO y su [browser runner](/docs/runner#browser-runner).
 
 ## Configuración
 
-Para configurar WebdriverIO en tu proyecto Svelte, sigue las [instrucciones](/docs/component-testing#set-up) de nuestra documentación sobre pruebas de componentes. Asegúrate de seleccionar `svelte` como preset en las opciones de tu runner, por ejemplo:
+Para configurar WebdriverIO dentro de tu proyecto Svelte, sigue las [instrucciones](/docs/component-testing#set-up) en nuestra documentación de pruebas de componentes. Asegúrate de seleccionar `svelte` como preset dentro de las opciones de tu runner, por ejemplo:
 
 ```js
 // wdio.conf.js
@@ -23,7 +23,7 @@ export const config = {
 
 :::info
 
-Si ya estás usando [Vite](https://vitejs.dev/) como servidor de desarrollo, también puedes reutilizar tu configuración de `vite.config.ts` dentro de tu configuración de WebdriverIO. Para más información, consulta `viteConfig` en las [opciones del runner](/docs/runner#runner-options).
+Si ya estás usando [Vite](https://vitejs.dev/) como servidor de desarrollo, también puedes simplemente reutilizar tu configuración de `vite.config.ts` dentro de tu configuración de WebdriverIO. Para más información, consulta `viteConfig` en las [opciones del runner](/docs/runner#runner-options).
 
 :::
 
@@ -39,9 +39,9 @@ Luego puedes iniciar las pruebas ejecutando:
 npx wdio run ./wdio.conf.js
 ```
 
-## Escribir pruebas
+## Escribiendo pruebas
 
-Supongamos que tienes el siguiente componente de Svelte:
+Dado que tienes el siguiente componente Svelte:
 
 ```html title="./components/Component.svelte"
 <script>

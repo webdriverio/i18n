@@ -14,12 +14,12 @@ Para usar las pruebas automatizadas en BrowserStack Accessibility Testing, tus p
 
 Las siguientes son las ventajas de las pruebas automatizadas:
 
-* Se integran sin problemas en tu suite de pruebas de automatización existente.
+* Se integra perfectamente en tu suite de pruebas de automatización existente.
 * No se requieren cambios de código en los casos de prueba.
-* No requieren ningún mantenimiento adicional para las pruebas de accesibilidad.
-* Permiten comprender las tendencias históricas y obtener información sobre los casos de prueba.
+* No requiere ningún mantenimiento adicional para las pruebas de accesibilidad.
+* Permite comprender las tendencias históricas y obtener información sobre los casos de prueba.
 
-## Primeros pasos con BrowserStack Accessibility Testing
+## Comienza con BrowserStack Accessibility Testing
 
 Sigue estos pasos para integrar tus suites de pruebas de WebdriverIO con BrowserStack Accessibility Testing:
 
@@ -61,4 +61,4 @@ exports.config = {
   };
 ```
 
-Puedes ver las instrucciones detalladas [aquí](https://www.browserstack.com/docs/accessibility/automated-tests/get-started/webdriverio?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation).
+Puedes ver instrucciones detalladas [aquí](https://www.browserstack.com/docs/accessibility/automated-tests/get-started/webdriverio?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation).

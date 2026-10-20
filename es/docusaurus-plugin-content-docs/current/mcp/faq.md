@@ -60,7 +60,7 @@ No. La automatización de navegadores solo requiere que el navegador de destino 
 ### ¿Necesito Appium para la automatización móvil?
 
 Sí. La automatización móvil requiere:
-1. Servidor de Appium en ejecución (`npm install -g appium && appium`)
+1. Servidor Appium en ejecución (`npm install -g appium && appium`)
 2. Drivers de plataforma instalados (`appium driver install xcuitest` para iOS, `appium driver install uiautomator2` para Android)
 3. Herramientas de desarrollo adecuadas (Xcode para iOS, Android SDK para Android)
 
@@ -77,9 +77,9 @@ Chrome, Firefox, Edge y Safari son compatibles. Usa el parámetro `browser` en `
 
 ### ¿Puedo ejecutar el navegador en modo headless?
 
-Sí. El modo headless es el predeterminado (`headless: true`). Pídele a Claude que lo ejecute en modo con interfaz si quieres ver el navegador:
+Sí. El modo headless es el predeterminado (`headless: true`). Pide a Claude que lo ejecute en modo headed si quieres ver el navegador:
 
-"Inicia Chrome en modo con interfaz (no headless)"
+"Inicia Chrome en modo headed (sin headless)"
 
 ### ¿Puedo establecer el tamaño de la ventana del navegador?
 
@@ -105,12 +105,12 @@ Simplemente pídelo:
 
 Las capturas de pantalla se optimizan automáticamente:
 - Escaladas a una dimensión máxima de 2000px
-- Comprimidas a un tamaño máximo de archivo de 1MB
+- Comprimidas a un tamaño de archivo máximo de 1MB
 - Formato: PNG o JPEG (seleccionado automáticamente para una calidad óptima)
 
 ### ¿Puedo interactuar con iframes?
 
-Sí. Usa la herramienta `switch_frame` para cambiar a un iframe mediante un selector CSS o XPath. Todas las llamadas posteriores a `click_element`, `set_value` y `get_elements` operan dentro del frame seleccionado. Omite el selector para volver al frame de nivel superior. Los iframes deben ser del mismo origen que la página principal.
+Sí. Usa la herramienta `switch_frame` para cambiar a un iframe mediante un selector CSS o XPath. Todas las llamadas posteriores a `click_element`, `set_value` y `get_elements` operan dentro del frame seleccionado. Omite el selector para volver al frame de nivel superior. Los iframes deben tener el mismo origen que la página principal.
 
 ### ¿Puedo ejecutar JavaScript personalizado?
 
@@ -123,14 +123,14 @@ Sí. Usa la herramienta `switch_frame` para cambiar a un iframe mediante un sele
 
 Sí. Usa primero `launch_chrome` (abre Chrome con depuración remota) y luego `start_session` con `attach: true`.
 
-"Lanza Chrome con depuración remota y luego conéctate a él"
+"Inicia Chrome con depuración remota y luego conéctate a él"
 
 ### ¿Puedo trabajar con varias pestañas?
 
 Sí. Usa `get_tabs` para listar las pestañas abiertas y `switch_tab` para enfocar una específica:
 
 "Obtén todas las pestañas abiertas"
-"Cambia a la pestaña en el índice 1"
+"Cambia a la pestaña con índice 1"
 
 ## Automatización móvil
 
@@ -140,7 +140,7 @@ Usa `start_session` con la plataforma adecuada:
 
 "Inicia mi aplicación iOS ubicada en /path/to/MyApp.app en el simulador de iPhone 15"
 
-"Inicia mi aplicación Android en /path/to/app.apk en el emulador de Pixel 7"
+"Inicia mi aplicación Android en /path/to/app.apk en el emulador Pixel 7"
 
 O para una aplicación ya instalada:
 
@@ -150,7 +150,7 @@ O para una aplicación ya instalada:
 
 ¡Sí! Para dispositivos reales, necesitarás el UDID del dispositivo:
 
--   **iOS:** Conecta el dispositivo, abre Finder, haz clic en el dispositivo y haz clic en el número de serie para mostrar el UDID
+-   **iOS:** Conecta el dispositivo, abre Finder, haz clic en el dispositivo y luego en el número de serie para mostrar el UDID
 -   **Android:** Ejecuta `adb devices` en la terminal
 
 Luego pide:
@@ -165,11 +165,11 @@ De forma predeterminada, los permisos se conceden automáticamente (`autoGrantPe
 
 ### ¿Qué gestos son compatibles?
 
--   **Tocar:** Toca elementos o coordenadas (`tap_element`)
--   **Deslizar:** Desliza hacia arriba, abajo, izquierda o derecha (`swipe`)
+-   **Tap:** Toca elementos o coordenadas (`tap_element`)
+-   **Swipe:** Desliza hacia arriba, abajo, izquierda o derecha (`swipe`)
 -   **Arrastrar y soltar:** Arrastra de un elemento a otro o a coordenadas (`drag_and_drop`)
 
-Nota: `long_press` está disponible mediante `execute_script` con comandos móviles de Appium.
+Nota: `long_press` está disponible a través de `execute_script` con comandos móviles de Appium.
 
 ### ¿Cómo me desplazo en aplicaciones móviles?
 
@@ -185,7 +185,7 @@ Sí:
 "Rota el dispositivo a horizontal"
 "Rota el dispositivo a vertical"
 
-### ¿Cómo manejo las aplicaciones híbridas?
+### ¿Cómo manejo aplicaciones híbridas?
 
 Para aplicaciones con webviews, puedes cambiar de contexto:
 
@@ -198,7 +198,7 @@ Para aplicaciones con webviews, puedes cambiar de contexto:
 ¡Sí! Usa la herramienta `execute_script`:
 
 ```text
-Execute script "mobile: pressKey" with args [{ keycode: 4 }]  // Pulsar ATRÁS en Android
+Execute script "mobile: pressKey" with args [{ keycode: 4 }]  // Pulsa ATRÁS en Android
 Execute script "mobile: activateApp" with args [{ bundleId: "com.example.app" }]
 Execute script "mobile: terminateApp" with args [{ bundleId: "com.example.app" }]
 ```
@@ -207,7 +207,7 @@ Execute script "mobile: terminateApp" with args [{ bundleId: "com.example.app" }
 
 ### ¿Cómo sabe el asistente de IA con qué elemento interactuar?
 
-Utiliza el recurso `wdio://session/current/elements` o la herramienta `get_elements` para identificar los elementos interactivos en la página/pantalla. Cada elemento incluye selectores listos para usar.
+Utiliza el recurso `wdio://session/current/elements` o la herramienta `get_elements` para identificar los elementos interactivos en la página o pantalla. Cada elemento incluye selectores listos para usar.
 
 ### ¿Qué pasa si hay demasiados elementos en la página?
 
@@ -216,7 +216,7 @@ Usa la paginación para gestionar listas grandes de elementos:
 "Obtén los primeros 20 elementos"
 "Obtén elementos con offset 20 y limit 20"
 
-La respuesta incluye `total`, `showing` y `hasMore` para ayudarte a navegar por los elementos.
+La respuesta incluye `total`, `showing` y `hasMore` para ayudar a navegar por los elementos.
 
 ### ¿Qué pasa si Claude hace clic en el elemento equivocado?
 
@@ -224,14 +224,14 @@ Puedes ser más específico:
 
 -   Proporciona el texto exacto: "Haz clic en el botón que dice 'Submit Order'"
 -   Proporciona un selector: "Haz clic en el elemento con el selector #submit-btn"
--   Proporciona el ID de accesibilidad: "Haz clic en el elemento con el ID de accesibilidad loginButton"
+-   Proporciona el accessibility ID: "Haz clic en el elemento con el accessibility ID loginButton"
 
 ### ¿Cuál es la mejor estrategia de selectores para móviles?
 
 1. **Accessibility ID** (la mejor) - `~loginButton`
 2. **Resource ID** (Android) - `id=login_button`
 3. **Predicate String** (iOS) - `-ios predicate string:label == "Login"`
-4. **XPath** (último recurso) - más lento pero funciona en todas partes
+4. **XPath** (último recurso) - más lento, pero funciona en todas partes
 
 ### ¿Qué es el árbol de accesibilidad y cuándo debo usarlo?
 
@@ -253,7 +253,7 @@ No. El servidor MCP utiliza un modelo de sesión única. Solo puede haber una se
 Depende del tipo de sesión y de la configuración:
 
 -   **Navegador:** El navegador se cierra por completo
--   **Móvil con `noReset: false`:** La aplicación se termina
+-   **Móvil con `noReset: false`:** La aplicación se cierra
 -   **Móvil con `noReset: true` o sin `appPath`:** La aplicación permanece abierta (la sesión se desconecta automáticamente)
 
 ### ¿Puedo conservar el estado de la aplicación entre sesiones?
@@ -266,16 +266,16 @@ Esto conserva el estado de inicio de sesión, las preferencias y otros datos de 
 
 ### ¿Cuál es la diferencia entre cerrar y desconectar?
 
--   **Cerrar:** Termina el navegador/aplicación por completo
--   **Desconectar:** Desconecta la automatización pero mantiene el navegador/aplicación en ejecución
+-   **Cerrar:** Finaliza el navegador o la aplicación por completo
+-   **Desconectar:** Desconecta la automatización pero mantiene el navegador o la aplicación en ejecución
 
 Desconectar es útil cuando quieres inspeccionar manualmente el estado después de la automatización.
 
 ### Mi sesión sigue agotando el tiempo de espera durante la depuración
 
-Aumenta el tiempo de espera de comandos:
+Aumenta el tiempo de espera de los comandos:
 
-"Inicia mi aplicación con newCommandTimeout de 300 segundos"
+"Inicia mi aplicación con un newCommandTimeout de 300 segundos"
 
 El valor predeterminado es de 300 segundos. Para sesiones de depuración muy largas, prueba con 600 segundos.
 
@@ -291,9 +291,9 @@ Esto significa que no existe ninguna sesión activa. Inicia primero una sesión 
 
 Es posible que el elemento no sea visible o que tenga un selector diferente. Prueba a:
 
-1. Pedirle a Claude que obtenga primero todos los elementos visibles
+1. Pedir a Claude que obtenga primero todos los elementos visibles
 2. Proporcionar un selector más específico
-3. Esperar a que la página/aplicación se cargue por completo
+3. Esperar a que la página o la aplicación se cargue por completo
 4. Usar `inViewportOnly: false` para encontrar elementos fuera de la pantalla
 
 ### El navegador no se inicia
@@ -306,7 +306,7 @@ Es posible que el elemento no sea visible o que tenga un selector diferente. Pru
 
 Este es el problema más común al iniciar la automatización móvil.
 
-1. **Verifica que Appium esté en ejecución**: `curl http://localhost:4723/status`
+1. **Verifica que Appium se esté ejecutando**: `curl http://localhost:4723/status`
 2. Inicia Appium si es necesario: `appium`
 3. Comprueba que tu conexión de Appium coincida con el servidor (usa `appiumConfig` en `start_session`)
 4. Asegúrate de que los drivers estén instalados: `appium driver list --installed`
@@ -327,7 +327,7 @@ Las versiones futuras podrían incluir la gestión automática del servicio de A
 
 ### El emulador de Android no se inicia
 
-1. Establece `ANDROID_HOME`: `export ANDROID_HOME=$HOME/Library/Android/sdk`
+1. Configura `ANDROID_HOME`: `export ANDROID_HOME=$HOME/Library/Android/sdk`
 2. Comprueba los emuladores: `emulator -list-avds`
 3. Inicia el emulador manualmente: `emulator -avd <avd-name>`
 4. Verifica que el dispositivo esté conectado: `adb devices`
@@ -335,7 +335,7 @@ Las versiones futuras podrían incluir la gestión automática del servicio de A
 ### Las capturas de pantalla no funcionan
 
 1. En móviles, asegúrate de que la sesión esté activa
-2. En el navegador, prueba con una página diferente (algunas páginas bloquean las capturas de pantalla)
+2. En el navegador, prueba con otra página (algunas páginas bloquean las capturas de pantalla)
 3. Revisa los registros de Claude Desktop en busca de errores
 
 Las capturas de pantalla se comprimen automáticamente a un máximo de 1MB, por lo que las capturas grandes funcionarán, aunque pueden tener menor calidad.
@@ -345,23 +345,23 @@ Las capturas de pantalla se comprimen automáticamente a un máximo de 1MB, por 
 ### ¿Por qué es lenta la automatización móvil?
 
 La automatización móvil implica:
-1. Comunicación de red con el servidor de Appium
-2. Comunicación de Appium con el dispositivo/simulador
+1. Comunicación de red con el servidor Appium
+2. Comunicación de Appium con el dispositivo o simulador
 3. Renderizado y respuesta del dispositivo
 
 Consejos para una automatización más rápida:
--   Usa emuladores/simuladores en lugar de dispositivos reales durante el desarrollo
--   Usa IDs de accesibilidad en lugar de XPath
+-   Usa emuladores o simuladores en lugar de dispositivos reales durante el desarrollo
+-   Usa accessibility IDs en lugar de XPath
 -   Habilita `inViewportOnly: true` para la detección de elementos
--   Usa paginación (`limit`) para reducir el uso de tokens
+-   Usa la paginación (`limit`) para reducir el uso de tokens
 
 ### ¿Cómo puedo acelerar la detección de elementos?
 
-El servidor MCP ya optimiza la detección de elementos mediante el análisis del código fuente XML de la página (2 llamadas HTTP frente a más de 600 con las consultas de elementos tradicionales). Consejos adicionales:
+El servidor MCP ya optimiza la detección de elementos mediante el análisis del código fuente XML de la página (2 llamadas HTTP frente a más de 600 de las consultas de elementos tradicionales). Consejos adicionales:
 
 -   Establece `inViewportOnly: true` para filtrar los elementos fuera de la pantalla
 -   Establece `includeContainers: false` (predeterminado)
--   Usa `limit` y `offset` para paginar en pantallas grandes
+-   Usa `limit` y `offset` para la paginación en pantallas grandes
 -   Usa selectores específicos en lugar de buscar todos los elementos
 
 ### Las capturas de pantalla son lentas o fallan
@@ -377,10 +377,10 @@ Esta optimización reduce el tiempo de procesamiento y garantiza que Claude pued
 
 ### ¿Cuáles son las limitaciones actuales?
 
--   **Sesión única:** Solo un navegador/aplicación a la vez
+-   **Sesión única:** Solo un navegador o aplicación a la vez
 -   **Compatibilidad con iframes:** Los iframes del mismo origen son compatibles mediante `switch_frame`; los iframes de origen cruzado no son accesibles debido a las restricciones de seguridad del navegador
 -   **Subida de archivos:** No es compatible directamente mediante herramientas
--   **Audio/Vídeo:** No se puede interactuar con la reproducción multimedia
+-   **Audio/Vídeo:** No es posible interactuar con la reproducción multimedia
 -   **Extensiones del navegador:** No son compatibles
 
 ### ¿Puedo usar esto para pruebas en producción?
@@ -391,14 +391,14 @@ WebdriverIO MCP está diseñado para la automatización interactiva asistida por
 
 ### ¿Están seguros mis datos?
 
-El servidor MCP se ejecuta localmente en tu máquina. Toda la automatización se realiza a través de conexiones locales del navegador/Appium. No se envían datos a servidores externos más allá de los sitios a los que navegues explícitamente.
+El servidor MCP se ejecuta localmente en tu máquina. Toda la automatización se realiza a través de conexiones locales del navegador o de Appium. No se envían datos a servidores externos más allá de los sitios a los que navegues explícitamente.
 
 Al usar el modo de transporte HTTP (`--http`), el servidor acepta de forma predeterminada solo conexiones desde `localhost`; usa `--allowedHosts` y `--allowedOrigins` para controlar el acceso. Consulta [Transport](./transport) para más detalles.
 
 ### ¿Puede Claude acceder a mis contraseñas?
 
 Claude puede ver el contenido de la página e interactuar con los elementos, pero:
--   Las contraseñas en los campos `<input type="password">` están ocultas
+-   Las contraseñas en los campos `<input type="password">` están enmascaradas
 -   Debes evitar automatizar credenciales sensibles
 -   Usa cuentas de prueba para la automatización
 

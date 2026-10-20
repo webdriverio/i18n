@@ -1,16 +1,16 @@
 ---
 id: lit
 title: Lit
-description: "قم بإعداد مشغل المتصفح الخاص بـ WebdriverIO لمكونات الويب المبنية باستخدام Lit، واكتب اختبارات تستعلم عن العناصر داخل جذور الظل (shadow roots) المتداخلة."
+description: "إعداد مشغّل المتصفح في WebdriverIO لمكونات الويب المبنية بـ Lit وكتابة اختبارات تستعلم عن العناصر داخل جذور الظل (shadow roots) المتداخلة."
 ---
 
-Lit هي مكتبة بسيطة لبناء مكونات ويب سريعة وخفيفة. يعد اختبار مكونات الويب المبنية باستخدام Lit مع WebdriverIO أمرًا سهلاً للغاية بفضل [محددات shadow DOM](/docs/selectors#deep-selectors) الخاصة بـ WebdriverIO، حيث يمكنك الاستعلام عن العناصر المتداخلة داخل جذور الظل (shadow roots) باستخدام أمر واحد فقط.
+Lit هي مكتبة بسيطة لبناء مكونات ويب سريعة وخفيفة الوزن. يُعد اختبار مكونات الويب المبنية بـ Lit باستخدام WebdriverIO أمرًا سهلًا للغاية بفضل [محددات shadow DOM](/docs/selectors#deep-selectors) في WebdriverIO، إذ يمكنك الاستعلام عن العناصر المتداخلة داخل جذور الظل (shadow roots) بأمر واحد فقط.
 
 ## الإعداد
 
-لإعداد WebdriverIO داخل مشروع Lit الخاص بك، اتبع [التعليمات](/docs/component-testing#set-up) الموجودة في وثائق اختبار المكونات لدينا. بالنسبة لـ Lit، لا تحتاج إلى إعداد مسبق (preset) لأن مكونات الويب المبنية باستخدام Lit لا تحتاج إلى المرور عبر مترجم (compiler)، فهي مجرد تحسينات خالصة لمكونات الويب.
+لإعداد WebdriverIO داخل مشروع Lit الخاص بك، اتبع [التعليمات](/docs/component-testing#set-up) الواردة في توثيق اختبار المكونات لدينا. لا تحتاج في Lit إلى إعداد مسبق (preset) لأن مكونات الويب المبنية بـ Lit لا تحتاج إلى المرور عبر مُصرِّف (compiler)، فهي مجرد تحسينات خالصة لمكونات الويب.
 
-بمجرد الانتهاء من الإعداد، يمكنك بدء الاختبارات عن طريق تشغيل:
+بعد الانتهاء من الإعداد، يمكنك بدء الاختبارات عن طريق تشغيل:
 
 ```sh
 npx wdio run ./wdio.conf.js
@@ -67,4 +67,4 @@ describe('Lit Component testing', () => {
 })
 ```
 
-يمكنك العثور على مثال كامل لمجموعة اختبارات مكونات WebdriverIO لـ Lit في [مستودع الأمثلة](https://github.com/webdriverio/component-testing-examples/tree/main/lit-typescript-vite) الخاص بنا.
+يمكنك العثور على مثال كامل لمجموعة اختبارات مكونات WebdriverIO الخاصة بـ Lit في [مستودع الأمثلة](https://github.com/webdriverio/component-testing-examples/tree/main/lit-typescript-vite) لدينا.

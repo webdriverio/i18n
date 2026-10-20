@@ -16,7 +16,7 @@ import WDIOReporter from '@wdio/reporter'
 export default class CustomReporter extends WDIOReporter {
     constructor(options) {
         /*
-         * به‌طور پیش‌فرض گزارش‌دهنده را وادار کن تا در جریان خروجی بنویسد
+         * گزارش‌دهنده را به‌طور پیش‌فرض وادار به نوشتن در جریان خروجی کنید
          */
         options = Object.assign(options, { stdout: true })
         super(options)
@@ -40,7 +40,7 @@ export const config = {
     // ...
     reporters: [
         /**
-         * استفاده از کلاس گزارش‌دهنده وارد شده
+         * استفاده از کلاس گزارش‌دهنده import شده
          */
         [CustomReporter, {
             someOption: 'foobar'
@@ -60,9 +60,9 @@ export const config = {
 
 ## مدیریت‌کننده رویداد
 
-شما می‌توانید یک مدیریت‌کننده رویداد برای چندین رویداد که در طول تست فعال می‌شوند ثبت کنید. همه مدیریت‌کننده‌های زیر محموله‌هایی (payload) با اطلاعات مفید درباره وضعیت و پیشرفت فعلی دریافت خواهند کرد.
+شما می‌توانید یک مدیریت‌کننده رویداد برای چندین رویداد که در طول تست فعال می‌شوند ثبت کنید. همه مدیریت‌کننده‌های زیر payloadهایی با اطلاعات مفید درباره وضعیت و پیشرفت فعلی دریافت خواهند کرد.
 
-ساختار این اشیاء محموله به رویداد بستگی دارد و در تمام فریم‌ورک‌ها (Mocha، Jasmine و Cucumber) یکسان است. هنگامی که یک گزارش‌دهنده سفارشی پیاده‌سازی کنید، باید برای همه فریم‌ورک‌ها کار کند.
+ساختار این اشیاء payload به رویداد بستگی دارد و در تمام فریم‌ورک‌ها (Mocha، Jasmine و Cucumber) یکسان است. پس از پیاده‌سازی یک گزارش‌دهنده سفارشی، باید برای همه فریم‌ورک‌ها کار کند.
 
 فهرست زیر شامل تمام متدهای ممکنی است که می‌توانید به کلاس گزارش‌دهنده خود اضافه کنید:
 
@@ -102,11 +102,11 @@ export default class CustomReporter extends WDIOReporter {
 
 توجه داشته باشید که به هیچ وجه نمی‌توانید اجرای تست را به تعویق بیندازید.
 
-همه مدیریت‌کننده‌های رویداد باید روال‌های همگام (synchronous) را اجرا کنند (در غیر این صورت با شرایط رقابتی (race condition) مواجه خواهید شد).
+همه مدیریت‌کننده‌های رویداد باید روال‌های همگام (synchronous) را اجرا کنند (در غیر این صورت با شرایط رقابتی (race conditions) مواجه خواهید شد).
 
-حتماً [بخش مثال‌ها](https://github.com/webdriverio/webdriverio/tree/main/examples/wdio) را بررسی کنید که در آن می‌توانید یک نمونه گزارش‌دهنده سفارشی پیدا کنید که نام رویداد را برای هر رویداد چاپ می‌کند.
+حتماً [بخش مثال](https://github.com/webdriverio/webdriverio/tree/main/examples/wdio) را بررسی کنید که در آن می‌توانید یک نمونه گزارش‌دهنده سفارشی پیدا کنید که نام رویداد را برای هر رویداد چاپ می‌کند.
 
-اگر یک گزارش‌دهنده سفارشی پیاده‌سازی کرده‌اید که می‌تواند برای جامعه مفید باشد، در ایجاد یک Pull Request تردید نکنید تا بتوانیم گزارش‌دهنده را در دسترس عموم قرار دهیم!
+اگر یک گزارش‌دهنده سفارشی پیاده‌سازی کرده‌اید که می‌تواند برای جامعه مفید باشد، در ایجاد یک Pull Request تردید نکنید تا بتوانیم گزارش‌دهنده را به صورت عمومی در دسترس قرار دهیم!
 
 همچنین، اگر اجراکننده تست WDIO را از طریق رابط `Launcher` اجرا می‌کنید، نمی‌توانید یک گزارش‌دهنده سفارشی را به صورت تابع به شکل زیر اعمال کنید:
 
@@ -121,9 +121,31 @@ const launcher = new Launcher('/path/to/config.file.js', {
 })
 ```
 
-## صبر کردن تا `isSynchronised`
+## گزارش‌دهنده‌ها و تست‌های موازی
 
-اگر گزارش‌دهنده شما برای گزارش داده‌ها باید عملیات ناهمگام (async) انجام دهد (مثلاً آپلود فایل‌های لاگ یا سایر دارایی‌ها)، می‌توانید متد `isSynchronised` را در گزارش‌دهنده سفارشی خود بازنویسی کنید تا اجراکننده WebdriverIO صبر کند تا همه چیز را محاسبه کنید. نمونه‌ای از این مورد را می‌توان در [`@wdio/sumologic-reporter`](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-sumologic-reporter/src/index.ts) مشاهده کرد:
+با [تست‌های موازی در یک فایل spec](./ParallelTests.md)، تست‌های یک فایل spec با هم همپوشانی دارند: `onTestStart` یک تست می‌تواند قبل از `onTestEnd` تست دیگری رخ دهد و دستورات تست‌های مختلف در هم آمیخته می‌شوند. `WDIOReporter` این موضوع را برای شما مدیریت می‌کند. در حالت موازی، رویدادهای فریم‌ورک دو فیلد اضافی دارند:
+
+- `parentUid` در `suite:start`، `hook:start` و `test:start`: شناسه uid مجموعه (suite) مالک (`null` برای یک suite سطح بالا). گزارش‌دهنده suite، hook یا تست را به آن suite اضافه می‌کند، نه به suiteای که آخر از همه شروع شده است.
+- `contextId` در رویدادهای تست و دستور: زمینه مرور (browsing context) تست. گزارش‌دهنده خروجی دستور را به تستی اضافه می‌کند که در آن زمینه اجرا شده است.
+
+بنابراین درخت‌های `suites`، `tests` و `hooks` گزارش‌دهنده صحیح هستند. اگر گزارش‌دهنده شما وضعیت خود را نگه می‌دارد، به جای دنبال کردن یک تست فعلی واحد، آن را بر اساس `uid` تست یا suite کلیدگذاری کنید.
+
+```js
+import WDIOReporter from '@wdio/reporter'
+
+export default class CustomReporter extends WDIOReporter {
+    onTestStart(test) {
+        this.write(`start ${test.uid} ${test.title}\n`)
+    }
+    onTestEnd(test) {
+        this.write(`end   ${test.uid} ${test.state}\n`)
+    }
+}
+```
+
+## صبر تا `isSynchronised`
+
+اگر گزارش‌دهنده شما برای گزارش داده‌ها باید عملیات ناهمگام (async) انجام دهد (مثلاً آپلود فایل‌های لاگ یا سایر دارایی‌ها)، می‌توانید متد `isSynchronised` را در گزارش‌دهنده سفارشی خود بازنویسی کنید تا اجراکننده WebdriverIO صبر کند تا همه چیز را محاسبه کرده باشید. نمونه‌ای از این را می‌توان در [`@wdio/sumologic-reporter`](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-sumologic-reporter/src/index.ts) مشاهده کرد:
 
 ```js
 export default class SumoLogicReporter extends WDIOReporter {
@@ -153,7 +175,7 @@ export default class SumoLogicReporter extends WDIOReporter {
         }, (err, resp) => {
             // ...
             /**
-             * حذف لاگ‌های منتقل شده از مخزن لاگ
+             * حذف لاگ‌های منتقل‌شده از مخزن لاگ
              */
             this.unsynced.splice(0, MAX_LINES)
             // ...
@@ -162,7 +184,7 @@ export default class SumoLogicReporter extends WDIOReporter {
 }
 ```
 
-به این ترتیب اجراکننده صبر خواهد کرد تا تمام اطلاعات لاگ آپلود شوند.
+به این ترتیب اجراکننده صبر می‌کند تا تمام اطلاعات لاگ آپلود شوند.
 
 ## انتشار گزارش‌دهنده در NPM
 
@@ -173,7 +195,7 @@ export default class SumoLogicReporter extends WDIOReporter {
 * ورودی `main` باید یک نمونه از گزارش‌دهنده را `export` کند
 * نمونه گزارش‌دهنده: [`@wdio/dot-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-dot-reporter)
 
-پیروی از الگوی نام‌گذاری توصیه شده اجازه می‌دهد سرویس‌ها با نام اضافه شوند:
+پیروی از الگوی نام‌گذاری توصیه‌شده امکان افزودن سرویس‌ها با نام را فراهم می‌کند:
 
 ```js
 // افزودن wdio-custom-reporter
@@ -184,11 +206,11 @@ export const config = {
 }
 ```
 
-### افزودن سرویس منتشر شده به WDIO CLI و مستندات
+### افزودن سرویس منتشرشده به WDIO CLI و مستندات
 
-ما واقعاً از هر پلاگین جدیدی که می‌تواند به دیگران در اجرای تست‌های بهتر کمک کند، قدردانی می‌کنیم! اگر چنین پلاگینی ایجاد کرده‌اید، لطفاً افزودن آن به CLI و مستندات ما را در نظر بگیرید تا پیدا کردن آن آسان‌تر شود.
+ما واقعاً از هر پلاگین جدیدی که بتواند به دیگران در اجرای تست‌های بهتر کمک کند قدردانی می‌کنیم! اگر چنین پلاگینی ایجاد کرده‌اید، لطفاً افزودن آن به CLI و مستندات ما را در نظر بگیرید تا پیدا کردن آن آسان‌تر شود.
 
 لطفاً یک pull request با تغییرات زیر ایجاد کنید:
 
-- سرویس خود را به فهرست [گزارش‌دهنده‌های پشتیبانی شده](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/constants.ts#L74-L91)) در ماژول CLI اضافه کنید
-- [فهرست گزارش‌دهنده‌ها](https://github.com/webdriverio/webdriverio/blob/main/infra/docs/src/3rd-party/reporters.json) را برای افزودن مستندات خود به صفحه رسمی Webdriver.io تکمیل کنید
+- سرویس خود را به فهرست [گزارش‌دهنده‌های پشتیبانی‌شده](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/constants.ts#L74-L91)) در ماژول CLI اضافه کنید
+- [فهرست گزارش‌دهنده‌ها](https://github.com/webdriverio/webdriverio/blob/main/infra/docs/src/3rd-party/reporters.json) را برای افزودن مستندات خود به صفحه رسمی Webdriver.io گسترش دهید

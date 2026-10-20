@@ -8,7 +8,7 @@ Lit ist eine einfache Bibliothek zum Erstellen schneller, leichtgewichtiger Webk
 
 ## Einrichtung
 
-Um WebdriverIO in Ihrem Lit-Projekt einzurichten, folgen Sie den [Anweisungen](/docs/component-testing#set-up) in unserer Dokumentation zum Komponententesten. Für Lit benötigen Sie kein Preset, da Lit-Webkomponenten nicht durch einen Compiler laufen müssen; sie sind reine Erweiterungen von Webkomponenten.
+Um WebdriverIO in Ihrem Lit-Projekt einzurichten, folgen Sie den [Anweisungen](/docs/component-testing#set-up) in unserer Dokumentation zum Komponententesten. Für Lit benötigen Sie kein Preset, da Lit-Webkomponenten nicht durch einen Compiler laufen müssen – sie sind reine Erweiterungen von Webkomponenten.
 
 Nach der Einrichtung können Sie die Tests starten, indem Sie Folgendes ausführen:
 
@@ -29,14 +29,14 @@ export class SimpleGreeting extends LitElement {
     @property()
     name?: string = 'World'
 
-    // Die UI als Funktion des Komponentenzustands rendern
+    // Die Benutzeroberfläche als Funktion des Komponentenzustands rendern
     render() {
         return html`<p>Hello, ${this.name}!</p>`
     }
 }
 ```
 
-Um die Komponente zu testen, müssen Sie sie vor dem Start des Tests in die Testseite rendern und sicherstellen, dass sie anschließend wieder entfernt wird:
+Um die Komponente zu testen, müssen Sie sie vor Beginn des Tests in die Testseite rendern und sicherstellen, dass sie anschließend wieder entfernt wird:
 
 ```ts title="lit.test.js"
 import expect from 'expect'

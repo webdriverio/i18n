@@ -21,7 +21,7 @@ await browser.execute(() => alert('Hello Dialog'))
 
 :::note
 
-Dialoge werden automatisch geschlossen, es sei denn, es gibt mindestens einen `browser.on('dialog')`- oder `browser.once('dialog')`-Listener. Wenn ein Listener vorhanden ist, muss dieser den Dialog entweder mit [`dialog.accept()`](/docs/api/dialog/accept) annehmen oder mit [`dialog.dismiss()`](/docs/api/dialog/dismiss) ablehnen – andernfalls friert die Seite ein, während sie auf den Dialog wartet, und Aktionen wie Klicks werden nie abgeschlossen.
+Dialoge werden automatisch geschlossen, es sei denn, es gibt mindestens einen `browser.on('dialog')`- oder `browser.once('dialog')`-Listener. Wenn ein Listener vorhanden ist, muss dieser den Dialog entweder mit [`dialog.accept()`](/docs/api/dialog/accept) akzeptieren oder mit [`dialog.dismiss()`](/docs/api/dialog/dismiss) schließen – andernfalls friert die Seite ein, während sie auf den Dialog wartet, und Aktionen wie ein Klick werden niemals abgeschlossen.
 
 :::
 

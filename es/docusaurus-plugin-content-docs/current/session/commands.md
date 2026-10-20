@@ -1,13 +1,13 @@
 ---
 id: session-commands
-title: Comandos de wdio session
+title: comandos de wdio session
 description: Todas las acciones y flags de wdio session, desde open hasta doctor y skill.
 slug: /session-commands
 ---
 
 <!-- Generated from packages/wdio-session/src/actions/specs.ts by `pnpm run docs:session-commands`. Do not edit by hand. -->
 
-Todas las acciones de `wdio session`. Los flags globales se aplican a todas ellas. `npx wdio session <action> --help` imprime el mismo texto. El resto de la sección [WebdriverIO Session](/docs/session) trata los [targets](/docs/session/targets), los [snapshots](/docs/session/snapshots), [`exec`](/docs/session/exec), la [exportación](/docs/session/export) y la [depuración](/docs/session/debug).
+Todas las acciones de `wdio session`. Los flags globales se aplican a todas ellas. `npx wdio session <action> --help` imprime el mismo texto. El resto de la sección [WebdriverIO Session](/docs/session) trata sobre [targets](/docs/session/targets), [snapshots](/docs/session/snapshots), [`exec`](/docs/session/exec), [exportación](/docs/session/export) y [depuración](/docs/session/debug).
 
 ```sh
 npx wdio session <action> [arguments] [flags]
@@ -20,7 +20,7 @@ npx wdio session <action> [arguments] [flags]
 | `-s, --session` | Nombre de la sesión (env WDIO_SESSION, por defecto "default") |
 | `--json` | Imprime un objeto JSON (env WDIO_SESSION_JSON=1) |
 | `--timeout` | Tiempo de espera de la petición en ms (limitado a 60000 excepto para wait) |
-| `-q, --quiet` | No imprime nada si tiene éxito, salvo los datos solicitados |
+| `-q, --quiet` | No imprime nada en caso de éxito, salvo los datos solicitados |
 | `--color` | Usa --no-color para desactivar los colores |
 
 Códigos de salida: 0 éxito, 1 la acción o tu código falló, 2 error de uso, 3 falta una dependencia o credenciales, 4 no hay ninguna sesión con ese nombre.
@@ -29,9 +29,9 @@ Códigos de salida: 0 éxito, 1 la acción o tu código falló, 2 error de uso, 
 
 Inicia una sesión: browser, android, ios, macos, windows, electron, tauri, dioxus o un archivo de configuración de wdio.
 
-Inicia un daemon en segundo plano que mantiene viva la sesión hasta `close`, o hasta que haya estado inactiva durante --idle-timeout (por defecto 30m). Los navegadores se ejecutan en modo headless a menos que pases --headed. Imprime el nombre de la sesión, el target, el directorio de artefactos donde se guardan los snapshots, las capturas de pantalla y las exportaciones y, para un navegador abierto en una URL, el snapshot interactivo de esa página.
+Inicia un daemon en segundo plano que mantiene viva la sesión hasta `close`, o hasta que haya estado inactiva durante --idle-timeout (por defecto 30m). Los navegadores se ejecutan en modo headless a menos que pases --headed. Imprime el nombre de la sesión, el target, el directorio de artefactos donde se guardan los snapshots, capturas de pantalla y exportaciones y, para un navegador abierto en una URL, el snapshot interactivo de esa página.
 
-Una sesión por nombre. Abrir un nombre que ya está en ejecución falla; úsala, ciérrala o pasa --replace. Pasa `-s <name>` solo cuando necesites dos sesiones a la vez.
+Una sesión por nombre. Abrir un nombre que ya está en ejecución falla; úsalo, ciérralo o pasa --replace. Pasa `-s <name>` solo cuando necesites dos sesiones a la vez.
 
 ```sh
 npx wdio session open <target> [url]
@@ -42,16 +42,16 @@ npx wdio session open <target> [url]
 | Nombre | Obligatorio | Descripción |
 | --- | --- | --- |
 | `target` | sí | chrome \| firefox \| edge \| safari \| android \| ios \| macos \| windows \| electron `<app>` \| tauri `<app>` \| dioxus `<app>` \| `<wdio.conf>` |
-| `url` | no | URL a abrir (navegadores), ruta de la app (apps de escritorio) o capability (config) |
+| `url` | no | URL a abrir (navegadores), ruta de la app (apps de escritorio) o capability (configuración) |
 
 **Flags**
 
 | Flag | Descripción |
 | --- | --- |
 | `--replace` | Cierra primero una sesión en ejecución con el mismo nombre |
-| `--launch-timeout <n>` | Milisegundos a esperar a que la sesión esté lista |
+| `--launch-timeout <n>` | Milisegundos a esperar hasta que la sesión esté lista |
 | `--idle-timeout <value>` | Se apaga tras este tiempo sin peticiones (p. ej. 30m, 0 lo desactiva) |
-| `--capabilities <value>` | Capabilities adicionales como JSON o la ruta a un archivo JSON |
+| `--capabilities <value>` | Capabilities adicionales como JSON o una ruta a un archivo JSON |
 | `--hostname <value>` | Host remoto de WebDriver |
 | `--port <n>` | Puerto remoto de WebDriver |
 | `--path <value>` | Ruta remota de WebDriver |
@@ -59,7 +59,7 @@ npx wdio session open <target> [url]
 | `--log-level <value>` | Nivel de log de WebdriverIO escrito en daemon.log |
 | `--bidi` | Solicita WebDriver BiDi (usa --no-bidi para desactivarlo) |
 | `--headed` | Muestra la ventana del navegador |
-| `--headless` | Se ejecuta sin ventana (por defecto para navegadores; anula --headed) |
+| `--headless` | Se ejecuta sin ventana (el valor por defecto para navegadores; anula --headed) |
 | `--snapshot` | Imprime el snapshot interactivo de la página abierta (usa --no-snapshot para omitirlo) |
 | `--viewport <value>` | Viewport inicial, p. ej. 1280x720 |
 | `--browser-version <value>` | Versión del navegador |
@@ -75,7 +75,7 @@ npx wdio session open <target> [url]
 | `--device <value>` | Nombre del dispositivo |
 | `--platform-version <value>` | Versión de la plataforma |
 | `--udid <value>` | UDID del dispositivo |
-| `--reset` | Usa --no-reset para mantener el estado de la app (appium:noReset) |
+| `--reset` | Usa --no-reset para conservar el estado de la app (appium:noReset) |
 | `--full-reset` | appium:fullReset |
 | `--orientation <portrait\|landscape>` | Orientación inicial |
 | `--appium-url <value>` | Usa un servidor Appium en ejecución |
@@ -83,13 +83,13 @@ npx wdio session open <target> [url]
 | `--chromedriver <value>` | Electron: binario de Chromedriver |
 | `--electron-version <value>` | Electron: anula la detección de versión |
 | `--provider <browserstack\|saucelabs\|testingbot\|testmu>` | Proveedor en la nube |
-| `--os <value>` | Nube: SO de escritorio |
-| `--os-version <value>` | Nube: versión del SO de escritorio |
+| `--os <value>` | Nube: sistema operativo de escritorio |
+| `--os-version <value>` | Nube: versión del sistema operativo de escritorio |
 | `--region <value>` | Nube: región de Sauce Labs |
 | `--tunnel <value>` | Nube: inicia el túnel del proveedor (o "external") |
 | `--tunnel-name <value>` | Nube: identificador del túnel |
 | `--project <value>` | Nube: etiqueta del proyecto |
-| `--build <value>` | Nube: etiqueta del build |
+| `--build <value>` | Nube: etiqueta de la build |
 | `--name <value>` | Nube: etiqueta del nombre de la sesión |
 
 **Ejemplos**
@@ -190,7 +190,7 @@ Ver también: [`list`](#list), [`get`](#get).
 
 Cierra y vuelve a abrir con el mismo target y los mismos flags.
 
-Mantiene el historial grabado, de modo que `export` sigue cubriendo los pasos de antes del reinicio.
+Conserva el historial registrado, por lo que `export` sigue cubriendo los pasos anteriores al reinicio.
 
 ```sh
 npx wdio session restart
@@ -226,9 +226,9 @@ Ver también: [`list`](#list), [`open`](#open).
 
 Ejecuta código de WebdriverIO desde stdin, -e o un archivo.
 
-Se ejecuta como una función async con `browser`, `$`, `$$`, `expect` y `ref('e3')` en el ámbito. Las variables de nivel superior persisten entre llamadas. `wdio session` sin una acción ejecuta `exec` cuando se le pasa código por stdin.
+Se ejecuta como una función async con `browser`, `$`, `$$`, `expect` y `ref('e3')` en el ámbito. Las variables de nivel superior persisten entre llamadas. `wdio session` sin acción ejecuta `exec` cuando se le pasa código por stdin.
 
-Usa siempre `await` con los comandos. `$` devuelve exactamente un elemento y lanza StrictSelectorError cuando coincide más de uno. Prefiere una única acción (click, fill, …) cuando basta con una; usa `exec` para bucles, condiciones y aserciones.
+Usa siempre `await` con los comandos. `$` devuelve exactamente un elemento y lanza StrictSelectorError cuando coincide más de uno. Prefiere una sola acción (click, fill, …) cuando basta con una; usa `exec` para bucles, condiciones y aserciones.
 
 ```sh
 npx wdio session exec [file]
@@ -245,7 +245,7 @@ npx wdio session exec [file]
 | Flag | Descripción |
 | --- | --- |
 | `-e, --eval <value>` | Código a ejecutar |
-| `--history` | Graba el código en el historial (usa --no-history para omitirlo) |
+| `--history` | Registra el código en el historial (usa --no-history para omitirlo) |
 
 **Ejemplos**
 
@@ -253,7 +253,7 @@ npx wdio session exec [file]
 # Ejecutar una sola línea
 npx wdio session exec -e "await browser.getTitle()"
 
-# Hacer una aserción sobre la página (las comillas simples evitan que el shell interprete $)
+# Hacer una aserción sobre la página (las comillas simples evitan que la shell interprete $)
 npx wdio session exec -e 'await expect($("h1")).toHaveText("Cart")'
 
 # Pasar varios pasos por stdin
@@ -270,9 +270,9 @@ Ver también: [`helpers`](#helpers), [`history`](#history), [`export`](#export).
 
 ## `helpers`
 
-Lista los helpers del proyecto en .wdio/helpers.
+Lista los helpers del proyecto de .wdio/helpers.
 
-Cada archivo en .wdio/helpers exporta por defecto una función que recibe el browser y registra comandos personalizados con addCommand. Los helpers se cargan cuando se abre la sesión y se convierten en comandos personalizados en el test exportado.
+Cada archivo de .wdio/helpers exporta por defecto una función que recibe el browser y registra comandos personalizados con addCommand. Los helpers se cargan cuando se abre la sesión y se convierten en comandos personalizados en el test exportado.
 
 ```sh
 npx wdio session helpers
@@ -290,7 +290,7 @@ npx wdio session helpers
 # Listar los helpers y los comandos que añaden
 npx wdio session helpers
 
-# Cargar los cambios hechos en un helper
+# Recoger los cambios en un helper
 npx wdio session helpers --reload
 ```
 
@@ -298,11 +298,11 @@ Ver también: [`exec`](#exec), [`export`](#export).
 
 ## `snapshot`
 
-Snapshot de accesibilidad con refs. Se aplica a web, móvil nativo, escritorio nativo.
+Snapshot de accesibilidad con refs. Se aplica a web, móvil nativo y escritorio nativo.
 
-Imprime el árbol de accesibilidad, un nodo por línea, p. ej. `button "Add to cart" [ref=e3]`. Pasa una ref a click, fill, get y las demás acciones. Las refs siguen siendo válidas mientras exista el elemento; una acción sobre un elemento eliminado falla con REF_STALE.
+Imprime el árbol de accesibilidad, un nodo por línea, p. ej. `button "Add to cart" [ref=e3]`. Pasa una ref a click, fill, get y las demás acciones. Las refs siguen siendo válidas mientras el elemento exista; una acción sobre un elemento eliminado falla con REF_STALE.
 
-Cada snapshot se escribe en el directorio de artefactos. La salida más larga que --max-chars se imprime por partes: la primera parte y luego `--offset <line>` para la siguiente. `find` busca en todo el contenido.
+Cada snapshot se escribe en el directorio de artefactos. La salida que supera --max-chars se imprime en partes: la primera parte y luego `--offset <line>` para la siguiente. `find` busca en todo el contenido.
 
 El formato del texto y la estructura de --json son experimentales y pueden cambiar en una versión menor. La sintaxis de las refs y las acciones que reciben una ref se mantienen estables.
 
@@ -317,14 +317,14 @@ npx wdio session snapshot
 | `--depth <n>` | Profundidad máxima |
 | `--scope <value>` | Solo hace el snapshot por debajo de esta ref o selector |
 | `-i, --interactive` | Solo elementos interactivos |
-| `--all` | Incluye los elementos ocultos |
+| `--all` | Incluye elementos ocultos |
 | `--boxes` | Añade los bounding boxes |
 | `--viewport` | Solo lo que está en el viewport (web: no actualiza la línea base del diff) |
 | `--selectors` | Termina cada línea con ref con su mejor selector |
 | `--compact` | Descarta los nodos sin nombre que no tienen contenido |
 | `-u, --urls` | Incluye los href de los enlaces |
 | `--file-only` | Solo escribe el archivo |
-| `--max-chars <n>` | Imprime hasta este número de caracteres cada vez (por defecto 8000) |
+| `--max-chars <n>` | Imprime hasta esta cantidad de caracteres cada vez (por defecto 8000) |
 | `--offset <n>` | Imprime a partir de esta línea, para la siguiente parte de un snapshot largo |
 
 **Ejemplos**
@@ -339,13 +339,13 @@ npx wdio session snapshot --compact --urls
 # Solo una parte de la página
 npx wdio session snapshot --scope "#checkout" --depth 4
 
-# Lo que hay ahora en pantalla
+# Lo que está ahora en pantalla
 npx wdio session snapshot --viewport -i
 
 # Cada ref con un selector para usar en un test
 npx wdio session snapshot --selectors -i
 
-# Actuar y volver a mirar
+# Actuar y luego volver a mirar
 npx wdio session click e3 && npx wdio session snapshot -i
 ```
 
@@ -355,7 +355,7 @@ Ver también: [`find`](#find), [`diff`](#diff), [`screenshot`](#screenshot).
 
 Lee el texto de la página como Markdown. Se aplica a web.
 
-Encabezados, párrafos, elementos de lista, filas de tabla y enlaces con su URL, del contenido principal cuando la página lo marca (main, article), o de toda la página en caso contrario; se omiten la navegación, los pies de página y el texto oculto. Se corta en --max-chars (por defecto 6000); el corte indica qué --offset lee la siguiente parte. Con --scope, la sección se desplaza hasta quedar visible. Úsalo para responder "qué dice la página"; usa snapshot o find para obtener refs sobre las que actuar.
+Encabezados, párrafos, elementos de lista, filas de tabla y enlaces con su URL, del contenido principal cuando la página lo marca (main, article), o de la página completa en caso contrario; la navegación, los pies de página y el texto oculto se omiten. Se corta en --max-chars (por defecto 6000); el corte indica qué --offset lee la siguiente parte. Con --scope, la sección se desplaza hasta hacerse visible. Úsalo para responder "qué dice la página"; usa snapshot o find para obtener refs sobre las que actuar.
 
 ```sh
 npx wdio session read
@@ -366,7 +366,7 @@ npx wdio session read
 | Flag | Descripción |
 | --- | --- |
 | `--scope <value>` | Solo lee por debajo de esta ref o selector |
-| `--max-chars <n>` | Imprime hasta este número de caracteres (por defecto 6000) |
+| `--max-chars <n>` | Imprime hasta esta cantidad de caracteres (por defecto 6000) |
 | `--offset <n>` | Empieza en este carácter del texto, para la siguiente parte de una página larga |
 
 **Ejemplos**
@@ -383,9 +383,9 @@ Ver también: [`find`](#find), [`snapshot`](#snapshot), [`get`](#get).
 
 ## `find`
 
-Busca texto en un snapshot nuevo. Se aplica a web, móvil nativo, escritorio nativo.
+Busca texto en un snapshot nuevo. Se aplica a web, móvil nativo y escritorio nativo.
 
-Toma un nuevo snapshot e imprime cada coincidencia con el nodo que la rodea (p. ej. el elemento de lista completo, de modo que se incluye un valor junto a la coincidencia), con números de línea y refs, y desplaza la primera coincidencia hasta que sea visible. La búsqueda ignora mayúsculas y minúsculas, luego los espacios ("SO2" encuentra "SO 2"), y luego busca todas las palabras y palabras similares. El texto que solo está en partes ocultas de la página (menús cerrados, pestañas, "Mostrar más") se indica como tal. Es más barato que leer un snapshot completo de una página grande. -A/-B/-C imprimen en su lugar contexto de líneas simple, como grep.
+Toma un snapshot nuevo e imprime cada coincidencia con el nodo que la rodea (p. ej. el elemento de lista completo, de modo que se incluye un valor junto a la coincidencia), con números de línea y refs, y desplaza la primera coincidencia hasta hacerla visible. La búsqueda ignora mayúsculas y minúsculas, luego los espacios ("SO2" encuentra "SO 2"), y después busca todas las palabras y palabras parecidas. El texto que solo está en partes ocultas de la página (menús cerrados, pestañas, "Mostrar más") se lista como tal. Es más barato que leer un snapshot completo de una página grande. -A/-B/-C imprimen en su lugar contexto de líneas simple, como grep.
 
 ```sh
 npx wdio session find <text>
@@ -403,10 +403,10 @@ npx wdio session find <text>
 | --- | --- |
 | `--regex` | Trata el texto como una expresión regular |
 | `--scope <value>` | Solo busca por debajo de esta ref o selector |
-| `-C, --context <n>` | Líneas de contexto antes y después en lugar del nodo que la rodea |
+| `-C, --context <n>` | Líneas de contexto antes y después en lugar del nodo circundante |
 | `-A, --after-context <n>` | Líneas de contexto después de cada coincidencia |
 | `-B, --before-context <n>` | Líneas de contexto antes de cada coincidencia |
-| `--offset <n>` | Omite este número de coincidencias, para ver las siguientes cuando la salida se corta |
+| `--offset <n>` | Omite esta cantidad de coincidencias, para las siguientes cuando la salida se corta |
 
 **Ejemplos**
 
@@ -422,9 +422,9 @@ Ver también: [`snapshot`](#snapshot), [`wait`](#wait).
 
 ## `diff`
 
-Compara un snapshot nuevo con el anterior. Se aplica a web, móvil nativo, escritorio nativo.
+Compara un snapshot nuevo con el anterior. Se aplica a web, móvil nativo y escritorio nativo.
 
-Imprime un diff unificado de lo que ha cambiado desde el último snapshot, o "No changes". La primera llamada guarda una línea base. Úsalo después de una acción para ver qué hizo la acción sin volver a leer toda la página. En la web, la línea base es el último snapshot tomado sin `--viewport`.
+Imprime un diff unificado de lo que cambió desde el último snapshot, o "No changes". La primera llamada guarda una línea base. Úsalo después de una acción para ver lo que hizo la acción sin volver a leer toda la página. En la web, la línea base es el último snapshot tomado sin `--viewport`.
 
 ```sh
 npx wdio session diff
@@ -441,7 +441,7 @@ npx wdio session diff
 **Ejemplos**
 
 ```sh
-# Ver qué cambió un clic
+# Ver qué cambió un click
 npx wdio session click e7 && npx wdio session diff
 
 # Comparar con un snapshot guardado
@@ -452,9 +452,9 @@ Ver también: [`snapshot`](#snapshot), [`find`](#find).
 
 ## `screenshot`
 
-Guarda un PNG del viewport, de un elemento o de la página completa. Se aplica a web, móvil nativo, escritorio nativo.
+Guarda un PNG del viewport, de un elemento o de la página completa. Se aplica a web, móvil nativo y escritorio nativo.
 
-Imprime la ruta del archivo y el tamaño de la imagen. Haz una captura de pantalla cuando la pregunta sea sobre el diseño o el aspecto; lee el texto y el estado con `snapshot` y `get`.
+Imprime la ruta del archivo y el tamaño de la imagen. Haz una captura cuando la pregunta trate sobre el diseño o la apariencia; lee el texto y el estado con `snapshot` y `get`.
 
 ```sh
 npx wdio session screenshot [target]
@@ -492,7 +492,7 @@ Ver también: [`visual`](#visual), [`pdf`](#pdf), [`snapshot`](#snapshot).
 
 Guarda la página actual como PDF. Se aplica a web.
 
-Llama a `browser.savePDF`. Una sesión BiDi imprime con `browsingContext.print`, en modo headed o headless, en Chrome, Edge y Firefox. Una sesión Classic usa `printPage`, que las versiones antiguas de Chrome solo admiten en modo headless.
+Llama a `browser.savePDF`. Una sesión BiDi imprime con `browsingContext.print`, en modo headed o headless, en Chrome, Edge y Firefox. Una sesión Classic usa `printPage`, que las versiones antiguas de Chrome solo admiten en headless.
 
 ```sh
 npx wdio session pdf [file]
@@ -521,7 +521,7 @@ Ver también: [`screenshot`](#screenshot).
 
 ## `source`
 
-Guarda el HTML de la página o el XML de la app. Se aplica a web, móvil nativo, escritorio nativo.
+Guarda el HTML de la página o el XML de la app. Se aplica a web, móvil nativo y escritorio nativo.
 
 Escribe el archivo e imprime su ruta y tamaño. Úsalo cuando un snapshot oculte lo que necesitas, como los atributos para un selector.
 
@@ -548,7 +548,7 @@ Ver también: [`snapshot`](#snapshot), [`get`](#get).
 
 Lee el texto, el html, el valor, un atributo, el título, la URL, un recuento o un box. Se aplica a web.
 
-Imprime el valor y luego el código de WebdriverIO que ejecutó (`→ …`). Pasa -q para imprimir solo el valor, p. ej. para capturarlo en una variable del shell. Lee un valor antes de escribir una aserción para él.
+Imprime el valor y luego el código de WebdriverIO que ejecutó (`→ …`). Pasa -q para imprimir solo el valor, p. ej. para capturarlo en una variable de shell. Lee un valor antes de escribir una aserción sobre él.
 
 ```sh
 npx wdio session get <sub> [target] [name]
@@ -559,7 +559,7 @@ npx wdio session get <sub> [target] [name]
 | Nombre | Obligatorio | Descripción |
 | --- | --- | --- |
 | `sub` | sí | text \| html \| value \| attr \| title \| url \| count \| box |
-| `target` | no | Ref o selector (no se usa para title y url) |
+| `target` | no | Ref o selector (no se usa para title ni url) |
 | `name` | no | Nombre del atributo (solo attr) |
 
 **Ejemplos**
@@ -571,7 +571,7 @@ npx wdio session get text e1
 # URL actual
 npx wdio session get url
 
-# Solo el valor, para una variable del shell
+# Solo el valor, para una variable de shell
 url=$(npx wdio session get url -q)
 
 # href de un enlace
@@ -614,7 +614,7 @@ Ver también: [`get`](#get), [`wait`](#wait).
 
 ## `logs`
 
-Imprime los logs de consola, errores de página, red y dispositivo desde la última llamada. Se aplica a web, móvil nativo.
+Imprime los logs de consola, errores de página, red y dispositivo desde la última llamada. Se aplica a web y móvil nativo.
 
 Cada llamada avanza un cursor de lectura, de modo que la siguiente llamada solo muestra las entradas nuevas. Ejecútalo después de una acción para ver los errores que causó esa acción.
 
@@ -630,12 +630,12 @@ npx wdio session logs
 | `--network` | Solo entradas de red |
 | `--since <value>` | Solo entradas más recientes que esta duración (p. ej. 30s) |
 | `--peek` | No avanza el cursor de lectura |
-| `--source <browser\|driver\|logcat\|syslog\|main>` | Origen de los logs |
+| `--source <browser\|driver\|logcat\|syslog\|main>` | Origen del log |
 
 **Ejemplos**
 
 ```sh
-# Errores causados por un clic
+# Errores causados por un click
 npx wdio session click e4 && npx wdio session logs --errors
 
 # Entradas recientes, conservándolas para la siguiente llamada
@@ -674,7 +674,7 @@ Ver también: [`back`](#back), [`reload`](#reload), [`wait`](#wait).
 
 ## `back`
 
-Vuelve atrás. Se aplica a web.
+Retrocede. Se aplica a web.
 
 ```sh
 npx wdio session back
@@ -683,7 +683,7 @@ npx wdio session back
 **Ejemplos**
 
 ```sh
-# Volver una página atrás
+# Retroceder una página
 npx wdio session back
 ```
 
@@ -727,9 +727,9 @@ Ver también: [`navigate`](#navigate), [`wait`](#wait).
 
 Espera a un elemento, un texto, una URL, un estado de carga, una condición o unos milisegundos. Se aplica a web.
 
-Pasa exactamente uno de: una ref o selector, --text, --url, --load, --fn o milisegundos. Falla con el código de salida 1 tras --limit.
+Pasa exactamente uno de: una ref o selector, --text, --url, --load, --fn o milisegundos. Falla con código de salida 1 después de --limit.
 
-Prefiere una condición a una pausa, tanto aquí como en lugar de `sleep` en una cadena de comandos. Se rechaza una pausa de más de 30 segundos.
+Prefiere una condición en lugar de una pausa, tanto aquí como en lugar de `sleep` en una cadena. Se rechaza una pausa de más de 30 segundos.
 
 ```sh
 npx wdio session wait [target]
@@ -750,7 +750,7 @@ npx wdio session wait [target]
 | `--load <value>` | domcontentloaded, load o networkidle |
 | `--fn <value>` | Espera hasta que esta expresión de JavaScript sea verdadera |
 | `--state <value>` | Con un target: visible (por defecto), hidden, enabled o disabled |
-| `--limit <n>` | Milisegundos a esperar (por defecto 10000) |
+| `--limit <n>` | Milisegundos de espera (por defecto 10000) |
 
 **Ejemplos**
 
@@ -764,7 +764,7 @@ npx wdio session wait "aria/Loading" --state hidden
 # Actuar, esperar el resultado, volver a mirar
 npx wdio session click e3 && npx wdio session wait --text "Cart (1)" && npx wdio session snapshot -i
 
-# Esperar a una URL
+# Esperar una URL
 npx wdio session wait --url "**/dashboard"
 
 # Esperar hasta que no haya ninguna petición en curso
@@ -778,9 +778,9 @@ Ver también: [`find`](#find), [`is`](#is), [`get`](#get).
 
 ## `click`
 
-Hace clic en un elemento. Se aplica a web, móvil nativo, escritorio nativo.
+Hace click en un elemento. Se aplica a web, móvil nativo y escritorio nativo.
 
-Imprime en qué se hizo clic y, cuando el clic provocó una navegación, la nueva URL. Toma un nuevo snapshot antes de usar refs en la página siguiente. Un elemento oculto o cubierto falla inmediatamente indicando qué hay en medio. `x,y` hace clic en un punto del viewport (píxeles desde la esquina superior izquierda, como en una captura de pantalla) para lo que no tiene ref, como un canvas o un mapa.
+Imprime en qué se hizo click y, si el click provocó una navegación, la nueva URL. Toma un snapshot nuevo antes de usar refs en la página siguiente. Un elemento oculto o tapado falla de inmediato indicando qué lo obstaculiza. `x,y` hace click en un punto del viewport (píxeles desde la esquina superior izquierda, como en una captura) para lo que no tiene ref, como un canvas o un mapa.
 
 ```sh
 npx wdio session click <target>
@@ -796,26 +796,26 @@ npx wdio session click <target>
 
 | Flag | Descripción |
 | --- | --- |
-| `--double` | Doble clic |
-| `--right` | Clic derecho |
-| `--new-tab` | Abre el enlace en una nueva pestaña y cambia a ella |
+| `--double` | Doble click |
+| `--right` | Click derecho |
+| `--new-tab` | Abre el enlace en una pestaña nueva y cambia a ella |
 
 **Ejemplos**
 
 ```sh
-# Hacer clic en una ref del último snapshot
+# Hacer click en una ref del último snapshot
 npx wdio session click e3
 
-# Hacer clic por nombre accesible
+# Hacer click por nombre accesible
 npx wdio session click "aria/Add to cart"
 
-# Hacer clic, esperar, volver a mirar
+# Hacer click, esperar, volver a mirar
 npx wdio session click e3 && npx wdio session wait --load networkidle && npx wdio session snapshot -i
 
-# Abrir un enlace en una nueva pestaña
+# Abrir un enlace en una pestaña nueva
 npx wdio session click e8 --new-tab
 
-# Hacer clic en un punto del viewport, p. ej. en un mapa
+# Hacer click en un punto del viewport, p. ej. en un mapa
 npx wdio session click 320,480
 ```
 
@@ -846,9 +846,9 @@ Ver también: [`click`](#click), [`long-press`](#long-press), [`swipe`](#swipe).
 
 ## `fill`
 
-Reemplaza el valor de un input. Se aplica a web, móvil nativo, escritorio nativo.
+Reemplaza el valor de un input. Se aplica a web, móvil nativo y escritorio nativo.
 
-Primero vacía el campo. Para escribir en el elemento que tenga el foco, usa `type`; para enviar teclas como Enter, usa `press`.
+Primero vacía el campo. Para escribir en lo que tenga el foco, usa `type`; para enviar teclas como Enter, usa `press`.
 
 ```sh
 npx wdio session fill <target> <text..>
@@ -859,7 +859,7 @@ npx wdio session fill <target> <text..>
 | Nombre | Obligatorio | Descripción |
 | --- | --- | --- |
 | `target` | sí | Ref (e12) o selector de WebdriverIO |
-| `text` | sí | Texto (las palabras después del target se unen con espacios) |
+| `text` | sí | Texto (las palabras tras el target se unen con espacios) |
 
 **Ejemplos**
 
@@ -875,9 +875,9 @@ Ver también: [`type`](#type), [`press`](#press), [`select`](#select), [`check`]
 
 ## `type`
 
-Escribe en un elemento o en el elemento con el foco. Se aplica a web, móvil nativo, escritorio nativo.
+Escribe en un elemento o en el elemento con el foco. Se aplica a web, móvil nativo y escritorio nativo.
 
-Envía el texto como pulsaciones de teclas sin vaciar nada: `type e2 Ada` escribe en e2, `type Ada` en el elemento que tenga el foco. Para reemplazar un valor, usa `fill`.
+Envía el texto como pulsaciones de teclas sin vaciar nada: `type e2 Ada` escribe en e2, `type Ada` en lo que tenga el foco. Para reemplazar un valor, usa `fill`.
 
 ```sh
 npx wdio session type <text..>
@@ -895,7 +895,7 @@ npx wdio session type <text..>
 # Escribir en un campo
 npx wdio session type e5 hello
 
-# Escribir en el elemento que tenga el foco
+# Escribir en lo que tenga el foco
 npx wdio session focus e5 && npx wdio session type "hello"
 ```
 
@@ -903,7 +903,7 @@ Ver también: [`fill`](#fill), [`press`](#press), [`focus`](#focus).
 
 ## `press`
 
-Pulsa teclas, p. ej. Enter, Control+a. Se aplica a web, escritorio nativo.
+Pulsa teclas, p. ej. Enter, Control+a. Se aplica a web y escritorio nativo.
 
 Combina teclas con +. Los nombres no distinguen mayúsculas y minúsculas; se aceptan ctrl, cmd, esc, up, down, left y right como formas abreviadas.
 
@@ -921,7 +921,7 @@ npx wdio session press <keys>
 
 | Flag | Descripción |
 | --- | --- |
-| `--times <n>` | Pulsa este número de veces (hasta 100), p. ej. para mover un slider |
+| `--times <n>` | Pulsa esta cantidad de veces (hasta 100), p. ej. para mover un slider |
 
 **Ejemplos**
 
@@ -929,13 +929,13 @@ npx wdio session press <keys>
 # Enviar un formulario
 npx wdio session press Enter
 
-# Mover cinco pasos un slider con el foco
+# Mover un slider con el foco cinco pasos
 npx wdio session press ArrowRight --times 5
 
 # Seleccionar todo
 npx wdio session press Control+a
 
-# Mover el foco hacia atrás
+# Devolver el foco hacia atrás
 npx wdio session press Shift+Tab
 ```
 
@@ -960,7 +960,7 @@ npx wdio session select <target> <value>
 
 | Flag | Descripción |
 | --- | --- |
-| `--by <text\|value\|index>` | Cómo identificar la opción (por defecto text) |
+| `--by <text\|value\|index>` | Cómo hacer coincidir la opción (por defecto text) |
 
 **Ejemplos**
 
@@ -1002,7 +1002,7 @@ Ver también: [`fill`](#fill).
 
 ## `hover`
 
-Mueve el puntero sobre un elemento. Se aplica a web, escritorio nativo.
+Mueve el puntero sobre un elemento. Se aplica a web y escritorio nativo.
 
 ```sh
 npx wdio session hover <target>
@@ -1048,9 +1048,9 @@ Ver también: [`type`](#type), [`press`](#press).
 
 ## `check`
 
-Marca un checkbox o un radio. Se aplica a web.
+Marca un checkbox o radio. Se aplica a web.
 
-No hace nada si ya está marcado, y falla si no acaba marcado.
+No hace nada si ya está marcado, y falla si no termina marcado.
 
 ```sh
 npx wdio session check <target>
@@ -1075,7 +1075,7 @@ Ver también: [`uncheck`](#uncheck), [`is`](#is).
 
 Desmarca un checkbox. Se aplica a web.
 
-No hace nada si ya está desmarcado. Un botón de radio seleccionado no se puede desmarcar.
+No hace nada si ya está desmarcado. Un radio button seleccionado no se puede desmarcar.
 
 ```sh
 npx wdio session uncheck <target>
@@ -1090,7 +1090,7 @@ npx wdio session uncheck <target>
 **Ejemplos**
 
 ```sh
-# Darse de baja de la newsletter
+# Darse de baja del boletín
 npx wdio session uncheck e7
 ```
 
@@ -1098,7 +1098,7 @@ Ver también: [`check`](#check), [`is`](#is).
 
 ## `drag`
 
-Arrastra un elemento sobre otro. Se aplica a web, móvil nativo, escritorio nativo.
+Arrastra un elemento sobre otro. Se aplica a web, móvil nativo y escritorio nativo.
 
 ```sh
 npx wdio session drag <from> <to>
@@ -1109,7 +1109,7 @@ npx wdio session drag <from> <to>
 | Nombre | Obligatorio | Descripción |
 | --- | --- | --- |
 | `from` | sí | Ref o selector a arrastrar |
-| `to` | sí | Ref o selector sobre el que soltar |
+| `to` | sí | Ref o selector donde soltar |
 
 **Ejemplos**
 
@@ -1122,9 +1122,9 @@ Ver también: [`scroll`](#scroll).
 
 ## `scroll`
 
-Desplaza un elemento hasta que sea visible o desplaza la página. Se aplica a web.
+Desplaza un elemento hasta hacerlo visible o desplaza la página. Se aplica a web.
 
-Sin un target, desplaza 600px hacia abajo. El contenido con carga diferida aparece en el siguiente snapshot.
+Sin target, desplaza 600px hacia abajo. El contenido de carga diferida aparece en el siguiente snapshot.
 
 ```sh
 npx wdio session scroll [target]
@@ -1219,7 +1219,7 @@ Ver también: [`tap`](#tap).
 
 Lista, abre, cambia o cierra pestañas. Se aplica a web.
 
-Sin un subcomando, lista las pestañas con su índice; la actual aparece marcada. `new` abre una pestaña y cambia a ella. `switch` y `close` reciben un índice o un handle.
+Sin subcomando, lista las pestañas con su índice; la actual aparece marcada. `new` abre una pestaña y cambia a ella. `switch` y `close` reciben un índice o handle.
 
 ```sh
 npx wdio session tabs [sub] [arg]
@@ -1252,7 +1252,7 @@ Ver también: [`windows`](#windows), [`frame`](#frame).
 
 ## `windows`
 
-Lista o cambia de ventana. Se aplica a web, escritorio nativo.
+Lista o cambia de ventana. Se aplica a web y escritorio nativo.
 
 ```sh
 npx wdio session windows [sub] [arg]
@@ -1279,7 +1279,7 @@ Ver también: [`tabs`](#tabs).
 
 ## `frame`
 
-Entra en un iframe, o cambia al padre o al nivel superior. Se aplica a web.
+Entra en un iframe, va al padre o al nivel superior. Se aplica a web.
 
 El snapshot de la página ya muestra el contenido de sus iframes, con refs que las acciones usan directamente, así que `frame` solo es necesario para trabajar dentro de un frame durante un tiempo o para ver un frame que el snapshot recortó. Los snapshots y las acciones se aplican al frame actual hasta que vuelvas a cambiar. `navigate` vuelve al documento de nivel superior.
 
@@ -1334,9 +1334,9 @@ Ver también: [`snapshot`](#snapshot).
 
 ## `dialog`
 
-Acepta, descarta o informa sobre un diálogo abierto. Se aplica a web, móvil nativo.
+Acepta, descarta o informa sobre un diálogo abierto. Se aplica a web y móvil nativo.
 
-Un alert, confirm o prompt abierto bloquea otras acciones, que fallan con una indicación para ejecutar este comando.
+Un alert, confirm o prompt abierto bloquea las demás acciones, que fallan con una sugerencia para ejecutar este comando.
 
 ```sh
 npx wdio session dialog <sub>
@@ -1371,7 +1371,7 @@ Ver también: [`click`](#click).
 
 ## `app`
 
-Lanza, termina, instala o consulta una app. Se aplica a móvil nativo, escritorio nativo.
+Inicia, finaliza, instala o consulta una app. Se aplica a móvil nativo y escritorio nativo.
 
 ```sh
 npx wdio session app <sub> <id>
@@ -1419,7 +1419,7 @@ npx wdio session deeplink <url>
 **Ejemplos**
 
 ```sh
-# Abrir la pantalla de un producto
+# Abrir una pantalla de producto
 npx wdio session deeplink shop://product/42 --package com.example.shop
 ```
 
@@ -1526,7 +1526,7 @@ Ver también: [`lock`](#lock).
 
 ## `geolocation`
 
-Establece la geolocalización. Se aplica a web, móvil nativo.
+Establece la geolocalización. Se aplica a web y móvil nativo.
 
 ```sh
 npx wdio session geolocation <lat> <lon>
@@ -1548,7 +1548,7 @@ npx wdio session geolocation <lat> <lon>
 **Ejemplos**
 
 ```sh
-# Simular que estamos en Berlín
+# Simular estar en Berlín
 npx wdio session geolocation 52.52 13.405
 ```
 
@@ -1558,7 +1558,7 @@ Ver también: [`emulate`](#emulate).
 
 Emula un dispositivo, viewport, red, cpu, reloj o un ámbito de emulación BiDi. Se aplica a web.
 
-Una emulación se mantiene hasta `emulate reset` o hasta que termina la sesión; volver a establecer el mismo tipo la reemplaza. `emulate device` sin un valor lista los nombres de los dispositivos. Los presets de red y la limitación de cpu requieren un navegador Chromium.
+Una emulación se mantiene hasta `emulate reset` o hasta que finaliza la sesión; volver a establecer el mismo tipo la reemplaza. `emulate device` sin valor lista los nombres de los dispositivos. Los presets de red y la limitación de cpu necesitan un navegador Chromium.
 
 ```sh
 npx wdio session emulate <sub> [value]
@@ -1587,7 +1587,7 @@ npx wdio session emulate device "iPhone 15"
 # Establecer un viewport
 npx wdio session emulate viewport 375x812 --dpr 3
 
-# Quedarse sin conexión
+# Desconectarse de la red
 npx wdio session emulate network offline
 
 # Modo oscuro
@@ -1618,9 +1618,9 @@ npx wdio session requests
 | Flag | Descripción |
 | --- | --- |
 | `--filter <value>` | Subcadena o glob |
-| `--failed` | Solo las peticiones fallidas |
-| `--since <value>` | Solo las peticiones más recientes que esta duración |
-| `--limit <n>` | Número máximo de líneas (por defecto 50) |
+| `--failed` | Solo peticiones fallidas |
+| `--since <value>` | Solo peticiones más recientes que esta duración |
+| `--limit <n>` | Máximo de líneas (por defecto 50) |
 
 **Ejemplos**
 
@@ -1628,7 +1628,7 @@ npx wdio session requests
 # Solo llamadas a la API
 npx wdio session requests --filter "**/api/**"
 
-# Peticiones que rompió un clic
+# Peticiones que rompió un click
 npx wdio session click e3 && npx wdio session requests --failed --since 10s
 ```
 
@@ -1655,9 +1655,9 @@ npx wdio session mock <pattern>
 | Flag | Descripción |
 | --- | --- |
 | `--status <n>` | Código de estado |
-| `--body <value>` | Cuerpo como JSON/texto o la ruta a un archivo |
+| `--body <value>` | Cuerpo como JSON/texto o una ruta de archivo |
 | `--header <value>` | Cabecera k:v (repetible) |
-| `--abort` | Aborta las peticiones que coinciden |
+| `--abort` | Aborta las peticiones que coincidan |
 | `--method <value>` | Solo este método |
 | `--once` | Solo la siguiente petición |
 
@@ -1670,7 +1670,7 @@ npx wdio session mock "**/api/user" --body '{"name":"Mocked"}'
 # Hacer fallar la siguiente petición
 npx wdio session mock "**/api/cart" --status 500 --once
 
-# Bloquear las imágenes
+# Bloquear imágenes
 npx wdio session mock "**/*.png" --abort
 ```
 
@@ -1712,7 +1712,7 @@ Ver también: [`mock`](#mock).
 
 Obtiene, establece o borra cookies. Se aplica a web.
 
-Sin un subcomando, imprime todas las cookies como name=value. `clear` sin un nombre elimina todas las cookies.
+Sin subcomando, imprime todas las cookies como name=value. `clear` sin nombre elimina todas las cookies.
 
 ```sh
 npx wdio session cookies [sub] [name] [value]
@@ -1759,7 +1759,7 @@ Ver también: [`storage`](#storage), [`state`](#state).
 
 Obtiene, establece o borra localStorage (o sessionStorage). Se aplica a web.
 
-Sin un subcomando, imprime todas las entradas. `clear` sin una clave vacía el almacenamiento.
+Sin subcomando, imprime todas las entradas. `clear` sin clave vacía el almacenamiento.
 
 ```sh
 npx wdio session storage [sub] [key] [value]
@@ -1825,9 +1825,9 @@ Ver también: [`cookies`](#cookies), [`storage`](#storage).
 
 ## `visual`
 
-Snapshots visuales mediante @wdio/visual-service. Se aplica a web, móvil nativo, escritorio nativo.
+Snapshots visuales mediante @wdio/visual-service. Se aplica a web, móvil nativo y escritorio nativo.
 
-`save` guarda una línea base en .wdio/visual/baseline, `check` compara con ella e imprime la diferencia, `accept` convierte la última imagen real en la línea base, `list` muestra las etiquetas. Requiere @wdio/visual-service en el proyecto.
+`save` guarda una línea base en .wdio/visual/baseline, `check` la compara e imprime la discrepancia, `accept` convierte la última imagen actual en la línea base, `list` muestra las etiquetas. Necesita @wdio/visual-service en el proyecto.
 
 ```sh
 npx wdio session visual <sub> [tag]
@@ -1847,7 +1847,7 @@ npx wdio session visual <sub> [tag]
 | `--element <value>` | Solo este elemento |
 | `--full` | Página completa |
 | `--tabbable` | Página tabbable |
-| `--threshold <n>` | Diferencia permitida en porcentaje (por defecto 0) |
+| `--threshold <n>` | Discrepancia permitida en porcentaje (por defecto 0) |
 | `--all` | accept: todas las etiquetas |
 
 **Ejemplos**
@@ -1867,7 +1867,7 @@ Ver también: [`screenshot`](#screenshot).
 
 ## `trace`
 
-Graba cada paso con capturas de pantalla y snapshots.
+Registra cada paso con capturas de pantalla y snapshots.
 
 `stop` imprime el directorio de la traza y una transcripción de los pasos.
 
@@ -1902,7 +1902,7 @@ Ver también: [`record`](#record), [`history`](#history).
 
 ## `record`
 
-Graba un vídeo. Se aplica a web, móvil nativo.
+Graba un vídeo. Se aplica a web y móvil nativo.
 
 ```sh
 npx wdio session record <sub>
@@ -1935,9 +1935,9 @@ Ver también: [`trace`](#trace), [`screenshot`](#screenshot).
 
 ## `history`
 
-Imprime los pasos grabados.
+Imprime los pasos registrados.
 
-Cada acción que cambia la página graba el código de WebdriverIO que ejecutó. `export` convierte este historial en un spec.
+Cada acción que cambia la página registra el código de WebdriverIO que ejecutó. `export` convierte este historial en una spec.
 
 ```sh
 npx wdio session history
@@ -1955,7 +1955,7 @@ npx wdio session history
 # Mostrar los pasos hasta ahora
 npx wdio session history
 
-# Reiniciar la grabación antes de los pasos que quieres conservar
+# Reiniciar el registro antes de los pasos que quieres conservar
 npx wdio session history --clear
 ```
 
@@ -1963,9 +1963,9 @@ Ver también: [`export`](#export), [`exec`](#exec).
 
 ## `export`
 
-Genera un spec a partir del historial.
+Genera una spec a partir del historial.
 
-Escribe un spec describe/it con los pasos grabados. Las refs se convierten en selectores estables y los helpers en comandos personalizados. Sin --out, el archivo va al directorio de artefactos. Ejecútalo con `wdio run` para confirmar que pasa.
+Escribe una spec describe/it con los pasos registrados. Las refs se convierten en selectores estables y los helpers en comandos personalizados. Sin --out, el archivo se guarda en el directorio de artefactos. Ejecútala con `wdio run` para confirmar que pasa.
 
 ```sh
 npx wdio session export
@@ -1983,10 +1983,10 @@ npx wdio session export
 **Ejemplos**
 
 ```sh
-# Escribir el spec
+# Escribir la spec
 npx wdio session export --out test/specs/cart.e2e.ts
 
-# Escribir el spec y ejecutarlo
+# Escribir la spec y ejecutarla
 npx wdio session export --out test/specs/cart.e2e.ts && npx wdio run wdio.conf.ts --spec test/specs/cart.e2e.ts
 ```
 
@@ -1996,7 +1996,7 @@ Ver también: [`history`](#history), [`helpers`](#helpers).
 
 Continúa un test pausado por wdio run --debug=agent.
 
-`wdio run --debug=agent` pausa un test que falla y lo expone como la sesión debug-`<worker>`. Inspecciónalo con cualquier acción y luego reanúdalo. En cambio, `close` en esa sesión hace fallar el test.
+`wdio run --debug=agent` pausa un test que falla y lo expone como la sesión debug-`<worker>`. Inspecciónalo con cualquier acción y luego reanúdalo. `close` en esa sesión hace fallar el test en su lugar.
 
 ```sh
 npx wdio session resume
@@ -2030,7 +2030,7 @@ npx wdio session doctor [target]
 **Ejemplos**
 
 ```sh
-# Comprobarlo todo
+# Comprobar todo
 npx wdio session doctor
 
 # Comprobar lo que necesita una sesión de Android

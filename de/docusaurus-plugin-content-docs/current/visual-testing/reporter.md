@@ -19,14 +19,14 @@ export const config = {
         [
             "visual",
             {
-                createJsonReportFiles: true, // Generiert die output.json-Datei
+                createJsonReportFiles: true, // Generates the output.json file
             },
         ],
     ],
 };
 ```
 
-Ausführlichere Einrichtungsanweisungen finden Sie in der WebdriverIO [Visual Testing Dokumentation](./) oder unter [`createJsonReportFiles`](./service-options.md#createjsonreportfiles-new)
+Detailliertere Einrichtungsanweisungen finden Sie in der WebdriverIO [Visual Testing Dokumentation](./) oder unter [`createJsonReportFiles`](./service-options.md#createjsonreportfiles-new)
 
 # Installation
 
@@ -59,7 +59,7 @@ npx wdio-visual-reporter --jsonOutput=<path-to-output.json> --reportFolder=<path
 
 #### Optionale Optionen:
 
--   `--logLevel`: Auf `debug` setzen, um detaillierte Protokollierung zu erhalten, besonders nützlich bei der Fehlerbehebung.
+-   `--logLevel`: Setzen Sie diesen Wert auf `debug`, um detaillierte Protokolle zu erhalten, was besonders bei der Fehlerbehebung nützlich ist.
 
 #### Beispiel
 
@@ -108,7 +108,7 @@ Alternativ können Sie den folgenden Befehl ausführen und die Eingabeaufforderu
 npx @wdio/visual-reporter
 ```
 
-Die Eingabeaufforderungen führen Sie durch die Angabe der erforderlichen Pfade und Optionen. Am Ende fragt die interaktive Eingabeaufforderung auch, ob Sie einen Server starten möchten, um den Bericht anzuzeigen. Wenn Sie sich dafür entscheiden, den Server zu starten, startet das Tool einen einfachen Server und zeigt eine URL in den Protokollen an. Sie können diese URL in Ihrem Browser öffnen, um den Bericht anzuzeigen.
+Die Eingabeaufforderungen führen Sie durch die Angabe der erforderlichen Pfade und Optionen. Am Ende fragt die interaktive Eingabeaufforderung auch, ob Sie einen Server starten möchten, um den Bericht anzuzeigen. Wenn Sie sich entscheiden, den Server zu starten, startet das Tool einen einfachen Server und zeigt eine URL in den Protokollen an. Sie können diese URL in Ihrem Browser öffnen, um den Bericht anzuzeigen.
 
 ![Visual Reporter CLI](/img/visual/cli-screen-recording.gif)
 
@@ -120,7 +120,7 @@ Die Eingabeaufforderungen führen Sie durch die Angabe der erforderlichen Pfade 
 Das direkte Öffnen von `path/to/report/index.html` in einem Browser, **ohne es über einen lokalen Server bereitzustellen**, wird **NICHT** funktionieren.
 :::
 
-Wenn Sie sich entschieden haben, den Server **nicht** über die interaktive Eingabeaufforderung zu starten, können Sie den Bericht dennoch anzeigen, indem Sie den folgenden Befehl manuell ausführen:
+Wenn Sie sich entschieden haben, den Server über die interaktive Eingabeaufforderung **nicht** zu starten, können Sie den Bericht trotzdem anzeigen, indem Sie den folgenden Befehl manuell ausführen:
 
 ```bash
 npx sirv-cli /path/to/report --single
@@ -147,7 +147,7 @@ Um ein Beispiel dafür zu sehen, wie der Bericht aussieht, besuchen Sie unsere [
 
 Der Visual Reporter bietet eine übersichtliche Ansicht Ihrer visuellen Testergebnisse. Für jeden Testlauf können Sie:
 
--   Einfach zwischen Testfällen navigieren und aggregierte Ergebnisse sehen.
+-   Einfach zwischen Testfällen navigieren und aggregierte Ergebnisse einsehen.
 -   Metadaten wie Testnamen, verwendete Browser und Vergleichsergebnisse überprüfen.
 -   Diff-Bilder anzeigen, die zeigen, wo visuelle Unterschiede erkannt wurden.
 
@@ -155,4 +155,4 @@ Diese visuelle Darstellung vereinfacht die Analyse Ihrer Testergebnisse und erle
 
 # CI-Integrationen
 
-Wir arbeiten an der Unterstützung verschiedener CI-Tools wie Jenkins, GitHub Actions und so weiter. Wenn Sie uns helfen möchten, kontaktieren Sie uns bitte auf [Discord - Visual Testing](https://discord.com/channels/1097401827202445382/1186908940286574642).
+Wir arbeiten daran, verschiedene CI-Tools wie Jenkins, GitHub Actions usw. zu unterstützen. Wenn Sie uns helfen möchten, kontaktieren Sie uns bitte auf [Discord - Visual Testing](https://discord.com/channels/1097401827202445382/1186908940286574642).

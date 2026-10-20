@@ -1,14 +1,14 @@
 ---
 id: multiremote
 title: Multi-remote
-description: "Controla múltiples sesiones de navegador o dispositivo desde una sola prueba con multi-remote, en modo standalone o con el testrunner de WDIO."
+description: "Controla múltiples sesiones de navegadores o dispositivos desde una sola prueba con multi-remote, en modo standalone o con el testrunner de WDIO."
 ---
 
 WebdriverIO te permite ejecutar múltiples sesiones automatizadas en una sola prueba. Esto resulta útil cuando estás probando funcionalidades que requieren múltiples usuarios (por ejemplo, aplicaciones de chat o WebRTC).
 
-En lugar de crear un par de instancias remotas en las que necesitas ejecutar comandos comunes como [`newSession`](/docs/api/webdriver#newsession) o [`url`](/docs/api/browser/url) en cada instancia, simplemente puedes crear una instancia **multi-remote** y controlar todos los navegadores al mismo tiempo.
+En lugar de crear un par de instancias remotas en las que necesitas ejecutar comandos comunes como [`newSession`](/docs/api/webdriver#newsession) o [`url`](/docs/api/browser/url) en cada instancia, puedes simplemente crear una instancia **multi-remote** y controlar todos los navegadores al mismo tiempo.
 
-Para hacerlo, solo usa la función `multiRemote()` y pásale un objeto con nombres como claves y `capabilities` como valores. Al darle un nombre a cada capability, puedes seleccionar y acceder fácilmente a esa instancia individual al ejecutar comandos en una sola instancia.
+Para hacerlo, solo usa la función `multiRemote()` y pásale un objeto con nombres como claves y `capabilities` como valores. Al darle un nombre a cada capability, puedes seleccionar y acceder fácilmente a esa instancia individual cuando ejecutes comandos en una sola instancia.
 
 :::info
 
@@ -17,7 +17,7 @@ Está destinado a ayudar a coordinar múltiples navegadores y/o dispositivos mó
 
 :::
 
-La mayoría de los comandos multi-remote devuelven un array de resultados. El primer resultado representa la capability definida primero en el objeto de capabilities, el segundo resultado la segunda capability, y así sucesivamente. `mock()` devuelve un `MultiRemoteMock` en lugar de un array. Consulta [Qué devuelve mock()](#what-mock-returns).
+La mayoría de los comandos multi-remote devuelven un array de resultados. El primer resultado representa la capability definida en primer lugar en el objeto de capabilities, el segundo resultado la segunda capability, y así sucesivamente. `mock()` devuelve un `MultiRemoteMock` en lugar de un array. Consulta [Qué devuelve mock()](#what-mock-returns).
 
 ## Uso del modo standalone
 
@@ -40,7 +40,7 @@ import { multiRemote } from 'webdriverio'
         }
     })
 
-    // abrir la url con ambos navegadores al mismo tiempo
+    // abrir url con ambos navegadores al mismo tiempo
     await browser.url('http://json.org')
 
     // llamar comandos al mismo tiempo
@@ -58,7 +58,7 @@ import { multiRemote } from 'webdriverio'
 
 ## Uso del testrunner de WDIO
 
-Para usar multi-remote en el testrunner de WDIO, simplemente define el objeto `capabilities` en tu `wdio.conf.js` como un objeto con los nombres de los navegadores como claves (en lugar de una lista de capabilities):
+Para usar multi-remote en el testrunner de WDIO, solo define el objeto `capabilities` en tu `wdio.conf.js` como un objeto con los nombres de los navegadores como claves (en lugar de una lista de capabilities):
 
 ```js
 export const config = {
@@ -142,7 +142,7 @@ export const config = {
 }
 ```
 
-Cualquier combinación de sistema operativo/navegador es posible aquí (incluidos navegadores móviles y de escritorio). Todos los comandos que tus pruebas llaman a través de la variable `browser` se ejecutan en paralelo con cada instancia. Esto ayuda a agilizar tus pruebas de integración y acelerar su ejecución.
+Aquí es posible cualquier combinación de sistema operativo/navegador (incluidos navegadores móviles y de escritorio). Todos los comandos que tus pruebas llaman a través de la variable `browser` se ejecutan en paralelo con cada instancia. Esto ayuda a agilizar tus pruebas de integración y acelerar su ejecución.
 
 Por ejemplo, si abres una URL:
 
@@ -153,7 +153,7 @@ browser.url('https://socketio-chat-h9jt.herokuapp.com/')
 El resultado de cada comando será un objeto con los nombres de los navegadores como clave y el resultado del comando como valor, así:
 
 ```js
-// ejemplo con el testrunner de wdio
+// ejemplo del testrunner de wdio
 await browser.url('https://www.whatismybrowser.com')
 
 const elem = await $('.string-major')
@@ -163,7 +163,7 @@ console.log(result[0]) // devuelve: 'Chrome 40 on Mac OS X (Yosemite)'
 console.log(result[1]) // devuelve: 'Firefox 35 on Mac OS X (Yosemite)'
 ```
 
-Observa que cada comando se ejecuta uno por uno. Esto significa que el comando termina una vez que todos los navegadores lo han ejecutado. Esto es útil porque mantiene sincronizadas las acciones de los navegadores, lo que facilita entender lo que está sucediendo en cada momento.
+Ten en cuenta que cada comando se ejecuta uno por uno. Esto significa que el comando termina una vez que todos los navegadores lo han ejecutado. Esto es útil porque mantiene sincronizadas las acciones de los navegadores, lo que facilita entender lo que está ocurriendo en cada momento.
 
 A veces es necesario hacer cosas diferentes en cada navegador para probar algo. Por ejemplo, si queremos probar una aplicación de chat, tiene que haber un navegador que envíe un mensaje de texto mientras otro navegador espera recibirlo, y luego ejecutar una aserción sobre él.
 
@@ -186,7 +186,7 @@ assert.true(
 
 En este ejemplo, la instancia `myFirefoxBrowser` comenzará a esperar un mensaje una vez que la instancia `myChromeBrowser` haya hecho clic en el botón `#send`.
 
-MultiRemote hace que sea fácil y conveniente controlar múltiples navegadores, ya sea que quieras que hagan lo mismo en paralelo o cosas diferentes de forma coordinada.
+MultiRemote hace que sea fácil y cómodo controlar múltiples navegadores, ya sea que quieras que hagan lo mismo en paralelo o cosas diferentes de forma coordinada.
 
 ### Qué devuelve `$`
 
@@ -212,14 +212,14 @@ messages[0]          // un MultiRemoteElement, que se dirige a todas las instanc
 messages.selector    // '.messages'
 messages.foundWith   // '$$'
 messages.parent      // el navegador o elemento multi-remote del que se obtuvo
-messages.isMultiRemote // true, para poder distinguirlo de un ElementArray simple
+messages.isMultiRemote // true, para poder distinguirlo de un ElementArray normal
 
 // los helpers asíncronos de array están disponibles, como en un solo navegador
 await messages.map((m) => m.getText())
 await messages.filter(async (m) => await m.isDisplayed())
 ```
 
-Cuando las instancias encuentran un número diferente de elementos, una entrada no tiene elemento para una instancia que encontró menos. Para esa instancia, `getInstance()` lanza un error y un comando sobre la entrada falla. Usa `select()` con las instancias que tienen el elemento. Un matcher de `expect` sobre la lista completa comprueba cada instancia con sus propios elementos:
+Cuando las instancias encuentran un número diferente de elementos, una entrada no tiene elemento para una instancia que encontró menos. Para esa instancia, `getInstance()` lanza un error, y un comando sobre la entrada falla. Usa `select()` con las instancias que tienen el elemento. Un matcher de `expect` sobre la lista completa comprueba cada instancia con sus propios elementos:
 
 ```js
 // myChromeBrowser encuentra 3 mensajes, myFirefoxBrowser encuentra 2
@@ -235,7 +235,7 @@ await expect(messages).toBeElementsArrayOfSize(expect.multiRemote({
 
 :::info
 
-Antes de la v10 esto devolvía un array simple a menos que se estableciera `WDIO_ENABLE_MULTI_REMOTE_ELEMENT_ARRAY=true`. El array ahora es el comportamiento predeterminado y la variable de entorno se ha eliminado. El acceso por índice no ha cambiado, por lo que el código que solo leía `elements[0]` sigue funcionando.
+Antes de la v10 esto devolvía un array normal a menos que se estableciera `WDIO_ENABLE_MULTI_REMOTE_ELEMENT_ARRAY=true`. Ahora el array es el comportamiento predeterminado y la variable de entorno se ha eliminado. El acceso por índice no cambia, por lo que el código que solo leía `elements[0]` sigue funcionando.
 
 :::
 
@@ -255,7 +255,7 @@ const firefoxCalls = mock.getInstance('myFirefoxBrowser').calls
 
 `examples/bidi/multiremote-mock.js` ejecuta esto contra dos sesiones de Chrome headless.
 
-`instances` sigue el orden en el que se crearon los mocks. Después de `select()`, ese orden puede diferir de `browser.instances`:
+`instances` sigue el orden en que se crearon los mocks. Después de `select()`, ese orden puede diferir de `browser.instances`:
 
 ```ts
 const selected = await browser.select('myFirefoxBrowser', 'myChromeBrowser').mock('*/users/list')
@@ -266,14 +266,14 @@ selected.getInstance('myChromeBrowser') // el mock de Chrome, sea cual sea el or
 
 `getInstance` lanza `Multi-remote object has no instance named "<name>"` cuando `name` no está en `instances`.
 
-Para hacer mock solo en un navegador, llama a `mock()` en esa instancia:
+Para hacer mock en un solo navegador, llama a `mock()` en esa instancia:
 
 ```ts
 const chromeOnly = await browser.getInstance('myChromeBrowser').mock('*/users/list')
 ```
 
-## Acceder a las instancias del navegador mediante strings a través del objeto browser
-Además de acceder a la instancia del navegador a través de sus variables globales (p. ej., `myChromeBrowser`, `myFirefoxBrowser`), también puedes acceder a ellas a través del objeto `browser`, p. ej., `browser["myChromeBrowser"]` o `browser["myFirefoxBrowser"]`. Puedes obtener una lista de todas tus instancias a través de `browser.instances`. Esto es especialmente útil al escribir pasos de prueba reutilizables que pueden realizarse en cualquiera de los navegadores, p. ej.:
+## Acceder a las instancias de navegador mediante strings a través del objeto browser
+Además de acceder a la instancia del navegador mediante sus variables globales (p. ej., `myChromeBrowser`, `myFirefoxBrowser`), también puedes acceder a ellas a través del objeto `browser`, p. ej., `browser["myChromeBrowser"]` o `browser["myFirefoxBrowser"]`. Puedes obtener una lista de todas tus instancias mediante `browser.instances`. Esto es especialmente útil al escribir pasos de prueba reutilizables que se pueden realizar en cualquiera de los navegadores, p. ej.:
 
 wdio.conf.js:
 ```js
@@ -306,7 +306,7 @@ When(/^User (.) types a message into the chat/, async (userId) => {
 
 ## Aserciones
 
-Los matchers de `expect` admiten navegadores, elementos y mocks multi-remote. De forma predeterminada, cada instancia debe coincidir con el valor esperado:
+Los matchers de `expect` admiten navegadores, elementos y mocks multi-remote. De forma predeterminada, todas las instancias deben coincidir con el valor esperado:
 
 ```js
 import { multiRemoteBrowser, expect } from '@wdio/globals'
@@ -326,7 +326,7 @@ await expect(multiRemoteBrowser).toHaveTitle(expect.multiRemote({
 }))
 ```
 
-Para ver todos los matchers compatibles y la configuración requerida, consulta la [guía de multi-remote de expect-webdriverio](https://github.com/webdriverio/expect-webdriverio/blob/main/docs/MultiRemote.md).
+Para ver todos los matchers compatibles y la configuración necesaria, consulta la [guía multi-remote de expect-webdriverio](https://github.com/webdriverio/expect-webdriverio/blob/main/docs/MultiRemote.md).
 
 ## Acceder a una instancia
 
@@ -342,4 +342,4 @@ await myChromeElement.click()
 await browser.select('myChromeBrowser').url('https://webdriver.io')
 ```
 
-El testrunner sigue asignando cada nombre de instancia como su propia variable global cuando `injectGlobals` permanece activado, por lo que una prueba puede llamar a `myChromeBrowser.$('button')` sin pasar por `browser`. Esa variable global es la sesión individual de `getInstance`, no un campo del objeto multi-remote.
+El testrunner sigue asignando cada nombre de instancia como su propia variable global cuando `injectGlobals` se deja activado, por lo que una prueba puede llamar a `myChromeBrowser.$('button')` sin pasar por `browser`. Esa variable global es la sesión individual obtenida con `getInstance`, no un campo del objeto multi-remote.

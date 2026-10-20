@@ -7,7 +7,7 @@ WebdriverIO veröffentlicht verschiedene Module auf NPM und anderen Registries, 
 
 ## `webdriver` und `devtools`
 
-Die Protokoll-Pakete ([`webdriver`](https://www.npmjs.com/package/webdriver) und [`devtools`](https://www.npmjs.com/package/devtools)) stellen eine Klasse mit den folgenden statischen Funktionen bereit, mit denen Sie Sessions initiieren können:
+Die Protokollpakete ([`webdriver`](https://www.npmjs.com/package/webdriver) und [`devtools`](https://www.npmjs.com/package/devtools)) stellen eine Klasse mit den folgenden statischen Funktionen bereit, mit denen Sie Sessions initiieren können:
 
 #### `newSession(options, modifier, userPrototype, customCommandWrapper)`
 
@@ -16,9 +16,9 @@ Startet eine neue Session mit bestimmten Capabilities. Basierend auf der Session
 ##### Parameter
 
 - `options`: [WebDriver-Optionen](/docs/configuration#webdriver-options)
-- `modifier`: Funktion, mit der die Client-Instanz modifiziert werden kann, bevor sie zurückgegeben wird
-- `userPrototype`: Eigenschaftsobjekt, mit dem der Instanz-Prototyp erweitert werden kann
-- `customCommandWrapper`: Funktion, mit der Funktionalität um Funktionsaufrufe herum gelegt werden kann
+- `modifier`: Funktion, die es ermöglicht, die Client-Instanz zu modifizieren, bevor sie zurückgegeben wird
+- `userPrototype`: Eigenschaftsobjekt, das es ermöglicht, den Instanz-Prototyp zu erweitern
+- `customCommandWrapper`: Funktion, die es ermöglicht, Funktionalität um Funktionsaufrufe herum zu legen
 
 ##### Rückgabewert
 
@@ -39,9 +39,9 @@ Verbindet sich mit einer laufenden WebDriver- oder DevTools-Session.
 ##### Parameter
 
 - `attachInstance`: Instanz, mit der eine Session verbunden werden soll, oder zumindest ein Objekt mit einer Eigenschaft `sessionId` (z. B. `{ sessionId: 'xxx' }`)
-- `modifier`: Funktion, mit der die Client-Instanz modifiziert werden kann, bevor sie zurückgegeben wird
-- `userPrototype`: Eigenschaftsobjekt, mit dem der Instanz-Prototyp erweitert werden kann
-- `customCommandWrapper`: Funktion, mit der Funktionalität um Funktionsaufrufe herum gelegt werden kann
+- `modifier`: Funktion, die es ermöglicht, die Client-Instanz zu modifizieren, bevor sie zurückgegeben wird
+- `userPrototype`: Eigenschaftsobjekt, das es ermöglicht, den Instanz-Prototyp zu erweitern
+- `customCommandWrapper`: Funktion, die es ermöglicht, Funktionalität um Funktionsaufrufe herum zu legen
 
 ##### Rückgabewert
 
@@ -60,7 +60,7 @@ Lädt eine Session anhand der angegebenen Instanz neu.
 
 ##### Parameter
 
-- `instance`: Paket-Instanz, die neu geladen werden soll
+- `instance`: Paketinstanz, die neu geladen werden soll
 
 ##### Beispiel
 
@@ -71,16 +71,16 @@ await WebDriver.reloadSession(client)
 
 ## `webdriverio`
 
-Ähnlich wie bei den Protokoll-Paketen (`webdriver` und `devtools`) können Sie auch die APIs des WebdriverIO-Pakets verwenden, um Sessions zu verwalten. Die APIs können mit `import { remote, attach, multiRemote } from 'webdriverio` importiert werden und bieten folgende Funktionalität:
+Ähnlich wie bei den Protokollpaketen (`webdriver` und `devtools`) können Sie auch die APIs des WebdriverIO-Pakets verwenden, um Sessions zu verwalten. Die APIs können mit `import { remote, attach, multiRemote } from 'webdriverio` importiert werden und enthalten die folgende Funktionalität:
 
 #### `remote(options, modifier)`
 
-Startet eine WebdriverIO-Session. Die Instanz enthält alle Befehle des Protokoll-Pakets, jedoch mit zusätzlichen Funktionen höherer Ordnung, siehe [API-Dokumentation](/docs/api).
+Startet eine WebdriverIO-Session. Die Instanz enthält alle Befehle wie das Protokollpaket, jedoch mit zusätzlichen Funktionen höherer Ordnung, siehe [API-Dokumentation](/docs/api).
 
 ##### Parameter
 
 - `options`: [WebdriverIO-Optionen](/docs/configuration#webdriverio)
-- `modifier`: Funktion, mit der die Client-Instanz modifiziert werden kann, bevor sie zurückgegeben wird
+- `modifier`: Funktion, die es ermöglicht, die Client-Instanz zu modifizieren, bevor sie zurückgegeben wird
 
 ##### Rückgabewert
 
@@ -119,11 +119,11 @@ const newBrowser = await attach(browser)
 
 #### `multiRemote(multiRemoteOptions)`
 
-Initiiert eine Multi-Remote-Instanz, mit der Sie mehrere Sessions innerhalb einer einzigen Instanz steuern können. Schauen Sie sich unsere [Multi-Remote-Beispiele](https://github.com/webdriverio/webdriverio/tree/main/examples/multiremote) für konkrete Anwendungsfälle an.
+Initiiert eine Multi-Remote-Instanz, mit der Sie mehrere Sessions innerhalb einer einzigen Instanz steuern können. Sehen Sie sich unsere [Multi-Remote-Beispiele](https://github.com/webdriverio/webdriverio/tree/main/examples/multiremote) für konkrete Anwendungsfälle an.
 
 ##### Parameter
 
-- `multiRemoteOptions`: ein Objekt, dessen Schlüssel die Browsernamen und deren [WebdriverIO-Optionen](/docs/configuration#webdriverio) darstellen.
+- `multiRemoteOptions`: ein Objekt mit Schlüsseln, die den Browsernamen und deren [WebdriverIO-Optionen](/docs/configuration#webdriverio) repräsentieren.
 
 ##### Rückgabewert
 
@@ -151,7 +151,7 @@ console.log(await matrix.getTitle())
 
 #### `Key`
 
-Ein Objekt mit Konstanten für Sonderzeichen zur Verwendung mit dem Befehl [`browser.keys`](/docs/api/browser/keys). Diese Konstanten repräsentieren Sondertasten, die an den Browser gesendet werden können, wie z. B. `Enter`, `Tab`, `Escape`, Pfeiltasten, Funktionstasten und mehr.
+Ein Objekt mit Sonderzeichen-Konstanten zur Verwendung mit dem Befehl [`browser.keys`](/docs/api/browser/keys). Diese Konstanten repräsentieren Sondertasten, die an den Browser gesendet werden können, wie z. B. `Enter`, `Tab`, `Escape`, Pfeiltasten, Funktionstasten und mehr.
 
 ##### Beispiel
 
@@ -181,7 +181,7 @@ Die folgenden Sondertasten sind über das `Key`-Objekt verfügbar:
 | `Key.Shift` | Shift-Taste |
 | `Key.Alt` | Alt-Taste |
 | `Key.Command` | Command-Taste (Mac) |
-| `Key.NULL` | Null-/Freigabetaste — gibt alle aktuell gedrückten Modifikatortasten frei |
+| `Key.NULL` | Null-/Loslass-Taste — lässt alle aktuell gehaltenen Modifikatortasten los |
 
 **Navigationstasten:**
 
@@ -233,7 +233,7 @@ Die folgenden Sondertasten sind über das `Key`-Objekt verfügbar:
 |----------|-------------|
 | `Key.F1` - `Key.F12` | Funktionstasten F1 bis F12 |
 
-**Sonstige Tasten:**
+**Weitere Tasten:**
 
 | Konstante | Beschreibung |
 |----------|-------------|
@@ -241,13 +241,13 @@ Die folgenden Sondertasten sind über das `Key`-Objekt verfügbar:
 
 :::info Plattformübergreifende Modifikatortasten
 
-Die Konstante `Key.Ctrl` bietet eine bequeme Möglichkeit, den „Control“-Modifikator über verschiedene Betriebssysteme hinweg zu verwenden. Unter macOS wird sie der `Command`-Taste zugeordnet, unter Windows und Linux der `Control`-Taste. Dies ist nützlich beim Schreiben von Tests, die auf mehreren Plattformen funktionieren müssen, z. B. für Operationen wie Alles auswählen (`Ctrl+A`), Kopieren (`Ctrl+C`) oder Einfügen (`Ctrl+V`).
+Die Konstante `Key.Ctrl` bietet eine bequeme Möglichkeit, den „Control“-Modifikator über verschiedene Betriebssysteme hinweg zu verwenden. Unter macOS wird sie der `Command`-Taste zugeordnet, während sie unter Windows und Linux der `Control`-Taste zugeordnet wird. Dies ist nützlich, wenn Sie Tests schreiben, die auf mehreren Plattformen funktionieren müssen, z. B. für Alles-auswählen- (`Ctrl+A`), Kopieren- (`Ctrl+C`) oder Einfügen-Operationen (`Ctrl+V`).
 
 :::
 
 ## `@wdio/cli`
 
-Anstatt den Befehl `wdio` aufzurufen, können Sie den Testrunner auch als Modul einbinden und in einer beliebigen Umgebung ausführen. Dazu müssen Sie das Paket `@wdio/cli` als Modul einbinden, etwa so:
+Anstatt den Befehl `wdio` aufzurufen, können Sie den Testrunner auch als Modul einbinden und in einer beliebigen Umgebung ausführen. Dazu müssen Sie das Paket `@wdio/cli` als Modul einbinden, und zwar so:
 
 <Tabs
   defaultValue="esm"
@@ -303,7 +303,7 @@ Der Befehl `run` gibt ein [Promise](https://developer.mozilla.org/en-US/docs/Web
 
 ## `@wdio/browser-runner`
 
-Wenn Sie Unit- oder Komponententests mit WebdriverIOs [Browser-Runner](/docs/runner#browser-runner) ausführen, können Sie Mocking-Hilfsmittel für Ihre Tests importieren, z. B.:
+Wenn Sie Unit- oder Komponententests mit dem [Browser-Runner](/docs/runner#browser-runner) von WebdriverIO ausführen, können Sie Mocking-Hilfsmittel für Ihre Tests importieren, z. B.:
 
 ```ts
 import { fn, spyOn, mock, unmock } from '@wdio/browser-runner'

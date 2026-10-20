@@ -4,7 +4,7 @@ title: Preact
 description: "Configura el browser runner de WebdriverIO para un proyecto Preact con el preset preact y escribe pruebas de componentes con Testing Library."
 ---
 
-[Preact](https://preactjs.com/) es una alternativa rápida de 3kB a React con la misma API moderna. Puedes probar componentes de Preact directamente en un navegador real usando WebdriverIO y su [browser runner](/docs/runner#browser-runner).
+[Preact](https://preactjs.com/) es una alternativa rápida a React de 3kB con la misma API moderna. Puedes probar componentes de Preact directamente en un navegador real usando WebdriverIO y su [browser runner](/docs/runner#browser-runner).
 
 ## Configuración
 
@@ -65,7 +65,7 @@ export function Counter({ initialCount }: Props) {
 
 ```
 
-En tu prueba, usa el método `render` de `@testing-library/preact` para adjuntar el componente a la página de prueba. Para interactuar con el componente, recomendamos usar los comandos de WebdriverIO, ya que se comportan de forma más parecida a las interacciones reales de un usuario, por ejemplo:
+En tu prueba, usa el método `render` de `@testing-library/preact` para adjuntar el componente a la página de prueba. Para interactuar con el componente, recomendamos usar los comandos de WebdriverIO, ya que se comportan de manera más cercana a las interacciones reales de un usuario, por ejemplo:
 
 ```ts title="app.test.tsx"
 import { expect } from 'expect'

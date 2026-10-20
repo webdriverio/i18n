@@ -20,7 +20,7 @@ Para la automatización de navegadores, el servidor MCP admite todos los selecto
 | -------- | ------------------------------ | ------------------------------------ |
 | CSS      | `#login-button`, `.submit-btn` | Selectores CSS estándar              |
 | XPath    | `//button[@id='submit']`       | Expresiones XPath                    |
-| Texto    | `button=Submit`, `a*=Click`    | Selectores de texto de WebdriverIO   |
+| Text     | `button=Submit`, `a*=Click`    | Selectores de texto de WebdriverIO   |
 | ARIA     | `aria/Submit Button`           | Selectores por nombre accesible      |
 | Test ID  | `[data-testid="submit"]`       | Recomendado para pruebas             |
 
@@ -56,7 +56,7 @@ Prefiere siempre los Accessibility IDs cuando estén disponibles. Proporcionan:
 
 #### UiAutomator
 
-Los selectores de UiAutomator son potentes y rápidos en Android.
+Los selectores UiAutomator son potentes y rápidos en Android.
 
 ```text
 # Por texto
@@ -89,7 +89,7 @@ Los Resource IDs proporcionan una identificación estable de elementos en Androi
 # Resource ID completo
 id=com.example.app:id/login_button
 
-# ID parcial (se infiere el paquete de la app)
+# ID parcial (se infiere el paquete de la aplicación)
 id=login_button
 ```
 
@@ -143,23 +143,23 @@ Los Predicate Strings de iOS son rápidos y potentes para la automatización en 
 -ios predicate string:label ==[c] "login"
 ```
 
-**Operadores de predicado:**
+**Operadores de predicados:**
 
-| Operador     | Descripción                 |
-| ------------ | --------------------------- |
-| `==`         | Igual a                     |
-| `!=`         | Distinto de                 |
-| `CONTAINS`   | Contiene la subcadena       |
-| `BEGINSWITH` | Empieza por                 |
-| `ENDSWITH`   | Termina en                  |
-| `LIKE`       | Coincidencia con comodines  |
-| `MATCHES`    | Coincidencia con regex      |
-| `AND`        | AND lógico                  |
-| `OR`         | OR lógico                   |
+| Operador     | Descripción                      |
+| ------------ | -------------------------------- |
+| `==`         | Igual a                          |
+| `!=`         | Distinto de                      |
+| `CONTAINS`   | Contiene la subcadena            |
+| `BEGINSWITH` | Empieza por                      |
+| `ENDSWITH`   | Termina en                       |
+| `LIKE`       | Coincidencia con comodines       |
+| `MATCHES`    | Coincidencia con regex           |
+| `AND`        | AND lógico                       |
+| `OR`         | OR lógico                        |
 
 #### Class Chain
 
-Los Class Chains de iOS permiten localizar elementos de forma jerárquica con un buen rendimiento.
+Las Class Chains de iOS permiten localizar elementos de forma jerárquica con buen rendimiento.
 
 ```text
 # Hijo directo
@@ -183,7 +183,7 @@ Los Class Chains de iOS permiten localizar elementos de forma jerárquica con un
 
 #### XPath (iOS)
 
-XPath funciona en iOS, pero es más lento que los Predicate Strings.
+XPath funciona en iOS, pero es más lento que los predicate strings.
 
 ```text
 # Por tipo y label
@@ -201,7 +201,7 @@ XPath funciona en iOS, pero es más lento que los Predicate Strings.
 
 ## Estrategia de selectores multiplataforma
 
-Al escribir pruebas que deben funcionar tanto en iOS como en Android, utiliza este orden de prioridad:
+Al escribir pruebas que deban funcionar tanto en iOS como en Android, utiliza este orden de prioridad:
 
 ### 1. Accessibility ID (la mejor opción)
 
@@ -210,7 +210,7 @@ Al escribir pruebas que deben funcionar tanto en iOS como en Android, utiliza es
 ~loginButton
 ```
 
-### 2. Específicos de plataforma con lógica condicional
+### 2. Selectores específicos de plataforma con lógica condicional
 
 Cuando no haya Accessibility IDs disponibles, utiliza selectores específicos de cada plataforma:
 
@@ -252,27 +252,27 @@ XPath funciona en ambas plataformas, pero con tipos de elementos diferentes:
 | `android.widget.CheckBox`     | Casilla de verificación   |
 | `android.widget.RadioButton`  | Botón de opción           |
 | `android.widget.Switch`       | Interruptor               |
-| `android.widget.Spinner`      | Menú desplegable          |
+| `android.widget.Spinner`      | Desplegable               |
 | `android.widget.ListView`     | Vista de lista            |
 | `android.widget.RecyclerView` | Recycler view             |
 | `android.widget.ScrollView`   | Contenedor desplazable    |
 
 ### Tipos de elementos de iOS
 
-| Tipo                             | Descripción          |
-| -------------------------------- | -------------------- |
-| `XCUIElementTypeButton`          | Botón                |
-| `XCUIElementTypeTextField`       | Campo de texto       |
-| `XCUIElementTypeSecureTextField` | Campo de contraseña  |
-| `XCUIElementTypeStaticText`      | Etiqueta de texto    |
-| `XCUIElementTypeImage`           | Imagen               |
-| `XCUIElementTypeSwitch`          | Interruptor          |
-| `XCUIElementTypeSlider`          | Control deslizante   |
-| `XCUIElementTypePicker`          | Rueda de selección   |
-| `XCUIElementTypeTable`           | Vista de tabla       |
-| `XCUIElementTypeCell`            | Celda de tabla       |
-| `XCUIElementTypeCollectionView`  | Collection view      |
-| `XCUIElementTypeScrollView`      | Vista desplazable    |
+| Tipo                             | Descripción              |
+| -------------------------------- | ------------------------ |
+| `XCUIElementTypeButton`          | Botón                    |
+| `XCUIElementTypeTextField`       | Campo de texto           |
+| `XCUIElementTypeSecureTextField` | Campo de contraseña      |
+| `XCUIElementTypeStaticText`      | Etiqueta de texto        |
+| `XCUIElementTypeImage`           | Imagen                   |
+| `XCUIElementTypeSwitch`          | Interruptor              |
+| `XCUIElementTypeSlider`          | Control deslizante       |
+| `XCUIElementTypePicker`          | Selector de rueda        |
+| `XCUIElementTypeTable`           | Vista de tabla           |
+| `XCUIElementTypeCell`            | Celda de tabla           |
+| `XCUIElementTypeCollectionView`  | Vista de colección       |
+| `XCUIElementTypeScrollView`      | Vista desplazable        |
 
 ## Buenas prácticas
 
@@ -281,14 +281,14 @@ XPath funciona en ambas plataformas, pero con tipos de elementos diferentes:
 - **Usa Accessibility IDs** para obtener selectores estables y multiplataforma
 - **Añade atributos data-testid** a los elementos web para las pruebas
 - **Usa Resource IDs** en Android cuando no haya Accessibility IDs disponibles
-- **Prefiere los Predicate Strings** frente a XPath en iOS
+- **Prefiere los predicate strings** frente a XPath en iOS
 - **Mantén los selectores simples** y específicos
 
 ### Qué no hacer
 
-- **Evita expresiones XPath largas**: son lentas y frágiles
+- **Evita las expresiones XPath largas**: son lentas y frágiles
 - **No dependas de índices** en listas dinámicas
-- **Evita selectores basados en texto** en aplicaciones localizadas
+- **Evita los selectores basados en texto** en aplicaciones localizadas
 - **No uses XPath absolutos** (que empiezan desde la raíz)
 
 ### Ejemplos de selectores buenos y malos
@@ -341,7 +341,7 @@ Esto devuelve elementos con selectores pregenerados que puedes usar directamente
 
 #### Opciones avanzadas
 
-Para tener más control sobre la detección de elementos:
+Para tener más control sobre el descubrimiento de elementos:
 
 ```text
 # Obtener solo imágenes y elementos visuales

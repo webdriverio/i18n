@@ -1,7 +1,7 @@
 ---
 id: wdiocommands
 title: WDIO-Befehle
-description: "Folgen Sie Flussdiagrammen, die zeigen, wie die @wdio/cli-Befehle run, repl, install und config Argumente parsen und ausgeführt werden."
+description: "Folgen Sie den Flussdiagrammen, die zeigen, wie die @wdio/cli-Befehle run, repl, install und config Argumente parsen und ausgeführt werden."
 ---
 Dieses Flussdiagramm bietet einen allgemeinen Überblick über die @wdio/cli-Befehle run, repl, config und install.
 

@@ -4,7 +4,7 @@ title: Depurar una prueba con una sesión
 description: Pausa una ejecución fallida de WebdriverIO e inspecciónala con wdio session, luego reanúdala o ciérrala.
 ---
 
-`wdio run --debug=agent` pausa el worker en `await browser.debug()` y después de una prueba fallida, y eleva el tiempo de espera del framework a 24 horas. La pausa abarca tanto las pruebas de Mocha como los pasos de Cucumber. La ejecución imprime el nombre de la sesión (`debug-0-0` para el primer worker):
+`wdio run --debug=agent` pausa el worker en `await browser.debug()` y después de una prueba fallida, y aumenta el tiempo de espera del framework a 24 horas. La pausa cubre tanto las pruebas de Mocha como los pasos de Cucumber. La ejecución imprime el nombre de la sesión (`debug-0-0` para el primer worker):
 
 ```sh
 npx wdio run wdio.conf.ts --debug=agent
@@ -30,7 +30,7 @@ Cada línea del REPL se ejecuta como `wdio session exec`. `.exit` imprime `Detac
 
 ## Doctor
 
-`npx wdio session doctor` comprueba Node.js, el navegador, Appium, los SDK y las credenciales de la nube antes de que abras una sesión. `doctor <target>` comprueba solo lo que ese destino necesita. El proceso termina con código 1 cuando una comprobación falla. Una sesión que todavía se está iniciando se deja como está. Una sesión cuyo proceso ya no existe se elimina.
+`npx wdio session doctor` comprueba Node.js, el navegador, Appium, los SDK y las credenciales de la nube antes de abrir una sesión. `doctor <target>` comprueba solo lo que ese destino necesita. El proceso termina con código 1 cuando falla una comprobación. Una sesión que todavía se está iniciando se deja como está. Una sesión cuyo proceso ya no existe se elimina.
 
 ## Solución de problemas
 
@@ -43,5 +43,5 @@ Cada línea del REPL se ejecuta como `wdio session exec`. `.exit` imprime `Detac
 ## Próximos pasos
 
 - [Depuración](/docs/debugging) — `browser.debug()`, puntos de interrupción y pruebas inestables
-- [REPL](/docs/repl) — el shell interactivo
+- [REPL](/docs/repl) — la shell interactiva
 - [wdio session](/docs/session) — abre una sesión que no está vinculada a una ejecución de pruebas

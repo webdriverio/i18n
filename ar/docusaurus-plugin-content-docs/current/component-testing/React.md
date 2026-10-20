@@ -1,14 +1,14 @@
 ---
 id: react
 title: React
-description: "إعداد مشغّل المتصفح في WebdriverIO لمشروع React باستخدام الإعداد المسبق react وكتابة اختبارات المكونات باستخدام Testing Library."
+description: "إعداد مشغل المتصفح في WebdriverIO لمشروع React باستخدام الإعداد المسبق react وكتابة اختبارات المكونات باستخدام Testing Library."
 ---
 
-تجعل [React](https://reactjs.org/) إنشاء واجهات مستخدم تفاعلية أمرًا سهلًا. صمّم عروضًا بسيطة لكل حالة في تطبيقك، وستقوم React بتحديث وعرض المكونات المناسبة فقط بكفاءة عندما تتغير بياناتك. يمكنك اختبار مكونات React مباشرةً في متصفح حقيقي باستخدام WebdriverIO و[مشغّل المتصفح](/docs/runner#browser-runner) الخاص به.
+تجعل [React](https://reactjs.org/) إنشاء واجهات المستخدم التفاعلية أمرًا سهلًا. صمّم عروضًا بسيطة لكل حالة في تطبيقك، وستقوم React بتحديث وعرض المكونات المناسبة بكفاءة عند تغيّر بياناتك. يمكنك اختبار مكونات React مباشرةً في متصفح حقيقي باستخدام WebdriverIO و[مشغل المتصفح](/docs/runner#browser-runner) الخاص به.
 
 ## الإعداد
 
-لإعداد WebdriverIO داخل مشروع React الخاص بك، اتبع [التعليمات](/docs/component-testing#set-up) الموجودة في وثائق اختبار المكونات لدينا. تأكد من اختيار `react` كإعداد مسبق (preset) ضمن خيارات المشغّل، على سبيل المثال:
+لإعداد WebdriverIO داخل مشروع React الخاص بك، اتبع [التعليمات](/docs/component-testing#set-up) الموجودة في وثائق اختبار المكونات لدينا. تأكد من اختيار `react` كإعداد مسبق (preset) ضمن خيارات المشغل، على سبيل المثال:
 
 ```js
 // wdio.conf.js
@@ -23,11 +23,11 @@ export const config = {
 
 :::info
 
-إذا كنت تستخدم بالفعل [Vite](https://vitejs.dev/) كخادم تطوير، فيمكنك أيضًا إعادة استخدام إعداداتك الموجودة في `vite.config.ts` ضمن إعدادات WebdriverIO. لمزيد من المعلومات، راجع `viteConfig` في [خيارات المشغّل](/docs/runner#runner-options).
+إذا كنت تستخدم [Vite](https://vitejs.dev/) بالفعل كخادم تطوير، فيمكنك أيضًا إعادة استخدام إعداداتك الموجودة في `vite.config.ts` ضمن إعدادات WebdriverIO. لمزيد من المعلومات، راجع `viteConfig` في [خيارات المشغل](/docs/runner#runner-options).
 
 :::
 
-يتطلب الإعداد المسبق لـ React تثبيت `@vitejs/plugin-react`. كما نوصي باستخدام [Testing Library](https://testing-library.com/) لعرض المكوّن في صفحة الاختبار. لذلك ستحتاج إلى تثبيت التبعيات الإضافية التالية:
+يتطلب الإعداد المسبق لـ React تثبيت `@vitejs/plugin-react`. كما نوصي باستخدام [Testing Library](https://testing-library.com/) لعرض المكون في صفحة الاختبار. لذلك ستحتاج إلى تثبيت التبعيات الإضافية التالية:
 
 ```sh npm2yarn
 npm install --save-dev @testing-library/react @vitejs/plugin-react
@@ -41,7 +41,7 @@ npx wdio run ./wdio.conf.js
 
 ## كتابة الاختبارات
 
-بافتراض أن لديك مكوّن React التالي:
+بافتراض أن لديك مكون React التالي:
 
 ```tsx title="./components/Component.jsx"
 import React, { useState } from 'react'
@@ -62,7 +62,7 @@ function App() {
 export default App
 ```
 
-في اختبارك، استخدم الدالة `render` من `@testing-library/react` لإرفاق المكوّن بصفحة الاختبار. للتفاعل مع المكوّن، نوصي باستخدام أوامر WebdriverIO لأنها تتصرف بشكل أقرب إلى تفاعلات المستخدم الفعلية، على سبيل المثال:
+في اختبارك، استخدم الدالة `render` من `@testing-library/react` لإرفاق المكون بصفحة الاختبار. للتفاعل مع المكون، نوصي باستخدام أوامر WebdriverIO لأنها تتصرف بشكل أقرب إلى تفاعلات المستخدم الفعلية، على سبيل المثال:
 
 ```ts title="app.test.tsx"
 import { expect } from '@wdio/globals'

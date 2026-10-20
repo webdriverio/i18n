@@ -1,53 +1,63 @@
 ---
 id: mocksandspies
 title: ماک‌ها و جاسوس‌های درخواست
-description: "درخواست‌ها و پاسخ‌های شبکه را در تست‌های خود با browser.mock ماک کنید، درخواست‌ها را لغو کنید و فراخوانی‌ها را با جاسوس‌ها بررسی کنید."
+description: "درخواست‌ها و پاسخ‌های شبکه را در تست‌های خود با browser.mock شبیه‌سازی کنید، درخواست‌ها را لغو کنید و فراخوانی‌ها را با جاسوس‌ها بررسی کنید."
 ---
 
-WebdriverIO دارای پشتیبانی داخلی برای تغییر پاسخ‌های شبکه است که به شما امکان می‌دهد بدون نیاز به راه‌اندازی بک‌اند یا یک سرور ماک، روی تست برنامه فرانت‌اند خود تمرکز کنید. می‌توانید پاسخ‌های سفارشی برای منابع وب مانند درخواست‌های REST API را در تست خود تعریف کرده و آن‌ها را به صورت پویا تغییر دهید.
+WebdriverIO به‌صورت داخلی از تغییر پاسخ‌های شبکه پشتیبانی می‌کند. این قابلیت به شما اجازه می‌دهد بدون نیاز به راه‌اندازی بک‌اند یا یک سرور ماک، روی تست برنامه فرانت‌اند خود تمرکز کنید. می‌توانید در تست خود پاسخ‌های سفارشی برای منابع وب مانند درخواست‌های REST API تعریف کنید و آن‌ها را به‌صورت پویا تغییر دهید.
 
 :::info
 
-توجه داشته باشید که استفاده از دستور `mock` نیازمند پشتیبانی از WebDriver Bidi است. این معمولاً هنگام اجرای تست‌ها به صورت محلی در یک مرورگر مبتنی بر Chromium یا در Firefox و همچنین در صورت استفاده از Selenium Grid نسخه 4 یا بالاتر برقرار است. اگر تست‌ها را در فضای ابری اجرا می‌کنید، مطمئن شوید که ارائه‌دهنده خدمات ابری شما از WebDriver Bidi پشتیبانی می‌کند.
+توجه داشته باشید که استفاده از دستور `mock` به پشتیبانی از WebDriver Bidi نیاز دارد. این پشتیبانی معمولاً هنگام اجرای تست‌ها به‌صورت محلی در یک مرورگر مبتنی بر Chromium یا در Firefox، و همچنین در صورت استفاده از Selenium Grid نسخه ۴ یا بالاتر وجود دارد. اگر تست‌ها را در فضای ابری اجرا می‌کنید، مطمئن شوید که ارائه‌دهنده خدمات ابری شما از WebDriver Bidi پشتیبانی می‌کند.
 
 :::
 
 ## ایجاد یک ماک
 
-قبل از اینکه بتوانید هر پاسخی را تغییر دهید، ابتدا باید یک ماک تعریف کنید. این ماک با آدرس url منبع توصیف می‌شود و می‌توان آن را بر اساس [متد درخواست](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods) یا [هدرها](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers) فیلتر کرد. تطبیق منبع با استفاده از یک [`URLPattern`](https://developer.mozilla.org/en-US/docs/Web/API/URLPattern) انجام می‌شود، که در آن `*` با هر دنباله‌ای از کاراکترها مطابقت دارد. یک url بدون پروتکل فقط با مسیر درخواست تطبیق داده می‌شود، بنابراین `*/users/list` با آن مسیر در هر مبدأیی مطابقت دارد:
+پیش از اینکه بتوانید پاسخی را تغییر دهید، ابتدا باید یک ماک تعریف کنید. این ماک با URL منبع توصیف می‌شود و می‌توان آن را بر اساس [متد درخواست](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods) یا [هدرها](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers) فیلتر کرد. تطبیق منبع با استفاده از یک [`URLPattern`](https://developer.mozilla.org/en-US/docs/Web/API/URLPattern) انجام می‌شود که در آن `*` با هر دنباله‌ای از کاراکترها تطبیق می‌یابد. یک URL بدون پروتکل فقط با مسیر (path) درخواست تطبیق داده می‌شود، بنابراین `*/users/list` با آن مسیر در هر مبدأیی تطبیق می‌یابد:
 
 ```js
-// ماک کردن همه منابعی که با "/users/list" پایان می‌یابند
+// mock all resources ending with "/users/list"
 const userListMock = await browser.mock('*/users/list')
 
-// یا می‌توانید ماک را با فیلتر کردن منابع بر اساس هدرها یا
-// کد وضعیت مشخص کنید، فقط درخواست‌های موفق به منابع json را ماک کنید
+// or you can specify the mock by filtering resources by headers or
+// status code, only mock successful requests to json resources
 const strictMock = await browser.mock('*', {
-    // ماک کردن همه پاسخ‌های json
+    // mock all json responses
     requestHeaders: { 'Content-Type': 'application/json' },
-    // که موفقیت‌آمیز بوده‌اند
+    // that were successful
     statusCode: 200
 })
 
-// به جای یک رشته می‌توانید یک `URLPattern` نیز ارسال کنید؛ این polyfill
-// در محیط‌های اجرایی بدون پشتیبانی بومی از URLPattern نیز کار می‌کند
+// instead of a string you can also pass in a `URLPattern`; the polyfill
+// also works in runtimes without native URLPattern support
 import { URLPattern } from 'urlpattern-polyfill'
 const patternMock = await browser.mock(new URLPattern({ pathname: '/users/list' }))
 ```
 
+:::info
+
+یک `*` تنها با هر کاراکتری، از جمله `/`، تطبیق می‌یابد. در یک الگوی رشته‌ای، WebdriverIO عبارت `**` را به `*` تبدیل می‌کند، بنابراین `'**/api/**'` همان `'*/api/*'` است.
+
+ماک دومی با همان الگوی URL و همان گزینه‌های فیلتر، جایگزین ماک اول می‌شود: WebdriverIO ماک اول را بازیابی (restore) می‌کند، بنابراین دیگر درخواست‌ها را تغییر نمی‌دهد و فراخوانی‌ها را ثبت نمی‌کند. برای نگه داشتن هر دو ماک، گزینه‌های فیلتر متفاوتی به آن‌ها بدهید. برای مثال، رشته‌های `'**/users'` و `'*/users'` یک ماک یکسان هستند، در حالی که `'*/users'` و `'*/users'` با `{ method: 'POST' }` دو ماک جداگانه‌اند.
+
+:::
+
 :::warning
 
-برای وایلدکاردهای URL از یک `*` تکی استفاده کنید؛ این کاراکتر با `/` نیز مطابقت دارد. وایلدکاردهای متوالی قبل از متن ثابت، مانند `**/api/**` یا `**/data.json`، می‌توانند باعث backtracking بیش از حد regex روی URLهای نامرتبط شده و تست را متوقف (فریز) کنند. به [issue #13548](https://github.com/webdriverio/webdriverio/issues/13548) مراجعه کنید. در تست‌های کامپوننت، همچنین از یک پروتکل و نام میزبان ثابت استفاده کنید تا ترافیک اجراکننده خارج از رهگیری باقی بماند؛ به [ماک‌های درخواست در تست کامپوننت](/docs/component-testing/mocking#requests) مراجعه کنید.
+WebdriverIO یک شیء `URLPattern` را تغییر نمی‌دهد. در یک شیء، از یک `*` تنها استفاده کنید: وایلدکاردهای تکراری پیش از متن ثابت، مانند `{ pathname: '**/api/**' }`، می‌توانند تطبیق را روی یک URL طولانی که تطبیق نمی‌یابد بسیار کند کرده و تست را متوقف (فریز) کنند. [issue #13548](https://github.com/webdriverio/webdriverio/issues/13548) را ببینید.
+
+در تست‌های کامپوننت، از یک پروتکل و نام میزبان (hostname) ثابت استفاده کنید تا ترافیک اجراکننده (runner) خارج از رهگیری باقی بماند؛ [ماک‌های درخواست در تست کامپوننت](/docs/component-testing/mocking#requests) را ببینید.
 
 :::
 
 ## تعیین پاسخ‌های سفارشی
 
-پس از تعریف یک ماک، می‌توانید پاسخ‌های سفارشی برای آن تعریف کنید. این پاسخ‌های سفارشی می‌توانند یک شیء برای پاسخ دادن با JSON، یک فایل محلی برای پاسخ دادن با یک fixture سفارشی، یا یک منبع وب برای جایگزینی پاسخ با منبعی از اینترنت باشند.
+پس از تعریف یک ماک، می‌توانید پاسخ‌های سفارشی برای آن تعریف کنید. این پاسخ‌های سفارشی می‌توانند یک شیء برای پاسخ دادن با JSON، یک فایل محلی برای پاسخ دادن با یک فیکسچر سفارشی، یا یک منبع وب برای جایگزینی پاسخ با منبعی از اینترنت باشند.
 
 ### ماک کردن درخواست‌های API
 
-برای ماک کردن درخواست‌های API که انتظار پاسخ JSON از آن‌ها دارید، تنها کاری که باید انجام دهید این است که `respond` را روی شیء ماک با یک شیء دلخواه که می‌خواهید برگردانده شود فراخوانی کنید، به عنوان مثال:
+برای ماک کردن درخواست‌های API که انتظار پاسخ JSON از آن‌ها دارید، کافی است `respond` را روی شیء ماک با هر شیء دلخواهی که می‌خواهید برگردانده شود فراخوانی کنید، برای مثال:
 
 ```js
 const mock = await browser.mock('https://todo-backend-express-knex.herokuapp.com/')
@@ -71,16 +81,16 @@ await browser.url('https://todobackend.com/client/index.html?https://todo-backen
 
 await $('#todo-list li').waitForExist()
 console.log(await $$('#todo-list li').map(el => el.getText()))
-// خروجی: "[ 'Injected (non) completed Todo', 'Injected completed Todo' ]"
+// outputs: "[ 'Injected (non) completed Todo', 'Injected completed Todo' ]"
 ```
 
-همچنین می‌توانید هدرهای پاسخ و نیز کد وضعیت را با ارسال برخی پارامترهای پاسخ ماک به صورت زیر تغییر دهید:
+همچنین می‌توانید هدرهای پاسخ و کد وضعیت را با ارسال برخی پارامترهای پاسخ ماک به شکل زیر تغییر دهید:
 
 ```js
 mock.respond({ ... }, {
-    // پاسخ با کد وضعیت 404
+    // respond with status code 404
     statusCode: 404,
-    // ادغام هدرهای پاسخ با هدرهای زیر
+    // merge response headers with following headers
     headers: { 'x-custom-header': 'foobar' }
 })
 ```
@@ -89,36 +99,36 @@ mock.respond({ ... }, {
 
 ```js
 mock.respond({ ... }, {
-    // بک‌اند واقعی را فراخوانی نکن
+    // do not call the actual backend
     fetchResponse: false
 })
 ```
 
-`fetchResponse: false` هرگز بک‌اند را فراخوانی نمی‌کند. ماکی که با فیلتر `statusCode` یا `responseHeaders` ایجاد شده باشد، برای تصمیم‌گیری درباره تطبیق به آن پاسخ نیاز دارد، بنابراین اگر آن‌ها را با هم ترکیب کنید، `respond()` و `respondOnce()` خطا پرتاب می‌کنند. فیلتر پاسخ را حذف کنید، یا `fetchResponse` را تنظیم نکنید تا ماک بتواند پاسخ بک‌اند را بخواند و سپس آن را جایگزین کند.
+`fetchResponse: false` هرگز بک‌اند را فراخوانی نمی‌کند. ماکی که با فیلتر `statusCode` یا `responseHeaders` ایجاد شده باشد، برای تشخیص تطبیق به آن پاسخ نیاز دارد، بنابراین اگر این دو را با هم ترکیب کنید، `respond()` و `respondOnce()` خطا پرتاب می‌کنند. فیلتر پاسخ را حذف کنید، یا `fetchResponse` را تنظیم نکنید تا ماک بتواند پاسخ بک‌اند را بخواند و سپس آن را جایگزین کند.
 
-توصیه می‌شود پاسخ‌های سفارشی را در فایل‌های fixture ذخیره کنید تا بتوانید به سادگی آن‌ها را در تست خود به صورت زیر require کنید:
+توصیه می‌شود پاسخ‌های سفارشی را در فایل‌های فیکسچر ذخیره کنید تا بتوانید به‌سادگی آن‌ها را در تست خود به شکل زیر فراخوانی کنید:
 
 ```js
-// برای پشتیبانی از JSON import assertions به Node.js نسخه v16.14.0 یا بالاتر نیاز است
+// requires Node.js v16.14.0 or higher to support JSON import assertions
 import responseFixture from './__fixtures__/apiResponse.json' assert { type: 'json' }
 mock.respond(responseFixture)
 ```
 
 ### ماک کردن منابع متنی
 
-اگر می‌خواهید منابع متنی مانند JavaScript، فایل‌های CSS یا سایر منابع مبتنی بر متن را تغییر دهید، می‌توانید به سادگی یک مسیر فایل ارسال کنید و WebdriverIO منبع اصلی را با آن جایگزین می‌کند، به عنوان مثال:
+اگر می‌خواهید منابع متنی مانند فایل‌های JavaScript، CSS یا سایر منابع مبتنی بر متن را تغییر دهید، کافی است یک مسیر فایل ارسال کنید تا WebdriverIO منبع اصلی را با آن جایگزین کند، برای مثال:
 
 ```js
 const scriptMock = await browser.mock('*/script.min.js')
 scriptMock.respond('./tests/fixtures/script.js')
 
-// یا با JS سفارشی خود پاسخ دهید
+// or respond with your custom JS
 scriptMock.respond('alert("I am a mocked resource")')
 ```
 
 ### تغییر مسیر منابع وب
 
-اگر پاسخ مورد نظر شما از قبل روی وب میزبانی شده است، می‌توانید به سادگی یک منبع وب را با منبع وب دیگری جایگزین کنید. این کار هم با منابع جداگانه صفحه و هم با خود یک صفحه وب کار می‌کند، به عنوان مثال:
+اگر پاسخ مورد نظر شما از قبل روی وب میزبانی شده باشد، می‌توانید به‌سادگی یک منبع وب را با منبع وب دیگری جایگزین کنید. این کار هم برای منابع جداگانه صفحه و هم برای خود صفحه وب کار می‌کند، برای مثال:
 
 ```js
 const pageMock = await browser.mock('https://google.com/')
@@ -129,7 +139,7 @@ console.log(await browser.getTitle()) // returns "WebdriverIO · Next-gen browse
 
 ### پاسخ‌های پویا
 
-اگر پاسخ ماک شما به پاسخ منبع اصلی بستگی دارد، می‌توانید منبع را به صورت پویا نیز تغییر دهید؛ برای این کار تابعی ارسال کنید که پاسخ اصلی را به عنوان پارامتر دریافت می‌کند و ماک را بر اساس مقدار بازگشتی تنظیم می‌کند، به عنوان مثال:
+اگر پاسخ ماک شما به پاسخ منبع اصلی وابسته است، می‌توانید منبع را به‌صورت پویا تغییر دهید؛ به این صورت که تابعی ارسال کنید که پاسخ اصلی را به‌عنوان پارامتر دریافت می‌کند و ماک را بر اساس مقدار بازگشتی تنظیم می‌کند، برای مثال:
 
 ```js
 const mock = await browser.mock('https://todo-backend-express-knex.herokuapp.com/', {
@@ -137,7 +147,7 @@ const mock = await browser.mock('https://todo-backend-express-knex.herokuapp.com
 })
 
 mock.respond((req) => {
-    // جایگزینی محتوای todo با شماره آن‌ها در لیست
+    // replace todo content with their list number
     return req.body.map((item, i) => ({ ...item, title: i }))
 })
 
@@ -145,7 +155,7 @@ await browser.url('https://todobackend.com/client/index.html?https://todo-backen
 
 await $('#todo-list li').waitForExist()
 console.log(await $$('#todo-list li label').map((el) => el.getText()))
-// خروجی
+// returns
 // [
 //   '0',  '1',  '2',  '19', '20',
 //   '21', '3',  '4',  '5',  '6',
@@ -157,7 +167,7 @@ console.log(await $$('#todo-list li label').map((el) => el.getText()))
 
 ## لغو ماک‌ها
 
-به جای برگرداندن یک پاسخ سفارشی، می‌توانید درخواست را با یکی از خطاهای HTTP زیر لغو کنید:
+به‌جای برگرداندن یک پاسخ سفارشی، می‌توانید درخواست را با یکی از خطاهای HTTP زیر لغو کنید:
 
 - Failed
 - Aborted
@@ -174,7 +184,7 @@ console.log(await $$('#todo-list li label').map((el) => el.getText()))
 - BlockedByClient
 - BlockedByResponse
 
-این قابلیت بسیار مفید است اگر بخواهید اسکریپت‌های شخص ثالث را که تأثیر منفی روی تست عملکردی شما دارند، از صفحه خود مسدود کنید. می‌توانید یک ماک را به سادگی با فراخوانی `abort` یا `abortOnce` لغو کنید، به عنوان مثال:
+این قابلیت زمانی بسیار مفید است که بخواهید اسکریپت‌های شخص ثالثی را که تأثیر منفی روی تست عملکردی شما دارند، در صفحه مسدود کنید. می‌توانید یک ماک را تنها با فراخوانی `abort` یا `abortOnce` لغو کنید، برای مثال:
 
 ```js
 const mock = await browser.mock('https://www.google-analytics.com/*')
@@ -183,36 +193,36 @@ mock.abort('Failed')
 
 ## جاسوس‌ها
 
-هر ماک به طور خودکار یک جاسوس (spy) است که تعداد درخواست‌هایی را که مرورگر به آن منبع ارسال کرده می‌شمارد. اگر پاسخ سفارشی یا دلیل لغو به ماک اعمال نکنید، با پاسخ پیش‌فرضی که به طور معمول دریافت می‌کردید ادامه می‌دهد. این به شما امکان می‌دهد بررسی کنید که مرورگر چند بار درخواست را ارسال کرده است، به عنوان مثال به یک endpoint خاص API.
+هر ماک به‌طور خودکار یک جاسوس (spy) نیز هست که تعداد درخواست‌هایی را که مرورگر به آن منبع ارسال کرده است شمارش می‌کند. اگر پاسخ سفارشی یا دلیل لغوی روی ماک اعمال نکنید، با همان پاسخ پیش‌فرضی که معمولاً دریافت می‌کردید ادامه می‌دهد. این امکان را به شما می‌دهد که بررسی کنید مرورگر چند بار درخواست را ارسال کرده است، برای مثال به یک endpoint مشخص از API.
 
 ```js
 const mock = await browser.mock('*/user', { method: 'post' })
 console.log(mock.calls.length) // returns 0
 
-// ثبت‌نام کاربر
+// register user
 await $('#username').setValue('randomUser')
 await $('password').setValue('password123')
 await $('password_repeat').setValue('password123')
 await $('button[type="submit"]').click()
 
-// بررسی اینکه آیا درخواست API ارسال شده است
+// check if API request was made
 expect(mock.calls.length).toBe(1)
 
-// بررسی پاسخ
+// assert response
 expect(mock.calls[0].body).toEqual({ success: true })
 ```
 
-اگر نیاز دارید تا زمانی که یک درخواست مطابق پاسخ داده شود منتظر بمانید، از `mock.waitForResponse(options)` استفاده کنید. به مرجع API مراجعه کنید: [waitForResponse](/docs/api/mock/waitForResponse).
+اگر لازم است منتظر بمانید تا یک درخواست منطبق پاسخ داده شود، از `mock.waitForResponse(options)` استفاده کنید. مرجع API را ببینید: [waitForResponse](/docs/api/mock/waitForResponse).
 
 ## Multi-remote
 
-در یک مرورگر [multi-remote](/docs/multiremote)، `mock()` به جای یک `Mock` تکی، یک `MultiRemoteMock` برمی‌گرداند. متدهایی مانند `respond()` و `restore()` روی همه نمونه‌ها اجرا می‌شوند. `waitForResponse()` تا زمانی منتظر می‌ماند که همه نمونه‌ها یک پاسخ مطابق داشته باشند. درخواست‌های ثبت‌شده روی ماک مربوط به همان مرورگر باقی می‌مانند:
+در یک مرورگر [multi-remote](/docs/multiremote)، `mock()` به‌جای یک `Mock`، یک `MultiRemoteMock` برمی‌گرداند. متدهایی مانند `respond()` و `restore()` روی همه نمونه‌ها اجرا می‌شوند. `waitForResponse()` منتظر می‌ماند تا هر نمونه یک پاسخ منطبق داشته باشد. درخواست‌های ثبت‌شده روی ماک مربوط به همان مرورگر باقی می‌مانند:
 
 ```ts
 const mock = await browser.mock('*/user', { method: 'post' })
 mock.respond({ success: true })
 
-// ثبت‌نام یک کاربر در هر مرورگر تا هر نشست درخواست را ارسال کند
+// register a user in every browser so each session sends the request
 await browser.$('#username').setValue('randomUser')
 await browser.$('#password').setValue('password123')
 await browser.$('#password_repeat').setValue('password123')
@@ -224,9 +234,9 @@ expect(mock.getInstance('myChromeBrowser').calls).toHaveLength(1)
 expect(mock.getInstance('myFirefoxBrowser').calls).toHaveLength(1)
 ```
 
-`mock.instances` این نام‌ها را به ترتیبی که ماک‌ها ایجاد شده‌اند فهرست می‌کند. وقتی نام در آن فهرست نباشد، `getInstance` خطای `Multi-remote object has no instance named "<name>"` را پرتاب می‌کند. ماکی که از `browser.select('myFirefoxBrowser', 'myChromeBrowser')` ایجاد شده باشد، Firefox را در ابتدا فهرست می‌کند که ممکن است با `browser.instances` متفاوت باشد.
+`mock.instances` این نام‌ها را به ترتیبی که ماک‌ها ایجاد شده‌اند فهرست می‌کند. اگر نامی در این فهرست نباشد، `getInstance` خطای `Multi-remote object has no instance named "<name>"` را پرتاب می‌کند. ماکی که از `browser.select('myFirefoxBrowser', 'myChromeBrowser')` ایجاد شود، Firefox را در ابتدا فهرست می‌کند که ممکن است با `browser.instances` متفاوت باشد.
 
-برای stub کردن فقط یک مرورگر، `mock()` را روی همان نمونه فراخوانی کنید:
+برای ماک کردن فقط یک مرورگر، `mock()` را روی همان نمونه فراخوانی کنید:
 
 ```ts
 const chromeOnly = await browser.getInstance('myChromeBrowser').mock('*/user')

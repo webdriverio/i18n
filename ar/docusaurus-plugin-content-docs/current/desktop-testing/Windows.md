@@ -1,9 +1,9 @@
 ---
 id: windows
 title: ويندوز
-description: "تعرّف على الوضع الحالي لأتمتة تطبيقات Windows الأصلية باستخدام WebdriverIO وسبب عدم توفر برنامج تشغيل مستقر حتى الآن."
+description: "تعرّف على الوضع الحالي لأتمتة تطبيقات Windows الأصلية باستخدام WebdriverIO، ولماذا لا يتوفر حتى الآن أي driver مستقر."
 ---
 
-للأسف، لا يوجد في الوقت الحالي برنامج تشغيل (driver) مستقر لأتمتة تطبيقات Windows. على الرغم من أن Appium يحتفظ بـ [Windows Driver](https://github.com/appium/appium-windows-driver) المبني على [خادم WinAppDriver](https://github.com/microsoft/WinAppDriver) من Microsoft، فإننا لا نوصي باستخدامه نظرًا لأن Microsoft توقفت عن صيانة الخادم، كما أن هناك الكثير من [الأخطاء المعروفة](https://github.com/search?q=repo%3Amicrosoft%2FWinAppDriver+webdriverio&type=issues).
+للأسف، لا يوجد في الوقت الحالي أي driver مستقر لأتمتة تطبيقات Windows. وعلى الرغم من أن Appium يتولى صيانة [Windows Driver](https://github.com/appium/appium-windows-driver) المبني على [خادم WinAppDriver](https://github.com/microsoft/WinAppDriver) من Microsoft، فإننا لا نوصي باستخدامه نظرًا لأن Microsoft توقفت عن صيانة هذا الخادم، كما أن هناك الكثير من [الأخطاء المعروفة](https://github.com/search?q=repo%3Amicrosoft%2FWinAppDriver+webdriverio&type=issues).
 
-إذا كان أي شخص على علم بطريقة لأتمتة تطبيقات Windows، فيرجى إخبارنا على [Discord](https://discord.webdriver.io).
+إذا كان أي شخص على علم بطريقة لأتمتة تطبيقات Windows، فيُرجى إخبارنا عبر [Discord](https://discord.webdriver.io).

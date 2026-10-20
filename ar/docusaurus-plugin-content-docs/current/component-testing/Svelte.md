@@ -1,14 +1,14 @@
 ---
 id: svelte
 title: Svelte
-description: "قم بإعداد مشغل المتصفح الخاص بـ WebdriverIO لمشروع Svelte باستخدام الإعداد المسبق svelte واكتب اختبارات المكونات باستخدام Testing Library."
+description: "إعداد مشغل المتصفح الخاص بـ WebdriverIO لمشروع Svelte باستخدام الإعداد المسبق svelte وكتابة اختبارات المكونات باستخدام Testing Library."
 ---
 
-[Svelte](https://svelte.dev/) هو نهج جديد جذري لبناء واجهات المستخدم. فبينما تقوم أطر العمل التقليدية مثل React وVue بالجزء الأكبر من عملها في المتصفح، ينقل Svelte هذا العمل إلى خطوة تصريف (compile) تحدث عند بناء تطبيقك. يمكنك اختبار مكونات Svelte مباشرة في متصفح حقيقي باستخدام WebdriverIO و[مشغل المتصفح](/docs/runner#browser-runner) الخاص به.
+يُعد [Svelte](https://svelte.dev/) نهجًا جديدًا جذريًا لبناء واجهات المستخدم. فبينما تؤدي الأطر التقليدية مثل React وVue الجزء الأكبر من عملها في المتصفح، ينقل Svelte هذا العمل إلى خطوة تصريف (compile) تحدث عند بناء تطبيقك. يمكنك اختبار مكونات Svelte مباشرةً في متصفح حقيقي باستخدام WebdriverIO و[مشغل المتصفح](/docs/runner#browser-runner) الخاص به.
 
 ## الإعداد
 
-لإعداد WebdriverIO داخل مشروع Svelte الخاص بك، اتبع [التعليمات](/docs/component-testing#set-up) الموجودة في وثائق اختبار المكونات لدينا. تأكد من تحديد `svelte` كإعداد مسبق (preset) ضمن خيارات المشغل، على سبيل المثال:
+لإعداد WebdriverIO داخل مشروع Svelte الخاص بك، اتبع [التعليمات](/docs/component-testing#set-up) الواردة في وثائق اختبار المكونات لدينا. تأكد من اختيار `svelte` كإعداد مسبق (preset) ضمن خيارات المشغل، على سبيل المثال:
 
 ```js
 // wdio.conf.js
@@ -23,7 +23,7 @@ export const config = {
 
 :::info
 
-إذا كنت تستخدم بالفعل [Vite](https://vitejs.dev/) كخادم تطوير، يمكنك أيضًا ببساطة إعادة استخدام إعداداتك الموجودة في `vite.config.ts` ضمن إعدادات WebdriverIO الخاصة بك. لمزيد من المعلومات، راجع `viteConfig` في [خيارات المشغل](/docs/runner#runner-options).
+إذا كنت تستخدم بالفعل [Vite](https://vitejs.dev/) كخادم تطوير، فيمكنك أيضًا إعادة استخدام إعداداتك الموجودة في `vite.config.ts` ضمن إعدادات WebdriverIO. لمزيد من المعلومات، راجع `viteConfig` في [خيارات المشغل](/docs/runner#runner-options).
 
 :::
 
@@ -58,7 +58,7 @@ npx wdio run ./wdio.conf.js
 <button on:click="{handleClick}">{buttonText}</button>
 ```
 
-في اختبارك، استخدم الدالة `render` من `@testing-library/svelte` لإرفاق المكون بصفحة الاختبار. للتفاعل مع المكون، نوصي باستخدام أوامر WebdriverIO لأنها تتصرف بشكل أقرب إلى تفاعلات المستخدم الفعلية، على سبيل المثال:
+في اختبارك، استخدم الدالة `render` من `@testing-library/svelte` لإرفاق المكون بصفحة الاختبار. وللتفاعل مع المكون، نوصي باستخدام أوامر WebdriverIO لأنها تتصرف بشكل أقرب إلى تفاعلات المستخدم الفعلية، على سبيل المثال:
 
 ```ts title="svelte.test.js"
 import expect from 'expect'

@@ -11,12 +11,12 @@ Los ingenieros de automatización (QA) a menudo no tienen acceso directo al cód
 :::
 
 :::note Extensión heredada
-La ruta de pruebas recomendada por Flutter para las aplicaciones más recientes es el paquete `integration_test`. Sin embargo, Appium Flutter Driver se integra con la extensión heredada `flutter_driver`, por lo que esta guía utiliza `enableFlutterDriverExtension()`.
+La forma recomendada por Flutter para probar aplicaciones nuevas es el paquete `integration_test`. Sin embargo, Appium Flutter Driver se integra con la extensión heredada `flutter_driver`, por lo que esta guía utiliza `enableFlutterDriverExtension()`.
 :::
 
 ### Configuración de `pubspec.yaml`
 
-Añade `flutter_driver` en `dev_dependencies` dentro del archivo `pubspec.yaml` de tu proyecto Flutter:
+Añade `flutter_driver` en `dev_dependencies` en el archivo `pubspec.yaml` de tu proyecto Flutter:
 
 ```yaml
 dev_dependencies:
@@ -32,7 +32,7 @@ Obtén las dependencias:
 flutter pub get
 ```
 
-### Habilitar la extensión en `main.dart`
+### Habilitación de la extensión en `main.dart`
 
 Para iniciar el servidor de instrumentación que responde a los comandos de WebdriverIO, invoca `enableFlutterDriverExtension()` antes de `runApp`:
 

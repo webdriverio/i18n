@@ -1,10 +1,10 @@
 ---
 id: ocr-get-element-position-by-text
 title: ocrGetElementPositionByText
-description: "احصل على موضع نص على الشاشة باستخدام ocrGetElementPositionByText، بالاعتماد على OCR والمطابقة التقريبية للعثور عليه."
+description: "احصل على موضع نص على الشاشة باستخدام ocrGetElementPositionByText، والذي يستخدم OCR والمطابقة التقريبية للعثور عليه."
 ---
 
-احصل على موضع نص على الشاشة. سيبحث الأمر عن النص المُقدَّم ويحاول العثور على تطابق بناءً على المنطق التقريبي (Fuzzy Logic) من [Fuse.js](https://fusejs.io/). هذا يعني أنه إذا قدّمت محددًا (selector) يحتوي على خطأ إملائي، أو إذا لم يكن النص الذي تم العثور عليه مطابقًا بنسبة 100%، فسيظل يحاول إرجاع عنصر لك. راجع [السجلات](#logs) أدناه.
+احصل على موضع نص على الشاشة. سيبحث الأمر عن النص المُقدَّم ويحاول العثور على تطابق بناءً على المنطق التقريبي (Fuzzy Logic) من [Fuse.js](https://fusejs.io/). هذا يعني أنه إذا قدمت محددًا يحتوي على خطأ إملائي، أو إذا لم يكن النص الذي تم العثور عليه مطابقًا بنسبة 100%، فسيظل يحاول إرجاع عنصر لك. راجع [السجلات](#logs) أدناه.
 
 ## الاستخدام
 
@@ -83,7 +83,7 @@ await browser.ocrGetElementPositionByText({
 
 <Option type="number" required="WebdriverIO.Element | ChainablePromiseElement | Rectangle">
 
-هذه هي منطقة البحث في الشاشة التي يجب أن يبحث فيها OCR عن النص. يمكن أن تكون عنصرًا أو مستطيلًا يحتوي على `x` و `y` و `width` و `height`
+هذه هي منطقة البحث في الشاشة التي يحتاج OCR إلى البحث فيها عن النص. يمكن أن تكون عنصرًا أو مستطيلًا يحتوي على `x` و `y` و `width` و `height`
 
 </Option>
 #### مثال
@@ -125,7 +125,7 @@ await browser.ocrGetElementPositionByText({
 import { SUPPORTED_OCR_LANGUAGES } from "@wdio/ocr-service";
 await browser.ocrGetElementPositionByText({
     text: "WebdriverIO",
-    // استخدام اللغة الهولندية
+    // استخدام الهولندية كلغة
     language: SUPPORTED_OCR_LANGUAGES.DUTCH,
 });
 ```
@@ -138,7 +138,7 @@ await browser.ocrGetElementPositionByText({
 
 <Option type="number" default="100" required="no">
 
-يحدد مدى قرب التطابق من الموقع التقريبي (المحدد بواسطة location). أي تطابق تام للأحرف يبعد بمقدار distance من الأحرف عن الموقع التقريبي سيُحتسب على أنه عدم تطابق كامل. تتطلب قيمة distance تساوي 0 أن يكون التطابق في الموقع المحدد بالضبط. أما قيمة distance تساوي 1000 فتتطلب أن يكون التطابق التام ضمن 800 حرف من الموقع ليتم العثور عليه باستخدام threshold بقيمة 0.8.
+يحدد مدى قرب التطابق من الموقع التقريبي (المحدد بواسطة location). أي تطابق تام للأحرف يبعد بمقدار distance حرفًا عن الموقع التقريبي سيُحتسب على أنه عدم تطابق كامل. تتطلب المسافة 0 أن يكون التطابق في الموقع المحدد بالضبط. أما المسافة 1000 فستتطلب أن يكون التطابق التام ضمن 800 حرف من الموقع حتى يتم العثور عليه عند استخدام عتبة 0.8.
 
 </Option>
 ##### مثال
@@ -156,7 +156,7 @@ await browser.ocrGetElementPositionByText({
 
 <Option type="number" default="0" required="no">
 
-يحدد تقريبًا المكان في النص الذي يُتوقع أن يوجد فيه النمط.
+يحدد تقريبًا المكان في النص الذي يُتوقع العثور على النمط فيه.
 
 </Option>
 ##### مثال
@@ -174,7 +174,7 @@ await browser.ocrGetElementPositionByText({
 
 <Option type="number" default="0.6" required="no">
 
-عند أي نقطة تتوقف خوارزمية المطابقة. تتطلب قيمة threshold تساوي 0 تطابقًا تامًا (لكل من الأحرف والموقع)، بينما تطابق قيمة threshold تساوي 1.0 أي شيء.
+النقطة التي تتوقف عندها خوارزمية المطابقة. تتطلب العتبة 0 تطابقًا تامًا (لكل من الأحرف والموقع)، بينما تتطابق العتبة 1.0 مع أي شيء.
 
 </Option>
 ##### مثال
@@ -192,7 +192,7 @@ await browser.ocrGetElementPositionByText({
 
 <Option type="boolean" default="false" required="no">
 
-ما إذا كان البحث يجب أن يكون حساسًا لحالة الأحرف.
+ما إذا كان يجب أن يكون البحث حساسًا لحالة الأحرف.
 
 </Option>
 ##### مثال
@@ -228,7 +228,7 @@ await browser.ocrGetElementPositionByText({
 
 <Option type="number" default="false" required="no">
 
-عند ضبطها على `true`، ستستمر دالة المطابقة حتى نهاية نمط البحث حتى لو تم العثور بالفعل على تطابق تام في السلسلة النصية.
+عند تعيينها إلى `true`، ستستمر دالة المطابقة حتى نهاية نمط البحث حتى لو تم العثور بالفعل على تطابق تام في السلسلة النصية.
 
 </Option>
 ##### مثال

@@ -3,11 +3,11 @@ id: modules
 title: الوحدات
 ---
 
-تنشر WebdriverIO وحدات مختلفة على NPM وسجلات أخرى يمكنك استخدامها لبناء إطار عمل الأتمتة الخاص بك. اطلع على المزيد من الوثائق حول أنواع إعداد WebdriverIO [هنا](/docs/setuptypes).
+تنشر WebdriverIO وحدات مختلفة على NPM ومستودعات أخرى يمكنك استخدامها لبناء إطار الأتمتة الخاص بك. اطلع على المزيد من الوثائق حول أنواع إعداد WebdriverIO [هنا](/docs/setuptypes).
 
 ## `webdriver` و `devtools`
 
-تكشف حزم البروتوكول ([`webdriver`](https://www.npmjs.com/package/webdriver) و [`devtools`](https://www.npmjs.com/package/devtools)) عن فئة (class) مرفق بها الدوال الثابتة التالية التي تتيح لك بدء الجلسات:
+تكشف حزم البروتوكول ([`webdriver`](https://www.npmjs.com/package/webdriver) و [`devtools`](https://www.npmjs.com/package/devtools)) عن فئة (class) مرفق بها الدوال الثابتة التالية التي تسمح لك ببدء الجلسات:
 
 #### `newSession(options, modifier, userPrototype, customCommandWrapper)`
 
@@ -20,7 +20,7 @@ title: الوحدات
 - `userPrototype`: كائن خصائص يسمح بتوسيع النموذج الأولي (prototype) للنسخة
 - `customCommandWrapper`: دالة تسمح بتغليف وظائف حول استدعاءات الدوال
 
-##### القيمة المرجعة
+##### القيمة المُرجعة
 
 - كائن [Browser](/docs/api/browser)
 
@@ -38,12 +38,12 @@ const client = await WebDriver.newSession({
 
 ##### المعلمات
 
-- `attachInstance`: النسخة المراد ربط جلسة بها أو على الأقل كائن يحتوي على خاصية `sessionId` (مثل `{ sessionId: 'xxx' }`)
+- `attachInstance`: النسخة التي سيتم ربط جلسة بها أو على الأقل كائن يحتوي على خاصية `sessionId` (مثل `{ sessionId: 'xxx' }`)
 - `modifier`: دالة تسمح بتعديل نسخة العميل قبل إرجاعها
 - `userPrototype`: كائن خصائص يسمح بتوسيع النموذج الأولي (prototype) للنسخة
 - `customCommandWrapper`: دالة تسمح بتغليف وظائف حول استدعاءات الدوال
 
-##### القيمة المرجعة
+##### القيمة المُرجعة
 
 - كائن [Browser](/docs/api/browser)
 
@@ -75,14 +75,14 @@ await WebDriver.reloadSession(client)
 
 #### `remote(options, modifier)`
 
-يبدأ جلسة WebdriverIO. تحتوي النسخة على جميع الأوامر الموجودة في حزمة البروتوكول ولكن مع دوال إضافية عالية المستوى، راجع [وثائق API](/docs/api).
+يبدأ جلسة WebdriverIO. تحتوي النسخة على جميع الأوامر الموجودة في حزمة البروتوكول ولكن مع دوال إضافية عالية الرتبة، راجع [وثائق API](/docs/api).
 
 ##### المعلمات
 
 - `options`: [خيارات WebdriverIO](/docs/configuration#webdriverio)
 - `modifier`: دالة تسمح بتعديل نسخة العميل قبل إرجاعها
 
-##### القيمة المرجعة
+##### القيمة المُرجعة
 
 - كائن [Browser](/docs/api/browser)
 
@@ -102,9 +102,9 @@ const browser = await remote({
 
 ##### المعلمات
 
-- `attachOptions`: النسخة المراد ربط جلسة بها أو على الأقل كائن يحتوي على خاصية `sessionId` (مثل `{ sessionId: 'xxx' }`)
+- `attachOptions`: النسخة التي سيتم ربط جلسة بها أو على الأقل كائن يحتوي على خاصية `sessionId` (مثل `{ sessionId: 'xxx' }`)
 
-##### القيمة المرجعة
+##### القيمة المُرجعة
 
 - كائن [Browser](/docs/api/browser)
 
@@ -119,13 +119,13 @@ const newBrowser = await attach(browser)
 
 #### `multiRemote(multiRemoteOptions)`
 
-يبدأ نسخة متعددة التحكم عن بعد (multi-remote) تتيح لك التحكم في جلسات متعددة داخل نسخة واحدة. اطلع على [أمثلة multi-remote](https://github.com/webdriverio/webdriverio/tree/main/examples/multiremote) الخاصة بنا لحالات استخدام ملموسة.
+يبدأ نسخة متعددة البعد (multi-remote) تسمح لك بالتحكم في جلسات متعددة ضمن نسخة واحدة. اطلع على [أمثلة multi-remote](https://github.com/webdriverio/webdriverio/tree/main/examples/multiremote) الخاصة بنا لحالات استخدام عملية.
 
 ##### المعلمات
 
 - `multiRemoteOptions`: كائن بمفاتيح تمثل اسم المتصفح و[خيارات WebdriverIO](/docs/configuration#webdriverio) الخاصة به.
 
-##### القيمة المرجعة
+##### القيمة المُرجعة
 
 - كائن [Browser](/docs/api/browser)
 
@@ -151,7 +151,7 @@ console.log(await matrix.getTitle())
 
 #### `Key`
 
-كائن يحتوي على ثوابت الأحرف الخاصة لاستخدامها مع الأمر [`browser.keys`](/docs/api/browser/keys). تمثل هذه الثوابت مفاتيح خاصة يمكن إرسالها إلى المتصفح، مثل `Enter` و`Tab` و`Escape` ومفاتيح الأسهم ومفاتيح الوظائف والمزيد.
+كائن يحتوي على ثوابت الأحرف الخاصة لاستخدامها مع الأمر [`browser.keys`](/docs/api/browser/keys). تمثل هذه الثوابت مفاتيح خاصة يمكن إرسالها إلى المتصفح، مثل `Enter` و`Tab` و`Escape` ومفاتيح الأسهم ومفاتيح الوظائف وغيرها.
 
 ##### مثال
 
@@ -161,7 +161,7 @@ import { Key } from 'webdriverio'
 // اضغط على مفتاح Enter
 await browser.keys(Key.Enter)
 
-// استخدم Ctrl+A لتحديد الكل (يعمل عبر المنصات المختلفة)
+// استخدم Ctrl+A لتحديد الكل (يعمل عبر المنصات)
 await browser.keys([Key.Ctrl, 'a'])
 
 // التنقل باستخدام مفاتيح الأسهم
@@ -170,7 +170,7 @@ await browser.keys([Key.ArrowDown, Key.ArrowDown, Key.Enter])
 
 ##### المفاتيح المتاحة
 
-المفاتيح الخاصة التالية متاحة عبر كائن `Key`:
+المفاتيح الخاصة التالية متاحة عبر الكائن `Key`:
 
 **مفاتيح التعديل:**
 
@@ -213,19 +213,19 @@ await browser.keys([Key.ArrowDown, Key.ArrowDown, Key.Enter])
 | الثابت | الوصف |
 |----------|-------------|
 | `Key.Semicolon` | مفتاح الفاصلة المنقوطة |
-| `Key.Equals` | مفتاح علامة التساوي |
+| `Key.Equals` | مفتاح علامة المساواة |
 
 **مفاتيح لوحة الأرقام:**
 
 | الثابت | الوصف |
 |----------|-------------|
-| `Key.Numpad0` - `Key.Numpad9` | أرقام 0-9 في لوحة الأرقام |
-| `Key.Multiply` | مفتاح الضرب في لوحة الأرقام |
-| `Key.Add` | مفتاح الجمع في لوحة الأرقام |
-| `Key.Separator` | مفتاح الفاصل في لوحة الأرقام |
-| `Key.Subtract` | مفتاح الطرح في لوحة الأرقام |
-| `Key.Decimal` | مفتاح الفاصلة العشرية في لوحة الأرقام |
-| `Key.Divide` | مفتاح القسمة في لوحة الأرقام |
+| `Key.Numpad0` - `Key.Numpad9` | لوحة الأرقام 0-9 |
+| `Key.Multiply` | الضرب في لوحة الأرقام |
+| `Key.Add` | الجمع في لوحة الأرقام |
+| `Key.Separator` | الفاصل في لوحة الأرقام |
+| `Key.Subtract` | الطرح في لوحة الأرقام |
+| `Key.Decimal` | الفاصلة العشرية في لوحة الأرقام |
+| `Key.Divide` | القسمة في لوحة الأرقام |
 
 **مفاتيح الوظائف:**
 
@@ -241,13 +241,13 @@ await browser.keys([Key.ArrowDown, Key.ArrowDown, Key.Enter])
 
 :::info مفاتيح التعديل عبر المنصات
 
-يوفر الثابت `Key.Ctrl` طريقة ملائمة لاستخدام مفتاح التعديل "control" عبر أنظمة التشغيل المختلفة. على macOS، يُربط بمفتاح `Command`، بينما على Windows وLinux يُربط بمفتاح `Control`. هذا مفيد عند كتابة اختبارات تحتاج إلى العمل عبر منصات متعددة، على سبيل المثال، لعمليات تحديد الكل (`Ctrl+A`) أو النسخ (`Ctrl+C`) أو اللصق (`Ctrl+V`).
+يوفر الثابت `Key.Ctrl` طريقة مريحة لاستخدام مفتاح التعديل "control" عبر أنظمة التشغيل المختلفة. على macOS، يتم ربطه بمفتاح `Command`، بينما على Windows وLinux يتم ربطه بمفتاح `Control`. هذا مفيد عند كتابة اختبارات تحتاج إلى العمل عبر منصات متعددة، على سبيل المثال، لعمليات تحديد الكل (`Ctrl+A`) أو النسخ (`Ctrl+C`) أو اللصق (`Ctrl+V`).
 
 :::
 
 ## `@wdio/cli`
 
-بدلاً من استدعاء الأمر `wdio`، يمكنك أيضًا تضمين مشغل الاختبار كوحدة وتشغيله في بيئة عشوائية. لذلك، ستحتاج إلى استيراد حزمة `@wdio/cli` كوحدة، بهذا الشكل:
+بدلاً من استدعاء الأمر `wdio`، يمكنك أيضًا تضمين مشغل الاختبار كوحدة وتشغيله في بيئة عشوائية. لذلك، ستحتاج إلى استيراد حزمة `@wdio/cli` كوحدة، كما يلي:
 
 <Tabs
   defaultValue="esm"
@@ -272,11 +272,11 @@ const Launcher = require('@wdio/cli').default
 </TabItem>
 </Tabs>
 
-بعد ذلك، قم بإنشاء نسخة من المشغل (launcher)، وقم بتشغيل الاختبار.
+بعد ذلك، أنشئ نسخة من المشغل (launcher)، وقم بتشغيل الاختبار.
 
 #### `Launcher(configPath, opts)`
 
-يتوقع مُنشئ فئة `Launcher` عنوان URL لملف التكوين، وكائن `opts` بإعدادات ستحل محل تلك الموجودة في ملف التكوين.
+يتوقع مُنشئ الفئة `Launcher` عنوان URL لملف التكوين، وكائن `opts` يحتوي على إعدادات ستستبدل تلك الموجودة في التكوين.
 
 ##### المعلمات
 
@@ -309,7 +309,7 @@ wdio.run().then((exitCode) => {
 import { fn, spyOn, mock, unmock } from '@wdio/browser-runner'
 ```
 
-الصادرات المسماة التالية متاحة:
+التصديرات المسماة التالية متاحة:
 
 #### `fn`
 
@@ -346,7 +346,7 @@ mock('lodash', (origModuleFactory) => {
 
 #### `unmock`
 
-إلغاء محاكاة التبعية المعرفة داخل دليل المحاكاة اليدوية (`__mocks__`).
+إلغاء محاكاة تبعية معرّفة داخل دليل المحاكاة اليدوية (`__mocks__`).
 
 ##### المعلمات
 

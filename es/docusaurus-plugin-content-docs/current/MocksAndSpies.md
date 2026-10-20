@@ -4,23 +4,23 @@ title: Mocks y espías de solicitudes
 description: "Simula solicitudes y respuestas de red en tus pruebas con browser.mock, aborta solicitudes e inspecciona llamadas con espías."
 ---
 
-WebdriverIO viene con soporte integrado para modificar respuestas de red, lo que te permite centrarte en probar tu aplicación frontend sin tener que configurar tu backend o un servidor de mocks. Puedes definir respuestas personalizadas para recursos web, como solicitudes a una API REST, en tu prueba y modificarlas dinámicamente.
+WebdriverIO incluye soporte integrado para modificar respuestas de red, lo que te permite concentrarte en probar tu aplicación frontend sin tener que configurar tu backend o un servidor de mocks. Puedes definir respuestas personalizadas para recursos web como solicitudes a una API REST en tu prueba y modificarlas dinámicamente.
 
 :::info
 
-Ten en cuenta que usar el comando `mock` requiere soporte para WebDriver Bidi. Normalmente es así cuando ejecutas pruebas localmente en un navegador basado en Chromium o en Firefox, así como si usas Selenium Grid v4 o superior. Si ejecutas pruebas en la nube, asegúrate de que tu proveedor en la nube sea compatible con WebDriver Bidi.
+Ten en cuenta que usar el comando `mock` requiere soporte para WebDriver Bidi. Normalmente ese es el caso cuando ejecutas pruebas localmente en un navegador basado en Chromium o en Firefox, así como si usas un Selenium Grid v4 o superior. Si ejecutas pruebas en la nube, asegúrate de que tu proveedor de nube sea compatible con WebDriver Bidi.
 
 :::
 
 ## Crear un mock
 
-Antes de poder modificar cualquier respuesta, primero tienes que definir un mock. Este mock se describe mediante la URL del recurso y puede filtrarse por el [método de solicitud](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods) o por [cabeceras](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers). El recurso se compara usando un [`URLPattern`](https://developer.mozilla.org/en-US/docs/Web/API/URLPattern), donde `*` coincide con cualquier secuencia de caracteres. Una URL sin protocolo se compara solo con la ruta de la solicitud, por lo que `*/users/list` coincide con esa ruta en cualquier origen:
+Antes de poder modificar cualquier respuesta, primero tienes que definir un mock. Este mock se describe mediante la url del recurso y puede filtrarse por el [método de solicitud](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods) o por [cabeceras](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers). El recurso se compara usando un [`URLPattern`](https://developer.mozilla.org/en-US/docs/Web/API/URLPattern), donde `*` coincide con cualquier secuencia de caracteres. Una url sin protocolo se compara solo con la ruta de la solicitud, por lo que `*/users/list` coincide con esa ruta en cualquier origen:
 
 ```js
 // simula todos los recursos que terminan en "/users/list"
 const userListMock = await browser.mock('*/users/list')
 
-// o puedes especificar el mock filtrando los recursos por cabeceras o
+// o puedes especificar el mock filtrando recursos por cabeceras o
 // código de estado, simulando solo solicitudes exitosas a recursos json
 const strictMock = await browser.mock('*', {
     // simula todas las respuestas json
@@ -29,15 +29,25 @@ const strictMock = await browser.mock('*', {
     statusCode: 200
 })
 
-// en lugar de una cadena también puedes pasar un `URLPattern`; el polyfill
-// también funciona en entornos de ejecución sin soporte nativo de URLPattern
+// en lugar de un string también puedes pasar un `URLPattern`; el polyfill
+// también funciona en entornos sin soporte nativo de URLPattern
 import { URLPattern } from 'urlpattern-polyfill'
 const patternMock = await browser.mock(new URLPattern({ pathname: '/users/list' }))
 ```
 
+:::info
+
+Un único `*` coincide con cualquier carácter, incluido `/`. En un patrón de tipo string, WebdriverIO cambia `**` por `*`, así que `'**/api/**'` es lo mismo que `'*/api/*'`.
+
+Un segundo mock con el mismo patrón de URL y las mismas opciones de filtro reemplaza al primero: WebdriverIO restaura el primer mock, de modo que ya no modifica solicitudes ni registra llamadas. Para conservar ambos mocks, dales opciones de filtro diferentes. Por ejemplo, los strings `'**/users'` y `'*/users'` son el mismo mock, mientras que `'*/users'` y `'*/users'` con `{ method: 'POST' }` son dos mocks.
+
+:::
+
 :::warning
 
-Usa un único `*` como comodín en las URL; también coincide con `/`. Los comodines consecutivos antes de un texto fijo, como `**/api/**` o `**/data.json`, pueden causar un retroceso excesivo de la expresión regular en URL no relacionadas y congelar una prueba. Consulta el [issue #13548](https://github.com/webdriverio/webdriverio/issues/13548). En las pruebas de componentes, usa también un protocolo y un nombre de host fijos para mantener el tráfico del runner fuera de la interceptación; consulta [mocks de solicitudes en pruebas de componentes](/docs/component-testing/mocking#requests).
+WebdriverIO no modifica un objeto `URLPattern`. En un objeto, usa un único `*`: los comodines repetidos antes de texto fijo, como `{ pathname: '**/api/**' }`, pueden hacer que la comparación sea muy lenta en una URL larga que no coincide, y congelar una prueba. Consulta el [issue #13548](https://github.com/webdriverio/webdriverio/issues/13548).
+
+En las pruebas de componentes, usa un protocolo y un nombre de host fijos para mantener el tráfico del runner fuera de la interceptación; consulta [mocks de solicitudes en pruebas de componentes](/docs/component-testing/mocking#requests).
 
 :::
 
@@ -45,9 +55,9 @@ Usa un único `*` como comodín en las URL; también coincide con `/`. Los comod
 
 Una vez que hayas definido un mock, puedes definir respuestas personalizadas para él. Esas respuestas personalizadas pueden ser un objeto para responder con un JSON, un archivo local para responder con un fixture personalizado o un recurso web para reemplazar la respuesta con un recurso de internet.
 
-### Simular solicitudes de API
+### Simular solicitudes a una API
 
-Para simular solicitudes de API en las que esperas una respuesta JSON, lo único que necesitas hacer es llamar a `respond` en el objeto mock con un objeto arbitrario que quieras devolver, por ejemplo:
+Para simular solicitudes a una API en las que esperas una respuesta JSON, todo lo que necesitas hacer es llamar a `respond` en el objeto mock con un objeto arbitrario que quieras devolver, p. ej.:
 
 ```js
 const mock = await browser.mock('https://todo-backend-express-knex.herokuapp.com/')
@@ -74,7 +84,7 @@ console.log(await $$('#todo-list li').map(el => el.getText()))
 // muestra: "[ 'Injected (non) completed Todo', 'Injected completed Todo' ]"
 ```
 
-También puedes modificar las cabeceras de la respuesta, así como el código de estado, pasando algunos parámetros de respuesta del mock de la siguiente manera:
+También puedes modificar las cabeceras de la respuesta así como el código de estado pasando algunos parámetros de respuesta del mock de la siguiente manera:
 
 ```js
 mock.respond({ ... }, {
@@ -96,7 +106,7 @@ mock.respond({ ... }, {
 
 `fetchResponse: false` nunca llama al backend. Un mock creado con un filtro `statusCode` o `responseHeaders` necesita esa respuesta para decidir si coincide, por lo que `respond()` y `respondOnce()` lanzan un error si los combinas. Elimina el filtro de respuesta, o deja `fetchResponse` sin definir para que el mock pueda leer la respuesta del backend y luego reemplazarla.
 
-Se recomienda almacenar las respuestas personalizadas en archivos de fixtures para que simplemente puedas importarlas en tu prueba de la siguiente manera:
+Se recomienda almacenar las respuestas personalizadas en archivos fixture para que simplemente puedas importarlas en tu prueba de la siguiente manera:
 
 ```js
 // requiere Node.js v16.14.0 o superior para soportar las aserciones de importación JSON
@@ -106,7 +116,7 @@ mock.respond(responseFixture)
 
 ### Simular recursos de texto
 
-Si quieres modificar recursos de texto como JavaScript, archivos CSS u otros recursos basados en texto, simplemente puedes pasar la ruta de un archivo y WebdriverIO reemplazará el recurso original con él, por ejemplo:
+Si quieres modificar recursos de texto como JavaScript, archivos CSS u otros recursos basados en texto, simplemente puedes pasar una ruta de archivo y WebdriverIO reemplazará el recurso original con él, p. ej.:
 
 ```js
 const scriptMock = await browser.mock('*/script.min.js')
@@ -118,7 +128,7 @@ scriptMock.respond('alert("I am a mocked resource")')
 
 ### Redirigir recursos web
 
-También puedes simplemente reemplazar un recurso web con otro recurso web si la respuesta que deseas ya está alojada en la web. Esto funciona tanto con recursos individuales de la página como con la propia página web, por ejemplo:
+También puedes simplemente reemplazar un recurso web con otro recurso web si la respuesta que deseas ya está alojada en la web. Esto funciona tanto con recursos individuales de una página como con una página web en sí, p. ej.:
 
 ```js
 const pageMock = await browser.mock('https://google.com/')
@@ -129,7 +139,7 @@ console.log(await browser.getTitle()) // devuelve "WebdriverIO · Next-gen brows
 
 ### Respuestas dinámicas
 
-Si la respuesta de tu mock depende de la respuesta original del recurso, también puedes modificar el recurso dinámicamente pasando una función que recibe la respuesta original como parámetro y establece el mock en función del valor devuelto, por ejemplo:
+Si la respuesta de tu mock depende de la respuesta original del recurso, también puedes modificar el recurso dinámicamente pasando una función que recibe la respuesta original como parámetro y establece el mock en función del valor de retorno, p. ej.:
 
 ```js
 const mock = await browser.mock('https://todo-backend-express-knex.herokuapp.com/', {
@@ -174,7 +184,7 @@ En lugar de devolver una respuesta personalizada, también puedes simplemente ab
 - BlockedByClient
 - BlockedByResponse
 
-Esto es muy útil si quieres bloquear scripts de terceros en tu página que tienen una influencia negativa en tu prueba funcional. Puedes abortar un mock simplemente llamando a `abort` o `abortOnce`, por ejemplo:
+Esto es muy útil si quieres bloquear scripts de terceros en tu página que tienen una influencia negativa en tu prueba funcional. Puedes abortar un mock simplemente llamando a `abort` o `abortOnce`, p. ej.:
 
 ```js
 const mock = await browser.mock('https://www.google-analytics.com/*')
@@ -183,7 +193,7 @@ mock.abort('Failed')
 
 ## Espías
 
-Cada mock es automáticamente un espía que cuenta la cantidad de solicitudes que el navegador hizo a ese recurso. Si no aplicas una respuesta personalizada o un motivo de aborto al mock, continúa con la respuesta predeterminada que recibirías normalmente. Esto te permite comprobar cuántas veces el navegador realizó la solicitud, por ejemplo, a un determinado endpoint de la API.
+Cada mock es automáticamente un espía que cuenta la cantidad de solicitudes que el navegador hizo a ese recurso. Si no aplicas una respuesta personalizada o un motivo de aborto al mock, este continúa con la respuesta predeterminada que normalmente recibirías. Esto te permite comprobar cuántas veces el navegador realizó la solicitud, p. ej., a un endpoint concreto de la API.
 
 ```js
 const mock = await browser.mock('*/user', { method: 'post' })
@@ -206,7 +216,7 @@ Si necesitas esperar hasta que una solicitud coincidente haya respondido, usa `m
 
 ## Multi-remote
 
-En un navegador [multi-remote](/docs/multiremote), `mock()` devuelve un `MultiRemoteMock` en lugar de un único `Mock`. Métodos como `respond()` y `restore()` se ejecutan en todas las instancias. `waitForResponse()` espera hasta que cada instancia tenga una respuesta coincidente. Las solicitudes capturadas permanecen en el mock de ese navegador:
+En un navegador [multi-remote](/docs/multiremote), `mock()` devuelve un `MultiRemoteMock` en lugar de un único `Mock`. Métodos como `respond()` y `restore()` se ejecutan en cada instancia. `waitForResponse()` espera hasta que cada instancia tenga una respuesta coincidente. Las solicitudes capturadas permanecen en el mock de ese navegador:
 
 ```ts
 const mock = await browser.mock('*/user', { method: 'post' })

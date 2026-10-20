@@ -1,30 +1,30 @@
 ---
 id: tools
 title: Tools
-description: "Nachschlagewerk der Tools, die der WebdriverIO-MCP-Server für Sessions, Navigation, Elementinteraktion, Screenshots, Gesten und App-Lebenszyklus bereitstellt."
+description: "Schlagen Sie die vom WebdriverIO MCP-Server bereitgestellten Tools für Sessions, Navigation, Elementinteraktion, Screenshots, Gesten und App-Lebenszyklus nach."
 ---
 
-Der WebdriverIO-MCP-Server stellt 29 Tools bereit, die nach Funktion gegliedert sind. Mit **Browser-only** gekennzeichnete Tools erfordern eine Session mit `platform: "browser"`. Mit **Mobile-only** gekennzeichnete Tools erfordern `platform: "ios"` oder `platform: "android"`.
+Der WebdriverIO MCP-Server stellt 29 Tools bereit, die nach Funktion gegliedert sind. Mit **nur Browser** gekennzeichnete Tools erfordern eine Session mit `platform: "browser"`. Mit **nur Mobil** gekennzeichnete Tools erfordern `platform: "ios"` oder `platform: "android"`.
 
 ## Session-Verwaltung
 
 ### `start_session`
 
-Startet eine neue Browser- oder Mobile-Automatisierungssession. Es kann jeweils nur eine Session aktiv sein; das Starten einer neuen Session schließt die bestehende.
+Startet eine neue Browser- oder Mobile-Automatisierungssession. Es ist jeweils nur eine aktive Session möglich; das Starten einer neuen Session schließt die bestehende.
 
 | Parameter              | Typ                                                                    | Erforderlich | Standard         | Beschreibung                                                                                                                      |
 | ---------------------- | ---------------------------------------------------------------------- | ------------ | ---------------- | --------------------------------------------------------------------------------------------------------------------------------- |
 | `platform`             | `"browser" \| "ios" \| "android"`                                      | ✓            | —                | Plattform der Session                                                                                                             |
 | `provider`             | `"local" \| "browserstack" \| "saucelabs" \| "testmu" \| "testingbot"` | —            | `"local"`        | Anbieter der Session                                                                                                              |
 | `browser`              | `"chrome" \| "firefox" \| "edge" \| "safari"`                          | nur Browser  | —                | Zu startender Browser                                                                                                             |
-| `browserVersion`       | string                                                                 | —            | latest           | Browserversion (nur Cloud-Anbieter, Standard: latest)                                                                             |
+| `browserVersion`       | string                                                                 | —            | neueste          | Browserversion (nur Cloud-Anbieter, Standard: neueste)                                                                            |
 | `os`                   | string                                                                 | —            | —                | Betriebssystem (nur Cloud-Anbieter, z. B. `"Windows"`, `"OS X"`)                                                                  |
 | `osVersion`            | string                                                                 | —            | —                | Betriebssystemversion (nur Cloud-Anbieter, z. B. `"11"`, `"Sequoia"`)                                                             |
-| `headless`             | boolean                                                                | —            | `true`           | Browser im Headless-Modus ausführen                                                                                               |
+| `headless`             | boolean                                                                | —            | `true`           | Browser headless ausführen                                                                                                        |
 | `windowWidth`          | number                                                                 | —            | `1920`           | Breite des Browserfensters (400–3840)                                                                                             |
 | `windowHeight`         | number                                                                 | —            | `1080`           | Höhe des Browserfensters (400–2160)                                                                                               |
 | `navigationUrl`        | string                                                                 | —            | —                | URL, zu der nach dem Start navigiert wird                                                                                         |
-| `deviceName`           | string                                                                 | nur Mobile   | —                | Name des Geräts/Emulators/Simulators                                                                                              |
+| `deviceName`           | string                                                                 | nur Mobil    | —                | Name des Geräts/Emulators/Simulators                                                                                              |
 | `platformVersion`      | string                                                                 | —            | —                | Betriebssystemversion (z. B. `"17.0"`, `"14"`)                                                                                    |
 | `appPath`              | string                                                                 | —            | —                | Pfad zu `.app` / `.apk` / `.ipa`                                                                                                  |
 | `app`                  | string                                                                 | —            | —                | App-URL (`bs://...` für BrowserStack, `storage:filename=` für Sauce Labs, `lt://...` für TestMu, TestingBot app_url) oder custom_id |
@@ -33,7 +33,7 @@ Startet eine neue Browser- oder Mobile-Automatisierungssession. Es kann jeweils 
 | `autoAcceptAlerts`     | boolean                                                                | —            | `true`           | Alerts automatisch akzeptieren                                                                                                    |
 | `autoDismissAlerts`    | boolean                                                                | —            | `false`          | Alerts automatisch verwerfen                                                                                                      |
 | `appWaitActivity`      | string                                                                 | —            | —                | Android-Activity, auf die beim Start gewartet wird                                                                                |
-| `udid`                 | string                                                                 | —            | —                | UDID eines realen iOS-Geräts                                                                                                      |
+| `udid`                 | string                                                                 | —            | —                | UDID eines echten iOS-Geräts                                                                                                      |
 | `noReset`              | boolean                                                                | —            | —                | App-Daten zwischen Sessions beibehalten                                                                                           |
 | `fullReset`            | boolean                                                                | —            | —                | App vor/nach der Session deinstallieren                                                                                           |
 | `newCommandTimeout`    | number                                                                 | —            | `300`            | Appium-Befehls-Timeout (Sekunden)                                                                                                 |
@@ -41,11 +41,11 @@ Startet eine neue Browser- oder Mobile-Automatisierungssession. Es kann jeweils 
 | `attachConfig`         | object                                                                 | —            | —                | CDP-Verbindung: `{ port: 9222, host: "localhost" }`                                                                               |
 | `appiumConfig`         | object                                                                 | —            | —                | Appium-Server: `{ host, port, path }`                                                                                             |
 | `tunnel`               | `boolean \| "external"`                                                | —            | `false`          | Lokales Tunnel-Routing (Cloud-Anbieter). `true` = automatischer Start, `"external"` = Tunnel läuft bereits extern                 |
-| `reporting`            | object                                                                 | —            | —                | Reporting-Labels für Cloud-Anbieter: `{ project, build, session }`                                                                |
-| `trace`                | boolean                                                                | —            | `false`          | Trace-Aufzeichnung aktivieren – erzeugt ein Playwright-kompatibles `.trace`-Zip                                                   |
+| `reporting`            | object                                                                 | —            | —                | Reporting-Labels des Cloud-Anbieters: `{ project, build, session }`                                                               |
+| `trace`                | boolean                                                                | —            | `false`          | Trace-Aufzeichnung aktivieren — erzeugt ein Playwright-kompatibles `.trace`-Zip                                                   |
 | `region`               | `"us-west-1" \| "eu-central-1" \| "apac-southeast-1"`                  | —            | `"eu-central-1"` | Rechenzentrumsregion von Sauce Labs                                                                                               |
-| `tunnelName`           | string                                                                 | —            | —                | Name zur Identifizierung des Tunnels (erforderlich für `tunnel: "external"`)                                                      |
-| `capabilities`         | object                                                                 | —            | —                | Zusätzliche Roh-Capabilities, die zusammengeführt werden                                                                          |
+| `tunnelName`           | string                                                                 | —            | —                | Name des Tunnel-Bezeichners (erforderlich für `tunnel: "external"`)                                                               |
+| `capabilities`         | object                                                                 | —            | —                | Zusätzliche rohe Capabilities, die zusammengeführt werden                                                                         |
 
 ```js
 // Lokaler Chrome-Browser
@@ -77,13 +77,13 @@ start_session({ platform: "browser", browser: "chrome", attach: true })
 
 ### `close_session`
 
-Schließt die aktuelle Session oder trennt die Verbindung zu ihr.
+Schließt die aktuelle Session oder trennt sich von ihr.
 
 | Parameter | Typ     | Erforderlich | Standard | Beschreibung                                                          |
 | --------- | ------- | ------------ | -------- | --------------------------------------------------------------------- |
-| `detach`  | boolean | —            | `false`  | Verbindung trennen, ohne zu beenden (erhält den App-Zustand in Appium) |
+| `detach`  | boolean | —            | `false`  | Verbindung trennen, ohne zu beenden (bewahrt den App-Zustand bei Appium) |
 
-Sessions, die mit `noReset: true` gestartet wurden, trennen sich standardmäßig automatisch.
+Mit `noReset: true` gestartete Sessions werden standardmäßig automatisch getrennt.
 
 ---
 
@@ -91,14 +91,14 @@ Sessions, die mit `noReset: true` gestartet wurden, trennen sich standardmäßig
 
 Bereitet eine Chrome-Instanz mit aktiviertem Remote-Debugging vor, damit sich `start_session({ attach: true })` verbinden kann. Zwei Modi:
 
-- `newInstance` (Standard): öffnet Chrome neben Ihrer bestehenden Instanz mit einem separaten Profilverzeichnis; Ihre aktuelle Sitzung bleibt unberührt.
+- `newInstance` (Standard): öffnet Chrome neben Ihrer bestehenden Instanz mit einem separaten Profilverzeichnis; Ihre aktuelle Session bleibt unberührt.
 - `freshSession`: startet Chrome mit einem leeren Profil (keine Cookies, keine Logins). Verwenden Sie `copyProfileFiles: true`, um Cookies und Logins zu übernehmen.
 
-| Parameter          | Typ                               | Erforderlich | Standard        | Beschreibung                                                                  |
-| ------------------ | --------------------------------- | ------------ | --------------- | ----------------------------------------------------------------------------- |
-| `port`             | number                            | —            | `9222`          | Remote-Debugging-Port                                                         |
-| `mode`             | `"newInstance" \| "freshSession"` | —            | `"newInstance"` | Startmodus                                                                    |
-| `copyProfileFiles` | boolean                           | —            | `false`         | Chrome-Standardprofil (Cookies, Logins) in die Debug-Session kopieren         |
+| Parameter          | Typ                               | Erforderlich | Standard        | Beschreibung                                                               |
+| ------------------ | --------------------------------- | ------------ | --------------- | -------------------------------------------------------------------------- |
+| `port`             | number                            | —            | `9222`          | Remote-Debugging-Port                                                      |
+| `mode`             | `"newInstance" \| "freshSession"` | —            | `"newInstance"` | Startmodus                                                                 |
+| `copyProfileFiles` | boolean                           | —            | `false`         | Chrome-Standardprofil (Cookies, Logins) in die Debug-Session kopieren      |
 
 Nachdem dieses Tool erfolgreich ausgeführt wurde, rufen Sie `start_session({ platform: "browser", browser: "chrome", attach: true })` auf.
 
@@ -106,17 +106,17 @@ Nachdem dieses Tool erfolgreich ausgeführt wurde, rufen Sie `start_session({ pl
 
 ### `navigate`
 
-Lädt eine URL im aktuellen Tab und wartet auf das Page-Load-Event. Setzt den Seitenzustand (DOM, JS-Laufzeit) zurück. **Browser-only.**
+Lädt eine URL im aktuellen Tab und wartet auf das Page-Load-Event. Setzt den Seitenzustand (DOM, JS-Runtime) zurück. **Nur Browser.**
 
-| Parameter | Typ    | Erforderlich | Beschreibung                  |
-| --------- | ------ | ------------ | ----------------------------- |
-| `url`     | string | ✓            | URL, zu der navigiert wird    |
+| Parameter | Typ    | Erforderlich | Beschreibung                    |
+| --------- | ------ | ------------ | ------------------------------- |
+| `url`     | string | ✓            | URL, zu der navigiert werden soll |
 
 ---
 
 ### `get_tabs`
 
-Listet alle Browser-Tabs mit Handle, Titel, URL und Angabe des aktiven Tabs auf. Verwenden Sie dies vor `switch_tab`, um das Ziel-Handle zu ermitteln. **Browser-only.**
+Listet alle Browser-Tabs mit Handle, Titel, URL und dem aktiven Tab auf. Verwenden Sie dies vor `switch_tab`, um das Ziel-Handle zu finden. **Nur Browser.**
 
 Keine Parameter.
 
@@ -124,27 +124,27 @@ Keine Parameter.
 
 ### `switch_tab`
 
-Fokussiert einen Browser-Tab anhand des Window-Handles oder eines 0-basierten Index. Alle nachfolgenden Tool-Aufrufe wirken auf den neu aktivierten Tab. **Browser-only.**
+Fokussiert einen Browser-Tab anhand des Window-Handles oder eines 0-basierten Index. Alle nachfolgenden Tool-Aufrufe arbeiten auf dem neu aktiven Tab. **Nur Browser.**
 
-| Parameter | Typ    | Erforderlich | Beschreibung                          |
-| --------- | ------ | ------------ | ------------------------------------- |
-| `handle`  | string | —            | Window-Handle, zu dem gewechselt wird |
-| `index`   | number | —            | 0-basierter Tab-Index (≥ 0)           |
+| Parameter | Typ    | Erforderlich | Beschreibung                              |
+| --------- | ------ | ------------ | ----------------------------------------- |
+| `handle`  | string | —            | Window-Handle, zu dem gewechselt wird     |
+| `index`   | number | —            | 0-basierter Tab-Index (≥ 0)               |
 
-Geben Sie entweder `handle` oder `index` an. Handles erhalten Sie über `get_tabs` oder `wdio://session/current/tabs`.
+Geben Sie entweder `handle` oder `index` an. Handles erhalten Sie von `get_tabs` oder `wdio://session/current/tabs`.
 
 ---
 
 ### `switch_frame`
 
-Wechselt den WebDriver-Frame-Kontext per CSS/XPath-Selektor in ein iframe oder zurück zur obersten Ebene, wenn der Selektor weggelassen wird. Die Änderung bleibt bestehen; alle nachfolgenden Aufrufe von `click_element`, `set_value` und `get_elements` wirken innerhalb des gewechselten Frames, bis Sie zurückwechseln. Wartet bis zu 5 s auf das iframe. **Browser-only.**
+Wechselt den WebDriver-Frame-Kontext anhand eines CSS/XPath-Selektors in einen iframe oder zurück zur obersten Ebene, wenn der Selektor weggelassen wird. Änderungen bleiben bestehen; alle nachfolgenden Aufrufe von `click_element`, `set_value` und `get_elements` arbeiten innerhalb des gewechselten Frames, bis Sie zurückwechseln. Wartet bis zu 5 s auf den iframe. **Nur Browser.**
 
-| Parameter  | Typ    | Erforderlich | Beschreibung                                                                                        |
-| ---------- | ------ | ------------ | --------------------------------------------------------------------------------------------------- |
+| Parameter  | Typ    | Erforderlich | Beschreibung                                                                                      |
+| ---------- | ------ | ------------ | ------------------------------------------------------------------------------------------------- |
 | `selector` | string | —            | CSS/XPath-Selektor für das iframe-Element. Weglassen, um zum Frame der obersten Ebene zurückzukehren. |
 
 ```js
-// In ein iframe wechseln
+// In einen iframe wechseln
 switch_frame({ selector: "#my-iframe" })
 
 // Mit Elementen innerhalb des iframes interagieren
@@ -158,13 +158,13 @@ switch_frame()
 
 ### `click_element`
 
-Wartet, bis ein Element existiert, scrollt es in den sichtbaren Bereich und klickt darauf. Funktioniert im Browser und auf Mobilgeräten. Auf iOS sollten Sie `tap_element` bevorzugen; `click_element` wird von der nativen Ebene manchmal ignoriert.
+Wartet, bis ein Element existiert, scrollt es in den sichtbaren Bereich und klickt darauf. Funktioniert im Browser und auf Mobilgeräten. Unter iOS sollten Sie `tap_element` bevorzugen; `click_element` wird von der nativen Ebene manchmal ignoriert.
 
-| Parameter      | Typ     | Erforderlich | Standard | Beschreibung                                             |
-| -------------- | ------- | ------------ | -------- | -------------------------------------------------------- |
-| `selector`     | string  | ✓            | —        | CSS-, XPath- oder Text-Selektor                          |
+| Parameter      | Typ     | Erforderlich | Standard | Beschreibung                                         |
+| -------------- | ------- | ------------ | -------- | ---------------------------------------------------- |
+| `selector`     | string  | ✓            | —        | CSS-, XPath- oder Text-Selektor                      |
 | `scrollToView` | boolean | —            | `true`   | Element vor dem Klicken in den sichtbaren Bereich scrollen |
-| `timeout`      | number  | —            | —        | Maximale Wartezeit (ms)                                  |
+| `timeout`      | number  | —            | —        | Maximale Wartezeit (ms)                              |
 
 ---
 
@@ -172,18 +172,18 @@ Wartet, bis ein Element existiert, scrollt es in den sichtbaren Bereich und klic
 
 Leert ein Input- oder Textarea-Feld und tippt den angegebenen Text ein. Ersetzt immer den vorhandenen Inhalt.
 
-| Parameter      | Typ     | Erforderlich | Standard | Beschreibung                                             |
-| -------------- | ------- | ------------ | -------- | -------------------------------------------------------- |
-| `selector`     | string  | ✓            | —        | CSS-, XPath- oder Text-Selektor                          |
-| `value`        | string  | ✓            | —        | Einzugebender Text                                       |
+| Parameter      | Typ     | Erforderlich | Standard | Beschreibung                                        |
+| -------------- | ------- | ------------ | -------- | --------------------------------------------------- |
+| `selector`     | string  | ✓            | —        | CSS-, XPath- oder Text-Selektor                     |
+| `value`        | string  | ✓            | —        | Einzugebender Text                                  |
 | `scrollToView` | boolean | —            | `true`   | Element vor dem Tippen in den sichtbaren Bereich scrollen |
-| `timeout`      | number  | —            | —        | Maximale Wartezeit (ms)                                  |
+| `timeout`      | number  | —            | —        | Maximale Wartezeit (ms)                             |
 
 ---
 
 ### `scroll`
 
-Scrollt die Seite um eine Anzahl von Pixeln. **Browser-only.** Verwenden Sie auf Mobilgeräten `swipe`.
+Scrollt die Seite um eine Anzahl von Pixeln. **Nur Browser.** Verwenden Sie auf Mobilgeräten `swipe`.
 
 | Parameter   | Typ              | Erforderlich | Standard | Beschreibung          |
 | ----------- | ---------------- | ------------ | -------- | --------------------- |
@@ -194,7 +194,7 @@ Scrollt die Seite um eine Anzahl von Pixeln. **Browser-only.** Verwenden Sie auf
 
 ### `get_elements`
 
-Gibt interagierbare Elemente auf der aktuellen Seite mit sofort verwendbaren Selektoren zurück. Bevorzugen Sie die Ressource `wdio://session/current/elements` für die laufende Kontextwahrnehmung; verwenden Sie dieses Tool, wenn Sie Filterung oder Paginierung benötigen.
+Gibt interagierbare Elemente auf der aktuellen Seite mit sofort verwendbaren Selektoren zurück. Bevorzugen Sie die Ressource `wdio://session/current/elements` für ein allgemeines Kontextbewusstsein; verwenden Sie dieses Tool, wenn Sie Filterung oder Paginierung benötigen.
 
 | Parameter           | Typ     | Erforderlich | Standard | Beschreibung                                         |
 | ------------------- | ------- | ------------ | -------- | ---------------------------------------------------- |
@@ -208,70 +208,70 @@ Gibt interagierbare Elemente auf der aktuellen Seite mit sofort verwendbaren Sel
 
 ### `get_accessibility_tree`
 
-Gibt den Accessibility-Tree der Seite mit Rollen, Namen und Selektoren zurück. Unterstützt Filterung und Paginierung. **Browser-only.**
+Gibt den Accessibility-Tree der Seite mit Rollen, Namen und Selektoren zurück. Unterstützt Filterung und Paginierung. **Nur Browser.**
 
-| Parameter | Typ      | Erforderlich | Standard | Beschreibung                                                   |
-| --------- | -------- | ------------ | -------- | -------------------------------------------------------------- |
-| `limit`   | number   | —            | `0`      | Maximale Anzahl zurückgegebener Knoten (0 = unbegrenzt)        |
-| `offset`  | number   | —            | `0`      | Zu überspringende Knoten (Paginierung)                         |
-| `roles`   | string[] | —            | —        | Nach ARIA-Rollen filtern, z. B. `["button", "link", "heading"]` |
+| Parameter | Typ      | Erforderlich | Standard | Beschreibung                                                     |
+| --------- | -------- | ------------ | -------- | ---------------------------------------------------------------- |
+| `limit`   | number   | —            | `0`      | Maximale Anzahl zurückgegebener Knoten (0 = unbegrenzt)          |
+| `offset`  | number   | —            | `0`      | Zu überspringende Knoten (Paginierung)                           |
+| `roles`   | string[] | —            | —        | Nach ARIA-Rollen filtern, z. B. `["button", "link", "heading"]`  |
 
 ## Screenshots
 
 ### `get_screenshot`
 
-Erstellt einen Screenshot der aktuellen Seite bzw. des aktuellen Bildschirms. Gibt ein base64-codiertes Bild zurück, das automatisch skaliert und komprimiert wird, um innerhalb der Kontextgrenzen des Modells zu bleiben (max. 1 MB, max. 2000 px).
+Erstellt einen Screenshot der aktuellen Seite bzw. des Bildschirms. Gibt ein base64-kodiertes Bild zurück, das automatisch verkleinert und komprimiert wird, um innerhalb der Kontextgrenzen des Modells zu bleiben (max. 1 MB, max. 2000px).
 
-Keine Parameter. Bevorzugen Sie zur Elementerkennung `wdio://session/current/elements` gegenüber Screenshots; das ist schneller und verbraucht deutlich weniger Tokens. Verwenden Sie Screenshots zur visuellen Überprüfung oder zum Debuggen des Layouts.
+Keine Parameter. Bevorzugen Sie für die Elementerkennung `wdio://session/current/elements` gegenüber Screenshots; das ist schneller und verbraucht deutlich weniger Tokens. Verwenden Sie Screenshots zur visuellen Überprüfung oder zum Debuggen von Layouts.
 
 ## Cookie-Verwaltung
 
 ### `get_cookies`
 
-Gibt alle Cookies der aktuellen Session oder ein einzelnes Cookie anhand des Namens zurück. **Browser-only.**
+Gibt alle Cookies der aktuellen Session oder ein einzelnes Cookie anhand des Namens zurück. **Nur Browser.**
 
-| Parameter | Typ    | Erforderlich | Beschreibung                                         |
-| --------- | ------ | ------------ | ---------------------------------------------------- |
+| Parameter | Typ    | Erforderlich | Beschreibung                                        |
+| --------- | ------ | ------------ | --------------------------------------------------- |
 | `name`    | string | —            | Cookie-Name. Weglassen, um alle Cookies zurückzugeben. |
 
 ---
 
 ### `set_cookie`
 
-Setzt ein Browser-Cookie. Der Browser muss sich bereits auf der Ziel-Domain befinden – Cookies können nicht domainübergreifend gesetzt werden. Nützlich, um Session-Tokens oder Feature-Flags einzuschleusen, ohne Login-Abläufe durchlaufen zu müssen. **Browser-only.**
+Setzt ein Browser-Cookie. Der Browser muss sich bereits auf der Ziel-Domain befinden — Cookies können nicht domainübergreifend gesetzt werden. Verwenden Sie dies, um Session-Tokens oder Feature-Flags einzuschleusen, ohne Login-Abläufe durchlaufen zu müssen. **Nur Browser.**
 
-| Parameter  | Typ                           | Erforderlich | Beschreibung                                    |
-| ---------- | ----------------------------- | ------------ | ----------------------------------------------- |
-| `name`     | string                        | ✓            | Cookie-Name                                     |
-| `value`    | string                        | ✓            | Cookie-Wert                                     |
-| `domain`   | string                        | —            | Cookie-Domain (Standard: aktuelle Domain)       |
-| `path`     | string                        | —            | Cookie-Pfad (Standard: `/`)                     |
-| `expiry`   | number                        | —            | Ablaufzeit als Unix-Zeitstempel (Sekunden)      |
-| `httpOnly` | boolean                       | —            | HttpOnly-Flag                                   |
-| `secure`   | boolean                       | —            | Secure-Flag                                     |
-| `sameSite` | `"strict" \| "lax" \| "none"` | —            | SameSite-Attribut                               |
+| Parameter  | Typ                           | Erforderlich | Beschreibung                                        |
+| ---------- | ----------------------------- | ------------ | --------------------------------------------------- |
+| `name`     | string                        | ✓            | Cookie-Name                                         |
+| `value`    | string                        | ✓            | Cookie-Wert                                         |
+| `domain`   | string                        | —            | Cookie-Domain (Standard: aktuelle Domain)           |
+| `path`     | string                        | —            | Cookie-Pfad (Standard: `/`)                         |
+| `expiry`   | number                        | —            | Ablaufzeitpunkt als Unix-Timestamp (Sekunden)       |
+| `httpOnly` | boolean                       | —            | HttpOnly-Flag                                       |
+| `secure`   | boolean                       | —            | Secure-Flag                                         |
+| `sameSite` | `"strict" \| "lax" \| "none"` | —            | SameSite-Attribut                                   |
 
 ---
 
 ### `delete_cookies`
 
-Löscht alle Cookies oder ein bestimmtes Cookie anhand des Namens. **Browser-only.**
+Löscht alle Cookies oder ein bestimmtes Cookie anhand des Namens. **Nur Browser.**
 
-| Parameter | Typ    | Erforderlich | Beschreibung                                                     |
-| --------- | ------ | ------------ | ---------------------------------------------------------------- |
+| Parameter | Typ    | Erforderlich | Beschreibung                                                   |
+| --------- | ------ | ------------ | -------------------------------------------------------------- |
 | `name`    | string | —            | Name des zu löschenden Cookies. Weglassen, um alle Cookies zu löschen. |
 
-## Touch-Gesten (Mobile)
+## Touch-Gesten (Mobil)
 
 ### `tap_element`
 
-Ruft `element.tap()` auf einem gefundenen Element auf oder tippt auf absolute Bildschirmkoordinaten. Verwenden Sie dies auf iOS, wenn `click_element` ignoriert wird; Tippen ist die native Geste, auf die iOS reagiert. **Mobile-only.**
+Ruft `element.tap()` für ein gefundenes Element auf oder tippt auf absolute Bildschirmkoordinaten. Verwenden Sie dies unter iOS, wenn `click_element` ignoriert wird; Tippen ist die native Geste, auf die iOS reagiert. **Nur Mobil.**
 
-| Parameter  | Typ    | Erforderlich | Beschreibung                                              |
-| ---------- | ------ | ------------ | --------------------------------------------------------- |
-| `selector` | string | —            | Element-Selektor                                          |
-| `x`        | number | —            | X-Koordinate für das Tippen auf den Bildschirm (ohne Selektor) |
-| `y`        | number | —            | Y-Koordinate für das Tippen auf den Bildschirm (ohne Selektor) |
+| Parameter  | Typ    | Erforderlich | Beschreibung                                         |
+| ---------- | ------ | ------------ | ---------------------------------------------------- |
+| `selector` | string | —            | Element-Selektor                                     |
+| `x`        | number | —            | X-Koordinate für das Tippen (falls kein Selektor)    |
+| `y`        | number | —            | Y-Koordinate für das Tippen (falls kein Selektor)    |
 
 Geben Sie entweder `selector` oder `x`/`y`-Koordinaten an.
 
@@ -279,33 +279,33 @@ Geben Sie entweder `selector` oder `x`/`y`-Koordinaten an.
 
 ### `swipe`
 
-Führt eine Wischgeste über den gesamten Bildschirm aus. Die Richtung entspricht der Bewegungsrichtung des Inhalts (z. B. scrollt `"up"` eine Liste nach oben). Verwenden Sie dies zum Scrollen über die sichtbaren Grenzen hinaus. Um ein bestimmtes Element zu bewegen, verwenden Sie `drag_and_drop`. **Mobile-only.** Verwenden Sie in Browsern `scroll`.
+Führt eine bildschirmfüllende Wischgeste aus. Die Richtung ist die Bewegungsrichtung des Inhalts (z. B. scrollt `"up"` eine Liste nach oben). Verwenden Sie dies zum Scrollen über die sichtbaren Grenzen hinaus. Um ein bestimmtes Element zu verschieben, verwenden Sie `drag_and_drop`. **Nur Mobil.** Verwenden Sie in Browsern `scroll`.
 
-| Parameter   | Typ                                   | Erforderlich | Standard       | Beschreibung                                 |
-| ----------- | ------------------------------------- | ------------ | -------------- | -------------------------------------------- |
-| `direction` | `"up" \| "down" \| "left" \| "right"` | ✓            | —              | Wischrichtung                                |
-| `duration`  | number                                | —            | `500`          | Dauer des Wischens (ms, 100–5000)            |
-| `percent`   | number                                | —            | `0.5` / `0.95` | Anteil des Bildschirms, über den gewischt wird (0–1) |
+| Parameter   | Typ                                   | Erforderlich | Standard       | Beschreibung                                   |
+| ----------- | ------------------------------------- | ------------ | -------------- | ---------------------------------------------- |
+| `direction` | `"up" \| "down" \| "left" \| "right"` | ✓            | —              | Wischrichtung                                  |
+| `duration`  | number                                | —            | `500`          | Wischdauer (ms, 100–5000)                      |
+| `percent`   | number                                | —            | `0.5` / `0.95` | Anteil des Bildschirms, der gewischt wird (0–1) |
 
 ---
 
 ### `drag_and_drop`
 
-Zieht ein Element auf ein anderes Element oder zu Koordinaten. **Mobile-only.**
+Zieht ein Element auf ein anderes Element oder auf Koordinaten. **Nur Mobil.**
 
-| Parameter        | Typ    | Erforderlich | Standard | Beschreibung                                  |
-| ---------------- | ------ | ------------ | -------- | --------------------------------------------- |
-| `sourceSelector` | string | ✓            | —        | Zu ziehendes Quellelement                     |
-| `targetSelector` | string | —            | —        | Zielelement, auf das abgelegt wird            |
-| `x`              | number | —            | —        | X-Zielversatz (ohne targetSelector)           |
-| `y`              | number | —            | —        | Y-Zielversatz (ohne targetSelector)           |
-| `duration`       | number | —            | —        | Dauer des Ziehens (ms, 100–5000)              |
+| Parameter        | Typ    | Erforderlich | Standard | Beschreibung                                    |
+| ---------------- | ------ | ------------ | -------- | ----------------------------------------------- |
+| `sourceSelector` | string | ✓            | —        | Zu ziehendes Quellelement                       |
+| `targetSelector` | string | —            | —        | Zielelement, auf dem abgelegt wird              |
+| `x`              | number | —            | —        | X-Offset des Ziels (falls kein targetSelector)  |
+| `y`              | number | —            | —        | Y-Offset des Ziels (falls kein targetSelector)  |
+| `duration`       | number | —            | —        | Ziehdauer (ms, 100–5000)                        |
 
-## Kontextwechsel (Mobile)
+## Kontextwechsel (Mobil)
 
 ### `get_contexts`
 
-Gibt die verfügbaren Automatisierungskontexte sowie den aktuell aktiven Kontext zurück. Verwenden Sie dies vor `switch_context`, um `NATIVE_APP`- und `WEBVIEW_*`-Ziele zu ermitteln. **Mobile-only.**
+Gibt die verfügbaren Automatisierungskontexte und den aktuell aktiven Kontext zurück. Verwenden Sie dies vor `switch_context`, um `NATIVE_APP`- und `WEBVIEW_*`-Ziele zu ermitteln. **Nur Mobil.**
 
 Keine Parameter.
 
@@ -313,13 +313,13 @@ Keine Parameter.
 
 ### `switch_context`
 
-Wechselt in einer hybriden Mobile-App zwischen nativen und Webview-Automatisierungskontexten. Erforderlich, bevor CSS/XPath-Selektoren innerhalb einer eingebetteten Webview verwendet werden. **Mobile-only.**
+Wechselt in einer hybriden Mobile-App zwischen nativen und Webview-Automatisierungskontexten. Erforderlich, bevor CSS/XPath-Selektoren innerhalb einer eingebetteten Webview verwendet werden. **Nur Mobil.**
 
-| Parameter | Typ    | Erforderlich | Beschreibung                                                       |
-| --------- | ------ | ------------ | ------------------------------------------------------------------ |
-| `context` | string | ✓            | Kontextname, z. B. `"NATIVE_APP"`, `"WEBVIEW_com.example.app"`     |
+| Parameter | Typ    | Erforderlich | Beschreibung                                                     |
+| --------- | ------ | ------------ | ---------------------------------------------------------------- |
+| `context` | string | ✓            | Kontextname, z. B. `"NATIVE_APP"`, `"WEBVIEW_com.example.app"`   |
 
-Verfügbare Kontextnamen erhalten Sie über `get_contexts` oder `wdio://session/current/contexts`.
+Verfügbare Kontextnamen erhalten Sie von `get_contexts` oder `wdio://session/current/contexts`.
 
 ```js
 // 1. Prüfen, was verfügbar ist
@@ -332,15 +332,15 @@ switch_context({ context: "WEBVIEW_com.example.app" })
 // 3. Mit Webview-Elementen über CSS-Selektoren interagieren
 click_element({ selector: "#login-button" })
 
-// 4. Für die native UI zurück zu nativ wechseln
+// 4. Für native UI zurück zum nativen Kontext wechseln
 switch_context({ context: "NATIVE_APP" })
 ```
 
-## Gerätesteuerung (Mobile)
+## Gerätesteuerung (Mobil)
 
 ### `rotate_device`
 
-Dreht das Gerät in Hoch- oder Querformat und wartet, bis die Drehung durch das Betriebssystem abgeschlossen ist. Verwenden Sie dies, um ausrichtungsabhängige Layouts zu testen. **Mobile-only.**
+Dreht das Gerät in das Hoch- oder Querformat und wartet, bis die Drehung durch das Betriebssystem abgeschlossen ist. Verwenden Sie dies, um ausrichtungsabhängige Layouts zu testen. **Nur Mobil.**
 
 | Parameter     | Typ                         | Erforderlich | Beschreibung       |
 | ------------- | --------------------------- | ------------ | ------------------ |
@@ -350,7 +350,7 @@ Dreht das Gerät in Hoch- oder Querformat und wartet, bis die Drehung durch das 
 
 ### `hide_keyboard`
 
-Blendet die Bildschirmtastatur aus. Rufen Sie dies nach einer Texteingabe auf, wenn die Tastatur Elemente verdeckt, die Sie als Nächstes benötigen. Hat keine Wirkung, wenn sie bereits ausgeblendet ist. **Mobile-only.**
+Blendet die Bildschirmtastatur aus. Rufen Sie dies nach einer Texteingabe auf, wenn die Tastatur Elemente verdeckt, die Sie als Nächstes benötigen. Hat keine Wirkung, wenn die Tastatur bereits ausgeblendet ist. **Nur Mobil.**
 
 Keine Parameter.
 
@@ -358,19 +358,19 @@ Keine Parameter.
 
 ### `set_geolocation`
 
-Überschreibt die GPS-Koordinaten des Geräts für die Session. Wirkt sich auf `navigator.geolocation` im Web und auf Standortdienste auf Mobilgeräten aus. Der App müssen zuvor Standortberechtigungen erteilt worden sein.
+Überschreibt die GPS-Koordinaten des Geräts für die Session. Wirkt sich auf `navigator.geolocation` im Web und auf Standortdienste auf Mobilgeräten aus. Der App müssen vorher Standortberechtigungen erteilt worden sein.
 
-| Parameter   | Typ    | Erforderlich | Beschreibung               |
-| ----------- | ------ | ------------ | -------------------------- |
-| `latitude`  | number | ✓            | Breitengrad (−90 bis 90)   |
-| `longitude` | number | ✓            | Längengrad (−180 bis 180)  |
-| `altitude`  | number | —            | Höhe in Metern             |
+| Parameter   | Typ    | Erforderlich | Beschreibung                  |
+| ----------- | ------ | ------------ | ----------------------------- |
+| `latitude`  | number | ✓            | Breitengrad (−90 bis 90)      |
+| `longitude` | number | ✓            | Längengrad (−180 bis 180)     |
+| `altitude`  | number | —            | Höhe in Metern                |
 
-## App-Lebenszyklus (Mobile)
+## App-Lebenszyklus (Mobil)
 
 ### `get_app_state`
 
-Gibt den aktuellen Lebenszyklus-Zustand einer Mobile-App zurück. **Mobile-only.**
+Gibt den aktuellen Lebenszyklusstatus einer Mobile-App zurück. **Nur Mobil.**
 
 | Parameter  | Typ    | Erforderlich | Beschreibung                                                          |
 | ---------- | ------ | ------------ | --------------------------------------------------------------------- |
@@ -378,15 +378,15 @@ Gibt den aktuellen Lebenszyklus-Zustand einer Mobile-App zurück. **Mobile-only.
 
 Gibt einen der folgenden Werte zurück: `not installed`, `not running`, `background (suspended)`, `background`, `foreground`.
 
-## Browser-Hilfsprogramme
+## Browser-Hilfsmittel
 
 ### `emulate_device`
 
-Emuliert ein Mobil- oder Tablet-Gerät in der aktuellen Browser-Session (setzt Viewport, DPR, User-Agent, Touch-Events). Erfordert eine BiDi-fähige Session: `start_session({ capabilities: { webSocketUrl: true } })`. **Browser-only.**
+Emuliert ein Mobil- oder Tablet-Gerät in der aktuellen Browser-Session (setzt Viewport, DPR, User-Agent, Touch-Events). Erfordert eine BiDi-fähige Session: `start_session({ capabilities: { webSocketUrl: true } })`. **Nur Browser.**
 
-| Parameter | Typ    | Erforderlich | Beschreibung                                                                                                                              |
-| --------- | ------ | ------------ | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| `device`  | string | —            | Name der Geräte-Voreinstellung (z. B. `"iPhone 15"`, `"Pixel 7"`). Weglassen, um Voreinstellungen aufzulisten. `"reset"` übergeben, um Desktop-Standards wiederherzustellen. |
+| Parameter | Typ    | Erforderlich | Beschreibung                                                                                                                                  |
+| --------- | ------ | ------------ | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| `device`  | string | —            | Name der Geräte-Voreinstellung (z. B. `"iPhone 15"`, `"Pixel 7"`). Weglassen, um Voreinstellungen aufzulisten. `"reset"` übergeben, um die Desktop-Standardwerte wiederherzustellen. |
 
 ---
 
@@ -394,10 +394,10 @@ Emuliert ein Mobil- oder Tablet-Gerät in der aktuellen Browser-Session (setzt V
 
 Führt JavaScript im Browser oder mobile Befehle über Appium aus.
 
-| Parameter | Typ    | Erforderlich | Beschreibung                                                         |
-| --------- | ------ | ------------ | -------------------------------------------------------------------- |
-| `script`  | string | ✓            | JS-Code (Browser) oder Appium-Befehl wie `"mobile: pressKey"`        |
-| `args`    | any[]  | —            | Argumente, die an das Skript oder den Befehl übergeben werden        |
+| Parameter | Typ    | Erforderlich | Beschreibung                                                       |
+| --------- | ------ | ------------ | ------------------------------------------------------------------ |
+| `script`  | string | ✓            | JS-Code (Browser) oder Appium-Befehl wie `"mobile: pressKey"`      |
+| `args`    | any[]  | —            | An das Skript oder den Befehl übergebene Argumente                 |
 
 **Browser:** Verwenden Sie `return`, um Werte zurückzuerhalten.
 
@@ -409,7 +409,7 @@ execute_script({ script: "return document.title" })
 execute_script({ script: "arguments[0].scrollIntoView()", args: ["#my-element"] })
 ```
 
-**Mobile (Appium):** verwendet die Syntax `mobile: <command>`.
+**Mobil (Appium):** verwendet die Syntax `mobile: <command>`.
 
 ```javascript
 // Android-Zurück-Taste drücken
@@ -428,13 +428,13 @@ execute_script({ script: "mobile: deepLink", args: [{ url: "myapp://route", bund
 
 Listet Apps auf, die zu einem Cloud-Anbieter hochgeladen wurden (BrowserStack App Automate, Sauce Labs App Storage, TestMu oder TestingBot Storage). Liest anbieterspezifische Zugangsdaten aus der Umgebung.
 
-| Parameter          | Typ                                                         | Erforderlich | Standard         | Beschreibung                                         |
-| ------------------ | ----------------------------------------------------------- | ------------ | ---------------- | ---------------------------------------------------- |
-| `provider`         | `"browserstack" \| "saucelabs" \| "testmu" \| "testingbot"` | ✓            | —                | Cloud-Anbieter                                       |
-| `sortBy`           | `"app_name" \| "uploaded_at"`                               | —            | `"uploaded_at"`  | Sortierreihenfolge                                   |
+| Parameter          | Typ                                                         | Erforderlich | Standard         | Beschreibung                                              |
+| ------------------ | ----------------------------------------------------------- | ------------ | ---------------- | --------------------------------------------------------- |
+| `provider`         | `"browserstack" \| "saucelabs" \| "testmu" \| "testingbot"` | ✓            | —                | Cloud-Anbieter                                            |
+| `sortBy`           | `"app_name" \| "uploaded_at"`                               | —            | `"uploaded_at"`  | Sortierreihenfolge                                        |
 | `organizationWide` | boolean                                                     | —            | `false`          | (Nur BrowserStack) Alle Uploads der Organisation auflisten |
-| `limit`            | number                                                      | —            | `20`             | Maximale Anzahl an Ergebnissen                       |
-| `region`           | `"us-west-1" \| "eu-central-1" \| "apac-southeast-1"`       | —            | `"eu-central-1"` | Sauce-Labs-Region                                    |
+| `limit`            | number                                                      | —            | `20`             | Maximale Anzahl an Ergebnissen                            |
+| `region`           | `"us-west-1" \| "eu-central-1" \| "apac-southeast-1"`       | —            | `"eu-central-1"` | Sauce-Labs-Region                                         |
 
 ```js
 // Alle vier Anbieter auflisten
@@ -448,14 +448,14 @@ list_apps({ provider: "testingbot" })
 
 ### `upload_app`
 
-Lädt eine lokale `.apk` oder `.ipa` zu einem Cloud-Anbieter hoch (BrowserStack, Sauce Labs, TestMu oder TestingBot). Gibt die App-URL zur Verwendung in `start_session` zurück.
+Lädt eine lokale `.apk`- oder `.ipa`-Datei zu einem Cloud-Anbieter hoch (BrowserStack, Sauce Labs, TestMu oder TestingBot). Gibt die App-URL zur Verwendung in `start_session` zurück.
 
-| Parameter  | Typ                                                         | Erforderlich | Standard         | Beschreibung                                                  |
-| ---------- | ----------------------------------------------------------- | ------------ | ---------------- | ------------------------------------------------------------- |
-| `provider` | `"browserstack" \| "saucelabs" \| "testmu" \| "testingbot"` | ✓            | —                | Cloud-Anbieter                                                |
-| `path`     | string                                                      | ✓            | —                | Absoluter Pfad zur `.apk`- oder `.ipa`-Datei                  |
+| Parameter  | Typ                                                         | Erforderlich | Standard         | Beschreibung                                                     |
+| ---------- | ----------------------------------------------------------- | ------------ | ---------------- | ---------------------------------------------------------------- |
+| `provider` | `"browserstack" \| "saucelabs" \| "testmu" \| "testingbot"` | ✓            | —                | Cloud-Anbieter                                                   |
+| `path`     | string                                                      | ✓            | —                | Absoluter Pfad zur `.apk`- oder `.ipa`-Datei                     |
 | `customId` | string                                                      | —            | —                | Optionale benutzerdefinierte ID, um später auf die App zu verweisen |
-| `region`   | `"us-west-1" \| "eu-central-1" \| "apac-southeast-1"`       | —            | `"eu-central-1"` | Sauce-Labs-Region                                             |
+| `region`   | `"us-west-1" \| "eu-central-1" \| "apac-southeast-1"`       | —            | `"eu-central-1"` | Sauce-Labs-Region                                                |
 
 ```js
 // Zu jedem Anbieter hochladen

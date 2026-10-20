@@ -29,7 +29,7 @@ También puedes pasar cualquier [opción de configuración de prueba](https://do
 
 Si quieres ejecutar pruebas contra un servidor que no es accesible desde Internet (como en `localhost`), entonces necesitas usar [Sauce Connect](https://docs.saucelabs.com/secure-connections/#sauce-connect-proxy).
 
-Dar soporte a esto está fuera del alcance de WebdriverIO, así que tendrás que iniciarlo por tu cuenta.
+Dar soporte a esto está fuera del alcance de WebdriverIO, por lo que tendrás que iniciarlo por tu cuenta.
 
 Si estás usando el testrunner de WDIO, descarga y configura el [`@wdio/sauce-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-sauce-service) en tu `wdio.conf.js`. Ayuda a poner en marcha Sauce Connect e incluye funciones adicionales que integran mejor tus pruebas en el servicio de Sauce.
 
@@ -37,7 +37,7 @@ Si estás usando el testrunner de WDIO, descarga y configura el [`@wdio/sauce-se
 
 Sin embargo, Travis CI [sí tiene soporte](http://docs.travis-ci.com/user/sauce-connect/#Setting-up-Sauce-Connect) para iniciar Sauce Connect antes de cada prueba, por lo que seguir sus instrucciones para ello es una opción.
 
-Si lo haces, debes establecer la opción de configuración de prueba `tunnel-identifier` en las `capabilities` de cada navegador. Travis la establece por defecto en la variable de entorno `TRAVIS_JOB_NUMBER`.
+Si lo haces, debes establecer la opción de configuración de prueba `tunnel-identifier` en las `capabilities` de cada navegador. Travis establece esto en la variable de entorno `TRAVIS_JOB_NUMBER` de forma predeterminada.
 
 Además, si quieres que Sauce Labs agrupe tus pruebas por número de build, puedes establecer `build` en `TRAVIS_BUILD_NUMBER`.
 
@@ -58,7 +58,7 @@ build: process.env.TRAVIS_BUILD_NUMBER
 
 Dado que estás ejecutando tus pruebas de forma remota, podría ser necesario aumentar algunos tiempos de espera.
 
-Puedes cambiar el [tiempo de inactividad](https://docs.saucelabs.com/dev/test-configuration-options/#idletimeout) pasando `idle-timeout` como opción de configuración de prueba. Esto controla cuánto tiempo esperará Sauce entre comandos antes de cerrar la conexión.
+Puedes cambiar el [tiempo de espera de inactividad](https://docs.saucelabs.com/dev/test-configuration-options/#idletimeout) pasando `idle-timeout` como opción de configuración de prueba. Esto controla cuánto tiempo esperará Sauce entre comandos antes de cerrar la conexión.
 
 ## BrowserStack
 
@@ -72,7 +72,7 @@ También puedes pasar cualquier [capacidad soportada](https://www.browserstack.c
 
 Si quieres ejecutar pruebas contra un servidor que no es accesible desde Internet (como en `localhost`), entonces necesitas usar [Local Testing](https://www.browserstack.com/local-testing#command-line).
 
-Dar soporte a esto está fuera del alcance de WebdriverIO, así que debes iniciarlo por tu cuenta.
+Dar soporte a esto está fuera del alcance de WebdriverIO, por lo que debes iniciarlo por tu cuenta.
 
 Si usas local, debes establecer `browserstack.local` en `true` en tus capacidades.
 
@@ -130,7 +130,7 @@ También puedes pasar cualquier [capacidad soportada](https://www.testmuai.com/c
 
 Si quieres ejecutar pruebas contra un servidor que no es accesible desde Internet (como en `localhost`), entonces necesitas usar [Local Testing](https://www.testmuai.com/support/docs/testing-locally-hosted-pages/).
 
-Dar soporte a esto está fuera del alcance de WebdriverIO, así que debes iniciarlo por tu cuenta.
+Dar soporte a esto está fuera del alcance de WebdriverIO, por lo que debes iniciarlo por tu cuenta.
 
 Si usas local, debes establecer `tunnel` en `true` en tus capacidades.
 
@@ -202,7 +202,7 @@ export const config = {
 }
 ```
 
-Alternativamente, pasa el token como prefijo de la ruta, que el grid elimina antes de reenviar la solicitud:
+Como alternativa, pasa el token como prefijo de la ruta, que el grid elimina antes de reenviar la solicitud:
 
 ```js
 export const config = {

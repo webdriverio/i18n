@@ -4,11 +4,11 @@ title: Preact
 description: "إعداد مشغل المتصفح في WebdriverIO لمشروع Preact باستخدام الإعداد المسبق preact وكتابة اختبارات المكونات باستخدام Testing Library."
 ---
 
-[Preact](https://preactjs.com/) هو بديل سريع لـ React بحجم 3 كيلوبايت يتمتع بنفس واجهة البرمجة الحديثة. يمكنك اختبار مكونات Preact مباشرةً في متصفح حقيقي باستخدام WebdriverIO و[مشغل المتصفح](/docs/runner#browser-runner) الخاص به.
+[Preact](https://preactjs.com/) هو بديل سريع لـ React بحجم 3 كيلوبايت فقط مع نفس واجهة البرمجة الحديثة. يمكنك اختبار مكونات Preact مباشرة في متصفح حقيقي باستخدام WebdriverIO و[مشغل المتصفح](/docs/runner#browser-runner) الخاص به.
 
 ## الإعداد
 
-لإعداد WebdriverIO داخل مشروع Preact الخاص بك، اتبع [التعليمات](/docs/component-testing#set-up) الموجودة في وثائق اختبار المكونات لدينا. تأكد من اختيار `preact` كإعداد مسبق (preset) ضمن خيارات المشغل، على سبيل المثال:
+لإعداد WebdriverIO ضمن مشروع Preact الخاص بك، اتبع [التعليمات](/docs/component-testing#set-up) الموجودة في وثائق اختبار المكونات لدينا. تأكد من اختيار `preact` كإعداد مسبق (preset) ضمن خيارات المشغل، على سبيل المثال:
 
 ```js
 // wdio.conf.js
@@ -23,11 +23,11 @@ export const config = {
 
 :::info
 
-إذا كنت تستخدم بالفعل [Vite](https://vitejs.dev/) كخادم تطوير، يمكنك أيضًا ببساطة إعادة استخدام إعداداتك الموجودة في `vite.config.ts` ضمن إعدادات WebdriverIO. لمزيد من المعلومات، راجع `viteConfig` في [خيارات المشغل](/docs/runner#runner-options).
+إذا كنت تستخدم بالفعل [Vite](https://vitejs.dev/) كخادم تطوير، فيمكنك أيضًا إعادة استخدام التكوين الخاص بك في `vite.config.ts` ضمن تكوين WebdriverIO. لمزيد من المعلومات، راجع `viteConfig` في [خيارات المشغل](/docs/runner#runner-options).
 
 :::
 
-يتطلب الإعداد المسبق لـ Preact تثبيت `@preact/preset-vite`. كما نوصي باستخدام [Testing Library](https://testing-library.com/) لعرض المكون في صفحة الاختبار. لذلك ستحتاج إلى تثبيت الاعتماديات الإضافية التالية:
+يتطلب الإعداد المسبق لـ Preact تثبيت `@preact/preset-vite`. كما نوصي باستخدام [Testing Library](https://testing-library.com/) لعرض المكون في صفحة الاختبار. لذلك ستحتاج إلى تثبيت التبعيات الإضافية التالية:
 
 ```sh npm2yarn
 npm install --save-dev @testing-library/preact @preact/preset-vite
@@ -65,7 +65,7 @@ export function Counter({ initialCount }: Props) {
 
 ```
 
-في اختبارك، استخدم الدالة `render` من `@testing-library/preact` لإرفاق المكون بصفحة الاختبار. للتفاعل مع المكون، نوصي باستخدام أوامر WebdriverIO لأنها تتصرف بشكل أقرب إلى تفاعلات المستخدم الفعلية، على سبيل المثال:
+في اختبارك، استخدم طريقة `render` من `@testing-library/preact` لإرفاق المكون بصفحة الاختبار. للتفاعل مع المكون، نوصي باستخدام أوامر WebdriverIO لأنها تتصرف بشكل أقرب إلى تفاعلات المستخدم الفعلية، على سبيل المثال:
 
 ```ts title="app.test.tsx"
 import { expect } from 'expect'

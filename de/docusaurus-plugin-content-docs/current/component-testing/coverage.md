@@ -1,20 +1,20 @@
 ---
 id: coverage
-title: Abdeckung
+title: Code-Abdeckung
 description: "Erfassen Sie die Code-Abdeckung für Komponententests mit dem Browser-Runner, der Ihren Code über Vite mit istanbul instrumentiert."
 ---
 
-Der Browser-Runner von WebdriverIO unterstützt die Berichterstattung über Code-Abdeckung mit [`istanbul`](https://istanbul.js.org/). Der Testrunner instrumentiert Ihren Code automatisch mit Vite und erfasst die Code-Abdeckung für Sie.
+Der Browser-Runner von WebdriverIO unterstützt die Berichterstattung über die Code-Abdeckung mit [`istanbul`](https://istanbul.js.org/). Der Testrunner instrumentiert Ihren Code automatisch mit Vite und erfasst die Code-Abdeckung für Sie.
 
-## Funktionsweise
+## Wie es funktioniert
 
-Der `@wdio/browser-runner` verwendet Vite, um Ihre Anwendung bereitzustellen. Wenn Sie die Abdeckung aktivieren, fügt er dem Vite-Server ein Plugin hinzu, das versucht, Ihren Quellcode spontan zu instrumentieren, sobald er vom Browser angefordert wird.
+Der `@wdio/browser-runner` verwendet Vite, um Ihre Anwendung bereitzustellen. Wenn Sie die Abdeckung aktivieren, fügt er dem Vite-Server ein Plugin hinzu, das versucht, Ihren Quellcode on the fly zu instrumentieren, sobald er vom Browser angefordert wird.
 
 :::warning Wichtig
 **Navigieren Sie nicht vom Testrunner weg!**
 
-Die Code-Abdeckung setzt voraus, dass die Dateien vom lokalen Vite-Server, der von WebdriverIO gestartet wird, bereitgestellt und instrumentiert werden.
-Wenn Sie `browser.url('http://...')` oder `browser.url('file://...')` verwenden, um zu einer anderen Seite zu navigieren, verlassen Sie die instrumentierte Umgebung. Ihr Code wird zwar ausgeführt, aber **es wird keine Abdeckung erfasst**.
+Die Code-Abdeckung setzt voraus, dass die Dateien vom lokalen, von WebdriverIO gestarteten Vite-Server bereitgestellt und instrumentiert werden.
+Wenn Sie `browser.url('http://...')` oder `browser.url('file://...')` verwenden, um zu einer anderen Seite zu navigieren, verlassen Sie die instrumentierte Umgebung. Ihr Code wird ausgeführt, aber **es wird keine Abdeckung erfasst**.
 
 **Richtiger Ansatz (Komponententests):**
 Rendern Sie Ihre Komponente oder importieren Sie Ihr Modul direkt in der Testdatei.
@@ -38,7 +38,7 @@ it('will not have coverage', async () => {
 
 ## Einrichtung
 
-Um die Berichterstattung über Code-Abdeckung zu aktivieren, aktivieren Sie sie über die Konfiguration des WebdriverIO-Browser-Runners, z. B.:
+Um die Berichterstattung über die Code-Abdeckung zu aktivieren, aktivieren Sie sie über die Konfiguration des WebdriverIO-Browser-Runners, z. B.:
 
 ```js title=wdio.conf.js
 export const config = {
@@ -75,12 +75,12 @@ Es kann Abschnitte Ihrer Codebasis geben, die Sie bewusst von der Abdeckungsverf
 
 - `/* istanbul ignore if */`: ignoriert die nächste if-Anweisung.
 - `/* istanbul ignore else */`: ignoriert den else-Teil einer if-Anweisung.
-- `/* istanbul ignore next */`: ignoriert das nächste Element im Quellcode (Funktionen, if-Anweisungen, Klassen usw.).
+- `/* istanbul ignore next */`: ignoriert das nächste Element im Quellcode (Funktionen, if-Anweisungen, Klassen, was auch immer).
 - `/* istanbul ignore file */`: ignoriert eine gesamte Quelldatei (dies sollte am Anfang der Datei platziert werden).
 
 :::info
 
-Es wird empfohlen, Ihre Testdateien von der Abdeckungsberichterstattung auszuschließen, da dies Fehler verursachen könnte, z. B. beim Aufruf des `execute`-Befehls. Wenn Sie sie in Ihrem Bericht behalten möchten, stellen Sie sicher, dass Sie ihre Instrumentierung wie folgt ausschließen:
+Es wird empfohlen, Ihre Testdateien von der Abdeckungsberichterstattung auszuschließen, da dies Fehler verursachen könnte, z. B. beim Aufruf des `execute`-Befehls. Wenn Sie sie in Ihrem Bericht behalten möchten, stellen Sie sicher, dass Sie deren Instrumentierung ausschließen über:
 
 ```ts
 await browser.execute(/* istanbul ignore next */() => {

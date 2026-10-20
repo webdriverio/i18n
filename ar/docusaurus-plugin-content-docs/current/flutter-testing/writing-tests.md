@@ -4,39 +4,39 @@ title: كتابة الاختبارات
 description: "اكتب اختبارات WebdriverIO لتطبيقات Flutter من خلال التبديل إلى سياق Flutter والتفاعل مع عناصر الواجهة (Widgets) عبر امتداد flutter_driver."
 ---
 
-يتناول هذا القسم البنية العملية لإنشاء سيناريوهات الاختبار الآلي، وكيفية التفاعل مباشرةً مع شجرة المكونات الداخلية لـ Flutter باستخدام WebdriverIO.
+يتناول هذا القسم البنية العملية لإنشاء سيناريوهات الاختبار الآلية، وكيفية التفاعل مباشرةً مع شجرة المكونات الداخلية لـ Flutter باستخدام WebdriverIO.
 
 ### لماذا يُعد تبديل السياق ضروريًا؟
 
-عند بدء جلسة أتمتة باستخدام Appium، يبدأ المشغّل (driver) التنفيذ بتعيين السياق الأصلي لنظام التشغيل، المعروف باسم `NATIVE_APP`. لا يمكن لهذا السياق رؤية سوى الغلاف الأصلي المحيط بالتطبيق (مثل شريط حالة النظام أو مربعات الحوار الأصلية في Android/iOS).
+عند بدء جلسة أتمتة باستخدام Appium، يبدأ برنامج التشغيل (driver) التنفيذ بتعيين السياق الأصلي لنظام التشغيل، والمعروف باسم `NATIVE_APP`. لا يمكن لهذا السياق أن يرى سوى الغلاف الأصلي المحيط بالتطبيق (مثل شريط حالة النظام أو مربعات الحوار الأصلية في Android/iOS).
 
-نظرًا لأن Flutter يعرض واجهة المستخدم الخاصة به داخل Canvas معزول، فإن العناصر الداخلية تكون غير مرئية ضمن سياق `NATIVE_APP`. ولإرسال الأوامر مباشرةً إلى امتداد الاختبار الخاص بـ Flutter (`flutter_driver`)، يجب علينا تبديل تركيز الأتمتة صراحةً إلى سياق `FLUTTER`. وبدون هذا التبديل، ستؤدي أي محاولة لتحديد موقع Widget إلى خطأ عدم العثور على العنصر.
+نظرًا لأن Flutter يعرض واجهة المستخدم الخاصة به داخل لوحة رسم (Canvas) معزولة، فإن العناصر الداخلية تكون غير مرئية ضمن سياق `NATIVE_APP`. ولإرسال الأوامر مباشرةً إلى امتداد الاختبار الخاص بـ Flutter (`flutter_driver`)، يجب علينا تبديل تركيز الأتمتة صراحةً إلى سياق `FLUTTER`. وبدون هذا التبديل، ستؤدي أي محاولة لتحديد موقع عنصر واجهة (Widget) إلى خطأ عدم العثور على العنصر.
 
 :::tip أفضل ممارسة: بدّل السياق دائمًا في `beforeEach`
-من أفضل الممارسات الموصى بها تضمين `await driver.switchContext('FLUTTER')` في خطاف `beforeEach` في كل ملف اختبار. يضمن ذلك أن يبدأ كل اختبار تنفيذه في سياق `FLUTTER`، مما يجنّب عدم الاستقرار (flakiness) أو تسرّب الحالة إذا قام اختبار سابق بالتبديل إلى `NATIVE_APP` (على سبيل المثال، للتعامل مع مربعات حوار أذونات نظام التشغيل) أو إذا أعادت جلسة ما تعيين السياق النشط.
+من أفضل الممارسات الموصى بها تضمين `await driver.switchContext('FLUTTER')` في خطاف `beforeEach` في كل ملف اختبار. يضمن ذلك أن يبدأ كل اختبار تنفيذه في سياق `FLUTTER`، مما يتجنب عدم الاستقرار أو تسرب الحالة إذا قام اختبار سابق بالتبديل إلى `NATIVE_APP` (على سبيل المثال، للتعامل مع مربعات حوار أذونات نظام التشغيل) أو إذا أعادت جلسة ما تعيين السياق النشط.
 :::
 
 ### لماذا تُعد `appium-flutter-finder` ضرورية؟
 
 صُممت محددات WebdriverIO التقليدية، مثل `$('~selector')` أو `$('#id')`، لتحديد موقع العناصر باستخدام استراتيجيات مخصصة لواجهات الويب أو الواجهات الأصلية للأجهزة المحمولة (مثل معرّفات الموارد أو XPath).
 
-يدير Flutter عناصره الداخلية الخاصة ويستخدم أساليب بحث خاصة به (مثل `byValueKey` و`byText` و`byType`). وتُعد مكتبة `appium-flutter-finder` ضرورية لأنها تعمل كمترجم: فهي تعرض استراتيجيات تحديد المواقع الخاصة بـ Flutter بتنسيق متسلسل (Base64/JSON) يمكن لـ `appium-flutter-driver` تفسيره وتنفيذه داخل آلة Dart الافتراضية (VM).
+يدير Flutter عناصره الداخلية الخاصة ويستخدم أساليب بحث خاصة به (مثل `byValueKey` و`byText` و`byType`). وتُعد مكتبة `appium-flutter-finder` مطلوبة لأنها تعمل كمترجم: فهي تعرض استراتيجيات تحديد المواقع الخاصة بـ Flutter بتنسيق متسلسل (Base64/JSON) يمكن لـ `appium-flutter-driver` تفسيره وتنفيذه داخل آلة Dart الافتراضية (VM).
 
-### أمثلة اختبار عملية
+### أمثلة عملية على الاختبارات
 
-نوثّق هنا سيناريوهات شائعة تستخدم `appium-flutter-finder` لتحديد موقع عناصر الواجهة (Widgets)، إلى جانب أوامر الامتداد المباشرة التي تُنفَّذ عبر `driver.execute('flutter:<command>')`.
+نوثّق هنا سيناريوهات شائعة تستخدم `appium-flutter-finder` لتحديد موقع عناصر الواجهة، إلى جانب أوامر الامتداد المباشرة التي تُنفَّذ عبر `driver.execute('flutter:<command>')`.
 
-:::info أوامر امتداد Flutter Driver والمحددات (Finders)
+:::info أوامر امتداد Flutter Driver والمُحدِّدات
 يوفر `appium-flutter-driver` أوامر متخصصة للتفاعل مع تطبيقات Flutter، بما في ذلك:
 - `flutter:waitFor`: ينتظر حتى يصبح عنصر الواجهة مرئيًا.
 - `flutter:waitForAbsent`: ينتظر حتى يختفي عنصر الواجهة.
-- `flutter:scroll` / `flutter:scrollIntoView` / `flutter:scrollUntilVisible`: يتعامل مع التمرير داخل طرق العرض القابلة للتمرير.
+- `flutter:scroll` / `flutter:scrollIntoView` / `flutter:scrollUntilVisible`: يتعامل مع التمرير داخل العروض القابلة للتمرير.
 - `flutter:setTextEntryEmulation`: يضبط سلوك إدخال النص.
 
 للاطلاع على القائمة الكاملة للأوامر المتاحة ومعاملاتها وأنواع القيم المُرجعة، راجع [توثيق أوامر Appium Flutter Driver](https://github.com/appium/appium-flutter-driver#commands)، و[الشيفرة المصدرية لـ Node.js Finder](https://github.com/appium/appium-flutter-driver/tree/main/finder/nodejs)، و[appium-flutter-finder على npm](https://www.npmjs.com/package/appium-flutter-finder).
 :::
 
-### المثال A — تفاعل بسيط (تدفق العدّاد)
+### المثال أ — تفاعل بسيط (تدفق العداد)
 
 ```typescript
 // counter.spec.ts
@@ -63,7 +63,7 @@ describe('Flutter Counter Flow', () => {
 });
 ```
 
-### المثال B — تنقّل مستقر (تجنّب انتهاء المهلة)
+### المثال ب — تنقل مستقر (تجنب انتهاء المهلة)
 
 ```typescript
 // redirects.spec.ts
@@ -95,7 +95,7 @@ describe('Flutter Redirects Flow', () => {
 });
 ```
 
-### المثال C — تبديل السياقات (مربعات حوار نظام التشغيل الأصلية والأذونات)
+### المثال ج — تبديل السياقات (مربعات حوار نظام التشغيل الأصلية والأذونات)
 
 ```typescript
 // native_dialog_context.spec.ts
@@ -119,7 +119,7 @@ describe('Flutter & Native Context Switching Flow', () => {
         await nativeAllowButton.waitForDisplayed();
         await nativeAllowButton.click();
 
-        // 3. عُد إلى سياق FLUTTER لمواصلة التحقق من عناصر واجهة Flutter
+        // 3. عُد إلى سياق FLUTTER لمتابعة التحقق من عناصر واجهة Flutter
         await driver.switchContext('FLUTTER');
 
         const permissionStatusText = find.byValueKey('permission_status_text');
@@ -132,7 +132,7 @@ describe('Flutter & Native Context Switching Flow', () => {
 
 ## تدفق البناء والتنفيذ
 
-لضمان أن تكون أحدث تغييرات شيفرة Dart والمفاتيح (Keys) مرئية للاختبارات، اتبع هذه الخطوات دائمًا:
+لضمان أن تكون أحدث تغييرات شيفرة Dart والمفاتيح (Keys) مرئية للاختبارات، اتبع دائمًا الخطوات التالية:
 
 ```bash
 flutter build apk -t lib/main_e2e.dart --debug

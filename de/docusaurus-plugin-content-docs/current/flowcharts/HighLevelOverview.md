@@ -1,9 +1,9 @@
 ---
 id: highleveloverview
-title: Überblick
+title: Überblick auf hoher Ebene
 description: "Sehen Sie sich ein Flussdiagramm an, das zeigt, wie das WebdriverIO-Ökosystem und seine Kernpakete während eines Testlaufs zusammenwirken."
 ---
-Das Flussdiagramm bietet einen allgemeinen Überblick darüber, wie das WebdriverIO-Ökosystem mit den Kernpaketen interagiert.
+Das Flussdiagramm bietet einen Überblick auf hoher Ebene darüber, wie das WebdriverIO-Ökosystem mit den Kernpaketen interagiert.
 
 ```mermaid
 graph LR

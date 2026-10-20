@@ -1,10 +1,10 @@
 ---
 id: browser-logs
 title: Browser-Logs
-description: "Erfassen Sie Browser-Konsolenlogs während eines Tests mit WebDriver-Bidi-Log-Events und prüfen Sie die gesammelten Nachrichten."
+description: "Erfassen Sie Browser-Konsolenlogs während eines Tests mit WebDriver-Bidi-Log-Events und prüfen Sie die gesammelten Nachrichten mit Assertions."
 ---
 
-Beim Ausführen von Tests kann der Browser wichtige Informationen protokollieren, die für Sie von Interesse sind oder die Sie überprüfen möchten.
+Beim Ausführen von Tests kann der Browser wichtige Informationen protokollieren, die für Sie von Interesse sind oder gegen die Sie Assertions durchführen möchten.
 
 <Tabs
 defaultValue="bidi"
@@ -22,12 +22,12 @@ Wenn Sie WebDriver Bidi verwenden, was die Standardmethode ist, mit der Webdrive
 await browser.sessionSubscribe({ events: ['log.entryAdded'] })
 
 /**
- * returns: {"type":"console","method":"log","realm":null,"args":[{"type":"string","value":"Hello Bidi"}],"level":"info","text":"Hello Bidi","timestamp":1657282076037}
+ * gibt zurück: {"type":"console","method":"log","realm":null,"args":[{"type":"string","value":"Hello Bidi"}],"level":"info","text":"Hello Bidi","timestamp":1657282076037}
  */
 browser.on('log.entryAdded', (entryAdded) => console.log('received %s', entryAdded))
 ```
 
-In einem Test können Sie Log-Events einfach in ein Array einfügen und dieses Array überprüfen, sobald Ihre Aktion abgeschlossen ist, z. B.:
+In einem Test können Sie Log-Events einfach in ein Array einfügen und dieses Array nach Abschluss Ihrer Aktion mit Assertions prüfen, z. B.:
 
 ```ts
 import type { local } from 'webdriver'
@@ -45,7 +45,7 @@ describe('should log when doing a certain action', () => {
     })
 
     it('should trigger the console event', () => {
-        // den Browser dazu veranlassen, eine Nachricht an die Konsole zu senden
+        // den Browser dazu bringen, eine Nachricht an die Konsole zu senden
         ...
 
         // prüfen, ob das Log erfasst wurde

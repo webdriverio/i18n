@@ -1,13 +1,13 @@
 ---
 id: multi-framework-support
-title: Compatibilidad con múltiples frameworks
-description: "Utiliza el servicio DevTools con Mocha, Jasmine o Cucumber sin configuración específica del framework."
+title: Soporte para múltiples frameworks
+description: "Usa el servicio DevTools con Mocha, Jasmine o Cucumber sin configuración específica del framework."
 ---
 
 DevTools funciona automáticamente con Mocha, Jasmine y Cucumber sin requerir ninguna configuración específica del framework. Simplemente agrega el servicio a tu configuración de WebDriverIO y todas las funcionalidades funcionarán sin problemas, independientemente del framework de pruebas que estés utilizando.
 
 **Frameworks compatibles:**
-- **Mocha** - Ejecución a nivel de prueba y de suite con filtrado mediante grep
+- **Mocha** - Ejecución a nivel de prueba y de suite con filtrado grep
 - **Jasmine** - Integración completa con filtrado basado en grep
 - **Cucumber** - Ejecución a nivel de escenario y de ejemplo con selección mediante feature:line
 

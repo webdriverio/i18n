@@ -1,10 +1,10 @@
 ---
 id: browser-logs
 title: Registros del navegador
-description: "Captura los registros de la consola del navegador durante una prueba con los eventos de registro de WebDriver Bidi y verifica los mensajes recopilados."
+description: "Captura los registros de la consola del navegador durante una prueba con los eventos de registro de WebDriver Bidi y realiza aserciones sobre los mensajes recopilados."
 ---
 
-Al ejecutar pruebas, el navegador puede registrar información importante que te interese o sobre la que quieras hacer aserciones.
+Al ejecutar pruebas, el navegador puede registrar información importante que te interese o sobre la que quieras realizar aserciones.
 
 <Tabs
 defaultValue="bidi"
@@ -16,7 +16,7 @@ values={[
 
 <TabItem value='bidi'>
 
-Al usar WebDriver Bidi, que es la forma predeterminada en que WebdriverIO automatiza el navegador, puedes suscribirte a los eventos que provienen del navegador. Para los eventos de registro, debes escuchar `log.entryAdded'`, por ejemplo:
+Al usar WebDriver Bidi, que es la forma predeterminada en que WebdriverIO automatiza el navegador, puedes suscribirte a eventos provenientes del navegador. Para los eventos de registro, debes escuchar `log.entryAdded'`, por ejemplo:
 
 ```ts
 await browser.sessionSubscribe({ events: ['log.entryAdded'] })
@@ -27,7 +27,7 @@ await browser.sessionSubscribe({ events: ['log.entryAdded'] })
 browser.on('log.entryAdded', (entryAdded) => console.log('received %s', entryAdded))
 ```
 
-En una prueba, simplemente puedes agregar los eventos de registro a un array y hacer aserciones sobre ese array una vez que tu acción haya terminado, por ejemplo:
+En una prueba, simplemente puedes agregar los eventos de registro a un array y realizar aserciones sobre ese array una vez que tu acción haya terminado, por ejemplo:
 
 ```ts
 import type { local } from 'webdriver'
@@ -48,7 +48,7 @@ describe('should log when doing a certain action', () => {
         // hace que el navegador envíe un mensaje a la consola
         ...
 
-        // verifica si se capturó el registro
+        // verifica si el registro fue capturado
         expect(logs).toContain('Hello Bidi')
     })
 
@@ -71,7 +71,7 @@ const logMessage = logs.find((log) => log.message.includes('Hello Bidi'))
 expect(logMessage).toBeTruthy()
 ```
 
-Nota: el comando `getLogs` solo puede obtener los registros más recientes del navegador. Es posible que eventualmente elimine los mensajes de registro si se vuelven demasiado antiguos.
+Nota: el comando `getLogs` solo puede obtener los registros más recientes del navegador. Es posible que elimine mensajes de registro con el tiempo si se vuelven demasiado antiguos.
 </TabItem>
 
 </Tabs>

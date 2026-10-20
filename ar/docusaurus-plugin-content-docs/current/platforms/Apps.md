@@ -4,11 +4,11 @@ title: الإضافات والمحررات
 description: حمّل إضافة متصفح أو إضافة VS Code في جلسة WebdriverIO واختبرها من البداية إلى النهاية.
 ---
 
-يختبر WebdriverIO إضافات المتصفح وإضافات المحررات عن طريق تحميلها في التطبيق المضيف الحقيقي. تعمل إضافات المتصفح (الويب) داخل Chrome أو Firefox. يمكنك تحميلها من خلال إمكانيات المتصفح (capabilities): باستخدام `--load-extension` أو ملف `.crx` بترميز base64 عبر `goog:chromeOptions` في Chrome، أو باستخدام `browser.installAddOn()` لملف `.xpi` في Firefox. في جلسة WebDriver BiDi يمكنك أيضًا تثبيت إضافة وإزالتها أثناء الجلسة باستخدام `browser.installExtension()` و`browser.uninstallExtension()`. لا يدعم Safari جلسات BiDi، لذا لا يشمل هذا الأمر Safari. بعد ذلك، يمكنك اختبار سكربتات المحتوى (content scripts) وصفحات النوافذ المنبثقة (popup) باستخدام أوامر WebDriver المعتادة. تُختبر إضافات VS Code باستخدام الخدمة المجتمعية [`wdio-vscode-service`](/docs/wdio-vscode-service). تقوم هذه الخدمة بتنزيل VS Code (الإصدار المستقر أو insiders أو إصدار محدد) وإصدار Chromedriver المطابق له، ثم تشغّل VS Code مع إضافتك وإعدادات المستخدم المخصصة. تتوفر كائنات الصفحات (page objects) الخاصة بمساحة العمل (workbench) عبر `browser.getWorkbench()`، ويقوم `browser.executeWorkbench()` بتشغيل التعليمات البرمجية على واجهة برمجة تطبيقات VS Code. يمكن للخدمة نفسها أيضًا تقديم VS Code داخل المتصفح لاختبار إضافات الويب. كما تتوفر خدمة مجتمعية لإضافات Obsidian أيضًا.
+يختبر WebdriverIO إضافات المتصفح وإضافات المحررات عن طريق تحميلها في التطبيق المضيف الحقيقي. تعمل إضافات المتصفح (الويب) داخل Chrome أو Firefox. يمكنك تحميلها من خلال قدرات المتصفح (capabilities): باستخدام `--load-extension` أو ملف `.crx` مُرمَّز بـ base64 عبر `goog:chromeOptions` في Chrome، أو باستخدام `browser.installAddOn()` لملف `.xpi` في Firefox. في جلسة WebDriver BiDi، يمكنك أيضًا تثبيت إضافة وإزالتها أثناء الجلسة باستخدام `browser.installExtension()` و`browser.uninstallExtension()`. لا يدعم Safari جلسات BiDi، لذا لا يشمل هذا الأمر Safari. بعد ذلك، يمكنك اختبار سكربتات المحتوى (content scripts) وصفحات النوافذ المنبثقة (popup) باستخدام أوامر WebDriver المعتادة. تُختبر إضافات VS Code باستخدام الخدمة المجتمعية [`wdio-vscode-service`](/docs/wdio-vscode-service). تقوم هذه الخدمة بتنزيل VS Code (الإصدار المستقر أو insiders أو إصدار محدد) وChromedriver المطابق له، ثم تشغّل VS Code مع إضافتك وإعدادات المستخدم المخصصة. تتوفر كائنات الصفحات (page objects) الخاصة بمنطقة العمل (workbench) من خلال `browser.getWorkbench()`، ويقوم `browser.executeWorkbench()` بتشغيل التعليمات البرمجية على واجهة VS Code البرمجية (API). يمكن للخدمة نفسها أيضًا تقديم VS Code داخل متصفح لاختبار إضافات الويب. كما تتوفر خدمة مجتمعية لإضافات Obsidian أيضًا.
 
 ## البدء السريع
 
-ثبّت أداة تشغيل الاختبارات ودعم TypeScript أولًا:
+ثبّت أولًا مشغّل الاختبارات ودعم TypeScript:
 
 ```sh
 npm install --save-dev @wdio/cli @wdio/local-runner @wdio/mocha-framework @wdio/spec-reporter tsx
@@ -24,7 +24,7 @@ npm install --save-dev @wdio/cli @wdio/local-runner @wdio/mocha-framework @wdio/
 
 ### إضافة Chrome
 
-ابنِ إضافتك في مجلد (هنا `./dist`) وحمّلها باستخدام وسيط Chrome ‏`--load-extension`:
+ابنِ إضافتك في مجلد (هنا `./dist`) وحمّلها باستخدام وسيط Chrome `--load-extension`:
 
 ```ts title="wdio.conf.ts"
 import path from 'node:path'
@@ -62,7 +62,7 @@ describe('My Web Extension', () => {
 })
 ```
 
-النقر على أيقونة الإضافة في شريط الأدوات لا يعمل. لاختبار `default_popup`، اعثر على معرّف الإضافة في `chrome://extensions/` وافتح `chrome-extension://<id>/<popup>.html` باستخدام `browser.url()`. يحتوي [دليل إضافات الويب](/docs/extension-testing/web-extensions#test-popup-modal-in-chrome) على أمر مخصص جاهز `openExtensionPopup` لهذا الغرض.
+النقر على أيقونة الإضافة في شريط الأدوات لا يعمل. لاختبار `default_popup`، ابحث عن معرّف الإضافة في `chrome://extensions/` وافتح `chrome-extension://<id>/<popup>.html` باستخدام `browser.url()`. يحتوي [دليل إضافات الويب](/docs/extension-testing/web-extensions#test-popup-modal-in-chrome) على أمر مخصص جاهز `openExtensionPopup` لهذا الغرض.
 
 ### إضافة VS Code
 
@@ -113,28 +113,28 @@ describe('VS Code Extension Testing', () => {
 })
 ```
 
-لاختبار الإضافة كإضافة ويب لـ VS Code، اضبط `browserName: 'chrome'` واحتفظ بـ `wdio:vscodeOptions`. في هذا الوضع، يمكن أن تكون قيمة `browserVersion` إما `stable` أو `insiders` فقط. يُنشئ الأمر `npm create wdio@latest ./` مع خيار "VS Code Extension Testing" هذا الإعداد لك.
+لاختبار الإضافة كإضافة ويب لـ VS Code، اضبط `browserName: 'chrome'` وأبقِ على `wdio:vscodeOptions`. في هذا الوضع، يمكن أن تكون قيمة `browserVersion` إما `stable` أو `insiders` فقط. يُنشئ الأمر `npm create wdio@latest ./` مع خيار "VS Code Extension Testing" هذا الإعداد لك.
 
 ## اختر مسارك
 
-- [اختبار إضافات الويب](/docs/extension-testing/web-extensions): حمّل الإضافات في Chrome (مجلد أو `.crx`) وFirefox (‏`.xpi` عبر [`installAddOn`](/docs/api/gecko#installaddon))، أو ثبّت إضافة وأزلها أثناء الجلسة باستخدام [`installExtension`](/docs/api/browser/installExtension). إضافات الويب لـ Safari غير مشمولة.
-- [خدمة ملفات تعريف Firefox](/docs/firefox-profile-service): أنشئ ملف تعريف Firefox يتضمن الإضافات.
-- [اختبار إضافات VS Code](/docs/extension-testing/vscode-extensions): الإعداد، وتهيئة TypeScript، وكائنات صفحات مساحة العمل، و`executeWorkbench`.
+- [اختبار إضافات الويب](/docs/extension-testing/web-extensions): حمّل الإضافات في Chrome (مجلد أو ملف `.crx`) وFirefox (ملف `.xpi` عبر [`installAddOn`](/docs/api/gecko#installaddon))، أو ثبّت إضافة وأزلها أثناء الجلسة باستخدام [`installExtension`](/docs/api/browser/installExtension). إضافات الويب في Safari غير مشمولة.
+- [خدمة ملف تعريف Firefox](/docs/firefox-profile-service): أنشئ ملف تعريف Firefox يتضمن إضافات.
+- [اختبار إضافات VS Code](/docs/extension-testing/vscode-extensions): الإعداد، وتهيئة TypeScript، وكائنات صفحات منطقة العمل، و`executeWorkbench`.
 - [خدمة VS Code](/docs/wdio-vscode-service): جميع خيارات الخدمة، مثل `cachePath`، وكيفية كتابة كائنات صفحات مخصصة.
 - [خدمة اختبار إضافات Obsidian](/docs/wdio-obsidian-service): خدمة مجتمعية تختبر إضافات Obsidian عبر إصدارات Obsidian المختلفة على Windows وmacOS وLinux وAndroid.
-- [الأوامر المخصصة](/docs/customcommands): غلّف الدوال المساعدة مثل `openExtensionPopup` لإعادة استخدامها.
+- [الأوامر المخصصة](/docs/customcommands): حزّم الدوال المساعدة مثل `openExtensionPopup` لإعادة استخدامها.
 
-تعمل اختبارات إضافات الويب في جلسة Chrome أو Firefox عادية، لذا ينطبق كل ما ورد في [متصفحات الويب](/docs/platforms/web)، بما في ذلك المحددات (selectors) ومحاكاة الشبكة والاختبار المرئي.
+تعمل اختبارات إضافات الويب في جلسة Chrome أو Firefox عادية، لذا ينطبق كل ما ورد في [متصفحات الويب](/docs/platforms/web)، بما في ذلك المحددات (selectors)، ومحاكاة الشبكة (network mocking)، والاختبار المرئي.
 
 ## استكشاف الأخطاء وإصلاحها
 
-- يرفض Firefox إضافة مبنية محليًا بسبب التوقيع: ثبّتها في خطّاف `before` باستخدام `browser.installAddOn(extension.toString('base64'), true)` بدلًا من تثبيتها عبر ملف تعريف. ابنِ ملف `.xpi` باستخدام `npx web-ext build`.
-- استخدام Edge أو Brave أو Opera بدلًا من Chrome: عادةً ما تعمل الوسائط نفسها مع إمكانية الخيارات الخاصة بذلك المتصفح، مثل `ms:edgeOptions`.
-- يتم تنزيل ملفات VS Code وChromedriver التنفيذية في مجلد ذاكرة تخزين مؤقت. للتحكم في مكان تخزينها، على سبيل المثال لتخزينها مؤقتًا في CI، اضبط `services: [['vscode', { cachePath: __dirname }]]`.
+- يرفض Firefox إضافة مبنية محليًا بسبب التوقيع: ثبّتها في خطاف `before` باستخدام `browser.installAddOn(extension.toString('base64'), true)` بدلًا من تثبيتها عبر ملف تعريف. ابنِ ملف `.xpi` باستخدام `npx web-ext build`.
+- استخدام Edge أو Brave أو Opera بدلًا من Chrome: عادةً ما تعمل الوسائط نفسها مع قدرة الخيارات الخاصة بذلك المتصفح، مثل `ms:edgeOptions`.
+- يتم تنزيل الملفات التنفيذية لـ VS Code وChromedriver في مجلد ذاكرة تخزين مؤقت. للتحكم في مكان تخزينها، على سبيل المثال لتخزينها مؤقتًا في CI، اضبط `services: [['vscode', { cachePath: __dirname }]]`.
 - لا يستطيع TypeScript العثور على `getWorkbench` أو `executeWorkbench`: أضف `wdio-vscode-service` إلى `compilerOptions.types`.
 
 ## الخطوات التالية
 
-- مرجع [الإعدادات](/docs/configuration) لكل خيار من خيارات `wdio.conf.ts`.
+- مرجع [الإعداد](/docs/configuration) لكل خيار من خيارات `wdio.conf.ts`.
 - [Electron](/docs/desktop-testing/electron) لاختبار تطبيقات سطح المكتب الكاملة المبنية على Chromium.
-- منصات أخرى: [متصفحات الويب](/docs/platforms/web)، [تطبيقات الجوال](/docs/platforms/mobile)، [تطبيقات سطح المكتب](/docs/platforms/desktop).
+- منصات أخرى: [متصفحات الويب](/docs/platforms/web)، [تطبيقات الهاتف المحمول](/docs/platforms/mobile)، [تطبيقات سطح المكتب](/docs/platforms/desktop).

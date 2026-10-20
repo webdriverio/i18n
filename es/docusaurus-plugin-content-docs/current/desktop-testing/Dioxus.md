@@ -1,15 +1,15 @@
 ---
 id: dioxus
 title: Dioxus
-description: "Prueba aplicaciones de escritorio de Dioxus en Windows, macOS y Linux con el servicio Dioxus de WebdriverIO, usando el asistente de configuración o una configuración manual."
+description: "Prueba aplicaciones de escritorio Dioxus en Windows, macOS y Linux con el servicio Dioxus de WebdriverIO, usando el asistente de configuración o una configuración manual."
 ---
 
 [Dioxus](https://dioxuslabs.com/) es un framework de Rust para crear aplicaciones multiplataforma a partir de una única base de código. Sus aplicaciones de escritorio se renderizan en el webview nativo del sistema operativo (Wry), y el servicio Dioxus de WebdriverIO automatiza su detección, lanzamiento y control en Windows (WebView2), macOS (WKWebView) y Linux (WebKitGTK), de modo que el mismo conjunto de pruebas funciona en todas partes.
 
 Las ventajas de usar WebdriverIO para probar aplicaciones Dioxus son:
 
-- 🚗 aprovisionamiento automático de la capa WebDriver: el driver integrado en el proceso (recomendado) no necesita ningún binario de driver externo en ninguna plataforma
-- 📦 detección de binarios multiplataforma (el driver de Edge WebView2 viene incluido en Windows para el proveedor `external`)
+- 🚗 aprovisionamiento automático de la capa WebDriver: el driver integrado en el proceso (embedded), que es el recomendado, no necesita ningún binario de driver externo en ninguna plataforma
+- 📦 detección de binarios multiplataforma (el driver de Edge WebView2 se incluye en Windows para el proveedor `external`)
 - 🧩 `browser.dioxus.execute()`, mocking y gestión de ventanas, proporcionados por el servicio a través del crate `wdio-dioxus-bridge`
 - 🔗 pruebas de deeplinks y manejadores de protocolos
 - 🪵 reenvío de los logs de Rust y del frontend al reporter de pruebas de WebdriverIO
@@ -22,9 +22,9 @@ Para iniciar un nuevo proyecto de WebdriverIO, ejecuta:
 npm create wdio@latest ./
 ```
 
-Cuando el asistente pregunte qué tipo de pruebas deseas realizar, selecciona _"Desktop Testing - of Electron, Tauri, Dioxus, or macOS Applications"_ y luego elige _Dioxus_ cuando se te pida el framework. A continuación, el asistente te preguntará qué proveedor de WebDriver quieres usar (el driver integrado en el proceso, recomendado, o el driver externo, solo para Windows) y la ruta a tu binario de depuración compilado.
+Cuando el asistente te pregunte qué tipo de pruebas quieres realizar, selecciona _"Desktop Testing - of Electron, Tauri, Dioxus, or macOS Applications"_ y luego elige _Dioxus_ cuando se te pida el framework. A continuación, el asistente te preguntará qué proveedor de WebDriver quieres usar (el driver integrado en el proceso, que es el recomendado, o el driver externo, exclusivo de Windows) y la ruta a tu binario de depuración compilado.
 
-El asistente instala automáticamente los paquetes de npm e imprime en stdout las adiciones de Cargo necesarias para que las pegues en tu `Cargo.toml`.
+El asistente instala los paquetes npm automáticamente e imprime en stdout las adiciones de Cargo necesarias para que las pegues en tu `Cargo.toml`.
 
 ## Configuración manual
 

@@ -1,10 +1,10 @@
 ---
 id: ocr-wait-for-text-displayed
 title: ocrWaitForTextDisplayed
-description: "انتظر حتى يظهر نص معين على الشاشة باستخدام ocrWaitForTextDisplayed من خدمة OCR."
+description: "انتظر حتى يتم عرض نص معين على الشاشة باستخدام ocrWaitForTextDisplayed من خدمة OCR."
 ---
 
-انتظر حتى يظهر نص معين على الشاشة.
+انتظر حتى يتم عرض نص معين على الشاشة.
 
 ## الاستخدام
 
@@ -21,7 +21,7 @@ await browser.ocrWaitForTextDisplayed({
 ```log
 [0-0] 2024-05-26T04:32:52.005Z INFO webdriver: COMMAND ocrWaitForTextDisplayed(<object>)
 ......................
-# يستخدم ocrWaitForTextDisplayed الأمر ocrGetElementPositionByText داخلياً، ولهذا السبب ترى الأمر ocrGetElementPositionByText في السجلات
+# ocrWaitForTextDisplayed يستخدم ocrGetElementPositionByText في الخلفية، ولهذا السبب ترى الأمر ocrGetElementPositionByText في السجلات
 [0-0] 2024-05-26T04:32:52.735Z INFO @wdio/ocr-service:ocrGetElementPositionByText: Multiple matches were found based on the word "specFileRetries". The match "specFileRetries" with score "100%" will be used.
 ```
 
@@ -44,7 +44,7 @@ await browser.ocrWaitForTextDisplayed({ text: "specFileRetries" });
 
 <Option type="number" default="18000 (18 seconds)" required="no">
 
-الوقت بالمللي ثانية. انتبه إلى أن عملية OCR قد تستغرق بعض الوقت، لذا لا تضبطه على قيمة منخفضة جداً.
+الوقت بالمللي ثانية. انتبه إلى أن عملية OCR قد تستغرق بعض الوقت، لذا لا تضبطه على قيمة منخفضة جدًا.
 
 </Option>
 #### مثال
@@ -52,7 +52,7 @@ await browser.ocrWaitForTextDisplayed({ text: "specFileRetries" });
 ```js
 await browser.ocrWaitForTextDisplayed({
     text: "specFileRetries"
-    timeout: 25000 // الانتظار لمدة 25 ثانية
+    timeout: 25000 // انتظر لمدة 25 ثانية
 });
 ```
 
@@ -60,7 +60,7 @@ await browser.ocrWaitForTextDisplayed({
 
 <Option type="string" default={`Could not find the text "{selector}" within the requested time.`} required="no">
 
-يستبدل رسالة الخطأ الافتراضية.
+يتجاوز رسالة الخطأ الافتراضية.
 
 </Option>
 #### مثال
@@ -76,7 +76,7 @@ await browser.ocrWaitForTextDisplayed({
 
 <Option type="number" default="0.25" required="no">
 
-كلما زاد التباين، أصبحت الصورة أكثر قتامة والعكس صحيح. يمكن أن يساعد ذلك في العثور على النص في الصورة. يقبل قيماً بين `-1` و `1`.
+كلما زاد التباين، أصبحت الصورة أغمق والعكس صحيح. يمكن أن يساعد ذلك في العثور على النص في الصورة. يقبل قيمًا بين `-1` و `1`.
 
 </Option>
 #### مثال
@@ -92,7 +92,7 @@ await browser.ocrWaitForTextDisplayed({
 
 <Option type="number" required="WebdriverIO.Element | ChainablePromiseElement | Rectangle">
 
-هذه هي منطقة البحث في الشاشة التي يجب أن يبحث فيها OCR عن النص. يمكن أن تكون عنصراً أو مستطيلاً يحتوي على `x` و `y` و `width` و `height`
+هذه هي منطقة البحث في الشاشة التي يحتاج OCR إلى البحث فيها عن النص. يمكن أن يكون هذا عنصرًا أو مستطيلًا يحتوي على `x` و `y` و `width` و `height`
 
 </Option>
 #### مثال
@@ -134,20 +134,20 @@ await browser.ocrWaitForTextDisplayed({
 import { SUPPORTED_OCR_LANGUAGES } from "@wdio/ocr-service";
 await browser.ocrWaitForTextDisplayed({
     text: "specFileRetries",
-    // استخدام الهولندية كلغة
+    // استخدم الهولندية كلغة
     language: SUPPORTED_OCR_LANGUAGES.DUTCH,
 });
 ```
 
 ### `fuzzyFindOptions`
 
-يمكنك تعديل المنطق الضبابي (fuzzy logic) للعثور على النص باستخدام الخيارات التالية. قد يساعد ذلك في العثور على تطابق أفضل
+يمكنك تعديل المنطق التقريبي (fuzzy logic) للعثور على النص باستخدام الخيارات التالية. قد يساعد ذلك في العثور على تطابق أفضل
 
 #### `fuzzyFindOptions.distance`
 
 <Option type="number" default="100" required="no">
 
-يحدد مدى قرب التطابق المطلوب من الموقع الضبابي (المحدد بواسطة location). أي تطابق تام للحروف يبعد بمقدار distance من الأحرف عن الموقع الضبابي سيُحتسب كعدم تطابق كامل. تتطلب المسافة 0 أن يكون التطابق في الموقع المحدد بالضبط. أما المسافة 1000 فتتطلب أن يكون التطابق التام ضمن 800 حرف من الموقع ليتم العثور عليه باستخدام حد (threshold) قيمته 0.8.
+يحدد مدى قرب التطابق من الموقع التقريبي (المحدد بواسطة location). أي تطابق تام للأحرف يبعد بمقدار distance من الأحرف عن الموقع التقريبي سيُحتسب كعدم تطابق كامل. تتطلب المسافة 0 أن يكون التطابق في الموقع المحدد بالضبط. أما المسافة 1000 فتتطلب أن يكون التطابق التام ضمن 800 حرف من الموقع ليتم العثور عليه باستخدام عتبة (threshold) قدرها 0.8.
 
 </Option>
 ##### مثال
@@ -165,7 +165,7 @@ await browser.ocrWaitForTextDisplayed({
 
 <Option type="number" default="0" required="no">
 
-يحدد تقريباً المكان في النص الذي يُتوقع العثور فيه على النمط.
+يحدد تقريبًا المكان في النص الذي يُتوقع العثور فيه على النمط.
 
 </Option>
 ##### مثال
@@ -183,7 +183,7 @@ await browser.ocrWaitForTextDisplayed({
 
 <Option type="number" default="0.6" required="no">
 
-النقطة التي تتوقف عندها خوارزمية المطابقة. يتطلب الحد 0 تطابقاً تاماً (لكل من الحروف والموقع)، بينما يطابق الحد 1.0 أي شيء.
+النقطة التي تتوقف عندها خوارزمية المطابقة. تتطلب العتبة 0 تطابقًا تامًا (لكل من الأحرف والموقع)، بينما العتبة 1.0 ستطابق أي شيء.
 
 </Option>
 ##### مثال
@@ -201,7 +201,7 @@ await browser.ocrWaitForTextDisplayed({
 
 <Option type="boolean" default="false" required="no">
 
-ما إذا كان البحث يجب أن يكون حساساً لحالة الأحرف.
+ما إذا كان البحث يجب أن يكون حساسًا لحالة الأحرف.
 
 </Option>
 ##### مثال
@@ -237,7 +237,7 @@ await browser.ocrWaitForTextDisplayed({
 
 <Option type="number" default="false" required="no">
 
-عند ضبطها على `true`، ستستمر دالة المطابقة حتى نهاية نمط البحث حتى لو تم العثور بالفعل على تطابق تام في السلسلة النصية.
+عندما تكون القيمة `true`، ستستمر دالة المطابقة حتى نهاية نمط البحث حتى لو تم العثور بالفعل على تطابق تام في السلسلة النصية.
 
 </Option>
 ##### مثال

@@ -4,7 +4,7 @@ title: SolidJS
 description: "Configura el browser runner de WebdriverIO para un proyecto SolidJS con el preset solid y escribe pruebas de componentes que se renderizan en la página."
 ---
 
-[SolidJS](https://www.solidjs.com/) es un framework para construir interfaces de usuario con una reactividad simple y eficiente. Puedes probar componentes de SolidJS directamente en un navegador real usando WebdriverIO y su [browser runner](/docs/runner#browser-runner).
+[SolidJS](https://www.solidjs.com/) es un framework para construir interfaces de usuario con una reactividad simple y de alto rendimiento. Puedes probar componentes de SolidJS directamente en un navegador real usando WebdriverIO y su [browser runner](/docs/runner#browser-runner).
 
 ## Configuración
 
@@ -23,7 +23,7 @@ export const config = {
 
 :::info
 
-Si ya estás usando [Vite](https://vitejs.dev/) como servidor de desarrollo, también puedes simplemente reutilizar tu configuración de `vite.config.ts` dentro de tu configuración de WebdriverIO. Para más información, consulta `viteConfig` en las [opciones del runner](/docs/runner#runner-options).
+Si ya estás usando [Vite](https://vitejs.dev/) como servidor de desarrollo, también puedes reutilizar tu configuración de `vite.config.ts` dentro de tu configuración de WebdriverIO. Para más información, consulta `viteConfig` en las [opciones del runner](/docs/runner#runner-options).
 
 :::
 
@@ -62,7 +62,7 @@ function App() {
 export default App
 ```
 
-En tu prueba, usa el método `render` de `solid-js/web` para adjuntar el componente a la página de prueba. Para interactuar con el componente, recomendamos usar los comandos de WebdriverIO, ya que se comportan de forma más cercana a las interacciones reales de un usuario, por ejemplo:
+En tu prueba, usa el método `render` de `solid-js/web` para adjuntar el componente a la página de prueba. Para interactuar con el componente, recomendamos usar los comandos de WebdriverIO, ya que se comportan de forma más parecida a las interacciones reales de un usuario, por ejemplo:
 
 ```ts title="app.test.tsx"
 import { expect } from '@wdio/globals'

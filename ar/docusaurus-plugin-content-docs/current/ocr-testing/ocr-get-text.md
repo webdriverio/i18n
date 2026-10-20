@@ -83,7 +83,7 @@ await browser.ocrGetText({
 ```js
 import { SUPPORTED_OCR_LANGUAGES } from "@wdio/ocr-service";
 await browser.ocrGetText({
-    // استخدام اللغة الهولندية
+    // استخدام الهولندية كلغة
     language: SUPPORTED_OCR_LANGUAGES.DUTCH,
 });
 ```
