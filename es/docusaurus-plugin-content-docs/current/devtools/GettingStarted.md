@@ -7,7 +7,7 @@ description: "Instala WebdriverIO DevTools y ejecuta tu primera prueba en modo e
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-WebdriverIO DevTools proporciona a tus pruebas de navegador end-to-end una interfaz de herramientas para desarrolladores con la que ejecutar, depurar e inspeccionar la automatización: reproducción del DOM, capturas de pantalla por comando, captura de red y consola, y grabaciones de pantalla de la sesión. Funciona en dos modos. El **modo en vivo** abre un [panel](/docs/devtools/dashboard) interactivo en una ventana del navegador mientras se ejecutan tus pruebas, para que puedas observarlas y volver a ejecutarlas en tiempo real. El **modo de traza** omite la interfaz y genera un [artefacto de traza](/docs/devtools/wdio/trace-mode) portátil y sin conexión (`trace.zip`) que puedes abrir más tarde en el reproductor `show-trace`, ideal para CI. Esta página te pone en marcha rápidamente con el modo en vivo; el modo de traza está a solo una opción de distancia.
+WebdriverIO DevTools proporciona a tus pruebas de navegador end-to-end una interfaz de herramientas para desarrolladores para ejecutar, depurar e inspeccionar la automatización: reproducción del DOM, capturas de pantalla por comando, captura de red y consola, y grabaciones de pantalla de la sesión. Funciona en dos modos. El **modo en vivo** abre un [panel](/docs/devtools/dashboard) interactivo en una ventana del navegador mientras se ejecutan tus pruebas, para que puedas observarlas y volver a ejecutarlas en tiempo real. El **modo de traza** omite la interfaz y genera un [artefacto de traza](/docs/devtools/wdio/trace-mode) portátil y sin conexión (`trace.zip`) que puedes abrir más tarde en el reproductor `show-trace`, ideal para CI. Esta página te lleva rápidamente al modo en vivo; el modo de traza está a solo una opción de distancia.
 
 ## Instalación y primera ejecución
 
@@ -19,6 +19,7 @@ values={[
 {label: 'WebdriverIO', value: 'wdio'},
 {label: 'Selenium', value: 'selenium'},
 {label: 'Nightwatch', value: 'nightwatch'},
+{label: 'Python', value: 'python'},
 ]}
 >
 <TabItem value="wdio">
@@ -38,18 +39,18 @@ export const config = {
 }
 ```
 
-Ejecuta tus pruebas de WebdriverIO de forma normal: la interfaz de DevTools se abre automáticamente y las pruebas comienzan a visualizarse de inmediato.
+Ejecuta tus pruebas de WebdriverIO con normalidad: la interfaz de DevTools se abre automáticamente y las pruebas comienzan a visualizarse de inmediato.
 
 </TabItem>
 <TabItem value="selenium">
 
-Funciona con Mocha, Jest, Cucumber o un script `node` simple: el plugin detecta automáticamente el runner. Instálalo:
+Funciona con Mocha, Jest, Cucumber o un script `node` simple; el plugin detecta automáticamente el runner. Instálalo:
 
 ```bash
 npm install @wdio/selenium-devtools
 ```
 
-Añade un único import y una llamada a `configure` al principio de tu archivo de pruebas (se muestra Mocha):
+Añade un único import y una llamada a `configure` al principio de tu archivo de prueba (se muestra Mocha):
 
 ```js
 // tests/example.test.js
@@ -97,7 +98,7 @@ Instala el adaptador:
 npm install @wdio/nightwatch-devtools
 ```
 
-Intégralo en tu configuración de Nightwatch mediante `globals`; no es necesario modificar los archivos de pruebas:
+Intégralo en tu configuración de Nightwatch mediante `globals`; no se necesitan cambios en los archivos de prueba:
 
 ```js
 // nightwatch.conf.cjs
@@ -119,7 +120,7 @@ module.exports = {
 }
 ```
 
-Ejecuta tus pruebas de forma normal: la interfaz de DevTools se abre automáticamente:
+Ejecuta tus pruebas con normalidad: la interfaz de DevTools se abre automáticamente:
 
 ```bash
 nightwatch
@@ -128,10 +129,30 @@ nightwatch
 Consulta la [página de Nightwatch](/docs/devtools/nightwatch) para la configuración con Cucumber/BDD.
 
 </TabItem>
+<TabItem value="python">
+
+Requiere Python 3.10+, `selenium>=4.44` y Node.js 22.19+ en el `PATH` (el backend del panel es una aplicación Node). Instala el adaptador y, después, el backend una sola vez:
+
+```bash
+pip install selenium-devtools-py
+selenium-devtools install-backend
+```
+
+Con pytest no hace falta añadir nada a tus archivos de prueba. Activa la captura con un flag:
+
+```bash
+pytest --devtools tests/          # panel en vivo
+pytest --devtools-trace tests/    # escribe un archivo de traza en su lugar
+```
+
+Consulta las pestañas de Python en la [página de Selenium](/docs/devtools/selenium) para scripts simples, opciones ini y variables de entorno.
+
+</TabItem>
 </Tabs>
 
 ## Próximos pasos
 
 - **[Modo de traza](/docs/devtools/wdio/trace-mode)**: establece `mode: 'trace'` para omitir la interfaz y generar un artefacto de traza portátil y sin conexión para CI.
-- **[Referencia de configuración](/docs/devtools/reference)**: todas las opciones de los tres adaptadores.
-- **Frameworks**: guías completas para cada adaptador: [WebdriverIO](/docs/devtools/wdio), [Selenium](/docs/devtools/selenium), [Nightwatch](/docs/devtools/nightwatch).
+- **[Referencia de configuración](/docs/devtools/reference)**: todas las opciones de los distintos adaptadores.
+- **[Pruebas móviles](/docs/devtools/mobile)**: captura sesiones de Appium.
+- **Frameworks**: guías completas por adaptador: [WebdriverIO](/docs/devtools/wdio), [Selenium](/docs/devtools/selenium), [Nightwatch](/docs/devtools/nightwatch).

@@ -5,7 +5,7 @@ title: El Objeto Browser
 
 __Extiende:__ [EventEmitter](https://nodejs.org/api/events.html#class-eventemitter)
 
-El objeto browser es la instancia de sesión que utilizas para controlar el navegador o dispositivo móvil. Si utilizas el test runner de WDIO, puedes acceder a la instancia de WebDriver a través del objeto global `browser` o `driver` o importarlo usando [`@wdio/globals`](/docs/api/globals). Si utilizas WebdriverIO en modo independiente, el objeto browser es devuelto por el método [`remote`](/docs/api/modules#remoteoptions-modifier).
+El objeto browser es la instancia de sesión que utilizas para controlar el navegador o dispositivo móvil. Si utilizas el test runner de WDIO, puedes acceder a la instancia de WebDriver a través del objeto global `browser` o `driver` o importarlo usando [`@wdio/globals`](/docs/api/globals). Si utilizas WebdriverIO en modo standalone, el objeto browser es devuelto por el método [`remote`](/docs/api/modules#remoteoptions-modifier).
 
 La sesión es inicializada por el test runner. Lo mismo ocurre con la finalización de la sesión. Esto también lo realiza el proceso del test runner.
 
@@ -17,11 +17,11 @@ Un objeto browser tiene las siguientes propiedades:
 | ---- | ---- | ------- |
 | `capabilities` | `Object` | Capacidades asignadas desde el servidor remoto.<br /><b>Ejemplo:</b><pre>\{<br />  acceptInsecureCerts: false,<br />  browserName: 'chrome',<br />  browserVersion: '105.0.5195.125',<br />  chrome: \{<br />    chromedriverVersion: '105.0.5195.52',<br />    userDataDir: '/var/folders/3_/pzc_f56j15vbd9z3r0j050sh0000gn/T/.com.google.Chrome.76HD3S'<br />  \},<br />  'goog:chromeOptions': \{ debuggerAddress: 'localhost:64679' \},<br />  networkConnectionEnabled: false,<br />  pageLoadStrategy: 'normal',<br />  platformName: 'mac os x',<br />  proxy: \{},<br />  setWindowRect: true,<br />  strictFileInteractability: false,<br />  timeouts: \{ implicit: 0, pageLoad: 300000, script: 30000 \},<br />  unhandledPromptBehavior: 'dismiss and notify',<br />  'webauthn:extension:credBlob': true,<br />  'webauthn:extension:largeBlob': true,<br />  'webauthn:virtualAuthenticators': true<br />\}</pre> |
 | `requestedCapabilities` | `Object` | Capacidades solicitadas al servidor remoto.<br /><b>Ejemplo:</b><pre>\{ browserName: 'chrome' \}</pre>
-| `sessionId` | `String` | ID de sesión asignado desde el servidor remoto. |
+| `sessionId` | `String` | Id de sesión asignado por el servidor remoto. |
 | `options` | `Object` | [Opciones](/docs/configuration) de WebdriverIO dependiendo de cómo se creó el objeto browser. Consulta más sobre [tipos de configuración](/docs/setuptypes). |
 | `commandList` | `String[]` | Una lista de comandos registrados en la instancia del navegador |
-| `isChrome` | `Boolean` | Indica si se trata de una instancia de Chrome |
-| `isFirefox` | `Boolean` | Indica si se trata de una instancia de Firefox |
+| `isChrome` | `Boolean` | Indica si es una instancia de Chrome |
+| `isFirefox` | `Boolean` | Indica si es una instancia de Firefox |
 | `isBidi` | `Boolean` | Indica si esta sesión utiliza Bidi |
 | `isSauce` | `Boolean` | Indica si esta sesión se está ejecutando en Sauce Labs |
 | `isMacApp` | `Boolean` | Indica si esta sesión se está ejecutando para una aplicación nativa de Mac |
@@ -35,9 +35,9 @@ Un objeto browser tiene las siguientes propiedades:
 
 ## Métodos
 
-Según el backend de automatización utilizado para tu sesión, WebdriverIO identifica qué [Comandos de Protocolo](/docs/api/protocols) se adjuntarán al [objeto browser](/docs/api/browser). Por ejemplo, si ejecutas una sesión automatizada en Chrome, tendrás acceso a comandos específicos de Chromium como [`elementHover`](/docs/api/chromium#elementhover), pero no a ninguno de los [comandos de Appium](/docs/api/appium).
+Según el backend de automatización utilizado para tu sesión, WebdriverIO identifica qué [Comandos de Protocolo](/docs/api/protocols) se adjuntarán al [objeto browser](/docs/api/browser). Por ejemplo, si ejecutas una sesión automatizada en Chrome, tendrás acceso a comandos específicos de Chromium como [`elementHover`](/docs/api/chromium#elementhover) pero no a ninguno de los [comandos de Appium](/docs/api/appium).
 
-Además, WebdriverIO proporciona un conjunto de métodos prácticos cuyo uso se recomienda para interactuar con el [navegador](/docs/api/browser) o los [elementos](/docs/api/element) de la página.
+Además, WebdriverIO proporciona un conjunto de métodos prácticos que se recomienda utilizar para interactuar con el [navegador](/docs/api/browser) o los [elementos](/docs/api/element) de la página.
 
 Adicionalmente, están disponibles los siguientes comandos:
 
@@ -45,13 +45,13 @@ Adicionalmente, están disponibles los siguientes comandos:
 | ---- | ---------- | ------- |
 | `addCommand` | - `commandName` (Tipo: `String`)<br />- `fn` (Tipo: `Function`)<br />- `attachToElement` (Tipo: `boolean`) | Permite definir comandos personalizados que pueden ser llamados desde el objeto browser con fines de composición. Lee más en la guía de [Comandos Personalizados](/docs/customcommands). |
 | `overwriteCommand` | - `commandName` (Tipo: `String`)<br />- `fn` (Tipo: `Function`)<br />- `attachToElement` (Tipo: `boolean`) | Permite sobrescribir cualquier comando del navegador con funcionalidad personalizada. Úsalo con cuidado, ya que puede confundir a los usuarios del framework. Lee más en la guía de [Comandos Personalizados](/docs/customcommands#overwriting-native-commands). |
-| `addLocatorStrategy` | - `strategyName` (Tipo: `String`)<br />- `fn` (Tipo: `Function`) | Permite definir una estrategia de selector personalizada. Lee más en la guía de [Selectores](/docs/selectors#custom-selector-strategies). |
+| `addLocatorStrategy` | - `strategyName` (Tipo: `String`)<br />- `fn` (Tipo: `Function`) | Permite definir una estrategia de selector personalizada, lee más en la guía de [Selectores](/docs/selectors#custom-selector-strategies). |
 
 ## Observaciones
 
 ### Indicadores Móviles
 
-Si necesitas modificar tu prueba según si tu sesión se ejecuta o no en un dispositivo móvil, puedes acceder a los indicadores móviles para comprobarlo.
+Si necesitas modificar tu prueba en función de si tu sesión se ejecuta o no en un dispositivo móvil, puedes acceder a los indicadores móviles para comprobarlo.
 
 Por ejemplo, dada esta configuración:
 
@@ -119,7 +119,7 @@ describe('my test', () => {
 El objeto browser es un EventEmitter y se emiten un par de eventos para tus casos de uso.
 
 Aquí hay una lista de eventos. Ten en cuenta que esta aún no es la lista completa de eventos disponibles.
-No dudes en contribuir a actualizar el documento añadiendo aquí descripciones de más eventos.
+Siéntete libre de contribuir a actualizar el documento añadiendo aquí descripciones de más eventos.
 
 #### `command`
 
@@ -141,7 +141,8 @@ Este evento se emite cada vez que WebdriverIO recibe el resultado de un comando 
 Este evento se emite cada vez que WebdriverIO envía un comando de WebDriver Bidi al driver del navegador. Contiene información sobre:
 
 - `method`: método del comando de WebDriver Bidi
-- `params`: parámetro asociado al comando (ver [API](/docs/api/webdriverBidi))
+- `params`: parámetro asociado del comando (consulta la [API](/docs/api/webdriverBidi))
+- `id`: el id del comando, el mismo que en el evento `bidiResult` de este comando
 
 #### `bidiResult`
 
@@ -149,9 +150,9 @@ En caso de una ejecución exitosa del comando, el payload del evento será:
 
 - `type`: `success`
 - `id`: el id del comando
-- `result`: el resultado del comando (ver [API](/docs/api/webdriverBidi))
+- `result`: el resultado del comando (consulta la [API](/docs/api/webdriverBidi))
 
-En caso de un error en el comando, el payload del evento será:
+En caso de un error del comando, el payload del evento será:
 
 - `type`: `error`
 - `id`: el id del comando
@@ -178,7 +179,7 @@ browser.on('request.end', (ev: { result: unknown, error?: Error }) => {
 ```
 
 #### `request.retry`
-El evento retry puede notificarte cuando WebdriverIO intenta volver a ejecutar el comando, p. ej. debido a un problema de red. Contiene información sobre el error que causó el reintento y la cantidad de reintentos ya realizados.
+El evento de reintento puede notificarte cuando WebdriverIO intenta volver a ejecutar el comando, p. ej. debido a un problema de red. Contiene información sobre el error que causó el reintento y la cantidad de reintentos ya realizados.
 
 ```ts
 browser.on('request.retry', (ev: { error: Error, retryCount: number }) => {

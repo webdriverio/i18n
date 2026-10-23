@@ -4,7 +4,7 @@ title: Exporter une session sous forme de test
 description: Transformez les étapes exécutées dans wdio session en spec, page objects et commandes personnalisées.
 ---
 
-`export` écrit une spec à partir des étapes enregistrées. Les refs sont remplacées par des sélecteurs stables. Pour une page web, le premier des éléments suivants qui correspond à exactement un élément est utilisé : un test id (`data-testid`, `data-test`, `data-qa`), un [sélecteur de rôle](/docs/selectors#role-selector) tel que `role/button[name="Add to cart"]`, un nom accessible (`aria/Add to cart`), un id, le texte d'un bouton ou d'un lien, le nom d'un champ de formulaire, et enfin un chemin CSS.
+`export` génère une spec à partir des étapes enregistrées. Les refs sont remplacées par des sélecteurs stables. Pour une page web, le premier des sélecteurs suivants qui correspond à exactement un élément est utilisé : un test id (`data-testid`, `data-test`, `data-qa`), un [sélecteur de rôle](/docs/selectors#role-selector) tel que `role/button[name="Add to cart"]`, un nom accessible (`aria/Add to cart`), un id, le texte d'un bouton ou d'un lien, le nom d'un champ de formulaire, et enfin un chemin CSS.
 
 ```sh
 npx wdio session export --out test/specs/cart.e2e.ts
@@ -15,7 +15,7 @@ npx wdio run wdio.conf.ts --spec test/specs/cart.e2e.ts
 
 ## Page objects
 
-`--page-objects` écrit un page object à côté de la spec. Les sélecteurs sont regroupés selon le chemin sur lequel ils ont été exécutés. Un `$('…')` littéral dans une étape enregistrée devient un getter. `$$`, les chaînes qui contiennent par hasard `$('…')`, ainsi qu'un `$(selector)` dynamique restent tels quels.
+`--page-objects` génère un page object à côté de la spec. Les sélecteurs sont regroupés selon le chemin sur lequel ils ont été exécutés. Un `$('…')` littéral dans une étape enregistrée devient un getter. `$$`, les chaînes qui contiennent par hasard `$('…')`, ainsi qu'un `$(selector)` dynamique restent inchangés.
 
 ```sh
 npx wdio session export --page-objects --out test/specs/cart.e2e.ts
@@ -43,5 +43,5 @@ Les helpers sont chargés à l'ouverture de la session, puis de nouveau avec `np
 
 ## Étapes suivantes
 
-- [Exécuter du code](/docs/session/exec) — les étapes que `export` enregistre
-- [Commandes](/docs/session-commands) — options de `export`, `history` et `helpers`
+- [Exécuter du code](/docs/session/exec) — les étapes enregistrées par `export`
+- [Commandes](/docs/session-commands) — les options de `export`, `history` et `helpers`

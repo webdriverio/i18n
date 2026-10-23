@@ -1,38 +1,38 @@
 ---
 id: selectors
-title: سلکتورها
-description: "انتخاب سلکتورها برای یافتن عناصر در صفحات وب و اپلیکیشن‌های موبایل هنگام خودکارسازی با سرور WebdriverIO MCP."
+title: انتخابگرها
+description: "انتخابگرهایی را برای یافتن عناصر در صفحات وب و اپلیکیشن‌های موبایل هنگام خودکارسازی با سرور MCP در WebdriverIO انتخاب کنید."
 ---
 
-سرور WebdriverIO MCP از چندین استراتژی سلکتور برای یافتن عناصر در صفحات وب و اپلیکیشن‌های موبایل پشتیبانی می‌کند.
+سرور MCP در WebdriverIO از چندین راهبرد انتخابگر برای یافتن عناصر در صفحات وب و اپلیکیشن‌های موبایل پشتیبانی می‌کند.
 
 :::info
 
-برای مستندات جامع سلکتورها، شامل تمام استراتژی‌های سلکتور WebdriverIO، به راهنمای اصلی [سلکتورها](/docs/selectors) مراجعه کنید. این صفحه بر سلکتورهایی تمرکز دارد که معمولاً با سرور MCP استفاده می‌شوند.
+برای مستندات جامع انتخابگرها شامل تمام راهبردهای انتخابگر WebdriverIO، راهنمای اصلی [انتخابگرها](/docs/selectors) را ببینید. این صفحه بر انتخابگرهایی تمرکز دارد که معمولاً همراه با سرور MCP استفاده می‌شوند.
 
 :::
 
-## سلکتورهای وب
+## انتخابگرهای وب
 
-برای خودکارسازی مرورگر، سرور MCP از تمام سلکتورهای استاندارد WebdriverIO پشتیبانی می‌کند. پرکاربردترین آن‌ها عبارتند از:
+برای خودکارسازی مرورگر، سرور MCP از تمام انتخابگرهای استاندارد WebdriverIO پشتیبانی می‌کند. پرکاربردترین آن‌ها عبارتند از:
 
-| سلکتور | مثال                        | توضیحات                  |
+| انتخابگر | مثال                           | توضیحات                      |
 | -------- | ------------------------------ | ---------------------------- |
-| CSS      | `#login-button`, `.submit-btn` | سلکتورهای استاندارد CSS       |
-| XPath    | `//button[@id='submit']`       | عبارات XPath            |
-| Text     | `button=Submit`, `a*=Click`    | سلکتورهای متنی WebdriverIO   |
-| ARIA     | `aria/Submit Button`           | سلکتورهای مبتنی بر نام دسترس‌پذیری |
-| Test ID  | `[data-testid="submit"]`       | توصیه‌شده برای تست      |
+| CSS      | `#login-button`, `.submit-btn` | انتخابگرهای استاندارد CSS    |
+| XPath    | `//button[@id='submit']`       | عبارات XPath                 |
+| Text     | `button=Submit`, `a*=Click`    | انتخابگرهای متنی WebdriverIO |
+| ARIA     | `aria/Submit Button`           | انتخابگرهای نام دسترس‌پذیری  |
+| Test ID  | `[data-testid="submit"]`       | توصیه‌شده برای تست           |
 
-برای مثال‌های دقیق و بهترین روش‌ها، به مستندات [سلکتورها](/docs/selectors) مراجعه کنید.
+برای مثال‌های دقیق و بهترین روش‌ها، مستندات [انتخابگرها](/docs/selectors) را ببینید.
 
-## سلکتورهای موبایل
+## انتخابگرهای موبایل
 
-سلکتورهای موبایل از طریق Appium روی هر دو پلتفرم iOS و Android کار می‌کنند.
+انتخابگرهای موبایل از طریق Appium با هر دو پلتفرم iOS و Android کار می‌کنند.
 
 ### Accessibility ID (توصیه‌شده)
 
-Accessibility IDها **قابل‌اعتمادترین سلکتور چندپلتفرمی** هستند. آن‌ها روی هر دو پلتفرم iOS و Android کار می‌کنند و در به‌روزرسانی‌های اپلیکیشن پایدار می‌مانند.
+Accessibility IDها **قابل‌اعتمادترین انتخابگر چندسکویی** هستند. آن‌ها هم روی iOS و هم روی Android کار می‌کنند و در به‌روزرسانی‌های اپلیکیشن پایدار می‌مانند.
 
 ```text
 # نحو
@@ -46,17 +46,17 @@ Accessibility IDها **قابل‌اعتمادترین سلکتور چندپلت
 
 :::tip بهترین روش
 همیشه در صورت امکان Accessibility IDها را ترجیح دهید. آن‌ها موارد زیر را فراهم می‌کنند:
-- سازگاری چندپلتفرمی (iOS + Android)
+- سازگاری چندسکویی (iOS + Android)
 - پایداری در برابر تغییرات رابط کاربری
 - نگهداری‌پذیری بهتر تست‌ها
 - بهبود دسترس‌پذیری اپلیکیشن شما
 :::
 
-### سلکتورهای Android
+### انتخابگرهای Android
 
 #### UiAutomator
 
-سلکتورهای UiAutomator برای Android قدرتمند و سریع هستند.
+انتخابگرهای UiAutomator برای Android قدرتمند و سریع هستند.
 
 ```text
 # بر اساس متن
@@ -95,7 +95,7 @@ id=login_button
 
 #### XPath (Android)
 
-XPath روی Android کار می‌کند اما کندتر از UiAutomator است.
+XPath روی Android کار می‌کند اما از UiAutomator کندتر است.
 
 ```text
 # بر اساس کلاس و متن
@@ -111,26 +111,26 @@ XPath روی Android کار می‌کند اما کندتر از UiAutomator ا�
 //android.widget.LinearLayout/android.widget.Button[1]
 ```
 
-### سلکتورهای iOS
+### انتخابگرهای iOS
 
 #### Predicate String
 
 Predicate Stringهای iOS برای خودکارسازی iOS سریع و قدرتمند هستند.
 
 ```text
-# بر اساس Label
+# بر اساس برچسب
 -ios predicate string:label == "Login"
 
-# بر اساس بخشی از Label
+# بر اساس بخشی از برچسب
 -ios predicate string:label CONTAINS "Log"
 
-# بر اساس Name
+# بر اساس نام
 -ios predicate string:name == "loginButton"
 
-# بر اساس Type
+# بر اساس نوع
 -ios predicate string:type == "XCUIElementTypeButton"
 
-# بر اساس Value
+# بر اساس مقدار
 -ios predicate string:value == "ON"
 
 # شرایط ترکیبی
@@ -139,36 +139,36 @@ Predicate Stringهای iOS برای خودکارسازی iOS سریع و قدر�
 # قابلیت مشاهده
 -ios predicate string:label == "Login" AND visible == 1
 
-# بدون حساسیت به حروف بزرگ و کوچک
+# حساس نبودن به حروف بزرگ و کوچک
 -ios predicate string:label ==[c] "login"
 ```
 
 **عملگرهای Predicate:**
 
-| عملگر     | توضیحات        |
-| ------------ | ------------------ |
-| `==`         | برابر است با             |
-| `!=`         | برابر نیست با         |
-| `CONTAINS`   | شامل زیررشته است |
-| `BEGINSWITH` | شروع می‌شود با        |
-| `ENDSWITH`   | پایان می‌یابد با          |
-| `LIKE`       | تطبیق با کاراکتر جایگزین (Wildcard)     |
-| `MATCHES`    | تطبیق با عبارت باقاعده (Regex)        |
-| `AND`        | AND منطقی        |
-| `OR`         | OR منطقی         |
+| عملگر        | توضیحات                |
+| ------------ | ---------------------- |
+| `==`         | برابر است با           |
+| `!=`         | برابر نیست با          |
+| `CONTAINS`   | شامل زیررشته است       |
+| `BEGINSWITH` | شروع می‌شود با         |
+| `ENDSWITH`   | پایان می‌یابد با       |
+| `LIKE`       | تطبیق با Wildcard      |
+| `MATCHES`    | تطبیق با عبارت منظم    |
+| `AND`        | AND منطقی              |
+| `OR`         | OR منطقی               |
 
 #### Class Chain
 
-Class Chainهای iOS یافتن سلسله‌مراتبی عناصر را با کارایی خوب فراهم می‌کنند.
+Class Chainهای iOS یافتن سلسله‌مراتبی عناصر را با عملکرد خوب فراهم می‌کنند.
 
 ```text
 # فرزند مستقیم
 -ios class chain:**/XCUIElementTypeButton[`label == "Login"`]
 
-# هر نوادهٔ دلخواه
+# هر نسل فرزندی
 -ios class chain:**/XCUIElementTypeButton
 
-# بر اساس ایندکس
+# بر اساس اندیس
 -ios class chain:**/XCUIElementTypeCell[3]
 
 # ترکیب با Predicate
@@ -183,25 +183,25 @@ Class Chainهای iOS یافتن سلسله‌مراتبی عناصر را با 
 
 #### XPath (iOS)
 
-XPath روی iOS کار می‌کند اما کندتر از Predicate Stringها است.
+XPath روی iOS کار می‌کند اما از Predicate Stringها کندتر است.
 
 ```text
-# بر اساس Type و Label
+# بر اساس نوع و برچسب
 //XCUIElementTypeButton[@label='Login']
 
-# بر اساس Name
+# بر اساس نام
 //XCUIElementTypeTextField[@name='username']
 
-# بر اساس Value
+# بر اساس مقدار
 //XCUIElementTypeSwitch[@value='1']
 
 # سلسله‌مراتبی
 //XCUIElementTypeTable/XCUIElementTypeCell[1]
 ```
 
-## استراتژی سلکتور چندپلتفرمی
+## راهبرد انتخابگر چندسکویی
 
-هنگام نوشتن تست‌هایی که باید روی هر دو پلتفرم iOS و Android کار کنند، از این ترتیب اولویت استفاده کنید:
+هنگام نوشتن تست‌هایی که باید هم روی iOS و هم روی Android کار کنند، از این ترتیب اولویت استفاده کنید:
 
 ### ۱. Accessibility ID (بهترین)
 
@@ -210,9 +210,9 @@ XPath روی iOS کار می‌کند اما کندتر از Predicate Stringه�
 ~loginButton
 ```
 
-### ۲. سلکتورهای مختص پلتفرم همراه با منطق شرطی
+### ۲. انتخابگرهای مختص پلتفرم همراه با منطق شرطی
 
-وقتی Accessibility IDها در دسترس نیستند، از سلکتورهای مختص هر پلتفرم استفاده کنید:
+وقتی Accessibility IDها در دسترس نیستند، از انتخابگرهای مختص هر پلتفرم استفاده کنید:
 
 **Android:**
 ```text
@@ -242,62 +242,62 @@ XPath روی هر دو پلتفرم کار می‌کند اما با انواع 
 
 ### انواع عناصر Android
 
-| نوع                          | توضیحات      |
+| نوع                           | توضیحات          |
 | ----------------------------- | ---------------- |
-| `android.widget.Button`       | دکمه           |
-| `android.widget.EditText`     | ورودی متن       |
+| `android.widget.Button`       | دکمه             |
+| `android.widget.EditText`     | ورودی متن        |
 | `android.widget.TextView`     | برچسب متنی       |
 | `android.widget.ImageView`    | تصویر            |
-| `android.widget.ImageButton`  | دکمهٔ تصویری     |
-| `android.widget.CheckBox`     | چک‌باکس         |
-| `android.widget.RadioButton`  | دکمهٔ رادیویی     |
-| `android.widget.Switch`       | کلید تغییر وضعیت    |
-| `android.widget.Spinner`      | منوی کشویی         |
+| `android.widget.ImageButton`  | دکمه تصویری      |
+| `android.widget.CheckBox`     | چک‌باکس          |
+| `android.widget.RadioButton`  | دکمه رادیویی     |
+| `android.widget.Switch`       | کلید تغییر وضعیت |
+| `android.widget.Spinner`      | منوی کشویی       |
 | `android.widget.ListView`     | نمای لیست        |
 | `android.widget.RecyclerView` | نمای Recycler    |
-| `android.widget.ScrollView`   | کانتینر اسکرول |
+| `android.widget.ScrollView`   | کانتینر اسکرول   |
 
 ### انواع عناصر iOS
 
-| نوع                             | توضیحات     |
-| -------------------------------- | --------------- |
-| `XCUIElementTypeButton`          | دکمه          |
-| `XCUIElementTypeTextField`       | ورودی متن      |
-| `XCUIElementTypeSecureTextField` | ورودی رمز عبور  |
-| `XCUIElementTypeStaticText`      | برچسب متنی      |
-| `XCUIElementTypeImage`           | تصویر           |
-| `XCUIElementTypeSwitch`          | کلید تغییر وضعیت   |
+| نوع                              | توضیحات          |
+| -------------------------------- | ---------------- |
+| `XCUIElementTypeButton`          | دکمه             |
+| `XCUIElementTypeTextField`       | ورودی متن        |
+| `XCUIElementTypeSecureTextField` | ورودی رمز عبور   |
+| `XCUIElementTypeStaticText`      | برچسب متنی       |
+| `XCUIElementTypeImage`           | تصویر            |
+| `XCUIElementTypeSwitch`          | کلید تغییر وضعیت |
 | `XCUIElementTypeSlider`          | اسلایدر          |
-| `XCUIElementTypePicker`          | چرخ انتخاب    |
-| `XCUIElementTypeTable`           | نمای جدول      |
-| `XCUIElementTypeCell`            | سلول جدول      |
-| `XCUIElementTypeCollectionView`  | نمای Collection |
-| `XCUIElementTypeScrollView`      | نمای اسکرول     |
+| `XCUIElementTypePicker`          | چرخ انتخاب‌گر    |
+| `XCUIElementTypeTable`           | نمای جدول        |
+| `XCUIElementTypeCell`            | سلول جدول        |
+| `XCUIElementTypeCollectionView`  | نمای Collection  |
+| `XCUIElementTypeScrollView`      | نمای اسکرول      |
 
 ## بهترین روش‌ها
 
 ### انجام دهید
 
-- **از Accessibility IDها استفاده کنید** تا سلکتورهایی پایدار و چندپلتفرمی داشته باشید
+- **از Accessibility IDها استفاده کنید** برای انتخابگرهای پایدار و چندسکویی
 - **ویژگی‌های data-testid را اضافه کنید** به عناصر وب برای تست
 - **از Resource IDها استفاده کنید** در Android وقتی Accessibility IDها در دسترس نیستند
 - **Predicate Stringها را ترجیح دهید** به XPath در iOS
-- **سلکتورها را ساده** و مشخص نگه دارید
+- **انتخابگرها را ساده** و مشخص نگه دارید
 
 ### انجام ندهید
 
-- **از عبارات XPath طولانی پرهیز کنید** - آن‌ها کند و شکننده هستند
-- **به ایندکس‌ها تکیه نکنید** برای لیست‌های پویا
-- **از سلکتورهای مبتنی بر متن پرهیز کنید** برای اپلیکیشن‌های بومی‌سازی‌شده
-- **از XPath مطلق استفاده نکنید** (که از ریشه شروع می‌شود)
+- **از عبارات XPath طولانی پرهیز کنید** - کند و شکننده هستند
+- **به اندیس‌ها تکیه نکنید** برای لیست‌های پویا
+- **از انتخابگرهای مبتنی بر متن پرهیز کنید** برای اپلیکیشن‌های بومی‌سازی‌شده
+- **از XPath مطلق استفاده نکنید** (شروع از ریشه)
 
-### نمونه‌هایی از سلکتورهای خوب در مقابل بد
+### نمونه‌هایی از انتخابگرهای خوب در مقابل بد
 
 ```text
 # خوب - Accessibility ID پایدار
 ~loginButton
 
-# بد - XPath شکننده با ایندکس‌ها
+# بد - XPath شکننده با اندیس‌ها
 //div[3]/form/button[2]
 
 # خوب - CSS مشخص با Test ID
@@ -313,31 +313,31 @@ android=new UiSelector().resourceId("com.app:id/submit")
 android=new UiSelector().text("Submit")
 ```
 
-## اشکال‌زدایی سلکتورها
+## اشکال‌زدایی انتخابگرها
 
 ### وب (Chrome DevTools)
 
 1. Chrome DevTools را باز کنید (F12)
 2. از پنل Elements برای بررسی عناصر استفاده کنید
 3. روی یک عنصر راست‌کلیک کنید ← Copy ← Copy selector
-4. سلکتورها را در Console تست کنید: `document.querySelector('your-selector')`
+4. انتخابگرها را در Console تست کنید: `document.querySelector('your-selector')`
 
 ### موبایل (Appium Inspector)
 
 1. Appium Inspector را اجرا کنید
-2. به نشست (session) در حال اجرای خود متصل شوید
+2. به نشست در حال اجرای خود متصل شوید
 3. روی عناصر کلیک کنید تا تمام ویژگی‌های موجود را ببینید
-4. از قابلیت "Search for element" برای تست سلکتورها استفاده کنید
+4. از قابلیت "Search for element" برای تست انتخابگرها استفاده کنید
 
 ### استفاده از `get_elements`
 
-ابزار `get_elements` سرور MCP برای هر عنصر چندین استراتژی سلکتور برمی‌گرداند:
+ابزار `get_elements` در سرور MCP برای هر عنصر چندین راهبرد انتخابگر بازمی‌گرداند:
 
 ```text
 Ask: "Get all visible elements on the screen"
 ```
 
-این ابزار عناصر را همراه با سلکتورهای از پیش تولیدشده‌ای برمی‌گرداند که می‌توانید مستقیماً از آن‌ها استفاده کنید.
+این دستور عناصر را همراه با انتخابگرهای از پیش تولیدشده بازمی‌گرداند که می‌توانید مستقیماً از آن‌ها استفاده کنید.
 
 #### گزینه‌های پیشرفته
 
@@ -357,7 +357,7 @@ Get visible elements with limit 20 and offset 20
 Get visible elements with includeContainers enabled
 ```
 
-این ابزار یک پاسخ صفحه‌بندی‌شده برمی‌گرداند:
+این ابزار یک پاسخ صفحه‌بندی‌شده بازمی‌گرداند:
 ```json
 {
   "total": 42,
@@ -369,17 +369,17 @@ Get visible elements with includeContainers enabled
 
 ### استفاده از `get_accessibility` (فقط مرورگر)
 
-برای خودکارسازی مرورگر، ابزار `get_accessibility` اطلاعات معنایی دربارهٔ عناصر صفحه فراهم می‌کند:
+برای خودکارسازی مرورگر، ابزار `get_accessibility` اطلاعات معنایی درباره عناصر صفحه فراهم می‌کند:
 
 ```text
 # تمام گره‌های دسترس‌پذیری دارای نام را دریافت کنید
 Get accessibility tree
 
-# فیلتر کردن فقط به نقش‌های button و link
+# فیلتر کردن فقط برای دکمه‌ها و لینک‌ها
 Get accessibility tree filtered to button and link roles
 
-# صفحهٔ بعدی نتایج را دریافت کنید
+# صفحه بعدی نتایج را دریافت کنید
 Get accessibility tree with limit 50 and offset 50
 ```
 
-این ابزار زمانی مفید است که `get_elements` عناصر مورد انتظار را برنگرداند، زیرا از API بومی دسترس‌پذیری مرورگر پرس‌وجو می‌کند.
+این ابزار زمانی مفید است که `get_elements` عناصر مورد انتظار را بازنمی‌گرداند، زیرا از API بومی دسترس‌پذیری مرورگر پرس‌وجو می‌کند.

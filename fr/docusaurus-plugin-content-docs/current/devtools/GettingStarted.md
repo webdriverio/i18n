@@ -1,13 +1,13 @@
 ---
 id: getting-started
-title: Premiers pas
-description: "Installez WebdriverIO DevTools et exécutez votre premier test en mode live ou en mode trace pour rejouer le DOM, les captures d'écran, le réseau et la sortie console."
+title: Prise en main
+description: "Installez WebdriverIO DevTools et exécutez votre premier test en mode live ou en mode trace pour rejouer le DOM, les captures d'écran, le réseau et la sortie de la console."
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-WebdriverIO DevTools offre à vos tests de navigateur de bout en bout une interface d'outils de développement pour exécuter, déboguer et inspecter l'automatisation — rejeu du DOM, captures d'écran par commande, capture du réseau et de la console, et enregistrements vidéo (screencasts) des sessions. Il fonctionne selon deux modes. Le **mode live** ouvre un [tableau de bord](/docs/devtools/dashboard) interactif dans une fenêtre de navigateur pendant l'exécution de vos tests, afin que vous puissiez les observer et les relancer en temps réel. Le **mode trace** ignore l'interface et écrit un [artefact de trace](/docs/devtools/wdio/trace-mode) portable et hors ligne (`trace.zip`) que vous pouvez ouvrir ultérieurement dans le lecteur `show-trace` — idéal pour la CI. Cette page vous permet de démarrer rapidement en mode live ; le mode trace n'est qu'à une option de distance.
+WebdriverIO DevTools offre à vos tests de navigateur de bout en bout une interface d'outils de développement pour exécuter, déboguer et inspecter l'automatisation — replay du DOM, captures d'écran par commande, capture du réseau et de la console, et screencasts de session. Il fonctionne selon deux modes. Le **mode live** ouvre un [tableau de bord](/docs/devtools/dashboard) interactif dans une fenêtre de navigateur pendant l'exécution de vos tests, afin que vous puissiez les observer et les relancer en temps réel. Le **mode trace** se passe de l'interface et écrit un [artefact de trace](/docs/devtools/wdio/trace-mode) portable et hors ligne (`trace.zip`) que vous pouvez ouvrir plus tard dans le lecteur `show-trace` — idéal pour la CI. Cette page vous permet de démarrer rapidement en mode live ; le mode trace n'est qu'à une option de distance.
 
 ## Installation et première exécution
 
@@ -19,6 +19,7 @@ values={[
 {label: 'WebdriverIO', value: 'wdio'},
 {label: 'Selenium', value: 'selenium'},
 {label: 'Nightwatch', value: 'nightwatch'},
+{label: 'Python', value: 'python'},
 ]}
 >
 <TabItem value="wdio">
@@ -38,7 +39,7 @@ export const config = {
 }
 ```
 
-Exécutez vos tests WebdriverIO normalement — l'interface DevTools s'ouvre automatiquement et les tests commencent immédiatement à être visualisés.
+Exécutez vos tests WebdriverIO normalement — l'interface DevTools s'ouvre automatiquement et la visualisation des tests commence immédiatement.
 
 </TabItem>
 <TabItem value="selenium">
@@ -86,7 +87,7 @@ Exécutez-le — l'interface DevTools s'ouvre dans une nouvelle fenêtre Chrome 
 mocha --timeout 60000 tests/example.test.js
 ```
 
-Consultez la [page Selenium](/docs/devtools/selenium) pour les configurations avec Jest, Cucumber et Node seul.
+Consultez la [page Selenium](/docs/devtools/selenium) pour les configurations Jest, Cucumber et Node simple.
 
 </TabItem>
 <TabItem value="nightwatch">
@@ -128,10 +129,30 @@ nightwatch
 Consultez la [page Nightwatch](/docs/devtools/nightwatch) pour la configuration Cucumber/BDD.
 
 </TabItem>
+<TabItem value="python">
+
+Nécessite Python 3.10+, `selenium>=4.44` et Node.js 22.19+ dans le `PATH` (le backend du tableau de bord est une application Node). Installez l'adaptateur, puis le backend une seule fois :
+
+```bash
+pip install selenium-devtools-py
+selenium-devtools install-backend
+```
+
+Avec pytest, rien n'est à ajouter dans vos fichiers de test. Activez la capture avec un flag :
+
+```bash
+pytest --devtools tests/          # tableau de bord live
+pytest --devtools-trace tests/    # écrire une archive de trace à la place
+```
+
+Consultez les onglets Python de la [page Selenium](/docs/devtools/selenium) pour les scripts simples, les options ini et les variables d'environnement.
+
+</TabItem>
 </Tabs>
 
-## Prochaines étapes
+## Étapes suivantes
 
-- **[Mode trace](/docs/devtools/wdio/trace-mode)** — définissez `mode: 'trace'` pour ignorer l'interface et produire un artefact de trace portable et hors ligne pour la CI.
-- **[Référence de configuration](/docs/devtools/reference)** — toutes les options des trois adaptateurs.
+- **[Mode trace](/docs/devtools/wdio/trace-mode)** — définissez `mode: 'trace'` pour vous passer de l'interface et produire un artefact de trace portable et hors ligne pour la CI.
+- **[Référence de configuration](/docs/devtools/reference)** : toutes les options des différents adaptateurs.
+- **[Tests mobiles](/docs/devtools/mobile)** : capturez des sessions Appium.
 - **Frameworks** — guides complets par adaptateur : [WebdriverIO](/docs/devtools/wdio), [Selenium](/docs/devtools/selenium), [Nightwatch](/docs/devtools/nightwatch).

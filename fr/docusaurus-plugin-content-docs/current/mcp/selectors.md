@@ -1,10 +1,10 @@
 ---
 id: selectors
 title: Sélecteurs
-description: "Choisissez des sélecteurs pour localiser des éléments sur des pages web et des applications mobiles lors de l'automatisation avec le serveur MCP de WebdriverIO."
+description: "Choisissez des sélecteurs pour localiser des éléments sur les pages web et les applications mobiles lors de l'automatisation avec le serveur MCP de WebdriverIO."
 ---
 
-Le serveur MCP de WebdriverIO prend en charge plusieurs stratégies de sélecteurs pour localiser des éléments sur des pages web et des applications mobiles.
+Le serveur MCP de WebdriverIO prend en charge plusieurs stratégies de sélecteurs pour localiser des éléments sur les pages web et les applications mobiles.
 
 :::info
 
@@ -12,7 +12,7 @@ Pour une documentation complète sur les sélecteurs, incluant toutes les strat�
 
 :::
 
-## Sélecteurs web
+## Sélecteurs Web
 
 Pour l'automatisation de navigateur, le serveur MCP prend en charge tous les sélecteurs standard de WebdriverIO. Les plus couramment utilisés sont :
 
@@ -32,7 +32,7 @@ Les sélecteurs mobiles fonctionnent sur les plateformes iOS et Android via Appi
 
 ### Accessibility ID (recommandé)
 
-Les Accessibility IDs sont le **sélecteur multiplateforme le plus fiable**. Ils fonctionnent sur iOS et Android et restent stables lors des mises à jour de l'application.
+Les Accessibility IDs sont le **sélecteur multiplateforme le plus fiable**. Ils fonctionnent à la fois sur iOS et Android et restent stables lors des mises à jour de l'application.
 
 ```text
 # Syntaxe
@@ -45,7 +45,7 @@ Les Accessibility IDs sont le **sélecteur multiplateforme le plus fiable**. Ils
 ```
 
 :::tip Bonne pratique
-Privilégiez toujours les Accessibility IDs lorsqu'ils sont disponibles. Ils offrent :
+Privilégiez toujours les accessibility IDs lorsqu'ils sont disponibles. Ils offrent :
 - Une compatibilité multiplateforme (iOS + Android)
 - Une stabilité face aux changements d'interface
 - Une meilleure maintenabilité des tests
@@ -183,7 +183,7 @@ Les Class Chains iOS permettent une localisation hiérarchique des éléments av
 
 #### XPath (iOS)
 
-XPath fonctionne sur iOS mais est plus lent que les Predicate Strings.
+XPath fonctionne sur iOS mais est plus lent que les predicate strings.
 
 ```text
 # Par type et label
@@ -210,9 +210,9 @@ Lorsque vous écrivez des tests qui doivent fonctionner à la fois sur iOS et An
 ~loginButton
 ```
 
-### 2. Sélecteurs spécifiques à la plateforme avec logique conditionnelle
+### 2. Spécifique à la plateforme avec logique conditionnelle
 
-Lorsque les Accessibility IDs ne sont pas disponibles, utilisez des sélecteurs spécifiques à la plateforme :
+Lorsque les accessibility IDs ne sont pas disponibles, utilisez des sélecteurs spécifiques à la plateforme :
 
 **Android :**
 ```text
@@ -253,38 +253,38 @@ XPath fonctionne sur les deux plateformes, mais avec des types d'éléments diff
 | `android.widget.RadioButton`  | Bouton radio             |
 | `android.widget.Switch`       | Interrupteur             |
 | `android.widget.Spinner`      | Liste déroulante         |
-| `android.widget.ListView`     | Vue de liste             |
+| `android.widget.ListView`     | Vue en liste             |
 | `android.widget.RecyclerView` | Vue recycler             |
 | `android.widget.ScrollView`   | Conteneur défilable      |
 
 ### Types d'éléments iOS
 
-| Type                             | Description              |
-| -------------------------------- | ------------------------ |
-| `XCUIElementTypeButton`          | Bouton                   |
-| `XCUIElementTypeTextField`       | Champ de saisie          |
-| `XCUIElementTypeSecureTextField` | Champ de mot de passe    |
-| `XCUIElementTypeStaticText`      | Libellé de texte         |
-| `XCUIElementTypeImage`           | Image                    |
-| `XCUIElementTypeSwitch`          | Interrupteur             |
-| `XCUIElementTypeSlider`          | Curseur                  |
-| `XCUIElementTypePicker`          | Sélecteur à roue         |
-| `XCUIElementTypeTable`           | Vue de tableau           |
-| `XCUIElementTypeCell`            | Cellule de tableau       |
-| `XCUIElementTypeCollectionView`  | Vue de collection        |
-| `XCUIElementTypeScrollView`      | Vue défilable            |
+| Type                             | Description             |
+| -------------------------------- | ----------------------- |
+| `XCUIElementTypeButton`          | Bouton                  |
+| `XCUIElementTypeTextField`       | Champ de saisie         |
+| `XCUIElementTypeSecureTextField` | Champ de mot de passe   |
+| `XCUIElementTypeStaticText`      | Libellé de texte        |
+| `XCUIElementTypeImage`           | Image                   |
+| `XCUIElementTypeSwitch`          | Interrupteur            |
+| `XCUIElementTypeSlider`          | Curseur                 |
+| `XCUIElementTypePicker`          | Roue de sélection       |
+| `XCUIElementTypeTable`           | Vue tableau             |
+| `XCUIElementTypeCell`            | Cellule de tableau      |
+| `XCUIElementTypeCollectionView`  | Vue collection          |
+| `XCUIElementTypeScrollView`      | Vue défilante           |
 
 ## Bonnes pratiques
 
 ### À faire
 
-- **Utilisez les Accessibility IDs** pour des sélecteurs stables et multiplateformes
+- **Utilisez les accessibility IDs** pour des sélecteurs stables et multiplateformes
 - **Ajoutez des attributs data-testid** aux éléments web pour les tests
-- **Utilisez les Resource IDs** sur Android lorsque les Accessibility IDs ne sont pas disponibles
-- **Privilégiez les Predicate Strings** plutôt que XPath sur iOS
-- **Gardez des sélecteurs simples** et spécifiques
+- **Utilisez les resource IDs** sur Android lorsque les accessibility IDs ne sont pas disponibles
+- **Privilégiez les predicate strings** plutôt que XPath sur iOS
+- **Gardez des sélecteurs simples** et précis
 
-### À éviter
+### À ne pas faire
 
 - **Évitez les longues expressions XPath** - elles sont lentes et fragiles
 - **Ne vous fiez pas aux index** pour les listes dynamiques
@@ -300,13 +300,13 @@ XPath fonctionne sur les deux plateformes, mais avec des types d'éléments diff
 # Mauvais - XPath fragile avec des index
 //div[3]/form/button[2]
 
-# Bon - CSS spécifique avec un test ID
+# Bon - CSS précis avec un test ID
 [data-testid="submit-button"]
 
 # Mauvais - Classe susceptible de changer
 .btn-primary-lg-v2
 
-# Bon - UiAutomator avec Resource ID
+# Bon - UiAutomator avec resource ID
 android=new UiSelector().resourceId("com.app:id/submit")
 
 # Mauvais - Texte susceptible d'être localisé
@@ -324,7 +324,7 @@ android=new UiSelector().text("Submit")
 
 ### Mobile (Appium Inspector)
 
-1. Lancez Appium Inspector
+1. Démarrez Appium Inspector
 2. Connectez-vous à votre session en cours
 3. Cliquez sur les éléments pour voir tous les attributs disponibles
 4. Utilisez la fonctionnalité « Search for element » pour tester les sélecteurs

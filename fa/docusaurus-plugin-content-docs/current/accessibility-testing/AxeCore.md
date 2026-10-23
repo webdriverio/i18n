@@ -1,15 +1,16 @@
 ---
 id: axe-core
-title: هسته اکس
+title: Axe Core
+description: "با استفاده از آداپتور متن‌باز Axe از Deque، بررسی‌های خودکار دسترس‌پذیری را در تست‌های خود، در حالت مستقل یا testrunner، اجرا کنید."
 ---
 
-شما می‌توانید تست‌های دسترسی‌پذیری را با استفاده از ابزارهای دسترسی‌پذیری متن‌باز [از Deque با نام Axe](https://www.deque.com/axe/) در مجموعه تست WebdriverIO خود قرار دهید. تنظیم آن بسیار آسان است، تنها کاری که باید انجام دهید نصب آداپتور Axe برای WebdriverIO است:
+شما می‌توانید تست‌های دسترس‌پذیری را با استفاده از ابزارهای متن‌باز دسترس‌پذیری [از Deque به نام Axe](https://www.deque.com/axe/) در مجموعه تست WebdriverIO خود بگنجانید. راه‌اندازی بسیار آسان است، تنها کاری که باید انجام دهید نصب آداپتور Axe برای WebdriverIO از طریق دستور زیر است:
 
 ```bash npm2yarn
 npm install -g @axe-core/webdriverio
 ```
 
-آداپتور Axe می‌تواند در هر دو حالت [standalone یا testrunner](/docs/setuptypes) با وارد کردن و راه‌اندازی آن با [شیء browser](/docs/api/browser) استفاده شود، به عنوان مثال:
+آداپتور Axe را می‌توان در حالت [مستقل یا testrunner](/docs/setuptypes) استفاده کرد، کافی است آن را import کرده و با [شیء browser](/docs/api/browser) مقداردهی اولیه کنید، برای مثال:
 
 ```ts
 import { browser } from '@wdio/globals'
@@ -26,4 +27,4 @@ describe('Accessibility Test', () => {
 })
 ```
 
-شما می‌توانید مستندات بیشتری در مورد آداپتور Axe برای WebdriverIO را [در GitHub](https://github.com/dequelabs/axe-core-npm/tree/develop/packages/webdriverio#usage) پیدا کنید.
+می‌توانید مستندات بیشتری درباره آداپتور Axe برای WebdriverIO را [در GitHub](https://github.com/dequelabs/axe-core-npm/tree/develop/packages/webdriverio#usage) پیدا کنید.

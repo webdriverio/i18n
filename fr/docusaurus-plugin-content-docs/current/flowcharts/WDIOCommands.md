@@ -1,11 +1,11 @@
 ---
 id: wdiocommands
 title: Commandes WDIO
-description: "Suivez les organigrammes illustrant la manière dont les commandes run, repl, install et config de @wdio/cli analysent les arguments et s'exécutent."
+description: "Suivez les organigrammes illustrant comment les commandes run, repl, install et config de @wdio/cli analysent les arguments et s'exécutent."
 ---
-Cet organigramme offre une vue d'ensemble des commandes run, repl, config et install de @wdio/cli.
+Cet organigramme fournit une vue d'ensemble des commandes run, repl, config et install de @wdio/cli.
 
-## Analyser les arguments CLI
+## Analyse des arguments CLI
 
 ```mermaid
 graph TD

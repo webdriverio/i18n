@@ -5,9 +5,9 @@ title: كائن المتصفح
 
 __يمتد من:__ [EventEmitter](https://nodejs.org/api/events.html#class-eventemitter)
 
-كائن المتصفح هو نسخة الجلسة التي تستخدمها للتحكم في المتصفح أو الجهاز المحمول. إذا كنت تستخدم مشغل اختبار WDIO، يمكنك الوصول إلى نسخة WebDriver من خلال الكائن العام `browser` أو `driver` أو استيرادها باستخدام [`@wdio/globals`](/docs/api/globals). إذا كنت تستخدم WebdriverIO في الوضع المستقل، فسيتم إرجاع كائن المتصفح بواسطة طريقة [`remote`](/docs/api/modules#remoteoptions-modifier).
+كائن المتصفح هو نسخة الجلسة التي تستخدمها للتحكم في المتصفح أو الجهاز المحمول. إذا كنت تستخدم مشغل اختبار WDIO، يمكنك الوصول إلى نسخة WebDriver من خلال الكائن العام `browser` أو `driver` أو استيراده باستخدام [`@wdio/globals`](/docs/api/globals). إذا كنت تستخدم WebdriverIO في الوضع المستقل، يتم إرجاع كائن المتصفح بواسطة الطريقة [`remote`](/docs/api/modules#remoteoptions-modifier).
 
-يتم تهيئة الجلسة بواسطة مشغل الاختبار. وينطبق الأمر نفسه على إنهاء الجلسة، إذ تتم هذه العملية أيضًا بواسطة عملية مشغل الاختبار.
+تتم تهيئة الجلسة بواسطة مشغل الاختبار. وينطبق الأمر نفسه على إنهاء الجلسة، إذ تتم هذه العملية أيضًا بواسطة عملية مشغل الاختبار.
 
 ## الخصائص
 
@@ -18,7 +18,7 @@ __يمتد من:__ [EventEmitter](https://nodejs.org/api/events.html#class-event
 | `capabilities` | `Object` | القدرات المعينة من الخادم البعيد.<br /><b>مثال:</b><pre>\{<br />  acceptInsecureCerts: false,<br />  browserName: 'chrome',<br />  browserVersion: '105.0.5195.125',<br />  chrome: \{<br />    chromedriverVersion: '105.0.5195.52',<br />    userDataDir: '/var/folders/3_/pzc_f56j15vbd9z3r0j050sh0000gn/T/.com.google.Chrome.76HD3S'<br />  \},<br />  'goog:chromeOptions': \{ debuggerAddress: 'localhost:64679' \},<br />  networkConnectionEnabled: false,<br />  pageLoadStrategy: 'normal',<br />  platformName: 'mac os x',<br />  proxy: \{},<br />  setWindowRect: true,<br />  strictFileInteractability: false,<br />  timeouts: \{ implicit: 0, pageLoad: 300000, script: 30000 \},<br />  unhandledPromptBehavior: 'dismiss and notify',<br />  'webauthn:extension:credBlob': true,<br />  'webauthn:extension:largeBlob': true,<br />  'webauthn:virtualAuthenticators': true<br />\}</pre> |
 | `requestedCapabilities` | `Object` | القدرات المطلوبة من الخادم البعيد.<br /><b>مثال:</b><pre>\{ browserName: 'chrome' \}</pre>
 | `sessionId` | `String` | معرف الجلسة المعين من الخادم البعيد. |
-| `options` | `Object` | [خيارات](/docs/configuration) WebdriverIO اعتمادًا على كيفية إنشاء كائن المتصفح. اطلع على المزيد من [أنواع الإعداد](/docs/setuptypes). |
+| `options` | `Object` | [خيارات](/docs/configuration) WebdriverIO اعتمادًا على كيفية إنشاء كائن المتصفح. اطلع على المزيد حول [أنواع الإعداد](/docs/setuptypes). |
 | `commandList` | `String[]` | قائمة بالأوامر المسجلة في نسخة المتصفح |
 | `isChrome` | `Boolean` | يشير إلى ما إذا كانت هذه نسخة Chrome |
 | `isFirefox` | `Boolean` | يشير إلى ما إذا كانت هذه نسخة Firefox |
@@ -30,21 +30,21 @@ __يمتد من:__ [EventEmitter](https://nodejs.org/api/events.html#class-event
 | `isIOS` | `Boolean` | يشير إلى جلسة iOS. اطلع على المزيد في [علامات الأجهزة المحمولة](#mobile-flags). |
 | `isAndroid` | `Boolean` | يشير إلى جلسة Android. اطلع على المزيد في [علامات الأجهزة المحمولة](#mobile-flags). |
 | `isNativeContext` | `Boolean`  | يشير إلى ما إذا كان الجهاز المحمول في سياق `NATIVE_APP`. اطلع على المزيد في [علامات الأجهزة المحمولة](#mobile-flags). |
-| `mobileContext` | `string`  | يوفر السياق **الحالي** الذي يعمل فيه برنامج التشغيل، على سبيل المثال `NATIVE_APP`، أو `WEBVIEW_<packageName>` لنظام Android أو `WEBVIEW_<pid>` لنظام iOS. سيوفر عليك استدعاء WebDriver إضافيًا لـ `driver.getContext()`. اطلع على المزيد في [علامات الأجهزة المحمولة](#mobile-flags). |
+| `mobileContext` | `string`  | يوفر السياق **الحالي** الذي يوجد فيه برنامج التشغيل، على سبيل المثال `NATIVE_APP` أو `WEBVIEW_<packageName>` لنظام Android أو `WEBVIEW_<pid>` لنظام iOS. سيوفر عليك استدعاء WebDriver إضافيًا إلى `driver.getContext()`. اطلع على المزيد في [علامات الأجهزة المحمولة](#mobile-flags). |
 
 
 ## الطرق
 
-بناءً على واجهة الأتمتة الخلفية المستخدمة لجلستك، يحدد WebdriverIO أي [أوامر البروتوكول](/docs/api/protocols) سيتم إرفاقها بـ [كائن المتصفح](/docs/api/browser). على سبيل المثال، إذا قمت بتشغيل جلسة آلية في Chrome، فستتمكن من الوصول إلى الأوامر الخاصة بـ Chromium مثل [`elementHover`](/docs/api/chromium#elementhover) ولكن ليس إلى أي من [أوامر Appium](/docs/api/appium).
+استنادًا إلى واجهة الأتمتة الخلفية المستخدمة في جلستك، يحدد WebdriverIO أي [أوامر البروتوكول](/docs/api/protocols) سيتم إرفاقها بـ[كائن المتصفح](/docs/api/browser). على سبيل المثال، إذا قمت بتشغيل جلسة آلية في Chrome، فسيكون لديك وصول إلى الأوامر الخاصة بـ Chromium مثل [`elementHover`](/docs/api/chromium#elementhover) ولكن ليس إلى أي من [أوامر Appium](/docs/api/appium).
 
-علاوة على ذلك، يوفر WebdriverIO مجموعة من الطرق الملائمة التي يوصى باستخدامها للتفاعل مع [المتصفح](/docs/api/browser) أو [العناصر](/docs/api/element) الموجودة على الصفحة.
+علاوة على ذلك، يوفر WebdriverIO مجموعة من الطرق الملائمة التي يُوصى باستخدامها للتفاعل مع [المتصفح](/docs/api/browser) أو [العناصر](/docs/api/element) الموجودة على الصفحة.
 
 بالإضافة إلى ذلك، تتوفر الأوامر التالية:
 
 | الاسم | المعاملات | التفاصيل |
 | ---- | ---------- | ------- |
 | `addCommand` | - `commandName` (النوع: `String`)<br />- `fn` (النوع: `Function`)<br />- `attachToElement` (النوع: `boolean`) | يسمح بتعريف أوامر مخصصة يمكن استدعاؤها من كائن المتصفح لأغراض التركيب. اقرأ المزيد في دليل [الأوامر المخصصة](/docs/customcommands). |
-| `overwriteCommand` | - `commandName` (النوع: `String`)<br />- `fn` (النوع: `Function`)<br />- `attachToElement` (النوع: `boolean`) | يسمح باستبدال أي أمر من أوامر المتصفح بوظيفة مخصصة. استخدمه بحذر لأنه قد يربك مستخدمي إطار العمل. اقرأ المزيد في دليل [الأوامر المخصصة](/docs/customcommands#overwriting-native-commands). |
+| `overwriteCommand` | - `commandName` (النوع: `String`)<br />- `fn` (النوع: `Function`)<br />- `attachToElement` (النوع: `boolean`) | يسمح بالكتابة فوق أي أمر من أوامر المتصفح بوظائف مخصصة. استخدمه بحذر لأنه قد يربك مستخدمي إطار العمل. اقرأ المزيد في دليل [الأوامر المخصصة](/docs/customcommands#overwriting-native-commands). |
 | `addLocatorStrategy` | - `strategyName` (النوع: `String`)<br />- `fn` (النوع: `Function`) | يسمح بتعريف استراتيجية محددات مخصصة، اقرأ المزيد في دليل [المحددات](/docs/selectors#custom-selector-strategies). |
 
 ## ملاحظات
@@ -53,7 +53,7 @@ __يمتد من:__ [EventEmitter](https://nodejs.org/api/events.html#class-event
 
 إذا كنت بحاجة إلى تعديل اختبارك بناءً على ما إذا كانت جلستك تعمل على جهاز محمول أم لا، يمكنك الوصول إلى علامات الأجهزة المحمولة للتحقق من ذلك.
 
-على سبيل المثال، بالنظر إلى هذا الإعداد:
+على سبيل المثال، بالنظر إلى هذا التكوين:
 
 ```js
 // wdio.conf.js
@@ -73,14 +73,14 @@ export const config = {
 يمكنك الوصول إلى هذه العلامات في اختبارك على النحو التالي:
 
 ```js
-// ملاحظة: `driver` مكافئ لكائن `browser` لكنه أكثر صحة من الناحية الدلالية
+// ملاحظة: `driver` مكافئ لكائن `browser` ولكنه أكثر صحة من الناحية الدلالية
 // يمكنك اختيار المتغير العام الذي تريد استخدامه
 console.log(driver.isMobile) // المخرجات: true
 console.log(driver.isIOS) // المخرجات: true
 console.log(driver.isAndroid) // المخرجات: false
 ```
 
-يمكن أن يكون هذا مفيدًا إذا كنت تريد، على سبيل المثال، تعريف المحددات في [كائنات الصفحات](../pageobjects) الخاصة بك بناءً على نوع الجهاز، كما يلي:
+قد يكون هذا مفيدًا إذا كنت تريد، على سبيل المثال، تعريف المحددات في [كائنات الصفحة](../pageobjects) الخاصة بك بناءً على نوع الجهاز، على النحو التالي:
 
 ```js
 // mypageobject.page.js
@@ -99,13 +99,13 @@ class LoginPage extends Page {
 }
 ```
 
-يمكنك أيضًا استخدام هذه العلامات لتشغيل اختبارات معينة فقط لأنواع معينة من الأجهزة:
+يمكنك أيضًا استخدام هذه العلامات لتشغيل اختبارات معينة فقط لأنواع أجهزة معينة:
 
 ```js
 // mytest.e2e.js
 describe('my test', () => {
     // ...
-    // تشغيل الاختبار فقط على أجهزة Android
+    // تشغيل الاختبار فقط مع أجهزة Android
     if (driver.isAndroid) {
         it('tests something only for Android', () => {
             // ...
@@ -132,7 +132,7 @@ describe('my test', () => {
 
 #### `result`
 
-يتم إطلاق هذا الحدث كلما تلقى WebdriverIO نتيجة أمر من أوامر WebDriver Classic. ويحتوي على المعلومات نفسها الموجودة في حدث `command` بالإضافة إلى المعلومات التالية:
+يتم إطلاق هذا الحدث كلما تلقى WebdriverIO نتيجة أمر من أوامر WebDriver Classic. ويحتوي على نفس معلومات حدث `command` بالإضافة إلى المعلومات التالية:
 
 - `result`: نتيجة الأمر
 
@@ -142,6 +142,7 @@ describe('my test', () => {
 
 - `method`: طريقة أمر WebDriver Bidi
 - `params`: معامل الأمر المرتبط (انظر [API](/docs/api/webdriverBidi))
+- `id`: معرف الأمر، وهو نفسه الموجود في حدث `bidiResult` لهذا الأمر
 
 #### `bidiResult`
 
@@ -178,7 +179,7 @@ browser.on('request.end', (ev: { result: unknown, error?: Error }) => {
 ```
 
 #### `request.retry`
-يمكن أن يُعلمك حدث إعادة المحاولة عندما يحاول WebdriverIO إعادة تشغيل الأمر، على سبيل المثال بسبب مشكلة في الشبكة. ويحتوي على معلومات حول الخطأ الذي تسبب في إعادة المحاولة وعدد مرات إعادة المحاولة التي تمت بالفعل.
+يمكن لحدث إعادة المحاولة إعلامك عندما يحاول WebdriverIO إعادة تشغيل الأمر، على سبيل المثال بسبب مشكلة في الشبكة. ويحتوي على معلومات حول الخطأ الذي تسبب في إعادة المحاولة وعدد المحاولات التي تمت بالفعل.
 
 ```ts
 browser.on('request.retry', (ev: { error: Error, retryCount: number }) => {
@@ -187,12 +188,12 @@ browser.on('request.retry', (ev: { error: Error, retryCount: number }) => {
 ```
 
 #### `request.performance`
-هذا حدث لقياس العمليات على مستوى WebDriver. كلما أرسل WebdriverIO طلبًا إلى الواجهة الخلفية لـ WebDriver، سيتم إطلاق هذا الحدث مع بعض المعلومات المفيدة:
+هذا حدث لقياس العمليات على مستوى WebDriver. كلما أرسل WebdriverIO طلبًا إلى واجهة WebDriver الخلفية، سيتم إطلاق هذا الحدث مع بعض المعلومات المفيدة:
 
 - `durationMillisecond`: المدة الزمنية للطلب بالمللي ثانية.
 - `error`: كائن الخطأ إذا فشل الطلب.
 - `request`: كائن الطلب. يمكنك العثور على url وmethod وheaders وما إلى ذلك.
-- `retryCount`: إذا كانت قيمته `0`، فإن الطلب كان المحاولة الأولى. وستزداد قيمته عندما يعيد WebDriverIO المحاولة في الخلفية.
+- `retryCount`: إذا كانت قيمته `0`، فإن الطلب كان المحاولة الأولى. ستزداد القيمة عندما يعيد WebDriverIO المحاولة في الخلفية.
 - `success`: قيمة منطقية تمثل ما إذا كان الطلب قد نجح أم لا. إذا كانت قيمتها `false`، فسيتم توفير خاصية `error` أيضًا.
 
 مثال على الحدث:
@@ -208,4 +209,4 @@ Object {
 
 ### الأوامر المخصصة
 
-يمكنك تعيين أوامر مخصصة على نطاق المتصفح لتجريد سير العمل المستخدم بشكل شائع. راجع دليلنا حول [الأوامر المخصصة](/docs/customcommands#adding-custom-commands) لمزيد من المعلومات.
+يمكنك تعيين أوامر مخصصة على نطاق المتصفح لتجريد سير العمل الشائع الاستخدام. اطلع على دليلنا حول [الأوامر المخصصة](/docs/customcommands#adding-custom-commands) لمزيد من المعلومات.

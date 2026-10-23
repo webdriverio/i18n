@@ -1,16 +1,16 @@
 ---
 id: ocr-set-value
 title: ocrSetValue
-description: "با استفاده از ocrSetValue در یک فیلد ورودی که با متن قابل مشاهده‌اش مکان‌یابی شده تایپ کنید؛ این دستور فیلد را با OCR و تطبیق فازی پیدا می‌کند."
+description: "با ocrSetValue در یک فیلد ورودی که بر اساس متن قابل مشاهده‌اش پیدا می‌شود تایپ کنید؛ این دستور فیلد را با استفاده از OCR و تطبیق فازی پیدا می‌کند."
 ---
 
 دنباله‌ای از ضربات کلید را به یک عنصر ارسال می‌کند. این دستور:
 
--   عنصر را به‌طور خودکار تشخیص می‌دهد
+-   به طور خودکار عنصر را تشخیص می‌دهد
 -   با کلیک روی فیلد، آن را در حالت فوکوس قرار می‌دهد
 -   مقدار را در فیلد تنظیم می‌کند
 
-این دستور متن ارائه‌شده را جستجو می‌کند و تلاش می‌کند بر اساس منطق فازی (Fuzzy Logic) از [Fuse.js](https://fusejs.io/) یک تطابق پیدا کند. این بدان معناست که اگر سلکتوری با غلط تایپی ارائه دهید، یا متن یافت‌شده ۱۰۰٪ مطابقت نداشته باشد، باز هم تلاش می‌کند یک عنصر به شما برگرداند. [لاگ‌ها](#logs) را در پایین ببینید.
+این دستور متن ارائه‌شده را جستجو می‌کند و تلاش می‌کند بر اساس منطق فازی (Fuzzy Logic) از [Fuse.js](https://fusejs.io/) یک تطابق پیدا کند. این بدان معناست که اگر انتخابگری با غلط تایپی ارائه دهید، یا متن پیدا شده ۱۰۰٪ مطابقت نداشته باشد، باز هم تلاش می‌کند یک عنصر به شما برگرداند. [لاگ‌ها](#logs) را در زیر ببینید.
 
 ## نحوه استفاده
 
@@ -69,7 +69,7 @@ await browser.ocrSetValue({
 
 <Option type="boolean" default="false" required="no">
 
-اینکه آیا مقدار باید در فیلد ورودی ارسال (submit) نیز شود یا خیر. این بدان معناست که یک "ENTER" در انتهای رشته ارسال خواهد شد.
+اگر مقدار علاوه بر وارد شدن باید در فیلد ورودی ارسال (submit) نیز شود. این بدان معناست که یک "ENTER" در انتهای رشته ارسال خواهد شد.
 
 </Option>
 #### مثال
@@ -95,7 +95,7 @@ await browser.ocrSetValue({
 await browser.ocrSetValue({
     text: "WebdriverIO",
     value: "The Value",
-    clickDuration: 3000, // این برابر با ۳ ثانیه است
+    clickDuration: 3000, // This is 3 seconds
 });
 ```
 
@@ -103,7 +103,7 @@ await browser.ocrSetValue({
 
 <Option type="number" default="0.25" required="no">
 
-هرچه کنتراست بیشتر باشد، تصویر تیره‌تر می‌شود و برعکس. این می‌تواند به یافتن متن در تصویر کمک کند. این گزینه مقادیری بین `-1` و `1` را می‌پذیرد.
+هرچه کنتراست بیشتر باشد، تصویر تیره‌تر است و بالعکس. این می‌تواند به یافتن متن در یک تصویر کمک کند. این گزینه مقادیر بین `-1` و `1` را می‌پذیرد.
 
 </Option>
 #### مثال
@@ -120,7 +120,7 @@ await browser.ocrSetValue({
 
 <Option type="number" required="WebdriverIO.Element | ChainablePromiseElement | Rectangle">
 
-این ناحیه جستجو در صفحه است که OCR باید در آن به دنبال متن بگردد. این می‌تواند یک عنصر یا یک مستطیل شامل `x`، `y`، `width` و `height` باشد
+این ناحیه جستجو در صفحه است که OCR باید در آن به دنبال متن بگردد. این می‌تواند یک عنصر یا یک مستطیل شامل `x`، `y`، `width` و `height` باشد.
 
 </Option>
 #### مثال
@@ -132,14 +132,14 @@ await browser.ocrSetValue({
     haystack: $("elementSelector"),
 });
 
-// یا
+// OR
 await browser.ocrSetValue({
     text: "WebdriverIO",
     value: "The Value",
     haystack: await $("elementSelector"),
 });
 
-// یا
+// OR
 await browser.ocrSetValue({
     text: "WebdriverIO",
     value: "The Value",
@@ -156,7 +156,7 @@ await browser.ocrSetValue({
 
 <Option type="string" default="eng" required="No">
 
-زبانی که Tesseract تشخیص خواهد داد. اطلاعات بیشتر را می‌توانید [اینجا](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) و زبان‌های پشتیبانی‌شده را [اینجا](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts) بیابید.
+زبانی که Tesseract تشخیص خواهد داد. اطلاعات بیشتر را می‌توانید [اینجا](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) و زبان‌های پشتیبانی‌شده را [اینجا](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts) پیدا کنید.
 
 </Option>
 #### مثال
@@ -166,7 +166,7 @@ import { SUPPORTED_OCR_LANGUAGES } from "@wdio/ocr-service";
 await browser.ocrSetValue({
     text: "WebdriverIO",
     value: "The Value",
-    // استفاده از زبان هلندی
+    // Use Dutch as a language
     language: SUPPORTED_OCR_LANGUAGES.DUTCH,
 });
 ```
@@ -175,7 +175,7 @@ await browser.ocrSetValue({
 
 <Option type="object" required="no">
 
-می‌توانید نسبت به عنصر منطبق، روی صفحه کلیک کنید. این کار می‌تواند بر اساس پیکسل‌های نسبی `above`، `right`، `below` یا `left` از عنصر منطبق انجام شود
+می‌توانید نسبت به عنصر منطبق، روی صفحه کلیک کنید. این کار بر اساس پیکسل‌های نسبی `above` (بالا)، `right` (راست)، `below` (پایین) یا `left` (چپ) از عنصر منطبق انجام می‌شود.
 
 :::note
 
@@ -197,7 +197,7 @@ await browser.ocrSetValue({
 
 <Option type="number" required="no">
 
-کلیک به اندازه x پیکسل `above` (بالای) عنصر منطبق.
+x پیکسل `above` (بالاتر از) عنصر منطبق کلیک کنید.
 
 </Option>
 ##### مثال
@@ -216,7 +216,7 @@ await browser.ocrSetValue({
 
 <Option type="number" required="no">
 
-کلیک به اندازه x پیکسل `right` (سمت راست) عنصر منطبق.
+x پیکسل `right` (سمت راست) عنصر منطبق کلیک کنید.
 
 </Option>
 ##### مثال
@@ -235,7 +235,7 @@ await browser.ocrSetValue({
 
 <Option type="number" required="no">
 
-کلیک به اندازه x پیکسل `below` (پایین) عنصر منطبق.
+x پیکسل `below` (پایین‌تر از) عنصر منطبق کلیک کنید.
 
 </Option>
 ##### مثال
@@ -254,7 +254,7 @@ await browser.ocrSetValue({
 
 <Option type="number" required="no">
 
-کلیک به اندازه x پیکسل `left` (سمت چپ) عنصر منطبق.
+x پیکسل `left` (سمت چپ) عنصر منطبق کلیک کنید.
 
 </Option>
 ##### مثال
@@ -271,13 +271,13 @@ await browser.ocrSetValue({
 
 ### `fuzzyFindOptions`
 
-می‌توانید منطق فازی برای یافتن متن را با گزینه‌های زیر تغییر دهید. این ممکن است به یافتن تطابق بهتر کمک کند
+می‌توانید منطق فازی یافتن متن را با گزینه‌های زیر تغییر دهید. این ممکن است به یافتن تطابق بهتر کمک کند.
 
 #### `fuzzyFindOptions.distance`
 
 <Option type="number" default="100" required="no">
 
-تعیین می‌کند که تطابق چقدر باید به مکان فازی (که توسط location مشخص می‌شود) نزدیک باشد. یک تطابق دقیق حرف که به اندازه distance کاراکتر از مکان فازی فاصله داشته باشد، به‌عنوان عدم تطابق کامل امتیازدهی می‌شود. distance برابر با 0 نیاز دارد که تطابق دقیقاً در مکان مشخص‌شده باشد. distance برابر با 1000 نیاز دارد که یک تطابق کامل در محدوده 800 کاراکتری از مکان باشد تا با استفاده از threshold برابر با 0.8 یافت شود.
+تعیین می‌کند که تطابق چقدر باید به موقعیت فازی (که توسط location مشخص می‌شود) نزدیک باشد. یک تطابق دقیق حرف که به اندازه distance کاراکتر از موقعیت فازی فاصله داشته باشد، به عنوان عدم تطابق کامل امتیازدهی می‌شود. distance برابر با 0 مستلزم آن است که تطابق دقیقاً در موقعیت مشخص‌شده باشد. distance برابر با 1000 مستلزم آن است که یک تطابق کامل در فاصله 800 کاراکتری از موقعیت باشد تا با استفاده از threshold برابر با 0.8 پیدا شود.
 
 </Option>
 ##### مثال
@@ -296,7 +296,7 @@ await browser.ocrSetValue({
 
 <Option type="number" default="0" required="no">
 
-تعیین می‌کند که الگو تقریباً در کجای متن انتظار می‌رود یافت شود.
+تعیین می‌کند که الگو تقریباً در کجای متن انتظار می‌رود پیدا شود.
 
 </Option>
 ##### مثال
@@ -315,7 +315,7 @@ await browser.ocrSetValue({
 
 <Option type="number" default="0.6" required="no">
 
-اینکه الگوریتم تطابق در چه نقطه‌ای دست از تلاش بکشد. threshold برابر با 0 نیازمند تطابق کامل (هم حروف و هم مکان) است، و threshold برابر با 1.0 با هر چیزی تطابق خواهد داشت.
+الگوریتم تطابق در چه نقطه‌ای دست از جستجو می‌کشد. threshold برابر با 0 مستلزم تطابق کامل (هم از نظر حروف و هم موقعیت) است، threshold برابر با 1.0 با هر چیزی مطابقت خواهد داشت.
 
 </Option>
 ##### مثال
@@ -353,7 +353,7 @@ await browser.ocrSetValue({
 
 <Option type="number" default="2" required="no">
 
-فقط تطابق‌هایی که طولشان از این مقدار بیشتر باشد بازگردانده می‌شوند. (به‌عنوان مثال، اگر می‌خواهید تطابق‌های تک‌کاراکتری را در نتیجه نادیده بگیرید، آن را روی 2 تنظیم کنید)
+فقط تطابق‌هایی که طول آن‌ها از این مقدار بیشتر باشد برگردانده می‌شوند. (به عنوان مثال، اگر می‌خواهید تطابق‌های تک‌کاراکتری را در نتیجه نادیده بگیرید، آن را روی 2 تنظیم کنید)
 
 </Option>
 ##### مثال
@@ -372,7 +372,7 @@ await browser.ocrSetValue({
 
 <Option type="number" default="false" required="no">
 
-وقتی `true` باشد، تابع تطابق تا انتهای الگوی جستجو ادامه می‌دهد، حتی اگر یک تطابق کامل قبلاً در رشته پیدا شده باشد.
+وقتی `true` باشد، تابع تطابق حتی اگر یک تطابق کامل قبلاً در رشته پیدا شده باشد، تا انتهای الگوی جستجو ادامه خواهد داد.
 
 </Option>
 ##### مثال

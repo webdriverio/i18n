@@ -1,14 +1,14 @@
 ---
 id: ai-steps
 title: Étapes IA dans les tests
-description: Écrivez des étapes de test sous forme d'intention avec browser.act() et lisez des données typées avec browser.extract() grâce à @wdio/ai-service, puis rejouez-les depuis un cache versionné sans modèle et examinez chaque réparation.
+description: Écrivez des étapes de test sous forme d'intentions avec browser.act() et lisez des données typées avec browser.extract() grâce à @wdio/ai-service, puis rejouez-les depuis un cache versionné sans modèle et vérifiez chaque réparation.
 ---
 
-`@wdio/ai-service` permet à un test de décrire une étape au lieu de la scripter : `browser.act('Add a blue shirt to the cart')` demande à votre modèle de l'exécuter, enregistre les commandes WebdriverIO qu'il a lancées, puis les rejoue depuis un fichier de cache à chaque exécution suivante. Le modèle n'est appelé à nouveau que lorsque la page a changé et qu'une étape enregistrée ne peut plus être réparée sans lui. Utilisez-le pour des parcours dont le balisage change souvent, ou pour faire tourner un test avant de connaître les sélecteurs. Utilisez les commandes WebdriverIO classiques pour tout ce que vous savez déjà scripter.
+`@wdio/ai-service` permet à un test de décrire une étape au lieu de la scripter : `browser.act('Add a blue shirt to the cart')` demande à votre modèle de l'exécuter, enregistre les commandes WebdriverIO qu'il a lancées et les rejoue depuis un fichier de cache lors de chaque exécution ultérieure. Le modèle n'est appelé à nouveau que lorsque la page a changé et qu'une étape enregistrée ne peut plus être réparée sans lui. Utilisez-le pour les parcours dont le balisage change souvent, ou pour faire fonctionner un test avant de connaître les sélecteurs. Utilisez les commandes WebdriverIO classiques pour tout ce que vous savez déjà scripter.
 
 ## Configurer le service
 
-Installez le service et le paquet LangChain de votre fournisseur de modèle :
+Installez le service et le package LangChain de votre fournisseur de modèle :
 
 ```sh
 npm install --save-dev @wdio/ai-service @langchain/anthropic zod
@@ -30,7 +30,7 @@ export const config: WebdriverIO.Config = {
 }
 ```
 
-`webSocketUrl: true` ouvre une session WebDriver BiDi. Le service fonctionne aussi avec WebDriver Classic, mais BiDi lui permet de vérifier ce que chaque étape a fait et de lire les réponses API de la page. Consultez la page [AI Service](/docs/ai-service) pour découvrir toutes les options et tous les fournisseurs, y compris les modèles locaux via Ollama.
+`webSocketUrl: true` ouvre une session WebDriver BiDi. Le service fonctionne aussi avec WebDriver Classic, mais BiDi lui permet de vérifier ce que chaque étape a fait et de lire les réponses API de la page. Consultez la page [AI Service](/docs/ai-service) pour toutes les options et tous les fournisseurs, y compris les modèles locaux via Ollama.
 
 ## Écrire un test
 
@@ -62,7 +62,7 @@ await browser.act('Log in as {{email}} with password {{password}}', {
 })
 ```
 
-- Appelez `act` sur un élément pour que le modèle reste à l'intérieur de celui-ci, ou sur un frame ou un onglet ciblé :
+- Appelez `act` sur un élément pour que le modèle reste à l'intérieur de celui-ci, ou sur un frame ou un onglet référencé :
 
 ```ts
 await $('form#billing').act('Fill in a valid German address')
@@ -82,13 +82,13 @@ Versionnez le répertoire `__act__`. Les exécutions suivantes rejouent les comm
 | --- | --- |
 | `auto` (par défaut) | `write` en local, `heal` lorsque `process.env.CI` est défini |
 | `write` | enregistrer et mettre à jour les fichiers de cache |
-| `heal` | CI : réparer les étapes en échec, écrire les entrées réparées dans `<outputDir>/act-cache/` et ne pas toucher aux fichiers de cache |
-| `locked` | les exécutions CI qui ne doivent pas appeler de modèle : rejeu uniquement, échec lorsqu'une étape ne peut pas être réparée sans le modèle |
+| `heal` | CI : réparer les étapes en échec, écrire les entrées réparées dans `<outputDir>/act-cache/` et laisser les fichiers de cache intacts |
+| `locked` | exécutions CI qui ne doivent pas appeler de modèle : rejeu uniquement, échec lorsqu'une étape ne peut pas être réparée sans le modèle |
 | `off` | toujours interroger le modèle |
 
-Lancez `npx wdio run wdio.conf.ts -s` pour réenregistrer tous les appels à `act`.
+Exécutez `npx wdio run wdio.conf.ts -s` pour enregistrer à nouveau chaque appel à `act`.
 
-## Examiner les réparations
+## Vérifier les réparations
 
 Lorsqu'une étape enregistrée échoue, le service essaie d'abord les autres sélecteurs qu'il a enregistrés pour l'élément, puis son rôle et son nom accessible. Ce n'est qu'en cas d'échec que le modèle reprend à partir de l'étape en échec. Chaque étape rejouée ou réparée doit faire ce qu'elle faisait lors de son enregistrement : envoyer les mêmes requêtes, naviguer vers la même page et modifier les mêmes parties de la page. Une réparation sur un bouton similaire mais incorrect est rejetée.
 
@@ -101,7 +101,7 @@ Healed:
     evidence: ./logs/ai/heals/cart.e2e.ts-cart-adds-a-shirt-1c71c48d
 ```
 
-Le dossier de preuves contient une capture d'écran de la page au moment où l'étape a échoué, une autre après chaque étape de réparation, ainsi qu'une vidéo de la réparation dans les navigateurs qui enregistrent un screencast WebDriver BiDi (Firefox à ce jour). Examinez la réparation, puis versionnez le fichier de cache mis à jour.
+Le dossier de preuves contient une capture d'écran de la page au moment où l'étape a échoué, une autre après chaque étape de réparation, ainsi qu'une vidéo de la réparation dans les navigateurs qui enregistrent un screencast WebDriver BiDi (Firefox à ce jour). Vérifiez la réparation, puis versionnez le fichier de cache mis à jour.
 
 ## Transformer les étapes en code classique
 
@@ -112,7 +112,7 @@ npx wdio-ai eject test/specs/cart.e2e.ts
 ```
 
 ```ts
-// act : Ajouter une chemise bleue en taille M au panier
+// act: Add a blue shirt in size M to the shopping cart
 await $('role/link[name="Blue Shirt"]').click()
 await $('role/combobox[name="Size"]').selectByVisibleText('M')
 await $('role/button[name="Add to cart"]').click()
@@ -123,14 +123,14 @@ await $('role/button[name="Add to cart"]').click()
 | Erreur | Solution |
 | --- | --- |
 | `act("…") failed: no model is configured. Set the `model` option of the service or the WDIO_AI_MODEL environment variable.` | Définissez `model` dans les options du service ou exportez `WDIO_AI_MODEL=anthropic:claude-sonnet-5-5`. |
-| `[@wdio/ai-service] The "anthropic" provider needs "@langchain/anthropic". Install it with `npm install --save-dev @langchain/anthropic`.` | Installez le paquet du fournisseur. |
+| `[@wdio/ai-service] The "anthropic" provider needs "@langchain/anthropic". Install it with `npm install --save-dev @langchain/anthropic`.` | Installez le package du fournisseur. |
 | `[@wdio/ai-service] No API key for "anthropic". Set ANTHROPIC_API_KEY or pass `apiKey` in the model config.` | Exportez la clé dans le shell ou le secret CI qui exécute les tests. |
 | `act("…") failed: no cached steps for "…" and the cache is locked` | Enregistrez l'appel en local avec `cache: 'write'` et versionnez le fichier `__act__`. |
-| `act("…") failed: cached step 1 (…) ran, but the step no longer causes POST /api/cart → 2xx. The app may have changed behavior, not just markup.` | L'élément est toujours présent mais fait autre chose : il s'agit d'une régression, pas d'un changement de balisage. Vérifiez l'application. |
-| `act("…") failed: …` suivi de `Evidence: <folder>` | Le modèle n'a pas pu mener à bien l'instruction. Le dossier contient chaque instantané qu'il a pris, les événements de console et de réseau ainsi que les étapes exécutées. |
+| `act("…") failed: cached step 1 (…) ran, but the step no longer causes POST /api/cart → 2xx. The app may have changed behavior, not just markup.` | L'élément est toujours présent mais fait autre chose : il s'agit d'une régression, et non d'un changement de balisage. Vérifiez l'application. |
+| `act("…") failed: …` suivi de `Evidence: <folder>` | Le modèle n'a pas pu exécuter l'instruction. Le dossier contient chaque instantané qu'il a pris, les événements de console et de réseau ainsi que les étapes exécutées. |
 
-## Prochaines étapes
+## Étapes suivantes
 
 - [AI Service](/docs/ai-service) : toutes les options, le format du cache, les effets des étapes et l'espace de travail
 - [Sélecteurs](/docs/selectors#role-selector) : le sélecteur `role/` utilisé par les étapes enregistrées
-- [WebdriverIO pour les agents de codage](/docs/ai-agents) : écrire des tests en collaboration avec un agent de codage
+- [WebdriverIO pour les agents de code](/docs/ai-agents) : écrire des tests avec un agent de code

@@ -1,10 +1,10 @@
 ---
 id: nightwatch
 title: DevTools برای Nightwatch
-description: "رابط کاربری اشکال‌زدایی DevTools را بدون تغییر در تست‌ها به مجموعه تست Nightwatch اضافه کنید و ضبط صفحه (screencast)، ثبت BiDi و حالت trace را پیکربندی کنید."
+description: "رابط کاربری اشکال‌زدایی DevTools را بدون تغییر در تست‌ها به مجموعه تست Nightwatch اضافه کنید و ضبط صفحه (screencast)، ضبط BiDi و حالت trace را پیکربندی کنید."
 ---
 
-آداپتور Nightwatch برای [WebdriverIO DevTools](https://github.com/webdriverio/devtools)، همان رابط کاربری اشکال‌زدایی بصری را بدون هیچ تغییری در کد تست‌ها به مجموعه تست Nightwatch شما می‌آورد.
+آداپتور Nightwatch برای [WebdriverIO DevTools](https://github.com/webdriverio/devtools) - همان رابط کاربری اشکال‌زدایی بصری را بدون هیچ تغییری در کد تست‌ها به مجموعه تست Nightwatch شما می‌آورد.
 
 ## نصب
 
@@ -12,9 +12,11 @@ description: "رابط کاربری اشکال‌زدایی DevTools را بدو
 npm install @wdio/nightwatch-devtools
 ```
 
+به Nightwatch نسخه ۳ یا بالاتر نیاز دارد. برای Cucumber، پکیج `@cucumber/cucumber` باید در پروژه شما نصب باشد؛ آداپتور به‌جای همراه داشتن نسخه‌ای از آن، از نسخه موجود در پروژه شما استفاده می‌کند.
+
 ## راه‌اندازی
 
-### Nightwatch استاندارد (سبک mocha)
+### Nightwatch استاندارد (به سبک mocha)
 
 ```js
 // nightwatch.conf.cjs
@@ -27,7 +29,7 @@ module.exports = {
     default: {
       desiredCapabilities: {
         browserName: 'chrome',
-        // برای ثبت درخواست‌های شبکه الزامی است
+        // برای ضبط درخواست‌های شبکه الزامی است
         'goog:loggingPrefs': { performance: 'ALL' }
       },
       globals: nightwatchDevtools({ port: 3000 })
@@ -36,7 +38,7 @@ module.exports = {
 }
 ```
 
-تست‌های خود را مثل همیشه اجرا کنید؛ رابط کاربری DevTools به‌طور خودکار در یک پنجره جدید مرورگر باز می‌شود:
+تست‌های خود را طبق معمول اجرا کنید - رابط کاربری DevTools به‌طور خودکار در یک پنجره مرورگر جدید باز می‌شود:
 
 ```bash
 nightwatch
@@ -44,9 +46,11 @@ nightwatch
 
 > هیچ تغییری در فایل‌های تست شما لازم نیست.
 
+در حالت live، اجرا پس از پایان تست‌ها باز می‌ماند تا بتوانید نتایج را بررسی کنید. برای پایان دادن، پنجره DevTools را ببندید، یا Ctrl+C را بزنید تا خارج شوید و پنجره باز بماند.
+
 ### Cucumber / BDD
 
-`cucumberHooksPath` را در کنار export اصلی import کنید و آن را به گزینه `require` در Cucumber بدهید. این کار هوک‌های سناریوی `Before` / `After` را ثبت می‌کند که رفتار `beforeScenario` / `afterScenario` در سرویس WebdriverIO را بازتاب می‌دهند.
+`cucumberHooksPath` را در کنار export اصلی import کنید و آن را به گزینه `require` در Cucumber بدهید. این کار هوک‌های سناریوی `Before` / `After` و هوک‌های گام `BeforeStep` / `AfterStep` را ثبت می‌کند که رفتار `beforeScenario` / `afterScenario` سرویس WebdriverIO را بازتاب می‌دهند. یک هوک `After` پیش از خروج، trace هر سناریو را تا زمانی که نشست مرورگر آن هنوز فعال است ذخیره می‌کند.
 
 ```js
 // nightwatch.conf.cjs
@@ -80,21 +84,21 @@ module.exports = {
 
 | گزینه | نوع | پیش‌فرض | توضیحات |
 |--------|------|---------|-------------|
-| `port` | `number` | `3000` | پورت سرور بک‌اند DevTools. اگر از قبل در حال استفاده باشد، به‌طور خودکار یک واحد افزایش می‌یابد. |
+| `port` | `number` | `3000` | پورت سرور بک‌اند DevTools. اگر از قبل در حال استفاده باشد، به‌طور خودکار افزایش می‌یابد. |
 | `hostname` | `string` | `'localhost'` | نام میزبانی که سرور بک‌اند به آن متصل می‌شود. |
-| `screencast` | `ScreencastOptions` | `{ enabled: false }` | ضبط ویدیوی `.webm` برای هر نشست. به بخش [ضبط صفحه](#screencast) در ادامه مراجعه کنید. |
-| `bidi` | `boolean` | `false` | فعال‌سازی اختیاری ثبت WebDriver BiDi برای کنسول مرورگر + استثناهای JS + شبکه. به `webSocketUrl: true` در capabilities و یک chromedriver با پشتیبانی از BiDi نیاز دارد. هنگام اتصال، مسیر شبکه مبتنی بر perf-log کروم برای هر فرمان غیرفعال می‌شود تا درخواست‌ها تکراری نشوند. |
-| `mode` | `'live' \| 'trace'` | `'live'` | `live` رابط کاربری DevTools را باز می‌کند؛ `trace` آن را نادیده می‌گیرد و به‌جای آن یک فایل خروجی قابل حمل می‌نویسد. به [حالت Trace](/docs/devtools/wdio/trace-mode) مراجعه کنید. |
-| `traceFormat` | `'zip' \| 'ndjson-directory'` | `'zip'` | ساختار فایل خروجی trace. فقط زمانی اعمال می‌شود که `mode: 'trace'` باشد. |
-| `traceGranularity` | `'session' \| 'spec' \| 'test'` | `'session'` | یک trace برای هر نشست / فایل spec / تست. `'test'` هر کدام را در `test-results/<spec>-<title>-<browser>[-retryN]/trace.zip` می‌نویسد. فقط زمانی اعمال می‌شود که `mode: 'trace'` باشد. به [حالت Trace](/docs/devtools/wdio/trace-mode#trace-granularity--tracegranularity) مراجعه کنید. **هشدار:** رابط BDD `describe/it` به یک برش واحد در سطح نشست تقلیل می‌یابد (به [برش‌بندی برای هر تست](#per-test-slicing--the-bdd-describeit-caveat) مراجعه کنید). |
-| `tracePolicy` | `'on' \| 'retain-on-failure' \| 'retain-on-first-failure' \| 'on-first-retry' \| 'on-all-retries' \| 'retain-on-failure-and-retries'` | `'on'` | اینکه کدام traceها نگه داشته شوند. همراه با `traceGranularity: 'test'` به کار می‌رود. فقط زمانی اعمال می‌شود که `mode: 'trace'` باشد. |
-| `filmstrip` | `boolean` | `true` | ضبط یک نوار فیلم (filmstrip) پیوسته و متراکم از صفحه در trace برای پخش قابل پیمایش در پخش‌کننده trace — نه فقط یک فریم برای هر اقدام. ضبط‌کننده صفحه (در Nightwatch به حالت polling) را برای نشست اجرا می‌کند. فقط زمانی اعمال می‌شود که `mode: 'trace'` باشد. |
-| `screenshot` | `'off' \| 'on' \| 'only-on-failure'` | `'off'` | اسکرین‌شات برای هر تست. فقط در حالت trace + `traceGranularity: 'test'`. **فقط تولید** — فایل PNG در پوشه خروجی trace (و در manifest هنگامی که `emitArtifactsManifest: true` باشد) نوشته می‌شود؛ به‌صورت درون‌خطی به Allure پیوست نمی‌شود (به یادداشت زیر مراجعه کنید). |
-| `video` | `'off' \| TraceRetentionPolicy` | `'off'` | برش ویدیویی برای هر تست که طبق سیاست داده‌شده نگه داشته می‌شود (مثلاً `'retain-on-failure'`). فقط در حالت trace + `traceGranularity: 'test'`. مقداری غیر از `off` خودش ضبط‌کننده صفحه را راه‌اندازی می‌کند — **نیازی** به `filmstrip` یا `screencast.enabled` ندارید. **فقط تولید** — فایل `.webm` در پوشه خروجی trace (و در manifest هنگامی که `emitArtifactsManifest: true` باشد) نوشته می‌شود؛ به‌صورت درون‌خطی به Allure پیوست نمی‌شود. |
-| `emitArtifactsManifest` | `boolean` | `false` | نوشتن manifest با نام `devtools-artifacts-<sessionId>.json` (فهرست عمومی که گزارش‌گرها/CI برای یافتن فایل‌های تولیدشده از آن استفاده می‌کنند) در کنار trace. **برای Nightwatch اختیاری است** — هیچ سیگنال زنده‌ای از Allure برای تشخیص خودکار ندارد، بنابراین برخلاف WDIO/Selenium هرگز به‌طور خودکار فعال نمی‌شود. فقط زمانی اعمال می‌شود که `mode: 'trace'` باشد. |
-| `captureAssertions` | `boolean` | `true` | ثبت assertionها به‌صورت ردیف‌های اقدام در trace — `node:assert` به همراه `browser.assert`/`browser.verify` بومی، از جمله matcherهای منفی `.not.*`. برای غیرفعال‌سازی، `false` قرار دهید. |
+| `screencast` | `ScreencastOptions` | `{ enabled: false }` | ضبط ویدیوی `.webm` برای هر نشست، فقط در حالت live. در حالت trace از `filmstrip` / `video` استفاده کنید. [Screencast](#screencast) را در ادامه ببینید. |
+| `bidi` | `boolean` | `false` | فعال‌سازی ضبط WebDriver BiDi برای کنسول مرورگر + استثناهای JS + شبکه. به `webSocketUrl: true` در capabilities و یک chromedriver با پشتیبانی از BiDi نیاز دارد. هنگام اتصال، مسیر شبکه مبتنی بر perf-log کروم برای هر دستور غیرفعال می‌شود تا درخواست‌ها تکراری نشوند. |
+| `mode` | `'live' \| 'trace'` | `'live'` | `live` رابط کاربری DevTools را باز می‌کند؛ `trace` آن را رد کرده و به‌جای آن یک artifact قابل حمل می‌نویسد. [حالت Trace](/docs/devtools/wdio/trace-mode) را ببینید. |
+| `traceFormat` | `'zip' \| 'ndjson-directory'` | `'zip'` | ساختار artifact مربوط به trace. فقط زمانی اعمال می‌شود که `mode: 'trace'` باشد. |
+| `traceGranularity` | `'session' \| 'spec' \| 'test'` | `'session'` | یک trace برای هر نشست / فایل spec / تست. `'test'` هر کدام را در `test-results/<spec>-<title>-<browser>[-retryN]/trace.zip` می‌نویسد. فقط زمانی اعمال می‌شود که `mode: 'trace'` باشد. [حالت Trace](/docs/devtools/wdio/trace-mode#trace-granularity--tracegranularity) را ببینید. **هشدار:** رابط BDD `describe/it` به یک برش واحد در سطح نشست تقلیل می‌یابد ([برش‌بندی به ازای هر تست](#per-test-slicing--the-bdd-describeit-caveat) را ببینید). |
+| `tracePolicy` | `'on' \| 'retain-on-failure' \| 'retain-on-first-failure' \| 'on-first-retry' \| 'on-all-retries' \| 'retain-on-failure-and-retries'` | `'on'` | اینکه کدام traceها نگه داشته شوند. همراه با `traceGranularity: 'test'` به کار می‌رود. فقط زمانی اعمال می‌شود که `mode: 'trace'` باشد؛ تنظیم آن خارج از حالت trace یک هشدار ثبت می‌کند. **هشدار:** در Nightwatch فقط `'retain-on-failure'` قابل اتکاست. سایر سیاست‌های مبتنی بر تلاش مجدد به همین سیاست تنزل می‌یابند، زیرا `--retries` یک testcase را به‌صورت داخلی دوباره اجرا می‌کند، بدون اینکه هوک‌های به ازای هر تستِ پلاگین دوباره فراخوانی شوند. |
+| `filmstrip` | `boolean` | `true` | ضبط یک filmstrip متراکم و پیوسته از صفحه در trace برای پخش قابل پیمایش در پخش‌کننده trace — نه فقط یک فریم به ازای هر اقدام. ضبط‌کننده screencast را (در Nightwatch در حالت polling) برای نشست اجرا می‌کند. فقط زمانی اعمال می‌شود که `mode: 'trace'` باشد. |
+| `screenshot` | `'off' \| 'on' \| 'only-on-failure'` | `'off'` | اسکرین‌شات به ازای هر تست. فقط در حالت trace + `traceGranularity: 'test'`. **فقط تولید** — فایل PNG در پوشه خروجی trace (و در manifest هنگامی که `emitArtifactsManifest: true` باشد) نوشته می‌شود؛ به‌صورت درون‌خطی به Allure پیوست نمی‌شود (یادداشت زیر را ببینید). |
+| `video` | `'off' \| TraceRetentionPolicy` | `'off'` | برش ویدیویی به ازای هر تست، که طبق سیاست داده‌شده نگه داشته می‌شود (مثلاً `'retain-on-failure'`). فقط در حالت trace + `traceGranularity: 'test'`. مقداری غیر از `off` خودش ضبط‌کننده screencast را راه‌اندازی می‌کند — **نیازی** به `filmstrip` یا `screencast.enabled` ندارید. **فقط تولید** — فایل `.webm` در پوشه خروجی trace (و در manifest هنگامی که `emitArtifactsManifest: true` باشد) نوشته می‌شود؛ به‌صورت درون‌خطی به Allure پیوست نمی‌شود. |
+| `emitArtifactsManifest` | `boolean` | `false` | فایل manifest با نام `devtools-artifacts-<sessionId>.json` (فهرست عمومی‌ای که reporterها/CI برای کشف artifactهای تولیدشده استفاده می‌کنند) را کنار trace می‌نویسد. **در Nightwatch اختیاری است** — هیچ سیگنال زنده‌ای از Allure برای تشخیص خودکار ندارد، بنابراین برخلاف WDIO/Selenium هرگز به‌طور خودکار فعال نمی‌شود. فقط زمانی اعمال می‌شود که `mode: 'trace'` باشد. |
+| `captureAssertions` | `boolean` | `true` | ضبط assertionها به‌عنوان ردیف‌های اقدام در trace — `node:assert` به‌علاوه `browser.assert`/`browser.verify` بومی، شامل matcherهای منفی `.not.*`. برای غیرفعال کردن، آن را `false` قرار دهید. |
 
-> **پیوست درون‌خطی Allure برای Nightwatch پشتیبانی نمی‌شود.** گزارش‌گر رسمی `nightwatch-allure` آن پس از اجرا کار می‌کند (API پیوست زنده ندارد) و `attachment()` در `allure-js-commons` در اجرای Nightwatch هیچ کاری انجام نمی‌دهد. بنابراین فایل‌های `screenshot` / `video` در پوشه خروجی trace *تولید* می‌شوند (فایل‌ها، به‌علاوه manifest فایل‌ها هنگامی که `emitArtifactsManifest: true` باشد) اما به تست Allure پیوست نمی‌شوند. برش‌بندی برای هر تست — و در نتیجه این فایل‌ها — برای رابط‌های Cucumber و exports-object معنادار است؛ رابط BDD `describe/it` به سطح نشست تقلیل می‌یابد، بنابراین دروازه هر تست در آنجا هیچ کاری انجام نمی‌دهد.
+> **پیوست درون‌خطی به Allure برای Nightwatch پشتیبانی نمی‌شود.** reporter رسمی `nightwatch-allure` آن پس از اجرا کار می‌کند (هیچ API زنده‌ای برای پیوست ندارد)، و `attachment()` در `allure-js-commons` در اجرای Nightwatch هیچ کاری انجام نمی‌دهد. بنابراین artifactهای `screenshot` / `video` در پوشه خروجی trace *تولید* می‌شوند (فایل‌ها، به‌علاوه manifest مربوط به artifactها هنگامی که `emitArtifactsManifest: true` باشد) اما به یک تست Allure پیوست نمی‌شوند. برش‌بندی به ازای هر تست — و در نتیجه این artifactها — برای رابط‌های Cucumber و exports-object معنادار است؛ رابط BDD `describe/it` به سطح نشست تقلیل می‌یابد، بنابراین کنترل به ازای هر تست در آنجا هیچ اثری ندارد.
 
 ```js
 globals: nightwatchDevtools({
@@ -105,11 +109,11 @@ globals: nightwatchDevtools({
 })
 ```
 
-## ضبط صفحه
+## Screencast
 
-یک ویدیوی پیوسته `.webm` از نشست مرورگر ضبط کنید. ضبط از اولین نشستی که افزونه می‌بیند آغاز می‌شود و در هوک `after()` در Nightwatch نهایی می‌شود.
+یک ویدیوی پیوسته `.webm` از نشست مرورگر ضبط کنید. هر نشست WebDriver ضبط مخصوص به خود را دارد: یک `browser.end()` در میانه اجرا، یا بسته شدن مرورگر به ازای هر سناریو در Cucumber، ویدیوی فعلی را نهایی کرده و ویدیوی جدیدی را برای نشست بعدی آغاز می‌کند. آخرین ضبط در هوک `after()` در Nightwatch نهایی می‌شود و هر ضبط را می‌توان از منوی کشویی زبانه Screencast انتخاب کرد.
 
-**فقط حالت polling.** Nightwatch برخلاف WebdriverIO (`browser.getPuppeteer()`) و Selenium (`driver.createCDPConnection`) راه دسترسی پایداری به CDP ارائه نمی‌دهد، بنابراین ضبط صفحه با فراخوانی `browser.takeScreenshot()` در فواصل زمانی ثابت فریم‌ها را ثبت می‌کند. روی همه مرورگرهایی که Nightwatch پشتیبانی می‌کند کار می‌کند.
+**فقط حالت polling.** Nightwatch برخلاف WebdriverIO (`browser.getPuppeteer()`) و Selenium (`driver.createCDPConnection`) راه دسترسی پایداری به CDP ارائه نمی‌دهد، بنابراین screencast فریم‌ها را با درخواست اسکرین‌شات WebDriver در فواصل زمانی ثابت ضبط می‌کند. این درخواست مستقیماً از طریق انتقال HTTP در WebDriver ارسال می‌شود و صف دستورات Nightwatch را دور می‌زند، بنابراین هرگز پشت دستورات تست شما منتظر نمی‌ماند. روی هر مرورگری که Nightwatch پشتیبانی می‌کند کار می‌کند.
 
 ```js
 globals: nightwatchDevtools({
@@ -118,22 +122,23 @@ globals: nightwatchDevtools({
 })
 ```
 
-| گزینه | نوع | پیش‌فرض | نکات |
+| گزینه | نوع | پیش‌فرض | یادداشت‌ها |
 |--------|------|---------|-------|
 | `enabled` | `boolean` | `false` | کلید اصلی. |
-| `pollIntervalMs` | `number` | `200` | فاصله زمانی اسکرین‌شات‌ها (میلی‌ثانیه). مقدار کمتر = ویدیوی روان‌تر و رفت‌وبرگشت‌های بیشتر WebDriver. ۲۰۰ میلی‌ثانیه ≈ ۵ فریم بر ثانیه. |
-| `captureFormat` | `'jpeg' \| 'png'` | `'jpeg'` | قالب پیکسلی هر فریم که پیش از mux نهایی `.webm` به رمزگذار ffmpeg داده می‌شود. در حالت polling اسکرین‌شات‌های منبع همیشه به‌صورت PNG ثبت می‌شوند، بنابراین این گزینه ثبت را تغییر **نمی‌دهد** - فقط قالبی را که رمزگذار برای هر فریم دریافت می‌کند تغییر می‌دهد. |
-| `maxWidth` / `maxHeight` / `quality` | - | - | گزینه‌های مخصوص CDP که در حالت polling نادیده گرفته می‌شوند. برای سازگاری ساختاری با آداپتورهای WDIO/Selenium فهرست شده‌اند. |
+| `pollIntervalMs` | `number` | `200` | فاصله زمانی اسکرین‌شات (میلی‌ثانیه). مقدار کمتر = ویدیوی روان‌تر، رفت‌وبرگشت‌های بیشتر WebDriver. ۲۰۰ میلی‌ثانیه ≈ ۵ فریم بر ثانیه. |
+| `captureFormat` | `'jpeg' \| 'png'` | `'jpeg'` | قالب پیکسلی هر فریم که پیش از mux نهایی `.webm` به رمزگذار ffmpeg داده می‌شود. در حالت polling، اسکرین‌شات‌های منبع همیشه به‌صورت PNG گرفته می‌شوند، بنابراین این گزینه ضبط را تغییر **نمی‌دهد** - فقط قالبی را که رمزگذار برای هر فریم دریافت می‌کند تغییر می‌دهد. |
+| `maxBufferFrames` | `number` | `2000` | سقف تعداد فریم‌های نگه‌داشته‌شده در حافظه. پس از عبور از آن، بافر در جا رقیق می‌شود و اولین و آخرین فریم‌ها حفظ می‌شوند. |
+| `maxWidth` / `maxHeight` / `quality` | - | - | گزینه‌های مخصوص CDP، در حالت polling نادیده گرفته می‌شوند. برای سازگاری ساختاری با آداپتورهای WDIO/Selenium فهرست شده‌اند. |
 
-**پیش‌نیازها:** `fluent-ffmpeg` (که از قبل وابستگی زمان اجرای بسته است) به‌علاوه فایل اجرایی `ffmpeg` در PATH. در macOS: `brew install ffmpeg`. در Linux: `apt install ffmpeg`. بدون ffmpeg ضبط‌کننده همچنان اجرا می‌شود، اما مرحله رمزگذاری یک هشدار ثبت می‌کند و از نوشتن فایل صرف‌نظر می‌کند.
+**پیش‌نیازها:** `fluent-ffmpeg` (که از قبل وابستگی زمان اجرای پکیج است) به‌علاوه فایل اجرایی `ffmpeg` در PATH. در macOS: `brew install ffmpeg`. در Linux: `apt install ffmpeg`. بدون ffmpeg ضبط‌کننده همچنان اجرا می‌شود، اما مرحله رمزگذاری یک هشدار ثبت کرده و از نوشتن فایل صرف‌نظر می‌کند.
 
-**خروجی:** فایل ویدیو در کنار فایل تستی که اجرا شده نوشته می‌شود (با پوشه `nightwatch.conf.*` به‌عنوان جایگزین، و سپس `process.cwd()` به‌عنوان آخرین گزینه). مسیر کامل در خط لاگ Nightwatch با عنوان `📹 Screencast video: <path>` نمایش داده می‌شود و ویدیو همچنین به زبانه Screencast داشبورد استریم می‌شود.
+**خروجی:** فایل `nightwatch-video-<sessionId>.webm` در پوشه `test-results/` کنار فایل تستی که اجرا شده نوشته می‌شود، و در غیر این صورت به پوشه `nightwatch.conf.*` و سپس `process.cwd()` بازمی‌گردد. پوشه‌های زیر `node_modules/` نادیده گرفته می‌شوند، و اگر پوشه انتخاب‌شده قابل نوشتن نباشد، فایل به پوشه موقت سیستم‌عامل می‌رود. مسیر کامل در خط لاگ Nightwatch به‌صورت `📹 Screencast video: <path>` ظاهر می‌شود و ویدیو همچنین به زبانه Screencast در داشبورد استریم می‌شود.
 
-برای مرجع کامل قابلیت ضبط صفحه (پشتیبانی مرورگرها، مسیرهای خروجی در هر سه آداپتور)، به [صفحه Screencast](/docs/devtools/wdio/screencast) مراجعه کنید.
+برای مرجع کامل قابلیت screencast (پشتیبانی مرورگرها، مسیرهای خروجی در هر سه آداپتور)، [صفحه Screencast](/docs/devtools/wdio/screencast) را ببینید.
 
-## ثبت BiDi (اختیاری)
+## ضبط BiDi (اختیاری)
 
-ثبت WebDriver BiDi را برای پیام‌های کنسول مرورگر، استثناهای JS و درخواست‌های شبکه فعال کنید. معادل مسیری است که selenium-devtools استفاده می‌کند - هر دو آداپتور منطق اتصال یکسانی را در `@wdio/devtools-core` به اشتراک می‌گذارند.
+ضبط WebDriver BiDi را برای پیام‌های کنسول مرورگر، استثناهای JS و درخواست‌های شبکه فعال کنید. معادل مسیری است که selenium-devtools استفاده می‌کند - هر دو آداپتور منطق اتصال یکسانی را در `@wdio/devtools-core` به اشتراک می‌گذارند.
 
 ```js
 globals: nightwatchDevtools({
@@ -152,11 +157,13 @@ desiredCapabilities: {
 }
 ```
 
-هنگامی که BiDi متصل است، مسیر ثبت شبکه مبتنی بر performance-log کروم برای هر فرمان غیرفعال می‌شود تا درخواست‌ها دو بار در داشبورد ظاهر نشوند. اگر `webSocketUrl` وجود نداشته باشد یا نسخه chromedriver از BiDi پشتیبانی نکند، اتصال بی‌صدا شکست می‌خورد و مسیر جایگزین perf-log به کار خود ادامه می‌دهد.
+هنگامی که BiDi متصل است، مسیر ضبط شبکه مبتنی بر performance-log کروم برای هر دستور غیرفعال می‌شود تا درخواست‌ها دو بار در داشبورد ظاهر نشوند. اگر `webSocketUrl` موجود نباشد یا نسخه chromedriver از BiDi پشتیبانی نکند، اتصال یک هشدار ثبت می‌کند و جایگزین perf-log همچنان کار می‌کند. collector تزریق‌شده نیز همه درخواست‌ها را از دو منبع متعلق به خود صفحه فهرست می‌کند: فراخوانی `fetch` / `XMLHttpRequest` از وصله آن عبور می‌کند و متد، هدرها، وضعیت و بدنه را در بر دارد، و هر بارگذاری دیگر از بافر Resource Timing صفحه همراه با زمان‌بندی و اندازه‌اش می‌آید. در کروم، performance log سپس این ردیف‌های Resource Timing را در جا با هدرها و وضعیت ارتقا می‌دهد؛ در Safari، یا هر نشستی که Appium ارائه می‌دهد، آن‌ها همان‌طور که صفحه دیده باقی می‌مانند، بدون هدر یا بدنه، و در Safari بدون وضعیت. [لاگ‌های شبکه](/docs/devtools/wdio/network-logs#without-webdriver-bidi) را ببینید.
+
+**`webSocketUrl: true` را حتی بدون `bidi: true` تنظیم کنید.** با آن، آداپتور collector صفحه خود را در ابتدای سند در هر صفحه ثبت می‌کند، بنابراین سفر در زمان DOM در طول ناوبری‌ها دقیق می‌ماند. بدون آن، آداپتور به تزریق collector پس از هر ناوبری بازمی‌گردد، که ممکن است لحظات اولیه یک صفحه جدید را از دست بدهد.
 
 ## حالت Trace
 
-مسیر ثبت بدون رابط کاربری — هیچ پنجره رابط کاربری DevTools باز نمی‌شود. در پایان نشست، آداپتور یک فایل قابل حمل `trace-<sessionId>.zip` (یا پوشه) را در پوشه `test-results/` (در کنار پوشه تست / پیکربندی شناسایی‌شده) می‌نویسد که ساختاری مشابه فایل خروجی trace در WebdriverIO دارد.
+مسیر ضبط بدون رابط کاربری — هیچ پنجره رابط کاربری DevTools باز نمی‌شود. در پایان نشست، آداپتور یک فایل قابل حمل `trace-<sessionId>.zip` (یا پوشه) را در پوشه `test-results/` (کنار پوشه تست / پیکربندی تعیین‌شده) می‌نویسد که ساختاری مشابه artifact مربوط به trace در WebdriverIO دارد.
 
 ```js
 globals: nightwatchDevtools({
@@ -165,11 +172,11 @@ globals: nightwatchDevtools({
 })
 ```
 
-### سطح جزئیات و Cucumber
+### دانه‌بندی و Cucumber
 
-`traceGranularity` تعیین می‌کند هر فایل خروجی چه چیزی را پوشش دهد — `'session'` (پیش‌فرض)، `'spec'` یا `'test'`.
+`traceGranularity` تعیین می‌کند که هر artifact چه چیزی را پوشش دهد — `'session'` (پیش‌فرض)، `'spec'` یا `'test'`.
 
-Nightwatch پس از هر سناریوی Cucumber مرورگر را می‌بندد. یک trace از نوع `'session'` همه این‌ها را در بر می‌گیرد: یک فایل zip برای کل اجرا، که هر سناریو زیر feature خود تودرتو شده است. `'test'` برای هر سناریو یک فایل zip در پوشه مخصوص خودش می‌نویسد که برای Cucumber توصیه می‌شود — فایل‌های خروجی کوچک‌تر، و سطح جزئیاتی که نگهداری `tracePolicy` بر اساس آن عمل می‌کند.
+Nightwatch پس از هر سناریوی Cucumber مرورگر را می‌بندد. یک trace از نوع `'session'` این را پوشش می‌دهد: یک فایل zip برای کل اجرا، که هر سناریو زیر feature مربوط به خود تودرتو شده است. `'test'` برای هر سناریو یک zip در پوشه مخصوص خودش می‌نویسد، که برای Cucumber توصیه می‌شود — artifactهای کوچک‌تر، و دانه‌بندی‌ای که نگهداری `tracePolicy` بر اساس آن عمل می‌کند.
 
 ```js
 globals: nightwatchDevtools({
@@ -178,48 +185,81 @@ globals: nightwatchDevtools({
 })
 ```
 
-در رابط BDD `describe/it`، گزینه `'test'` به یک برش واحد در سطح نشست تقلیل می‌یابد: Nightwatch هر `it()` را به‌صورت داخلی اجرا می‌کند و هوک هر تست افزونه را فقط یک بار برای هر ماژول فراخوانی می‌کند. درخت اقدامات همچنان هر `it` را به‌عنوان یک گروه جداگانه نشان می‌دهد.
+در رابط BDD `describe/it`، `'test'` به یک برش واحد در سطح نشست تقلیل می‌یابد: Nightwatch هر `it()` را به‌صورت داخلی اجرا می‌کند و هوک به ازای هر تستِ پلاگین را فقط یک بار برای هر ماژول فراخوانی می‌کند. درخت اقدامات همچنان هر `it` را به‌عنوان گروه مستقل خود نشان می‌دهد.
 
-اتصال پورت بک‌اند، پنجره رابط کاربری و گزینه `screencast` همگی در حالت trace نادیده گرفته می‌شوند. برای مرجع کامل این قابلیت (محتوای فایل خروجی، نمایشگر، تست موبایل، زمان انتخاب `zip` در مقابل `ndjson-directory`)، به [صفحه حالت Trace](/docs/devtools/wdio/trace-mode) مراجعه کنید.
+در حالت trace، اتصال پورت بک‌اند و پنجره رابط کاربری نادیده گرفته می‌شوند و `screencast.enabled` نادیده گرفته می‌شود (زمانی که هیچ چیز دیگری به ضبط‌کننده نیاز نداشته باشد، یک هشدار ثبت می‌شود). حالت trace به‌جای آن به‌طور پیش‌فرض `filmstrip` متراکم را ضبط می‌کند، و فیلدهای تنظیم screencast (`pollIntervalMs`، `captureFormat`، `maxBufferFrames`) همچنان روی آن ضبط‌کننده اعمال می‌شوند. برای مرجع کامل قابلیت (محتوای artifact، نمایشگر، تست موبایل، زمان انتخاب `zip` در برابر `ndjson-directory`)، [صفحه حالت Trace](/docs/devtools/wdio/trace-mode) را ببینید.
 
-Nightwatch همان خط لوله trace را با آداپتورهای WebdriverIO و Selenium به اشتراک می‌گذارد، بنابراین ساختار فایل خروجی صرف‌نظر از اینکه کدام آداپتور آن را تولید کرده، یکسان است. یک trace از Nightwatch ثبت کامل هر اقدام را در خود دارد — یک اسکرین‌شات، snapshot درخت دسترس‌پذیری با تورفتگی بر اساس عمق، فهرست عناصر قابل تعامل و متن رونوشت Markdown — بنابراین در پخش‌کننده `show-trace` با قابلیت سفر در زمان DOM/snapshot، زبانه‌های **A11y** و **Transcript**، لایه عنصر انتخاب locator و (برای Cucumber) تودرتویی **Feature → Scenario → Step** باز می‌شود.
+Nightwatch همان خط لوله trace را با آداپتورهای WebdriverIO و Selenium به اشتراک می‌گذارد، بنابراین ساختار artifact صرف‌نظر از اینکه کدام آداپتور آن را تولید کرده یکسان است. یک trace از Nightwatch ضبط کامل به ازای هر اقدام را در بر دارد — یک اسکرین‌شات، snapshot درخت دسترس‌پذیری با تورفتگی بر اساس عمق، فهرست عناصر قابل تعامل، و رونوشت Markdown — بنابراین در پخش‌کننده `show-trace` با سفر در زمان DOM/snapshot، زبانه‌های **A11y**، **Transcript** و **Errors** (خطاها با پرش به کد منبع)، لایه انتخاب عنصر pick-locator، و (برای Cucumber) تودرتویی **Feature → Scenario** باز می‌شود. گام‌ها در داشبورد زنده ردیابی می‌شوند اما هنوز به‌عنوان گروه‌های مستقل در trace تودرتو نمی‌شوند. locatorهای کپی‌شده CSS ساده را ترجیح می‌دهند که Nightwatch به‌طور پیش‌فرض می‌خواند؛ فقط زمانی که هیچ selector یکتای CSS وجود نداشته باشد، پخش‌کننده XPath را با توضیح `useXpath()` / `locateStrategy: 'xpath'` به شما می‌دهد.
 
-یک trace را با فایل اجرایی `show-trace` که همراه `@wdio/nightwatch-devtools` ارائه می‌شود (بدون وابستگی اضافی) باز کنید:
+یک trace را با فایل اجرایی `show-trace` که همراه `@wdio/nightwatch-devtools` عرضه می‌شود باز کنید (بدون وابستگی اضافی):
 
 ```sh
 npx show-trace test-results/trace-<sessionId>.zip   # در پروژه‌ای که آداپتور را نصب کرده است
 pnpm show-trace test-results/trace-<sessionId>.zip  # از monorepo مربوط به devtools
 ```
 
-برای راهنمای کامل و میانبرهای صفحه‌کلید، به صفحه [پخش‌کننده Trace](/docs/devtools/trace-player) مراجعه کنید.
+برای راهنمای کامل و میان‌برهای صفحه‌کلید، صفحه [پخش‌کننده Trace](/docs/devtools/trace-player) را ببینید.
 
-### برش‌بندی برای هر تست و هشدار BDD `describe/it`
+### برش‌بندی به ازای هر تست و هشدار BDD `describe/it`
 
-گزینه‌های مربوط به هر تست — `traceGranularity: 'test'` و گزینه‌های `tracePolicy`، `screenshot` و `video` که همراه آن به کار می‌روند — برای برش زدن بخش مربوط به هر تست به یک هوک برای هر تست نیاز دارند. رابط **exports-object (سبک mocha)** و **Cucumber** (هوک‌های هر سناریو) چنین هوکی را ارائه می‌دهند، بنابراین برش‌بندی واقعی برای هر تست دریافت می‌کنند. رابط **BDD `describe/it`** استثناست: Nightwatch هر `it()` را به‌صورت داخلی اجرا می‌کند و هوک هر تست افزونه را فقط یک بار برای هر ماژول فراخوانی می‌کند، بنابراین `traceGranularity: 'test'` به یک برش واحد **در سطح نشست** تقلیل می‌یابد که به اولین تست مرتبط می‌شود. manifest فایل‌ها همچنان هر testcase را با وضعیت صحیح آن فهرست می‌کند؛ فقط کلیدگذاری برش/فایل هر تست تقلیل می‌یابد. traceهای سطح نشست و سطح spec تحت تأثیر قرار نمی‌گیرند.
+گزینه‌های به ازای هر تست — `traceGranularity: 'test'` و گزینه‌های `tracePolicy`، `screenshot` و `video` که همراه آن به کار می‌روند — برای جدا کردن برش هر تست به یک هوک به ازای هر تست نیاز دارند. رابط **exports-object (به سبک mocha)** و **Cucumber** (هوک‌های به ازای هر سناریو) چنین هوکی را ارائه می‌دهند، بنابراین برش‌بندی واقعی به ازای هر تست دریافت می‌کنند. رابط **BDD `describe/it`** استثناست: Nightwatch هر `it()` را به‌صورت داخلی اجرا می‌کند و هوک به ازای هر تستِ پلاگین را فقط یک بار برای هر ماژول فراخوانی می‌کند، بنابراین `traceGranularity: 'test'` به یک برش واحد **در سطح نشست** با کلید اولین تست تقلیل می‌یابد. manifest مربوط به artifactها همچنان هر testcase را با وضعیت درست آن فهرست می‌کند؛ فقط کلیدگذاری برش/artifact به ازای هر تست تقلیل می‌یابد. traceهای با دانه‌بندی نشست و spec تحت تأثیر قرار نمی‌گیرند.
 
-## نمونه‌ها
+## مثال‌ها
 
-نمونه‌های کاربردی در پوشه سطح بالای `examples/` در مخزن قرار دارند. یک بار workspace را بسازید (`pnpm install && pnpm build`)، سپس از ریشه مخزن اجرا کنید:
+مثال‌های کاربردی در پوشه سطح بالای `examples/` در مخزن قرار دارند. یک بار workspace را build کنید (`pnpm install && pnpm build`)، سپس از ریشه مخزن اجرا کنید:
 
-| پوشه | اجراکننده | فرمان |
+| پوشه | اجراکننده | دستور |
 |-----------|--------|---------|
-| [`examples/nightwatch/`](https://github.com/webdriverio/devtools/tree/main/examples/nightwatch) | Nightwatch سبک mocha | `pnpm demo:nightwatch` |
+| [`examples/nightwatch/`](https://github.com/webdriverio/devtools/tree/main/examples/nightwatch) | Nightwatch BDD `describe/it` (به‌طور پیش‌فرض حالت trace؛ `DEVTOOLS_MODE=live` برای رابط کاربری) | `pnpm demo:nightwatch` (`pnpm demo:nightwatch:retry` گزینه `--retries 1` را اضافه می‌کند) |
+| [`examples/nightwatch/cucumber/`](https://github.com/webdriverio/devtools/tree/main/examples/nightwatch/cucumber) | Nightwatch + Cucumber | `pnpm --filter @wdio/nightwatch-devtools example:cucumber` |
+| [`examples/nightwatch/`](https://github.com/webdriverio/devtools/tree/main/examples/nightwatch) (`nightwatch.mobile.conf.cjs`) | Appium (برنامه Clock در Android؛ Settings در iOS با `DEVTOOLS_MOBILE_PLATFORM=ios`) | `pnpm demo:nightwatch:mobile` |
+
+## موبایل (Appium)
+
+نشست‌های Appium در حالت live و trace ضبط می‌شوند. Appium را زیر `selenium` با `use_appium: true`، `start_process: false` و `default_path_prefix: ''` تعریف کنید. برای یک برنامه بومی `browserName: null` را تنظیم کنید؛ در غیر این صورت Nightwatch مقدار Firefox را پر می‌کند و آداپتور با نشست به‌عنوان نشستی دارای صفحه وب رفتار می‌کند. `bidi` را خاموش بگذارید، چون Appium هیچ BiDi ارائه نمی‌دهد. شبکه یک برنامه بومی زمانی ضبط می‌شود که `desiredCapabilities` مقدار `'appium:intercept': true` را تنظیم کند و Appium پلاگین appium-interceptor را اجرا کند؛ [شبکه برنامه بومی](/docs/devtools/mobile#native-app-network) را ببینید.
+
+```js
+// nightwatch.mobile.conf.cjs
+const nightwatchDevtools = require('@wdio/nightwatch-devtools').default
+
+module.exports = {
+  selenium: {
+    start_process: false,
+    use_appium: true,
+    host: '127.0.0.1',
+    port: 4723,
+    default_path_prefix: ''
+  },
+  test_settings: {
+    default: {
+      desiredCapabilities: {
+        browserName: null,
+        platformName: 'Android',
+        'appium:automationName': 'UiAutomator2'
+      },
+      globals: nightwatchDevtools({ mode: 'trace', bidi: false })
+    }
+  }
+}
+```
+
+نشست‌های بومی دستورات، اسکرین‌شات‌ها و داده‌های عناصر را از درخت XML پلتفرم، بدون DOM، ضبط می‌کنند. webview یک برنامه ترکیبی (hybrid) طوری ضبط می‌شود که گویی هنوز بومی است. آن را با `pnpm demo:nightwatch:mobile` امتحان کنید، که از ریشه یک checkout ساخته‌شده از مخزن devtools اجرا می‌شود (مراحل راه‌اندازی در [اجرای یک مثال](/docs/devtools/mobile#running-an-example)). برای مرجع کامل موبایل، [صفحه تست موبایل](/docs/devtools/mobile) را ببینید.
 
 ## قابلیت‌ها
 
-آداپتور Nightwatch همان تجربه رابط کاربری DevTools را مانند WebdriverIO ارائه می‌دهد. هر قابلیت زیر با راه‌اندازی پایه `globals: nightwatchDevtools({ port: 3000 })` به‌طور خودکار ثبت می‌شود — بدون پیکربندی جداگانه برای هر قابلیت (لاگ‌های شبکه علاوه بر این به `'goog:loggingPrefs': { performance: 'ALL' }` نیاز دارند که در [راه‌اندازی](#setup) نشان داده شده است). پیوندها به مرجع کامل هر قابلیت می‌روند.
+آداپتور Nightwatch همان تجربه رابط کاربری DevTools را مانند WebdriverIO ارائه می‌دهد. هر قابلیت زیر با راه‌اندازی پایه `globals: nightwatchDevtools({ port: 3000 })` به‌طور خودکار ضبط می‌شود — بدون پیکربندی جداگانه برای هر قابلیت (لاگ‌های شبکه علاوه بر آن به `'goog:loggingPrefs': { performance: 'ALL' }` نیاز دارند، که در [راه‌اندازی](#setup) نشان داده شده است). پیوندها به مرجع کامل هر قابلیت می‌روند.
 
-- **[اجرای مجدد تعاملی تست‌ها و بصری‌سازی](/docs/devtools/wdio/interactive-test-rerunning)** - پیش‌نمایش زنده مرورگر، اسکرین‌شات برای هر فرمان و اجرای مجدد تست/مجموعه با یک کلیک
-- **[حفظ و اجرای مجدد (مقایسه)](/docs/devtools/wdio/preserve-and-rerun)** - گرفتن snapshot از یک تست ناموفق، اجرای مجدد آن و مقایسه دو اجرا در کنار هم
-- **[پشتیبانی از چند فریم‌ورک](/docs/devtools/wdio/multi-framework-support)** - اجراکننده‌های استاندارد (سبک mocha) و Cucumber/BDD
-- **[لاگ‌های کنسول](/docs/devtools/wdio/console-logs)** - ثبت و بررسی خروجی کنسول مرورگر (به‌صورت بلادرنگ با `bidi: true`)
+- **[اجرای مجدد تعاملی تست و بصری‌سازی](/docs/devtools/wdio/interactive-test-rerunning)** - پیش‌نمایش زنده مرورگر، اسکرین‌شات به ازای هر دستور، و اجرای مجدد تست/مجموعه با یک کلیک
+- **[حفظ و اجرای مجدد (مقایسه)](/docs/devtools/wdio/preserve-and-rerun)** - از یک تست ناموفق snapshot بگیرید، آن را دوباره اجرا کنید، و دو اجرا را کنار هم مقایسه کنید. اجراهای مجدد Nightwatch پیکربندی شما را با تنظیم `DEVTOOLS_RERUN_LABEL` دوباره راه‌اندازی کرده و به همان تست فیلتر می‌کنند؛ آن‌ها به یک `nightwatch.conf.*` قابل کشف نیاز دارند، که بدون آن پلاگین هشدار می‌دهد و اجرای مجدد در دسترس نیست
+- **[پشتیبانی از چند فریم‌ورک](/docs/devtools/wdio/multi-framework-support)** - اجراکننده‌های استاندارد (به سبک mocha) و Cucumber/BDD
+- **[لاگ‌های کنسول](/docs/devtools/wdio/console-logs)** - ضبط و بررسی خروجی کنسول مرورگر (به‌صورت بلادرنگ با `bidi: true`)
 - **[لاگ‌های شبکه](/docs/devtools/wdio/network-logs)** - پایش فراخوانی‌های API و فعالیت شبکه
 - **[فراداده](/docs/devtools/wdio/metadata)** - capabilities نشست، محیط و زمان‌بندی برای هر نشست مرورگر
-- **[TestLens](/docs/devtools/wdio/testlens)** - پرش از هر فرمان به خط کد منبعی که آن را فراخوانی کرده است
-- **[ضبط صفحه نشست](/docs/devtools/wdio/screencast)** - ضبط پیوسته `.webm` از نشست مرورگر
-- **[حالت Trace](/docs/devtools/wdio/trace-mode)** - ثبت بدون رابط کاربری که یک فایل قابل حمل `trace.zip` تولید می‌کند (بدون پنجره رابط کاربری)
+- **[TestLens](/docs/devtools/wdio/testlens)** - پرش از هر دستور به خط کد منبعی که آن را فراخوانده است
+- **[Screencast نشست](/docs/devtools/wdio/screencast)** - ضبط پیوسته `.webm` از نشست مرورگر
+- **[حالت Trace](/docs/devtools/wdio/trace-mode)** - ضبط بدون رابط کاربری که یک `trace.zip` قابل حمل تولید می‌کند (بدون پنجره رابط کاربری)
 
-ضبط صفحه تنها قابلیتی است که گزینه‌های مخصوص به خود را دارد (فهرست کامل در بخش [ضبط صفحه](#screencast)):
+Screencast تنها قابلیتی است که گزینه‌های مخصوص خود را دارد (فهرست کامل در [Screencast](#screencast)):
 
 ```js
 globals: nightwatchDevtools({ port: 3000, screencast: { enabled: true, pollIntervalMs: 200 } })
@@ -227,16 +267,17 @@ globals: nightwatchDevtools({ port: 3000, screencast: { enabled: true, pollInter
 
 ## محدودیت‌ها
 
-Nightwatch هوک‌های فریم‌ورکی به عمق WebdriverIO ارائه نمی‌دهد، بنابراین چند تفاوت با سرویس WDIO DevTools وجود دارد:
+Nightwatch به اندازه WebdriverIO هوک‌های عمیق فریم‌ورکی ارائه نمی‌دهد، بنابراین چند تفاوت با سرویس WDIO DevTools وجود دارد:
 
 | محدودیت | جزئیات |
 |-----------|--------|
-| نبود هوک‌های بومی فرمان | Nightwatch هوک `beforeCommand` / `afterCommand` ندارد. به‌جای آن، فرمان‌ها از طریق یک پوشش proxy روی مرورگر رهگیری می‌شوند. |
+| نبود هوک‌های بومی دستور | Nightwatch هیچ هوک `beforeCommand` / `afterCommand` ندارد. دستورات به‌جای آن از طریق یک wrapper پراکسی مرورگر رهگیری می‌شوند. |
 | زمینه محدود تست | `browser.currentTest` فراداده کمتری نسبت به زمینه اجراکننده WDIO ارائه می‌دهد؛ نام تست‌ها و مسیر فایل‌ها به روش‌های اکتشافی اضافی نیاز دارند. |
-| تودرتویی تخت مجموعه‌ها | Nightwatch به‌طور بومی از بلوک‌های `describe` با چند سطح تودرتویی پشتیبانی نمی‌کند؛ افزونه حداکثر دو سطح را گزارش می‌دهد. |
+| تودرتویی مسطح مجموعه‌ها | Nightwatch به‌طور بومی از بلوک‌های `describe` چندسطحی پشتیبانی نمی‌کند؛ پلاگین حداکثر دو سطح را گزارش می‌دهد. |
 | دسترسی تأخیری به نتایج | نتایج تست فقط در `afterEach` نهایی می‌شوند و در میانه تست در دسترس نیستند. |
-| ضبط صفحه فقط در حالت polling | برخلاف WDIO (ارسال CDP از طریق `browser.getPuppeteer()`) و Selenium (ارسال CDP از طریق `driver.createCDPConnection`)، Nightwatch راه دسترسی پایداری به CDP ندارد، بنابراین فریم‌ها با polling روی `browser.takeScreenshot()` ثبت می‌شوند. روی همه مرورگرهایی که Nightwatch پشتیبانی می‌کند کار می‌کند؛ هزینه اندکی برای هر فریم متناسب با فاصله polling دارد. |
-| برش‌بندی trace برای هر تست (BDD `describe/it`) | رابط BDD هوک هر تست افزونه را یک بار برای هر ماژول فراخوانی می‌کند، بنابراین `traceGranularity: 'test'` به یک برش در سطح نشست تقلیل می‌یابد. رابط‌های exports-object (سبک mocha) و Cucumber برش‌بندی واقعی برای هر تست دریافت می‌کنند. به [برش‌بندی برای هر تست](#per-test-slicing--the-bdd-describeit-caveat) مراجعه کنید. |
-| فایل‌های trace فقط تولیدی | فایل‌های `screenshot` / `video` هر تست در پوشه خروجی trace (و در manifest هنگامی که `emitArtifactsManifest: true` باشد) نوشته می‌شوند اما به‌صورت درون‌خطی به Allure پیوست نمی‌شوند — Nightwatch هیچ API پیوست زنده Allure ندارد. |
+| Screencast فقط در حالت polling | برخلاف WDIO (ارسال CDP از طریق `browser.getPuppeteer()`) و Selenium (ارسال CDP از طریق `driver.createCDPConnection`)، Nightwatch راه دسترسی پایداری به CDP ندارد، بنابراین فریم‌ها با polling روی endpoint اسکرین‌شات WebDriver ضبط می‌شوند. روی هر مرورگری که Nightwatch پشتیبانی می‌کند کار می‌کند؛ هزینه اندکی به ازای هر فریم متناسب با فاصله polling دارد. |
+| برش‌بندی trace به ازای هر تست (BDD `describe/it`) | رابط BDD هوک به ازای هر تستِ پلاگین را یک بار برای هر ماژول فراخوانی می‌کند، بنابراین `traceGranularity: 'test'` به یک برش در سطح نشست تقلیل می‌یابد. رابط‌های exports-object (به سبک mocha) و Cucumber برش‌بندی واقعی به ازای هر تست دریافت می‌کنند. [برش‌بندی به ازای هر تست](#per-test-slicing--the-bdd-describeit-caveat) را ببینید. |
+| نگهداری مبتنی بر تلاش مجدد | فقط `tracePolicy: 'retain-on-failure'` قابل اتکاست؛ سایر سیاست‌های مبتنی بر تلاش مجدد به همین سیاست تنزل می‌یابند. |
+| artifactهای trace فقط-تولیدی | فایل‌های `screenshot` / `video` به ازای هر تست در پوشه خروجی trace (و در manifest هنگامی که `emitArtifactsManifest: true` باشد) نوشته می‌شوند اما به‌صورت درون‌خطی به Allure پیوست نمی‌شوند — Nightwatch هیچ API زنده‌ای برای پیوست به Allure ندارد. |
 
 برابری کلی قابلیت‌ها با سرویس WebdriverIO DevTools تقریباً **۸۰ تا ۹۰ درصد** است.

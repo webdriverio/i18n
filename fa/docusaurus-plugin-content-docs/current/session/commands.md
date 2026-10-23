@@ -1,13 +1,13 @@
 ---
 id: session-commands
 title: دستورات wdio session
-description: همهٔ اکشن‌ها و فلگ‌های wdio session، از open تا doctor و skill.
+description: تمام اکشن‌ها و فلگ‌های wdio session، از open تا doctor و skill.
 slug: /session-commands
 ---
 
 <!-- Generated from packages/wdio-session/src/actions/specs.ts by `pnpm run docs:session-commands`. Do not edit by hand. -->
 
-همهٔ اکشن‌های `wdio session` در این صفحه آمده‌اند. فلگ‌های سراسری روی همهٔ آن‌ها اعمال می‌شوند. همین متن با `npx wdio session <action> --help` هم چاپ می‌شود. بقیهٔ بخش [WebdriverIO Session](/docs/session) به [هدف‌ها](/docs/session/targets)، [اسنپ‌شات‌ها](/docs/session/snapshots)، [`exec`](/docs/session/exec)، [خروجی گرفتن](/docs/session/export) و [اشکال‌زدایی](/docs/session/debug) می‌پردازد.
+این صفحه تمام اکشن‌های `wdio session` را شرح می‌دهد. فلگ‌های سراسری روی همه‌ی آن‌ها اعمال می‌شوند. همین متن توسط `npx wdio session <action> --help` نیز چاپ می‌شود. بقیه‌ی بخش [WebdriverIO Session](/docs/session) موضوعات [targetها](/docs/session/targets)، [snapshotها](/docs/session/snapshots)، [`exec`](/docs/session/exec)، [export](/docs/session/export) و [دیباگ](/docs/session/debug) را پوشش می‌دهد.
 
 ```sh
 npx wdio session <action> [arguments] [flags]
@@ -17,21 +17,21 @@ npx wdio session <action> [arguments] [flags]
 
 | فلگ | توضیحات |
 | --- | --- |
-| `-s, --session` | نام نشست (متغیر محیطی WDIO_SESSION، پیش‌فرض "default") |
-| `--json` | یک شیء JSON چاپ می‌کند (متغیر محیطی WDIO_SESSION_JSON=1) |
-| `--timeout` | مهلت زمانی درخواست بر حسب میلی‌ثانیه (حداکثر 60000، به‌جز برای wait) |
-| `-q, --quiet` | در صورت موفقیت، چیزی جز داده‌های درخواست‌شده چاپ نمی‌کند |
+| `-s, --session` | نام session (متغیر محیطی WDIO_SESSION، پیش‌فرض "default") |
+| `--json` | چاپ یک شیء JSON (متغیر محیطی WDIO_SESSION_JSON=1) |
+| `--timeout` | مهلت زمانی درخواست بر حسب میلی‌ثانیه (حداکثر 60000، به جز برای wait) |
+| `-q, --quiet` | در صورت موفقیت چیزی جز داده‌ی درخواست‌شده چاپ نمی‌شود |
 | `--color` | برای غیرفعال کردن رنگ‌ها از --no-color استفاده کنید |
 
-کدهای خروج: 0 یعنی موفقیت، 1 یعنی اکشن یا کد شما شکست خورد، 2 یعنی خطای استفاده، 3 یعنی وابستگی یا اعتبارنامه موجود نیست، 4 یعنی نشستی با آن نام وجود ندارد.
+کدهای خروج: 0 موفقیت، 1 شکست اکشن یا کد شما، 2 خطای نحوه‌ی استفاده، 3 نبودِ وابستگی یا اعتبارنامه، 4 نبودِ session با آن نام.
 
 ## `open`
 
-یک نشست را شروع می‌کند: browser، android، ios، macos، windows، electron، tauri، dioxus یا یک فایل پیکربندی wdio.
+شروع یک session: browser، android، ios، macos، windows، electron، tauri، dioxus یا یک فایل پیکربندی wdio.
 
-یک daemon پس‌زمینه راه‌اندازی می‌کند که نشست را تا زمان `close` زنده نگه می‌دارد، یا تا زمانی که به مدت --idle-timeout (پیش‌فرض 30m) بیکار بماند. مرورگرها به‌صورت headless اجرا می‌شوند، مگر اینکه --headed را بدهید. نام نشست، هدف و پوشهٔ artifacts (جایی که اسنپ‌شات‌ها، اسکرین‌شات‌ها و خروجی‌ها ذخیره می‌شوند) را چاپ می‌کند و برای مرورگری که روی یک URL باز شده، اسنپ‌شات تعاملی آن صفحه را هم نمایش می‌دهد.
+یک daemon پس‌زمینه راه‌اندازی می‌کند که session را تا زمان `close`، یا تا زمانی که به مدت --idle-timeout (پیش‌فرض 30m) بیکار بماند، زنده نگه می‌دارد. مرورگرها به صورت headless اجرا می‌شوند مگر اینکه --headed را بدهید. نام session، target، پوشه‌ی artifacts که snapshotها، اسکرین‌شات‌ها و خروجی‌ها در آن ذخیره می‌شوند، و برای مرورگری که روی یک URL باز شده، snapshot تعاملی آن صفحه را چاپ می‌کند.
 
-برای هر نام فقط یک نشست وجود دارد. باز کردن نامی که در حال اجراست با شکست مواجه می‌شود؛ از آن استفاده کنید، آن را ببندید یا --replace را بدهید. فقط زمانی `-s <name>` را بدهید که به دو نشست هم‌زمان نیاز دارید.
+برای هر نام فقط یک session وجود دارد. باز کردن نامی که در حال اجراست با شکست مواجه می‌شود؛ از آن استفاده کنید، آن را ببندید، یا --replace را بدهید. فقط زمانی `-s <name>` را بدهید که به دو session هم‌زمان نیاز دارید.
 
 ```sh
 npx wdio session open <target> [url]
@@ -48,72 +48,72 @@ npx wdio session open <target> [url]
 
 | فلگ | توضیحات |
 | --- | --- |
-| `--replace` | ابتدا نشست در حال اجرا با همین نام را می‌بندد |
-| `--launch-timeout <n>` | چند میلی‌ثانیه برای آماده شدن نشست صبر شود |
-| `--idle-timeout <value>` | پس از این مدت بدون درخواست خاموش می‌شود (مثلاً 30m؛ مقدار 0 غیرفعالش می‌کند) |
-| `--capabilities <value>` | capabilityهای اضافی به‌صورت JSON یا مسیر یک فایل JSON |
+| `--replace` | ابتدا session در حال اجرا با همین نام را ببند |
+| `--launch-timeout <n>` | میلی‌ثانیه‌های انتظار برای آماده شدن session |
+| `--idle-timeout <value>` | خاموش شدن پس از این مدت بدون درخواست (مثلاً 30m، مقدار 0 غیرفعال می‌کند) |
+| `--capabilities <value>` | capabilityهای اضافی به صورت JSON یا مسیر یک فایل JSON |
 | `--hostname <value>` | میزبان WebDriver راه دور |
 | `--port <n>` | پورت WebDriver راه دور |
 | `--path <value>` | مسیر WebDriver راه دور |
 | `--protocol <value>` | پروتکل WebDriver راه دور |
 | `--log-level <value>` | سطح لاگ WebdriverIO که در daemon.log نوشته می‌شود |
 | `--bidi` | درخواست WebDriver BiDi (برای غیرفعال کردن از --no-bidi استفاده کنید) |
-| `--headed` | پنجرهٔ مرورگر را نمایش می‌دهد |
-| `--headless` | بدون پنجره اجرا می‌شود (پیش‌فرض برای مرورگرها؛ --headed را لغو می‌کند) |
-| `--snapshot` | اسنپ‌شات تعاملی صفحهٔ بازشده را چاپ می‌کند (برای صرف‌نظر کردن از --no-snapshot استفاده کنید) |
+| `--headed` | نمایش پنجره‌ی مرورگر |
+| `--headless` | اجرا بدون پنجره (پیش‌فرض برای مرورگرها؛ --headed را باطل می‌کند) |
+| `--snapshot` | چاپ snapshot تعاملی صفحه‌ی باز‌شده (برای رد کردن از --no-snapshot استفاده کنید) |
 | `--viewport <value>` | viewport اولیه، مثلاً 1280x720 |
-| `--browser-version <value>` | نسخهٔ مرورگر |
+| `--browser-version <value>` | نسخه‌ی مرورگر |
 | `--binary <value>` | فایل اجرایی مرورگر |
 | `--arg <value>` | آرگومان اضافی مرورگر. مقداری که با `-` شروع می‌شود به `=` نیاز دارد، مثلاً `--arg=--disable-gpu` (قابل تکرار) |
-| `--profile <value>` | پوشهٔ پروفایل ماندگار |
-| `--attach <value>` | اتصال به یک Chrome/Edge در حال اجرا (پورت اشکال‌زدایی یا URL) |
-| `--app <value>` | فایل برنامه یا URL برنامه در ابر |
-| `--package <value>` | پکیج برنامهٔ Android |
-| `--activity <value>` | activity برنامهٔ Android |
+| `--profile <value>` | پوشه‌ی پروفایل ماندگار |
+| `--attach <value>` | اتصال به یک Chrome/Edge در حال اجرا (پورت دیباگ یا URL) |
+| `--app <value>` | فایل برنامه یا URL برنامه‌ی ابری |
+| `--package <value>` | package برنامه‌ی Android |
+| `--activity <value>` | activity برنامه‌ی Android |
 | `--bundle-id <value>` | bundle id در iOS/macOS |
 | `--browser <value>` | مرورگر وب موبایل (chrome، safari) |
 | `--device <value>` | نام دستگاه |
-| `--platform-version <value>` | نسخهٔ پلتفرم |
+| `--platform-version <value>` | نسخه‌ی پلتفرم |
 | `--udid <value>` | UDID دستگاه |
 | `--reset` | برای حفظ وضعیت برنامه از --no-reset استفاده کنید (appium:noReset) |
 | `--full-reset` | appium:fullReset |
-| `--orientation <portrait\|landscape>` | جهت اولیه |
+| `--orientation <portrait\|landscape>` | جهت اولیه‌ی صفحه |
 | `--appium-url <value>` | استفاده از یک سرور Appium در حال اجرا |
-| `--app-arg <value>` | آرگومانی که به برنامهٔ دسکتاپ داده می‌شود. مقداری که با `-` شروع می‌شود به `=` نیاز دارد، مثلاً `--app-arg=--no-sandbox` (قابل تکرار) |
+| `--app-arg <value>` | آرگومانی که به برنامه‌ی دسکتاپ داده می‌شود. مقداری که با `-` شروع می‌شود به `=` نیاز دارد، مثلاً `--app-arg=--no-sandbox` (قابل تکرار) |
 | `--chromedriver <value>` | Electron: فایل اجرایی Chromedriver |
 | `--electron-version <value>` | Electron: نادیده گرفتن تشخیص خودکار نسخه |
-| `--provider <browserstack\|saucelabs\|testingbot\|testmu>` | ارائه‌دهندهٔ ابری |
-| `--os <value>` | ابر: سیستم‌عامل دسکتاپ |
-| `--os-version <value>` | ابر: نسخهٔ سیستم‌عامل دسکتاپ |
-| `--region <value>` | ابر: منطقهٔ Sauce Labs |
-| `--tunnel <value>` | ابر: تونل ارائه‌دهنده را راه‌اندازی می‌کند (یا "external") |
-| `--tunnel-name <value>` | ابر: شناسهٔ تونل |
-| `--project <value>` | ابر: برچسب پروژه |
-| `--build <value>` | ابر: برچسب build |
-| `--name <value>` | ابر: برچسب نام نشست |
+| `--provider <browserstack\|saucelabs\|testingbot\|testmu>` | ارائه‌دهنده‌ی ابری |
+| `--os <value>` | ابری: سیستم‌عامل دسکتاپ |
+| `--os-version <value>` | ابری: نسخه‌ی سیستم‌عامل دسکتاپ |
+| `--region <value>` | ابری: منطقه‌ی Sauce Labs |
+| `--tunnel <value>` | ابری: راه‌اندازی تونل ارائه‌دهنده (یا "external") |
+| `--tunnel-name <value>` | ابری: شناسه‌ی تونل |
+| `--project <value>` | ابری: برچسب پروژه |
+| `--build <value>` | ابری: برچسب build |
+| `--name <value>` | ابری: برچسب نام session |
 
 **مثال‌ها**
 
 ```sh
-# باز کردن Chrome به‌صورت headless روی یک برنامهٔ محلی
+# باز کردن Chrome به صورت headless روی یک برنامه‌ی محلی
 npx wdio session open chrome http://localhost:3000
 
-# باز کردن Firefox با پنجرهٔ قابل مشاهده
+# باز کردن Firefox با پنجره‌ی قابل مشاهده
 npx wdio session open firefox http://localhost:3000 --headed
 
-# باز کردن یک برنامهٔ Android از طریق Appium
+# باز کردن یک برنامه‌ی Android از طریق Appium
 npx wdio session open android --app ./app.apk
 
-# باز کردن یک برنامهٔ نصب‌شدهٔ iOS
+# باز کردن یک برنامه‌ی نصب‌شده‌ی iOS
 npx wdio session open ios --bundle-id com.example.shop
 
-# باز کردن یک برنامهٔ Electron
+# باز کردن یک برنامه‌ی Electron
 npx wdio session open electron ./main.js
 
 # باز کردن اولین capability یک پیکربندی
 npx wdio session open ./wdio.conf.ts 0
 
-# باز کردن Chrome در یک گرید ابری
+# باز کردن Chrome در یک grid ابری
 npx wdio session open chrome https://example.com --provider browserstack
 ```
 
@@ -121,9 +121,9 @@ npx wdio session open chrome https://example.com --provider browserstack
 
 ## `close`
 
-نشست را پایان می‌دهد و daemon آن را متوقف می‌کند.
+پایان دادن به session و متوقف کردن daemon آن.
 
-روی نشستی که با `wdio run --debug=agent` باز شده، این کار باعث شکست تست متوقف‌شده می‌شود؛ برای ادامهٔ آن از `resume` استفاده کنید.
+روی sessionی که توسط `wdio run --debug=agent` باز شده، این کار تست متوقف‌شده را ناموفق می‌کند؛ برای ادامه‌ی آن از `resume` استفاده کنید.
 
 ```sh
 npx wdio session close
@@ -133,16 +133,16 @@ npx wdio session close
 
 | فلگ | توضیحات |
 | --- | --- |
-| `--all` | همهٔ نشست‌ها را می‌بندد |
-| `--clean` | پوشهٔ artifacts را هم حذف می‌کند |
+| `--all` | بستن همه‌ی sessionها |
+| `--clean` | پوشه‌ی artifacts را نیز حذف کن |
 
 **مثال‌ها**
 
 ```sh
-# بستن نشست پیش‌فرض
+# بستن session پیش‌فرض
 npx wdio session close
 
-# بستن همهٔ نشست‌ها و حذف artifactهای آن‌ها
+# بستن همه‌ی sessionها و حذف artifactهای آن‌ها
 npx wdio session close --all --clean
 ```
 
@@ -150,9 +150,9 @@ npx wdio session close --all --clean
 
 ## `list`
 
-نشست‌های در حال اجرا را فهرست می‌کند.
+فهرست sessionهای در حال اجرا.
 
-برای هر نشست یک خط چاپ می‌کند: نام، هدف، URL و مدت عمر. وضعیت باقی‌مانده از نشست‌هایی که از کار افتاده‌اند را پاک می‌کند.
+برای هر session یک خط چاپ می‌کند: نام، target، URL و مدت عمر. وضعیت باقی‌مانده از sessionهایی که از کار افتاده‌اند را پاک می‌کند.
 
 ```sh
 npx wdio session list
@@ -161,7 +161,7 @@ npx wdio session list
 **مثال‌ها**
 
 ```sh
-# نمایش همهٔ نشست‌های در حال اجرا
+# نمایش همه‌ی sessionهای در حال اجرا
 npx wdio session list
 ```
 
@@ -169,9 +169,9 @@ npx wdio session list
 
 ## `info`
 
-جزئیات نشست را نمایش می‌دهد.
+نمایش جزئیات session.
 
-هدف، مرورگر و نسخهٔ آن، پشتیبانی از BiDi، پوشهٔ artifacts، و URL فعلی، عنوان، اندازهٔ پنجره و frame (وب) یا context و activity (موبایل) را چاپ می‌کند.
+target، مرورگر و نسخه‌ی آن، پشتیبانی از BiDi، پوشه‌ی artifacts، و URL فعلی، عنوان، اندازه‌ی پنجره و frame (وب) یا context و activity (موبایل) را چاپ می‌کند.
 
 ```sh
 npx wdio session info
@@ -180,7 +180,7 @@ npx wdio session info
 **مثال‌ها**
 
 ```sh
-# نمایش اینکه نشست کجاست و چه چیزی را اجرا می‌کند
+# نمایش اینکه session کجاست و چه چیزی را اجرا می‌کند
 npx wdio session info
 ```
 
@@ -188,9 +188,9 @@ npx wdio session info
 
 ## `restart`
 
-نشست را می‌بندد و با همان هدف و فلگ‌ها دوباره باز می‌کند.
+بستن و باز کردن مجدد با همان target و فلگ‌ها.
 
-تاریخچهٔ ضبط‌شده را نگه می‌دارد، بنابراین `export` همچنان مراحل قبل از راه‌اندازی مجدد را پوشش می‌دهد.
+تاریخچه‌ی ثبت‌شده را حفظ می‌کند، بنابراین `export` همچنان مراحل قبل از راه‌اندازی مجدد را پوشش می‌دهد.
 
 ```sh
 npx wdio session restart
@@ -207,7 +207,7 @@ npx wdio session restart
 
 ## `status`
 
-اگر نشست در حال اجرا باشد با کد 0 و در غیر این صورت با کد 4 خارج می‌شود.
+اگر session در حال اجرا باشد با کد 0 و در غیر این صورت با کد 4 خارج می‌شود.
 
 ```sh
 npx wdio session status
@@ -216,7 +216,7 @@ npx wdio session status
 **مثال‌ها**
 
 ```sh
-# باز کردن نشست فقط وقتی هیچ نشستی در حال اجرا نیست
+# باز کردن session فقط زمانی که هیچ sessionی در حال اجرا نیست
 npx wdio session status || npx wdio session open chrome http://localhost:3000
 ```
 
@@ -224,11 +224,11 @@ npx wdio session status || npx wdio session open chrome http://localhost:3000
 
 ## `exec`
 
-کد WebdriverIO را از stdin، ‏-e یا یک فایل اجرا می‌کند.
+اجرای کد WebdriverIO از stdin، ‏-e یا یک فایل.
 
-به‌صورت یک تابع async اجرا می‌شود که `browser`، `$`، `$$`، `expect` و `ref('e3')` در دسترس آن هستند. متغیرهای سطح بالا بین فراخوانی‌ها حفظ می‌شوند. اجرای `wdio session` بدون اکشن، وقتی کد از طریق stdin به آن pipe شود، `exec` را اجرا می‌کند.
+به صورت یک تابع async اجرا می‌شود که `browser`، `$`، `$$`، `expect` و `ref('e3')` در دسترس آن هستند. متغیرهای سطح بالا بین فراخوانی‌ها حفظ می‌شوند. `wdio session` بدون اکشن، زمانی که کد از طریق stdin به آن pipe شود، `exec` را اجرا می‌کند.
 
-همیشه دستورات را `await` کنید. `$` دقیقاً یک المنت برمی‌گرداند و وقتی بیش از یک المنت منطبق باشد StrictSelectorError پرتاب می‌کند. وقتی یک اکشن واحد (click، fill، …) کار را انجام می‌دهد آن را ترجیح دهید؛ برای حلقه‌ها، شرط‌ها و assertionها از `exec` استفاده کنید.
+همیشه دستورات را `await` کنید. `$` دقیقاً یک عنصر برمی‌گرداند و زمانی که بیش از یک عنصر مطابقت داشته باشد StrictSelectorError پرتاب می‌کند. وقتی یک اکشن واحد (click، fill، …) کار را انجام می‌دهد آن را ترجیح دهید؛ از `exec` برای حلقه‌ها، شرط‌ها و assertionها استفاده کنید.
 
 ```sh
 npx wdio session exec [file]
@@ -244,19 +244,19 @@ npx wdio session exec [file]
 
 | فلگ | توضیحات |
 | --- | --- |
-| `-e, --eval <value>` | کدی که باید اجرا شود |
-| `--history` | کد را در تاریخچه ثبت می‌کند (برای صرف‌نظر کردن از --no-history استفاده کنید) |
+| `-e, --eval <value>` | کدی که اجرا می‌شود |
+| `--history` | ثبت کد در تاریخچه (برای رد کردن از --no-history استفاده کنید) |
 
 **مثال‌ها**
 
 ```sh
-# اجرای یک دستور تک‌خطی
+# اجرای یک دستور یک‌خطی
 npx wdio session exec -e "await browser.getTitle()"
 
-# assertion روی صفحه (نقل‌قول تکی، shell را از $ دور نگه می‌دارد)
+# assertion روی صفحه (کوتیشن تکی، shell را از $ دور نگه می‌دارد)
 npx wdio session exec -e 'await expect($("h1")).toHaveText("Cart")'
 
-# ارسال چند مرحله از طریق stdin
+# pipe کردن چند مرحله از طریق stdin
 npx wdio session <<'JS'
 await $('aria/Sign in').click()
 await expect(browser).toHaveUrl(expect.stringContaining('/dashboard'))
@@ -270,9 +270,9 @@ npx wdio session exec ./scripts/login.ts
 
 ## `helpers`
 
-helperهای پروژه را از .wdio/helpers فهرست می‌کند.
+فهرست helperهای پروژه از .wdio/helpers.
 
-هر فایل در .wdio/helpers به‌صورت default یک تابع export می‌کند که browser را دریافت کرده و با addCommand دستورات سفارشی ثبت می‌کند. helperها هنگام باز شدن نشست بارگذاری می‌شوند و در تست خروجی‌گرفته‌شده به دستورات سفارشی تبدیل می‌شوند.
+هر فایل در .wdio/helpers به صورت default یک تابع export می‌کند که browser را دریافت کرده و دستورات سفارشی را با addCommand ثبت می‌کند. helperها هنگام باز شدن session بارگذاری می‌شوند و در تست export‌شده به دستورات سفارشی تبدیل می‌شوند.
 
 ```sh
 npx wdio session helpers
@@ -282,7 +282,7 @@ npx wdio session helpers
 
 | فلگ | توضیحات |
 | --- | --- |
-| `--reload` | helperها را دوباره import می‌کند |
+| `--reload` | import مجدد helperها |
 
 **مثال‌ها**
 
@@ -298,13 +298,13 @@ npx wdio session helpers --reload
 
 ## `snapshot`
 
-اسنپ‌شات دسترس‌پذیری همراه با refها. برای وب، موبایل native و دسکتاپ native کاربرد دارد.
+snapshot دسترس‌پذیری همراه با refها. برای وب، موبایل native و دسکتاپ native کاربرد دارد.
 
-درخت دسترس‌پذیری را چاپ می‌کند، هر گره در یک خط، مثلاً `button "Add to cart" [ref=e3]`. یک ref را به click، fill، get و سایر اکشن‌ها بدهید. refها تا زمانی که المنت وجود دارد معتبر می‌مانند؛ اکشن روی المنتی که حذف شده با REF_STALE شکست می‌خورد.
+درخت دسترس‌پذیری را چاپ می‌کند، هر گره در یک خط، مثلاً `button "Add to cart" [ref=e3]`. یک ref را به click، fill، get و سایر اکشن‌ها بدهید. refها تا زمانی که عنصر وجود دارد معتبر می‌مانند؛ اکشن روی عنصر حذف‌شده با REF_STALE شکست می‌خورد.
 
-هر اسنپ‌شات در پوشهٔ artifacts نوشته می‌شود. خروجی طولانی‌تر از --max-chars به‌صورت بخش‌بخش چاپ می‌شود: ابتدا بخش اول، سپس `--offset <line>` برای بخش بعدی. `find` در کل آن جستجو می‌کند.
+هر snapshot در پوشه‌ی artifacts نوشته می‌شود. خروجی طولانی‌تر از --max-chars در چند بخش چاپ می‌شود: بخش اول، سپس `--offset <line>` برای بخش بعدی. `find` در تمام آن جستجو می‌کند.
 
-چیدمان متنی و ساختار --json آزمایشی هستند و ممکن است در یک نسخهٔ minor تغییر کنند. سینتکس ref و اکشن‌هایی که ref می‌گیرند پایدار می‌مانند.
+چیدمان متن و ساختار --json آزمایشی هستند و ممکن است در یک نسخه‌ی minor تغییر کنند. نحو ref و اکشن‌هایی که ref می‌پذیرند پایدار می‌مانند.
 
 ```sh
 npx wdio session snapshot
@@ -315,22 +315,22 @@ npx wdio session snapshot
 | فلگ | توضیحات |
 | --- | --- |
 | `--depth <n>` | حداکثر عمق |
-| `--scope <value>` | فقط زیر این ref یا selector اسنپ‌شات می‌گیرد |
-| `-i, --interactive` | فقط المنت‌های تعاملی |
-| `--all` | المنت‌های مخفی را هم شامل می‌شود |
-| `--boxes` | کادرهای محدوده (bounding box) را اضافه می‌کند |
-| `--viewport` | فقط آنچه در viewport است (وب: مبنای diff را به‌روز نمی‌کند) |
-| `--selectors` | انتهای هر خط ref بهترین selector آن را اضافه می‌کند |
-| `--compact` | گره‌های بی‌نامی که محتوایی ندارند را حذف می‌کند |
-| `-u, --urls` | hrefهای لینک‌ها را شامل می‌شود |
-| `--file-only` | فقط فایل را می‌نویسد |
-| `--max-chars <n>` | در هر بار حداکثر این تعداد کاراکتر چاپ می‌کند (پیش‌فرض 8000) |
-| `--offset <n>` | از این خط به بعد چاپ می‌کند، برای بخش بعدی یک اسنپ‌شات طولانی |
+| `--scope <value>` | فقط snapshot از زیر این ref یا selector |
+| `-i, --interactive` | فقط عناصر تعاملی |
+| `--all` | شامل عناصر پنهان |
+| `--boxes` | افزودن bounding boxها |
+| `--viewport` | فقط آنچه در viewport است (وب: baseline مربوط به diff را به‌روز نمی‌کند) |
+| `--selectors` | پایان هر خط ref با بهترین selector آن |
+| `--compact` | حذف گره‌های بی‌نام که محتوایی ندارند |
+| `-u, --urls` | شامل hrefهای لینک‌ها |
+| `--file-only` | فقط فایل را بنویس |
+| `--max-chars <n>` | چاپ حداکثر این تعداد کاراکتر در هر بار (پیش‌فرض 8000) |
+| `--offset <n>` | چاپ از این خط به بعد، برای بخش بعدی یک snapshot طولانی |
 
 **مثال‌ها**
 
 ```sh
-# فقط المنت‌های تعاملی، نگاه اولیهٔ معمول
+# فقط عناصر تعاملی، نگاه اول معمول
 npx wdio session snapshot -i
 
 # کل صفحه همراه با مقصد لینک‌ها
@@ -342,7 +342,7 @@ npx wdio session snapshot --scope "#checkout" --depth 4
 # آنچه اکنون روی صفحه است
 npx wdio session snapshot --viewport -i
 
-# هر ref همراه با یک selector برای استفاده در تست
+# هر ref همراه با یک selector برای قرار دادن در تست
 npx wdio session snapshot --selectors -i
 
 # انجام اکشن، سپس نگاه دوباره
@@ -353,9 +353,9 @@ npx wdio session click e3 && npx wdio session snapshot -i
 
 ## `read`
 
-متن صفحه را به‌صورت Markdown می‌خواند. برای وب کاربرد دارد.
+خواندن متن صفحه به صورت Markdown. برای وب کاربرد دارد.
 
-سرتیترها، پاراگراف‌ها، آیتم‌های فهرست، ردیف‌های جدول و لینک‌ها همراه با URLشان را از محتوای اصلی (وقتی صفحه آن را با main یا article مشخص کرده باشد) و در غیر این صورت از کل صفحه می‌خواند؛ ناوبری، فوترها و متن مخفی کنار گذاشته می‌شوند. در --max-chars (پیش‌فرض 6000) بریده می‌شود؛ محل برش می‌گوید کدام --offset بخش بعدی را می‌خواند. با --scope، آن بخش به نمای دید اسکرول می‌شود. برای پاسخ به «صفحه چه می‌گوید» از آن استفاده کنید؛ برای ref‌هایی که بتوان روی آن‌ها اکشن انجام داد از snapshot یا find استفاده کنید.
+عنوان‌ها، پاراگراف‌ها، آیتم‌های فهرست، ردیف‌های جدول و لینک‌ها همراه با URL آن‌ها، از محتوای اصلی وقتی صفحه آن را مشخص کرده باشد (main، article)، و در غیر این صورت از کل صفحه؛ ناوبری، footerها و متن پنهان کنار گذاشته می‌شوند. در --max-chars (پیش‌فرض 6000) بریده می‌شود؛ محل برش می‌گوید کدام --offset بخش بعدی را می‌خواند. با --scope، آن بخش به داخل دید اسکرول می‌شود. از آن برای پاسخ به «صفحه چه می‌گوید» استفاده کنید؛ برای refهایی که باید روی آن‌ها اکشن انجام دهید از snapshot یا find استفاده کنید.
 
 ```sh
 npx wdio session read
@@ -365,9 +365,9 @@ npx wdio session read
 
 | فلگ | توضیحات |
 | --- | --- |
-| `--scope <value>` | فقط زیر این ref یا selector را می‌خواند |
-| `--max-chars <n>` | حداکثر این تعداد کاراکتر چاپ می‌کند (پیش‌فرض 6000) |
-| `--offset <n>` | از این کاراکتر متن شروع می‌کند، برای بخش بعدی یک صفحهٔ طولانی |
+| `--scope <value>` | فقط خواندن زیر این ref یا selector |
+| `--max-chars <n>` | چاپ حداکثر این تعداد کاراکتر (پیش‌فرض 6000) |
+| `--offset <n>` | شروع از این کاراکتر متن، برای بخش بعدی یک صفحه‌ی طولانی |
 
 **مثال‌ها**
 
@@ -383,9 +383,9 @@ npx wdio session read --scope e12
 
 ## `find`
 
-در یک اسنپ‌شات تازه به دنبال متن می‌گردد. برای وب، موبایل native و دسکتاپ native کاربرد دارد.
+جستجوی متن در یک snapshot تازه. برای وب، موبایل native و دسکتاپ native کاربرد دارد.
 
-یک اسنپ‌شات جدید می‌گیرد و هر نتیجه را همراه با گرهٔ اطراف آن (مثلاً کل آیتم فهرست، تا مقداری که کنار نتیجه است هم شامل شود)، با شمارهٔ خط و refها چاپ می‌کند و اولین نتیجه را به نمای دید اسکرول می‌کند. تطبیق ابتدا بدون توجه به حروف بزرگ و کوچک، سپس بدون توجه به فاصله‌ها ("SO2" عبارت "SO 2" را پیدا می‌کند) انجام می‌شود و سپس به دنبال همهٔ کلمات و کلمات مشابه آن‌ها می‌گردد. متنی که فقط در بخش‌های مخفی صفحه است (منوهای بسته، تب‌ها، "Show more") به همین صورت فهرست می‌شود. ارزان‌تر از خواندن کل اسنپ‌شات یک صفحهٔ بزرگ است. ‏-A/-B/-C به‌جای آن، مانند grep، خطوط ساده‌ای از context چاپ می‌کنند.
+یک snapshot جدید می‌گیرد و هر مورد منطبق را همراه با گره‌ی اطراف آن (مثلاً کل آیتم فهرست، تا مقداری که کنار مورد منطبق است نیز شامل شود)، با شماره‌ی خطوط و refها چاپ می‌کند، و اولین مورد منطبق را به داخل دید اسکرول می‌کند. تطبیق ابتدا بزرگی و کوچکی حروف، سپس فاصله‌ها را نادیده می‌گیرد ("SO2" عبارت "SO 2" را پیدا می‌کند)، سپس به دنبال همه‌ی کلمات و کلمات مشابه آن‌ها می‌گردد. متنی که فقط در بخش‌های پنهان صفحه است (منوهای بسته، تب‌ها، "Show more") به همین صورت فهرست می‌شود. از خواندن کل snapshot یک صفحه‌ی بزرگ کم‌هزینه‌تر است. ‏-A/-B/-C به جای آن، مانند grep، زمینه‌ی خطی ساده چاپ می‌کنند.
 
 ```sh
 npx wdio session find <text>
@@ -395,18 +395,18 @@ npx wdio session find <text>
 
 | نام | الزامی | توضیحات |
 | --- | --- | --- |
-| `text` | بله | متن مورد جستجو |
+| `text` | بله | متنی که جستجو می‌شود |
 
 **فلگ‌ها**
 
 | فلگ | توضیحات |
 | --- | --- |
-| `--regex` | متن را به‌عنوان عبارت منظم در نظر می‌گیرد |
-| `--scope <value>` | فقط زیر این ref یا selector جستجو می‌کند |
-| `-C, --context <n>` | خطوط context قبل و بعد، به‌جای گرهٔ اطراف |
-| `-A, --after-context <n>` | خطوط context بعد از هر نتیجه |
-| `-B, --before-context <n>` | خطوط context قبل از هر نتیجه |
-| `--offset <n>` | از این تعداد نتیجه صرف‌نظر می‌کند، برای نتایج بعدی وقتی خروجی بریده شده است |
+| `--regex` | متن را به عنوان عبارت منظم (regular expression) در نظر بگیر |
+| `--scope <value>` | فقط جستجو زیر این ref یا selector |
+| `-C, --context <n>` | خطوط زمینه قبل و بعد به جای گره‌ی اطراف |
+| `-A, --after-context <n>` | خطوط زمینه پس از هر مورد منطبق |
+| `-B, --before-context <n>` | خطوط زمینه پیش از هر مورد منطبق |
+| `--offset <n>` | رد کردن این تعداد مورد منطبق، برای موارد بعدی وقتی خروجی بریده شده است |
 
 **مثال‌ها**
 
@@ -414,7 +414,7 @@ npx wdio session find <text>
 # پیدا کردن ref یک دکمه
 npx wdio session find "Add to cart"
 
-# فهرست همهٔ لینک‌ها
+# فهرست همه‌ی لینک‌ها
 npx wdio session find "^\s*link" --regex --context 0
 ```
 
@@ -422,9 +422,9 @@ npx wdio session find "^\s*link" --regex --context 0
 
 ## `diff`
 
-یک اسنپ‌شات تازه را با اسنپ‌شات قبلی مقایسه می‌کند. برای وب، موبایل native و دسکتاپ native کاربرد دارد.
+مقایسه‌ی یک snapshot تازه با snapshot قبلی. برای وب، موبایل native و دسکتاپ native کاربرد دارد.
 
-یک unified diff از آنچه از آخرین اسنپ‌شات تغییر کرده چاپ می‌کند، یا "No changes". اولین فراخوانی یک مبنا ذخیره می‌کند. پس از یک اکشن از آن استفاده کنید تا ببینید آن اکشن چه کرد، بدون اینکه کل صفحه را دوباره بخوانید. در وب، مبنا آخرین اسنپ‌شاتی است که بدون `--viewport` گرفته شده است.
+یک diff یکپارچه از آنچه از آخرین snapshot تغییر کرده، یا "No changes"، چاپ می‌کند. اولین فراخوانی یک baseline ذخیره می‌کند. پس از یک اکشن از آن استفاده کنید تا ببینید اکشن چه کرده، بدون اینکه کل صفحه را دوباره بخوانید. در وب، baseline آخرین snapshotی است که بدون `--viewport` گرفته شده است.
 
 ```sh
 npx wdio session diff
@@ -434,9 +434,9 @@ npx wdio session diff
 
 | فلگ | توضیحات |
 | --- | --- |
-| `--baseline <value>` | فایل اسنپ‌شاتی که مقایسه با آن انجام می‌شود |
-| `--scope <value>` | فقط درون این ref یا selector اسنپ‌شات می‌گیرد، مانند `snapshot --scope` |
-| `--interactive` | فقط المنت‌های تعاملی، مانند `snapshot -i` |
+| `--baseline <value>` | فایل snapshot برای مقایسه |
+| `--scope <value>` | فقط snapshot درون این ref یا selector، مانند `snapshot --scope` |
+| `--interactive` | فقط عناصر تعاملی، مانند `snapshot -i` |
 
 **مثال‌ها**
 
@@ -444,7 +444,7 @@ npx wdio session diff
 # دیدن اینکه یک کلیک چه چیزی را تغییر داد
 npx wdio session click e7 && npx wdio session diff
 
-# مقایسه با یک اسنپ‌شات ذخیره‌شده
+# مقایسه با یک snapshot ذخیره‌شده
 npx wdio session diff --baseline before.yml
 ```
 
@@ -452,9 +452,9 @@ npx wdio session diff --baseline before.yml
 
 ## `screenshot`
 
-یک PNG از viewport، یک المنت یا کل صفحه ذخیره می‌کند. برای وب، موبایل native و دسکتاپ native کاربرد دارد.
+ذخیره‌ی یک PNG از viewport، یک عنصر یا کل صفحه. برای وب، موبایل native و دسکتاپ native کاربرد دارد.
 
-مسیر فایل و اندازهٔ تصویر را چاپ می‌کند. وقتی سؤال دربارهٔ چیدمان یا ظاهر است اسکرین‌شات بگیرید؛ متن و وضعیت را با `snapshot` و `get` بخوانید.
+مسیر فایل و اندازه‌ی تصویر را چاپ می‌کند. وقتی سؤال درباره‌ی چیدمان یا ظاهر است اسکرین‌شات بگیرید؛ متن و وضعیت را با `snapshot` و `get` بخوانید.
 
 ```sh
 npx wdio session screenshot [target]
@@ -464,7 +464,7 @@ npx wdio session screenshot [target]
 
 | نام | الزامی | توضیحات |
 | --- | --- | --- |
-| `target` | خیر | ref یا selector المنتی که باید ثبت شود |
+| `target` | خیر | ref یا selector عنصری که ثبت می‌شود |
 
 **فلگ‌ها**
 
@@ -479,7 +479,7 @@ npx wdio session screenshot [target]
 # ثبت viewport
 npx wdio session screenshot
 
-# ثبت یک المنت
+# ثبت یک عنصر
 npx wdio session screenshot e5 --path card.png
 
 # ثبت کل صفحه
@@ -490,9 +490,9 @@ npx wdio session screenshot --full
 
 ## `pdf`
 
-صفحهٔ فعلی را به‌صورت PDF ذخیره می‌کند. برای وب کاربرد دارد.
+ذخیره‌ی صفحه‌ی فعلی به صورت PDF. برای وب کاربرد دارد.
 
-`browser.savePDF` را فراخوانی می‌کند. یک نشست BiDi با `browsingContext.print`، به‌صورت headed یا headless، در Chrome، Edge و Firefox چاپ می‌کند. یک نشست Classic از `printPage` استفاده می‌کند که نسخه‌های قدیمی‌تر Chrome فقط در حالت headless از آن پشتیبانی می‌کنند.
+`browser.savePDF` را فراخوانی می‌کند. یک session از نوع BiDi با `browsingContext.print`، به صورت headed یا headless، در Chrome، Edge و Firefox چاپ می‌کند. یک session از نوع Classic از `printPage` استفاده می‌کند که Chrome قدیمی فقط در حالت headless از آن پشتیبانی می‌کند.
 
 ```sh
 npx wdio session pdf [file]
@@ -502,18 +502,18 @@ npx wdio session pdf [file]
 
 | نام | الزامی | توضیحات |
 | --- | --- | --- |
-| `file` | خیر | فایل خروجی (باید با .pdf تمام شود) |
+| `file` | خیر | فایل خروجی (باید به .pdf ختم شود) |
 
 **فلگ‌ها**
 
 | فلگ | توضیحات |
 | --- | --- |
-| `--path <value>` | فایل خروجی (باید با .pdf تمام شود) |
+| `--path <value>` | فایل خروجی (باید به .pdf ختم شود) |
 
 **مثال‌ها**
 
 ```sh
-# نوشتن report.pdf در پوشهٔ فعلی
+# نوشتن report.pdf در پوشه‌ی فعلی
 npx wdio session pdf report.pdf
 ```
 
@@ -521,9 +521,9 @@ npx wdio session pdf report.pdf
 
 ## `source`
 
-HTML صفحه یا XML برنامه را ذخیره می‌کند. برای وب، موبایل native و دسکتاپ native کاربرد دارد.
+ذخیره‌ی HTML صفحه یا XML برنامه. برای وب، موبایل native و دسکتاپ native کاربرد دارد.
 
-فایل را می‌نویسد و مسیر و اندازهٔ آن را چاپ می‌کند. وقتی اسنپ‌شات چیزی را که نیاز دارید پنهان می‌کند، مانند attributeها برای یک selector، از آن استفاده کنید.
+فایل را می‌نویسد و مسیر و اندازه‌ی آن را چاپ می‌کند. وقتی snapshot چیزی را که نیاز دارید، مانند attributeها برای یک selector، پنهان می‌کند از آن استفاده کنید.
 
 ```sh
 npx wdio session source
@@ -538,7 +538,7 @@ npx wdio session source
 **مثال‌ها**
 
 ```sh
-# ذخیرهٔ HTML در پوشهٔ فعلی
+# ذخیره‌ی HTML در پوشه‌ی فعلی
 npx wdio session source --path page.html
 ```
 
@@ -546,9 +546,9 @@ npx wdio session source --path page.html
 
 ## `get`
 
-text، html، value، یک attribute، عنوان، URL، تعداد یا یک box را می‌خواند. برای وب کاربرد دارد.
+خواندن text، html، value، یک attribute، عنوان، URL، تعداد یا یک box. برای وب کاربرد دارد.
 
-مقدار را چاپ می‌کند و سپس کد WebdriverIO که اجرا کرده است (`→ …`). برای چاپ فقط مقدار، مثلاً برای ذخیرهٔ آن در یک متغیر shell، ‏-q را بدهید. پیش از نوشتن assertion برای یک مقدار، آن را بخوانید.
+مقدار را چاپ می‌کند، سپس کد WebdriverIO که اجرا کرده است (`→ …`). برای چاپ فقط مقدار، مثلاً برای ذخیره در یک متغیر shell، ‏-q را بدهید. پیش از نوشتن یک assertion برای یک مقدار، آن را بخوانید.
 
 ```sh
 npx wdio session get <sub> [target] [name]
@@ -577,7 +577,7 @@ url=$(npx wdio session get url -q)
 # href یک لینک
 npx wdio session get attr e3 href
 
-# تعداد المنت‌های منطبق
+# چند عنصر مطابقت دارند
 npx wdio session get count "aria/Remove"
 ```
 
@@ -585,9 +585,9 @@ npx wdio session get count "aria/Remove"
 
 ## `is`
 
-بررسی می‌کند که آیا یک المنت visible، enabled یا checked است. برای وب کاربرد دارد.
+بررسی اینکه آیا یک عنصر visible، enabled یا checked است. برای وب کاربرد دارد.
 
-true یا false را چاپ می‌کند و سپس کد WebdriverIO که اجرا کرده است؛ برای چاپ فقط مقدار ‏-q را بدهید. کد خروج در هر دو حالت 0 است.
+true یا false را چاپ می‌کند، سپس کد WebdriverIO که اجرا کرده است؛ برای چاپ فقط مقدار ‏-q را بدهید. کد خروج در هر صورت 0 است.
 
 ```sh
 npx wdio session is <sub> <target>
@@ -614,9 +614,9 @@ npx wdio session is enabled "aria/Place order"
 
 ## `logs`
 
-لاگ‌های کنسول، خطاهای صفحه، شبکه و دستگاه را از آخرین فراخوانی چاپ می‌کند. برای وب و موبایل native کاربرد دارد.
+چاپ لاگ‌های console، خطاهای صفحه، شبکه و دستگاه از آخرین فراخوانی. برای وب و موبایل native کاربرد دارد.
 
-هر فراخوانی یک نشانگر خواندن را جلو می‌برد، بنابراین فراخوانی بعدی فقط ورودی‌های جدید را نشان می‌دهد. پس از یک اکشن آن را اجرا کنید تا خطاهایی که آن اکشن ایجاد کرده را ببینید.
+هر فراخوانی یک نشانگر خواندن را جلو می‌برد، بنابراین فراخوانی بعدی فقط ورودی‌های جدید را نشان می‌دهد. پس از یک اکشن آن را اجرا کنید تا خطاهایی را که آن اکشن ایجاد کرده ببینید.
 
 ```sh
 npx wdio session logs
@@ -629,7 +629,7 @@ npx wdio session logs
 | `--errors` | فقط خطاها |
 | `--network` | فقط ورودی‌های شبکه |
 | `--since <value>` | فقط ورودی‌های جدیدتر از این مدت (مثلاً 30s) |
-| `--peek` | نشانگر خواندن را جلو نمی‌برد |
+| `--peek` | نشانگر خواندن را جلو نبر |
 | `--source <browser\|driver\|logcat\|syslog\|main>` | منبع لاگ |
 
 **مثال‌ها**
@@ -638,7 +638,7 @@ npx wdio session logs
 # خطاهای ناشی از یک کلیک
 npx wdio session click e4 && npx wdio session logs --errors
 
-# ورودی‌های اخیر، با نگه داشتن آن‌ها برای فراخوانی بعدی
+# ورودی‌های اخیر، و نگه داشتن آن‌ها برای فراخوانی بعدی
 npx wdio session logs --since 30s --peek
 ```
 
@@ -646,9 +646,9 @@ npx wdio session logs --since 30s --peek
 
 ## `navigate`
 
-یک URL را باز می‌کند. برای وب کاربرد دارد.
+باز کردن یک URL. برای وب کاربرد دارد.
 
-`example.com`، URLهای کامل و مسیرهای نسبی به baseUrl را می‌پذیرد. ابتدا از هر frame خارج می‌شود. URL و عنوان جدید را چاپ می‌کند.
+`example.com`، URLهای کامل و مسیرهای نسبی به baseUrl را می‌پذیرد. ابتدا از هر frameی خارج می‌شود. URL و عنوان جدید را چاپ می‌کند.
 
 ```sh
 npx wdio session navigate <url>
@@ -674,7 +674,7 @@ npx wdio session navigate example.com
 
 ## `back`
 
-به عقب برمی‌گردد. برای وب کاربرد دارد.
+بازگشت به عقب. برای وب کاربرد دارد.
 
 ```sh
 npx wdio session back
@@ -683,7 +683,7 @@ npx wdio session back
 **مثال‌ها**
 
 ```sh
-# برگشت یک صفحه به عقب
+# بازگشت یک صفحه به عقب
 npx wdio session back
 ```
 
@@ -691,7 +691,7 @@ npx wdio session back
 
 ## `forward`
 
-به جلو می‌رود. برای وب کاربرد دارد.
+رفتن به جلو. برای وب کاربرد دارد.
 
 ```sh
 npx wdio session forward
@@ -708,7 +708,7 @@ npx wdio session forward
 
 ## `reload`
 
-صفحه را دوباره بارگذاری می‌کند. برای وب کاربرد دارد.
+بارگذاری مجدد صفحه. برای وب کاربرد دارد.
 
 ```sh
 npx wdio session reload
@@ -717,7 +717,7 @@ npx wdio session reload
 **مثال‌ها**
 
 ```sh
-# بارگذاری مجدد و صبر تا آرام شدن شبکه
+# بارگذاری مجدد و انتظار تا آرام شدن شبکه
 npx wdio session reload && npx wdio session wait --load networkidle
 ```
 
@@ -725,11 +725,11 @@ npx wdio session reload && npx wdio session wait --load networkidle
 
 ## `wait`
 
-منتظر یک المنت، متن، URL، وضعیت بارگذاری، شرط یا چند میلی‌ثانیه می‌ماند. برای وب کاربرد دارد.
+انتظار برای یک عنصر، متن، یک URL، یک وضعیت بارگذاری، یک شرط یا چند میلی‌ثانیه. برای وب کاربرد دارد.
 
-دقیقاً یکی از این‌ها را بدهید: یک ref یا selector، ‏--text، ‏--url، ‏--load، ‏--fn یا میلی‌ثانیه. پس از --limit با کد خروج 1 شکست می‌خورد.
+دقیقاً یکی از این‌ها را بدهید: یک ref یا selector، ‏--text، ‏--url، ‏--load، ‏--fn، یا میلی‌ثانیه. پس از --limit با کد خروج 1 شکست می‌خورد.
 
-یک شرط را بر مکث ترجیح دهید، هم اینجا و هم به‌جای `sleep` در یک زنجیره. مکث طولانی‌تر از 30 ثانیه پذیرفته نمی‌شود.
+یک شرط را بر یک توقف ترجیح دهید، هم اینجا و هم به جای `sleep` در یک زنجیره. توقف طولانی‌تر از 30 ثانیه پذیرفته نمی‌شود.
 
 ```sh
 npx wdio session wait [target]
@@ -745,32 +745,32 @@ npx wdio session wait [target]
 
 | فلگ | توضیحات |
 | --- | --- |
-| `--text <value>` | صبر تا زمانی که صفحه شامل این متن شود |
-| `--url <value>` | صبر تا زمانی که URL منطبق شود (زیررشته، یا globهای * و **) |
+| `--text <value>` | انتظار تا زمانی که صفحه شامل این متن شود |
+| `--url <value>` | انتظار تا زمانی که URL مطابقت کند (زیررشته، یا globهای * و **) |
 | `--load <value>` | domcontentloaded، load یا networkidle |
-| `--fn <value>` | صبر تا زمانی که این عبارت JavaScript درست شود |
-| `--state <value>` | همراه با یک target: visible (پیش‌فرض)، hidden، enabled یا disabled |
+| `--fn <value>` | انتظار تا زمانی که این عبارت JavaScript برابر true شود |
+| `--state <value>` | همراه با target: ‏visible (پیش‌فرض)، hidden، enabled یا disabled |
 | `--limit <n>` | میلی‌ثانیه‌های انتظار (پیش‌فرض 10000) |
 
 **مثال‌ها**
 
 ```sh
-# صبر تا visible شدن یک ref
+# انتظار تا visible شدن یک ref
 npx wdio session wait e1
 
-# صبر تا ناپدید شدن یک spinner
+# انتظار تا ناپدید شدن یک spinner
 npx wdio session wait "aria/Loading" --state hidden
 
-# انجام اکشن، صبر برای نتیجه، نگاه دوباره
+# انجام اکشن، انتظار برای نتیجه، نگاه دوباره
 npx wdio session click e3 && npx wdio session wait --text "Cart (1)" && npx wdio session snapshot -i
 
-# صبر برای یک URL
+# انتظار برای یک URL
 npx wdio session wait --url "**/dashboard"
 
-# صبر تا زمانی که هیچ درخواستی در جریان نباشد
+# انتظار تا زمانی که هیچ درخواستی در جریان نباشد
 npx wdio session wait --load networkidle
 
-# مکث 500 میلی‌ثانیه
+# توقف 500 میلی‌ثانیه
 npx wdio session wait 500
 ```
 
@@ -778,9 +778,9 @@ npx wdio session wait 500
 
 ## `click`
 
-روی یک المنت کلیک می‌کند. برای وب، موبایل native و دسکتاپ native کاربرد دارد.
+کلیک روی یک عنصر. برای وب، موبایل native و دسکتاپ native کاربرد دارد.
 
-چاپ می‌کند روی چه چیزی کلیک شد و، وقتی کلیک باعث ناوبری شود، URL جدید را. پیش از استفاده از refها در صفحهٔ بعدی یک اسنپ‌شات جدید بگیرید. المنت مخفی یا پوشیده‌شده بلافاصله شکست می‌خورد و می‌گوید چه چیزی مانع است. `x,y` روی یک نقطه از viewport کلیک می‌کند (پیکسل از بالا-چپ، مانند اسکرین‌شات)، برای چیزهایی که ref ندارند، مانند canvas یا نقشه.
+چاپ می‌کند روی چه چیزی کلیک شد و، اگر کلیک باعث ناوبری شد، URL جدید را. پیش از استفاده از refها در صفحه‌ی بعدی یک snapshot جدید بگیرید. عنصر پنهان یا پوشیده‌شده بلافاصله همراه با چیزی که سر راه است شکست می‌خورد. `x,y` روی نقطه‌ای از viewport کلیک می‌کند (پیکسل از بالا چپ، همانند یک اسکرین‌شات) برای چیزهایی که ref ندارند، مانند canvas یا نقشه.
 
 ```sh
 npx wdio session click <target>
@@ -790,7 +790,7 @@ npx wdio session click <target>
 
 | نام | الزامی | توضیحات |
 | --- | --- | --- |
-| `target` | بله | ref (e12)، selector در WebdriverIO یا مختصات x,y در viewport |
+| `target` | بله | ref ‏(e12)، selector در WebdriverIO، یا مختصات x,y در viewport |
 
 **فلگ‌ها**
 
@@ -798,24 +798,24 @@ npx wdio session click <target>
 | --- | --- |
 | `--double` | دابل‌کلیک |
 | `--right` | کلیک راست |
-| `--new-tab` | لینک را در تب جدید باز می‌کند و به آن می‌رود |
+| `--new-tab` | باز کردن لینک در یک تب جدید و جابه‌جایی به آن |
 
 **مثال‌ها**
 
 ```sh
-# کلیک روی یک ref از آخرین اسنپ‌شات
+# کلیک روی یک ref از آخرین snapshot
 npx wdio session click e3
 
 # کلیک بر اساس نام دسترس‌پذیر
 npx wdio session click "aria/Add to cart"
 
-# کلیک، صبر، نگاه دوباره
+# کلیک، انتظار، نگاه دوباره
 npx wdio session click e3 && npx wdio session wait --load networkidle && npx wdio session snapshot -i
 
 # باز کردن یک لینک در تب جدید
 npx wdio session click e8 --new-tab
 
-# کلیک روی یک نقطه از viewport، مثلاً روی نقشه
+# کلیک روی نقطه‌ای از viewport، مثلاً روی یک نقشه
 npx wdio session click 320,480
 ```
 
@@ -823,7 +823,7 @@ npx wdio session click 320,480
 
 ## `tap`
 
-روی یک المنت ضربه می‌زند (موبایل). برای موبایل native کاربرد دارد.
+لمس (tap) یک عنصر (موبایل). برای موبایل native کاربرد دارد.
 
 ```sh
 npx wdio session tap <target>
@@ -833,12 +833,12 @@ npx wdio session tap <target>
 
 | نام | الزامی | توضیحات |
 | --- | --- | --- |
-| `target` | بله | ref (e12) یا selector در WebdriverIO |
+| `target` | بله | ref ‏(e12) یا selector در WebdriverIO |
 
 **مثال‌ها**
 
 ```sh
-# ضربه روی یک ref از آخرین اسنپ‌شات
+# لمس یک ref از آخرین snapshot
 npx wdio session tap e2
 ```
 
@@ -846,9 +846,9 @@ npx wdio session tap e2
 
 ## `fill`
 
-مقدار یک input را جایگزین می‌کند. برای وب، موبایل native و دسکتاپ native کاربرد دارد.
+جایگزینی مقدار یک input. برای وب، موبایل native و دسکتاپ native کاربرد دارد.
 
-ابتدا فیلد را پاک می‌کند. برای تایپ در هر چیزی که فوکوس دارد از `type` استفاده کنید؛ برای ارسال کلیدهایی مانند Enter از `press` استفاده کنید.
+ابتدا فیلد را پاک می‌کند. برای تایپ در هر چیزی که focus دارد از `type` استفاده کنید؛ برای ارسال کلیدهایی مانند Enter از `press` استفاده کنید.
 
 ```sh
 npx wdio session fill <target> <text..>
@@ -858,7 +858,7 @@ npx wdio session fill <target> <text..>
 
 | نام | الزامی | توضیحات |
 | --- | --- | --- |
-| `target` | بله | ref (e12) یا selector در WebdriverIO |
+| `target` | بله | ref ‏(e12) یا selector در WebdriverIO |
 | `text` | بله | متن (کلمات پس از target با فاصله به هم متصل می‌شوند) |
 
 **مثال‌ها**
@@ -875,9 +875,9 @@ npx wdio session fill e2 ada@example.com && npx wdio session fill e4 secret && n
 
 ## `type`
 
-در یک المنت یا المنت دارای فوکوس تایپ می‌کند. برای وب، موبایل native و دسکتاپ native کاربرد دارد.
+تایپ در یک عنصر یا عنصری که focus دارد. برای وب، موبایل native و دسکتاپ native کاربرد دارد.
 
-متن را به‌صورت فشردن کلیدها و بدون پاک کردن چیزی ارسال می‌کند: `type e2 Ada` در e2 تایپ می‌کند و `type Ada` در هر چیزی که فوکوس دارد. برای جایگزین کردن یک مقدار از `fill` استفاده کنید.
+متن را به صورت فشردن کلیدها و بدون پاک کردن چیزی ارسال می‌کند: `type e2 Ada` در e2 تایپ می‌کند و `type Ada` در هر چیزی که focus دارد. برای جایگزینی یک مقدار از `fill` استفاده کنید.
 
 ```sh
 npx wdio session type <text..>
@@ -887,7 +887,7 @@ npx wdio session type <text..>
 
 | نام | الزامی | توضیحات |
 | --- | --- | --- |
-| `text` | بله | متن (کلمات با فاصله به هم متصل می‌شوند). برای تایپ در یک المنت به‌جای المنت دارای فوکوس، با یک ref شروع کنید، مثلاً `type e2 Ada` |
+| `text` | بله | متن (کلمات با فاصله به هم متصل می‌شوند). برای تایپ در یک عنصر مشخص به جای عنصر دارای focus، با یک ref شروع کنید، مثلاً `type e2 Ada` |
 
 **مثال‌ها**
 
@@ -895,7 +895,7 @@ npx wdio session type <text..>
 # تایپ در یک فیلد
 npx wdio session type e5 hello
 
-# تایپ در هر چیزی که فوکوس دارد
+# تایپ در هر چیزی که focus دارد
 npx wdio session focus e5 && npx wdio session type "hello"
 ```
 
@@ -903,9 +903,9 @@ npx wdio session focus e5 && npx wdio session type "hello"
 
 ## `press`
 
-کلیدها را فشار می‌دهد، مثلاً Enter، ‏Control+a. برای وب و دسکتاپ native کاربرد دارد.
+فشردن کلیدها، مثلاً Enter، ‏Control+a. برای وب و دسکتاپ native کاربرد دارد.
 
-کلیدها را با + ترکیب کنید. نام‌ها به حروف بزرگ و کوچک حساس نیستند؛ ctrl، cmd، esc، up، down، left و right به‌عنوان شکل‌های کوتاه پذیرفته می‌شوند.
+کلیدها را با + ترکیب کنید. در نام‌ها بزرگی و کوچکی حروف نادیده گرفته می‌شود؛ ctrl، cmd، esc، up، down، left و right به عنوان شکل‌های کوتاه پذیرفته می‌شوند.
 
 ```sh
 npx wdio session press <keys>
@@ -921,7 +921,7 @@ npx wdio session press <keys>
 
 | فلگ | توضیحات |
 | --- | --- |
-| `--times <n>` | این تعداد بار فشار می‌دهد (حداکثر 100)، مثلاً برای حرکت دادن یک slider |
+| `--times <n>` | این تعداد بار فشرده شود (تا 100)، مثلاً برای حرکت دادن یک slider |
 
 **مثال‌ها**
 
@@ -929,13 +929,13 @@ npx wdio session press <keys>
 # ارسال یک فرم
 npx wdio session press Enter
 
-# حرکت دادن یک slider دارای فوکوس به اندازهٔ پنج گام
+# حرکت دادن یک slider دارای focus به اندازه‌ی پنج گام
 npx wdio session press ArrowRight --times 5
 
 # انتخاب همه
 npx wdio session press Control+a
 
-# برگرداندن فوکوس به عقب
+# بازگرداندن focus به عقب
 npx wdio session press Shift+Tab
 ```
 
@@ -943,7 +943,7 @@ npx wdio session press Shift+Tab
 
 ## `select`
 
-یک گزینه از `<select>` را انتخاب می‌کند. برای وب کاربرد دارد.
+انتخاب یک گزینه از یک `<select>`. برای وب کاربرد دارد.
 
 ```sh
 npx wdio session select <target> <value>
@@ -953,14 +953,14 @@ npx wdio session select <target> <value>
 
 | نام | الزامی | توضیحات |
 | --- | --- | --- |
-| `target` | بله | ref (e12) یا selector در WebdriverIO |
+| `target` | بله | ref ‏(e12) یا selector در WebdriverIO |
 | `value` | بله | متن، مقدار یا اندیس گزینه |
 
 **فلگ‌ها**
 
 | فلگ | توضیحات |
 | --- | --- |
-| `--by <text\|value\|index>` | نحوهٔ تطبیق گزینه (پیش‌فرض text) |
+| `--by <text\|value\|index>` | نحوه‌ی تطبیق گزینه (پیش‌فرض text) |
 
 **مثال‌ها**
 
@@ -976,9 +976,9 @@ npx wdio session select e6 de --by value
 
 ## `upload`
 
-یک input فایل را مقداردهی می‌کند. برای وب کاربرد دارد.
+تنظیم یک input فایل. برای وب کاربرد دارد.
 
-مسیر نسبت به پوشهٔ کاری شماست. خود `<input type="file">` را هدف بگیرید، نه دکمه‌ای که انتخابگر فایل را باز می‌کند.
+مسیر نسبت به پوشه‌ی کاری شماست. خودِ `<input type="file">` را هدف قرار دهید، نه دکمه‌ای که انتخابگر فایل را باز می‌کند.
 
 ```sh
 npx wdio session upload <target> <file>
@@ -988,8 +988,8 @@ npx wdio session upload <target> <file>
 
 | نام | الزامی | توضیحات |
 | --- | --- | --- |
-| `target` | بله | ref (e12) یا selector در WebdriverIO |
-| `file` | بله | فایلی که باید آپلود شود |
+| `target` | بله | ref ‏(e12) یا selector در WebdriverIO |
+| `file` | بله | فایلی که آپلود می‌شود |
 
 **مثال‌ها**
 
@@ -1002,7 +1002,7 @@ npx wdio session upload e9 ./fixtures/avatar.png
 
 ## `hover`
 
-نشانگر را روی یک المنت می‌برد. برای وب و دسکتاپ native کاربرد دارد.
+بردن اشاره‌گر روی یک عنصر. برای وب و دسکتاپ native کاربرد دارد.
 
 ```sh
 npx wdio session hover <target>
@@ -1012,7 +1012,7 @@ npx wdio session hover <target>
 
 | نام | الزامی | توضیحات |
 | --- | --- | --- |
-| `target` | بله | ref (e12) یا selector در WebdriverIO |
+| `target` | بله | ref ‏(e12) یا selector در WebdriverIO |
 
 **مثال‌ها**
 
@@ -1025,7 +1025,7 @@ npx wdio session hover e4 && npx wdio session snapshot -i
 
 ## `focus`
 
-روی یک المنت فوکوس می‌کند. برای وب کاربرد دارد.
+focus کردن یک عنصر. برای وب کاربرد دارد.
 
 ```sh
 npx wdio session focus <target>
@@ -1035,12 +1035,12 @@ npx wdio session focus <target>
 
 | نام | الزامی | توضیحات |
 | --- | --- | --- |
-| `target` | بله | ref (e12) یا selector در WebdriverIO |
+| `target` | بله | ref ‏(e12) یا selector در WebdriverIO |
 
 **مثال‌ها**
 
 ```sh
-# فوکوس روی یک فیلد پیش از `type`
+# focus کردن یک فیلد پیش از `type`
 npx wdio session focus e5
 ```
 
@@ -1048,9 +1048,9 @@ npx wdio session focus e5
 
 ## `check`
 
-یک checkbox یا radio را تیک می‌زند. برای وب کاربرد دارد.
+علامت زدن یک checkbox یا radio. برای وب کاربرد دارد.
 
-وقتی از قبل تیک خورده باشد کاری نمی‌کند و وقتی در نهایت تیک‌خورده نباشد شکست می‌خورد.
+وقتی از قبل علامت خورده باشد کاری انجام نمی‌دهد، و وقتی در نهایت علامت نخورد شکست می‌خورد.
 
 ```sh
 npx wdio session check <target>
@@ -1060,7 +1060,7 @@ npx wdio session check <target>
 
 | نام | الزامی | توضیحات |
 | --- | --- | --- |
-| `target` | بله | ref (e12) یا selector در WebdriverIO |
+| `target` | بله | ref ‏(e12) یا selector در WebdriverIO |
 
 **مثال‌ها**
 
@@ -1073,9 +1073,9 @@ npx wdio session check e7
 
 ## `uncheck`
 
-تیک یک checkbox را برمی‌دارد. برای وب کاربرد دارد.
+برداشتن علامت یک checkbox. برای وب کاربرد دارد.
 
-وقتی از قبل تیک نخورده باشد کاری نمی‌کند. تیک یک radio button انتخاب‌شده را نمی‌توان برداشت.
+وقتی از قبل علامت نخورده باشد کاری انجام نمی‌دهد. علامت یک دکمه‌ی radio انتخاب‌شده را نمی‌توان برداشت.
 
 ```sh
 npx wdio session uncheck <target>
@@ -1085,7 +1085,7 @@ npx wdio session uncheck <target>
 
 | نام | الزامی | توضیحات |
 | --- | --- | --- |
-| `target` | بله | ref (e12) یا selector در WebdriverIO |
+| `target` | بله | ref ‏(e12) یا selector در WebdriverIO |
 
 **مثال‌ها**
 
@@ -1098,7 +1098,7 @@ npx wdio session uncheck e7
 
 ## `drag`
 
-یک المنت را روی المنت دیگری می‌کشد. برای وب، موبایل native و دسکتاپ native کاربرد دارد.
+کشیدن یک عنصر روی عنصری دیگر. برای وب، موبایل native و دسکتاپ native کاربرد دارد.
 
 ```sh
 npx wdio session drag <from> <to>
@@ -1114,7 +1114,7 @@ npx wdio session drag <from> <to>
 **مثال‌ها**
 
 ```sh
-# انتقال یک کارت به ستون دیگر
+# انتقال یک کارت به ستونی دیگر
 npx wdio session drag e3 e9
 ```
 
@@ -1122,9 +1122,9 @@ npx wdio session drag e3 e9
 
 ## `scroll`
 
-یک المنت را به نمای دید اسکرول می‌کند یا صفحه را اسکرول می‌کند. برای وب کاربرد دارد.
+اسکرول یک عنصر به داخل دید یا اسکرول صفحه. برای وب کاربرد دارد.
 
-بدون target، ‏600px به پایین اسکرول می‌کند. محتوای lazy-load در اسنپ‌شات بعدی نمایان می‌شود.
+بدون target، ‏600px به پایین اسکرول می‌کند. محتوای lazy-load در snapshot بعدی ظاهر می‌شود.
 
 ```sh
 npx wdio session scroll [target]
@@ -1134,7 +1134,7 @@ npx wdio session scroll [target]
 
 | نام | الزامی | توضیحات |
 | --- | --- | --- |
-| `target` | خیر | ref، selector، up، down، top یا bottom |
+| `target` | خیر | ref، selector، ‏up، down، top یا bottom |
 
 **فلگ‌ها**
 
@@ -1145,13 +1145,13 @@ npx wdio session scroll [target]
 **مثال‌ها**
 
 ```sh
-# آوردن یک المنت به نمای دید
+# آوردن یک عنصر به داخل دید
 npx wdio session scroll e40
 
 # بارگذاری نتایج بیشتر و نگاه کردن به آن‌ها
 npx wdio session scroll bottom && npx wdio session snapshot -i
 
-# اسکرول به اندازهٔ دو صفحه
+# اسکرول به اندازه‌ی دو صفحه
 npx wdio session scroll down --px 1200
 ```
 
@@ -1159,7 +1159,7 @@ npx wdio session scroll down --px 1200
 
 ## `swipe`
 
-صفحه را سوایپ می‌کند (موبایل). برای موبایل native کاربرد دارد.
+کشیدن (swipe) صفحه (موبایل). برای موبایل native کاربرد دارد.
 
 ```sh
 npx wdio session swipe <direction>
@@ -1175,7 +1175,7 @@ npx wdio session swipe <direction>
 
 | فلگ | توضیحات |
 | --- | --- |
-| `--percent <n>` | طول سوایپ بین 0..1 |
+| `--percent <n>` | طول swipe بین 0..1 |
 
 **مثال‌ها**
 
@@ -1188,7 +1188,7 @@ npx wdio session swipe up && npx wdio session snapshot
 
 ## `long-press`
 
-روی یک المنت فشار طولانی می‌دهد (موبایل). برای موبایل native کاربرد دارد.
+فشردن طولانی یک عنصر (موبایل). برای موبایل native کاربرد دارد.
 
 ```sh
 npx wdio session long-press <target>
@@ -1198,7 +1198,7 @@ npx wdio session long-press <target>
 
 | نام | الزامی | توضیحات |
 | --- | --- | --- |
-| `target` | بله | ref (e12) یا selector در WebdriverIO |
+| `target` | بله | ref ‏(e12) یا selector در WebdriverIO |
 
 **فلگ‌ها**
 
@@ -1217,9 +1217,9 @@ npx wdio session long-press e4 --duration 1500
 
 ## `tabs`
 
-تب‌ها را فهرست می‌کند، باز می‌کند، بین آن‌ها جابه‌جا می‌شود یا آن‌ها را می‌بندد. برای وب کاربرد دارد.
+فهرست، باز کردن، جابه‌جایی یا بستن تب‌ها. برای وب کاربرد دارد.
 
-بدون زیردستور، تب‌ها را همراه با اندیسشان فهرست می‌کند؛ تب فعلی علامت‌گذاری می‌شود. `new` یک تب باز می‌کند و به آن می‌رود. `switch` و `close` یک اندیس یا handle می‌گیرند.
+بدون زیردستور، تب‌ها را با اندیس آن‌ها فهرست می‌کند؛ تب فعلی علامت‌گذاری می‌شود. `new` یک تب باز کرده و به آن جابه‌جا می‌شود. `switch` و `close` یک اندیس یا handle می‌پذیرند.
 
 ```sh
 npx wdio session tabs [sub] [arg]
@@ -1241,7 +1241,7 @@ npx wdio session tabs
 # باز کردن یک تب
 npx wdio session tabs new http://localhost:3000/help
 
-# برگشت به اولین تب
+# بازگشت به تب اول
 npx wdio session tabs switch 0
 
 # بستن تب دوم
@@ -1252,7 +1252,7 @@ npx wdio session tabs close 1
 
 ## `windows`
 
-پنجره‌ها را فهرست می‌کند یا بین آن‌ها جابه‌جا می‌شود. برای وب و دسکتاپ native کاربرد دارد.
+فهرست یا جابه‌جایی پنجره‌ها. برای وب و دسکتاپ native کاربرد دارد.
 
 ```sh
 npx wdio session windows [sub] [arg]
@@ -1271,7 +1271,7 @@ npx wdio session windows [sub] [arg]
 # فهرست پنجره‌ها
 npx wdio session windows
 
-# رفتن به پنجرهٔ دوم
+# جابه‌جایی به پنجره‌ی دوم
 npx wdio session windows switch 1
 ```
 
@@ -1279,9 +1279,9 @@ npx wdio session windows switch 1
 
 ## `frame`
 
-به یک iframe، به والد یا به بالاترین سطح می‌رود. برای وب کاربرد دارد.
+جابه‌جایی به درون یک iframe، به والد یا به بالاترین سطح. برای وب کاربرد دارد.
 
-اسنپ‌شات صفحه از قبل محتوای iframeهای آن را همراه با refهایی که اکشن‌ها مستقیماً از آن‌ها استفاده می‌کنند نشان می‌دهد، بنابراین `frame` فقط زمانی لازم است که بخواهید مدتی درون یک frame کار کنید یا frameی را ببینید که اسنپ‌شات آن را کوتاه کرده است. اسنپ‌شات‌ها و اکشن‌ها تا زمانی که برگردید روی frame فعلی اعمال می‌شوند. `navigate` به سند بالاترین سطح برمی‌گردد.
+snapshot صفحه از قبل محتوای iframeهای آن را با refهایی که اکشن‌ها مستقیماً از آن‌ها استفاده می‌کنند نشان می‌دهد، بنابراین `frame` فقط برای کار درون یک frame به مدت طولانی‌تر یا دیدن frameی که snapshot آن را کوتاه کرده لازم است. snapshotها و اکشن‌ها تا زمانی که برگردید روی frame فعلی اعمال می‌شوند. `navigate` به سند بالاترین سطح بازمی‌گردد.
 
 ```sh
 npx wdio session frame <target>
@@ -1291,15 +1291,15 @@ npx wdio session frame <target>
 
 | نام | الزامی | توضیحات |
 | --- | --- | --- |
-| `target` | بله | ref، selector، parent یا top |
+| `target` | بله | ref، selector، ‏parent یا top |
 
 **مثال‌ها**
 
 ```sh
-# ورود به یک iframe و نگاه به داخل آن
+# ورود به یک iframe و نگاه کردن به داخل آن
 npx wdio session frame e12 && npx wdio session snapshot -i
 
-# برگشت به صفحه
+# بازگشت به صفحه
 npx wdio session frame top
 ```
 
@@ -1307,7 +1307,7 @@ npx wdio session frame top
 
 ## `contexts`
 
-contextهای native/webview را فهرست می‌کند یا بین آن‌ها جابه‌جا می‌شود. برای موبایل native کاربرد دارد.
+فهرست یا جابه‌جایی contextهای native/webview. برای موبایل native کاربرد دارد.
 
 ```sh
 npx wdio session contexts [sub] [name]
@@ -1334,9 +1334,9 @@ npx wdio session contexts switch WEBVIEW_com.example.shop
 
 ## `dialog`
 
-یک dialog باز را می‌پذیرد، رد می‌کند یا وضعیت آن را گزارش می‌دهد. برای وب و موبایل native کاربرد دارد.
+پذیرفتن، رد کردن یا گزارش یک dialog باز. برای وب و موبایل native کاربرد دارد.
 
-یک alert، confirm یا prompt باز سایر اکشن‌ها را مسدود می‌کند و آن‌ها با راهنمایی برای اجرای این دستور شکست می‌خورند.
+یک alert، confirm یا prompt باز، سایر اکشن‌ها را مسدود می‌کند و آن‌ها با یک راهنمایی برای اجرای این دستور شکست می‌خورند.
 
 ```sh
 npx wdio session dialog <sub>
@@ -1371,7 +1371,7 @@ npx wdio session dialog accept --text "Ada"
 
 ## `app`
 
-یک برنامه را اجرا، متوقف یا نصب می‌کند یا وضعیت آن را می‌پرسد. برای موبایل native و دسکتاپ native کاربرد دارد.
+اجرا، خاتمه، نصب یا پرس‌وجوی یک برنامه. برای موبایل native و دسکتاپ native کاربرد دارد.
 
 ```sh
 npx wdio session app <sub> <id>
@@ -1382,7 +1382,7 @@ npx wdio session app <sub> <id>
 | نام | الزامی | توضیحات |
 | --- | --- | --- |
 | `sub` | بله | launch \| terminate \| install \| state |
-| `id` | بله | شناسهٔ برنامه، bundle id یا فایل |
+| `id` | بله | شناسه‌ی برنامه، bundle id یا فایل |
 
 **مثال‌ها**
 
@@ -1398,7 +1398,7 @@ npx wdio session app state com.example.shop
 
 ## `deeplink`
 
-یک deep link را باز می‌کند. برای موبایل native کاربرد دارد.
+باز کردن یک deep link. برای موبایل native کاربرد دارد.
 
 ```sh
 npx wdio session deeplink <url>
@@ -1414,12 +1414,12 @@ npx wdio session deeplink <url>
 
 | فلگ | توضیحات |
 | --- | --- |
-| `--package <value>` | پکیج Android یا bundle id در iOS |
+| `--package <value>` | package در Android یا bundle id در iOS |
 
 **مثال‌ها**
 
 ```sh
-# باز کردن صفحهٔ یک محصول
+# باز کردن صفحه‌ی یک محصول
 npx wdio session deeplink shop://product/42 --package com.example.shop
 ```
 
@@ -1427,7 +1427,7 @@ npx wdio session deeplink shop://product/42 --package com.example.shop
 
 ## `rotate`
 
-دستگاه را می‌چرخاند. برای موبایل native کاربرد دارد.
+چرخاندن دستگاه. برای موبایل native کاربرد دارد.
 
 ```sh
 npx wdio session rotate <orientation>
@@ -1442,13 +1442,13 @@ npx wdio session rotate <orientation>
 **مثال‌ها**
 
 ```sh
-# چرخاندن دستگاه به حالت افقی
+# افقی کردن دستگاه
 npx wdio session rotate landscape
 ```
 
 ## `keyboard`
 
-صفحه‌کلید روی صفحه را پنهان می‌کند. برای موبایل native کاربرد دارد.
+پنهان کردن صفحه‌کلید روی صفحه. برای موبایل native کاربرد دارد.
 
 ```sh
 npx wdio session keyboard <sub>
@@ -1463,13 +1463,13 @@ npx wdio session keyboard <sub>
 **مثال‌ها**
 
 ```sh
-# آشکار کردن المنت‌های زیر صفحه‌کلید
+# آشکار کردن عناصر زیر صفحه‌کلید
 npx wdio session keyboard hide
 ```
 
 ## `background`
 
-برنامه را به پس‌زمینه می‌فرستد. برای موبایل native کاربرد دارد.
+فرستادن برنامه به پس‌زمینه. برای موبایل native کاربرد دارد.
 
 ```sh
 npx wdio session background <seconds>
@@ -1479,7 +1479,7 @@ npx wdio session background <seconds>
 
 | نام | الزامی | توضیحات |
 | --- | --- | --- |
-| `seconds` | بله | ثانیه (مقدار -1 آن را همان‌جا نگه می‌دارد) |
+| `seconds` | بله | ثانیه (‏-1 آن را در پس‌زمینه نگه می‌دارد) |
 
 **مثال‌ها**
 
@@ -1492,7 +1492,7 @@ npx wdio session background 3
 
 ## `lock`
 
-دستگاه را قفل می‌کند. برای موبایل native کاربرد دارد.
+قفل کردن دستگاه. برای موبایل native کاربرد دارد.
 
 ```sh
 npx wdio session lock
@@ -1509,7 +1509,7 @@ npx wdio session lock
 
 ## `unlock`
 
-قفل دستگاه را باز می‌کند. برای موبایل native کاربرد دارد.
+باز کردن قفل دستگاه. برای موبایل native کاربرد دارد.
 
 ```sh
 npx wdio session unlock
@@ -1526,7 +1526,7 @@ npx wdio session unlock
 
 ## `geolocation`
 
-موقعیت جغرافیایی را تنظیم می‌کند. برای وب و موبایل native کاربرد دارد.
+تنظیم موقعیت جغرافیایی. برای وب و موبایل native کاربرد دارد.
 
 ```sh
 npx wdio session geolocation <lat> <lon>
@@ -1556,9 +1556,9 @@ npx wdio session geolocation 52.52 13.405
 
 ## `emulate`
 
-یک دستگاه، viewport، شبکه، cpu، ساعت یا یک محدودهٔ شبیه‌سازی BiDi را شبیه‌سازی می‌کند. برای وب کاربرد دارد.
+شبیه‌سازی یک دستگاه، viewport، شبکه، cpu، ساعت یا یک دامنه‌ی شبیه‌سازی BiDi. برای وب کاربرد دارد.
 
-یک شبیه‌سازی تا زمان `emulate reset` یا پایان نشست باقی می‌ماند؛ تنظیم دوبارهٔ همان نوع، جایگزین آن می‌شود. `emulate device` بدون مقدار، نام دستگاه‌ها را فهرست می‌کند. پیش‌تنظیم‌های شبکه و محدودسازی cpu به یک مرورگر Chromium نیاز دارند.
+یک شبیه‌سازی تا `emulate reset` یا پایان session باقی می‌ماند؛ تنظیم دوباره‌ی همان نوع، آن را جایگزین می‌کند. `emulate device` بدون مقدار، نام دستگاه‌ها را فهرست می‌کند. presetهای شبکه و محدودسازی cpu به یک مرورگر Chromium نیاز دارند.
 
 ```sh
 npx wdio session emulate <sub> [value]
@@ -1576,7 +1576,7 @@ npx wdio session emulate <sub> [value]
 | فلگ | توضیحات |
 | --- | --- |
 | `--dpr <n>` | نسبت پیکسل دستگاه (viewport) |
-| `--tick <n>` | ساعت شبیه‌سازی‌شده را به اندازهٔ ms جلو می‌برد (clock) |
+| `--tick <n>` | جلو بردن ساعت شبیه‌سازی‌شده به اندازه‌ی ms (clock) |
 
 **مثال‌ها**
 
@@ -1584,7 +1584,7 @@ npx wdio session emulate <sub> [value]
 # شبیه‌سازی یک گوشی
 npx wdio session emulate device "iPhone 15"
 
-# تنظیم viewport
+# تنظیم یک viewport
 npx wdio session emulate viewport 375x812 --dpr 3
 
 # آفلاین شدن
@@ -1593,13 +1593,13 @@ npx wdio session emulate network offline
 # حالت تاریک
 npx wdio session emulate color-scheme dark
 
-# ثابت کردن تاریخ
+# ثابت نگه داشتن تاریخ
 npx wdio session emulate clock 2030-01-01T00:00:00Z
 
 # کاهش حرکت
 npx wdio session emulate media prefersReducedMotion=reduce
 
-# لغو همهٔ شبیه‌سازی‌ها
+# لغو همه‌ی شبیه‌سازی‌ها
 npx wdio session emulate reset
 ```
 
@@ -1607,7 +1607,7 @@ npx wdio session emulate reset
 
 ## `requests`
 
-درخواست‌های شبکهٔ ضبط‌شده را فهرست می‌کند (BiDi). برای وب کاربرد دارد.
+فهرست درخواست‌های شبکه‌ی ثبت‌شده (BiDi). برای وب کاربرد دارد.
 
 ```sh
 npx wdio session requests
@@ -1636,9 +1636,9 @@ npx wdio session click e3 && npx wdio session requests --failed --since 10s
 
 ## `mock`
 
-پاسخ‌ها را برای یک الگوی URL شبیه‌سازی (mock) می‌کند (BiDi). برای وب کاربرد دارد.
+mock کردن پاسخ‌ها برای یک الگوی URL ‏(BiDi). برای وب کاربرد دارد.
 
-شناسهٔ mock را چاپ می‌کند (m1، m2، …). mock کردن دوبارهٔ همان الگو، جایگزین mock قبلی می‌شود.
+شناسه‌ی mock ‏(m1، m2، …) را چاپ می‌کند. mock کردن دوباره‌ی همان الگو، mock قبلی را جایگزین می‌کند.
 
 ```sh
 npx wdio session mock <pattern>
@@ -1655,9 +1655,9 @@ npx wdio session mock <pattern>
 | فلگ | توضیحات |
 | --- | --- |
 | `--status <n>` | کد وضعیت |
-| `--body <value>` | بدنه به‌صورت JSON/متن یا مسیر یک فایل |
-| `--header <value>` | هدر به شکل k:v (قابل تکرار) |
-| `--abort` | درخواست‌های منطبق را لغو می‌کند |
+| `--body <value>` | body به صورت JSON/متن یا مسیر یک فایل |
+| `--header <value>` | header به صورت k:v (قابل تکرار) |
+| `--abort` | لغو درخواست‌های منطبق |
 | `--method <value>` | فقط این method |
 | `--once` | فقط درخواست بعدی |
 
@@ -1667,7 +1667,7 @@ npx wdio session mock <pattern>
 # برگرداندن JSON ثابت
 npx wdio session mock "**/api/user" --body '{"name":"Mocked"}'
 
-# شکست دادن درخواست بعدی
+# ناموفق کردن درخواست بعدی
 npx wdio session mock "**/api/cart" --status 500 --once
 
 # مسدود کردن تصاویر
@@ -1678,7 +1678,7 @@ npx wdio session mock "**/*.png" --abort
 
 ## `unmock`
 
-mockها را حذف می‌کند. برای وب کاربرد دارد.
+حذف mockها. برای وب کاربرد دارد.
 
 ```sh
 npx wdio session unmock [pattern]
@@ -1688,13 +1688,13 @@ npx wdio session unmock [pattern]
 
 | نام | الزامی | توضیحات |
 | --- | --- | --- |
-| `pattern` | خیر | الگو یا شناسهٔ mock |
+| `pattern` | خیر | الگو یا شناسه‌ی mock |
 
 **فلگ‌ها**
 
 | فلگ | توضیحات |
 | --- | --- |
-| `--all` | همهٔ mockها را حذف می‌کند |
+| `--all` | حذف همه‌ی mockها |
 
 **مثال‌ها**
 
@@ -1702,7 +1702,7 @@ npx wdio session unmock [pattern]
 # حذف یک mock
 npx wdio session unmock m1
 
-# حذف همهٔ mockها
+# حذف همه‌ی mockها
 npx wdio session unmock --all
 ```
 
@@ -1710,9 +1710,9 @@ npx wdio session unmock --all
 
 ## `cookies`
 
-کوکی‌ها را می‌خواند، تنظیم یا پاک می‌کند. برای وب کاربرد دارد.
+دریافت، تنظیم یا پاک کردن cookieها. برای وب کاربرد دارد.
 
-بدون زیردستور، همهٔ کوکی‌ها را به شکل name=value چاپ می‌کند. `clear` بدون نام، همهٔ کوکی‌ها را حذف می‌کند.
+بدون زیردستور، همه‌ی cookieها را به صورت name=value چاپ می‌کند. `clear` بدون نام، همه‌ی cookieها را حذف می‌کند.
 
 ```sh
 npx wdio session cookies [sub] [name] [value]
@@ -1723,33 +1723,33 @@ npx wdio session cookies [sub] [name] [value]
 | نام | الزامی | توضیحات |
 | --- | --- | --- |
 | `sub` | خیر | get \| set \| clear |
-| `name` | خیر | نام کوکی |
-| `value` | خیر | مقدار کوکی |
+| `name` | خیر | نام cookie |
+| `value` | خیر | مقدار cookie |
 
 **فلگ‌ها**
 
 | فلگ | توضیحات |
 | --- | --- |
-| `--domain <value>` | دامنهٔ کوکی (set) |
-| `--path <value>` | مسیر کوکی (set) |
-| `--http-only` | کوکی HttpOnly ‏(set) |
-| `--secure` | کوکی Secure ‏(set) |
+| `--domain <value>` | دامنه‌ی cookie ‏(set) |
+| `--path <value>` | مسیر cookie ‏(set) |
+| `--http-only` | cookie از نوع HttpOnly ‏(set) |
+| `--secure` | cookie از نوع Secure ‏(set) |
 | `--same-site <value>` | lax، strict، none یا default ‏(set) |
-| `--expiry <n>` | زمان انقضا به‌صورت Unix timestamp بر حسب ثانیه (set) |
+| `--expiry <n>` | انقضا به صورت Unix timestamp بر حسب ثانیه (set) |
 
 **مثال‌ها**
 
 ```sh
-# فهرست کوکی‌ها
+# فهرست cookieها
 npx wdio session cookies
 
-# مقدار یک کوکی
+# مقدار یک cookie
 npx wdio session cookies get session
 
-# تنظیم یک کوکی و بارگذاری مجدد
+# تنظیم یک cookie و بارگذاری مجدد
 npx wdio session cookies set session abc && npx wdio session reload
 
-# حذف همهٔ کوکی‌ها
+# حذف همه‌ی cookieها
 npx wdio session cookies clear
 ```
 
@@ -1757,9 +1757,9 @@ npx wdio session cookies clear
 
 ## `storage`
 
-localStorage (یا sessionStorage) را می‌خواند، تنظیم یا پاک می‌کند. برای وب کاربرد دارد.
+دریافت، تنظیم یا پاک کردن localStorage (یا sessionStorage). برای وب کاربرد دارد.
 
-بدون زیردستور، همهٔ ورودی‌ها را چاپ می‌کند. `clear` بدون کلید، مخزن را خالی می‌کند.
+بدون زیردستور، همه‌ی ورودی‌ها را چاپ می‌کند. `clear` بدون کلید، فضای ذخیره‌سازی را خالی می‌کند.
 
 ```sh
 npx wdio session storage [sub] [key] [value]
@@ -1777,7 +1777,7 @@ npx wdio session storage [sub] [key] [value]
 
 | فلگ | توضیحات |
 | --- | --- |
-| `--session-storage` | از sessionStorage استفاده می‌کند |
+| `--session-storage` | استفاده از sessionStorage |
 
 **مثال‌ها**
 
@@ -1796,9 +1796,9 @@ npx wdio session storage clear --session-storage
 
 ## `state`
 
-کوکی‌ها و storage را ذخیره یا بارگذاری می‌کند. برای وب کاربرد دارد.
+ذخیره یا بارگذاری cookieها و storage. برای وب کاربرد دارد.
 
-`save` کوکی‌ها، localStorage و sessionStorage مربوط به origin فعلی را در یک فایل JSON می‌نویسد. `load` آن origin را باز می‌کند و آن‌ها را بازیابی می‌کند، مثلاً برای رد شدن از مرحلهٔ ورود.
+`save` ‏cookieها، localStorage و sessionStorage مربوط به origin فعلی را در یک فایل JSON می‌نویسد. `load` آن origin را باز کرده و آن‌ها را بازیابی می‌کند، مثلاً برای رد شدن از مرحله‌ی ورود.
 
 ```sh
 npx wdio session state <sub> <file>
@@ -1814,7 +1814,7 @@ npx wdio session state <sub> <file>
 **مثال‌ها**
 
 ```sh
-# ذخیرهٔ وضعیت واردشده
+# ذخیره‌ی وضعیت واردشده (logged-in)
 npx wdio session state save .wdio/logged-in.json
 
 # شروع در حالت واردشده
@@ -1825,9 +1825,9 @@ npx wdio session state load .wdio/logged-in.json && npx wdio session reload
 
 ## `visual`
 
-اسنپ‌شات‌های بصری از طریق @wdio/visual-service. برای وب، موبایل native و دسکتاپ native کاربرد دارد.
+snapshotهای بصری از طریق @wdio/visual-service. برای وب، موبایل native و دسکتاپ native کاربرد دارد.
 
-`save` یک مبنا در .wdio/visual/baseline ذخیره می‌کند، `check` با آن مقایسه کرده و میزان عدم تطابق را چاپ می‌کند، `accept` آخرین تصویر واقعی را به مبنا تبدیل می‌کند و `list` تگ‌ها را نشان می‌دهد. به @wdio/visual-service در پروژه نیاز دارد.
+`save` یک baseline در .wdio/visual/baseline ذخیره می‌کند، `check` با آن مقایسه کرده و عدم تطابق را چاپ می‌کند، `accept` آخرین تصویر واقعی را به baseline تبدیل می‌کند، `list` تگ‌ها را نشان می‌دهد. به @wdio/visual-service در پروژه نیاز دارد.
 
 ```sh
 npx wdio session visual <sub> [tag]
@@ -1844,16 +1844,16 @@ npx wdio session visual <sub> [tag]
 
 | فلگ | توضیحات |
 | --- | --- |
-| `--element <value>` | فقط این المنت |
+| `--element <value>` | فقط این عنصر |
 | `--full` | کل صفحه |
-| `--tabbable` | صفحهٔ tabbable |
+| `--tabbable` | صفحه‌ی tabbable |
 | `--threshold <n>` | عدم تطابق مجاز بر حسب درصد (پیش‌فرض 0) |
-| `--all` | accept: همهٔ تگ‌ها |
+| `--all` | accept: همه‌ی تگ‌ها |
 
 **مثال‌ها**
 
 ```sh
-# ذخیرهٔ یک مبنا
+# ذخیره‌ی یک baseline
 npx wdio session visual save cart
 
 # مقایسه با آن
@@ -1867,9 +1867,9 @@ npx wdio session visual accept cart
 
 ## `trace`
 
-هر مرحله را همراه با اسکرین‌شات‌ها و اسنپ‌شات‌ها ضبط می‌کند.
+ثبت همه‌ی مراحل همراه با اسکرین‌شات‌ها و snapshotها.
 
-`stop` پوشهٔ trace و رونوشتی از مراحل را چاپ می‌کند.
+`stop` پوشه‌ی trace و رونوشتی از مراحل را چاپ می‌کند.
 
 ```sh
 npx wdio session trace <sub>
@@ -1885,13 +1885,13 @@ npx wdio session trace <sub>
 
 | فلگ | توضیحات |
 | --- | --- |
-| `--screenshots` | اسکرین‌شات پس از هر مرحله (برای صرف‌نظر کردن از --no-screenshots استفاده کنید) |
-| `--snapshots` | اسنپ‌شات پس از هر مرحله (برای صرف‌نظر کردن از --no-snapshots استفاده کنید) |
+| `--screenshots` | اسکرین‌شات پس از هر مرحله (برای رد کردن از --no-screenshots استفاده کنید) |
+| `--snapshots` | snapshot پس از هر مرحله (برای رد کردن از --no-snapshots استفاده کنید) |
 
 **مثال‌ها**
 
 ```sh
-# شروع trace
+# شروع tracing
 npx wdio session trace start
 
 # توقف و چاپ رونوشت
@@ -1902,7 +1902,7 @@ npx wdio session trace stop
 
 ## `record`
 
-ویدیو ضبط می‌کند. برای وب و موبایل native کاربرد دارد.
+ضبط ویدیو. برای وب و موبایل native کاربرد دارد.
 
 ```sh
 npx wdio session record <sub>
@@ -1927,7 +1927,7 @@ npx wdio session record <sub>
 # شروع ضبط
 npx wdio session record start
 
-# توقف و ذخیرهٔ ویدیو
+# توقف و ذخیره‌ی ویدیو
 npx wdio session record stop --path checkout.mp4
 ```
 
@@ -1935,7 +1935,7 @@ npx wdio session record stop --path checkout.mp4
 
 ## `history`
 
-مراحل ضبط‌شده را چاپ می‌کند.
+چاپ مراحل ثبت‌شده.
 
 هر اکشنی که صفحه را تغییر می‌دهد، کد WebdriverIO که اجرا کرده را ثبت می‌کند. `export` این تاریخچه را به یک spec تبدیل می‌کند.
 
@@ -1947,7 +1947,7 @@ npx wdio session history
 
 | فلگ | توضیحات |
 | --- | --- |
-| `--clear` | تاریخچه را پاک می‌کند |
+| `--clear` | پاک کردن تاریخچه |
 
 **مثال‌ها**
 
@@ -1955,7 +1955,7 @@ npx wdio session history
 # نمایش مراحل تا اینجا
 npx wdio session history
 
-# شروع دوبارهٔ ضبط پیش از مراحلی که می‌خواهید نگه دارید
+# شروع دوباره‌ی ثبت پیش از مراحلی که می‌خواهید نگه دارید
 npx wdio session history --clear
 ```
 
@@ -1963,9 +1963,9 @@ npx wdio session history --clear
 
 ## `export`
 
-از تاریخچه یک spec تولید می‌کند.
+تولید یک spec از تاریخچه.
 
-یک spec به شکل describe/it با مراحل ضبط‌شده می‌نویسد. refها به selectorهای پایدار و helperها به دستورات سفارشی تبدیل می‌شوند. بدون --out، فایل در پوشهٔ artifacts قرار می‌گیرد. آن را با `wdio run` اجرا کنید تا از موفق بودنش مطمئن شوید.
+یک spec به شکل describe/it با مراحل ثبت‌شده می‌نویسد. refها به selectorهای پایدار و helperها به دستورات سفارشی تبدیل می‌شوند. بدون --out، فایل در پوشه‌ی artifacts قرار می‌گیرد. آن را با `wdio run` اجرا کنید تا از موفق بودنش مطمئن شوید.
 
 ```sh
 npx wdio session export
@@ -1977,7 +1977,7 @@ npx wdio session export
 | --- | --- |
 | `--out <value>` | فایل خروجی |
 | `--title <value>` | عنوان suite |
-| `--page-objects` | page objectها را تولید می‌کند |
+| `--page-objects` | تولید page objectها |
 | `--framework <mocha\|jasmine>` | فریم‌ورک (پیش‌فرض mocha) |
 
 **مثال‌ها**
@@ -1994,9 +1994,9 @@ npx wdio session export --out test/specs/cart.e2e.ts && npx wdio run wdio.conf.t
 
 ## `resume`
 
-تستی را که با wdio run --debug=agent متوقف شده ادامه می‌دهد.
+ادامه‌ی تستی که توسط wdio run --debug=agent متوقف شده است.
 
-`wdio run --debug=agent` یک تست در حال شکست را متوقف می‌کند و آن را به‌عنوان نشست debug-`<worker>` در دسترس قرار می‌دهد. با هر اکشنی آن را بررسی کنید و سپس ادامه دهید. اجرای `close` روی آن نشست، به‌جای آن، باعث شکست تست می‌شود.
+`wdio run --debug=agent` یک تست در حال شکست را متوقف کرده و آن را به صورت session ‏debug-`<worker>` در دسترس قرار می‌دهد. آن را با هر اکشنی بررسی کنید، سپس resume کنید. اجرای `close` روی آن session به جای آن، تست را ناموفق می‌کند.
 
 ```sh
 npx wdio session resume
@@ -2005,7 +2005,7 @@ npx wdio session resume
 **مثال‌ها**
 
 ```sh
-# نگاه به تست متوقف‌شده و سپس ادامهٔ آن
+# نگاه کردن به تست متوقف‌شده، سپس اجازه‌ی ادامه به آن
 npx wdio session -s debug-0-0 snapshot -i && npx wdio session -s debug-0-0 resume
 ```
 
@@ -2013,9 +2013,9 @@ npx wdio session -s debug-0-0 snapshot -i && npx wdio session -s debug-0-0 resum
 
 ## `doctor`
 
-محیط شما را بررسی می‌کند.
+بررسی محیط شما.
 
-برای هر بررسی یک خط چاپ می‌کند و برای هر شکست، راه‌حلی ارائه می‌دهد. وقتی یک بررسی شکست بخورد با کد 1 خارج می‌شود.
+برای هر بررسی یک خط همراه با راه‌حلی برای هر شکست چاپ می‌کند. وقتی یک بررسی شکست بخورد با کد 1 خارج می‌شود.
 
 ```sh
 npx wdio session doctor [target]
@@ -2025,7 +2025,7 @@ npx wdio session doctor [target]
 
 | نام | الزامی | توضیحات |
 | --- | --- | --- |
-| `target` | خیر | فقط آنچه این هدف نیاز دارد را بررسی می‌کند |
+| `target` | خیر | فقط بررسی آنچه این target نیاز دارد |
 
 **مثال‌ها**
 
@@ -2033,7 +2033,7 @@ npx wdio session doctor [target]
 # بررسی همه چیز
 npx wdio session doctor
 
-# بررسی آنچه یک نشست Android نیاز دارد
+# بررسی آنچه یک session اندروید نیاز دارد
 npx wdio session doctor android
 ```
 
@@ -2041,7 +2041,7 @@ npx wdio session doctor android
 
 ## `skill`
 
-skill مربوط به agent را چاپ می‌کند.
+چاپ skill عامل (agent).
 
 ```sh
 npx wdio session skill
@@ -2051,7 +2051,7 @@ npx wdio session skill
 
 | فلگ | توضیحات |
 | --- | --- |
-| `--install <value>` | آن را در .agents/skills/wdio-session/SKILL.md (یا در این پوشه) می‌نویسد |
+| `--install <value>` | نوشتن آن در .agents/skills/wdio-session/SKILL.md (یا این پوشه) |
 
 **مثال‌ها**
 

@@ -1,13 +1,13 @@
 ---
 id: session-commands
 title: wdio session कमांड्स
-description: open से लेकर doctor और skill तक, हर wdio session ऐक्शन और फ़्लैग।
+description: open से लेकर doctor और skill तक, हर wdio session एक्शन और फ़्लैग।
 slug: /session-commands
 ---
 
 <!-- Generated from packages/wdio-session/src/actions/specs.ts by `pnpm run docs:session-commands`. Do not edit by hand. -->
 
-यहाँ हर `wdio session` ऐक्शन दिया गया है। ग्लोबल फ़्लैग सभी ऐक्शन पर लागू होते हैं। यही टेक्स्ट `npx wdio session <action> --help` भी प्रिंट करता है। [WebdriverIO Session](/docs/session) सेक्शन के बाकी पेज [टारगेट](/docs/session/targets), [स्नैपशॉट](/docs/session/snapshots), [`exec`](/docs/session/exec), [एक्सपोर्ट](/docs/session/export) और [डीबगिंग](/docs/session/debug) के बारे में बताते हैं।
+हर `wdio session` एक्शन। ग्लोबल फ़्लैग सभी एक्शन्स पर लागू होते हैं। यही टेक्स्ट `npx wdio session <action> --help` से भी प्रिंट होता है। [WebdriverIO Session](/docs/session) सेक्शन का बाकी हिस्सा [targets](/docs/session/targets), [snapshots](/docs/session/snapshots), [`exec`](/docs/session/exec), [export](/docs/session/export) और [debugging](/docs/session/debug) को कवर करता है।
 
 ```sh
 npx wdio session <action> [arguments] [flags]
@@ -23,15 +23,15 @@ npx wdio session <action> [arguments] [flags]
 | `-q, --quiet` | सफल होने पर माँगे गए डेटा के अलावा कुछ भी प्रिंट न करें |
 | `--color` | रंग बंद करने के लिए --no-color का उपयोग करें |
 
-एग्ज़िट कोड: 0 सफलता, 1 ऐक्शन या आपका कोड विफल हुआ, 2 उपयोग में त्रुटि, 3 कोई डिपेंडेंसी या क्रेडेंशियल मौजूद नहीं, 4 उस नाम का कोई सेशन नहीं।
+एग्ज़िट कोड: 0 सफलता, 1 एक्शन या आपका कोड विफल हुआ, 2 उपयोग संबंधी त्रुटि, 3 कोई डिपेंडेंसी या क्रेडेंशियल्स मौजूद नहीं, 4 उस नाम का कोई सेशन नहीं।
 
 ## `open`
 
-एक सेशन शुरू करें: browser, android, ios, macos, windows, electron, tauri, dioxus या कोई wdio कॉन्फ़िग फ़ाइल।
+एक सेशन शुरू करें: browser, android, ios, macos, windows, electron, tauri, dioxus या एक wdio config फ़ाइल।
 
-एक बैकग्राउंड डेमन शुरू करता है जो सेशन को `close` तक, या --idle-timeout (डिफ़ॉल्ट 30m) तक निष्क्रिय रहने तक चालू रखता है। जब तक आप --headed पास नहीं करते, ब्राउज़र headless चलते हैं। यह सेशन का नाम, टारगेट, वह आर्टिफ़ैक्ट्स डायरेक्टरी जहाँ स्नैपशॉट, स्क्रीनशॉट और एक्सपोर्ट जाते हैं, और किसी URL पर खोले गए ब्राउज़र के लिए उस पेज का इंटरैक्टिव स्नैपशॉट प्रिंट करता है।
+एक बैकग्राउंड daemon शुरू करता है जो सेशन को `close` तक, या --idle-timeout (डिफ़ॉल्ट 30m) तक निष्क्रिय रहने तक जीवित रखता है। जब तक आप --headed पास न करें, ब्राउज़र headless चलते हैं। सेशन का नाम, टार्गेट, artifacts डायरेक्टरी जहाँ snapshots, screenshots और exports जाते हैं, और किसी URL पर खोले गए ब्राउज़र के लिए उस पेज का interactive snapshot प्रिंट करता है।
 
-हर नाम के लिए एक सेशन। पहले से चल रहे नाम को खोलना विफल होता है; उसका उपयोग करें, उसे बंद करें, या --replace पास करें। `-s <name>` केवल तभी पास करें जब आपको एक साथ दो सेशन चाहिए।
+प्रति नाम एक सेशन। पहले से चल रहे नाम को खोलना विफल होता है; उसका उपयोग करें, उसे बंद करें, या --replace पास करें। `-s <name>` केवल तभी पास करें जब आपको एक साथ दो सेशन चाहिए हों।
 
 ```sh
 npx wdio session open <target> [url]
@@ -42,14 +42,14 @@ npx wdio session open <target> [url]
 | नाम | आवश्यक | विवरण |
 | --- | --- | --- |
 | `target` | हाँ | chrome \| firefox \| edge \| safari \| android \| ios \| macos \| windows \| electron `<app>` \| tauri `<app>` \| dioxus `<app>` \| `<wdio.conf>` |
-| `url` | नहीं | खोलने के लिए URL (ब्राउज़र), ऐप पाथ (डेस्कटॉप ऐप) या capability (कॉन्फ़िग) |
+| `url` | नहीं | खोलने के लिए URL (ब्राउज़र), ऐप पाथ (डेस्कटॉप ऐप्स) या capability (config) |
 
 **फ़्लैग**
 
 | फ़्लैग | विवरण |
 | --- | --- |
-| `--replace` | पहले उसी नाम का चल रहा सेशन बंद करें |
-| `--launch-timeout <n>` | सेशन के तैयार होने तक प्रतीक्षा करने के मिलीसेकंड |
+| `--replace` | पहले उसी नाम के चल रहे सेशन को बंद करें |
+| `--launch-timeout <n>` | सेशन के तैयार होने तक प्रतीक्षा के मिलीसेकंड |
 | `--idle-timeout <value>` | इतनी देर तक कोई रिक्वेस्ट न आने पर बंद करें (जैसे 30m, 0 इसे बंद करता है) |
 | `--capabilities <value>` | JSON के रूप में या JSON फ़ाइल के पाथ के रूप में अतिरिक्त capabilities |
 | `--hostname <value>` | रिमोट WebDriver होस्ट |
@@ -60,34 +60,34 @@ npx wdio session open <target> [url]
 | `--bidi` | WebDriver BiDi का अनुरोध करें (बंद करने के लिए --no-bidi का उपयोग करें) |
 | `--headed` | ब्राउज़र विंडो दिखाएँ |
 | `--headless` | बिना विंडो के चलाएँ (ब्राउज़र के लिए डिफ़ॉल्ट; --headed को ओवरराइड करता है) |
-| `--snapshot` | खोले गए पेज का इंटरैक्टिव स्नैपशॉट प्रिंट करें (छोड़ने के लिए --no-snapshot का उपयोग करें) |
-| `--viewport <value>` | शुरुआती viewport, जैसे 1280x720 |
+| `--snapshot` | खोले गए पेज का interactive snapshot प्रिंट करें (छोड़ने के लिए --no-snapshot का उपयोग करें) |
+| `--viewport <value>` | प्रारंभिक viewport, जैसे 1280x720 |
 | `--browser-version <value>` | ब्राउज़र वर्ज़न |
 | `--binary <value>` | ब्राउज़र बाइनरी |
-| `--arg <value>` | अतिरिक्त ब्राउज़र आर्ग्युमेंट। `-` से शुरू होने वाली वैल्यू के लिए `=` चाहिए, जैसे `--arg=--disable-gpu` (दोहराया जा सकता है) |
+| `--arg <value>` | अतिरिक्त ब्राउज़र आर्ग्युमेंट। `-` से शुरू होने वाले मान के लिए `=` चाहिए, जैसे `--arg=--disable-gpu` (दोहराया जा सकता है) |
 | `--profile <value>` | स्थायी प्रोफ़ाइल डायरेक्टरी |
-| `--attach <value>` | चल रहे Chrome/Edge से जुड़ें (डीबगिंग पोर्ट या URL) |
+| `--attach <value>` | चल रहे Chrome/Edge से जुड़ें (debugging पोर्ट या URL) |
 | `--app <value>` | ऐप फ़ाइल या क्लाउड ऐप URL |
-| `--package <value>` | Android ऐप पैकेज |
+| `--package <value>` | Android ऐप package |
 | `--activity <value>` | Android ऐप activity |
 | `--bundle-id <value>` | iOS/macOS bundle id |
 | `--browser <value>` | मोबाइल वेब ब्राउज़र (chrome, safari) |
 | `--device <value>` | डिवाइस का नाम |
 | `--platform-version <value>` | प्लेटफ़ॉर्म वर्ज़न |
 | `--udid <value>` | डिवाइस UDID |
-| `--reset` | ऐप की स्टेट बनाए रखने के लिए --no-reset का उपयोग करें (appium:noReset) |
+| `--reset` | ऐप की स्थिति बनाए रखने के लिए --no-reset का उपयोग करें (appium:noReset) |
 | `--full-reset` | appium:fullReset |
-| `--orientation <portrait\|landscape>` | शुरुआती ओरिएंटेशन |
+| `--orientation <portrait\|landscape>` | प्रारंभिक orientation |
 | `--appium-url <value>` | चल रहे Appium सर्वर का उपयोग करें |
-| `--app-arg <value>` | डेस्कटॉप ऐप को पास किया जाने वाला आर्ग्युमेंट। `-` से शुरू होने वाली वैल्यू के लिए `=` चाहिए, जैसे `--app-arg=--no-sandbox` (दोहराया जा सकता है) |
+| `--app-arg <value>` | डेस्कटॉप ऐप को पास किया गया आर्ग्युमेंट। `-` से शुरू होने वाले मान के लिए `=` चाहिए, जैसे `--app-arg=--no-sandbox` (दोहराया जा सकता है) |
 | `--chromedriver <value>` | Electron: Chromedriver बाइनरी |
-| `--electron-version <value>` | Electron: वर्ज़न पहचान को ओवरराइड करें |
+| `--electron-version <value>` | Electron: वर्ज़न डिटेक्शन को ओवरराइड करें |
 | `--provider <browserstack\|saucelabs\|testingbot\|testmu>` | क्लाउड प्रोवाइडर |
 | `--os <value>` | क्लाउड: डेस्कटॉप OS |
 | `--os-version <value>` | क्लाउड: डेस्कटॉप OS वर्ज़न |
-| `--region <value>` | क्लाउड: Sauce Labs रीजन |
+| `--region <value>` | क्लाउड: Sauce Labs region |
 | `--tunnel <value>` | क्लाउड: प्रोवाइडर टनल शुरू करें (या "external") |
-| `--tunnel-name <value>` | क्लाउड: टनल आइडेंटिफ़ायर |
+| `--tunnel-name <value>` | क्लाउड: टनल पहचानकर्ता |
 | `--project <value>` | क्लाउड: प्रोजेक्ट लेबल |
 | `--build <value>` | क्लाउड: बिल्ड लेबल |
 | `--name <value>` | क्लाउड: सेशन नाम लेबल |
@@ -98,10 +98,10 @@ npx wdio session open <target> [url]
 # लोकल ऐप पर headless Chrome खोलें
 npx wdio session open chrome http://localhost:3000
 
-# दिखने वाली विंडो के साथ Firefox खोलें
+# दिखाई देने वाली विंडो के साथ Firefox खोलें
 npx wdio session open firefox http://localhost:3000 --headed
 
-# Appium के ज़रिए Android ऐप खोलें
+# Appium के माध्यम से Android ऐप खोलें
 npx wdio session open android --app ./app.apk
 
 # इंस्टॉल किया हुआ iOS ऐप खोलें
@@ -110,7 +110,7 @@ npx wdio session open ios --bundle-id com.example.shop
 # Electron ऐप खोलें
 npx wdio session open electron ./main.js
 
-# कॉन्फ़िग की पहली capability खोलें
+# config की पहली capability खोलें
 npx wdio session open ./wdio.conf.ts 0
 
 # क्लाउड ग्रिड में Chrome खोलें
@@ -121,7 +121,7 @@ npx wdio session open chrome https://example.com --provider browserstack
 
 ## `close`
 
-सेशन समाप्त करें और उसका डेमन रोकें।
+सेशन समाप्त करें और उसका daemon रोकें।
 
 `wdio run --debug=agent` द्वारा खोले गए सेशन पर यह रुके हुए टेस्ट को विफल कर देता है; उसे जारी रखने के लिए `resume` का उपयोग करें।
 
@@ -134,7 +134,7 @@ npx wdio session close
 | फ़्लैग | विवरण |
 | --- | --- |
 | `--all` | हर सेशन बंद करें |
-| `--clean` | आर्टिफ़ैक्ट्स डायरेक्टरी भी डिलीट करें |
+| `--clean` | artifacts डायरेक्टरी भी हटाएँ |
 
 **उदाहरण**
 
@@ -142,7 +142,7 @@ npx wdio session close
 # डिफ़ॉल्ट सेशन बंद करें
 npx wdio session close
 
-# हर सेशन बंद करें और उनके आर्टिफ़ैक्ट्स डिलीट करें
+# हर सेशन बंद करें और उनके artifacts हटाएँ
 npx wdio session close --all --clean
 ```
 
@@ -152,7 +152,7 @@ npx wdio session close --all --clean
 
 चल रहे सेशन की सूची दिखाएँ।
 
-हर सेशन के लिए एक लाइन प्रिंट करता है: नाम, टारगेट, URL और उम्र। बंद हो चुके सेशन द्वारा छोड़ी गई स्टेट को हटा देता है।
+प्रति सेशन एक पंक्ति प्रिंट करता है: नाम, टार्गेट, URL और उम्र। बंद हो चुके सेशन द्वारा छोड़ी गई स्थिति को हटाता है।
 
 ```sh
 npx wdio session list
@@ -171,7 +171,7 @@ npx wdio session list
 
 सेशन का विवरण दिखाएँ।
 
-टारगेट, ब्राउज़र और वर्ज़न, BiDi सपोर्ट, आर्टिफ़ैक्ट्स डायरेक्टरी, और मौजूदा URL, टाइटल, विंडो का आकार और फ़्रेम (वेब) या context और activity (मोबाइल) प्रिंट करता है।
+टार्गेट, ब्राउज़र और वर्ज़न, BiDi सपोर्ट, artifacts डायरेक्टरी, और वर्तमान URL, title, विंडो का आकार और frame (वेब) या context और activity (मोबाइल) प्रिंट करता है।
 
 ```sh
 npx wdio session info
@@ -188,9 +188,9 @@ npx wdio session info
 
 ## `restart`
 
-उसी टारगेट और फ़्लैग के साथ बंद करें और फिर से खोलें।
+उसी टार्गेट और फ़्लैग के साथ बंद करें और फिर से खोलें।
 
-रिकॉर्ड की गई हिस्ट्री बनी रहती है, इसलिए `export` अब भी restart से पहले के स्टेप्स को शामिल करता है।
+रिकॉर्ड की गई history बनाए रखता है, इसलिए `export` अभी भी restart से पहले के चरणों को कवर करता है।
 
 ```sh
 npx wdio session restart
@@ -207,7 +207,7 @@ npx wdio session restart
 
 ## `status`
 
-सेशन चल रहा हो तो 0 के साथ, न चल रहा हो तो 4 के साथ एग्ज़िट करें।
+यदि सेशन चल रहा है तो 0 से, नहीं तो 4 से exit करता है।
 
 ```sh
 npx wdio session status
@@ -226,9 +226,9 @@ npx wdio session status || npx wdio session open chrome http://localhost:3000
 
 stdin, -e या किसी फ़ाइल से WebdriverIO कोड चलाएँ।
 
-यह एक async फ़ंक्शन के रूप में चलता है, जिसके स्कोप में `browser`, `$`, `$$`, `expect` और `ref('e3')` होते हैं। टॉप-लेवल वेरिएबल कॉल्स के बीच बने रहते हैं। जब stdin पर कोड पाइप किया जाता है, तो बिना ऐक्शन के `wdio session` `exec` चलाता है।
+`browser`, `$`, `$$`, `expect` और `ref('e3')` के scope में होने के साथ एक async function के रूप में चलता है। टॉप-लेवल वेरिएबल कॉल्स के बीच बने रहते हैं। बिना एक्शन के `wdio session`, stdin पर कोड pipe किए जाने पर `exec` चलाता है।
 
-कमांड्स को हमेशा `await` करें। `$` ठीक एक एलिमेंट लौटाता है और एक से ज़्यादा मैच होने पर StrictSelectorError थ्रो करता है। जब एक ही ऐक्शन (click, fill, …) से काम हो जाए तो उसे प्राथमिकता दें; लूप, शर्तों और assertions के लिए `exec` का उपयोग करें।
+कमांड्स को हमेशा `await` करें। `$` ठीक एक एलिमेंट लौटाता है और एक से अधिक मेल खाने पर StrictSelectorError फेंकता है। जब एक ही एक्शन (click, fill, …) काम कर दे तो उसे प्राथमिकता दें; loops, conditions और assertions के लिए `exec` का उपयोग करें।
 
 ```sh
 npx wdio session exec [file]
@@ -245,18 +245,18 @@ npx wdio session exec [file]
 | फ़्लैग | विवरण |
 | --- | --- |
 | `-e, --eval <value>` | चलाने के लिए कोड |
-| `--history` | कोड को हिस्ट्री में रिकॉर्ड करें (छोड़ने के लिए --no-history का उपयोग करें) |
+| `--history` | कोड को history में रिकॉर्ड करें (छोड़ने के लिए --no-history का उपयोग करें) |
 
 **उदाहरण**
 
 ```sh
-# एक-लाइन कोड चलाएँ
+# एक-पंक्ति का कोड चलाएँ
 npx wdio session exec -e "await browser.getTitle()"
 
-# पेज पर assert करें (सिंगल कोट्स शेल को $ से दूर रखते हैं)
+# पेज पर assert करें (single quotes शेल को $ से दूर रखते हैं)
 npx wdio session exec -e 'await expect($("h1")).toHaveText("Cart")'
 
-# stdin पर कई स्टेप्स पाइप करें
+# stdin पर कई चरण pipe करें
 npx wdio session <<'JS'
 await $('aria/Sign in').click()
 await expect(browser).toHaveUrl(expect.stringContaining('/dashboard'))
@@ -272,7 +272,7 @@ npx wdio session exec ./scripts/login.ts
 
 .wdio/helpers से प्रोजेक्ट helpers की सूची दिखाएँ।
 
-.wdio/helpers के अंतर्गत हर फ़ाइल डिफ़ॉल्ट रूप से एक फ़ंक्शन एक्सपोर्ट करती है जो browser प्राप्त करता है और addCommand से कस्टम कमांड रजिस्टर करता है। सेशन खुलने पर helpers लोड होते हैं, और एक्सपोर्ट किए गए टेस्ट में वे कस्टम कमांड बन जाते हैं।
+.wdio/helpers के अंतर्गत हर फ़ाइल एक function को default-export करती है जो browser प्राप्त करता है और addCommand के साथ custom commands रजिस्टर करता है। सेशन खुलने पर helpers लोड होते हैं, और export किए गए टेस्ट में वे custom commands बन जाते हैं।
 
 ```sh
 npx wdio session helpers
@@ -282,12 +282,12 @@ npx wdio session helpers
 
 | फ़्लैग | विवरण |
 | --- | --- |
-| `--reload` | helpers को फिर से इम्पोर्ट करें |
+| `--reload` | helpers को फिर से import करें |
 
 **उदाहरण**
 
 ```sh
-# helpers और उनके जोड़े गए कमांड की सूची दिखाएँ
+# helpers और उनके द्वारा जोड़े गए commands की सूची दिखाएँ
 npx wdio session helpers
 
 # किसी helper में किए गए बदलाव लागू करें
@@ -298,13 +298,13 @@ npx wdio session helpers --reload
 
 ## `snapshot`
 
-refs के साथ एक्सेसिबिलिटी स्नैपशॉट। वेब, नेटिव मोबाइल, नेटिव डेस्कटॉप पर लागू।
+refs के साथ Accessibility snapshot। वेब, native mobile, native desktop पर लागू।
 
-एक्सेसिबिलिटी ट्री प्रिंट करता है, हर लाइन में एक नोड, जैसे `button "Add to cart" [ref=e3]`। click, fill, get और अन्य ऐक्शन को एक ref पास करें। जब तक एलिमेंट मौजूद है, refs मान्य रहते हैं; हटाए गए एलिमेंट पर ऐक्शन REF_STALE के साथ विफल होता है।
+accessibility tree प्रिंट करता है, प्रति पंक्ति एक node, जैसे `button "Add to cart" [ref=e3]`। click, fill, get और अन्य एक्शन्स को एक ref पास करें। जब तक एलिमेंट मौजूद है, refs मान्य रहते हैं; हटाए गए एलिमेंट पर एक्शन REF_STALE के साथ विफल होता है।
 
-हर स्नैपशॉट आर्टिफ़ैक्ट्स डायरेक्टरी में लिखा जाता है। --max-chars से लंबा आउटपुट हिस्सों में प्रिंट होता है: पहला हिस्सा, फिर अगले हिस्से के लिए `--offset <line>`। `find` पूरे में खोजता है।
+हर snapshot artifacts डायरेक्टरी में लिखा जाता है। --max-chars से लंबा आउटपुट भागों में प्रिंट होता है: पहला भाग, फिर अगले भाग के लिए `--offset <line>`। `find` पूरे में खोजता है।
 
-टेक्स्ट लेआउट और --json का स्वरूप प्रयोगात्मक हैं और किसी माइनर रिलीज़ में बदल सकते हैं। ref सिंटैक्स और ref लेने वाले ऐक्शन स्थिर रहते हैं।
+टेक्स्ट लेआउट और --json का स्वरूप प्रायोगिक हैं और किसी minor रिलीज़ में बदल सकते हैं। ref सिंटैक्स और ref लेने वाले एक्शन्स स्थिर रहते हैं।
 
 ```sh
 npx wdio session snapshot
@@ -315,25 +315,25 @@ npx wdio session snapshot
 | फ़्लैग | विवरण |
 | --- | --- |
 | `--depth <n>` | अधिकतम गहराई |
-| `--scope <value>` | केवल इस ref या selector के नीचे का स्नैपशॉट लें |
-| `-i, --interactive` | केवल इंटरैक्टिव एलिमेंट |
-| `--all` | छिपे हुए एलिमेंट शामिल करें |
-| `--boxes` | बाउंडिंग बॉक्स जोड़ें |
-| `--viewport` | केवल वही जो viewport में है (वेब: diff बेसलाइन को अपडेट नहीं करता) |
-| `--selectors` | हर ref लाइन को उसके सबसे अच्छे selector के साथ समाप्त करें |
-| `--compact` | बिना नाम वाले उन नोड्स को हटाएँ जिनमें कोई कंटेंट नहीं है |
+| `--scope <value>` | केवल इस ref या selector के नीचे का snapshot लें |
+| `-i, --interactive` | केवल interactive एलिमेंट्स |
+| `--all` | छिपे हुए एलिमेंट्स शामिल करें |
+| `--boxes` | bounding boxes जोड़ें |
+| `--viewport` | केवल वही जो viewport में है (वेब: diff baseline को अपडेट नहीं करता) |
+| `--selectors` | हर ref पंक्ति को उसके सबसे अच्छे selector के साथ समाप्त करें |
+| `--compact` | बिना नाम वाले ऐसे nodes हटाएँ जिनमें कोई content नहीं है |
 | `-u, --urls` | लिंक hrefs शामिल करें |
 | `--file-only` | केवल फ़ाइल लिखें |
 | `--max-chars <n>` | एक बार में अधिकतम इतने अक्षर प्रिंट करें (डिफ़ॉल्ट 8000) |
-| `--offset <n>` | लंबे स्नैपशॉट के अगले हिस्से के लिए इस लाइन से आगे प्रिंट करें |
+| `--offset <n>` | लंबे snapshot के अगले भाग के लिए, इस पंक्ति से आगे प्रिंट करें |
 
 **उदाहरण**
 
 ```sh
-# केवल इंटरैक्टिव एलिमेंट, आम तौर पर पहली नज़र
+# केवल interactive एलिमेंट्स, सामान्य पहली झलक
 npx wdio session snapshot -i
 
-# लिंक टारगेट के साथ पूरा पेज
+# लिंक टार्गेट्स के साथ पूरा पेज
 npx wdio session snapshot --compact --urls
 
 # पेज का केवल एक हिस्सा
@@ -342,10 +342,10 @@ npx wdio session snapshot --scope "#checkout" --depth 4
 # अभी स्क्रीन पर क्या है
 npx wdio session snapshot --viewport -i
 
-# टेस्ट में डालने के लिए हर ref के साथ एक selector
+# टेस्ट में डालने के लिए selector के साथ हर ref
 npx wdio session snapshot --selectors -i
 
-# ऐक्शन करें, फिर दोबारा देखें
+# एक्शन करें, फिर दोबारा देखें
 npx wdio session click e3 && npx wdio session snapshot -i
 ```
 
@@ -353,9 +353,9 @@ npx wdio session click e3 && npx wdio session snapshot -i
 
 ## `read`
 
-पेज के टेक्स्ट को Markdown के रूप में पढ़ें। वेब पर लागू।
+पेज का टेक्स्ट Markdown के रूप में पढ़ें। वेब पर लागू।
 
-हेडिंग, पैराग्राफ़, लिस्ट आइटम, टेबल रो और लिंक उनके URL के साथ — जब पेज मुख्य कंटेंट को चिह्नित करता है (main, article) तो उसी से, वरना पूरे पेज से; नेविगेशन, फ़ुटर और छिपा हुआ टेक्स्ट छोड़ दिया जाता है। --max-chars (डिफ़ॉल्ट 6000) पर काटा जाता है; कटौती बताती है कि कौन-सा --offset अगला हिस्सा पढ़ता है। --scope के साथ, वह सेक्शन स्क्रॉल करके दिखाया जाता है। "पेज क्या कहता है" का जवाब देने के लिए इसका उपयोग करें; ऐक्शन करने के लिए refs चाहिए तो snapshot या find का उपयोग करें।
+Headings, paragraphs, list items, table rows और उनके URL के साथ links, मुख्य content से जब पेज उसे चिह्नित करता है (main, article), अन्यथा पूरे पेज से; navigation, footers और छिपा हुआ टेक्स्ट छोड़ दिया जाता है। --max-chars (डिफ़ॉल्ट 6000) पर काटा जाता है; कटौती बताती है कि कौन-सा --offset अगला भाग पढ़ता है। --scope के साथ, सेक्शन को स्क्रॉल करके दृश्य में लाया जाता है। "पेज क्या कहता है" का उत्तर देने के लिए इसका उपयोग करें; एक्शन के लिए refs पाने हेतु snapshot या find का उपयोग करें।
 
 ```sh
 npx wdio session read
@@ -367,12 +367,12 @@ npx wdio session read
 | --- | --- |
 | `--scope <value>` | केवल इस ref या selector के नीचे पढ़ें |
 | `--max-chars <n>` | अधिकतम इतने अक्षर प्रिंट करें (डिफ़ॉल्ट 6000) |
-| `--offset <n>` | लंबे पेज के अगले हिस्से के लिए टेक्स्ट के इस अक्षर से शुरू करें |
+| `--offset <n>` | लंबे पेज के अगले भाग के लिए, टेक्स्ट के इस अक्षर से शुरू करें |
 
 **उदाहरण**
 
 ```sh
-# मुख्य कंटेंट पढ़ें
+# मुख्य content पढ़ें
 npx wdio session read
 
 # एक सेक्शन पढ़ें
@@ -383,9 +383,9 @@ npx wdio session read --scope e12
 
 ## `find`
 
-किसी टेक्स्ट के लिए नए स्नैपशॉट में खोजें। वेब, नेटिव मोबाइल, नेटिव डेस्कटॉप पर लागू।
+एक नए snapshot में टेक्स्ट खोजें। वेब, native mobile, native desktop पर लागू।
 
-एक नया स्नैपशॉट लेता है और हर मैच को उसके आसपास के नोड के साथ (जैसे पूरा लिस्ट आइटम, ताकि मैच के बगल की वैल्यू भी शामिल हो), लाइन नंबर और refs के साथ प्रिंट करता है, और पहले मैच को स्क्रॉल करके दिखाता है। मिलान में पहले केस को नज़रअंदाज़ किया जाता है, फिर स्पेस को ("SO2" से "SO 2" मिलता है), फिर सभी शब्दों और उनसे मिलते-जुलते शब्दों को खोजा जाता है। जो टेक्स्ट केवल पेज के छिपे हिस्सों (बंद मेन्यू, टैब, "Show more") में है, उसे उसी रूप में सूचीबद्ध किया जाता है। बड़े पेज का पूरा स्नैपशॉट पढ़ने से सस्ता है। -A/-B/-C इसके बजाय grep की तरह सामान्य लाइन संदर्भ प्रिंट करते हैं।
+एक नया snapshot लेता है और हर मिलान को उसके आसपास के node के साथ प्रिंट करता है (जैसे पूरा list item, ताकि मिलान के पास का मान भी शामिल हो), पंक्ति संख्याओं और refs के साथ, और पहले मिलान को स्क्रॉल करके दृश्य में लाता है। मिलान पहले case को अनदेखा करता है, फिर spaces को ("SO2" से "SO 2" मिलता है), फिर सभी शब्दों और उनके जैसे शब्दों को खोजता है। जो टेक्स्ट केवल पेज के छिपे हिस्सों (बंद menus, tabs, "Show more") में है, उसे वैसा ही चिह्नित करके सूचीबद्ध किया जाता है। किसी बड़े पेज का पूरा snapshot पढ़ने से सस्ता। -A/-B/-C इसके बजाय grep की तरह सादा पंक्ति संदर्भ प्रिंट करते हैं।
 
 ```sh
 npx wdio session find <text>
@@ -401,12 +401,12 @@ npx wdio session find <text>
 
 | फ़्लैग | विवरण |
 | --- | --- |
-| `--regex` | टेक्स्ट को रेगुलर एक्सप्रेशन मानें |
+| `--regex` | टेक्स्ट को regular expression के रूप में मानें |
 | `--scope <value>` | केवल इस ref या selector के नीचे खोजें |
-| `-C, --context <n>` | आसपास के नोड के बजाय पहले और बाद की संदर्भ लाइनें |
-| `-A, --after-context <n>` | हर मैच के बाद की संदर्भ लाइनें |
-| `-B, --before-context <n>` | हर मैच से पहले की संदर्भ लाइनें |
-| `--offset <n>` | इतने मैच छोड़ दें, आउटपुट कटने पर अगले मैच देखने के लिए |
+| `-C, --context <n>` | आसपास के node के बजाय पहले और बाद की संदर्भ पंक्तियाँ |
+| `-A, --after-context <n>` | हर मिलान के बाद की संदर्भ पंक्तियाँ |
+| `-B, --before-context <n>` | हर मिलान से पहले की संदर्भ पंक्तियाँ |
+| `--offset <n>` | आउटपुट कटने पर अगले मिलानों के लिए, इतने मिलान छोड़ें |
 
 **उदाहरण**
 
@@ -422,9 +422,9 @@ npx wdio session find "^\s*link" --regex --context 0
 
 ## `diff`
 
-नए स्नैपशॉट की पिछले स्नैपशॉट से तुलना करें। वेब, नेटिव मोबाइल, नेटिव डेस्कटॉप पर लागू।
+एक नए snapshot की पिछले snapshot से तुलना करें। वेब, native mobile, native desktop पर लागू।
 
-पिछले स्नैपशॉट के बाद से जो बदला है उसका unified diff प्रिंट करता है, या "No changes"। पहली कॉल एक बेसलाइन सहेजती है। किसी ऐक्शन के बाद इसका उपयोग करें ताकि पूरा पेज दोबारा पढ़े बिना देख सकें कि ऐक्शन ने क्या किया। वेब पर बेसलाइन वह आखिरी स्नैपशॉट है जो `--viewport` के बिना लिया गया था।
+पिछले snapshot के बाद से क्या बदला, उसका unified diff प्रिंट करता है, या "No changes"। पहली कॉल एक baseline संग्रहीत करती है। पूरे पेज को दोबारा पढ़े बिना यह देखने के लिए कि एक्शन ने क्या किया, किसी एक्शन के बाद इसका उपयोग करें। वेब पर baseline वह आखिरी snapshot है जो `--viewport` के बिना लिया गया था।
 
 ```sh
 npx wdio session diff
@@ -434,9 +434,9 @@ npx wdio session diff
 
 | फ़्लैग | विवरण |
 | --- | --- |
-| `--baseline <value>` | तुलना के लिए स्नैपशॉट फ़ाइल |
-| `--scope <value>` | `snapshot --scope` की तरह, केवल इस ref या selector के भीतर का स्नैपशॉट लें |
-| `--interactive` | `snapshot -i` की तरह, केवल इंटरैक्टिव एलिमेंट |
+| `--baseline <value>` | तुलना करने के लिए snapshot फ़ाइल |
+| `--scope <value>` | केवल इस ref या selector के भीतर snapshot लें, `snapshot --scope` की तरह |
+| `--interactive` | केवल interactive एलिमेंट्स, `snapshot -i` की तरह |
 
 **उदाहरण**
 
@@ -444,7 +444,7 @@ npx wdio session diff
 # देखें कि एक click ने क्या बदला
 npx wdio session click e7 && npx wdio session diff
 
-# सहेजे गए स्नैपशॉट से तुलना करें
+# सहेजे गए snapshot से तुलना करें
 npx wdio session diff --baseline before.yml
 ```
 
@@ -452,9 +452,9 @@ npx wdio session diff --baseline before.yml
 
 ## `screenshot`
 
-viewport, किसी एलिमेंट या पूरे पेज का PNG सहेजें। वेब, नेटिव मोबाइल, नेटिव डेस्कटॉप पर लागू।
+viewport, किसी एलिमेंट या पूरे पेज का PNG सहेजें। वेब, native mobile, native desktop पर लागू।
 
-फ़ाइल पाथ और इमेज का आकार प्रिंट करता है। जब सवाल लेआउट या दिखावट के बारे में हो तब स्क्रीनशॉट लें; टेक्स्ट और स्टेट `snapshot` और `get` से पढ़ें।
+फ़ाइल पाथ और इमेज का आकार प्रिंट करता है। जब प्रश्न लेआउट या दिखावट के बारे में हो तो screenshot लें; टेक्स्ट और स्थिति `snapshot` और `get` से पढ़ें।
 
 ```sh
 npx wdio session screenshot [target]
@@ -490,9 +490,9 @@ npx wdio session screenshot --full
 
 ## `pdf`
 
-मौजूदा पेज को PDF के रूप में सहेजें। वेब पर लागू।
+वर्तमान पेज को PDF के रूप में सहेजें। वेब पर लागू।
 
-`browser.savePDF` को कॉल करता है। BiDi सेशन Chrome, Edge और Firefox में, headed या headless, `browsingContext.print` से प्रिंट करता है। Classic सेशन `printPage` का उपयोग करता है, जिसे पुराना Chrome केवल headless में सपोर्ट करता है।
+`browser.savePDF` को कॉल करता है। एक BiDi सेशन Chrome, Edge और Firefox में, headed या headless, `browsingContext.print` के साथ प्रिंट करता है। एक Classic सेशन `printPage` का उपयोग करता है, जिसे पुराना Chrome केवल headless में सपोर्ट करता है।
 
 ```sh
 npx wdio session pdf [file]
@@ -513,7 +513,7 @@ npx wdio session pdf [file]
 **उदाहरण**
 
 ```sh
-# मौजूदा डायरेक्टरी में report.pdf लिखें
+# वर्तमान डायरेक्टरी में report.pdf लिखें
 npx wdio session pdf report.pdf
 ```
 
@@ -521,9 +521,9 @@ npx wdio session pdf report.pdf
 
 ## `source`
 
-पेज का HTML या ऐप का XML सहेजें। वेब, नेटिव मोबाइल, नेटिव डेस्कटॉप पर लागू।
+पेज का HTML या ऐप का XML सहेजें। वेब, native mobile, native desktop पर लागू।
 
-फ़ाइल लिखता है और उसका पाथ और आकार प्रिंट करता है। इसका उपयोग तब करें जब स्नैपशॉट वह छिपा देता है जो आपको चाहिए, जैसे किसी selector के लिए attributes।
+फ़ाइल लिखता है और उसका पाथ और आकार प्रिंट करता है। जब snapshot वह छिपा दे जिसकी आपको ज़रूरत है, जैसे selector के लिए attributes, तब इसका उपयोग करें।
 
 ```sh
 npx wdio session source
@@ -546,9 +546,9 @@ npx wdio session source --path page.html
 
 ## `get`
 
-text, html, value, कोई attribute, टाइटल, URL, गिनती या box पढ़ें। वेब पर लागू।
+text, html, value, कोई attribute, title, URL, कोई count या box पढ़ें। वेब पर लागू।
 
-वैल्यू प्रिंट करता है, फिर वह WebdriverIO कोड जो इसने चलाया (`→ …`)। केवल वैल्यू प्रिंट करने के लिए -q पास करें, जैसे उसे किसी शेल वेरिएबल में कैप्चर करने के लिए। किसी वैल्यू के लिए assertion लिखने से पहले उसे पढ़ें।
+मान प्रिंट करता है, फिर वह WebdriverIO कोड जो उसने चलाया (`→ …`)। केवल मान प्रिंट करने के लिए -q पास करें, जैसे उसे किसी shell वेरिएबल में कैप्चर करने के लिए। किसी मान के लिए assertion लिखने से पहले उसे पढ़ें।
 
 ```sh
 npx wdio session get <sub> [target] [name]
@@ -559,8 +559,8 @@ npx wdio session get <sub> [target] [name]
 | नाम | आवश्यक | विवरण |
 | --- | --- | --- |
 | `sub` | हाँ | text \| html \| value \| attr \| title \| url \| count \| box |
-| `target` | नहीं | ref या selector (title और url के लिए उपयोग नहीं होता) |
-| `name` | नहीं | attribute का नाम (केवल attr) |
+| `target` | नहीं | Ref या selector (title और url के लिए उपयोग नहीं होता) |
+| `name` | नहीं | Attribute का नाम (केवल attr) |
 
 **उदाहरण**
 
@@ -568,16 +568,16 @@ npx wdio session get <sub> [target] [name]
 # किसी ref का टेक्स्ट
 npx wdio session get text e1
 
-# मौजूदा URL
+# वर्तमान URL
 npx wdio session get url
 
-# केवल वैल्यू, शेल वेरिएबल के लिए
+# shell वेरिएबल के लिए केवल मान
 url=$(npx wdio session get url -q)
 
 # किसी लिंक का href
 npx wdio session get attr e3 href
 
-# कितने एलिमेंट मैच करते हैं
+# कितने एलिमेंट्स मेल खाते हैं
 npx wdio session get count "aria/Remove"
 ```
 
@@ -587,7 +587,7 @@ npx wdio session get count "aria/Remove"
 
 जाँचें कि कोई एलिमेंट visible, enabled या checked है या नहीं। वेब पर लागू।
 
-true या false प्रिंट करता है, फिर वह WebdriverIO कोड जो इसने चलाया; केवल वैल्यू प्रिंट करने के लिए -q पास करें। दोनों ही स्थितियों में एग्ज़िट कोड 0 होता है।
+true या false प्रिंट करता है, फिर वह WebdriverIO कोड जो उसने चलाया; केवल मान प्रिंट करने के लिए -q पास करें। दोनों स्थितियों में exit code 0 होता है।
 
 ```sh
 npx wdio session is <sub> <target>
@@ -598,7 +598,7 @@ npx wdio session is <sub> <target>
 | नाम | आवश्यक | विवरण |
 | --- | --- | --- |
 | `sub` | हाँ | visible \| enabled \| checked |
-| `target` | हाँ | ref या selector |
+| `target` | हाँ | Ref या selector |
 
 **उदाहरण**
 
@@ -606,7 +606,7 @@ npx wdio session is <sub> <target>
 # true या false प्रिंट करें
 npx wdio session is visible e1
 
-# किसी बटन को उसके लेबल से जाँचें
+# किसी बटन को उसके label से जाँचें
 npx wdio session is enabled "aria/Place order"
 ```
 
@@ -614,9 +614,9 @@ npx wdio session is enabled "aria/Place order"
 
 ## `logs`
 
-पिछली कॉल के बाद से console, page error, network और device लॉग प्रिंट करें। वेब, नेटिव मोबाइल पर लागू।
+पिछली कॉल के बाद से console, page error, network और device लॉग प्रिंट करें। वेब, native mobile पर लागू।
 
-हर कॉल एक रीड कर्सर को आगे बढ़ाती है, इसलिए अगली कॉल केवल नई एंट्री दिखाती है। किसी ऐक्शन के बाद इसे चलाएँ ताकि उस ऐक्शन से हुई त्रुटियाँ देख सकें।
+हर कॉल एक read cursor को आगे बढ़ाती है, इसलिए अगली कॉल केवल नई प्रविष्टियाँ दिखाती है। किसी एक्शन से हुई त्रुटियाँ देखने के लिए उस एक्शन के बाद इसे चलाएँ।
 
 ```sh
 npx wdio session logs
@@ -627,18 +627,18 @@ npx wdio session logs
 | फ़्लैग | विवरण |
 | --- | --- |
 | `--errors` | केवल त्रुटियाँ |
-| `--network` | केवल नेटवर्क एंट्री |
-| `--since <value>` | केवल इस अवधि से नई एंट्री (जैसे 30s) |
-| `--peek` | रीड कर्सर को आगे न बढ़ाएँ |
+| `--network` | केवल network प्रविष्टियाँ |
+| `--since <value>` | केवल इस अवधि से नई प्रविष्टियाँ (जैसे 30s) |
+| `--peek` | read cursor को आगे न बढ़ाएँ |
 | `--source <browser\|driver\|logcat\|syslog\|main>` | लॉग स्रोत |
 
 **उदाहरण**
 
 ```sh
-# किसी click से हुई त्रुटियाँ
+# एक click से हुई त्रुटियाँ
 npx wdio session click e4 && npx wdio session logs --errors
 
-# हाल की एंट्री, उन्हें अगली कॉल के लिए रखें
+# हाल की प्रविष्टियाँ, उन्हें अगली कॉल के लिए रखें
 npx wdio session logs --since 30s --peek
 ```
 
@@ -646,9 +646,9 @@ npx wdio session logs --since 30s --peek
 
 ## `navigate`
 
-कोई URL खोलें। वेब पर लागू।
+एक URL खोलें। वेब पर लागू।
 
-`example.com`, पूरे URL और baseUrl के सापेक्ष पाथ स्वीकार करता है। पहले किसी भी फ़्रेम से बाहर निकलता है। नया URL और टाइटल प्रिंट करता है।
+`example.com`, पूर्ण URLs और baseUrl के सापेक्ष पाथ स्वीकार करता है। पहले किसी भी frame से बाहर निकलता है। नया URL और title प्रिंट करता है।
 
 ```sh
 npx wdio session navigate <url>
@@ -658,7 +658,7 @@ npx wdio session navigate <url>
 
 | नाम | आवश्यक | विवरण |
 | --- | --- | --- |
-| `url` | हाँ | URL (सापेक्ष URL baseUrl का उपयोग करते हैं) |
+| `url` | हाँ | URL (सापेक्ष URLs baseUrl का उपयोग करते हैं) |
 
 **उदाहरण**
 
@@ -666,7 +666,7 @@ npx wdio session navigate <url>
 # किसी पेज पर जाएँ और उसे देखें
 npx wdio session navigate /cart && npx wdio session snapshot -i
 
-# कोई दूसरी साइट खोलें
+# दूसरी साइट खोलें
 npx wdio session navigate example.com
 ```
 
@@ -708,7 +708,7 @@ npx wdio session forward
 
 ## `reload`
 
-पेज रीलोड करें। वेब पर लागू।
+पेज को रीलोड करें। वेब पर लागू।
 
 ```sh
 npx wdio session reload
@@ -717,7 +717,7 @@ npx wdio session reload
 **उदाहरण**
 
 ```sh
-# रीलोड करें और नेटवर्क शांत होने तक प्रतीक्षा करें
+# रीलोड करें और network शांत होने तक प्रतीक्षा करें
 npx wdio session reload && npx wdio session wait --load networkidle
 ```
 
@@ -725,11 +725,11 @@ npx wdio session reload && npx wdio session wait --load networkidle
 
 ## `wait`
 
-किसी एलिमेंट, टेक्स्ट, URL, लोड स्टेट, शर्त या कुछ मिलीसेकंड के लिए प्रतीक्षा करें। वेब पर लागू।
+किसी एलिमेंट, टेक्स्ट, URL, load state, condition या कुछ मिलीसेकंड की प्रतीक्षा करें। वेब पर लागू।
 
-इनमें से ठीक एक पास करें: कोई ref या selector, --text, --url, --load, --fn, या मिलीसेकंड। --limit के बाद एग्ज़िट कोड 1 के साथ विफल होता है।
+इनमें से ठीक एक पास करें: कोई ref या selector, --text, --url, --load, --fn, या मिलीसेकंड। --limit के बाद exit code 1 के साथ विफल होता है।
 
-यहाँ भी और किसी चेन में `sleep` के बजाय भी, पॉज़ की जगह शर्त को प्राथमिकता दें। 30 सेकंड से लंबा पॉज़ अस्वीकार कर दिया जाता है।
+यहाँ और किसी chain में `sleep` की तुलना में, pause के बजाय condition को प्राथमिकता दें। 30 सेकंड से लंबा pause अस्वीकार कर दिया जाता है।
 
 ```sh
 npx wdio session wait [target]
@@ -739,18 +739,18 @@ npx wdio session wait [target]
 
 | नाम | आवश्यक | विवरण |
 | --- | --- | --- |
-| `target` | नहीं | ref, selector या मिलीसेकंड |
+| `target` | नहीं | Ref, selector या मिलीसेकंड |
 
 **फ़्लैग**
 
 | फ़्लैग | विवरण |
 | --- | --- |
-| `--text <value>` | तब तक प्रतीक्षा करें जब तक पेज में यह टेक्स्ट न हो |
-| `--url <value>` | तब तक प्रतीक्षा करें जब तक URL मैच न करे (सबस्ट्रिंग, या * और ** globs) |
+| `--text <value>` | पेज में यह टेक्स्ट आने तक प्रतीक्षा करें |
+| `--url <value>` | URL मेल खाने तक प्रतीक्षा करें (substring, या * और ** globs) |
 | `--load <value>` | domcontentloaded, load या networkidle |
-| `--fn <value>` | तब तक प्रतीक्षा करें जब तक यह JavaScript एक्सप्रेशन true न हो |
-| `--state <value>` | टारगेट के साथ: visible (डिफ़ॉल्ट), hidden, enabled या disabled |
-| `--limit <n>` | प्रतीक्षा करने के मिलीसेकंड (डिफ़ॉल्ट 10000) |
+| `--fn <value>` | यह JavaScript expression true होने तक प्रतीक्षा करें |
+| `--state <value>` | target के साथ: visible (डिफ़ॉल्ट), hidden, enabled या disabled |
+| `--limit <n>` | प्रतीक्षा के मिलीसेकंड (डिफ़ॉल्ट 10000) |
 
 **उदाहरण**
 
@@ -758,16 +758,16 @@ npx wdio session wait [target]
 # किसी ref के visible होने तक प्रतीक्षा करें
 npx wdio session wait e1
 
-# स्पिनर के गायब होने तक प्रतीक्षा करें
+# spinner के गायब होने तक प्रतीक्षा करें
 npx wdio session wait "aria/Loading" --state hidden
 
-# ऐक्शन करें, परिणाम की प्रतीक्षा करें, दोबारा देखें
+# एक्शन करें, परिणाम की प्रतीक्षा करें, दोबारा देखें
 npx wdio session click e3 && npx wdio session wait --text "Cart (1)" && npx wdio session snapshot -i
 
 # किसी URL की प्रतीक्षा करें
 npx wdio session wait --url "**/dashboard"
 
-# तब तक प्रतीक्षा करें जब तक कोई रिक्वेस्ट चालू न हो
+# कोई रिक्वेस्ट चालू न रहने तक प्रतीक्षा करें
 npx wdio session wait --load networkidle
 
 # 500ms रुकें
@@ -778,9 +778,9 @@ npx wdio session wait 500
 
 ## `click`
 
-किसी एलिमेंट पर click करें। वेब, नेटिव मोबाइल, नेटिव डेस्कटॉप पर लागू।
+किसी एलिमेंट पर click करें। वेब, native mobile, native desktop पर लागू।
 
-प्रिंट करता है कि किस पर click किया गया और, अगर click से नेविगेशन हुआ, तो नया URL। अगले पेज पर refs का उपयोग करने से पहले नया स्नैपशॉट लें। छिपा हुआ या ढका हुआ एलिमेंट तुरंत विफल होता है और बताता है कि रास्ते में क्या है। `x,y` viewport के किसी बिंदु पर click करता है (स्क्रीनशॉट की तरह, ऊपर बाएँ से पिक्सेल), उन चीज़ों के लिए जिनका कोई ref नहीं है, जैसे canvas या मैप।
+प्रिंट करता है कि किस पर click किया गया और, जब click से navigation हुआ, तो नया URL। अगले पेज पर refs का उपयोग करने से पहले नया snapshot लें। छिपा हुआ या ढका हुआ एलिमेंट तुरंत विफल होता है, यह बताते हुए कि रास्ते में क्या है। `x,y` viewport के किसी बिंदु पर click करता है (screenshot की तरह, ऊपर बाएँ से पिक्सेल), उस चीज़ के लिए जिसका कोई ref नहीं है, जैसे canvas या map।
 
 ```sh
 npx wdio session click <target>
@@ -790,20 +790,20 @@ npx wdio session click <target>
 
 | नाम | आवश्यक | विवरण |
 | --- | --- | --- |
-| `target` | हाँ | ref (e12), WebdriverIO selector, या x,y viewport निर्देशांक |
+| `target` | हाँ | Ref (e12), WebdriverIO selector, या x,y viewport निर्देशांक |
 
 **फ़्लैग**
 
 | फ़्लैग | विवरण |
 | --- | --- |
-| `--double` | डबल click |
-| `--right` | राइट click |
-| `--new-tab` | लिंक को नए टैब में खोलें और उस पर स्विच करें |
+| `--double` | Double click |
+| `--right` | Right click |
+| `--new-tab` | लिंक को नए tab में खोलें और उस पर स्विच करें |
 
 **उदाहरण**
 
 ```sh
-# नवीनतम स्नैपशॉट के किसी ref पर click करें
+# नवीनतम snapshot के किसी ref पर click करें
 npx wdio session click e3
 
 # accessible name से click करें
@@ -812,10 +812,10 @@ npx wdio session click "aria/Add to cart"
 # click करें, प्रतीक्षा करें, दोबारा देखें
 npx wdio session click e3 && npx wdio session wait --load networkidle && npx wdio session snapshot -i
 
-# किसी लिंक को नए टैब में खोलें
+# लिंक को नए tab में खोलें
 npx wdio session click e8 --new-tab
 
-# viewport के किसी बिंदु पर click करें, जैसे किसी मैप पर
+# viewport के किसी बिंदु पर click करें, जैसे map पर
 npx wdio session click 320,480
 ```
 
@@ -823,7 +823,7 @@ npx wdio session click 320,480
 
 ## `tap`
 
-किसी एलिमेंट पर tap करें (मोबाइल)। नेटिव मोबाइल पर लागू।
+किसी एलिमेंट पर tap करें (मोबाइल)। native mobile पर लागू।
 
 ```sh
 npx wdio session tap <target>
@@ -833,12 +833,12 @@ npx wdio session tap <target>
 
 | नाम | आवश्यक | विवरण |
 | --- | --- | --- |
-| `target` | हाँ | ref (e12) या WebdriverIO selector |
+| `target` | हाँ | Ref (e12) या WebdriverIO selector |
 
 **उदाहरण**
 
 ```sh
-# नवीनतम स्नैपशॉट के किसी ref पर tap करें
+# नवीनतम snapshot के किसी ref पर tap करें
 npx wdio session tap e2
 ```
 
@@ -846,9 +846,9 @@ npx wdio session tap e2
 
 ## `fill`
 
-किसी input की वैल्यू बदलें। वेब, नेटिव मोबाइल, नेटिव डेस्कटॉप पर लागू।
+किसी input का मान बदलें। वेब, native mobile, native desktop पर लागू।
 
-पहले फ़ील्ड को खाली करता है। जिस पर भी फ़ोकस है उसमें टाइप करने के लिए `type` का उपयोग करें; Enter जैसी कीज़ भेजने के लिए `press` का उपयोग करें।
+पहले फ़ील्ड को खाली करता है। जिस पर भी focus है उसमें टाइप करने के लिए `type` का उपयोग करें; Enter जैसी keys भेजने के लिए `press` का उपयोग करें।
 
 ```sh
 npx wdio session fill <target> <text..>
@@ -858,8 +858,8 @@ npx wdio session fill <target> <text..>
 
 | नाम | आवश्यक | विवरण |
 | --- | --- | --- |
-| `target` | हाँ | ref (e12) या WebdriverIO selector |
-| `text` | हाँ | टेक्स्ट (टारगेट के बाद के शब्द स्पेस से जोड़े जाते हैं) |
+| `target` | हाँ | Ref (e12) या WebdriverIO selector |
+| `text` | हाँ | टेक्स्ट (target के बाद के शब्द spaces से जोड़े जाते हैं) |
 
 **उदाहरण**
 
@@ -867,7 +867,7 @@ npx wdio session fill <target> <text..>
 # एक फ़ील्ड भरें
 npx wdio session fill e2 ada@example.com
 
-# एक फ़ॉर्म भरें और उसे सबमिट करें
+# एक फ़ॉर्म भरें और उसे submit करें
 npx wdio session fill e2 ada@example.com && npx wdio session fill e4 secret && npx wdio session press Enter
 ```
 
@@ -875,9 +875,9 @@ npx wdio session fill e2 ada@example.com && npx wdio session fill e4 secret && n
 
 ## `type`
 
-किसी एलिमेंट या फ़ोकस किए गए एलिमेंट में टाइप करें। वेब, नेटिव मोबाइल, नेटिव डेस्कटॉप पर लागू।
+किसी एलिमेंट या focused एलिमेंट में टाइप करें। वेब, native mobile, native desktop पर लागू।
 
-कुछ भी खाली किए बिना टेक्स्ट को key presses के रूप में भेजता है: `type e2 Ada` e2 में टाइप करता है, `type Ada` उसमें जिस पर फ़ोकस है। किसी वैल्यू को बदलने के लिए `fill` का उपयोग करें।
+कुछ भी खाली किए बिना टेक्स्ट को key presses के रूप में भेजता है: `type e2 Ada` e2 में टाइप करता है, `type Ada` उसमें जिस पर भी focus है। किसी मान को बदलने के लिए `fill` का उपयोग करें।
 
 ```sh
 npx wdio session type <text..>
@@ -887,7 +887,7 @@ npx wdio session type <text..>
 
 | नाम | आवश्यक | विवरण |
 | --- | --- | --- |
-| `text` | हाँ | टेक्स्ट (शब्द स्पेस से जोड़े जाते हैं)। फ़ोकस किए गए एलिमेंट के बजाय किसी खास एलिमेंट में टाइप करने के लिए ref से शुरू करें, जैसे `type e2 Ada` |
+| `text` | हाँ | टेक्स्ट (शब्द spaces से जोड़े जाते हैं)। focused एलिमेंट के बजाय किसी एलिमेंट में टाइप करने के लिए ref से शुरू करें, जैसे `type e2 Ada` |
 
 **उदाहरण**
 
@@ -895,7 +895,7 @@ npx wdio session type <text..>
 # किसी फ़ील्ड में टाइप करें
 npx wdio session type e5 hello
 
-# जिस पर फ़ोकस है उसमें टाइप करें
+# जिस पर भी focus है उसमें टाइप करें
 npx wdio session focus e5 && npx wdio session type "hello"
 ```
 
@@ -903,9 +903,9 @@ npx wdio session focus e5 && npx wdio session type "hello"
 
 ## `press`
 
-कीज़ दबाएँ, जैसे Enter, Control+a। वेब, नेटिव डेस्कटॉप पर लागू।
+keys दबाएँ, जैसे Enter, Control+a। वेब, native desktop पर लागू।
 
-कीज़ को + से जोड़ें। नामों में केस मायने नहीं रखता; ctrl, cmd, esc, up, down, left और right छोटे रूपों के रूप में स्वीकार किए जाते हैं।
+keys को + से जोड़ें। नाम case को अनदेखा करते हैं; ctrl, cmd, esc, up, down, left और right संक्षिप्त रूपों के रूप में स्वीकार किए जाते हैं।
 
 ```sh
 npx wdio session press <keys>
@@ -915,27 +915,27 @@ npx wdio session press <keys>
 
 | नाम | आवश्यक | विवरण |
 | --- | --- | --- |
-| `keys` | हाँ | की कॉम्बिनेशन |
+| `keys` | हाँ | Key संयोजन |
 
 **फ़्लैग**
 
 | फ़्लैग | विवरण |
 | --- | --- |
-| `--times <n>` | इसे इतनी बार दबाएँ (अधिकतम 100), जैसे किसी स्लाइडर को खिसकाने के लिए |
+| `--times <n>` | इसे इतनी बार दबाएँ (100 तक), जैसे किसी slider को खिसकाने के लिए |
 
 **उदाहरण**
 
 ```sh
-# एक फ़ॉर्म सबमिट करें
+# एक फ़ॉर्म submit करें
 npx wdio session press Enter
 
-# फ़ोकस किए गए स्लाइडर को पाँच स्टेप खिसकाएँ
+# focused slider को पाँच कदम खिसकाएँ
 npx wdio session press ArrowRight --times 5
 
 # सब चुनें
 npx wdio session press Control+a
 
-# फ़ोकस वापस ले जाएँ
+# focus को पीछे ले जाएँ
 npx wdio session press Shift+Tab
 ```
 
@@ -943,7 +943,7 @@ npx wdio session press Shift+Tab
 
 ## `select`
 
-किसी `<select>` का कोई विकल्प चुनें। वेब पर लागू।
+किसी `<select>` का एक option चुनें। वेब पर लागू।
 
 ```sh
 npx wdio session select <target> <value>
@@ -953,14 +953,14 @@ npx wdio session select <target> <value>
 
 | नाम | आवश्यक | विवरण |
 | --- | --- | --- |
-| `target` | हाँ | ref (e12) या WebdriverIO selector |
-| `value` | हाँ | विकल्प का टेक्स्ट, वैल्यू या इंडेक्स |
+| `target` | हाँ | Ref (e12) या WebdriverIO selector |
+| `value` | हाँ | Option का टेक्स्ट, value या index |
 
 **फ़्लैग**
 
 | फ़्लैग | विवरण |
 | --- | --- |
-| `--by <text\|value\|index>` | विकल्प का मिलान कैसे करें (डिफ़ॉल्ट text) |
+| `--by <text\|value\|index>` | option का मिलान कैसे करें (डिफ़ॉल्ट text) |
 
 **उदाहरण**
 
@@ -968,7 +968,7 @@ npx wdio session select <target> <value>
 # दिखने वाले टेक्स्ट से चुनें
 npx wdio session select e6 Germany
 
-# वैल्यू से चुनें
+# value से चुनें
 npx wdio session select e6 de --by value
 ```
 
@@ -976,9 +976,9 @@ npx wdio session select e6 de --by value
 
 ## `upload`
 
-कोई फ़ाइल input सेट करें। वेब पर लागू।
+एक file input सेट करें। वेब पर लागू।
 
-पाथ आपकी वर्किंग डायरेक्टरी के सापेक्ष होता है। स्वयं `<input type="file">` को टारगेट करें, न कि उस बटन को जो पिकर खोलता है।
+पाथ आपकी working directory के सापेक्ष होता है। picker खोलने वाले बटन को नहीं, बल्कि स्वयं `<input type="file">` को टार्गेट करें।
 
 ```sh
 npx wdio session upload <target> <file>
@@ -988,13 +988,13 @@ npx wdio session upload <target> <file>
 
 | नाम | आवश्यक | विवरण |
 | --- | --- | --- |
-| `target` | हाँ | ref (e12) या WebdriverIO selector |
+| `target` | हाँ | Ref (e12) या WebdriverIO selector |
 | `file` | हाँ | अपलोड करने के लिए फ़ाइल |
 
 **उदाहरण**
 
 ```sh
-# एक फ़ाइल अटैच करें
+# एक फ़ाइल संलग्न करें
 npx wdio session upload e9 ./fixtures/avatar.png
 ```
 
@@ -1002,7 +1002,7 @@ npx wdio session upload e9 ./fixtures/avatar.png
 
 ## `hover`
 
-पॉइंटर को किसी एलिमेंट पर ले जाएँ। वेब, नेटिव डेस्कटॉप पर लागू।
+pointer को किसी एलिमेंट के ऊपर ले जाएँ। वेब, native desktop पर लागू।
 
 ```sh
 npx wdio session hover <target>
@@ -1012,12 +1012,12 @@ npx wdio session hover <target>
 
 | नाम | आवश्यक | विवरण |
 | --- | --- | --- |
-| `target` | हाँ | ref (e12) या WebdriverIO selector |
+| `target` | हाँ | Ref (e12) या WebdriverIO selector |
 
 **उदाहरण**
 
 ```sh
-# hover मेन्यू खोलें और उसे देखें
+# एक hover menu खोलें और उसे देखें
 npx wdio session hover e4 && npx wdio session snapshot -i
 ```
 
@@ -1025,7 +1025,7 @@ npx wdio session hover e4 && npx wdio session snapshot -i
 
 ## `focus`
 
-किसी एलिमेंट पर फ़ोकस करें। वेब पर लागू।
+किसी एलिमेंट पर focus करें। वेब पर लागू।
 
 ```sh
 npx wdio session focus <target>
@@ -1035,12 +1035,12 @@ npx wdio session focus <target>
 
 | नाम | आवश्यक | विवरण |
 | --- | --- | --- |
-| `target` | हाँ | ref (e12) या WebdriverIO selector |
+| `target` | हाँ | Ref (e12) या WebdriverIO selector |
 
 **उदाहरण**
 
 ```sh
-# `type` से पहले किसी फ़ील्ड पर फ़ोकस करें
+# `type` से पहले किसी फ़ील्ड पर focus करें
 npx wdio session focus e5
 ```
 
@@ -1050,7 +1050,7 @@ npx wdio session focus e5
 
 किसी checkbox या radio को check करें। वेब पर लागू।
 
-अगर यह पहले से checked है तो कुछ नहीं करता, और अगर अंत में checked नहीं होता तो विफल होता है।
+जब यह पहले से checked हो तो कुछ नहीं करता, और जब यह अंत में checked न हो तो विफल होता है।
 
 ```sh
 npx wdio session check <target>
@@ -1060,7 +1060,7 @@ npx wdio session check <target>
 
 | नाम | आवश्यक | विवरण |
 | --- | --- | --- |
-| `target` | हाँ | ref (e12) या WebdriverIO selector |
+| `target` | हाँ | Ref (e12) या WebdriverIO selector |
 
 **उदाहरण**
 
@@ -1075,7 +1075,7 @@ npx wdio session check e7
 
 किसी checkbox को uncheck करें। वेब पर लागू।
 
-अगर यह पहले से unchecked है तो कुछ नहीं करता। चुने गए radio बटन को uncheck नहीं किया जा सकता।
+जब यह पहले से unchecked हो तो कुछ नहीं करता। चुने गए radio button को uncheck नहीं किया जा सकता।
 
 ```sh
 npx wdio session uncheck <target>
@@ -1085,12 +1085,12 @@ npx wdio session uncheck <target>
 
 | नाम | आवश्यक | विवरण |
 | --- | --- | --- |
-| `target` | हाँ | ref (e12) या WebdriverIO selector |
+| `target` | हाँ | Ref (e12) या WebdriverIO selector |
 
 **उदाहरण**
 
 ```sh
-# न्यूज़लेटर से ऑप्ट आउट करें
+# newsletter से बाहर निकलें
 npx wdio session uncheck e7
 ```
 
@@ -1098,7 +1098,7 @@ npx wdio session uncheck e7
 
 ## `drag`
 
-किसी एलिमेंट को दूसरे पर ड्रैग करें। वेब, नेटिव मोबाइल, नेटिव डेस्कटॉप पर लागू।
+किसी एलिमेंट को दूसरे पर drag करें। वेब, native mobile, native desktop पर लागू।
 
 ```sh
 npx wdio session drag <from> <to>
@@ -1108,13 +1108,13 @@ npx wdio session drag <from> <to>
 
 | नाम | आवश्यक | विवरण |
 | --- | --- | --- |
-| `from` | हाँ | ड्रैग करने के लिए ref या selector |
-| `to` | हाँ | जिस पर ड्रॉप करना है उसका ref या selector |
+| `from` | हाँ | drag करने के लिए Ref या selector |
+| `to` | हाँ | जिस पर drop करना है उसका Ref या selector |
 
 **उदाहरण**
 
 ```sh
-# किसी कार्ड को दूसरे कॉलम में ले जाएँ
+# एक card को दूसरे column में ले जाएँ
 npx wdio session drag e3 e9
 ```
 
@@ -1122,9 +1122,9 @@ npx wdio session drag e3 e9
 
 ## `scroll`
 
-किसी एलिमेंट को स्क्रॉल करके दिखाएँ या पेज को स्क्रॉल करें। वेब पर लागू।
+किसी एलिमेंट को स्क्रॉल करके दृश्य में लाएँ या पेज को स्क्रॉल करें। वेब पर लागू।
 
-टारगेट के बिना यह 600px नीचे स्क्रॉल करता है। lazy-loaded कंटेंट अगले स्नैपशॉट में दिखाई देता है।
+बिना target के यह 600px नीचे स्क्रॉल करता है। Lazy-loaded content अगले snapshot में दिखाई देता है।
 
 ```sh
 npx wdio session scroll [target]
@@ -1134,7 +1134,7 @@ npx wdio session scroll [target]
 
 | नाम | आवश्यक | विवरण |
 | --- | --- | --- |
-| `target` | नहीं | ref, selector, up, down, top या bottom |
+| `target` | नहीं | Ref, selector, up, down, top या bottom |
 
 **फ़्लैग**
 
@@ -1145,7 +1145,7 @@ npx wdio session scroll [target]
 **उदाहरण**
 
 ```sh
-# किसी एलिमेंट को स्क्रॉल करके दिखाएँ
+# किसी एलिमेंट को दृश्य में लाएँ
 npx wdio session scroll e40
 
 # और परिणाम लोड करें और उन्हें देखें
@@ -1159,7 +1159,7 @@ npx wdio session scroll down --px 1200
 
 ## `swipe`
 
-स्क्रीन को swipe करें (मोबाइल)। नेटिव मोबाइल पर लागू।
+स्क्रीन को swipe करें (मोबाइल)। native mobile पर लागू।
 
 ```sh
 npx wdio session swipe <direction>
@@ -1175,12 +1175,12 @@ npx wdio session swipe <direction>
 
 | फ़्लैग | विवरण |
 | --- | --- |
-| `--percent <n>` | swipe की लंबाई 0..1 |
+| `--percent <n>` | Swipe की लंबाई 0..1 |
 
 **उदाहरण**
 
 ```sh
-# किसी सूची को स्क्रॉल करें और उसे देखें
+# एक सूची स्क्रॉल करें और उसे देखें
 npx wdio session swipe up && npx wdio session snapshot
 ```
 
@@ -1188,7 +1188,7 @@ npx wdio session swipe up && npx wdio session snapshot
 
 ## `long-press`
 
-किसी एलिमेंट पर long press करें (मोबाइल)। नेटिव मोबाइल पर लागू।
+किसी एलिमेंट को देर तक दबाएँ (मोबाइल)। native mobile पर लागू।
 
 ```sh
 npx wdio session long-press <target>
@@ -1198,7 +1198,7 @@ npx wdio session long-press <target>
 
 | नाम | आवश्यक | विवरण |
 | --- | --- | --- |
-| `target` | हाँ | ref (e12) या WebdriverIO selector |
+| `target` | हाँ | Ref (e12) या WebdriverIO selector |
 
 **फ़्लैग**
 
@@ -1209,7 +1209,7 @@ npx wdio session long-press <target>
 **उदाहरण**
 
 ```sh
-# कॉन्टेक्स्ट मेन्यू खोलें
+# एक context menu खोलें
 npx wdio session long-press e4 --duration 1500
 ```
 
@@ -1217,9 +1217,9 @@ npx wdio session long-press e4 --duration 1500
 
 ## `tabs`
 
-टैब की सूची दिखाएँ, खोलें, स्विच करें या बंद करें। वेब पर लागू।
+tabs की सूची दिखाएँ, खोलें, स्विच करें या बंद करें। वेब पर लागू।
 
-सबकमांड के बिना यह टैब को उनके इंडेक्स के साथ सूचीबद्ध करता है; मौजूदा टैब चिह्नित होता है। `new` एक टैब खोलता है और उस पर स्विच करता है। `switch` और `close` एक इंडेक्स या हैंडल लेते हैं।
+बिना subcommand के यह tabs को उनके index के साथ सूचीबद्ध करता है; वर्तमान tab चिह्नित होता है। `new` एक tab खोलता है और उस पर स्विच करता है। `switch` और `close` एक index या handle लेते हैं।
 
 ```sh
 npx wdio session tabs [sub] [arg]
@@ -1230,21 +1230,21 @@ npx wdio session tabs [sub] [arg]
 | नाम | आवश्यक | विवरण |
 | --- | --- | --- |
 | `sub` | नहीं | switch \| new \| close |
-| `arg` | नहीं | इंडेक्स, हैंडल या URL |
+| `arg` | नहीं | Index, handle या URL |
 
 **उदाहरण**
 
 ```sh
-# टैब की सूची दिखाएँ
+# tabs की सूची दिखाएँ
 npx wdio session tabs
 
-# एक टैब खोलें
+# एक tab खोलें
 npx wdio session tabs new http://localhost:3000/help
 
-# पहले टैब पर वापस जाएँ
+# पहले tab पर वापस जाएँ
 npx wdio session tabs switch 0
 
-# दूसरा टैब बंद करें
+# दूसरा tab बंद करें
 npx wdio session tabs close 1
 ```
 
@@ -1252,7 +1252,7 @@ npx wdio session tabs close 1
 
 ## `windows`
 
-विंडो की सूची दिखाएँ या स्विच करें। वेब, नेटिव डेस्कटॉप पर लागू।
+windows की सूची दिखाएँ या स्विच करें। वेब, native desktop पर लागू।
 
 ```sh
 npx wdio session windows [sub] [arg]
@@ -1263,15 +1263,15 @@ npx wdio session windows [sub] [arg]
 | नाम | आवश्यक | विवरण |
 | --- | --- | --- |
 | `sub` | नहीं | switch |
-| `arg` | नहीं | इंडेक्स या हैंडल |
+| `arg` | नहीं | Index या handle |
 
 **उदाहरण**
 
 ```sh
-# विंडो की सूची दिखाएँ
+# windows की सूची दिखाएँ
 npx wdio session windows
 
-# दूसरी विंडो पर स्विच करें
+# दूसरी window पर स्विच करें
 npx wdio session windows switch 1
 ```
 
@@ -1279,9 +1279,9 @@ npx wdio session windows switch 1
 
 ## `frame`
 
-किसी iframe में, पैरेंट पर या टॉप पर स्विच करें। वेब पर लागू।
+किसी iframe में, parent पर या top पर स्विच करें। वेब पर लागू।
 
-पेज स्नैपशॉट पहले से ही उसके iframes का कंटेंट दिखाता है, ऐसे refs के साथ जिन्हें ऐक्शन सीधे उपयोग करते हैं, इसलिए `frame` की ज़रूरत केवल तब होती है जब कुछ समय तक किसी एक फ़्रेम के अंदर काम करना हो या ऐसा फ़्रेम देखना हो जिसे स्नैपशॉट ने छोटा कर दिया। जब तक आप वापस स्विच नहीं करते, स्नैपशॉट और ऐक्शन मौजूदा फ़्रेम पर लागू होते हैं। `navigate` टॉप डॉक्यूमेंट पर लौट आता है।
+पेज snapshot पहले से ही अपने iframes का content दिखाता है, ऐसे refs के साथ जिन्हें एक्शन्स सीधे उपयोग करते हैं, इसलिए `frame` की ज़रूरत केवल तब होती है जब कुछ समय तक एक frame के अंदर काम करना हो या कोई ऐसा frame देखना हो जिसे snapshot ने छोटा कर दिया। जब तक आप वापस स्विच नहीं करते, snapshots और एक्शन्स वर्तमान frame पर लागू होते हैं। `navigate` top document पर लौटता है।
 
 ```sh
 npx wdio session frame <target>
@@ -1291,12 +1291,12 @@ npx wdio session frame <target>
 
 | नाम | आवश्यक | विवरण |
 | --- | --- | --- |
-| `target` | हाँ | ref, selector, parent या top |
+| `target` | हाँ | Ref, selector, parent या top |
 
 **उदाहरण**
 
 ```sh
-# किसी iframe में जाएँ और अंदर देखें
+# किसी iframe में प्रवेश करें और अंदर देखें
 npx wdio session frame e12 && npx wdio session snapshot -i
 
 # पेज पर वापस जाएँ
@@ -1307,7 +1307,7 @@ npx wdio session frame top
 
 ## `contexts`
 
-native/webview contexts की सूची दिखाएँ या स्विच करें। नेटिव मोबाइल पर लागू।
+native/webview contexts की सूची दिखाएँ या स्विच करें। native mobile पर लागू।
 
 ```sh
 npx wdio session contexts [sub] [name]
@@ -1318,7 +1318,7 @@ npx wdio session contexts [sub] [name]
 | नाम | आवश्यक | विवरण |
 | --- | --- | --- |
 | `sub` | नहीं | switch |
-| `name` | नहीं | context का नाम |
+| `name` | नहीं | Context का नाम |
 
 **उदाहरण**
 
@@ -1326,7 +1326,7 @@ npx wdio session contexts [sub] [name]
 # NATIVE_APP और WEBVIEW contexts की सूची दिखाएँ
 npx wdio session contexts
 
-# webview को चलाएँ
+# webview को नियंत्रित करें
 npx wdio session contexts switch WEBVIEW_com.example.shop
 ```
 
@@ -1334,9 +1334,9 @@ npx wdio session contexts switch WEBVIEW_com.example.shop
 
 ## `dialog`
 
-किसी खुले dialog को स्वीकार करें, खारिज करें या उसकी रिपोर्ट दें। वेब, नेटिव मोबाइल पर लागू।
+किसी खुले dialog को स्वीकार करें, खारिज करें या उसकी रिपोर्ट करें। वेब, native mobile पर लागू।
 
-खुला alert, confirm या prompt अन्य ऐक्शन को रोकता है, जो इसे चलाने के संकेत के साथ विफल होते हैं।
+एक खुला alert, confirm या prompt अन्य एक्शन्स को रोकता है, जो इसे चलाने के संकेत के साथ विफल होते हैं।
 
 ```sh
 npx wdio session dialog <sub>
@@ -1352,7 +1352,7 @@ npx wdio session dialog <sub>
 
 | फ़्लैग | विवरण |
 | --- | --- |
-| `--text <value>` | prompt टेक्स्ट (केवल accept) |
+| `--text <value>` | Prompt टेक्स्ट (केवल accept) |
 
 **उदाहरण**
 
@@ -1363,7 +1363,7 @@ npx wdio session dialog status
 # पुष्टि करें
 npx wdio session dialog accept
 
-# किसी prompt का जवाब दें
+# किसी prompt का उत्तर दें
 npx wdio session dialog accept --text "Ada"
 ```
 
@@ -1371,7 +1371,7 @@ npx wdio session dialog accept --text "Ada"
 
 ## `app`
 
-किसी ऐप को लॉन्च, बंद, इंस्टॉल करें या उसकी स्थिति पूछें। नेटिव मोबाइल, नेटिव डेस्कटॉप पर लागू।
+किसी ऐप को launch, terminate, install या query करें। native mobile, native desktop पर लागू।
 
 ```sh
 npx wdio session app <sub> <id>
@@ -1382,12 +1382,12 @@ npx wdio session app <sub> <id>
 | नाम | आवश्यक | विवरण |
 | --- | --- | --- |
 | `sub` | हाँ | launch \| terminate \| install \| state |
-| `id` | हाँ | ऐप id, bundle id या फ़ाइल |
+| `id` | हाँ | App id, bundle id या फ़ाइल |
 
 **उदाहरण**
 
 ```sh
-# ऐप को रीस्टार्ट करें
+# ऐप को restart करें
 npx wdio session app terminate com.example.shop && npx wdio session app launch com.example.shop
 
 # क्या यह चल रहा है?
@@ -1398,7 +1398,7 @@ npx wdio session app state com.example.shop
 
 ## `deeplink`
 
-कोई deep link खोलें। नेटिव मोबाइल पर लागू।
+एक deep link खोलें। native mobile पर लागू।
 
 ```sh
 npx wdio session deeplink <url>
@@ -1414,12 +1414,12 @@ npx wdio session deeplink <url>
 
 | फ़्लैग | विवरण |
 | --- | --- |
-| `--package <value>` | Android पैकेज या iOS bundle id |
+| `--package <value>` | Android package या iOS bundle id |
 
 **उदाहरण**
 
 ```sh
-# किसी प्रोडक्ट की स्क्रीन खोलें
+# एक product स्क्रीन खोलें
 npx wdio session deeplink shop://product/42 --package com.example.shop
 ```
 
@@ -1427,7 +1427,7 @@ npx wdio session deeplink shop://product/42 --package com.example.shop
 
 ## `rotate`
 
-डिवाइस को घुमाएँ। नेटिव मोबाइल पर लागू।
+डिवाइस को घुमाएँ। native mobile पर लागू।
 
 ```sh
 npx wdio session rotate <orientation>
@@ -1448,7 +1448,7 @@ npx wdio session rotate landscape
 
 ## `keyboard`
 
-ऑन-स्क्रीन कीबोर्ड छिपाएँ। नेटिव मोबाइल पर लागू।
+on-screen keyboard छिपाएँ। native mobile पर लागू।
 
 ```sh
 npx wdio session keyboard <sub>
@@ -1463,13 +1463,13 @@ npx wdio session keyboard <sub>
 **उदाहरण**
 
 ```sh
-# कीबोर्ड के नीचे के एलिमेंट दिखाएँ
+# keyboard के नीचे के एलिमेंट्स को खोलें
 npx wdio session keyboard hide
 ```
 
 ## `background`
 
-ऐप को बैकग्राउंड में भेजें। नेटिव मोबाइल पर लागू।
+ऐप को background में भेजें। native mobile पर लागू।
 
 ```sh
 npx wdio session background <seconds>
@@ -1484,7 +1484,7 @@ npx wdio session background <seconds>
 **उदाहरण**
 
 ```sh
-# ऐप को 3 सेकंड के लिए बैकग्राउंड में भेजें
+# ऐप को 3 सेकंड के लिए background में भेजें
 npx wdio session background 3
 ```
 
@@ -1492,7 +1492,7 @@ npx wdio session background 3
 
 ## `lock`
 
-डिवाइस लॉक करें। नेटिव मोबाइल पर लागू।
+डिवाइस को lock करें। native mobile पर लागू।
 
 ```sh
 npx wdio session lock
@@ -1501,7 +1501,7 @@ npx wdio session lock
 **उदाहरण**
 
 ```sh
-# स्क्रीन लॉक करें
+# स्क्रीन lock करें
 npx wdio session lock
 ```
 
@@ -1509,7 +1509,7 @@ npx wdio session lock
 
 ## `unlock`
 
-डिवाइस अनलॉक करें। नेटिव मोबाइल पर लागू।
+डिवाइस को unlock करें। native mobile पर लागू।
 
 ```sh
 npx wdio session unlock
@@ -1518,7 +1518,7 @@ npx wdio session unlock
 **उदाहरण**
 
 ```sh
-# स्क्रीन अनलॉक करें
+# स्क्रीन unlock करें
 npx wdio session unlock
 ```
 
@@ -1526,7 +1526,7 @@ npx wdio session unlock
 
 ## `geolocation`
 
-जियोलोकेशन सेट करें। वेब, नेटिव मोबाइल पर लागू।
+geolocation सेट करें। वेब, native mobile पर लागू।
 
 ```sh
 npx wdio session geolocation <lat> <lon>
@@ -1548,7 +1548,7 @@ npx wdio session geolocation <lat> <lon>
 **उदाहरण**
 
 ```sh
-# बर्लिन में होने का दिखावा करें
+# Berlin में होने का दिखावा करें
 npx wdio session geolocation 52.52 13.405
 ```
 
@@ -1556,9 +1556,9 @@ npx wdio session geolocation 52.52 13.405
 
 ## `emulate`
 
-किसी डिवाइस, viewport, नेटवर्क, cpu, clock या BiDi emulation स्कोप का emulation करें। वेब पर लागू।
+किसी device, viewport, network, cpu, clock या BiDi emulation scope का emulation करें। वेब पर लागू।
 
-emulation तब तक बना रहता है जब तक `emulate reset` न हो या सेशन समाप्त न हो; उसी प्रकार को फिर से सेट करने पर वह बदल जाता है। बिना वैल्यू के `emulate device` डिवाइस के नामों की सूची दिखाता है। नेटवर्क प्रीसेट और cpu throttling के लिए Chromium ब्राउज़र चाहिए।
+एक emulation `emulate reset` या सेशन समाप्त होने तक बना रहता है; उसी प्रकार को दोबारा सेट करने से वह बदल जाता है। बिना मान के `emulate device` device नामों की सूची दिखाता है। Network presets और cpu throttling के लिए Chromium ब्राउज़र चाहिए।
 
 ```sh
 npx wdio session emulate <sub> [value]
@@ -1569,13 +1569,13 @@ npx wdio session emulate <sub> [value]
 | नाम | आवश्यक | विवरण |
 | --- | --- | --- |
 | `sub` | हाँ | device \| viewport \| network \| cpu \| clock \| color-scheme \| user-agent \| media \| locale \| timezone \| touch \| orientation \| screen \| viewport-meta \| text-layout \| scripting \| scrollbar \| forced-colors \| reset |
-| `value` | नहीं | emulation के लिए वैल्यू |
+| `value` | नहीं | emulation के लिए मान |
 
 **फ़्लैग**
 
 | फ़्लैग | विवरण |
 | --- | --- |
-| `--dpr <n>` | डिवाइस पिक्सेल रेशियो (viewport) |
+| `--dpr <n>` | Device pixel ratio (viewport) |
 | `--tick <n>` | emulated clock को ms से आगे बढ़ाएँ (clock) |
 
 **उदाहरण**
@@ -1584,19 +1584,19 @@ npx wdio session emulate <sub> [value]
 # एक फ़ोन का emulation करें
 npx wdio session emulate device "iPhone 15"
 
-# viewport सेट करें
+# एक viewport सेट करें
 npx wdio session emulate viewport 375x812 --dpr 3
 
-# ऑफ़लाइन जाएँ
+# offline हो जाएँ
 npx wdio session emulate network offline
 
-# डार्क मोड
+# Dark mode
 npx wdio session emulate color-scheme dark
 
 # तारीख को स्थिर करें
 npx wdio session emulate clock 2030-01-01T00:00:00Z
 
-# मोशन कम करें
+# motion कम करें
 npx wdio session emulate media prefersReducedMotion=reduce
 
 # हर emulation को पूर्ववत करें
@@ -1607,7 +1607,7 @@ npx wdio session emulate reset
 
 ## `requests`
 
-कैप्चर किए गए नेटवर्क रिक्वेस्ट की सूची दिखाएँ (BiDi)। वेब पर लागू।
+कैप्चर किए गए network requests की सूची दिखाएँ (BiDi)। वेब पर लागू।
 
 ```sh
 npx wdio session requests
@@ -1617,18 +1617,18 @@ npx wdio session requests
 
 | फ़्लैग | विवरण |
 | --- | --- |
-| `--filter <value>` | सबस्ट्रिंग या glob |
-| `--failed` | केवल विफल रिक्वेस्ट |
-| `--since <value>` | केवल इस अवधि से नए रिक्वेस्ट |
-| `--limit <n>` | अधिकतम लाइनें (डिफ़ॉल्ट 50) |
+| `--filter <value>` | Substring या glob |
+| `--failed` | केवल विफल requests |
+| `--since <value>` | केवल इस अवधि से नए requests |
+| `--limit <n>` | अधिकतम पंक्तियाँ (डिफ़ॉल्ट 50) |
 
 **उदाहरण**
 
 ```sh
-# केवल API कॉल
+# केवल API कॉल्स
 npx wdio session requests --filter "**/api/**"
 
-# वे रिक्वेस्ट जिन्हें एक click ने तोड़ दिया
+# वे requests जिन्हें एक click ने तोड़ा
 npx wdio session click e3 && npx wdio session requests --failed --since 10s
 ```
 
@@ -1636,9 +1636,9 @@ npx wdio session click e3 && npx wdio session requests --failed --since 10s
 
 ## `mock`
 
-किसी URL पैटर्न के लिए responses को mock करें (BiDi)। वेब पर लागू।
+किसी URL pattern के लिए responses को mock करें (BiDi)। वेब पर लागू।
 
-mock id (m1, m2, …) प्रिंट करता है। उसी पैटर्न को फिर से mock करने पर पहले वाला mock बदल जाता है।
+mock id (m1, m2, …) प्रिंट करता है। उसी pattern को दोबारा mock करने से पिछला mock बदल जाता है।
 
 ```sh
 npx wdio session mock <pattern>
@@ -1648,18 +1648,18 @@ npx wdio session mock <pattern>
 
 | नाम | आवश्यक | विवरण |
 | --- | --- | --- |
-| `pattern` | हाँ | URL पैटर्न |
+| `pattern` | हाँ | URL pattern |
 
 **फ़्लैग**
 
 | फ़्लैग | विवरण |
 | --- | --- |
-| `--status <n>` | स्टेटस कोड |
-| `--body <value>` | JSON/टेक्स्ट के रूप में body या कोई फ़ाइल पाथ |
-| `--header <value>` | हेडर k:v (दोहराया जा सकता है) |
-| `--abort` | मैच करने वाले रिक्वेस्ट रद्द करें |
+| `--status <n>` | Status code |
+| `--body <value>` | JSON/text के रूप में body या फ़ाइल पाथ |
+| `--header <value>` | Header k:v (दोहराया जा सकता है) |
+| `--abort` | मेल खाने वाले requests को abort करें |
 | `--method <value>` | केवल यह method |
-| `--once` | केवल अगला रिक्वेस्ट |
+| `--once` | केवल अगला request |
 
 **उदाहरण**
 
@@ -1667,10 +1667,10 @@ npx wdio session mock <pattern>
 # निश्चित JSON लौटाएँ
 npx wdio session mock "**/api/user" --body '{"name":"Mocked"}'
 
-# अगले रिक्वेस्ट को विफल करें
+# अगले request को विफल करें
 npx wdio session mock "**/api/cart" --status 500 --once
 
-# इमेज ब्लॉक करें
+# images को block करें
 npx wdio session mock "**/*.png" --abort
 ```
 
@@ -1688,7 +1688,7 @@ npx wdio session unmock [pattern]
 
 | नाम | आवश्यक | विवरण |
 | --- | --- | --- |
-| `pattern` | नहीं | पैटर्न या mock id |
+| `pattern` | नहीं | Pattern या mock id |
 
 **फ़्लैग**
 
@@ -1712,7 +1712,7 @@ npx wdio session unmock --all
 
 cookies प्राप्त करें, सेट करें या साफ़ करें। वेब पर लागू।
 
-सबकमांड के बिना यह हर cookie को name=value के रूप में प्रिंट करता है। बिना नाम के `clear` सभी cookies डिलीट करता है।
+बिना subcommand के यह हर cookie को name=value के रूप में प्रिंट करता है। बिना नाम के `clear` सभी cookies हटा देता है।
 
 ```sh
 npx wdio session cookies [sub] [name] [value]
@@ -1723,19 +1723,19 @@ npx wdio session cookies [sub] [name] [value]
 | नाम | आवश्यक | विवरण |
 | --- | --- | --- |
 | `sub` | नहीं | get \| set \| clear |
-| `name` | नहीं | cookie का नाम |
-| `value` | नहीं | cookie की वैल्यू |
+| `name` | नहीं | Cookie का नाम |
+| `value` | नहीं | Cookie का मान |
 
 **फ़्लैग**
 
 | फ़्लैग | विवरण |
 | --- | --- |
-| `--domain <value>` | cookie डोमेन (set) |
-| `--path <value>` | cookie पाथ (set) |
+| `--domain <value>` | Cookie domain (set) |
+| `--path <value>` | Cookie path (set) |
 | `--http-only` | HttpOnly cookie (set) |
 | `--secure` | Secure cookie (set) |
 | `--same-site <value>` | lax, strict, none या default (set) |
-| `--expiry <n>` | सेकंड में Unix टाइमस्टैम्प के रूप में समाप्ति (set) |
+| `--expiry <n>` | सेकंड में Unix timestamp के रूप में समाप्ति (set) |
 
 **उदाहरण**
 
@@ -1743,13 +1743,13 @@ npx wdio session cookies [sub] [name] [value]
 # cookies की सूची दिखाएँ
 npx wdio session cookies
 
-# एक cookie की वैल्यू
+# एक cookie का मान
 npx wdio session cookies get session
 
 # एक cookie सेट करें और रीलोड करें
 npx wdio session cookies set session abc && npx wdio session reload
 
-# सभी cookies डिलीट करें
+# सभी cookies हटाएँ
 npx wdio session cookies clear
 ```
 
@@ -1759,7 +1759,7 @@ npx wdio session cookies clear
 
 localStorage (या sessionStorage) प्राप्त करें, सेट करें या साफ़ करें। वेब पर लागू।
 
-सबकमांड के बिना यह हर एंट्री प्रिंट करता है। बिना key के `clear` स्टोर को खाली कर देता है।
+बिना subcommand के यह हर प्रविष्टि प्रिंट करता है। बिना key के `clear` store को खाली कर देता है।
 
 ```sh
 npx wdio session storage [sub] [key] [value]
@@ -1770,8 +1770,8 @@ npx wdio session storage [sub] [key] [value]
 | नाम | आवश्यक | विवरण |
 | --- | --- | --- |
 | `sub` | नहीं | get \| set \| clear |
-| `key` | नहीं | key |
-| `value` | नहीं | वैल्यू |
+| `key` | नहीं | Key |
+| `value` | नहीं | मान |
 
 **फ़्लैग**
 
@@ -1798,7 +1798,7 @@ npx wdio session storage clear --session-storage
 
 cookies और storage सहेजें या लोड करें। वेब पर लागू।
 
-`save` मौजूदा origin की cookies, localStorage और sessionStorage को एक JSON फ़ाइल में लिखता है। `load` उस origin को खोलता है और उन्हें बहाल करता है, जैसे लॉगिन छोड़ने के लिए।
+`save` वर्तमान origin की cookies, localStorage और sessionStorage को एक JSON फ़ाइल में लिखता है। `load` उस origin को खोलता है और उन्हें पुनर्स्थापित करता है, जैसे login छोड़ने के लिए।
 
 ```sh
 npx wdio session state <sub> <file>
@@ -1809,15 +1809,15 @@ npx wdio session state <sub> <file>
 | नाम | आवश्यक | विवरण |
 | --- | --- | --- |
 | `sub` | हाँ | save \| load |
-| `file` | हाँ | स्टेट फ़ाइल |
+| `file` | हाँ | State फ़ाइल |
 
 **उदाहरण**
 
 ```sh
-# लॉग-इन की हुई स्टेट सहेजें
+# logged-in स्थिति सहेजें
 npx wdio session state save .wdio/logged-in.json
 
-# लॉग-इन स्थिति में शुरू करें
+# logged in अवस्था में शुरू करें
 npx wdio session state load .wdio/logged-in.json && npx wdio session reload
 ```
 
@@ -1825,9 +1825,9 @@ npx wdio session state load .wdio/logged-in.json && npx wdio session reload
 
 ## `visual`
 
-@wdio/visual-service के ज़रिए विज़ुअल स्नैपशॉट। वेब, नेटिव मोबाइल, नेटिव डेस्कटॉप पर लागू।
+@wdio/visual-service के माध्यम से visual snapshots। वेब, native mobile, native desktop पर लागू।
 
-`save` .wdio/visual/baseline के अंतर्गत एक बेसलाइन सहेजता है, `check` उससे तुलना करता है और अंतर प्रिंट करता है, `accept` आखिरी वास्तविक इमेज को बेसलाइन बना देता है, `list` टैग दिखाता है। प्रोजेक्ट में @wdio/visual-service होना ज़रूरी है।
+`save` .wdio/visual/baseline के अंतर्गत एक baseline संग्रहीत करता है, `check` उससे तुलना करता है और mismatch प्रिंट करता है, `accept` आखिरी actual image को baseline बना देता है, `list` tags दिखाता है। प्रोजेक्ट में @wdio/visual-service की आवश्यकता है।
 
 ```sh
 npx wdio session visual <sub> [tag]
@@ -1838,7 +1838,7 @@ npx wdio session visual <sub> [tag]
 | नाम | आवश्यक | विवरण |
 | --- | --- | --- |
 | `sub` | हाँ | save \| check \| accept \| list |
-| `tag` | नहीं | इमेज टैग |
+| `tag` | नहीं | Image tag |
 
 **फ़्लैग**
 
@@ -1846,20 +1846,20 @@ npx wdio session visual <sub> [tag]
 | --- | --- |
 | `--element <value>` | केवल यह एलिमेंट |
 | `--full` | पूरा पेज |
-| `--tabbable` | tabbable पेज |
-| `--threshold <n>` | प्रतिशत में अनुमत अंतर (डिफ़ॉल्ट 0) |
-| `--all` | accept: हर टैग |
+| `--tabbable` | Tabbable पेज |
+| `--threshold <n>` | प्रतिशत में अनुमत mismatch (डिफ़ॉल्ट 0) |
+| `--all` | accept: हर tag |
 
 **उदाहरण**
 
 ```sh
-# एक बेसलाइन सहेजें
+# एक baseline संग्रहीत करें
 npx wdio session visual save cart
 
 # उससे तुलना करें
 npx wdio session visual check cart --threshold 0.5
 
-# इच्छित बदलाव स्वीकार करें
+# एक इच्छित बदलाव स्वीकार करें
 npx wdio session visual accept cart
 ```
 
@@ -1867,9 +1867,9 @@ npx wdio session visual accept cart
 
 ## `trace`
 
-हर स्टेप को स्क्रीनशॉट और स्नैपशॉट के साथ रिकॉर्ड करें।
+हर चरण को screenshots और snapshots के साथ रिकॉर्ड करें।
 
-`stop` ट्रेस डायरेक्टरी और स्टेप्स का ट्रांसक्रिप्ट प्रिंट करता है।
+`stop` trace डायरेक्टरी और चरणों का transcript प्रिंट करता है।
 
 ```sh
 npx wdio session trace <sub>
@@ -1885,16 +1885,16 @@ npx wdio session trace <sub>
 
 | फ़्लैग | विवरण |
 | --- | --- |
-| `--screenshots` | हर स्टेप के बाद स्क्रीनशॉट (छोड़ने के लिए --no-screenshots का उपयोग करें) |
-| `--snapshots` | हर स्टेप के बाद स्नैपशॉट (छोड़ने के लिए --no-snapshots का उपयोग करें) |
+| `--screenshots` | हर चरण के बाद screenshot (छोड़ने के लिए --no-screenshots का उपयोग करें) |
+| `--snapshots` | हर चरण के बाद snapshot (छोड़ने के लिए --no-snapshots का उपयोग करें) |
 
 **उदाहरण**
 
 ```sh
-# ट्रेसिंग शुरू करें
+# tracing शुरू करें
 npx wdio session trace start
 
-# रोकें और ट्रांसक्रिप्ट प्रिंट करें
+# रोकें और transcript प्रिंट करें
 npx wdio session trace stop
 ```
 
@@ -1902,7 +1902,7 @@ npx wdio session trace stop
 
 ## `record`
 
-एक वीडियो रिकॉर्ड करें। वेब, नेटिव मोबाइल पर लागू।
+एक वीडियो रिकॉर्ड करें। वेब, native mobile पर लागू।
 
 ```sh
 npx wdio session record <sub>
@@ -1935,9 +1935,9 @@ npx wdio session record stop --path checkout.mp4
 
 ## `history`
 
-रिकॉर्ड किए गए स्टेप्स प्रिंट करें।
+रिकॉर्ड किए गए चरण प्रिंट करें।
 
-पेज को बदलने वाला हर ऐक्शन वह WebdriverIO कोड रिकॉर्ड करता है जो उसने चलाया। `export` इस हिस्ट्री को एक spec में बदल देता है।
+पेज को बदलने वाला हर एक्शन वह WebdriverIO कोड रिकॉर्ड करता है जो उसने चलाया। `export` इस history को एक spec में बदल देता है।
 
 ```sh
 npx wdio session history
@@ -1947,15 +1947,15 @@ npx wdio session history
 
 | फ़्लैग | विवरण |
 | --- | --- |
-| `--clear` | हिस्ट्री साफ़ करें |
+| `--clear` | history साफ़ करें |
 
 **उदाहरण**
 
 ```sh
-# अब तक के स्टेप्स दिखाएँ
+# अब तक के चरण दिखाएँ
 npx wdio session history
 
-# जिन स्टेप्स को रखना है उनसे पहले रिकॉर्डिंग फिर से शुरू करें
+# जिन चरणों को रखना है उनसे पहले रिकॉर्डिंग फिर से शुरू करें
 npx wdio session history --clear
 ```
 
@@ -1963,9 +1963,9 @@ npx wdio session history --clear
 
 ## `export`
 
-हिस्ट्री से एक spec बनाएँ।
+history से एक spec बनाएँ।
 
-रिकॉर्ड किए गए स्टेप्स के साथ एक describe/it spec लिखता है। refs स्थिर selectors बन जाते हैं और helpers कस्टम कमांड बन जाते हैं। --out के बिना फ़ाइल आर्टिफ़ैक्ट्स डायरेक्टरी में जाती है। यह पुष्टि करने के लिए कि यह पास होता है, इसे `wdio run` से चलाएँ।
+रिकॉर्ड किए गए चरणों के साथ एक describe/it spec लिखता है। Refs स्थिर selectors बन जाते हैं और helpers custom commands बन जाते हैं। --out के बिना फ़ाइल artifacts डायरेक्टरी में जाती है। यह पुष्टि करने के लिए कि यह पास होता है, इसे `wdio run` के साथ चलाएँ।
 
 ```sh
 npx wdio session export
@@ -1976,9 +1976,9 @@ npx wdio session export
 | फ़्लैग | विवरण |
 | --- | --- |
 | `--out <value>` | आउटपुट फ़ाइल |
-| `--title <value>` | सुइट टाइटल |
+| `--title <value>` | Suite का शीर्षक |
 | `--page-objects` | page objects बनाएँ |
-| `--framework <mocha\|jasmine>` | फ़्रेमवर्क (डिफ़ॉल्ट mocha) |
+| `--framework <mocha\|jasmine>` | Framework (डिफ़ॉल्ट mocha) |
 
 **उदाहरण**
 
@@ -1996,7 +1996,7 @@ npx wdio session export --out test/specs/cart.e2e.ts && npx wdio run wdio.conf.t
 
 wdio run --debug=agent द्वारा रोके गए टेस्ट को जारी रखें।
 
-`wdio run --debug=agent` विफल हो रहे टेस्ट को रोक देता है और उसे सेशन debug-`<worker>` के रूप में उपलब्ध कराता है। किसी भी ऐक्शन से उसकी जाँच करें, फिर resume करें। उस सेशन पर `close` करने से इसके बजाय टेस्ट विफल हो जाता है।
+`wdio run --debug=agent` एक विफल टेस्ट को रोकता है और उसे सेशन debug-`<worker>` के रूप में उपलब्ध कराता है। किसी भी एक्शन से इसकी जाँच करें, फिर resume करें। उस सेशन पर `close` इसके बजाय टेस्ट को विफल कर देता है।
 
 ```sh
 npx wdio session resume
@@ -2013,9 +2013,9 @@ npx wdio session -s debug-0-0 snapshot -i && npx wdio session -s debug-0-0 resum
 
 ## `doctor`
 
-अपने एनवायरनमेंट की जाँच करें।
+अपने environment की जाँच करें।
 
-हर जाँच के लिए एक लाइन प्रिंट करता है, साथ में हर विफलता का समाधान। कोई जाँच विफल होने पर 1 के साथ एग्ज़िट करता है।
+प्रति जाँच एक पंक्ति प्रिंट करता है, हर विफलता के लिए एक समाधान के साथ। कोई जाँच विफल होने पर 1 से exit करता है।
 
 ```sh
 npx wdio session doctor [target]
@@ -2025,7 +2025,7 @@ npx wdio session doctor [target]
 
 | नाम | आवश्यक | विवरण |
 | --- | --- | --- |
-| `target` | नहीं | केवल वही जाँचें जो इस टारगेट को चाहिए |
+| `target` | नहीं | केवल वही जाँचें जो इस target को चाहिए |
 
 **उदाहरण**
 
@@ -2041,7 +2041,7 @@ npx wdio session doctor android
 
 ## `skill`
 
-एजेंट skill प्रिंट करें।
+agent skill प्रिंट करें।
 
 ```sh
 npx wdio session skill

@@ -1,12 +1,12 @@
 ---
 id: ocr-get-text
 title: ocrGetText
-description: "متن نمایش داده شده روی صفحه یا در یک ناحیه‌ی مشخص را با ocrGetText از سرویس OCR بخوانید."
+description: "متن نمایش داده شده روی صفحه یا در یک ناحیه خاص را با ocrGetText از سرویس OCR بخوانید."
 ---
 
-دریافت متن موجود در یک تصویر.
+متن روی یک تصویر را دریافت کنید.
 
-### نحوه‌ی استفاده
+### نحوه استفاده
 
 ```js
 const result = await browser.ocrGetText();
@@ -36,7 +36,7 @@ result = "VS docs API Blog Contribute Community Sponsor v8 *Engishy CV} Q OQ G a
 
 <Option type="number" default="0.25" required="no">
 
-هرچه کنتراست بیشتر باشد، تصویر تیره‌تر می‌شود و برعکس. این کار می‌تواند به یافتن متن در تصویر کمک کند. این گزینه مقادیری بین `-1` و `1` را می‌پذیرد.
+هرچه کنتراست بیشتر باشد، تصویر تیره‌تر می‌شود و برعکس. این می‌تواند به یافتن متن در تصویر کمک کند. مقادیر بین `-1` و `1` را می‌پذیرد.
 
 </Option>
 #### مثال
@@ -49,7 +49,7 @@ await browser.ocrGetText({ contrast: 0.5 });
 
 <Option type="number" required="WebdriverIO.Element | ChainablePromiseElement | Rectangle">
 
-این ناحیه‌ی جستجو در صفحه است که OCR باید در آن به دنبال متن بگردد. این مقدار می‌تواند یک المنت یا یک مستطیل شامل `x`، `y`، `width` و `height` باشد.
+این ناحیه جستجو در صفحه است که OCR باید در آن به دنبال متن بگردد. این می‌تواند یک عنصر یا یک مستطیل شامل `x`، `y`، `width` و `height` باشد
 
 </Option>
 #### مثال
@@ -57,10 +57,10 @@ await browser.ocrGetText({ contrast: 0.5 });
 ```js
 await browser.ocrGetText({ haystack: $("elementSelector") });
 
-// OR
+// یا
 await browser.ocrGetText({ haystack: await $("elementSelector") });
 
-// OR
+// یا
 await browser.ocrGetText({
     haystack: {
         x: 10,

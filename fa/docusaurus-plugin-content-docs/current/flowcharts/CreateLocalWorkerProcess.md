@@ -1,9 +1,9 @@
 ---
 id: createlocalworkerprocess
-title: ایجاد فرایند worker
-description: "فلوچارتی را دنبال کنید که نشان می‌دهد اجراکنندهٔ محلی WebdriverIO چگونه یک فرایند worker را برای اجرای یک فایل spec ایجاد می‌کند."
+title: ایجاد پروسه‌ی worker
+description: "فلوچارتی را دنبال کنید که نشان می‌دهد local runner در WebdriverIO چگونه یک پروسه‌ی worker برای اجرای یک فایل spec ایجاد می‌کند."
 ---
-این فلوچارت توضیح می‌دهد که یک فرایند worker چگونه ایجاد می‌شود.
+این فلوچارت توضیح می‌دهد که یک پروسه‌ی worker چگونه ایجاد می‌شود.
 
 ```mermaid
 graph TD

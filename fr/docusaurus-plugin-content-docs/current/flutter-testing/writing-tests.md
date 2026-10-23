@@ -4,11 +4,11 @@ title: Écrire des tests
 description: "Écrivez des tests WebdriverIO pour les applications Flutter en basculant vers le contexte Flutter et en interagissant avec les widgets via l'extension flutter_driver."
 ---
 
-Cette section présente la structure pratique pour créer des scénarios de tests automatisés, ainsi que la manière d'interagir directement avec l'arbre de composants interne de Flutter à l'aide de WebdriverIO.
+Cette section présente la structure pratique pour créer des scénarios de tests automatisés, et explique comment interagir directement avec l'arbre de composants interne de Flutter à l'aide de WebdriverIO.
 
 ### Pourquoi le changement de contexte est-il nécessaire ?
 
-Lors du démarrage d'une session d'automatisation avec Appium, le driver commence son exécution en cartographiant le contexte natif du système d'exploitation, appelé `NATIVE_APP`. Ce contexte ne peut voir que l'enveloppe native qui entoure l'application (comme la barre d'état du système ou les boîtes de dialogue natives Android/iOS).
+Lors du démarrage d'une session d'automatisation avec Appium, le driver commence l'exécution en cartographiant le contexte natif du système d'exploitation, appelé `NATIVE_APP`. Ce contexte ne peut voir que l'enveloppe native qui entoure l'application (comme la barre d'état du système ou les boîtes de dialogue natives Android/iOS).
 
 Comme Flutter effectue le rendu de son interface utilisateur dans un Canvas isolé, les éléments internes sont invisibles dans le contexte `NATIVE_APP`. Pour envoyer des commandes directement à l'extension de test de Flutter (`flutter_driver`), nous devons explicitement basculer le focus de l'automatisation vers le contexte `FLUTTER`. Sans ce changement, toute tentative de localiser un Widget entraînera une erreur d'élément introuvable.
 
@@ -24,9 +24,9 @@ Flutter gère ses propres éléments internes et utilise des méthodes de recher
 
 ### Exemples de tests pratiques
 
-Nous documentons des scénarios courants utilisant `appium-flutter-finder` pour localiser des widgets, combinés à des commandes d'extension directes exécutées via `driver.execute('flutter:<command>')`.
+Nous documentons des scénarios courants utilisant `appium-flutter-finder` pour localiser des widgets, combiné à des commandes d'extension directes exécutées via `driver.execute('flutter:<command>')`.
 
-:::info Commandes et finders de l'extension Flutter Driver
+:::info Commandes d'extension et finders de Flutter Driver
 `appium-flutter-driver` fournit des commandes spécialisées pour interagir avec les applications Flutter, notamment :
 - `flutter:waitFor` : attend qu'un widget devienne visible.
 - `flutter:waitForAbsent` : attend qu'un widget disparaisse.
@@ -114,7 +114,7 @@ describe('Flutter & Native Context Switching Flow', () => {
         // 2. Basculer vers le contexte NATIVE_APP pour interagir avec la boîte de dialogue du système
         await driver.switchContext('NATIVE_APP');
 
-        // Localiser et cliquer sur le bouton natif à l'aide des sélecteurs WebdriverIO standards
+        // Localiser et cliquer sur le bouton natif à l'aide des sélecteurs WebdriverIO standard
         const nativeAllowButton = await $('//*[@text="Allow" or @text="While using the app" or @label="Allow"]');
         await nativeAllowButton.waitForDisplayed();
         await nativeAllowButton.click();

@@ -1,10 +1,10 @@
 ---
 id: capabilities
 title: Capacités
-description: "Définissez des capacités pour choisir le navigateur ou l'environnement mobile dans lequel vos tests s'exécutent, y compris les capacités personnalisées des fournisseurs et les cas d'utilisation spécifiques."
+description: "Définissez des capacités pour choisir le navigateur ou l'environnement mobile dans lequel vos tests s'exécutent, y compris les capacités personnalisées des fournisseurs et les cas d'utilisation particuliers."
 ---
 
-Une capacité est une définition pour une interface distante. Elle aide WebdriverIO à comprendre dans quel navigateur ou environnement mobile vous souhaitez exécuter vos tests. Les capacités sont moins cruciales lors du développement de tests en local, car vous les exécutez la plupart du temps sur une seule interface distante, mais elles deviennent plus importantes lors de l'exécution d'un grand ensemble de tests d'intégration en CI/CD.
+Une capacité est une définition pour une interface distante. Elle aide WebdriverIO à comprendre dans quel navigateur ou environnement mobile vous souhaitez exécuter vos tests. Les capacités sont moins cruciales lorsque vous développez des tests localement, car vous les exécutez la plupart du temps sur une seule interface distante, mais elles deviennent plus importantes lors de l'exécution d'un grand ensemble de tests d'intégration en CI/CD.
 
 :::info
 
@@ -38,7 +38,7 @@ Bien que le nombre de capacités définies de manière fixe soit très faible, c
 
 ### Capacités WebdriverIO pour gérer les options des pilotes de navigateur
 
-WebdriverIO gère l'installation et l'exécution du pilote de navigateur pour vous. WebdriverIO utilise une capacité personnalisée qui vous permet de transmettre des paramètres au pilote.
+WebdriverIO gère pour vous l'installation et l'exécution du pilote de navigateur. WebdriverIO utilise une capacité personnalisée qui vous permet de transmettre des paramètres au pilote.
 
 #### `wdio:chromedriverOptions`
 
@@ -60,7 +60,7 @@ Options spécifiques transmises à Safari lors de son démarrage.
 
 <Option type="number">
 
-Nombre maximal total de workers s'exécutant en parallèle pour le navigateur/la capacité spécifique. Prévaut sur [maxInstances](#configuration#maxInstances) et [maxInstancesPerCapability](configuration/#maxinstancespercapability).
+Nombre maximal total de workers exécutés en parallèle pour le navigateur/la capacité spécifique. Prévaut sur [maxInstances](configuration/#maxinstances) et [maxInstancesPerCapability](configuration/#maxinstancespercapability).
 
 </Option>
 
@@ -68,7 +68,7 @@ Nombre maximal total de workers s'exécutant en parallèle pour le navigateur/la
 
 <Option type="(String | String[])[]">
 
-Définit les specs pour l'exécution des tests pour ce navigateur/cette capacité. Identique à l'[option de configuration `specs` habituelle](configuration#specs), mais spécifique au navigateur/à la capacité. Prévaut sur `specs`.
+Définit les specs à exécuter pour ce navigateur/cette capacité. Identique à l'[option de configuration `specs` habituelle](configuration#specs), mais spécifique au navigateur/à la capacité. Prévaut sur `specs`.
 
 </Option>
 
@@ -84,7 +84,22 @@ Exclut des specs de l'exécution des tests pour ce navigateur/cette capacité. I
 
 <Option type="boolean">
 
-Par défaut, WebdriverIO tente d'établir une session WebDriver Bidi. Si vous ne le souhaitez pas, vous pouvez définir ce flag pour désactiver ce comportement.
+Par défaut, WebdriverIO tente d'établir une session WebDriver Bidi. Si vous ne le souhaitez pas, vous pouvez définir ce drapeau pour désactiver ce comportement.
+
+</Option>
+
+#### `wdio:experimentalBiDiCommands`
+
+<Option type="boolean" default="false">
+
+Dans une session WebDriver BiDi, exécute les commandes d'éléments et les commandes de navigateur telles que `getTitle`, `getUrl`, `refresh` et `takeScreenshot` via WebDriver BiDi au lieu de WebDriver Classic. Requis pour les [tests parallèles dans un fichier de spec](./ParallelTests.md). Expérimental : cela modifie le comportement de certaines commandes dans chaque test, par exemple `addValue` et `clearValue` déclenchent des événements DOM synthétiques et `click` est envoyé via l'API Actions. Voir [Changements de comportement des commandes d'éléments BiDi](./ParallelTests.md#behavior-changes-of-the-bidi-element-commands).
+
+```ts
+{
+    browserName: 'chrome',
+    'wdio:experimentalBiDiCommands': true
+}
+```
 
 </Option>
 
@@ -110,13 +125,13 @@ Télécharge le Chromedriver fourni avec cette version d'Electron au lieu de cel
 
 #### Options communes des pilotes
 
-Bien que tous les pilotes proposent différents paramètres de configuration, il en existe quelques-uns de communs que WebdriverIO comprend et utilise pour configurer votre pilote ou votre navigateur :
+Bien que chaque pilote propose des paramètres de configuration différents, certains sont communs et WebdriverIO les comprend et les utilise pour configurer votre pilote ou votre navigateur :
 
 ##### `cacheDir`
 
 <Option type="string" default="process.env.WEBDRIVER_CACHE_DIR || os.tmpdir()">
 
-Le chemin vers la racine du répertoire de cache. Ce répertoire est utilisé pour stocker tous les pilotes téléchargés lors d'une tentative de démarrage de session.
+Le chemin vers la racine du répertoire de cache. Ce répertoire est utilisé pour stocker tous les pilotes téléchargés lors de la tentative de démarrage d'une session.
 
 </Option>
 
@@ -137,7 +152,7 @@ Si le `binary` du pilote est défini, WebdriverIO ne tentera pas de télécharge
 
 #### Hôte de téléchargement personnalisé pour les pilotes
 
-Si les CDN publics des pilotes ne sont pas accessibles depuis votre environnement, par exemple parce que vous exécutez vos tests derrière un proxy d'entreprise ou que vous répliquez les pilotes dans un registre d'artefacts interne, vous pouvez rediriger le téléchargement vers un hôte personnalisé à l'aide des variables d'environnement suivantes :
+Si les CDN publics des pilotes ne sont pas accessibles depuis votre environnement, par exemple parce que vous exécutez vos tests derrière un proxy d'entreprise ou que vous mettez en miroir les pilotes dans un registre d'artefacts interne, vous pouvez rediriger le téléchargement vers un hôte personnalisé à l'aide des variables d'environnement suivantes :
 
 - Chrome : `CHROMEDRIVER_CDNURL`, par défaut `https://storage.googleapis.com/chrome-for-testing-public`
 - Microsoft Edge : `EDGEDRIVER_CDNURL`, par défaut `https://msedgedriver.microsoft.com`
@@ -148,20 +163,20 @@ Le miroir doit servir les archives des pilotes sous les mêmes chemins que le CD
 CHROMEDRIVER_CDNURL=https://artifactory.company.com/chrome-for-testing npx wdio run wdio.conf.js
 ```
 
-ce qui résout le pilote en `https://artifactory.company.com/chrome-for-testing/<buildId>/<platform>/chromedriver-<platform>.zip`, où `<platform>` est l'une des valeurs `linux64`, `linux-arm64`, `mac-x64`, `mac-arm64`, `win32` ou `win64`, par exemple `.../140.0.7339.207/mac-arm64/chromedriver-mac-arm64.zip`.
+ce qui résout le pilote vers `https://artifactory.company.com/chrome-for-testing/<buildId>/<platform>/chromedriver-<platform>.zip`, où `<platform>` est l'un de `linux64`, `linux-arm64`, `mac-x64`, `mac-arm64`, `win32` ou `win64`, par exemple `.../140.0.7339.207/mac-arm64/chromedriver-mac-arm64.zip`.
 
 :::info Environnements entièrement hors ligne
 
-Ces variables redirigent uniquement le téléchargement du pilote. Pour empêcher totalement WebdriverIO d'accéder à l'internet public, quatre conditions supplémentaires doivent être remplies :
+Ces variables redirigent uniquement le téléchargement du pilote. Pour empêcher complètement WebdriverIO d'accéder à l'internet public, quatre conditions supplémentaires doivent être remplies :
 
-- **Un navigateur doit être disponible localement.** Si WebdriverIO ne trouve pas de Chrome ou de Firefox installé, il télécharge également le navigateur, et ce téléchargement ne tient pas compte de ces variables. Installez le navigateur sur la machine ou indiquez-le à WebdriverIO via `goog:chromeOptions.binary` / `moz:firefoxOptions.binary`.
-- **Utilisez un numéro de version complet.** Si `browserVersion` est omis, WebdriverIO lit la version exacte à partir du navigateur local et aucune recherche de version n'est nécessaire. Si vous la définissez, utilisez la version complète en quatre parties, par exemple `140.0.7339.207`. Un canal de publication (`stable`), un jalon (`140`) ou une version partielle (`140.0.7339`) nécessite une recherche de version auprès d'un endpoint public de Google qui ne peut pas être redirigé.
-- **Chromedriver doit provenir de Chrome for Testing.** Pour les versions de Chrome antérieures à `153.0.8001.0` sur Linux ARM64, ainsi qu'avec `wdio:electronVersion` sans `browserVersion`, Chromedriver est téléchargé depuis les releases GitHub d'Electron, que ces variables ne redirigent pas.
-- **Assurez-vous que le miroir dispose réellement de la version dont vous avez besoin.** Si le pilote ne peut pas être récupéré depuis votre hôte — parce que la version n'est pas répliquée, mais aussi parce que l'URL est incorrecte ou que les identifiants ont été rejetés — WebdriverIO affiche un avertissement puis recherche la version valide connue la plus proche, ce qui interroge à nouveau l'endpoint public. Consultez l'avertissement pour connaître l'hôte essayé si une exécution accède de manière inattendue à internet ou choisit une version que vous n'avez pas demandée.
+- **Un navigateur doit être disponible localement.** Si WebdriverIO ne trouve pas de Chrome ou de Firefox installé, il télécharge également le navigateur, et ce téléchargement ne respecte pas ces variables. Installez le navigateur sur la machine ou indiquez-le à WebdriverIO via `goog:chromeOptions.binary` / `moz:firefoxOptions.binary`.
+- **Utilisez un numéro de version complet.** Si `browserVersion` est omis, WebdriverIO lit la version exacte depuis le navigateur local et aucune recherche de version n'est nécessaire. Si vous le définissez, utilisez la version complète en quatre parties, par exemple `140.0.7339.207`. Un canal de publication (`stable`), un jalon (`140`) ou une version partielle (`140.0.7339`) nécessite une recherche de version auprès d'un point de terminaison public de Google qui ne peut pas être redirigé.
+- **Chromedriver doit provenir de Chrome for Testing.** Pour Chrome antérieur à `153.0.8001.0` sous Linux ARM64, ainsi qu'avec `wdio:electronVersion` sans `browserVersion`, Chromedriver est téléchargé depuis les releases GitHub d'Electron, que ces variables ne redirigent pas.
+- **Assurez-vous que le miroir dispose réellement de la version dont vous avez besoin.** Si le pilote ne peut pas être récupéré depuis votre hôte — parce que la version n'est pas mise en miroir, mais tout aussi bien parce que l'URL est incorrecte ou que les identifiants ont été refusés — WebdriverIO enregistre un avertissement puis recherche la version valide connue la plus proche, ce qui interroge à nouveau le point de terminaison public. Consultez l'avertissement pour connaître l'hôte essayé si une exécution accède de manière inattendue à internet ou choisit une version que vous n'avez pas demandée.
 
 :::
 
-#### Options des pilotes spécifiques aux navigateurs
+#### Options de pilote spécifiques aux navigateurs
 
 Pour transmettre des options au pilote, vous pouvez utiliser les capacités personnalisées suivantes :
 
@@ -229,7 +244,7 @@ Journalisation détaillée (équivalent à `--log-level=ALL`)
 
 <Option type="boolean">
 
-Aucune journalisation (équivalent à `--log-level=OFF`)
+Ne journalise rien (équivalent à `--log-level=OFF`)
 
 </Option>
 
@@ -269,7 +284,7 @@ Affiche les journaux du navigateur (remplace les autres options de journalisatio
 
 <Option type="string">
 
-Chemin personnalisé du mapper bidi.
+Chemin personnalisé du mappeur bidi.
 
 </Option>
 
@@ -285,7 +300,7 @@ Liste d'autorisation, séparée par des virgules, des adresses IP distantes auto
 
 <Option type="string[]" default="['*']">
 
-Liste d'autorisation, séparée par des virgules, des origines de requêtes autorisées à se connecter à EdgeDriver. Utiliser `*` pour autoriser n'importe quelle origine d'hôte est dangereux !
+Liste d'autorisation, séparée par des virgules, des origines de requêtes autorisées à se connecter à EdgeDriver. Utiliser `*` pour autoriser n'importe quelle origine est dangereux !
 
 </Option>
 
@@ -299,28 +314,28 @@ Options à transmettre au processus du pilote.
 </TabItem>
 <TabItem value="firefox">
 
-Consultez toutes les options de Geckodriver dans le [package du pilote](https://github.com/webdriverio-community/node-geckodriver#options) officiel.
+Consultez toutes les options de Geckodriver dans le [paquet officiel du pilote](https://github.com/webdriverio-community/node-geckodriver#options).
 
 </TabItem>
 <TabItem value="msedge">
 
-Consultez toutes les options d'Edgedriver dans le [package du pilote](https://github.com/webdriverio-community/node-edgedriver#options) officiel.
+Consultez toutes les options d'Edgedriver dans le [paquet officiel du pilote](https://github.com/webdriverio-community/node-edgedriver#options).
 
 </TabItem>
 <TabItem value="safari">
 
-Consultez toutes les options de Safaridriver dans le [package du pilote](https://github.com/webdriverio-community/node-safaridriver#options) officiel.
+Consultez toutes les options de Safaridriver dans le [paquet officiel du pilote](https://github.com/webdriverio-community/node-safaridriver#options).
 
 </TabItem>
 </Tabs>
 
 ## Capacités spéciales pour des cas d'utilisation spécifiques
 
-Voici une liste d'exemples montrant quelles capacités doivent être appliquées pour réaliser un cas d'utilisation donné.
+Voici une liste d'exemples montrant quelles capacités doivent être appliquées pour répondre à un cas d'utilisation donné.
 
 ### Exécuter le navigateur en mode headless
 
-Exécuter un navigateur en mode headless signifie exécuter une instance de navigateur sans fenêtre ni interface utilisateur. Ceci est principalement utilisé dans les environnements CI/CD où aucun écran n'est utilisé. Pour exécuter un navigateur en mode headless, appliquez les capacités suivantes :
+Exécuter un navigateur en mode headless signifie exécuter une instance de navigateur sans fenêtre ni interface utilisateur. Cela est principalement utilisé dans les environnements CI/CD où aucun écran n'est utilisé. Pour exécuter un navigateur en mode headless, appliquez les capacités suivantes :
 
 <Tabs
   defaultValue="chrome"
@@ -385,7 +400,7 @@ Si vous souhaitez tester une version de navigateur qui n'est pas encore publiée
 }>
 <TabItem value="chrome">
 
-Lors des tests sur Chrome, WebdriverIO téléchargera automatiquement la version du navigateur et le pilote souhaités en fonction du `browserVersion` défini, par exemple :
+Lors des tests sur Chrome, WebdriverIO téléchargera automatiquement pour vous la version de navigateur et le pilote souhaités en fonction du `browserVersion` défini, par exemple :
 
 ```ts
 {
@@ -394,7 +409,7 @@ Lors des tests sur Chrome, WebdriverIO téléchargera automatiquement la version
 }
 ```
 
-Si vous souhaitez tester un navigateur téléchargé manuellement, vous pouvez fournir un chemin vers le binaire du navigateur via :
+Si vous souhaitez tester un navigateur téléchargé manuellement, vous pouvez fournir un chemin binaire vers le navigateur via :
 
 ```ts
 {
@@ -405,7 +420,7 @@ Si vous souhaitez tester un navigateur téléchargé manuellement, vous pouvez f
 }
 ```
 
-De plus, si vous souhaitez utiliser un pilote téléchargé manuellement, vous pouvez fournir un chemin vers le binaire du pilote via :
+De plus, si vous souhaitez utiliser un pilote téléchargé manuellement, vous pouvez fournir un chemin binaire vers le pilote via :
 
 ```ts
 {
@@ -419,7 +434,7 @@ De plus, si vous souhaitez utiliser un pilote téléchargé manuellement, vous p
 </TabItem>
 <TabItem value="firefox">
 
-Lors des tests sur Firefox, WebdriverIO téléchargera automatiquement la version du navigateur et le pilote souhaités en fonction du `browserVersion` défini, par exemple :
+Lors des tests sur Firefox, WebdriverIO téléchargera automatiquement pour vous la version de navigateur et le pilote souhaités en fonction du `browserVersion` défini, par exemple :
 
 ```ts
 {
@@ -428,7 +443,7 @@ Lors des tests sur Firefox, WebdriverIO téléchargera automatiquement la versio
 }
 ```
 
-Si vous souhaitez tester une version téléchargée manuellement, vous pouvez fournir un chemin vers le binaire du navigateur via :
+Si vous souhaitez tester une version téléchargée manuellement, vous pouvez fournir un chemin binaire vers le navigateur via :
 
 ```ts
 {
@@ -439,7 +454,7 @@ Si vous souhaitez tester une version téléchargée manuellement, vous pouvez fo
 }
 ```
 
-De plus, si vous souhaitez utiliser un pilote téléchargé manuellement, vous pouvez fournir un chemin vers le binaire du pilote via :
+De plus, si vous souhaitez utiliser un pilote téléchargé manuellement, vous pouvez fournir un chemin binaire vers le pilote via :
 
 ```ts
 {
@@ -453,7 +468,7 @@ De plus, si vous souhaitez utiliser un pilote téléchargé manuellement, vous p
 </TabItem>
 <TabItem value="msedge">
 
-Lors des tests sur Microsoft Edge, assurez-vous que la version souhaitée du navigateur est installée sur votre machine. Vous pouvez indiquer à WebdriverIO le navigateur à exécuter via :
+Lors des tests sur Microsoft Edge, assurez-vous que la version de navigateur souhaitée est installée sur votre machine. Vous pouvez indiquer à WebdriverIO le navigateur à exécuter via :
 
 ```ts
 {
@@ -464,7 +479,7 @@ Lors des tests sur Microsoft Edge, assurez-vous que la version souhaitée du nav
 }
 ```
 
-WebdriverIO téléchargera automatiquement la version du pilote souhaitée en fonction du `browserVersion` défini, par exemple :
+WebdriverIO téléchargera automatiquement pour vous la version de pilote souhaitée en fonction du `browserVersion` défini, par exemple :
 
 ```ts
 {
@@ -473,7 +488,7 @@ WebdriverIO téléchargera automatiquement la version du pilote souhaitée en fo
 }
 ```
 
-De plus, si vous souhaitez utiliser un pilote téléchargé manuellement, vous pouvez fournir un chemin vers le binaire du pilote via :
+De plus, si vous souhaitez utiliser un pilote téléchargé manuellement, vous pouvez fournir un chemin binaire vers le pilote via :
 
 ```ts
 {
@@ -500,7 +515,7 @@ Lors des tests sur Safari, assurez-vous que [Safari Technology Preview](https://
 
 ## Étendre les capacités personnalisées
 
-Si vous souhaitez définir votre propre ensemble de capacités afin, par exemple, de stocker des données arbitraires à utiliser dans les tests pour cette capacité spécifique, vous pouvez le faire en définissant par exemple :
+Si vous souhaitez définir votre propre ensemble de capacités, par exemple pour stocker des données arbitraires à utiliser dans les tests pour cette capacité spécifique, vous pouvez le faire en définissant par exemple :
 
 ```js title=wdio.conf.ts
 export const config = {
@@ -514,7 +529,7 @@ export const config = {
 }
 ```
 
-Il est conseillé de suivre le [protocole W3C](https://w3c.github.io/webdriver/#dfn-extension-capability) en ce qui concerne le nommage des capacités, qui exige un caractère `:` (deux-points) désignant un espace de noms spécifique à l'implémentation. Dans vos tests, vous pouvez accéder à votre capacité personnalisée via, par exemple :
+Il est conseillé de suivre le [protocole W3C](https://w3c.github.io/webdriver/#dfn-extension-capability) en ce qui concerne le nommage des capacités, qui exige un caractère `:` (deux-points) désignant un espace de noms spécifique à l'implémentation. Dans vos tests, vous pouvez accéder à votre capacité personnalisée, par exemple via :
 
 ```ts
 browser.capabilities['custom:caps']

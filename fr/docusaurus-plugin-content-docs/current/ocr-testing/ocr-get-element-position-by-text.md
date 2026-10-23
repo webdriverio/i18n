@@ -4,7 +4,7 @@ title: ocrGetElementPositionByText
 description: "Obtenez la position à l'écran d'un texte avec ocrGetElementPositionByText, en utilisant l'OCR et la correspondance approximative pour le trouver."
 ---
 
-Obtenez la position d'un texte à l'écran. La commande recherchera le texte fourni et tentera de trouver une correspondance basée sur la logique floue (Fuzzy Logic) de [Fuse.js](https://fusejs.io/). Cela signifie que même si vous fournissez un sélecteur contenant une faute de frappe, ou si le texte trouvé ne correspond pas à 100 %, la commande essaiera tout de même de vous renvoyer un élément. Consultez les [logs](#logs) ci-dessous.
+Obtenez la position d'un texte à l'écran. La commande recherchera le texte fourni et tentera de trouver une correspondance basée sur la logique floue (Fuzzy Logic) de [Fuse.js](https://fusejs.io/). Cela signifie que si vous fournissez un sélecteur contenant une faute de frappe, ou si le texte trouvé ne correspond pas à 100 %, la commande essaiera tout de même de vous renvoyer un élément. Consultez les [logs](#logs) ci-dessous.
 
 ## Utilisation
 
@@ -42,7 +42,7 @@ result = {
 ### Logs
 
 ```log
-# Trouve quand même une correspondance alors que nous avons recherché "Start3d" et que le texte trouvé était "Started"
+# Une correspondance est tout de même trouvée alors que nous avons recherché "Start3d" et que le texte trouvé était "Started"
 [0-0] 2024-05-25T17:29:59.179Z INFO webdriver: COMMAND ocrGetElementPositionByText(<object>)
 ......................
 [0-0] 2024-05-25T17:29:59.993Z INFO @wdio/ocr-service:ocrGetElementPositionByText: Multiple matches were found based on the word "Start3d". The match "Started" with score "85.71%" will be used.
@@ -132,13 +132,13 @@ await browser.ocrGetElementPositionByText({
 
 ### `fuzzyFindOptions`
 
-Vous pouvez modifier la logique floue utilisée pour trouver du texte avec les options suivantes. Cela peut aider à trouver une meilleure correspondance
+Vous pouvez modifier la logique floue utilisée pour trouver du texte grâce aux options suivantes. Cela peut aider à trouver une meilleure correspondance
 
 #### `fuzzyFindOptions.distance`
 
 <Option type="number" default="100" required="no">
 
-Détermine à quel point la correspondance doit être proche de l'emplacement approximatif (spécifié par location). Une correspondance exacte de lettre située à distance caractères de l'emplacement approximatif serait considérée comme une non-correspondance totale. Une distance de 0 exige que la correspondance se trouve exactement à l'emplacement spécifié. Une distance de 1000 exigerait qu'une correspondance parfaite se trouve à moins de 800 caractères de l'emplacement pour être trouvée avec un seuil de 0.8.
+Détermine à quel point la correspondance doit être proche de l'emplacement approximatif (spécifié par location). Une correspondance exacte de lettres située à distance caractères de l'emplacement approximatif serait considérée comme une non-correspondance totale. Une distance de 0 exige que la correspondance se trouve à l'emplacement exact spécifié. Une distance de 1000 exigerait qu'une correspondance parfaite se trouve à moins de 800 caractères de l'emplacement pour être trouvée avec un seuil (threshold) de 0.8.
 
 </Option>
 ##### Exemple
@@ -174,7 +174,7 @@ await browser.ocrGetElementPositionByText({
 
 <Option type="number" default="0.6" required="no">
 
-À partir de quel moment l'algorithme de correspondance abandonne. Un seuil de 0 exige une correspondance parfaite (à la fois des lettres et de l'emplacement), un seuil de 1.0 correspondrait à n'importe quoi.
+À partir de quel moment l'algorithme de correspondance abandonne. Un seuil de 0 exige une correspondance parfaite (des lettres et de l'emplacement), un seuil de 1.0 correspondrait à n'importe quoi.
 
 </Option>
 ##### Exemple
@@ -210,7 +210,7 @@ await browser.ocrGetElementPositionByText({
 
 <Option type="number" default="2" required="no">
 
-Seules les correspondances dont la longueur dépasse cette valeur seront renvoyées. (Par exemple, si vous souhaitez ignorer les correspondances d'un seul caractère dans le résultat, définissez-la à 2)
+Seules les correspondances dont la longueur dépasse cette valeur seront renvoyées. (Par exemple, si vous souhaitez ignorer les correspondances d'un seul caractère dans le résultat, définissez-la sur 2)
 
 </Option>
 ##### Exemple
@@ -228,7 +228,7 @@ await browser.ocrGetElementPositionByText({
 
 <Option type="number" default="false" required="no">
 
-Lorsque la valeur est `true`, la fonction de correspondance continuera jusqu'à la fin d'un motif de recherche, même si une correspondance parfaite a déjà été trouvée dans la chaîne.
+Lorsque `true`, la fonction de correspondance continuera jusqu'à la fin d'un motif de recherche, même si une correspondance parfaite a déjà été trouvée dans la chaîne.
 
 </Option>
 ##### Exemple

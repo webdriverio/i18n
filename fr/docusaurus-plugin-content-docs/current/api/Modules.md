@@ -3,22 +3,22 @@ id: modules
 title: Modules
 ---
 
-WebdriverIO publie divers modules sur NPM et d'autres registres que vous pouvez utiliser pour construire votre propre framework d'automatisation. Consultez plus de documentation sur les types de configuration de WebdriverIO [ici](/docs/setuptypes).
+WebdriverIO publie divers modules sur NPM et d'autres registres que vous pouvez utiliser pour construire votre propre framework d'automatisation. Consultez davantage de documentation sur les types de configuration de WebdriverIO [ici](/docs/setuptypes).
 
 ## `webdriver` et `devtools`
 
-Les paquets de protocole ([`webdriver`](https://www.npmjs.com/package/webdriver) et [`devtools`](https://www.npmjs.com/package/devtools)) exposent une classe à laquelle sont rattachées les fonctions statiques suivantes, qui vous permettent d'initier des sessions :
+Les packages de protocole ([`webdriver`](https://www.npmjs.com/package/webdriver) et [`devtools`](https://www.npmjs.com/package/devtools)) exposent une classe dotée des fonctions statiques suivantes qui vous permettent d'initier des sessions :
 
 #### `newSession(options, modifier, userPrototype, customCommandWrapper)`
 
-Démarre une nouvelle session avec des capacités spécifiques. En fonction de la réponse de la session, des commandes provenant de différents protocoles seront fournies.
+Démarre une nouvelle session avec des capacités spécifiques. En fonction de la réponse de la session, les commandes de différents protocoles seront fournies.
 
 ##### Paramètres
 
 - `options` : [Options WebDriver](/docs/configuration#webdriver-options)
 - `modifier` : fonction qui permet de modifier l'instance du client avant qu'elle ne soit retournée
 - `userPrototype` : objet de propriétés qui permet d'étendre le prototype de l'instance
-- `customCommandWrapper` : fonction qui permet d'envelopper des fonctionnalités autour des appels de fonction
+- `customCommandWrapper` : fonction qui permet d'encapsuler des fonctionnalités autour des appels de fonction
 
 ##### Retourne
 
@@ -38,10 +38,10 @@ S'attache à une session WebDriver ou DevTools en cours d'exécution.
 
 ##### Paramètres
 
-- `attachInstance` : instance à laquelle attacher une session, ou au moins un objet avec une propriété `sessionId` (par ex. `{ sessionId: 'xxx' }`)
+- `attachInstance` : instance à laquelle attacher une session ou au moins un objet avec une propriété `sessionId` (par ex. `{ sessionId: 'xxx' }`)
 - `modifier` : fonction qui permet de modifier l'instance du client avant qu'elle ne soit retournée
 - `userPrototype` : objet de propriétés qui permet d'étendre le prototype de l'instance
-- `customCommandWrapper` : fonction qui permet d'envelopper des fonctionnalités autour des appels de fonction
+- `customCommandWrapper` : fonction qui permet d'encapsuler des fonctionnalités autour des appels de fonction
 
 ##### Retourne
 
@@ -60,7 +60,7 @@ Recharge une session à partir de l'instance fournie.
 
 ##### Paramètres
 
-- `instance` : instance du paquet à recharger
+- `instance` : instance du package à recharger
 
 ##### Exemple
 
@@ -71,11 +71,11 @@ await WebDriver.reloadSession(client)
 
 ## `webdriverio`
 
-De la même manière que pour les paquets de protocole (`webdriver` et `devtools`), vous pouvez également utiliser les API du paquet WebdriverIO pour gérer les sessions. Les API peuvent être importées avec `import { remote, attach, multiRemote } from 'webdriverio` et contiennent les fonctionnalités suivantes :
+De la même manière que pour les packages de protocole (`webdriver` et `devtools`), vous pouvez également utiliser les API du package WebdriverIO pour gérer les sessions. Les API peuvent être importées avec `import { remote, attach, multiRemote } from 'webdriverio` et offrent les fonctionnalités suivantes :
 
 #### `remote(options, modifier)`
 
-Démarre une session WebdriverIO. L'instance contient toutes les commandes du paquet de protocole, mais avec des fonctions d'ordre supérieur supplémentaires, voir la [documentation de l'API](/docs/api).
+Démarre une session WebdriverIO. L'instance contient toutes les commandes du package de protocole, mais avec des fonctions d'ordre supérieur supplémentaires, voir la [documentation de l'API](/docs/api).
 
 ##### Paramètres
 
@@ -102,7 +102,7 @@ S'attache à une session WebdriverIO en cours d'exécution.
 
 ##### Paramètres
 
-- `attachOptions` : instance à laquelle attacher une session, ou au moins un objet avec une propriété `sessionId` (par ex. `{ sessionId: 'xxx' }`)
+- `attachOptions` : instance à laquelle attacher une session ou au moins un objet avec une propriété `sessionId` (par ex. `{ sessionId: 'xxx' }`)
 
 ##### Retourne
 
@@ -119,7 +119,7 @@ const newBrowser = await attach(browser)
 
 #### `multiRemote(multiRemoteOptions)`
 
-Initie une instance multi-remote qui vous permet de contrôler plusieurs sessions au sein d'une seule instance. Consultez nos [exemples multi-remote](https://github.com/webdriverio/webdriverio/tree/main/examples/multiremote) pour des cas d'utilisation concrets.
+Initialise une instance multi-remote qui vous permet de contrôler plusieurs sessions au sein d'une seule instance. Consultez nos [exemples multi-remote](https://github.com/webdriverio/webdriverio/tree/main/examples/multiremote) pour des cas d'utilisation concrets.
 
 ##### Paramètres
 
@@ -151,7 +151,7 @@ console.log(await matrix.getTitle())
 
 #### `Key`
 
-Un objet contenant des constantes de caractères spéciaux à utiliser avec la commande [`browser.keys`](/docs/api/browser/keys). Ces constantes représentent des touches spéciales qui peuvent être envoyées au navigateur, telles que `Enter`, `Tab`, `Escape`, les touches fléchées, les touches de fonction, et plus encore.
+Un objet contenant des constantes de caractères spéciaux à utiliser avec la commande [`browser.keys`](/docs/api/browser/keys). Ces constantes représentent des touches spéciales pouvant être envoyées au navigateur, telles que `Enter`, `Tab`, `Escape`, les touches fléchées, les touches de fonction, et plus encore.
 
 ##### Exemple
 
@@ -181,7 +181,7 @@ Les touches spéciales suivantes sont disponibles via l'objet `Key` :
 | `Key.Shift` | Touche Maj |
 | `Key.Alt` | Touche Alt |
 | `Key.Command` | Touche Commande (Mac) |
-| `Key.NULL` | Touche Null/relâchement — relâche toutes les touches de modification actuellement maintenues |
+| `Key.NULL` | Touche nulle/de relâchement — relâche toutes les touches de modification actuellement maintenues |
 
 **Touches de navigation :**
 
@@ -241,13 +241,13 @@ Les touches spéciales suivantes sont disponibles via l'objet `Key` :
 
 :::info Touches de modification multiplateformes
 
-La constante `Key.Ctrl` offre un moyen pratique d'utiliser le modificateur « contrôle » sur différents systèmes d'exploitation. Sur macOS, elle correspond à la touche `Command`, tandis que sur Windows et Linux elle correspond à la touche `Control`. C'est utile lors de l'écriture de tests qui doivent fonctionner sur plusieurs plateformes, par ex. pour les opérations de sélection totale (`Ctrl+A`), de copie (`Ctrl+C`) ou de collage (`Ctrl+V`).
+La constante `Key.Ctrl` offre un moyen pratique d'utiliser le modificateur « contrôle » sur différents systèmes d'exploitation. Sur macOS, elle correspond à la touche `Command`, tandis que sur Windows et Linux elle correspond à la touche `Control`. Cela est utile lors de l'écriture de tests qui doivent fonctionner sur plusieurs plateformes, par ex. pour les opérations de sélection totale (`Ctrl+A`), de copie (`Ctrl+C`) ou de collage (`Ctrl+V`).
 
 :::
 
 ## `@wdio/cli`
 
-Au lieu d'appeler la commande `wdio`, vous pouvez également inclure le test runner en tant que module et l'exécuter dans un environnement arbitraire. Pour cela, vous devrez importer le paquet `@wdio/cli` en tant que module, comme ceci :
+Au lieu d'appeler la commande `wdio`, vous pouvez également inclure le test runner en tant que module et l'exécuter dans un environnement arbitraire. Pour cela, vous devez importer le package `@wdio/cli` en tant que module, comme ceci :
 
 <Tabs
   defaultValue="esm"
@@ -276,11 +276,11 @@ Ensuite, créez une instance du launcher et exécutez le test.
 
 #### `Launcher(configPath, opts)`
 
-Le constructeur de la classe `Launcher` attend l'URL du fichier de configuration, ainsi qu'un objet `opts` avec des paramètres qui écraseront ceux de la configuration.
+Le constructeur de la classe `Launcher` attend l'URL du fichier de configuration, ainsi qu'un objet `opts` contenant des paramètres qui écraseront ceux de la configuration.
 
 ##### Paramètres
 
-- `configPath` : chemin vers le `wdio.conf.js` à exécuter
+- `configPath` : chemin vers le fichier `wdio.conf.js` à exécuter
 - `opts` : arguments ([`<RunCommandArguments>`](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/types.ts#L51-L77)) pour écraser les valeurs du fichier de configuration
 
 ##### Exemple
@@ -299,11 +299,11 @@ wdio.run().then((exitCode) => {
 })
 ```
 
-La commande `run` retourne une [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise). Elle est résolue si les tests ont été exécutés avec succès ou ont échoué, et elle est rejetée si le launcher n'a pas pu démarrer l'exécution des tests.
+La commande `run` retourne une [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise). Elle est résolue si les tests se sont exécutés avec succès ou ont échoué, et elle est rejetée si le launcher n'a pas pu démarrer l'exécution des tests.
 
 ## `@wdio/browser-runner`
 
-Lors de l'exécution de tests unitaires ou de composants à l'aide du [browser runner](/docs/runner#browser-runner) de WebdriverIO, vous pouvez importer des utilitaires de mocking pour vos tests, par ex. :
+Lorsque vous exécutez des tests unitaires ou de composants à l'aide du [browser runner](/docs/runner#browser-runner) de WebdriverIO, vous pouvez importer des utilitaires de mocking pour vos tests, par ex. :
 
 ```ts
 import { fn, spyOn, mock, unmock } from '@wdio/browser-runner'
@@ -326,7 +326,7 @@ Méthode pour mocker un fichier ou un module de dépendance.
 ##### Paramètres
 
 - `moduleName` : soit un chemin relatif vers le fichier à mocker, soit un nom de module.
-- `factory` : fonction pour retourner la valeur mockée (facultatif)
+- `factory` : fonction qui retourne la valeur mockée (facultatif)
 
 ##### Exemple
 

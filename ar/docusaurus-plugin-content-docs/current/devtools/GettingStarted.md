@@ -1,17 +1,17 @@
 ---
 id: getting-started
 title: البدء
-description: "ثبّت WebdriverIO DevTools وشغّل اختبارك الأول في الوضع المباشر أو وضع التتبع لإعادة عرض DOM ولقطات الشاشة والشبكة ومخرجات وحدة التحكم."
+description: "ثبّت WebdriverIO DevTools وشغّل اختبارك الأول في الوضع المباشر أو وضع التتبع لإعادة تشغيل DOM ولقطات الشاشة والشبكة ومخرجات وحدة التحكم."
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-يمنح WebdriverIO DevTools اختبارات المتصفح الشاملة (end-to-end) واجهة أدوات مطوّرين لتشغيل الأتمتة وتصحيح أخطائها وفحصها — إعادة عرض DOM، ولقطات شاشة لكل أمر، والتقاط الشبكة ووحدة التحكم، وتسجيلات شاشة للجلسات. ويعمل بوضعين. **الوضع المباشر** يفتح [لوحة تحكم](/docs/devtools/dashboard) تفاعلية في نافذة متصفح أثناء تنفيذ اختباراتك، بحيث يمكنك مشاهدتها وإعادة تشغيلها في الوقت الفعلي. أما **وضع التتبع** فيتخطى الواجهة ويكتب [ملف تتبع](/docs/devtools/wdio/trace-mode) قابلاً للنقل ويعمل دون اتصال (`trace.zip`) يمكنك فتحه لاحقاً في مشغّل `show-trace` — وهو مثالي لبيئات CI. تساعدك هذه الصفحة على البدء بالوضع المباشر بسرعة؛ ووضع التتبع على بُعد خيار واحد فقط.
+يمنح WebdriverIO DevTools اختبارات المتصفح الشاملة (end-to-end) واجهة أدوات مطورين لتشغيل الأتمتة وتصحيح أخطائها وفحصها، وتشمل إعادة تشغيل DOM، ولقطات شاشة لكل أمر، والتقاط الشبكة ووحدة التحكم، وتسجيلات الشاشة للجلسات. ويعمل بوضعين. **الوضع المباشر** يفتح [لوحة تحكم](/docs/devtools/dashboard) تفاعلية في نافذة متصفح أثناء تنفيذ اختباراتك، لتتمكن من مشاهدتها وإعادة تشغيلها في الوقت الفعلي. أما **وضع التتبع** فيتجاوز الواجهة ويكتب [ملف تتبع](/docs/devtools/wdio/trace-mode) (`trace.zip`) محمولاً يعمل دون اتصال، يمكنك فتحه لاحقاً في مشغّل `show-trace`، وهو مثالي لبيئات CI. تساعدك هذه الصفحة على البدء بالوضع المباشر بسرعة، بينما لا يفصلك عن وضع التتبع سوى خيار واحد.
 
 ## التثبيت والتشغيل الأول
 
-اختر المحوّل الخاص بك، وثبّته، وأضف الإعداد البسيط أدناه. شغّل اختباراتك كالمعتاد — ستُفتح لوحة تحكم DevTools تلقائياً في نافذة متصفح جديدة.
+اختر المحوّل الخاص بك، وثبّته، وأضف الإعدادات الأساسية أدناه. شغّل اختباراتك كالمعتاد، وستُفتح لوحة تحكم DevTools تلقائياً في نافذة متصفح جديدة.
 
 <Tabs
 defaultValue="wdio"
@@ -19,6 +19,7 @@ values={[
 {label: 'WebdriverIO', value: 'wdio'},
 {label: 'Selenium', value: 'selenium'},
 {label: 'Nightwatch', value: 'nightwatch'},
+{label: 'Python', value: 'python'},
 ]}
 >
 <TabItem value="wdio">
@@ -29,7 +30,7 @@ values={[
 npm install @wdio/devtools-service --save-dev
 ```
 
-أضفها إلى إعدادات مشغّل الاختبارات:
+أضفها إلى ملف إعدادات مشغّل الاختبارات:
 
 ```ts
 // wdio.conf.ts
@@ -38,12 +39,12 @@ export const config = {
 }
 ```
 
-شغّل اختبارات WebdriverIO كالمعتاد — ستُفتح واجهة DevTools تلقائياً ويبدأ عرض الاختبارات مرئياً على الفور.
+شغّل اختبارات WebdriverIO كالمعتاد، وستُفتح واجهة DevTools تلقائياً ويبدأ عرض الاختبارات مرئياً على الفور.
 
 </TabItem>
 <TabItem value="selenium">
 
-يعمل مع Mocha أو Jest أو Cucumber أو سكربت `node` عادي — إذ تكتشف الإضافة المشغّل تلقائياً. ثبّتها:
+يعمل مع Mocha أو Jest أو Cucumber أو سكربت `node` عادي، إذ تكتشف الإضافة المشغّل تلقائياً. ثبّتها:
 
 ```bash
 npm install @wdio/selenium-devtools
@@ -80,7 +81,7 @@ describe('smoke test', function () {
 })
 ```
 
-شغّله — ستُفتح واجهة DevTools في نافذة Chrome جديدة:
+شغّله، وستُفتح واجهة DevTools في نافذة Chrome جديدة:
 
 ```bash
 mocha --timeout 60000 tests/example.test.js
@@ -97,7 +98,7 @@ mocha --timeout 60000 tests/example.test.js
 npm install @wdio/nightwatch-devtools
 ```
 
-اربطه بإعدادات Nightwatch عبر `globals` — دون الحاجة إلى أي تغييرات في ملفات الاختبار:
+اربطه بإعدادات Nightwatch عبر `globals`، دون الحاجة إلى أي تغييرات في ملفات الاختبار:
 
 ```js
 // nightwatch.conf.cjs
@@ -119,7 +120,7 @@ module.exports = {
 }
 ```
 
-شغّل اختباراتك كالمعتاد — ستُفتح واجهة DevTools تلقائياً:
+شغّل اختباراتك كالمعتاد، وستُفتح واجهة DevTools تلقائياً:
 
 ```bash
 nightwatch
@@ -128,10 +129,30 @@ nightwatch
 راجع [صفحة Nightwatch](/docs/devtools/nightwatch) لإعداد Cucumber/BDD.
 
 </TabItem>
+<TabItem value="python">
+
+يتطلب Python 3.10+ و`selenium>=4.44` وNode.js 22.19+ ضمن `PATH` (فالواجهة الخلفية للوحة التحكم تطبيق Node). ثبّت المحوّل، ثم ثبّت الواجهة الخلفية مرة واحدة:
+
+```bash
+pip install selenium-devtools-py
+selenium-devtools install-backend
+```
+
+مع pytest لا تحتاج إلى إضافة أي شيء إلى ملفات الاختبار. فعّل الالتقاط باستخدام علامة:
+
+```bash
+pytest --devtools tests/          # لوحة تحكم مباشرة
+pytest --devtools-trace tests/    # كتابة أرشيف تتبع بدلاً من ذلك
+```
+
+راجع تبويبات Python في [صفحة Selenium](/docs/devtools/selenium) للسكربتات العادية وخيارات ini ومتغيرات البيئة.
+
+</TabItem>
 </Tabs>
 
 ## الخطوات التالية
 
-- **[وضع التتبع](/docs/devtools/wdio/trace-mode)** — اضبط `mode: 'trace'` لتخطي الواجهة وإنتاج ملف تتبع قابل للنقل ويعمل دون اتصال لبيئات CI.
-- **[مرجع الإعدادات](/docs/devtools/reference)** — جميع الخيارات عبر المحوّلات الثلاثة.
-- **أطر العمل** — أدلة كاملة لكل محوّل: [WebdriverIO](/docs/devtools/wdio)، [Selenium](/docs/devtools/selenium)، [Nightwatch](/docs/devtools/nightwatch).
+- **[وضع التتبع](/docs/devtools/wdio/trace-mode)**: اضبط `mode: 'trace'` لتجاوز الواجهة وإنتاج ملف تتبع محمول يعمل دون اتصال لبيئات CI.
+- **[مرجع الإعدادات](/docs/devtools/reference)**: جميع الخيارات عبر المحوّلات المختلفة.
+- **[اختبار الأجهزة المحمولة](/docs/devtools/mobile)**: التقاط جلسات Appium.
+- **أطر العمل**: أدلة كاملة لكل محوّل: [WebdriverIO](/docs/devtools/wdio)، [Selenium](/docs/devtools/selenium)، [Nightwatch](/docs/devtools/nightwatch).

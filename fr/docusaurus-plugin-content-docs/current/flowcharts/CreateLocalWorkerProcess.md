@@ -1,7 +1,7 @@
 ---
 id: createlocalworkerprocess
 title: Créer un processus worker
-description: "Suivez un organigramme décrivant comment le runner local de WebdriverIO crée un processus worker pour exécuter un fichier de spécification."
+description: "Suivez un organigramme illustrant comment le local runner de WebdriverIO crée un processus worker pour exécuter un fichier de spécification."
 ---
 Cet organigramme explique comment un processus worker est créé.
 

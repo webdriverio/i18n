@@ -6,7 +6,7 @@ description: "Sauce Labs, BrowserStack, TestingBot, TestMu AI (पूर्व �
 
 WebdriverIO के साथ Sauce Labs, Browserstack, TestingBot, TestMu AI (पूर्व में LambdaTest) या Perfecto जैसी ऑन-डिमांड सेवाओं का उपयोग करना काफी सरल है। आपको बस अपने विकल्पों में अपनी सेवा का `user` और `key` सेट करना होगा।
 
-वैकल्पिक रूप से, आप `build` जैसी क्लाउड-विशिष्ट capabilities सेट करके अपने टेस्ट को पैरामीटराइज़ भी कर सकते हैं। यदि आप केवल Travis में क्लाउड सेवाएँ चलाना चाहते हैं, तो आप `CI` एनवायरनमेंट वेरिएबल का उपयोग करके यह जाँच सकते हैं कि आप Travis में हैं या नहीं, और उसके अनुसार कॉन्फ़िग को संशोधित कर सकते हैं।
+वैकल्पिक रूप से, आप `build` जैसी क्लाउड-विशिष्ट क्षमताओं (capabilities) को सेट करके अपने टेस्ट को पैरामीटराइज़ भी कर सकते हैं। यदि आप क्लाउड सेवाओं को केवल Travis में चलाना चाहते हैं, तो आप यह जाँचने के लिए `CI` एनवायरनमेंट वेरिएबल का उपयोग कर सकते हैं कि आप Travis में हैं या नहीं, और उसी के अनुसार कॉन्फ़िग को संशोधित कर सकते हैं।
 
 ```js
 // wdio.conf.js
@@ -27,11 +27,11 @@ if (process.env.CI) {
 
 ### Sauce Connect
 
-यदि आप किसी ऐसे सर्वर पर टेस्ट चलाना चाहते हैं जो इंटरनेट से एक्सेस योग्य नहीं है (जैसे `localhost` पर), तो आपको [Sauce Connect](https://docs.saucelabs.com/secure-connections/#sauce-connect-proxy) का उपयोग करना होगा।
+यदि आप ऐसे सर्वर के विरुद्ध टेस्ट चलाना चाहते हैं जो इंटरनेट से सुलभ नहीं है (जैसे `localhost` पर), तो आपको [Sauce Connect](https://docs.saucelabs.com/secure-connections/#sauce-connect-proxy) का उपयोग करना होगा।
 
 इसका समर्थन करना WebdriverIO के दायरे से बाहर है, इसलिए आपको इसे स्वयं शुरू करना होगा।
 
-यदि आप WDIO testrunner का उपयोग कर रहे हैं, तो अपनी `wdio.conf.js` में [`@wdio/sauce-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-sauce-service) डाउनलोड और कॉन्फ़िगर करें। यह Sauce Connect को चलाने में मदद करता है और अतिरिक्त सुविधाओं के साथ आता है जो आपके टेस्ट को Sauce सेवा में बेहतर ढंग से एकीकृत करती हैं।
+यदि आप WDIO testrunner का उपयोग कर रहे हैं, तो अपनी `wdio.conf.js` में [`@wdio/sauce-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-sauce-service) को डाउनलोड और कॉन्फ़िगर करें। यह Sauce Connect को चलाने में मदद करता है और अतिरिक्त सुविधाओं के साथ आता है जो आपके टेस्ट को Sauce सेवा में बेहतर तरीके से एकीकृत करती हैं।
 
 ### Travis CI के साथ
 
@@ -41,7 +41,7 @@ if (process.env.CI) {
 
 साथ ही, यदि आप चाहते हैं कि Sauce Labs आपके टेस्ट को बिल्ड नंबर के अनुसार समूहित करे, तो आप `build` को `TRAVIS_BUILD_NUMBER` पर सेट कर सकते हैं।
 
-अंत में, यदि आप `name` सेट करते हैं, तो यह इस बिल्ड के लिए Sauce Labs में इस टेस्ट का नाम बदल देता है। यदि आप [`@wdio/sauce-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-sauce-service) के साथ WDIO testrunner का उपयोग कर रहे हैं, तो WebdriverIO स्वचालित रूप से टेस्ट के लिए एक उचित नाम सेट करता है।
+अंत में, यदि आप `name` सेट करते हैं, तो यह इस बिल्ड के लिए Sauce Labs में इस टेस्ट का नाम बदल देता है। यदि आप WDIO testrunner को [`@wdio/sauce-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-sauce-service) के साथ मिलाकर उपयोग कर रहे हैं, तो WebdriverIO स्वचालित रूप से टेस्ट के लिए एक उचित नाम सेट करता है।
 
 उदाहरण `capabilities`:
 
@@ -70,13 +70,13 @@ WebdriverIO में [Browserstack](https://www.browserstack.com) इंटी�
 
 ### लोकल टेस्टिंग
 
-यदि आप किसी ऐसे सर्वर पर टेस्ट चलाना चाहते हैं जो इंटरनेट से एक्सेस योग्य नहीं है (जैसे `localhost` पर), तो आपको [Local Testing](https://www.browserstack.com/local-testing#command-line) का उपयोग करना होगा।
+यदि आप ऐसे सर्वर के विरुद्ध टेस्ट चलाना चाहते हैं जो इंटरनेट से सुलभ नहीं है (जैसे `localhost` पर), तो आपको [Local Testing](https://www.browserstack.com/local-testing#command-line) का उपयोग करना होगा।
 
 इसका समर्थन करना WebdriverIO के दायरे से बाहर है, इसलिए आपको इसे स्वयं शुरू करना होगा।
 
 यदि आप local का उपयोग करते हैं, तो आपको अपनी capabilities में `browserstack.local` को `true` पर सेट करना चाहिए।
 
-यदि आप WDIO testrunner का उपयोग कर रहे हैं, तो अपनी `wdio.conf.js` में [`@wdio/browserstack-service`](https://github.com/browserstack/wdio-browserstack-service) डाउनलोड और कॉन्फ़िगर करें। यह BrowserStack को चलाने में मदद करता है, और अतिरिक्त सुविधाओं के साथ आता है जो आपके टेस्ट को BrowserStack सेवा में बेहतर ढंग से एकीकृत करती हैं।
+यदि आप WDIO testrunner का उपयोग कर रहे हैं, तो अपनी `wdio.conf.js` में [`@wdio/browserstack-service`](https://github.com/browserstack/wdio-browserstack-service) को डाउनलोड और कॉन्फ़िगर करें। यह BrowserStack को चलाने में मदद करता है, और अतिरिक्त सुविधाओं के साथ आता है जो आपके टेस्ट को BrowserStack सेवा में बेहतर तरीके से एकीकृत करती हैं।
 
 ### Travis CI के साथ
 
@@ -112,11 +112,11 @@ build: `myApp #${process.env.TRAVIS_BUILD_NUMBER}.${process.env.TRAVIS_JOB_NUMBE
 
 ### लोकल टेस्टिंग
 
-यदि आप किसी ऐसे सर्वर पर टेस्ट चलाना चाहते हैं जो इंटरनेट से एक्सेस योग्य नहीं है (जैसे `localhost` पर), तो आपको [Local Testing](https://testingbot.com/support/other/tunnel) का उपयोग करना होगा। TestingBot एक Java-आधारित टनल प्रदान करता है जिससे आप उन वेबसाइटों का परीक्षण कर सकते हैं जो इंटरनेट से एक्सेस योग्य नहीं हैं।
+यदि आप ऐसे सर्वर के विरुद्ध टेस्ट चलाना चाहते हैं जो इंटरनेट से सुलभ नहीं है (जैसे `localhost` पर), तो आपको [Local Testing](https://testingbot.com/support/other/tunnel) का उपयोग करना होगा। TestingBot एक Java-आधारित टनल प्रदान करता है जिससे आप उन वेबसाइटों का टेस्ट कर सकते हैं जो इंटरनेट से सुलभ नहीं हैं।
 
-उनके टनल सपोर्ट पेज में इसे सेट अप करने और चलाने के लिए आवश्यक जानकारी उपलब्ध है।
+उनके टनल सपोर्ट पेज में इसे सेट अप करने और चलाने के लिए आवश्यक जानकारी है।
 
-यदि आप WDIO testrunner का उपयोग कर रहे हैं, तो अपनी `wdio.conf.js` में [`@wdio/testingbot-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-testingbot-service) डाउनलोड और कॉन्फ़िगर करें। यह TestingBot को चलाने में मदद करता है, और अतिरिक्त सुविधाओं के साथ आता है जो आपके टेस्ट को TestingBot सेवा में बेहतर ढंग से एकीकृत करती हैं।
+यदि आप WDIO testrunner का उपयोग कर रहे हैं, तो अपनी `wdio.conf.js` में [`@wdio/testingbot-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-testingbot-service) को डाउनलोड और कॉन्फ़िगर करें। यह TestingBot को चलाने में मदद करता है, और अतिरिक्त सुविधाओं के साथ आता है जो आपके टेस्ट को TestingBot सेवा में बेहतर तरीके से एकीकृत करती हैं।
 
 ## TestMu AI (पूर्व में LambdaTest)
 
@@ -128,13 +128,13 @@ build: `myApp #${process.env.TRAVIS_BUILD_NUMBER}.${process.env.TRAVIS_JOB_NUMBE
 
 ### लोकल टेस्टिंग के लिए टनल
 
-यदि आप किसी ऐसे सर्वर पर टेस्ट चलाना चाहते हैं जो इंटरनेट से एक्सेस योग्य नहीं है (जैसे `localhost` पर), तो आपको [Local Testing](https://www.testmuai.com/support/docs/testing-locally-hosted-pages/) का उपयोग करना होगा।
+यदि आप ऐसे सर्वर के विरुद्ध टेस्ट चलाना चाहते हैं जो इंटरनेट से सुलभ नहीं है (जैसे `localhost` पर), तो आपको [Local Testing](https://www.testmuai.com/support/docs/testing-locally-hosted-pages/) का उपयोग करना होगा।
 
 इसका समर्थन करना WebdriverIO के दायरे से बाहर है, इसलिए आपको इसे स्वयं शुरू करना होगा।
 
 यदि आप local का उपयोग करते हैं, तो आपको अपनी capabilities में `tunnel` को `true` पर सेट करना चाहिए।
 
-यदि आप WDIO testrunner का उपयोग कर रहे हैं, तो अपनी `wdio.conf.js` में [`wdio-lambdatest-service`](https://github.com/LambdaTest/wdio-lambdatest-service) डाउनलोड और कॉन्फ़िगर करें। यह TestMu AI को चलाने में मदद करता है, और अतिरिक्त सुविधाओं के साथ आता है जो आपके टेस्ट को TestMu AI सेवा में बेहतर ढंग से एकीकृत करती हैं।
+यदि आप WDIO testrunner का उपयोग कर रहे हैं, तो अपनी `wdio.conf.js` में [`wdio-lambdatest-service`](https://github.com/LambdaTest/wdio-lambdatest-service) को डाउनलोड और कॉन्फ़िगर करें। यह TestMu AI को चलाने में मदद करता है, और अतिरिक्त सुविधाओं के साथ आता है जो आपके टेस्ट को TestMu AI सेवा में बेहतर तरीके से एकीकृत करती हैं।
 
 ### Travis CI के साथ
 
@@ -174,7 +174,7 @@ export const config = {
   }],
 ```
 
-इसके अलावा, आपको निम्नानुसार क्लाउड कॉन्फ़िगरेशन जोड़ना होगा:
+इसके अलावा, आपको क्लाउड कॉन्फ़िगरेशन निम्नानुसार जोड़ना होगा:
 
 ```js
   hostname: "your_cloud_name.perfectomobile.com",
@@ -185,7 +185,7 @@ export const config = {
 
 ## RobotActions
 
-[RobotActions](https://robotactions.com) एक ही एंडपॉइंट के पीछे ब्राउज़र नोड्स के साथ-साथ वास्तविक Android और iOS डिवाइस प्रदान करता है। यह `user` और `key` की जोड़ी के बजाय API टोकन के साथ प्रमाणीकरण करता है। टोकन को bearer हेडर के रूप में भेजें:
+[RobotActions](https://robotactions.com) एक ही एंडपॉइंट के पीछे ब्राउज़र नोड्स के साथ-साथ वास्तविक Android और iOS डिवाइस प्रदान करता है। यह `user` और `key` जोड़ी के बजाय एक API टोकन के साथ प्रमाणीकरण करता है। टोकन को bearer हेडर के रूप में भेजें:
 
 ```js
 export const config = {
@@ -216,7 +216,7 @@ export const config = {
 }
 ```
 
-ग्रिड अन्य WebDriver क्लाइंट्स के लिए URL में एम्बेड किए गए क्रेडेंशियल्स (`https://user:token@host`) भी स्वीकार करता है, लेकिन इस रूप का उपयोग WebdriverIO से नहीं किया जा सकता: यह fetch-आधारित है, और Node.js URL में एम्बेड किए गए क्रेडेंशियल्स को अस्वीकार कर देता है।
+ग्रिड अन्य WebDriver क्लाइंट्स के लिए URL में एम्बेड किए गए क्रेडेंशियल्स (`https://user:token@host`) को भी स्वीकार करता है, लेकिन इस रूप का उपयोग WebdriverIO से नहीं किया जा सकता: यह fetch-आधारित है, और Node.js URL में एम्बेड किए गए क्रेडेंशियल्स को अस्वीकार कर देता है।
 
 किसी वास्तविक डिवाइस पर चलाने के लिए, ऊपर दी गई किसी भी कनेक्शन शैली के साथ ब्राउज़र को Appium capability के रूप में पास करें:
 

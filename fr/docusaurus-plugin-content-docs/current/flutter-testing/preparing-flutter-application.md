@@ -1,20 +1,20 @@
 ---
 id: preparing-flutter-application
 title: Préparer l'application Flutter
-description: "Activez l'extension flutter_driver dans une application Flutter et produisez une version de test afin que WebdriverIO et Appium puissent interagir avec ses widgets."
+description: "Activez l'extension flutter_driver dans une application Flutter et produisez un build de test afin que WebdriverIO et Appium puissent interagir avec ses widgets."
 ---
 
-Pour que WebdriverIO et Appium puissent inspecter les éléments internes du canvas Flutter et interagir avec eux, l'application doit exposer un canal de communication. Cela s'obtient en activant l'extension de test de Flutter dans le code source de l'application.
+Pour que WebdriverIO et Appium puissent inspecter les éléments internes du canvas Flutter et interagir avec eux, l'application doit exposer un canal de communication. Cela se fait en activant l'extension de test de Flutter dans le code source de l'application.
 
 :::info Partage avec les équipes de développement
-Les ingénieurs en automatisation (QA) n'ont souvent pas d'accès direct au code source de l'application Flutter. Si vous ne maintenez pas vous-même le code de l'application, partagez cette page avec votre équipe de développement afin qu'elle puisse ajouter l'extension `flutter_driver` et fournir une version de test (`.apk`, `.app` ou `.ipa`).
+Les ingénieurs en automatisation (QA) n'ont souvent pas d'accès direct au code source de l'application Flutter. Si vous ne maintenez pas vous-même le code de l'application, partagez cette page avec votre équipe de développement afin qu'elle puisse ajouter l'extension `flutter_driver` et vous fournir un build de test (`.apk`, `.app` ou `.ipa`).
 :::
 
-:::note Extension historique
-L'approche de test recommandée par Flutter pour les applications récentes est le package `integration_test`. Cependant, l'Appium Flutter Driver s'intègre avec l'ancienne extension `flutter_driver`, c'est pourquoi ce guide utilise `enableFlutterDriverExtension()`.
+:::note Extension héritée
+La méthode de test recommandée par Flutter pour les applications récentes est le package `integration_test`. Cependant, l'Appium Flutter Driver s'intègre avec l'extension héritée `flutter_driver`, c'est pourquoi ce guide utilise `enableFlutterDriverExtension()`.
 :::
 
-### Configuration de `pubspec.yaml`
+### Configurer `pubspec.yaml`
 
 Ajoutez `flutter_driver` sous `dev_dependencies` dans le fichier `pubspec.yaml` de votre projet Flutter :
 
@@ -32,7 +32,7 @@ Récupérez les dépendances :
 flutter pub get
 ```
 
-### Activation de l'extension dans `main.dart`
+### Activer l'extension dans `main.dart`
 
 Pour démarrer le serveur d'instrumentation qui répond aux commandes de WebdriverIO, appelez `enableFlutterDriverExtension()` avant `runApp` :
 
@@ -63,7 +63,7 @@ class MyApp extends StatelessWidget {
 ```
 
 :::tip Bonne pratique : point d'entrée de test séparé
-Pour éviter que le code d'instrumentation de test ne se retrouve dans les versions de production, créez un fichier de point d'entrée séparé (par exemple `lib/main_e2e.dart`) qui active l'extension et appelle l'application principale. Cela permet de garder les versions de production propres et sécurisées :
+Pour éviter que le code d'instrumentation de test ne se retrouve dans les builds de production, créez un fichier de point d'entrée séparé (comme `lib/main_e2e.dart`) qui active l'extension et appelle l'application principale. Cela permet de garder les builds de production propres et sécurisés :
 
 ```dart
 import 'package:flutter_driver/driver_extension.dart';
@@ -78,4 +78,4 @@ void main() {
 
 ### Documentation de référence officielle
 
-Pour en savoir plus sur les mécanismes d'exposition des composants et sur `enableFlutterDriverExtension()`, consultez la [Flutter API Reference](https://api.flutter.dev/flutter/flutter_driver_extension/enableFlutterDriverExtension.html) officielle et le [guide des tests d'intégration](https://docs.flutter.dev/testing/integration-tests) de Flutter.
+Pour en savoir plus sur les mécanismes d'exposition des composants et sur `enableFlutterDriverExtension()`, consultez la [référence de l'API Flutter](https://api.flutter.dev/flutter/flutter_driver_extension/enableFlutterDriverExtension.html) officielle ainsi que le [guide des tests d'intégration](https://docs.flutter.dev/testing/integration-tests) de Flutter.

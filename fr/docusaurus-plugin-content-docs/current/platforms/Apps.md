@@ -4,7 +4,7 @@ title: Extensions et éditeurs
 description: Chargez une extension de navigateur ou une extension VS Code dans une session WebdriverIO et testez-la de bout en bout.
 ---
 
-WebdriverIO teste les extensions de navigateur et les extensions d'éditeur en les chargeant dans l'application hôte réelle. Les extensions de navigateur (web) s'exécutent dans Chrome ou Firefox. Vous les chargez via les capabilities du navigateur : `--load-extension` ou un `.crx` encodé en base64 via `goog:chromeOptions` dans Chrome, ou `browser.installAddOn()` pour un `.xpi` dans Firefox. Dans une session WebDriver BiDi, vous pouvez également installer et supprimer une extension en cours de session avec `browser.installExtension()` et `browser.uninstallExtension()`. Safari ne dispose pas de session BiDi, cette commande ne couvre donc pas Safari. À partir de là, vous testez les content scripts et les pages popup avec les commandes WebDriver habituelles. Les extensions VS Code sont testées avec le service communautaire [`wdio-vscode-service`](/docs/wdio-vscode-service). Il télécharge VS Code (stable, insiders ou une version spécifique) ainsi que le Chromedriver correspondant, puis démarre VS Code avec votre extension et des paramètres utilisateur personnalisés. Des page objects pour le workbench sont disponibles via `browser.getWorkbench()`, et `browser.executeWorkbench()` exécute du code sur l'API VS Code. Le même service peut également servir VS Code dans un navigateur pour tester des extensions web. Les plugins Obsidian disposent eux aussi d'un service communautaire.
+WebdriverIO teste les extensions de navigateur et les extensions d'éditeur en les chargeant dans l'application hôte réelle. Les extensions de navigateur (web) s'exécutent dans Chrome ou Firefox. Vous les chargez via les capabilities du navigateur : `--load-extension` ou un `.crx` encodé en base64 via `goog:chromeOptions` dans Chrome, ou `browser.installAddOn()` pour un `.xpi` dans Firefox. Dans une session WebDriver BiDi, vous pouvez également installer et supprimer une extension en cours de session avec `browser.installExtension()` et `browser.uninstallExtension()`. Safari ne dispose pas de session BiDi, cette commande ne couvre donc pas Safari. À partir de là, vous testez les content scripts et les pages popup avec les commandes WebDriver habituelles. Les extensions VS Code sont testées avec le service communautaire [`wdio-vscode-service`](/docs/wdio-vscode-service). Il télécharge VS Code (stable, insiders ou une version spécifique) ainsi que le Chromedriver correspondant, puis démarre VS Code avec votre extension et des paramètres utilisateur personnalisés. Des page objects pour le workbench sont disponibles via `browser.getWorkbench()`, et `browser.executeWorkbench()` exécute du code avec l'API VS Code. Le même service peut également servir VS Code dans un navigateur pour tester des extensions web. Les plugins Obsidian disposent eux aussi d'un service communautaire.
 
 ## Démarrage rapide
 
@@ -62,7 +62,7 @@ describe('My Web Extension', () => {
 })
 ```
 
-Cliquer sur l'icône de l'extension dans la barre d'outils ne fonctionne pas. Pour tester une `default_popup`, trouvez l'identifiant de l'extension sur `chrome://extensions/` et ouvrez `chrome-extension://<id>/<popup>.html` avec `browser.url()`. Le [guide des extensions web](/docs/extension-testing/web-extensions#test-popup-modal-in-chrome) propose une commande personnalisée `openExtensionPopup` prête à l'emploi à cet effet.
+Cliquer sur l'icône de l'extension dans la barre d'outils ne fonctionne pas. Pour tester un `default_popup`, trouvez l'identifiant de l'extension sur `chrome://extensions/` et ouvrez `chrome-extension://<id>/<popup>.html` avec `browser.url()`. Le [guide des extensions web](/docs/extension-testing/web-extensions#test-popup-modal-in-chrome) propose une commande personnalisée `openExtensionPopup` prête à l'emploi à cet effet.
 
 ### Extension VS Code
 
@@ -113,16 +113,16 @@ describe('VS Code Extension Testing', () => {
 })
 ```
 
-Pour tester l'extension en tant qu'extension web VS Code, définissez `browserName: 'chrome'` et conservez `wdio:vscodeOptions`. Dans ce mode, `browserVersion` ne peut être que `stable` ou `insiders`. `npm create wdio@latest ./` avec l'option « VS Code Extension Testing » génère cette configuration pour vous.
+Pour tester l'extension en tant qu'extension web VS Code, définissez `browserName: 'chrome'` et conservez `wdio:vscodeOptions`. Dans ce mode, `browserVersion` ne peut valoir que `stable` ou `insiders`. `npm create wdio@latest ./` avec l'option « VS Code Extension Testing » génère cette configuration pour vous.
 
 ## Choisissez votre parcours
 
 - [Test d'extensions web](/docs/extension-testing/web-extensions) : chargez des extensions dans Chrome (dossier ou `.crx`) et Firefox (`.xpi` via [`installAddOn`](/docs/api/gecko#installaddon)), ou installez-en et supprimez-en une en cours de session avec [`installExtension`](/docs/api/browser/installExtension). Les extensions web Safari ne sont pas prises en charge.
-- [Service de profil Firefox](/docs/firefox-profile-service) : créez un profil Firefox incluant des extensions.
+- [Service Firefox Profile](/docs/firefox-profile-service) : créez un profil Firefox incluant des extensions.
 - [Test d'extensions VS Code](/docs/extension-testing/vscode-extensions) : configuration, mise en place de TypeScript, page objects du workbench et `executeWorkbench`.
 - [Service VS Code](/docs/wdio-vscode-service) : toutes les options du service, comme `cachePath`, et comment écrire des page objects personnalisés.
 - [Service de test de plugins Obsidian](/docs/wdio-obsidian-service) : un service communautaire qui teste les plugins Obsidian sur différentes versions d'Obsidian sous Windows, macOS, Linux et Android.
-- [Commandes personnalisées](/docs/customcommands) : regroupez des utilitaires comme `openExtensionPopup` pour les réutiliser.
+- [Commandes personnalisées](/docs/customcommands) : regroupez des helpers comme `openExtensionPopup` pour les réutiliser.
 
 Les tests d'extensions web s'exécutent dans une session Chrome ou Firefox classique, donc tout ce qui figure dans [Navigateurs web](/docs/platforms/web) s'applique, y compris les sélecteurs, le mocking réseau et les tests visuels.
 
@@ -130,7 +130,7 @@ Les tests d'extensions web s'exécutent dans une session Chrome ou Firefox class
 
 - Firefox refuse une extension compilée localement en raison de la signature : installez-la dans le hook `before` avec `browser.installAddOn(extension.toString('base64'), true)` plutôt que via un profil. Compilez le `.xpi` avec `npx web-ext build`.
 - Utilisation d'Edge, Brave ou Opera au lieu de Chrome : les mêmes arguments fonctionnent généralement avec la capability d'options de ce navigateur, p. ex. `ms:edgeOptions`.
-- Les binaires de VS Code et de Chromedriver sont téléchargés dans un répertoire de cache. Pour contrôler leur emplacement, p. ex. pour les mettre en cache en CI, définissez `services: [['vscode', { cachePath: __dirname }]]`.
+- Les binaires de VS Code et de Chromedriver sont téléchargés dans un répertoire de cache. Pour contrôler leur emplacement, p. ex. pour les mettre en cache dans la CI, définissez `services: [['vscode', { cachePath: __dirname }]]`.
 - TypeScript ne trouve pas `getWorkbench` ou `executeWorkbench` : ajoutez `wdio-vscode-service` à `compilerOptions.types`.
 
 ## Étapes suivantes

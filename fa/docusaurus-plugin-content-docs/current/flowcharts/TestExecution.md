@@ -1,9 +1,9 @@
 ---
 id: testexecution
 title: اجرای تست
-description: "فلوچارت فرایند اجرای تست و نحوه تعامل @wdio/runner با سایر پکیج‌های WebdriverIO را دنبال کنید."
+description: "فلوچارت فرآیند اجرای تست و نحوه تعامل @wdio/runner با سایر پکیج‌های WebdriverIO را دنبال کنید."
 ---
-این فلوچارت فرایند اجرای تست و تعامل بین @wdio/runner و بیشتر پکیج‌های دیگر WebdriverIO را توضیح می‌دهد.
+این فلوچارت فرآیند اجرای تست و تعامل بین @wdio/runner و بیشتر پکیج‌های دیگر WebdriverIO را توضیح می‌دهد.
 
 ```mermaid
 graph TD

@@ -1,13 +1,14 @@
 ---
 id: react
-title: ری‌اکت
+title: React
+description: "راه‌اندازی اجراکننده مرورگر WebdriverIO برای یک پروژه React با پیش‌تنظیم react و نوشتن تست‌های کامپوننت با Testing Library."
 ---
 
-[React](https://reactjs.org/) ایجاد رابط‌های کاربری تعاملی را بدون درد می‌کند. طرح‌های ساده‌ای برای هر وضعیت در برنامه خود طراحی کنید، و React فقط مؤلفه‌های مناسب را هنگام تغییر داده‌ها به‌طور کارآمد به‌روزرسانی و رندر می‌کند. شما می‌توانید مؤلفه‌های React را مستقیماً در یک مرورگر واقعی با استفاده از WebdriverIO و [اجراکننده مرورگر](/docs/runner#browser-runner) آن آزمایش کنید.
+[React](https://reactjs.org/) ساخت رابط‌های کاربری تعاملی را بسیار آسان می‌کند. نماهای ساده‌ای برای هر وضعیت در برنامه خود طراحی کنید و React هنگام تغییر داده‌ها، دقیقاً همان کامپوننت‌های مورد نیاز را به‌طور کارآمد به‌روزرسانی و رندر می‌کند. شما می‌توانید کامپوننت‌های React را مستقیماً در یک مرورگر واقعی با استفاده از WebdriverIO و [اجراکننده مرورگر](/docs/runner#browser-runner) آن تست کنید.
 
 ## راه‌اندازی
 
-برای راه‌اندازی WebdriverIO در پروژه React خود، [دستورالعمل‌های](/docs/component-testing#set-up) موجود در مستندات آزمایش مؤلفه‌های ما را دنبال کنید. مطمئن شوید که `react` را به‌عنوان پیش‌تنظیم در گزینه‌های اجراکننده خود انتخاب کنید، به عنوان مثال:
+برای راه‌اندازی WebdriverIO در پروژه React خود، [دستورالعمل‌های](/docs/component-testing#set-up) موجود در مستندات تست کامپوننت ما را دنبال کنید. مطمئن شوید که `react` را به‌عنوان پیش‌تنظیم (preset) در گزینه‌های اجراکننده خود انتخاب کرده‌اید، به‌عنوان مثال:
 
 ```js
 // wdio.conf.js
@@ -22,25 +23,25 @@ export const config = {
 
 :::info
 
-اگر شما از قبل از [Vite](https://vitejs.dev/) به‌عنوان سرور توسعه استفاده می‌کنید، می‌توانید پیکربندی خود را در `vite.config.ts` درون تنظیمات WebdriverIO خود نیز استفاده کنید. برای اطلاعات بیشتر، به `viteConfig` در [گزینه‌های اجراکننده](/docs/runner#runner-options) مراجعه کنید.
+اگر در حال حاضر از [Vite](https://vitejs.dev/) به‌عنوان سرور توسعه استفاده می‌کنید، می‌توانید به‌سادگی پیکربندی خود در `vite.config.ts` را در پیکربندی WebdriverIO دوباره استفاده کنید. برای اطلاعات بیشتر، `viteConfig` را در [گزینه‌های اجراکننده](/docs/runner#runner-options) ببینید.
 
 :::
 
-پیش‌تنظیم React نیاز به نصب `@vitejs/plugin-react` دارد. همچنین ما استفاده از [Testing Library](https://testing-library.com/) را برای رندر کردن مؤلفه در صفحه آزمایش توصیه می‌کنیم. بنابراین، شما باید وابستگی‌های زیر را نصب کنید:
+پیش‌تنظیم React نیاز دارد که `@vitejs/plugin-react` نصب شده باشد. همچنین توصیه می‌کنیم برای رندر کردن کامپوننت در صفحه تست از [Testing Library](https://testing-library.com/) استفاده کنید. بنابراین باید وابستگی‌های اضافی زیر را نصب کنید:
 
 ```sh npm2yarn
 npm install --save-dev @testing-library/react @vitejs/plugin-react
 ```
 
-سپس می‌توانید آزمایش‌ها را با اجرای دستور زیر شروع کنید:
+سپس می‌توانید تست‌ها را با اجرای دستور زیر شروع کنید:
 
 ```sh
 npx wdio run ./wdio.conf.js
 ```
 
-## نوشتن آزمایش‌ها
+## نوشتن تست‌ها
 
-فرض کنید مؤلفه React زیر را دارید:
+فرض کنید کامپوننت React زیر را دارید:
 
 ```tsx title="./components/Component.jsx"
 import React, { useState } from 'react'
@@ -61,7 +62,7 @@ function App() {
 export default App
 ```
 
-در آزمایش خود از متد `render` از `@testing-library/react` برای الحاق مؤلفه به صفحه آزمایش استفاده کنید. برای تعامل با مؤلفه، ما توصیه می‌کنیم از دستورات WebdriverIO استفاده کنید زیرا رفتاری نزدیک‌تر به تعاملات واقعی کاربر دارند، به عنوان مثال:
+در تست خود از متد `render` از `@testing-library/react` برای متصل کردن کامپوننت به صفحه تست استفاده کنید. برای تعامل با کامپوننت، توصیه می‌کنیم از دستورات WebdriverIO استفاده کنید، زیرا رفتار آن‌ها به تعاملات واقعی کاربر نزدیک‌تر است، به‌عنوان مثال:
 
 ```ts title="app.test.tsx"
 import { expect } from '@wdio/globals'
@@ -84,4 +85,4 @@ describe('React Component Testing', () => {
 })
 ```
 
-شما می‌توانید یک نمونه کامل از مجموعه آزمایش مؤلفه WebdriverIO برای React را در [مخزن نمونه](https://github.com/webdriverio/component-testing-examples/tree/main/react-typescript-vite) ما پیدا کنید.
+می‌توانید یک نمونه کامل از مجموعه تست کامپوننت WebdriverIO برای React را در [مخزن نمونه‌های](https://github.com/webdriverio/component-testing-examples/tree/main/react-typescript-vite) ما پیدا کنید.

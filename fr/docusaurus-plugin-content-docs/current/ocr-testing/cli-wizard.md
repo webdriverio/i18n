@@ -1,10 +1,10 @@
 ---
 id: cli-wizard
 title: Assistant CLI
-description: "Vérifiez quel texte le service OCR peut trouver dans une image sans exécuter de test, en utilisant l'assistant CLI OCR."
+description: "Vérifiez quel texte le service OCR peut trouver dans une image sans exécuter de test en utilisant l'assistant CLI OCR."
 ---
 
-Vous pouvez vérifier quel texte peut être trouvé dans une image sans exécuter de test en utilisant l'assistant CLI OCR. Les seules choses nécessaires sont :
+Vous pouvez valider quel texte peut être trouvé dans une image sans exécuter de test en utilisant l'assistant CLI OCR. Les seules choses nécessaires sont :
 
 -   avoir installé `@wdio/ocr-service` en tant que dépendance, voir [Premiers pas](./getting-started)
 -   une image que vous souhaitez traiter
@@ -26,7 +26,7 @@ Les options suivantes peuvent être sélectionnées
 
 ### Utiliser un « explorateur de fichiers »
 
-L'assistant CLI offre la possibilité d'utiliser un « explorateur de fichiers » pour rechercher des fichiers sur votre système. Il démarre à partir du dossier depuis lequel vous exécutez la commande. Après avoir sélectionné une image (utilisez les touches fléchées et la touche ENTRÉE), vous passerez à la question suivante
+L'assistant CLI offre la possibilité d'utiliser un « explorateur de fichiers » pour rechercher des fichiers sur votre système. Il démarre à partir du dossier depuis lequel vous appelez la commande. Après avoir sélectionné une image (utilisez les touches fléchées et la touche ENTRÉE), vous passerez à la question suivante
 
 ### Saisir le chemin du fichier manuellement
 
@@ -34,7 +34,7 @@ Il s'agit d'un chemin direct vers un fichier situé quelque part sur votre machi
 
 ### Souhaitez-vous utiliser une zone de recherche (haystack) ?
 
-Vous avez ici la possibilité de sélectionner une zone à traiter. Cela peut accélérer le processus ou réduire/restreindre la quantité de texte que le moteur OCR pourrait trouver. Vous devez fournir les données `x`, `y`, `width`, `height` en répondant aux questions suivantes :
+Ici, vous avez la possibilité de sélectionner une zone à traiter. Cela peut accélérer le processus ou réduire/restreindre la quantité de texte que le moteur OCR pourrait trouver. Vous devez fournir les données `x`, `y`, `width`, `height` en répondant aux questions suivantes :
 
 -   Entrez la coordonnée x :
 -   Entrez la coordonnée y :
@@ -43,7 +43,7 @@ Vous avez ici la possibilité de sélectionner une zone à traiter. Cela peut ac
 
 ## Voulez-vous utiliser le mode avancé ?
 
-Le mode avancé comprendra des fonctionnalités supplémentaires telles que :
+Le mode avancé proposera des fonctionnalités supplémentaires telles que :
 
 -   le réglage du contraste
 -   d'autres à venir

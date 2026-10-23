@@ -1,7 +1,7 @@
 ---
 id: axe-core
 title: Axe Core
-description: "Exécutez des vérifications d'accessibilité automatisées dans vos tests avec l'adaptateur open source Axe de Deque, en mode autonome ou testrunner."
+description: "Exécutez des vérifications d'accessibilité automatisées dans vos tests avec l'adaptateur open source Axe de Deque, en mode standalone ou testrunner."
 ---
 
 Vous pouvez inclure des tests d'accessibilité dans votre suite de tests WebdriverIO en utilisant les outils d'accessibilité open source [de Deque appelés Axe](https://www.deque.com/axe/). La configuration est très simple, il vous suffit d'installer l'adaptateur WebdriverIO Axe via :
@@ -10,7 +10,7 @@ Vous pouvez inclure des tests d'accessibilité dans votre suite de tests Webdriv
 npm install -g @axe-core/webdriverio
 ```
 
-L'adaptateur Axe peut être utilisé en mode [autonome ou testrunner](/docs/setuptypes) en l'important simplement et en l'initialisant avec l'[objet browser](/docs/api/browser), par exemple :
+L'adaptateur Axe peut être utilisé soit en mode [standalone ou testrunner](/docs/setuptypes) en l'important simplement et en l'initialisant avec l'[objet browser](/docs/api/browser), par exemple :
 
 ```ts
 import { browser } from '@wdio/globals'
@@ -27,4 +27,4 @@ describe('Accessibility Test', () => {
 })
 ```
 
-Vous pouvez trouver plus de documentation sur l'adaptateur Axe WebdriverIO [sur GitHub](https://github.com/dequelabs/axe-core-npm/tree/develop/packages/webdriverio#usage).
+Vous trouverez plus de documentation sur l'adaptateur Axe WebdriverIO [sur GitHub](https://github.com/dequelabs/axe-core-npm/tree/develop/packages/webdriverio#usage).

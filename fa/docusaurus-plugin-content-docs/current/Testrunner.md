@@ -4,7 +4,7 @@ title: اجراکننده تست
 description: "اجراکننده تست WDIO را از @wdio/cli نصب کنید و از دستورات config، run، install، repl و session آن برای راه‌اندازی و اجرای مجموعه‌های تست استفاده کنید."
 ---
 
-اجراکننده تست WebdriverIO مجموعه تست شما را بر اساس یک فایل پیکربندی اجرا می‌کند. این ابزار برای هر capability یک worker راه‌اندازی می‌کند، فریم‌ورک، سرویس‌ها و گزارش‌دهنده‌های شما را به هم متصل می‌کند و specها را به صورت موازی اجرا می‌کند. از آن برای همه پروژه‌های تست استفاده کنید؛ [حالت مستقل](/docs/setuptypes) را تنها زمانی به کار ببرید که WebdriverIO را درون ابزارهای خودتان جاسازی می‌کنید.
+اجراکننده تست WebdriverIO مجموعه تست شما را بر اساس یک فایل پیکربندی اجرا می‌کند. این ابزار برای هر capability یک worker راه‌اندازی می‌کند، فریم‌ورک، سرویس‌ها و گزارش‌دهنده‌های شما را به هم متصل می‌کند و specها را به‌صورت موازی اجرا می‌کند. از آن برای همه پروژه‌های تست استفاده کنید؛ [حالت مستقل](/docs/setuptypes) را فقط زمانی به کار ببرید که WebdriverIO را در ابزارهای خودتان جاسازی می‌کنید.
 
 اجراکننده تست در بسته `@wdio/cli` ارائه می‌شود:
 
@@ -12,7 +12,7 @@ description: "اجراکننده تست WDIO را از @wdio/cli نصب کنید
 npm install --save-dev @wdio/cli
 ```
 
-اگر `@wdio/cli` هنوز نصب نشده باشد، `npx wdio` همان CLI را اجرا می‌کند. npm بسته بدون scope یعنی [`wdio`](https://www.npmjs.com/package/wdio) را نصب می‌کند و آن بسته `@wdio/cli` را اجرا می‌کند.
+`npx wdio` زمانی که `@wdio/cli` هنوز نصب نشده باشد، همان CLI را اجرا می‌کند. npm بسته بدون scope [`wdio`](https://www.npmjs.com/package/wdio) را نصب می‌کند و آن بسته `@wdio/cli` را اجرا می‌کند.
 
 برای راه‌اندازی یک پروژه جدید، ویزارد پیکربندی را اجرا کنید. این ویزارد چند سؤال می‌پرسد، بسته‌ها را نصب می‌کند و یک فایل `wdio.conf.ts` می‌نویسد:
 
@@ -26,7 +26,7 @@ npx wdio config
 npx wdio run wdio.conf.ts
 ```
 
-`run` دستور پیش‌فرض است، بنابراین `npx wdio wdio.conf.ts` نیز همین کار را انجام می‌دهد. در specهای خود، session را از `@wdio/globals` وارد کنید:
+`run` دستور پیش‌فرض است، بنابراین `npx wdio wdio.conf.ts` همین کار را انجام می‌دهد. در specهای خود، session را از `@wdio/globals` وارد کنید:
 
 ```ts title="test/specs/example.e2e.ts"
 import { browser, $, expect } from '@wdio/globals'
@@ -74,7 +74,7 @@ Options:
 npx wdio config
 ```
 
-برای استفاده از مقادیر پیش‌فرض (Mocha، Chrome و page objectها) بدون پرسش، `--yes` را ارسال کنید. هر سؤال ویزارد یک فلگ متناظر نیز دارد، بنابراین می‌توانید به برخی یا همه آن‌ها در خط فرمان پاسخ دهید:
+برای استفاده از مقادیر پیش‌فرض (Mocha، Chrome و page objectها) بدون پرسش، `--yes` را ارسال کنید. هر سؤال ویزارد یک flag نیز دارد، بنابراین می‌توانید به برخی یا همه آن‌ها در خط فرمان پاسخ دهید:
 
 ```sh
 npx wdio config --yes --framework cucumber --no-typescript --reporters spec,junit
@@ -90,9 +90,9 @@ npx wdio config --yes --framework cucumber --no-typescript --reporters spec,juni
     --help     Show help, including a flag for every wizard question   [boolean]
 ```
 
-ویزارد بسته‌ها را با مدیر بسته‌ای نصب می‌کند که آن را اجرا کرده است: `pnpm wdio config` از pnpm استفاده می‌کند، `yarn wdio config` از Yarn و `npx` از npm.
+ویزارد بسته‌ها را با مدیر بسته‌ای که آن را اجرا می‌کند نصب می‌کند: `pnpm wdio config` از pnpm، `yarn wdio config` از Yarn و `npx` از npm استفاده می‌کند.
 
-`npx wdio config --help` فلگ‌های ویزارد و مقادیری را که می‌پذیرند فهرست می‌کند. استفاده از فلگی برای سؤالی که ویزارد در تنظیمات شما نمی‌پرسد خطا محسوب می‌شود، و همین‌طور مقداری که ویزارد ارائه نمی‌دهد. برای مثال‌ها به [پاسخ به ویزارد با فلگ‌ها](/docs/gettingstarted#answer-the-wizard-with-flags) مراجعه کنید.
+`npx wdio config --help` فهرست flagهای ویزارد و مقادیری را که می‌پذیرند نمایش می‌دهد. استفاده از flag برای سؤالی که ویزارد در تنظیمات شما نمی‌پرسد خطا محسوب می‌شود، و همین‌طور مقداری که ویزارد ارائه نمی‌دهد. برای مثال‌ها به [پاسخ به ویزارد با flagها](/docs/gettingstarted#answer-the-wizard-with-flags) مراجعه کنید.
 
 ### `wdio run`
 
@@ -159,14 +159,14 @@ npx wdio run wdio.conf.ts --suite login
 # اجرای اولین shard از چهار shard، برای مثال در یک ماتریس CI
 npx wdio run wdio.conf.ts --shard 1/4
 
-# اجرای همه مرورگرها در حالت headless، یا اجبار به حالت headed
+# اجرای همه مرورگرها به‌صورت headless، یا اجبار به حالت headed
 npx wdio run wdio.conf.ts --headless
 npx wdio run wdio.conf.ts --headless=false
 
 # تنظیم گزینه‌های فریم‌ورک با نماد نقطه
 npx wdio run wdio.conf.ts --mochaOpts.timeout 60000
 
-# اجرای یک سناریوی Cucumber بر اساس شماره خط
+# اجرای یک سناریوی Cucumber با شماره خط
 npx wdio run wdio.conf.ts --spec ./features/login.feature:5
 
 # استفاده از یک tsconfig.json سفارشی
@@ -176,11 +176,11 @@ npx wdio run wdio.conf.ts --tsConfigPath=./configs/bdd-tsconfig.json
 npx wdio run wdio.conf.ts --debug=agent
 ```
 
-`--tsConfigPath` تنظیم [`tsConfigPath`](/docs/configurationfile) در پیکربندی شما را بازنویسی می‌کند. برای اینکه ببینید WebdriverIO چگونه specهای شما را با `tsx` کامپایل می‌کند، به [TypeScript](/docs/typescript) مراجعه کنید.
+`--tsConfigPath` تنظیم [`tsConfigPath`](/docs/configurationfile) در پیکربندی شما را بازنویسی می‌کند. برای اینکه بدانید WebdriverIO چگونه specهای شما را با `tsx` کامپایل می‌کند، به [TypeScript](/docs/typescript) مراجعه کنید.
 
 ### `wdio install`
 
-دستور `install` یک گزارش‌دهنده، سرویس، فریم‌ورک، پلاگین یا runner را به یک پروژه موجود اضافه می‌کند. این دستور بسته را نصب می‌کند، آن را به `package.json` شما اضافه می‌کند و فایل پیکربندی‌تان را به‌روزرسانی می‌کند.
+دستور `install` یک گزارش‌دهنده، سرویس، فریم‌ورک، افزونه یا runner را به یک پروژه موجود اضافه می‌کند. این دستور بسته را نصب می‌کند، آن را به `package.json` شما اضافه می‌کند و فایل پیکربندی شما را به‌روزرسانی می‌کند.
 
 ```sh
 npx wdio install service sauce        # installs @wdio/sauce-service
@@ -188,7 +188,7 @@ npx wdio install reporter dot         # installs @wdio/dot-reporter
 npx wdio install framework mocha      # installs @wdio/mocha-framework
 ```
 
-بسته‌ها با مدیر بسته‌ای نصب می‌شوند که دستور را اجرا کرده است، بنابراین `pnpm wdio install reporter dot` با pnpm و `yarn wdio install reporter dot` با Yarn نصب می‌کند. `npx` و فراخوانی‌های مستقیم از npm استفاده می‌کنند.
+بسته‌ها با مدیر بسته‌ای که دستور را اجرا می‌کند نصب می‌شوند، بنابراین `pnpm wdio install reporter dot` با pnpm و `yarn wdio install reporter dot` با Yarn نصب می‌کند. `npx` و فراخوانی‌های مستقیم از npm استفاده می‌کنند.
 
 اگر فایل پیکربندی شما `wdio.conf.(js|ts|cjs|mjs)` در پوشه فعلی نیست، مسیر آن را ارسال کنید:
 
@@ -196,7 +196,7 @@ npx wdio install framework mocha      # installs @wdio/mocha-framework
 npx wdio install service sauce --config="./path/to/wdio.conf.ts"
 ```
 
-`npx wdio install --help` همه بسته‌های پشتیبانی‌شده را همراه با نام npm آن‌ها نمایش می‌دهد.
+`npx wdio install --help` همه بسته‌های پشتیبانی‌شده را به همراه نام npm آن‌ها نمایش می‌دهد.
 
 #### فهرست سرویس‌های پشتیبانی‌شده
 
@@ -214,7 +214,7 @@ qmate-service, robonut, qunit, roku, obsidian, null-driver
 
 ```
 spec, dot, junit, allure, sumologic, concise, json, reportportal, video,
-cucumberjs-json, mochawesome, timeline, html-nice, slack, teamcity, delta,
+cucumberjs-json, mochawesome, timeline, html, slack, teamcity, delta,
 testrail, light, jsonhtml
 ```
 
@@ -224,7 +224,7 @@ testrail, light, jsonhtml
 mocha, jasmine, cucumber
 ```
 
-#### فهرست پلاگین‌ها و runnerهای پشتیبانی‌شده
+#### فهرست افزونه‌ها و runnerهای پشتیبانی‌شده
 
 ```
 plugin: wait-for, harness, testing-library
@@ -233,7 +233,7 @@ runner: local, browser
 
 ### `wdio repl`
 
-دستور `repl` یک session وب‌درایور را آغاز کرده و یک prompt تعاملی باز می‌کند که در آن دستورات WebdriverIO را اجرا می‌کنید. از آن برای امتحان کردن selectorها و دستورات بدون نوشتن spec استفاده کنید. برای اطلاعات بیشتر به [رابط REPL](/docs/repl) مراجعه کنید.
+دستور `repl` یک session وب‌درایور را آغاز می‌کند و یک prompt تعاملی باز می‌کند که در آن دستورات WebdriverIO را اجرا می‌کنید. از آن برای امتحان selectorها و دستورات بدون نوشتن spec استفاده کنید. برای اطلاعات بیشتر به [رابط REPL](/docs/repl) مراجعه کنید.
 
 اجرای یک Chrome محلی:
 
@@ -253,13 +253,13 @@ npx wdio repl chrome --user $SAUCE_USERNAME --key $SAUCE_ACCESS_KEY
 npx wdio repl ./wdio.conf.ts 0 -p 9515
 ```
 
-اتصال به یک [`wdio session`](/docs/session) در حال اجرا به جای راه‌اندازی یک مرورگر جدید:
+به‌جای راه‌اندازی یک مرورگر جدید، به یک [`wdio session`](/docs/session) در حال اجرا متصل شوید:
 
 ```sh
 npx wdio repl --session default
 ```
 
-`repl` گزینه‌های اتصال [دستور run](#wdio-run) (`--hostname`، `--port`، `--path`، `--user`، `--key`، `--logLevel` و ...) و این گزینه‌های موبایل را می‌پذیرد. از شکل‌های بلند `--user` و `--udid` استفاده کنید: `-u` نام مستعار کوتاه هر دو است.
+`repl` گزینه‌های اتصال [دستور run](#wdio-run) (`--hostname`، `--port`، `--path`، `--user`، `--key`، `--logLevel`، ...) و این گزینه‌های موبایل را می‌پذیرد. از شکل‌های بلند `--user` و `--udid` استفاده کنید: `-u` نام مستعار کوتاه هر دو است.
 
 ```
 -v, --platformVersion  Version of OS for mobile devices                 [string]
@@ -271,7 +271,7 @@ npx wdio repl --session default
 
 ### `wdio session`
 
-دستور `session` یک مرورگر، اپلیکیشن موبایل یا اپلیکیشن دسکتاپ را از طریق shell کنترل می‌کند، با یک دستور در هر فراخوانی. این دستور برای عامل‌های کدنویسی ساخته شده است: آن‌ها یک session باز می‌کنند، snapshot می‌گیرند، کلیک و تایپ می‌کنند و کارهایی را که انجام داده‌اند به صورت یک تست خروجی می‌گیرند. برای گردش کار به [wdio session](/docs/session) و برای همه اقدامات به [دستورات wdio session](/docs/session-commands) مراجعه کنید.
+دستور `session` یک مرورگر، اپلیکیشن موبایل یا اپلیکیشن دسکتاپ را از طریق shell کنترل می‌کند، با یک دستور در هر فراخوانی. این دستور برای عامل‌های کدنویسی ساخته شده است: آن‌ها یک session باز می‌کنند، snapshot می‌گیرند، کلیک و تایپ می‌کنند و کارهایی را که انجام داده‌اند به‌صورت یک تست خروجی می‌گیرند. برای روند کار به [wdio session](/docs/session) و برای همه actionها به [دستورات wdio session](/docs/session-commands) مراجعه کنید.
 
 ```sh
 npx wdio session --help
@@ -281,5 +281,5 @@ npx wdio session --help
 
 - [فایل پیکربندی](/docs/configurationfile): همه گزینه‌های `wdio.conf.ts`
 - [شروع به کار](/docs/gettingstarted): راه‌اندازی یک پروژه با ویزارد
-- [رابط REPL](/docs/repl): اشکال‌زدایی دستورات به صورت تعاملی
+- [رابط REPL](/docs/repl): اشکال‌زدایی دستورات به‌صورت تعاملی
 - [wdio session](/docs/session): کنترل یک مرورگر از طریق shell یا یک عامل

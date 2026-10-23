@@ -4,7 +4,7 @@ title: Lit
 description: "Configurez le browser runner de WebdriverIO pour les composants web Lit et écrivez des tests qui interrogent des éléments à l'intérieur de shadow roots imbriqués."
 ---
 
-Lit est une bibliothèque simple pour créer des composants web rapides et légers. Tester des composants web Lit avec WebdriverIO est très facile grâce aux [sélecteurs shadow DOM](/docs/selectors#deep-selectors) de WebdriverIO : vous pouvez interroger des éléments imbriqués dans des shadow roots avec une seule commande.
+Lit est une bibliothèque simple pour créer des composants web rapides et légers. Tester des composants web Lit avec WebdriverIO est très facile grâce aux [sélecteurs de shadow DOM](/docs/selectors#deep-selectors) de WebdriverIO : vous pouvez interroger des éléments imbriqués dans des shadow roots avec une seule et unique commande.
 
 ## Configuration
 
@@ -16,7 +16,7 @@ Une fois la configuration terminée, vous pouvez lancer les tests en exécutant 
 npx wdio run ./wdio.conf.js
 ```
 
-## Écrire des tests
+## Écriture des tests
 
 Supposons que vous ayez le composant Lit suivant :
 
@@ -29,14 +29,14 @@ export class SimpleGreeting extends LitElement {
     @property()
     name?: string = 'World'
 
-    // Affiche l'interface utilisateur en fonction de l'état du composant
+    // Rendre l'interface utilisateur en fonction de l'état du composant
     render() {
         return html`<p>Hello, ${this.name}!</p>`
     }
 }
 ```
 
-Pour tester le composant, vous devez l'afficher dans la page de test avant le démarrage du test et vous assurer qu'il est nettoyé ensuite :
+Pour tester le composant, vous devez le rendre dans la page de test avant le démarrage du test et vous assurer qu'il est nettoyé ensuite :
 
 ```ts title="lit.test.js"
 import expect from 'expect'
@@ -67,4 +67,4 @@ describe('Lit Component testing', () => {
 })
 ```
 
-Vous trouverez un exemple complet de suite de tests de composants WebdriverIO pour Lit dans notre [dépôt d'exemples](https://github.com/webdriverio/component-testing-examples/tree/main/lit-typescript-vite).
+Vous trouverez un exemple complet d'une suite de tests de composants WebdriverIO pour Lit dans notre [dépôt d'exemples](https://github.com/webdriverio/component-testing-examples/tree/main/lit-typescript-vite).

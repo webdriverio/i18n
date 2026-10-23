@@ -6,7 +6,7 @@ description: "Activez les tests d'accessibilité TestMu AI (anciennement LambdaT
 
 # Tests d'accessibilité TestMu AI
 
-Vous pouvez facilement intégrer des tests d'accessibilité dans vos suites de tests WebdriverIO en utilisant [TestMu AI Accessibility Testing](https://www.testmuai.com/support/docs/accessibility-automation-settings/).
+Vous pouvez facilement intégrer des tests d'accessibilité dans vos suites de tests WebdriverIO à l'aide de [TestMu AI Accessibility Testing](https://www.testmuai.com/support/docs/accessibility-automation-settings/).
 
 ## Avantages des tests d'accessibilité TestMu AI
 
@@ -70,15 +70,15 @@ npx wdio run wdio.conf.js
 
 L'objet `accessibilityOptions` prend en charge les paramètres suivants :
 
-* **wcagVersion** : Spécifie la version de la norme WCAG à utiliser pour les tests
-  - `wcag20` - WCAG 2.0 Niveau A
-  - `wcag21a` - WCAG 2.1 Niveau A
-  - `wcag21aa` - WCAG 2.1 Niveau AA (par défaut)
-  - `wcag22aa` - WCAG 2.2 Niveau AA
+* **wcagVersion** : Spécifiez la version de la norme WCAG à utiliser pour les tests
+  - `wcag20` - WCAG 2.0 niveau A
+  - `wcag21a` - WCAG 2.1 niveau A
+  - `wcag21aa` - WCAG 2.1 niveau AA (par défaut)
+  - `wcag22aa` - WCAG 2.2 niveau AA
 
-* **bestPractice** : Inclut les recommandations de bonnes pratiques (par défaut : `false`)
+* **bestPractice** : Inclure les recommandations de bonnes pratiques (par défaut : `false`)
 
-* **needsReview** : Inclut les problèmes nécessitant une vérification manuelle (par défaut : `true`)
+* **needsReview** : Inclure les problèmes nécessitant une vérification manuelle (par défaut : `true`)
 
 ## Consulter les rapports d'accessibilité
 

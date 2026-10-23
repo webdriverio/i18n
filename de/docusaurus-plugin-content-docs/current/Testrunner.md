@@ -1,12 +1,12 @@
 ---
 id: testrunner
 title: Testrunner
-description: "Installiere den WDIO-Testrunner aus @wdio/cli und nutze seine Befehle config, run, install, repl und session, um Testsuiten einzurichten und auszuführen."
+description: "Installieren Sie den WDIO-Testrunner aus @wdio/cli und verwenden Sie seine Befehle config, run, install, repl und session, um Testsuites einzurichten und auszuführen."
 ---
 
-Der WebdriverIO-Testrunner führt deine Testsuite anhand einer Konfigurationsdatei aus. Er startet einen Worker pro Capability, bindet dein Framework, deine Services und Reporter ein und führt Specs parallel aus. Verwende ihn für jedes Testprojekt; verwende den [Standalone-Modus](/docs/setuptypes) nur, wenn du WebdriverIO in dein eigenes Tooling einbettest.
+Der WebdriverIO-Testrunner führt Ihre Testsuite anhand einer Konfigurationsdatei aus. Er startet einen Worker pro Capability, bindet Ihr Framework, Ihre Services und Reporter ein und führt Specs parallel aus. Verwenden Sie ihn für jedes Testprojekt; nutzen Sie den [Standalone-Modus](/docs/setuptypes) nur, wenn Sie WebdriverIO in Ihre eigenen Tools einbetten.
 
-Der Testrunner ist im Paket `@wdio/cli` enthalten:
+Der Testrunner wird im Paket `@wdio/cli` ausgeliefert:
 
 ```sh npm2yarn
 npm install --save-dev @wdio/cli
@@ -14,19 +14,19 @@ npm install --save-dev @wdio/cli
 
 `npx wdio` führt dieselbe CLI aus, wenn `@wdio/cli` noch nicht installiert ist. npm installiert das Paket [`wdio`](https://www.npmjs.com/package/wdio) ohne Scope, und dieses Paket startet `@wdio/cli`.
 
-Um ein neues Projekt einzurichten, führe den Konfigurationsassistenten aus. Er stellt ein paar Fragen, installiert die Pakete und schreibt eine `wdio.conf.ts`:
+Um ein neues Projekt einzurichten, führen Sie den Konfigurationsassistenten aus. Er stellt einige Fragen, installiert die Pakete und schreibt eine `wdio.conf.ts`:
 
 ```sh
 npx wdio config
 ```
 
-Führe dann deine Tests aus:
+Führen Sie dann Ihre Tests aus:
 
 ```sh
 npx wdio run wdio.conf.ts
 ```
 
-`run` ist der Standardbefehl, daher bewirkt `npx wdio wdio.conf.ts` dasselbe. Importiere in deinen Specs die Session aus `@wdio/globals`:
+`run` ist der Standardbefehl, daher bewirkt `npx wdio wdio.conf.ts` dasselbe. Importieren Sie in Ihren Specs die Session aus `@wdio/globals`:
 
 ```ts title="test/specs/example.e2e.ts"
 import { browser, $, expect } from '@wdio/globals'
@@ -39,7 +39,7 @@ describe('webdriver.io', () => {
 })
 ```
 
-Unter [Konfigurationsdatei](/docs/configurationfile) findest du alle Optionen von `wdio.conf.ts`.
+Unter [Konfigurationsdatei](/docs/configurationfile) finden Sie alle Optionen der `wdio.conf.ts`.
 
 ## Befehle
 
@@ -68,13 +68,13 @@ Jeder Befehl gibt mit `--help` seine eigenen Optionen aus, z. B. `npx wdio run -
 
 ### `wdio config`
 
-Der Befehl `config` startet den Konfigurationsassistenten und erstellt anhand deiner Antworten eine `wdio.conf.ts` (oder `wdio.conf.js`).
+Der Befehl `config` startet den Konfigurationsassistenten und erstellt anhand Ihrer Antworten eine `wdio.conf.ts` (oder `wdio.conf.js`).
 
 ```sh
 npx wdio config
 ```
 
-Übergib `--yes`, um ohne Rückfragen die Standardwerte (Mocha, Chrome und Page Objects) zu verwenden. Für jede Frage des Assistenten gibt es außerdem ein Flag, sodass du einige oder alle Fragen direkt auf der Kommandozeile beantworten kannst:
+Übergeben Sie `--yes`, um die Standardwerte (Mocha, Chrome und Page Objects) ohne Rückfragen zu verwenden. Für jede Frage des Assistenten gibt es außerdem ein Flag, sodass Sie einige oder alle davon auf der Kommandozeile beantworten können:
 
 ```sh
 npx wdio config --yes --framework cucumber --no-typescript --reporters spec,junit
@@ -92,13 +92,13 @@ Optionen:
 
 Der Assistent installiert Pakete mit dem Paketmanager, der ihn ausführt: `pnpm wdio config` verwendet pnpm, `yarn wdio config` verwendet Yarn und `npx` verwendet npm.
 
-`npx wdio config --help` listet die Flags des Assistenten und die Werte auf, die sie akzeptieren. Ein Flag für eine Frage, die der Assistent bei deinem Setup nicht stellt, führt zu einem Fehler, ebenso wie ein Wert, den er nicht anbietet. Beispiele findest du unter [Den Assistenten mit Flags beantworten](/docs/gettingstarted#answer-the-wizard-with-flags).
+`npx wdio config --help` listet die Flags des Assistenten und die Werte auf, die sie akzeptieren. Ein Flag für eine Frage, die der Assistent für Ihr Setup nicht stellt, führt zu einem Fehler, ebenso ein Wert, den er nicht anbietet. Beispiele finden Sie unter [Den Assistenten mit Flags beantworten](/docs/gettingstarted#answer-the-wizard-with-flags).
 
 ### `wdio run`
 
-> Dies ist der Standardbefehl, um deine Konfiguration auszuführen.
+> Dies ist der Standardbefehl, um Ihre Konfiguration auszuführen.
 
-Der Befehl `run` lädt deine Konfigurationsdatei und führt deine Tests aus. Kommandozeilenoptionen überschreiben die entsprechenden Optionen in der Konfigurationsdatei.
+Der Befehl `run` lädt Ihre Konfigurationsdatei und führt Ihre Tests aus. Kommandozeilenoptionen überschreiben die entsprechenden Optionen in der Konfigurationsdatei.
 
 ```sh
 npx wdio run wdio.conf.ts --spec test/specs/login.e2e.ts
@@ -169,18 +169,18 @@ npx wdio run wdio.conf.ts --mochaOpts.timeout 60000
 # ein Cucumber-Szenario anhand der Zeilennummer ausführen
 npx wdio run wdio.conf.ts --spec ./features/login.feature:5
 
-# eine eigene tsconfig.json verwenden
+# eine benutzerdefinierte tsconfig.json verwenden
 npx wdio run wdio.conf.ts --tsConfigPath=./configs/bdd-tsconfig.json
 
 # fehlschlagende Tests und browser.debug() pausieren, damit ein Coding-Agent sie untersuchen kann
 npx wdio run wdio.conf.ts --debug=agent
 ```
 
-`--tsConfigPath` überschreibt die Einstellung [`tsConfigPath`](/docs/configurationfile) deiner Konfiguration. Unter [TypeScript](/docs/typescript) erfährst du, wie WebdriverIO deine Specs mit `tsx` kompiliert.
+`--tsConfigPath` überschreibt die Einstellung [`tsConfigPath`](/docs/configurationfile) Ihrer Konfiguration. Unter [TypeScript](/docs/typescript) erfahren Sie, wie WebdriverIO Ihre Specs mit `tsx` kompiliert.
 
 ### `wdio install`
 
-Der Befehl `install` fügt einem bestehenden Projekt einen Reporter, Service, ein Framework, Plugin oder einen Runner hinzu. Er installiert das Paket, fügt es deiner `package.json` hinzu und aktualisiert deine Konfigurationsdatei.
+Der Befehl `install` fügt einem bestehenden Projekt einen Reporter, Service, ein Framework, Plugin oder einen Runner hinzu. Er installiert das Paket, fügt es Ihrer `package.json` hinzu und aktualisiert Ihre Konfigurationsdatei.
 
 ```sh
 npx wdio install service sauce        # installiert @wdio/sauce-service
@@ -190,7 +190,7 @@ npx wdio install framework mocha      # installiert @wdio/mocha-framework
 
 Die Pakete werden mit dem Paketmanager installiert, der den Befehl ausführt, d. h. `pnpm wdio install reporter dot` installiert mit pnpm und `yarn wdio install reporter dot` mit Yarn. `npx` und direkte Aufrufe verwenden npm.
 
-Wenn deine Konfigurationsdatei nicht `wdio.conf.(js|ts|cjs|mjs)` im aktuellen Ordner ist, gib ihren Speicherort an:
+Wenn Ihre Konfigurationsdatei nicht `wdio.conf.(js|ts|cjs|mjs)` im aktuellen Ordner ist, geben Sie ihren Speicherort an:
 
 ```sh
 npx wdio install service sauce --config="./path/to/wdio.conf.ts"
@@ -214,7 +214,7 @@ qmate-service, robonut, qunit, roku, obsidian, null-driver
 
 ```
 spec, dot, junit, allure, sumologic, concise, json, reportportal, video,
-cucumberjs-json, mochawesome, timeline, html-nice, slack, teamcity, delta,
+cucumberjs-json, mochawesome, timeline, html, slack, teamcity, delta,
 testrail, light, jsonhtml
 ```
 
@@ -233,7 +233,7 @@ runner: local, browser
 
 ### `wdio repl`
 
-Der Befehl `repl` startet eine WebDriver-Session und öffnet eine interaktive Eingabeaufforderung, in der du WebdriverIO-Befehle ausführst. Verwende ihn, um Selektoren und Befehle auszuprobieren, ohne eine Spec zu schreiben. Mehr dazu unter [REPL-Schnittstelle](/docs/repl).
+Der Befehl `repl` startet eine WebDriver-Session und öffnet eine interaktive Eingabeaufforderung, in der Sie WebdriverIO-Befehle ausführen. Verwenden Sie ihn, um Selektoren und Befehle auszuprobieren, ohne eine Spec zu schreiben. Mehr dazu unter [REPL-Schnittstelle](/docs/repl).
 
 Einen lokalen Chrome starten:
 
@@ -241,25 +241,25 @@ Einen lokalen Chrome starten:
 npx wdio repl chrome
 ```
 
-In der Sauce-Labs-Cloud ausführen:
+In der Sauce Labs Cloud ausführen:
 
 ```sh
 npx wdio repl chrome --user $SAUCE_USERNAME --key $SAUCE_ACCESS_KEY
 ```
 
-Eine Capability aus deiner Konfigurationsdatei verwenden, per Index oder über ihren Multiremote-Namen:
+Eine Capability aus Ihrer Konfigurationsdatei verwenden, über den Index oder ihren Multiremote-Namen:
 
 ```sh
 npx wdio repl ./wdio.conf.ts 0 -p 9515
 ```
 
-An eine laufende [`wdio session`](/docs/session) anhängen, anstatt einen neuen Browser zu starten:
+Sich mit einer laufenden [`wdio session`](/docs/session) verbinden, statt einen neuen Browser zu starten:
 
 ```sh
 npx wdio repl --session default
 ```
 
-`repl` akzeptiert die Verbindungsoptionen des [run-Befehls](#wdio-run) (`--hostname`, `--port`, `--path`, `--user`, `--key`, `--logLevel`, ...) sowie diese Mobile-Optionen. Verwende die langen Formen `--user` und `--udid`: `-u` ist der kurze Alias für beide.
+`repl` akzeptiert die Verbindungsoptionen des [run-Befehls](#wdio-run) (`--hostname`, `--port`, `--path`, `--user`, `--key`, `--logLevel`, ...) sowie diese mobilen Optionen. Verwenden Sie die langen Formen `--user` und `--udid`: `-u` ist der kurze Alias für beide.
 
 ```
 -v, --platformVersion  Version of OS for mobile devices                 [string]
@@ -271,7 +271,7 @@ npx wdio repl --session default
 
 ### `wdio session`
 
-Der Befehl `session` steuert einen Browser, eine mobile App oder eine Desktop-App aus der Shell, ein Befehl pro Aufruf. Er ist für Coding-Agents gedacht: Sie öffnen eine Session, erstellen Snapshots, klicken und tippen und exportieren ihre Aktionen als Test. Den Arbeitsablauf findest du unter [wdio session](/docs/session) und alle Aktionen unter [wdio session-Befehle](/docs/session-commands).
+Der Befehl `session` steuert einen Browser, eine mobile App oder eine Desktop-App aus der Shell, ein Befehl pro Aufruf. Er ist für Coding-Agents gemacht: Sie öffnen eine Session, erstellen Snapshots, klicken und tippen und exportieren ihre Aktionen als Test. Unter [wdio session](/docs/session) finden Sie den Workflow und unter [wdio session-Befehle](/docs/session-commands) jede Aktion.
 
 ```sh
 npx wdio session --help
@@ -279,7 +279,7 @@ npx wdio session --help
 
 ## Nächste Schritte
 
-- [Konfigurationsdatei](/docs/configurationfile): alle Optionen von `wdio.conf.ts`
+- [Konfigurationsdatei](/docs/configurationfile): alle Optionen der `wdio.conf.ts`
 - [Erste Schritte](/docs/gettingstarted): ein Projekt mit dem Assistenten einrichten
 - [REPL-Schnittstelle](/docs/repl): Befehle interaktiv debuggen
 - [wdio session](/docs/session): einen Browser aus der Shell oder über einen Agent steuern

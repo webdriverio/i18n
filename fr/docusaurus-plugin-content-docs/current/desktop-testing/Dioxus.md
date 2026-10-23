@@ -1,17 +1,17 @@
 ---
 id: dioxus
 title: Dioxus
-description: "Testez les applications de bureau Dioxus sous Windows, macOS et Linux avec le service Dioxus de WebdriverIO, à l'aide de l'assistant de configuration ou d'une configuration manuelle."
+description: "Testez les applications de bureau Dioxus sur Windows, macOS et Linux avec le service Dioxus de WebdriverIO, en utilisant l'assistant de configuration ou une configuration manuelle."
 ---
 
-[Dioxus](https://dioxuslabs.com/) est un framework Rust permettant de créer des applications multiplateformes à partir d'une base de code unique. Ses applications de bureau s'affichent dans la webview native du système d'exploitation (Wry), et le service Dioxus de WebdriverIO automatise leur détection, leur lancement et leur pilotage sous Windows (WebView2), macOS (WKWebView) et Linux (WebKitGTK), de sorte que la même suite de tests fonctionne partout.
+[Dioxus](https://dioxuslabs.com/) est un framework Rust permettant de créer des applications multiplateformes à partir d'une base de code unique. Ses applications de bureau s'affichent dans la webview native du système d'exploitation (Wry), et le service Dioxus de WebdriverIO automatise leur détection, leur lancement et leur pilotage sur Windows (WebView2), macOS (WKWebView) et Linux (WebKitGTK), de sorte que la même suite de tests fonctionne partout.
 
 Les avantages de l'utilisation de WebdriverIO pour tester les applications Dioxus sont :
 
-- 🚗 provisionnement automatique de la couche WebDriver — le driver intégré in-process recommandé ne nécessite aucun binaire de driver externe, quelle que soit la plateforme
-- 📦 détection multiplateforme des binaires (driver Edge WebView2 fourni sous Windows pour le fournisseur `external`)
+- 🚗 provisionnement automatique de la couche WebDriver — le pilote intégré in-process recommandé ne nécessite aucun binaire de pilote externe, quelle que soit la plateforme
+- 📦 détection multiplateforme des binaires (pilote Edge WebView2 fourni sur Windows pour le fournisseur `external`)
 - 🧩 `browser.dioxus.execute()`, le mocking et la gestion des fenêtres, fournis par le service via la crate `wdio-dioxus-bridge`
-- 🔗 test des deeplinks et des gestionnaires de protocole
+- 🔗 tests des deeplinks et des gestionnaires de protocole
 - 🪵 transfert des logs Rust et frontend vers le reporter de tests WebdriverIO
 
 ## Premiers pas
@@ -22,7 +22,7 @@ Pour initialiser un nouveau projet WebdriverIO, exécutez :
 npm create wdio@latest ./
 ```
 
-Lorsque l'assistant vous demande quel type de test vous souhaitez effectuer, sélectionnez _"Desktop Testing - of Electron, Tauri, Dioxus, or macOS Applications"_, puis choisissez _Dioxus_ lors de la sélection du framework. L'assistant vous demandera ensuite quel fournisseur WebDriver vous souhaitez utiliser (le driver intégré in-process recommandé, ou le driver externe disponible uniquement sous Windows) ainsi que le chemin vers votre binaire de debug compilé.
+Lorsque l'assistant vous demande quel type de tests vous souhaitez effectuer, sélectionnez _"Desktop Testing - of Electron, Tauri, Dioxus, or macOS Applications"_, puis choisissez _Dioxus_ à l'invite du framework. L'assistant vous demandera ensuite quel fournisseur WebDriver vous souhaitez utiliser (le pilote intégré in-process recommandé, ou le pilote externe disponible uniquement sur Windows) ainsi que le chemin vers votre binaire de debug compilé.
 
 L'assistant installe automatiquement les paquets npm et affiche sur la sortie standard les ajouts Cargo nécessaires, que vous pourrez coller dans votre `Cargo.toml`.
 
@@ -41,7 +41,7 @@ Les tests nécessitent la crate `wdio-dioxus-bridge` — elle active `browser.di
 wdio-dioxus-bridge = "1"
 ```
 
-…et installez-la dans la configuration de bureau Dioxus de votre fichier `src/main.rs`. La garde `#[cfg(debug_assertions)]` exclut le bridge des builds de release :
+…et installez-la dans la configuration de bureau Dioxus dans `src/main.rs`. La garde `#[cfg(debug_assertions)]` exclut le bridge des builds de release :
 
 ```rust
 fn main() {
@@ -64,7 +64,7 @@ Compilez l'application pour les tests (un build de debug maintient le bridge act
 cargo build
 ```
 
-Ajoutez ensuite le service et les capabilities à votre configuration :
+Ajoutez ensuite le service et les capacités à votre configuration :
 
 ```ts
 // wdio.conf.ts
@@ -82,4 +82,4 @@ export const config: WebdriverIO.Config = {
 
 C'est tout 🎉
 
-Apprenez-en davantage sur [la configuration du service Dioxus](/docs/desktop-testing/dioxus/configuration), [la mise en place du bridge](/docs/desktop-testing/dioxus/plugin-setup), [les notes spécifiques aux plateformes](/docs/desktop-testing/dioxus/platform-support) et [les cas d'utilisation courants](/docs/desktop-testing/dioxus/usage-examples).
+Apprenez-en davantage sur [la configuration du service Dioxus](/docs/desktop-testing/dioxus/configuration), [la mise en place du bridge](/docs/desktop-testing/dioxus/plugin-setup), [les notes spécifiques aux plateformes](/docs/desktop-testing/dioxus/platform-support) et [les modèles d'utilisation courants](/docs/desktop-testing/dioxus/usage-examples).

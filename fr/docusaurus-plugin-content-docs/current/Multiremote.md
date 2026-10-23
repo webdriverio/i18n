@@ -1,23 +1,23 @@
 ---
 id: multiremote
 title: Multi-remote
-description: "Contrôlez plusieurs sessions de navigateur ou d'appareil depuis un seul test avec le multi-remote, en mode autonome ou avec le testrunner WDIO."
+description: "Contrôlez plusieurs sessions de navigateur ou d'appareil à partir d'un seul test avec le multi-remote, en mode autonome ou avec le testrunner WDIO."
 ---
 
 WebdriverIO vous permet d'exécuter plusieurs sessions automatisées dans un seul test. Cela devient pratique lorsque vous testez des fonctionnalités qui nécessitent plusieurs utilisateurs (par exemple, des applications de chat ou WebRTC).
 
-Au lieu de créer plusieurs instances distantes sur chacune desquelles vous devez exécuter des commandes communes comme [`newSession`](/docs/api/webdriver#newsession) ou [`url`](/docs/api/browser/url), vous pouvez simplement créer une instance **multi-remote** et contrôler tous les navigateurs en même temps.
+Au lieu de créer plusieurs instances distantes sur lesquelles vous devez exécuter des commandes communes comme [`newSession`](/docs/api/webdriver#newsession) ou [`url`](/docs/api/browser/url) sur chaque instance, vous pouvez simplement créer une instance **multi-remote** et contrôler tous les navigateurs en même temps.
 
-Pour ce faire, utilisez simplement la fonction `multiRemote()` et passez-lui un objet dont les clés sont des noms et les valeurs des `capabilities`. En donnant un nom à chaque capability, vous pouvez facilement sélectionner et accéder à cette instance unique lorsque vous exécutez des commandes sur une seule instance.
+Pour ce faire, utilisez simplement la fonction `multiRemote()` et transmettez-lui un objet dont les clés sont des noms et les valeurs des `capabilities`. En donnant un nom à chaque capability, vous pouvez facilement sélectionner et accéder à cette instance unique lorsque vous exécutez des commandes sur une seule instance.
 
 :::info
 
-MultiRemote n'est _pas_ conçu pour exécuter tous vos tests en parallèle.
+MultiRemote n'est _pas_ destiné à exécuter tous vos tests en parallèle.
 Il est destiné à aider à coordonner plusieurs navigateurs et/ou appareils mobiles pour des tests d'intégration spécifiques (par exemple, des applications de chat).
 
 :::
 
-La plupart des commandes multi-remote renvoient un tableau de résultats. Le premier résultat correspond à la capability définie en premier dans l'objet de capabilities, le deuxième résultat à la deuxième capability, et ainsi de suite. `mock()` renvoie un `MultiRemoteMock` au lieu d'un tableau. Voir [Ce que renvoie mock()](#what-mock-returns).
+La plupart des commandes multi-remote renvoient un tableau de résultats. Le premier résultat représente la capability définie en premier dans l'objet de capabilities, le deuxième résultat la deuxième capability, et ainsi de suite. `mock()` renvoie un `MultiRemoteMock` au lieu d'un tableau. Voir [Ce que renvoie mock()](#what-mock-returns).
 
 ## Utilisation du mode autonome
 
@@ -58,7 +58,7 @@ import { multiRemote } from 'webdriverio'
 
 ## Utilisation du testrunner WDIO
 
-Pour utiliser le multi-remote dans le testrunner WDIO, définissez simplement l'objet `capabilities` dans votre `wdio.conf.js` comme un objet ayant les noms des navigateurs comme clés (au lieu d'une liste de capabilities) :
+Pour utiliser le multi-remote dans le testrunner WDIO, définissez simplement l'objet `capabilities` dans votre `wdio.conf.js` comme un objet avec les noms des navigateurs comme clés (au lieu d'une liste de capabilities) :
 
 ```js
 export const config = {
@@ -79,7 +79,7 @@ export const config = {
 }
 ```
 
-Cela créera deux sessions WebDriver avec Chrome et Firefox. Au lieu de seulement Chrome et Firefox, vous pouvez également démarrer deux appareils mobiles en utilisant [Appium](http://appium.io), ou un appareil mobile et un navigateur.
+Cela créera deux sessions WebDriver avec Chrome et Firefox. Au lieu de simplement Chrome et Firefox, vous pouvez également démarrer deux appareils mobiles en utilisant [Appium](http://appium.io), ou un appareil mobile et un navigateur.
 
 Vous pouvez également exécuter le multi-remote en parallèle en plaçant l'objet de capabilities des navigateurs dans un tableau. Assurez-vous d'inclure le champ `capabilities` dans chaque navigateur, car c'est ainsi que nous distinguons chaque mode.
 
@@ -113,7 +113,7 @@ export const config = {
 }
 ```
 
-Vous pouvez même démarrer l'un des [backends de services cloud](https://webdriver.io/docs/cloudservices.html) avec des instances locales de Webdriver/Appium ou de Selenium Standalone. WebdriverIO détecte automatiquement les capabilities de backend cloud si vous avez spécifié `bstack:options` ([Browserstack](https://webdriver.io/docs/browserstack-service.html)), `sauce:options` ([SauceLabs](https://webdriver.io/docs/sauce-service.html)) ou `tb:options` ([TestingBot](https://webdriver.io/docs/testingbot-service.html)) dans les capabilities du navigateur.
+Vous pouvez même démarrer l'un des [backends de services cloud](https://webdriver.io/docs/cloudservices.html) avec des instances locales de Webdriver/Appium ou de Selenium Standalone. WebdriverIO détecte automatiquement les capabilities d'un backend cloud si vous avez spécifié `bstack:options` ([Browserstack](https://webdriver.io/docs/browserstack-service.html)), `sauce:options` ([SauceLabs](https://webdriver.io/docs/sauce-service.html)) ou `tb:options` ([TestingBot](https://webdriver.io/docs/testingbot-service.html)) dans les capabilities du navigateur.
 
 ```js
 export const config = {
@@ -142,7 +142,7 @@ export const config = {
 }
 ```
 
-Toute combinaison de système d'exploitation et de navigateur est possible ici (y compris les navigateurs mobiles et de bureau). Toutes les commandes que vos tests appellent via la variable `browser` sont exécutées en parallèle sur chaque instance. Cela aide à simplifier vos tests d'intégration et à accélérer leur exécution.
+Toute combinaison de système d'exploitation et de navigateur est possible ici (y compris les navigateurs mobiles et de bureau). Toutes les commandes que vos tests appellent via la variable `browser` sont exécutées en parallèle sur chaque instance. Cela permet de simplifier vos tests d'intégration et d'accélérer leur exécution.
 
 Par exemple, si vous ouvrez une URL :
 
@@ -163,9 +163,9 @@ console.log(result[0]) // renvoie : 'Chrome 40 on Mac OS X (Yosemite)'
 console.log(result[1]) // renvoie : 'Firefox 35 on Mac OS X (Yosemite)'
 ```
 
-Notez que chaque commande est exécutée l'une après l'autre. Cela signifie que la commande se termine une fois que tous les navigateurs l'ont exécutée. C'est utile car cela maintient les actions des navigateurs synchronisées, ce qui facilite la compréhension de ce qui se passe à un moment donné.
+Notez que chaque commande est exécutée l'une après l'autre. Cela signifie que la commande se termine une fois que tous les navigateurs l'ont exécutée. C'est utile car cela permet de garder les actions des navigateurs synchronisées, ce qui facilite la compréhension de ce qui se passe à un instant donné.
 
-Parfois, il est nécessaire d'effectuer des actions différentes dans chaque navigateur pour tester quelque chose. Par exemple, si nous voulons tester une application de chat, il doit y avoir un navigateur qui envoie un message texte pendant qu'un autre navigateur attend de le recevoir, puis exécute une assertion dessus.
+Il est parfois nécessaire de faire des choses différentes dans chaque navigateur pour tester quelque chose. Par exemple, si nous voulons tester une application de chat, il faut qu'un navigateur envoie un message texte pendant qu'un autre navigateur attend de le recevoir, puis exécuter une assertion sur celui-ci.
 
 Lors de l'utilisation du testrunner WDIO, celui-ci enregistre les noms des navigateurs avec leurs instances dans la portée globale :
 
@@ -186,11 +186,11 @@ assert.true(
 
 Dans cet exemple, l'instance `myFirefoxBrowser` commencera à attendre un message dès que l'instance `myChromeBrowser` aura cliqué sur le bouton `#send`.
 
-MultiRemote permet de contrôler facilement et commodément plusieurs navigateurs, que vous souhaitiez qu'ils fassent la même chose en parallèle ou des choses différentes de manière coordonnée.
+MultiRemote rend le contrôle de plusieurs navigateurs simple et pratique, que vous souhaitiez qu'ils fassent la même chose en parallèle ou des choses différentes de manière coordonnée.
 
 ### Ce que renvoie `$`
 
-Sur un navigateur multi-remote, `$`, `custom$` et `react$` renvoient un `MultiRemoteElement`. Sur un élément multi-remote, `shadow$`, `nextElement`, `previousElement` et `parentElement` en renvoient également un. Ses commandes s'exécutent sur chaque instance, et `getInstance` donne l'élément d'un navigateur.
+Sur un navigateur multi-remote, `$`, `custom$` et `react$` renvoient un `MultiRemoteElement`. Sur un élément multi-remote, `shadow$`, `nextElement`, `previousElement` et `parentElement` en renvoient également un. Ses commandes s'exécutent sur chaque instance, et `getInstance` fournit l'élément d'un seul navigateur.
 
 ```js
 const host = await $('my-component')
@@ -212,14 +212,14 @@ messages[0]          // un MultiRemoteElement, ciblant toutes les instances
 messages.selector    // '.messages'
 messages.foundWith   // '$$'
 messages.parent      // le navigateur ou l'élément multi-remote à partir duquel il a été récupéré
-messages.isMultiRemote // true, pour pouvoir le distinguer d'un ElementArray simple
+messages.isMultiRemote // true, ce qui permet de le distinguer d'un ElementArray simple
 
 // les helpers de tableau asynchrones sont disponibles, comme sur un seul navigateur
 await messages.map((m) => m.getText())
 await messages.filter(async (m) => await m.isDisplayed())
 ```
 
-Lorsque les instances trouvent un nombre différent d'éléments, une entrée n'a pas d'élément pour une instance qui en a trouvé moins. Pour cette instance, `getInstance()` lève une erreur, et une commande sur l'entrée échoue. Utilisez `select()` avec les instances qui possèdent l'élément. Un matcher `expect` sur la liste entière vérifie chaque instance avec ses propres éléments :
+Lorsque les instances trouvent un nombre d'éléments différent, une entrée n'a pas d'élément pour une instance qui en a trouvé moins. Pour cette instance, `getInstance()` lève une erreur, et une commande sur l'entrée échoue. Utilisez `select()` avec les instances qui possèdent l'élément. Un matcher `expect` sur la liste entière vérifie chaque instance avec ses propres éléments :
 
 ```js
 // myChromeBrowser trouve 3 messages, myFirefoxBrowser en trouve 2
@@ -241,7 +241,7 @@ Avant la v10, cela renvoyait un tableau simple, sauf si `WDIO_ENABLE_MULTI_REMOT
 
 ### Ce que renvoie mock() {#what-mock-returns}
 
-Sur un navigateur multi-remote, `mock()` renvoie un `MultiRemoteMock`. Ce n'est pas un tableau. `respond()`, `restore()` et les autres méthodes de mock s'exécutent sur chaque instance. Les requêtes capturées restent sur le mock d'un navigateur, lisez-les donc avec `getInstance` :
+Sur un navigateur multi-remote, `mock()` renvoie un `MultiRemoteMock`. Ce n'est pas un tableau. `respond()`, `restore()` et les autres méthodes du mock s'exécutent sur chaque instance. Les requêtes capturées restent sur le mock d'un seul navigateur, lisez-les donc avec `getInstance` :
 
 ```ts
 const mock = await browser.mock('*/users/list')
@@ -273,7 +273,7 @@ const chromeOnly = await browser.getInstance('myChromeBrowser').mock('*/users/li
 ```
 
 ## Accéder aux instances de navigateur à l'aide de chaînes via l'objet browser
-En plus d'accéder à l'instance du navigateur via leurs variables globales (par exemple `myChromeBrowser`, `myFirefoxBrowser`), vous pouvez également y accéder via l'objet `browser`, par exemple `browser["myChromeBrowser"]` ou `browser["myFirefoxBrowser"]`. Vous pouvez obtenir la liste de toutes vos instances via `browser.instances`. C'est particulièrement utile pour écrire des étapes de test réutilisables pouvant être exécutées dans l'un ou l'autre navigateur, par exemple :
+En plus d'accéder à l'instance de navigateur via leurs variables globales (par exemple `myChromeBrowser`, `myFirefoxBrowser`), vous pouvez également y accéder via l'objet `browser`, par exemple `browser["myChromeBrowser"]` ou `browser["myFirefoxBrowser"]`. Vous pouvez obtenir la liste de toutes vos instances via `browser.instances`. C'est particulièrement utile lors de l'écriture d'étapes de test réutilisables pouvant être exécutées dans l'un ou l'autre des navigateurs, par exemple :
 
 wdio.conf.js :
 ```js
@@ -326,9 +326,9 @@ await expect(multiRemoteBrowser).toHaveTitle(expect.multiRemote({
 }))
 ```
 
-Pour tous les matchers pris en charge et la configuration requise, consultez le [guide multi-remote d'expect-webdriverio](https://github.com/webdriverio/expect-webdriverio/blob/main/docs/MultiRemote.md).
+Pour connaître tous les matchers pris en charge et la configuration requise, consultez le [guide multi-remote d'expect-webdriverio](https://github.com/webdriverio/expect-webdriverio/blob/main/docs/MultiRemote.md).
 
-## Accéder à une instance
+## Accéder à une seule instance
 
 Les noms d'instance ne sont pas des propriétés du navigateur multi-remote ni d'un élément multi-remote. `browser.myChromeBrowser` et `elem.myChromeDriver` ne sont pas définis. Demandez la session avec `getInstance`, ou restreignez l'objet multi-remote avec `select` :
 
@@ -342,4 +342,4 @@ await myChromeElement.click()
 await browser.select('myChromeBrowser').url('https://webdriver.io')
 ```
 
-Le testrunner assigne toujours chaque nom d'instance comme une variable globale distincte lorsque `injectGlobals` reste activé, de sorte qu'un test peut appeler `myChromeBrowser.$('button')` sans passer par `browser`. Cette variable globale est la session unique obtenue via `getInstance`, et non un champ de l'objet multi-remote.
+Le testrunner attribue toujours chaque nom d'instance à sa propre variable globale lorsque `injectGlobals` reste activé, de sorte qu'un test peut appeler `myChromeBrowser.$('button')` sans passer par `browser`. Cette variable globale est la session unique renvoyée par `getInstance`, et non un champ de l'objet multi-remote.

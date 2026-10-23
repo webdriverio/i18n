@@ -5,9 +5,9 @@ title: L'objet Browser
 
 __Étend :__ [EventEmitter](https://nodejs.org/api/events.html#class-eventemitter)
 
-L'objet browser est l'instance de session que vous utilisez pour contrôler le navigateur ou l'appareil mobile. Si vous utilisez le testrunner WDIO, vous pouvez accéder à l'instance WebDriver via l'objet global `browser` ou `driver`, ou l'importer en utilisant [`@wdio/globals`](/docs/api/globals). Si vous utilisez WebdriverIO en mode autonome, l'objet browser est retourné par la méthode [`remote`](/docs/api/modules#remoteoptions-modifier).
+L'objet browser est l'instance de session que vous utilisez pour contrôler le navigateur ou l'appareil mobile. Si vous utilisez le testrunner WDIO, vous pouvez accéder à l'instance WebDriver via l'objet global `browser` ou `driver`, ou l'importer en utilisant [`@wdio/globals`](/docs/api/globals). Si vous utilisez WebdriverIO en mode autonome, l'objet browser est renvoyé par la méthode [`remote`](/docs/api/modules#remoteoptions-modifier).
 
-La session est initialisée par le testrunner. Il en va de même pour la fin de la session, qui est également gérée par le processus du testrunner.
+La session est initialisée par le testrunner. Il en va de même pour la fin de la session. Cela est également effectué par le processus du testrunner.
 
 ## Propriétés
 
@@ -30,14 +30,14 @@ Un objet browser possède les propriétés suivantes :
 | `isIOS` | `Boolean` | Indique une session iOS. Voir plus sous [Indicateurs mobiles](#mobile-flags). |
 | `isAndroid` | `Boolean` | Indique une session Android. Voir plus sous [Indicateurs mobiles](#mobile-flags). |
 | `isNativeContext` | `Boolean`  | Indique si le mobile est dans le contexte `NATIVE_APP`. Voir plus sous [Indicateurs mobiles](#mobile-flags). |
-| `mobileContext` | `string`  | Fournit le contexte **actuel** dans lequel se trouve le driver, par exemple `NATIVE_APP`, `WEBVIEW_<packageName>` pour Android ou `WEBVIEW_<pid>` pour iOS. Cela économise un appel WebDriver supplémentaire à `driver.getContext()`. Voir plus sous [Indicateurs mobiles](#mobile-flags). |
+| `mobileContext` | `string`  | Fournit le contexte **actuel** dans lequel se trouve le driver, par exemple `NATIVE_APP`, `WEBVIEW_<packageName>` pour Android ou `WEBVIEW_<pid>` pour iOS. Cela évite un appel WebDriver supplémentaire à `driver.getContext()`. Voir plus sous [Indicateurs mobiles](#mobile-flags). |
 
 
 ## Méthodes
 
-En fonction du backend d'automatisation utilisé pour votre session, WebdriverIO identifie quelles [commandes de protocole](/docs/api/protocols) seront attachées à l'[objet browser](/docs/api/browser). Par exemple, si vous exécutez une session automatisée dans Chrome, vous aurez accès aux commandes spécifiques à Chromium comme [`elementHover`](/docs/api/chromium#elementhover), mais à aucune des [commandes Appium](/docs/api/appium).
+En fonction du backend d'automatisation utilisé pour votre session, WebdriverIO identifie quelles [Commandes de protocole](/docs/api/protocols) seront attachées à l'[objet browser](/docs/api/browser). Par exemple, si vous exécutez une session automatisée dans Chrome, vous aurez accès aux commandes spécifiques à Chromium comme [`elementHover`](/docs/api/chromium#elementhover) mais pas aux [commandes Appium](/docs/api/appium).
 
-De plus, WebdriverIO fournit un ensemble de méthodes pratiques dont l'utilisation est recommandée pour interagir avec le [navigateur](/docs/api/browser) ou les [éléments](/docs/api/element) de la page.
+De plus, WebdriverIO fournit un ensemble de méthodes pratiques qu'il est recommandé d'utiliser pour interagir avec le [navigateur](/docs/api/browser) ou les [éléments](/docs/api/element) de la page.
 
 En plus de cela, les commandes suivantes sont disponibles :
 
@@ -51,7 +51,7 @@ En plus de cela, les commandes suivantes sont disponibles :
 
 ### Indicateurs mobiles
 
-Si vous devez modifier votre test selon que votre session s'exécute ou non sur un appareil mobile, vous pouvez consulter les indicateurs mobiles pour le vérifier.
+Si vous devez modifier votre test selon que votre session s'exécute ou non sur un appareil mobile, vous pouvez consulter les indicateurs mobiles.
 
 Par exemple, avec cette configuration :
 
@@ -105,7 +105,7 @@ Vous pouvez également utiliser ces indicateurs pour exécuter uniquement certai
 // mytest.e2e.js
 describe('my test', () => {
     // ...
-    // exécuter le test uniquement sur les appareils Android
+    // exécuter le test uniquement avec des appareils Android
     if (driver.isAndroid) {
         it('tests something only for Android', () => {
             // ...
@@ -125,14 +125,14 @@ N'hésitez pas à contribuer à la mise à jour du document en ajoutant ici des 
 
 Cet événement est émis chaque fois que WebdriverIO envoie une commande WebDriver Classic. Il contient les informations suivantes :
 
-- `command` : le nom de la commande, par ex. `navigateTo`
-- `method` : la méthode HTTP utilisée pour envoyer la requête de commande, par ex. `POST`
-- `endpoint` : le point de terminaison de la commande, par ex. `/session/fc8dbda381a8bea36a225bd5fd0c069b/url`
-- `body` : la charge utile de la commande, par ex. `{ url: 'https://webdriver.io' }`
+- `command` : le nom de la commande, par exemple `navigateTo`
+- `method` : la méthode HTTP utilisée pour envoyer la requête de commande, par exemple `POST`
+- `endpoint` : le point de terminaison de la commande, par exemple `/session/fc8dbda381a8bea36a225bd5fd0c069b/url`
+- `body` : la charge utile de la commande, par exemple `{ url: 'https://webdriver.io' }`
 
 #### `result`
 
-Cet événement est émis chaque fois que WebdriverIO reçoit le résultat d'une commande WebDriver Classic. Il contient les mêmes informations que l'événement `command` avec en plus l'information suivante :
+Cet événement est émis chaque fois que WebdriverIO reçoit le résultat d'une commande WebDriver Classic. Il contient les mêmes informations que l'événement `command` avec en plus les informations suivantes :
 
 - `result` : le résultat de la commande
 
@@ -141,7 +141,8 @@ Cet événement est émis chaque fois que WebdriverIO reçoit le résultat d'une
 Cet événement est émis chaque fois que WebdriverIO envoie une commande WebDriver Bidi au driver du navigateur. Il contient des informations sur :
 
 - `method` : la méthode de commande WebDriver Bidi
-- `params` : le paramètre de commande associé (voir l'[API](/docs/api/webdriverBidi))
+- `params` : le paramètre de commande associé (voir [API](/docs/api/webdriverBidi))
+- `id` : l'identifiant de la commande, le même que dans l'événement `bidiResult` de cette commande
 
 #### `bidiResult`
 
@@ -149,15 +150,15 @@ En cas d'exécution réussie de la commande, la charge utile de l'événement se
 
 - `type` : `success`
 - `id` : l'identifiant de la commande
-- `result` : le résultat de la commande (voir l'[API](/docs/api/webdriverBidi))
+- `result` : le résultat de la commande (voir [API](/docs/api/webdriverBidi))
 
 En cas d'erreur de commande, la charge utile de l'événement sera :
 
 - `type` : `error`
 - `id` : l'identifiant de la commande
-- `error` : le code d'erreur, par ex. `invalid argument`
+- `error` : le code d'erreur, par exemple `invalid argument`
 - `message` : des détails sur l'erreur
-- `stacktrace` : une trace de la pile
+- `stacktrace` : une trace de pile
 
 #### `request.start`
 Cet événement est déclenché avant qu'une requête WebDriver ne soit envoyée au driver. Il contient des informations sur la requête et sa charge utile.
@@ -178,7 +179,7 @@ browser.on('request.end', (ev: { result: unknown, error?: Error }) => {
 ```
 
 #### `request.retry`
-L'événement de nouvelle tentative peut vous notifier lorsque WebdriverIO tente de réexécuter la commande, par ex. en raison d'un problème réseau. Il contient des informations sur l'erreur qui a provoqué la nouvelle tentative et le nombre de tentatives déjà effectuées.
+L'événement de nouvelle tentative peut vous notifier lorsque WebdriverIO tente de réexécuter la commande, par exemple en raison d'un problème réseau. Il contient des informations sur l'erreur qui a provoqué la nouvelle tentative et le nombre de tentatives déjà effectuées.
 
 ```ts
 browser.on('request.retry', (ev: { error: Error, retryCount: number }) => {
@@ -189,11 +190,11 @@ browser.on('request.retry', (ev: { error: Error, retryCount: number }) => {
 #### `request.performance`
 Il s'agit d'un événement permettant de mesurer les opérations au niveau WebDriver. Chaque fois que WebdriverIO envoie une requête au backend WebDriver, cet événement est émis avec quelques informations utiles :
 
-- `durationMillisecond` : durée de la requête en millisecondes.
-- `error` : objet d'erreur si la requête a échoué.
-- `request` : objet de la requête. Vous y trouverez l'url, la méthode, les en-têtes, etc.
-- `retryCount` : s'il vaut `0`, la requête était la première tentative. Il augmentera lorsque WebDriverIO effectue de nouvelles tentatives en arrière-plan.
-- `success` : booléen indiquant si la requête a réussi ou non. S'il vaut `false`, la propriété `error` sera également fournie.
+- `durationMillisecond` : Durée de la requête en millisecondes.
+- `error` : Objet d'erreur si la requête a échoué.
+- `request` : Objet de requête. Vous pouvez y trouver l'url, la méthode, les en-têtes, etc.
+- `retryCount` : S'il vaut `0`, la requête était la première tentative. Il augmentera lorsque WebDriverIO effectue des nouvelles tentatives en interne.
+- `success` : Booléen indiquant si la requête a réussi ou non. S'il vaut `false`, la propriété `error` sera également fournie.
 
 Un exemple d'événement :
 ```js
@@ -208,4 +209,4 @@ Object {
 
 ### Commandes personnalisées
 
-Vous pouvez définir des commandes personnalisées dans la portée du navigateur afin d'abstraire des flux de travail couramment utilisés. Consultez notre guide sur les [Commandes personnalisées](/docs/customcommands#adding-custom-commands) pour plus d'informations.
+Vous pouvez définir des commandes personnalisées dans la portée du navigateur pour abstraire les flux de travail couramment utilisés. Consultez notre guide sur les [Commandes personnalisées](/docs/customcommands#adding-custom-commands) pour plus d'informations.

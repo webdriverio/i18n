@@ -1,7 +1,7 @@
 ---
 id: faq
 title: FAQ
-description: "Trouvez des réponses aux questions courantes sur l'installation, l'utilisation et le dépannage du serveur WebdriverIO MCP pour l'automatisation des navigateurs et des applications mobiles."
+description: "Trouvez des réponses aux questions courantes sur l'installation, l'utilisation et le dépannage du serveur MCP WebdriverIO pour l'automatisation des navigateurs et des appareils mobiles."
 ---
 
 Questions fréquemment posées sur WebdriverIO MCP.
@@ -10,16 +10,16 @@ Questions fréquemment posées sur WebdriverIO MCP.
 
 ### Qu'est-ce que MCP ?
 
-MCP (Model Context Protocol) est un protocole ouvert qui permet aux assistants IA comme Claude d'interagir avec des outils et services externes. WebdriverIO MCP implémente ce protocole pour fournir des capacités d'automatisation de navigateurs et d'applications mobiles à Claude Desktop et Claude Code.
+MCP (Model Context Protocol) est un protocole ouvert qui permet aux assistants IA comme Claude d'interagir avec des outils et services externes. WebdriverIO MCP implémente ce protocole pour fournir des capacités d'automatisation de navigateurs et d'appareils mobiles à Claude Desktop et Claude Code.
 
 ### Que puis-je automatiser avec WebdriverIO MCP ?
 
 Vous pouvez automatiser :
--   **Les navigateurs de bureau** (Chrome, Firefox, Edge, Safari) - navigation, clics, saisie, captures d'écran
--   **Les applications iOS** - sur simulateurs ou appareils réels
--   **Les applications Android** - sur émulateurs ou appareils réels
--   **Les applications hybrides** - basculement entre les contextes natif et web
--   **Les appareils cloud** - via les clouds d'appareils BrowserStack, Sauce Labs, TestMu et TestingBot
+-   **Navigateurs de bureau** (Chrome, Firefox, Edge, Safari) - navigation, clics, saisie, captures d'écran
+-   **Applications iOS** - sur simulateurs ou appareils réels
+-   **Applications Android** - sur émulateurs ou appareils réels
+-   **Applications hybrides** - basculement entre les contextes natif et web
+-   **Appareils cloud** - via les clouds d'appareils BrowserStack, Sauce Labs, TestMu et TestingBot
 
 ### Dois-je écrire du code ?
 
@@ -83,7 +83,7 @@ Oui. Le mode headless est activé par défaut (`headless: true`). Demandez à Cl
 
 ### Puis-je définir la taille de la fenêtre du navigateur ?
 
-Oui. Vous pouvez spécifier les dimensions au démarrage du navigateur :
+Oui. Vous pouvez spécifier les dimensions lors du démarrage du navigateur :
 
 "Démarre Chrome avec une taille de fenêtre de 1920x1080"
 
@@ -105,12 +105,12 @@ Demandez simplement :
 
 Les captures d'écran sont automatiquement optimisées :
 - Redimensionnées à 2000px maximum
-- Compressées à 1 Mo maximum
+- Compressées à une taille de fichier de 1 Mo maximum
 - Format : PNG ou JPEG (sélectionné automatiquement pour une qualité optimale)
 
 ### Puis-je interagir avec des iframes ?
 
-Oui. Utilisez l'outil `switch_frame` pour basculer dans une iframe via un sélecteur CSS ou XPath. Tous les appels suivants à `click_element`, `set_value` et `get_elements` s'effectuent dans le frame sélectionné. Omettez le sélecteur pour revenir au frame de niveau supérieur. Les iframes doivent provenir de la même origine que la page principale.
+Oui. Utilisez l'outil `switch_frame` pour basculer dans une iframe à l'aide d'un sélecteur CSS ou XPath. Tous les appels suivants à `click_element`, `set_value` et `get_elements` s'exécutent dans le frame sélectionné. Omettez le sélecteur pour revenir au frame de niveau supérieur. Les iframes doivent provenir de la même origine que la page principale.
 
 ### Puis-je exécuter du JavaScript personnalisé ?
 
@@ -127,10 +127,10 @@ Oui. Utilisez d'abord `launch_chrome` (ouvre Chrome avec le débogage à distanc
 
 ### Puis-je travailler avec plusieurs onglets ?
 
-Oui. Utilisez `get_tabs` pour lister les onglets ouverts et `switch_tab` pour en sélectionner un en particulier :
+Oui. Utilisez `get_tabs` pour lister les onglets ouverts et `switch_tab` pour passer à un onglet spécifique :
 
 "Récupère tous les onglets ouverts"
-"Bascule vers l'onglet à l'index 1"
+"Passe à l'onglet d'index 1"
 
 ## Automatisation mobile
 
@@ -138,9 +138,9 @@ Oui. Utilisez `get_tabs` pour lister les onglets ouverts et `switch_tab` pour en
 
 Utilisez `start_session` avec la plateforme appropriée :
 
-"Démarre mon application iOS située à /path/to/MyApp.app sur le simulateur iPhone 15"
+"Démarre mon application iOS située dans /path/to/MyApp.app sur le simulateur iPhone 15"
 
-"Démarre mon application Android à /path/to/app.apk sur l'émulateur Pixel 7"
+"Démarre mon application Android située dans /path/to/app.apk sur l'émulateur Pixel 7"
 
 Ou pour une application déjà installée :
 
@@ -150,7 +150,7 @@ Ou pour une application déjà installée :
 
 Oui ! Pour les appareils réels, vous aurez besoin de l'UDID de l'appareil :
 
--   **iOS :** Connectez l'appareil, ouvrez le Finder, cliquez sur l'appareil, puis cliquez sur le numéro de série pour afficher l'UDID
+-   **iOS :** Connectez l'appareil, ouvrez le Finder, cliquez sur l'appareil, puis sur le numéro de série pour afficher l'UDID
 -   **Android :** Exécutez `adb devices` dans le terminal
 
 Puis demandez :
@@ -167,9 +167,9 @@ Par défaut, les autorisations sont accordées automatiquement (`autoGrantPermis
 
 -   **Tap :** Toucher des éléments ou des coordonnées (`tap_element`)
 -   **Swipe :** Balayer vers le haut, le bas, la gauche ou la droite (`swipe`)
--   **Glisser-déposer :** Faire glisser d'un élément vers un autre ou vers des coordonnées (`drag_and_drop`)
+-   **Glisser-déposer :** Faire glisser un élément vers un autre ou vers des coordonnées (`drag_and_drop`)
 
-Remarque : `long_press` est disponible via `execute_script` avec les commandes mobiles Appium.
+Remarque : `long_press` est disponible via `execute_script` avec les commandes mobiles d'Appium.
 
 ### Comment faire défiler dans les applications mobiles ?
 
@@ -190,7 +190,7 @@ Oui :
 Pour les applications avec des webviews, vous pouvez changer de contexte :
 
 "Récupère les contextes disponibles"
-"Bascule vers le contexte webview"
+"Passe au contexte webview"
 "Reviens au contexte natif"
 
 ### Puis-je exécuter des commandes mobiles Appium ?
@@ -198,12 +198,12 @@ Pour les applications avec des webviews, vous pouvez changer de contexte :
 Oui ! Utilisez l'outil `execute_script` :
 
 ```text
-Execute script "mobile: pressKey" with args [{ keycode: 4 }]  // Appuie sur RETOUR sur Android
+Execute script "mobile: pressKey" with args [{ keycode: 4 }]  // Appuie sur RETOUR sous Android
 Execute script "mobile: activateApp" with args [{ bundleId: "com.example.app" }]
 Execute script "mobile: terminateApp" with args [{ bundleId: "com.example.app" }]
 ```
 
-## Sélection des éléments
+## Sélection d'éléments
 
 ### Comment l'assistant IA sait-il avec quel élément interagir ?
 
@@ -211,12 +211,12 @@ Il utilise la ressource `wdio://session/current/elements` ou l'outil `get_elemen
 
 ### Que faire s'il y a trop d'éléments sur la page ?
 
-Utilisez la pagination pour gérer de grandes listes d'éléments :
+Utilisez la pagination pour gérer de longues listes d'éléments :
 
 "Récupère les 20 premiers éléments"
 "Récupère les éléments avec un offset de 20 et une limite de 20"
 
-La réponse inclut `total`, `showing` et `hasMore` pour faciliter la navigation parmi les éléments.
+La réponse inclut `total`, `showing` et `hasMore` pour vous aider à parcourir les éléments.
 
 ### Que faire si Claude clique sur le mauvais élément ?
 
@@ -253,7 +253,7 @@ Non. Le serveur MCP utilise un modèle à session unique. Une seule session de n
 Cela dépend du type de session et des paramètres :
 
 -   **Navigateur :** Le navigateur se ferme complètement
--   **Mobile avec `noReset: false` :** L'application est arrêtée
+-   **Mobile avec `noReset: false` :** L'application se termine
 -   **Mobile avec `noReset: true` ou sans `appPath` :** L'application reste ouverte (la session se détache automatiquement)
 
 ### Puis-je conserver l'état de l'application entre les sessions ?
@@ -262,39 +262,39 @@ Oui ! Utilisez l'option `noReset` :
 
 "Démarre mon application avec noReset activé"
 
-Cela conserve l'état de connexion, les préférences et les autres données de l'application.
+Cela préserve l'état de connexion, les préférences et les autres données de l'application.
 
 ### Quelle est la différence entre fermer et détacher ?
 
--   **Fermer :** Arrête complètement le navigateur ou l'application
+-   **Fermer :** Termine complètement le navigateur ou l'application
 -   **Détacher :** Déconnecte l'automatisation mais laisse le navigateur ou l'application en cours d'exécution
 
 Le détachement est utile lorsque vous souhaitez inspecter manuellement l'état après l'automatisation.
 
-### Ma session expire sans cesse pendant le débogage
+### Ma session expire constamment pendant le débogage
 
 Augmentez le délai d'expiration des commandes :
 
 "Démarre mon application avec un newCommandTimeout de 300 secondes"
 
-La valeur par défaut est de 300 secondes. Pour de très longues sessions de débogage, essayez 600 secondes.
+La valeur par défaut est de 300 secondes. Pour les sessions de débogage très longues, essayez 600 secondes.
 
 ## Dépannage
 
-### Erreur "Session not found"
+### Erreur « Session not found »
 
 Cela signifie qu'aucune session active n'existe. Démarrez d'abord une session de navigateur ou d'application :
 
 "Démarre Chrome et navigue vers google.com"
 
-### Erreur "Element not found"
+### Erreur « Element not found »
 
-L'élément n'est peut-être pas visible ou possède un sélecteur différent. Essayez de :
+L'élément n'est peut-être pas visible ou possède un sélecteur différent. Essayez :
 
-1. Demander d'abord à Claude de récupérer tous les éléments visibles
-2. Fournir un sélecteur plus précis
-3. Attendre que la page ou l'application soit entièrement chargée
-4. Utiliser `inViewportOnly: false` pour trouver les éléments hors écran
+1. De demander d'abord à Claude de récupérer tous les éléments visibles
+2. De fournir un sélecteur plus précis
+3. D'attendre que la page ou l'application soit entièrement chargée
+4. D'utiliser `inViewportOnly: false` pour trouver les éléments hors écran
 
 ### Le navigateur ne démarre pas
 
@@ -302,7 +302,7 @@ L'élément n'est peut-être pas visible ou possède un sélecteur différent. E
 2. Vérifiez si un autre processus utilise le port de débogage (9222)
 3. Essayez le mode headless
 
-### Échec de la connexion à Appium
+### La connexion à Appium a échoué
 
 C'est le problème le plus courant lors du démarrage de l'automatisation mobile.
 
@@ -312,11 +312,11 @@ C'est le problème le plus courant lors du démarrage de l'automatisation mobile
 4. Assurez-vous que les pilotes sont installés : `appium driver list --installed`
 
 :::tip
-Le serveur MCP nécessite qu'Appium soit en cours d'exécution avant de démarrer des sessions mobiles. Assurez-vous de démarrer Appium en premier :
+Le serveur MCP nécessite qu'Appium soit en cours d'exécution avant de démarrer des sessions mobiles. Veillez à démarrer Appium au préalable :
 ```sh
 appium
 ```
-Les futures versions pourraient inclure une gestion automatique du service Appium.
+Les versions futures pourraient inclure une gestion automatique du service Appium.
 :::
 
 ### Le simulateur iOS ne démarre pas
@@ -338,31 +338,31 @@ Les futures versions pourraient inclure une gestion automatique du service Appiu
 2. Pour le navigateur, essayez une autre page (certaines pages bloquent les captures d'écran)
 3. Consultez les journaux de Claude Desktop pour détecter des erreurs
 
-Les captures d'écran sont automatiquement compressées à 1 Mo maximum ; les grandes captures fonctionneront donc, mais leur qualité pourra être réduite.
+Les captures d'écran sont automatiquement compressées à 1 Mo maximum ; les grandes captures fonctionneront donc, mais peuvent être de moindre qualité.
 
 ## Performances
 
 ### Pourquoi l'automatisation mobile est-elle lente ?
 
 L'automatisation mobile implique :
-1. Une communication réseau avec le serveur Appium
+1. La communication réseau avec le serveur Appium
 2. La communication d'Appium avec l'appareil ou le simulateur
 3. Le rendu et la réponse de l'appareil
 
 Conseils pour une automatisation plus rapide :
--   Utilisez des émulateurs/simulateurs plutôt que des appareils réels pour le développement
+-   Utilisez des émulateurs/simulateurs plutôt que des appareils réels pendant le développement
 -   Utilisez des identifiants d'accessibilité plutôt que XPath
 -   Activez `inViewportOnly: true` pour la détection des éléments
 -   Utilisez la pagination (`limit`) pour réduire la consommation de tokens
 
 ### Comment accélérer la détection des éléments ?
 
-Le serveur MCP optimise déjà la détection des éléments en analysant le code source XML de la page (2 appels HTTP contre plus de 600 pour les requêtes d'éléments traditionnelles). Conseils supplémentaires :
+Le serveur MCP optimise déjà la détection des éléments en analysant la source XML de la page (2 appels HTTP contre plus de 600 pour les requêtes d'éléments traditionnelles). Conseils supplémentaires :
 
 -   Définissez `inViewportOnly: true` pour filtrer les éléments hors écran
 -   Définissez `includeContainers: false` (par défaut)
 -   Utilisez `limit` et `offset` pour la pagination sur les grands écrans
--   Utilisez des sélecteurs spécifiques au lieu de rechercher tous les éléments
+-   Utilisez des sélecteurs spécifiques plutôt que de rechercher tous les éléments
 
 ### Les captures d'écran sont lentes ou échouent
 
@@ -371,16 +371,16 @@ Les captures d'écran sont automatiquement optimisées :
 - Compressées pour rester sous 1 Mo
 - Converties en JPEG si le PNG est trop volumineux
 
-Cette optimisation réduit le temps de traitement et garantit que Claude peut gérer l'image.
+Cette optimisation réduit le temps de traitement et garantit que Claude peut traiter l'image.
 
 ## Limitations
 
 ### Quelles sont les limitations actuelles ?
 
 -   **Session unique :** Un seul navigateur ou une seule application à la fois
--   **Prise en charge des iframes :** Les iframes de même origine sont prises en charge via `switch_frame` ; les iframes cross-origin ne sont pas accessibles en raison des restrictions de sécurité des navigateurs
+-   **Prise en charge des iframes :** Les iframes de même origine sont prises en charge via `switch_frame` ; les iframes d'origine différente ne sont pas accessibles en raison des restrictions de sécurité des navigateurs
 -   **Téléversement de fichiers :** Non pris en charge directement via les outils
--   **Audio/Vidéo :** Impossible d'interagir avec la lecture multimédia
+-   **Audio/Vidéo :** Impossible d'interagir avec la lecture des médias
 -   **Extensions de navigateur :** Non prises en charge
 
 ### Puis-je l'utiliser pour des tests en production ?
@@ -391,7 +391,7 @@ WebdriverIO MCP est conçu pour l'automatisation interactive assistée par IA. P
 
 ### Mes données sont-elles sécurisées ?
 
-Le serveur MCP s'exécute localement sur votre machine. Toute l'automatisation s'effectue via des connexions locales au navigateur ou à Appium. Aucune donnée n'est envoyée à des serveurs externes au-delà des sites vers lesquels vous naviguez explicitement.
+Le serveur MCP s'exécute localement sur votre machine. Toute l'automatisation passe par des connexions locales au navigateur ou à Appium. Aucune donnée n'est envoyée à des serveurs externes au-delà des sites vers lesquels vous naviguez explicitement.
 
 Lors de l'utilisation du mode de transport HTTP (`--http`), le serveur n'accepte par défaut que les connexions provenant de `localhost` ; utilisez `--allowedHosts` et `--allowedOrigins` pour contrôler l'accès. Consultez [Transport](./transport) pour plus de détails.
 
@@ -406,7 +406,7 @@ Claude peut voir le contenu de la page et interagir avec les éléments, mais :
 
 ### Comment puis-je contribuer ?
 
-Visitez le [dépôt GitHub](https://github.com/webdriverio/mcp) pour :
+Rendez-vous sur le [dépôt GitHub](https://github.com/webdriverio/mcp) pour :
 -   Signaler des bugs
 -   Demander des fonctionnalités
 -   Soumettre des pull requests

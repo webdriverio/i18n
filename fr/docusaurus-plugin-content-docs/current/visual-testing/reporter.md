@@ -1,16 +1,16 @@
 ---
 id: visual-reporter
 title: Rapporteur visuel
-description: "Générez et parcourez le Rapporteur visuel pour examiner les différences des tests visuels à partir de la sortie JSON de @wdio/visual-service, en local ou en CI."
+description: "Générez et parcourez le Visual Reporter pour examiner les différences des tests visuels à partir de la sortie JSON de @wdio/visual-service, en local ou en CI."
 ---
 
-Le Rapporteur visuel (Visual Reporter) est une nouvelle fonctionnalité introduite dans `@wdio/visual-service`, à partir de la version [v5.2.0](https://github.com/webdriverio/visual-testing/releases/tag/%40wdio%2Fvisual-service%405.2.0). Ce rapporteur permet aux utilisateurs de visualiser les rapports de différences JSON générés par le service de tests visuels et de les transformer en un format lisible par l'humain. Il aide les équipes à mieux analyser et gérer les résultats des tests visuels en fournissant une interface graphique pour examiner la sortie.
+Le Visual Reporter est une nouvelle fonctionnalité introduite dans le `@wdio/visual-service`, à partir de la version [v5.2.0](https://github.com/webdriverio/visual-testing/releases/tag/%40wdio%2Fvisual-service%405.2.0). Ce rapporteur permet aux utilisateurs de visualiser les rapports de différences JSON générés par le service de tests visuels et de les transformer en un format lisible par l'humain. Il aide les équipes à mieux analyser et gérer les résultats des tests visuels en fournissant une interface graphique pour examiner les résultats.
 
-Pour utiliser cette fonctionnalité, assurez-vous de disposer de la configuration requise pour générer le fichier `output.json` nécessaire. Ce document vous guidera dans la configuration, l'exécution et la compréhension du Rapporteur visuel.
+Pour utiliser cette fonctionnalité, assurez-vous de disposer de la configuration requise pour générer le fichier `output.json` nécessaire. Ce document vous guidera dans la mise en place, l'exécution et la compréhension du Visual Reporter.
 
 # Prérequis
 
-Avant d'utiliser le Rapporteur visuel, assurez-vous d'avoir configuré le service de tests visuels pour générer des fichiers de rapport JSON :
+Avant d'utiliser le Visual Reporter, assurez-vous d'avoir configuré le service de tests visuels pour générer des fichiers de rapport JSON :
 
 ```ts
 export const config = {
@@ -19,7 +19,7 @@ export const config = {
         [
             "visual",
             {
-                createJsonReportFiles: true, // Génère le fichier output.json
+                createJsonReportFiles: true, // Generates the output.json file
             },
         ],
     ],
@@ -30,7 +30,7 @@ Pour des instructions de configuration plus détaillées, consultez la [document
 
 # Installation
 
-Pour installer le Rapporteur visuel, ajoutez-le comme dépendance de développement à votre projet avec npm :
+Pour installer le Visual Reporter, ajoutez-le comme dépendance de développement à votre projet à l'aide de npm :
 
 ```bash
 npm install @wdio/visual-reporter --save-dev
@@ -54,12 +54,12 @@ npx wdio-visual-reporter --jsonOutput=<path-to-output.json> --reportFolder=<path
 
 #### Options requises :
 
--   `--jsonOutput` : Le chemin relatif vers le fichier `output.json` généré par le service de tests visuels. Ce chemin est relatif au répertoire depuis lequel vous exécutez la commande.
--   `--reportFolder` : Le répertoire relatif où le rapport généré sera stocké. Ce chemin est également relatif au répertoire depuis lequel vous exécutez la commande.
+-   `--jsonOutput` : le chemin relatif vers le fichier `output.json` généré par le service de tests visuels. Ce chemin est relatif au répertoire à partir duquel vous exécutez la commande.
+-   `--reportFolder` : le répertoire relatif dans lequel le rapport généré sera stocké. Ce chemin est également relatif au répertoire à partir duquel vous exécutez la commande.
 
 #### Options facultatives :
 
--   `--logLevel` : Définissez cette option sur `debug` pour obtenir une journalisation détaillée, particulièrement utile pour le dépannage.
+-   `--logLevel` : définissez-la sur `debug` pour obtenir une journalisation détaillée, particulièrement utile pour le dépannage.
 
 #### Exemple
 
@@ -141,17 +141,17 @@ Vous pouvez maintenant afficher le rapport en ouvrant l'URL fournie dans votre n
 
 # Démo du rapport
 
-Pour voir un exemple de l'apparence du rapport, visitez notre [démo sur GitHub Pages](https://webdriverio.github.io/visual-testing/).
+Pour voir un exemple de l'apparence du rapport, consultez notre [démo sur GitHub Pages](https://webdriverio.github.io/visual-testing/).
 
 # Comprendre le rapport visuel
 
-Le Rapporteur visuel fournit une vue organisée des résultats de vos tests visuels. Pour chaque exécution de test, vous pourrez :
+Le Visual Reporter offre une vue organisée des résultats de vos tests visuels. Pour chaque exécution de test, vous pourrez :
 
 -   Naviguer facilement entre les cas de test et voir les résultats agrégés.
--   Examiner les métadonnées telles que les noms des tests, les navigateurs utilisés et les résultats des comparaisons.
+-   Examiner les métadonnées telles que les noms des tests, les navigateurs utilisés et les résultats de comparaison.
 -   Afficher les images de différences montrant où des différences visuelles ont été détectées.
 
-Cette représentation visuelle simplifie l'analyse des résultats de vos tests, ce qui facilite l'identification et la correction des régressions visuelles.
+Cette représentation visuelle simplifie l'analyse des résultats de vos tests, facilitant l'identification et la correction des régressions visuelles.
 
 # Intégrations CI
 

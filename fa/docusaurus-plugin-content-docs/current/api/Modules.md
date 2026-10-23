@@ -3,22 +3,22 @@ id: modules
 title: ماژول‌ها
 ---
 
-WebdriverIO ماژول‌های مختلفی را در NPM و سایر رجیستری‌ها منتشر می‌کند که می‌توانید از آن‌ها برای ساخت فریمورک اتوماسیون خود استفاده کنید. اطلاعات بیشتر در مورد انواع راه‌اندازی WebdriverIO را [اینجا](/docs/setuptypes) ببینید.
+WebdriverIO ماژول‌های مختلفی را در NPM و سایر رجیستری‌ها منتشر می‌کند که می‌توانید از آن‌ها برای ساخت فریم‌ورک اتوماسیون خود استفاده کنید. مستندات بیشتر درباره انواع راه‌اندازی WebdriverIO را [اینجا](/docs/setuptypes) ببینید.
 
 ## `webdriver` و `devtools`
 
-بسته‌های پروتکل ([`webdriver`](https://www.npmjs.com/package/webdriver) و [`devtools`](https://www.npmjs.com/package/devtools)) یک کلاس با توابع استاتیک زیر را ارائه می‌دهند که به شما امکان ایجاد جلسات را می‌دهند:
+پکیج‌های پروتکل ([`webdriver`](https://www.npmjs.com/package/webdriver) و [`devtools`](https://www.npmjs.com/package/devtools)) یک کلاس با توابع استاتیک زیر ارائه می‌دهند که به شما امکان شروع نشست‌ها را می‌دهند:
 
 #### `newSession(options, modifier, userPrototype, customCommandWrapper)`
 
-یک جلسه جدید با قابلیت‌های خاص را شروع می‌کند. بر اساس پاسخ جلسه، دستورات از پروتکل‌های مختلف ارائه می‌شوند.
+یک نشست جدید با قابلیت‌های (capabilities) مشخص شروع می‌کند. بر اساس پاسخ نشست، دستورات از پروتکل‌های مختلف ارائه خواهند شد.
 
 ##### پارامترها
 
 - `options`: [گزینه‌های WebDriver](/docs/configuration#webdriver-options)
-- `modifier`: تابعی که اجازه می‌دهد نمونه کلاینت را قبل از برگرداندن تغییر دهید
-- `userPrototype`: اشیاء خصوصیات که اجازه می‌دهد پروتوتایپ نمونه را گسترش دهید
-- `customCommandWrapper`: تابعی که اجازه می‌دهد عملکرد را در اطراف فراخوانی‌های تابع بسته‌بندی کنید
+- `modifier`: تابعی که امکان تغییر نمونه کلاینت را قبل از بازگردانده شدن آن فراهم می‌کند
+- `userPrototype`: شیء ویژگی‌ها که امکان گسترش پروتوتایپ نمونه را فراهم می‌کند
+- `customCommandWrapper`: تابعی که امکان پوشاندن عملکرد حول فراخوانی‌های تابع را فراهم می‌کند
 
 ##### مقدار بازگشتی
 
@@ -34,14 +34,14 @@ const client = await WebDriver.newSession({
 
 #### `attachToSession(attachInstance, modifier, userPrototype, customCommandWrapper)`
 
-به یک جلسه WebDriver یا DevTools در حال اجرا متصل می‌شود.
+به یک نشست WebDriver یا DevTools در حال اجرا متصل می‌شود.
 
 ##### پارامترها
 
-- `attachInstance`: نمونه‌ای برای اتصال به یک جلسه یا حداقل یک شیء با ویژگی `sessionId` (مثلاً `{ sessionId: 'xxx' }`)
-- `modifier`: تابعی که اجازه می‌دهد نمونه کلاینت را قبل از برگرداندن تغییر دهید
-- `userPrototype`: اشیاء خصوصیات که اجازه می‌دهد پروتوتایپ نمونه را گسترش دهید
-- `customCommandWrapper`: تابعی که اجازه می‌دهد عملکرد را در اطراف فراخوانی‌های تابع بسته‌بندی کنید
+- `attachInstance`: نمونه‌ای که نشست باید به آن متصل شود یا حداقل یک شیء با ویژگی `sessionId` (مثلاً `{ sessionId: 'xxx' }`)
+- `modifier`: تابعی که امکان تغییر نمونه کلاینت را قبل از بازگردانده شدن آن فراهم می‌کند
+- `userPrototype`: شیء ویژگی‌ها که امکان گسترش پروتوتایپ نمونه را فراهم می‌کند
+- `customCommandWrapper`: تابعی که امکان پوشاندن عملکرد حول فراخوانی‌های تابع را فراهم می‌کند
 
 ##### مقدار بازگشتی
 
@@ -56,11 +56,11 @@ const clonedClient = await WebDriver.attachToSession(client)
 
 #### `reloadSession(instance)`
 
-جلسه مشخص شده را با نمونه ارائه شده بازنشانی می‌کند.
+یک نشست را بر اساس نمونه ارائه‌شده مجدداً بارگذاری می‌کند.
 
 ##### پارامترها
 
-- `instance`: نمونه بسته برای بازنشانی
+- `instance`: نمونه پکیج برای بارگذاری مجدد
 
 ##### مثال
 
@@ -71,16 +71,16 @@ await WebDriver.reloadSession(client)
 
 ## `webdriverio`
 
-مشابه بسته‌های پروتکل (`webdriver` و `devtools`)، همچنین می‌توانید از API‌های بسته WebdriverIO برای مدیریت جلسات استفاده کنید. API‌ها را می‌توان با استفاده از `import { remote, attach, multiremote } from 'webdriverio` وارد کرد و شامل عملکردهای زیر است:
+مشابه پکیج‌های پروتکل (`webdriver` و `devtools`)، می‌توانید از APIهای پکیج WebdriverIO نیز برای مدیریت نشست‌ها استفاده کنید. این APIها را می‌توان با استفاده از `import { remote, attach, multiRemote } from 'webdriverio` وارد کرد و شامل عملکردهای زیر هستند:
 
 #### `remote(options, modifier)`
 
-یک جلسه WebdriverIO را شروع می‌کند. نمونه شامل تمام دستورات مانند بسته پروتکل است اما با توابع ترتیب بالاتر، به [مستندات API](/docs/api) مراجعه کنید.
+یک نشست WebdriverIO را شروع می‌کند. این نمونه شامل تمام دستورات پکیج پروتکل است، اما با توابع مرتبه بالاتر اضافی، [مستندات API](/docs/api) را ببینید.
 
 ##### پارامترها
 
 - `options`: [گزینه‌های WebdriverIO](/docs/configuration#webdriverio)
-- `modifier`: تابعی که اجازه می‌دهد نمونه کلاینت را قبل از برگرداندن تغییر دهید
+- `modifier`: تابعی که امکان تغییر نمونه کلاینت را قبل از بازگردانده شدن آن فراهم می‌کند
 
 ##### مقدار بازگشتی
 
@@ -98,11 +98,11 @@ const browser = await remote({
 
 #### `attach(attachOptions)`
 
-به یک جلسه WebdriverIO در حال اجرا متصل می‌شود.
+به یک نشست WebdriverIO در حال اجرا متصل می‌شود.
 
 ##### پارامترها
 
-- `attachOptions`: نمونه‌ای برای اتصال به یک جلسه یا حداقل یک شیء با ویژگی `sessionId` (مثلاً `{ sessionId: 'xxx' }`)
+- `attachOptions`: نمونه‌ای که نشست باید به آن متصل شود یا حداقل یک شیء با ویژگی `sessionId` (مثلاً `{ sessionId: 'xxx' }`)
 
 ##### مقدار بازگشتی
 
@@ -117,13 +117,13 @@ const browser = await remote({...})
 const newBrowser = await attach(browser)
 ```
 
-#### `multiremote(multiremoteOptions)`
+#### `multiRemote(multiRemoteOptions)`
 
-یک نمونه multiremote را آغاز می‌کند که به شما امکان می‌دهد چندین جلسه را در یک نمونه واحد کنترل کنید. مثال‌های [multiremote](https://github.com/webdriverio/webdriverio/tree/main/examples/multiremote) ما را برای موارد استفاده مشخص بررسی کنید.
+یک نمونه multi-remote را راه‌اندازی می‌کند که به شما امکان می‌دهد چندین نشست را در یک نمونه واحد کنترل کنید. برای موارد استفاده عملی، [مثال‌های multi-remote](https://github.com/webdriverio/webdriverio/tree/main/examples/multiremote) ما را بررسی کنید.
 
 ##### پارامترها
 
-- `multiremoteOptions`: یک شیء با کلیدهایی که نام مرورگر را نشان می‌دهند و [گزینه‌های WebdriverIO](/docs/configuration#webdriverio) آنها.
+- `multiRemoteOptions`: یک شیء با کلیدهایی که نام مرورگر و [گزینه‌های WebdriverIO](/docs/configuration#webdriverio) آن‌ها را نشان می‌دهند.
 
 ##### مقدار بازگشتی
 
@@ -132,9 +132,9 @@ const newBrowser = await attach(browser)
 ##### مثال
 
 ```js
-import { multiremote } from 'webdriverio'
+import { multiRemote } from 'webdriverio'
 
-const matrix = await multiremote({
+const matrix = await multiRemote({
     myChromeBrowser: {
         capabilities: { browserName: 'chrome' }
     },
@@ -149,9 +149,105 @@ console.log(await matrix.getTitle())
 // returns ['Google', 'JSON']
 ```
 
+#### `Key`
+
+شیئی شامل ثابت‌های کاراکترهای ویژه برای استفاده با دستور [`browser.keys`](/docs/api/browser/keys). این ثابت‌ها کلیدهای ویژه‌ای را نشان می‌دهند که می‌توان به مرورگر ارسال کرد، مانند `Enter`، `Tab`، `Escape`، کلیدهای جهت‌نما، کلیدهای تابعی و موارد دیگر.
+
+##### مثال
+
+```js
+import { Key } from 'webdriverio'
+
+// فشردن کلید Enter
+await browser.keys(Key.Enter)
+
+// استفاده از Ctrl+A برای انتخاب همه (به صورت چندسکویی کار می‌کند)
+await browser.keys([Key.Ctrl, 'a'])
+
+// پیمایش با کلیدهای جهت‌نما
+await browser.keys([Key.ArrowDown, Key.ArrowDown, Key.Enter])
+```
+
+##### کلیدهای موجود
+
+کلیدهای ویژه زیر از طریق شیء `Key` در دسترس هستند:
+
+**کلیدهای اصلاح‌کننده (Modifier):**
+
+| ثابت | توضیحات |
+|----------|-------------|
+| `Key.Ctrl` | کلید کنترل چندسکویی (Command در Mac، Control در Windows/Linux) |
+| `Key.Control` | کلید Control |
+| `Key.Shift` | کلید Shift |
+| `Key.Alt` | کلید Alt |
+| `Key.Command` | کلید Command (Mac) |
+| `Key.NULL` | کلید Null/رهاسازی — تمام کلیدهای اصلاح‌کننده نگه‌داشته‌شده فعلی را رها می‌کند |
+
+**کلیدهای پیمایش:**
+
+| ثابت | توضیحات |
+|----------|-------------|
+| `Key.Cancel` | کلید Cancel |
+| `Key.Help` | کلید Help |
+| `Key.Backspace` | کلید Backspace |
+| `Key.Tab` | کلید Tab |
+| `Key.Clear` | کلید Clear |
+| `Key.Return` | کلید Return |
+| `Key.Enter` | کلید Enter |
+| `Key.Pause` | کلید Pause |
+| `Key.Escape` | کلید Escape |
+| `Key.Space` | کلید Space |
+| `Key.PageUp` | کلید Page Up |
+| `Key.PageDown` | کلید Page Down |
+| `Key.End` | کلید End |
+| `Key.Home` | کلید Home |
+| `Key.ArrowLeft` | کلید جهت‌نمای چپ |
+| `Key.ArrowUp` | کلید جهت‌نمای بالا |
+| `Key.ArrowRight` | کلید جهت‌نمای راست |
+| `Key.ArrowDown` | کلید جهت‌نمای پایین |
+| `Key.Insert` | کلید Insert |
+| `Key.Delete` | کلید Delete |
+
+**کلیدهای کاراکتری:**
+
+| ثابت | توضیحات |
+|----------|-------------|
+| `Key.Semicolon` | کلید نقطه‌ویرگول (Semicolon) |
+| `Key.Equals` | کلید مساوی (Equals) |
+
+**کلیدهای Numpad:**
+
+| ثابت | توضیحات |
+|----------|-------------|
+| `Key.Numpad0` - `Key.Numpad9` | اعداد ۰ تا ۹ در Numpad |
+| `Key.Multiply` | ضرب در Numpad |
+| `Key.Add` | جمع در Numpad |
+| `Key.Separator` | جداکننده در Numpad |
+| `Key.Subtract` | تفریق در Numpad |
+| `Key.Decimal` | ممیز اعشار در Numpad |
+| `Key.Divide` | تقسیم در Numpad |
+
+**کلیدهای تابعی:**
+
+| ثابت | توضیحات |
+|----------|-------------|
+| `Key.F1` - `Key.F12` | کلیدهای تابعی F1 تا F12 |
+
+**سایر کلیدها:**
+
+| ثابت | توضیحات |
+|----------|-------------|
+| `Key.ZenkakuHankaku` | کلید Zenkaku/Hankaku (ژاپنی) |
+
+:::info کلیدهای اصلاح‌کننده چندسکویی
+
+ثابت `Key.Ctrl` روشی راحت برای استفاده از کلید اصلاح‌کننده "control" در سیستم‌عامل‌های مختلف فراهم می‌کند. در macOS به کلید `Command` نگاشت می‌شود، در حالی که در Windows و Linux به کلید `Control` نگاشت می‌شود. این ویژگی هنگام نوشتن تست‌هایی که باید در چندین پلتفرم کار کنند مفید است، مثلاً برای عملیات انتخاب همه (`Ctrl+A`)، کپی (`Ctrl+C`) یا چسباندن (`Ctrl+V`).
+
+:::
+
 ## `@wdio/cli`
 
-به جای فراخوانی دستور `wdio`، می‌توانید اجراکننده تست را به عنوان ماژول وارد کرده و آن را در یک محیط دلخواه اجرا کنید. برای این کار، باید بسته `@wdio/cli` را به عنوان ماژول وارد کنید، مانند این:
+به جای فراخوانی دستور `wdio`، می‌توانید اجراکننده تست را به عنوان ماژول وارد کرده و آن را در یک محیط دلخواه اجرا کنید. برای این کار، باید پکیج `@wdio/cli` را به عنوان ماژول به این صورت وارد کنید:
 
 <Tabs
   defaultValue="esm"
@@ -176,16 +272,16 @@ const Launcher = require('@wdio/cli').default
 </TabItem>
 </Tabs>
 
-پس از آن، یک نمونه از لانچر ایجاد کنید و تست را اجرا کنید.
+پس از آن، یک نمونه از launcher ایجاد کرده و تست را اجرا کنید.
 
 #### `Launcher(configPath, opts)`
 
-سازنده کلاس `Launcher` انتظار URL فایل پیکربندی و یک شیء `opts` با تنظیماتی که مقادیر در پیکربندی را بازنویسی خواهند کرد، دارد.
+سازنده کلاس `Launcher` آدرس فایل پیکربندی و یک شیء `opts` با تنظیماتی که تنظیمات موجود در فایل پیکربندی را بازنویسی می‌کنند، انتظار دارد.
 
 ##### پارامترها
 
-- `configPath`: مسیر به `wdio.conf.js` برای اجرا
-- `opts`: آرگومان‌هایی ([`<RunCommandArguments>`](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/types.ts#L51-L77)) برای بازنویسی مقادیر از فایل پیکربندی
+- `configPath`: مسیر فایل `wdio.conf.js` برای اجرا
+- `opts`: آرگومان‌ها ([`<RunCommandArguments>`](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-cli/src/types.ts#L51-L77)) برای بازنویسی مقادیر فایل پیکربندی
 
 ##### مثال
 
@@ -203,34 +299,34 @@ wdio.run().then((exitCode) => {
 })
 ```
 
-دستور `run` یک [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) را برمی‌گرداند. اگر تست‌ها با موفقیت اجرا شدند یا شکست خوردند، حل می‌شود، و اگر لانچر نتوانست تست‌ها را اجرا کند، رد می‌شود.
+دستور `run` یک [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) برمی‌گرداند. اگر تست‌ها با موفقیت اجرا شوند یا شکست بخورند، resolve می‌شود و اگر launcher نتواند اجرای تست‌ها را شروع کند، reject می‌شود.
 
 ## `@wdio/browser-runner`
 
-هنگام اجرای تست‌های واحد یا کامپوننت با استفاده از [اجراکننده مرورگر](/docs/runner#browser-runner) WebdriverIO، می‌توانید ابزارهای موک‌سازی را برای تست‌های خود وارد کنید، مثلاً:
+هنگام اجرای تست‌های واحد یا کامپوننت با استفاده از [browser runner](/docs/runner#browser-runner) در WebdriverIO، می‌توانید ابزارهای mock کردن را برای تست‌های خود وارد کنید، مثلاً:
 
 ```ts
 import { fn, spyOn, mock, unmock } from '@wdio/browser-runner'
 ```
 
-صادرات نام‌گذاری شده زیر در دسترس هستند:
+خروجی‌های نام‌دار زیر در دسترس هستند:
 
 #### `fn`
 
-تابع موک، اطلاعات بیشتر در [مستندات رسمی Vitest](https://vitest.dev/api/mock.html#mock-functions) را ببینید.
+تابع mock، اطلاعات بیشتر را در [مستندات رسمی Vitest](https://vitest.dev/api/mock.html#mock-functions) ببینید.
 
 #### `spyOn`
 
-تابع جاسوسی، اطلاعات بیشتر در [مستندات رسمی Vitest](https://vitest.dev/api/mock.html#mock-functions) را ببینید.
+تابع spy، اطلاعات بیشتر را در [مستندات رسمی Vitest](https://vitest.dev/api/mock.html#mock-functions) ببینید.
 
 #### `mock`
 
-روشی برای موک کردن فایل یا ماژول وابستگی.
+متدی برای mock کردن فایل یا ماژول وابستگی.
 
 ##### پارامترها
 
-- `moduleName`: یا یک مسیر نسبی به فایلی که باید موک شود یا یک نام ماژول.
-- `factory`: تابعی برای برگرداندن مقدار موک شده (اختیاری)
+- `moduleName`: یا یک مسیر نسبی به فایلی که باید mock شود یا نام یک ماژول.
+- `factory`: تابعی برای بازگرداندن مقدار mock شده (اختیاری)
 
 ##### مثال
 
@@ -250,11 +346,11 @@ mock('lodash', (origModuleFactory) => {
 
 #### `unmock`
 
-لغو موک وابستگی که در دایرکتوری موک دستی (`__mocks__`) تعریف شده است.
+وابستگی‌ای را که در دایرکتوری mock دستی (`__mocks__`) تعریف شده است، از حالت mock خارج می‌کند.
 
 ##### پارامترها
 
-- `moduleName`: نام ماژولی که باید از حالت موک خارج شود.
+- `moduleName`: نام ماژولی که باید از حالت mock خارج شود.
 
 ##### مثال
 

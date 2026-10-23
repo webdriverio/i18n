@@ -1,19 +1,20 @@
 ---
 id: mocking
-title: مسدودسازی
+title: ماک کردن
+description: "ماک کردن توابع، ماژول‌ها و درخواست‌های شبکه در تست‌های کامپوننت browser runner با استفاده از fn، spyOn و mock از @wdio/browser-runner."
 ---
 
-هنگام نوشتن تست‌ها، تنها مسئله زمان است قبل از اینکه نیاز داشته باشید نسخه "جعلی" از یک سرویس داخلی یا خارجی ایجاد کنید. این معمولاً به عنوان مسدودسازی شناخته می‌شود. WebdriverIO توابع کمکی را برای کمک به شما ارائه می‌دهد. شما می‌توانید `import { fn, spyOn, mock, unmock } from '@wdio/browser-runner'` را برای دسترسی به آن وارد کنید. اطلاعات بیشتر در مورد ابزارهای مسدودسازی موجود در [مستندات API](/docs/api/modules#wdiobrowser-runner) ببینید.
+هنگام نوشتن تست‌ها، دیر یا زود نیاز پیدا می‌کنید که یک نسخه «جعلی» از یک سرویس داخلی — یا خارجی — ایجاد کنید. این کار معمولاً ماک کردن (mocking) نامیده می‌شود. WebdriverIO توابع کمکی برای این کار فراهم می‌کند. برای دسترسی به آن‌ها می‌توانید از `import { fn, spyOn, mock, unmock } from '@wdio/browser-runner'` استفاده کنید. اطلاعات بیشتر درباره ابزارهای ماک کردن موجود را در [مستندات API](/docs/api/modules#wdiobrowser-runner) ببینید.
 
 ## توابع
 
-برای اینکه بتوانید بررسی کنید آیا توابع خاصی به عنوان بخشی از تست‌های مؤلفه شما فراخوانی شده‌اند، ماژول `@wdio/browser-runner` ابزارهای اولیه مسدودسازی را صادر می‌کند که می‌توانید از آن‌ها استفاده کنید. شما می‌توانید این روش‌ها را از طریق زیر وارد کنید:
+برای اعتبارسنجی اینکه آیا handlerهای تابع خاصی به عنوان بخشی از تست‌های کامپوننت شما فراخوانی می‌شوند یا خیر، ماژول `@wdio/browser-runner` ابزارهای پایه ماک کردن را export می‌کند که می‌توانید از آن‌ها برای تست فراخوانی شدن این توابع استفاده کنید. می‌توانید این متدها را به این صورت import کنید:
 
 ```js
 import { fn, spyOn } from '@wdio/browser-runner'
 ```
 
-با وارد کردن `fn` می‌توانید یک تابع جاسوس (مسدودساز) برای پیگیری اجرای آن ایجاد کنید و با `spyOn` یک متد را روی یک شیء ایجاد شده پیگیری کنید.
+با import کردن `fn` می‌توانید یک تابع spy (ماک) ایجاد کنید تا اجرای آن را ردیابی کنید و با `spyOn` یک متد را روی یک شیء از قبل ایجاد شده ردیابی کنید.
 
 <Tabs
   defaultValue="mocks"
@@ -24,7 +25,7 @@ import { fn, spyOn } from '@wdio/browser-runner'
 }>
 <TabItem value="mocks">
 
-نمونه کامل را می‌توانید در مخزن [Component Testing Example](https://github.com/webdriverio/component-testing-examples/blob/main/react-typescript-vite/src/tests/LoginForm.test.tsx) پیدا کنید.
+مثال کامل را می‌توانید در مخزن [Component Testing Example](https://github.com/webdriverio/component-testing-examples/blob/main/react-typescript-vite/src/tests/LoginForm.test.tsx) پیدا کنید.
 
 ```ts
 import React from 'react'
@@ -44,7 +45,7 @@ describe('LoginForm', () => {
         await browser.keys(Key.Enter)
 
         /**
-         * verify the handler was called
+         * بررسی اینکه handler فراخوانی شده است
          */
         expect(onLogin).toBeCalledTimes(1)
         expect(onLogin).toBeCalledWith(expect.equal({
@@ -58,7 +59,7 @@ describe('LoginForm', () => {
 </TabItem>
 <TabItem value="spies">
 
-نمونه کامل را می‌توانید در دایرکتوری [examples](https://github.com/webdriverio/webdriverio/blob/main/examples/wdio/browser-runner/lit.test.js) پیدا کنید.
+مثال کامل را می‌توانید در پوشه [examples](https://github.com/webdriverio/webdriverio/blob/main/examples/wdio/browser-runner/lit.test.js) پیدا کنید.
 
 ```js
 import { expect, $ } from '@wdio/globals'
@@ -95,27 +96,27 @@ describe('Lit Component testing', () => {
 </TabItem>
 </Tabs>
 
-WebdriverIO در اینجا فقط [`@vitest/spy`](https://www.npmjs.com/package/@vitest/spy) را مجدداً صادر می‌کند که یک پیاده‌سازی جاسوس سبک سازگار با Jest است که می‌تواند با تطبیق‌دهنده‌های [`expect`](/docs/api/expect-webdriverio) WebdriverIO استفاده شود. می‌توانید مستندات بیشتری در مورد این توابع مسدودسازی در [صفحه پروژه Vitest](https://vitest.dev/api/mock.html) پیدا کنید.
+WebdriverIO در اینجا صرفاً [`@vitest/spy`](https://www.npmjs.com/package/@vitest/spy) را دوباره export می‌کند که یک پیاده‌سازی سبک spy سازگار با Jest است و می‌توان از آن همراه با matcherهای [`expect`](/docs/api/expect-webdriverio) در WebdriverIO استفاده کرد. مستندات بیشتر درباره این توابع ماک را می‌توانید در [صفحه پروژه Vitest](https://vitest.dev/api/mock.html) پیدا کنید.
 
-البته، شما همچنین می‌توانید هر چارچوب جاسوسی دیگری را نصب و وارد کنید، مانند [SinonJS](https://sinonjs.org/)، تا زمانی که از محیط مرورگر پشتیبانی کند.
+البته، شما می‌توانید هر فریم‌ورک spy دیگری، مانند [SinonJS](https://sinonjs.org/)، را نیز نصب و import کنید، به شرطی که از محیط مرورگر پشتیبانی کند.
 
 ## ماژول‌ها
 
-ماژول‌های محلی را مسدود کنید یا کتابخانه‌های شخص ثالث را که در برخی از کدهای دیگر فراخوانی می‌شوند، مشاهده کنید، این به شما امکان می‌دهد آرگومان‌ها، خروجی یا حتی پیاده‌سازی آن را بازتعریف کنید.
+ماژول‌های محلی را ماک کنید یا کتابخانه‌های شخص ثالث را که در کدهای دیگر فراخوانی می‌شوند زیر نظر بگیرید، تا بتوانید آرگومان‌ها، خروجی را تست کنید یا حتی پیاده‌سازی آن‌ها را دوباره تعریف کنید.
 
-دو روش برای مسدودسازی توابع وجود دارد: یا با ایجاد یک تابع مسدودساز برای استفاده در کد تست، یا نوشتن یک مسدودسازی دستی برای لغو وابستگی ماژول.
+دو روش برای ماک کردن توابع وجود دارد: یا با ایجاد یک تابع ماک برای استفاده در کد تست، یا با نوشتن یک ماک دستی برای بازنویسی یک وابستگی ماژول.
 
-### مسدودسازی واردات فایل
+### ماک کردن Importهای فایل
 
-تصور کنید مؤلفه ما یک متد کمکی را از یک فایل برای مدیریت کلیک وارد می‌کند.
+فرض کنید کامپوننت ما یک متد کمکی را از یک فایل برای مدیریت یک کلیک import می‌کند.
 
 ```js title=utils.js
 export function handleClick () {
-    // handler implementation
+    // پیاده‌سازی handler
 }
 ```
 
-در مؤلفه ما، مدیریت کننده کلیک به صورت زیر استفاده می‌شود:
+در کامپوننت ما، handler کلیک به این صورت استفاده می‌شود:
 
 ```ts title=LitComponent.js
 import { handleClick } from './utils.js'
@@ -128,7 +129,7 @@ export class SimpleButton extends LitElement {
 }
 ```
 
-برای مسدودسازی `handleClick` از `utils.js` می‌توانیم از متد `mock` در تست خود به صورت زیر استفاده کنیم:
+برای ماک کردن `handleClick` از `utils.js` می‌توانیم از متد `mock` در تست خود به این صورت استفاده کنیم:
 
 ```js title=LitComponent.test.js
 import { expect, $ } from '@wdio/globals'
@@ -139,7 +140,7 @@ import { SimpleButton } from './LitComponent.ts'
 import { handleClick } from './utils.js'
 
 /**
- * mock named export "handleClick" of `utils.ts` file
+ * ماک کردن export نام‌گذاری شده "handleClick" از فایل `utils.ts`
  */
 mock('./utils.ts', () => ({
     handleClick: fn()
@@ -154,9 +155,9 @@ describe('Simple Button Component Test', () => {
 })
 ```
 
-### مسدودسازی وابستگی‌ها
+### ماک کردن وابستگی‌ها
 
-فرض کنید کلاسی داریم که کاربران را از API ما دریافت می‌کند. این کلاس از [`axios`](https://github.com/axios/axios) برای فراخوانی API استفاده می‌کند و سپس ویژگی data را که شامل تمام کاربران است برمی‌گرداند:
+فرض کنید کلاسی داریم که کاربران را از API ما دریافت می‌کند. این کلاس از [`axios`](https://github.com/axios/axios) برای فراخوانی API استفاده می‌کند و سپس ویژگی data را که شامل همه کاربران است برمی‌گرداند:
 
 ```js title=users.js
 import axios from 'axios';
@@ -170,18 +171,18 @@ class Users {
 export default Users
 ```
 
-حالا، برای تست این متد بدون اینکه واقعاً با API تماس بگیریم (و بنابراین ایجاد تست‌های کند و شکننده)، می‌توانیم از تابع `mock(...)` برای مسدودسازی خودکار ماژول axios استفاده کنیم.
+اکنون، برای تست این متد بدون اینکه واقعاً به API درخواست بزنیم (و در نتیجه تست‌های کند و شکننده ایجاد کنیم)، می‌توانیم از تابع `mock(...)` برای ماک کردن خودکار ماژول axios استفاده کنیم.
 
-وقتی ماژول را مسدود می‌کنیم، می‌توانیم یک [`mockResolvedValue`](https://vitest.dev/api/mock.html#mockresolvedvalue) برای `.get` ارائه دهیم که داده‌هایی را که می‌خواهیم تست ما در مقابل آن تأیید کند، برگرداند. در واقع، ما می‌گوییم که می‌خواهیم `axios.get('/users.json')` یک پاسخ جعلی برگرداند.
+پس از ماک کردن ماژول، می‌توانیم یک [`mockResolvedValue`](https://vitest.dev/api/mock.html#mockresolvedvalue) برای `.get` فراهم کنیم که داده‌ای را که می‌خواهیم تست ما روی آن assertion انجام دهد برگرداند. در واقع، ما می‌گوییم که می‌خواهیم `axios.get('/users.json')` یک پاسخ جعلی برگرداند.
 
 ```js title=users.test.js
-import axios from 'axios'; // imports defined mock
+import axios from 'axios'; // ماک تعریف شده را import می‌کند
 import { mock, fn } from '@wdio/browser-runner'
 
 import Users from './users.js'
 
 /**
- * mock default export of `axios` dependency
+ * ماک کردن export پیش‌فرض وابستگی `axios`
  */
 mock('axios', () => ({
     default: {
@@ -195,7 +196,7 @@ describe('User API', () => {
         const resp = {data: users}
         axios.get.mockResolvedValue(resp)
 
-        // or you could use the following depending on your use case:
+        // یا بسته به مورد استفاده‌تان می‌توانید از روش زیر استفاده کنید:
         // axios.get.mockImplementation(() => Promise.resolve(resp))
 
         const data = await Users.all()
@@ -204,9 +205,9 @@ describe('User API', () => {
 })
 ```
 
-## بخشی‌ها
+## ماک‌های جزئی
 
-زیرمجموعه‌هایی از یک ماژول می‌توانند مسدود شوند و بقیه ماژول می‌توانند پیاده‌سازی واقعی خود را حفظ کنند:
+می‌توان زیرمجموعه‌هایی از یک ماژول را ماک کرد و بقیه ماژول پیاده‌سازی واقعی خود را حفظ کند:
 
 ```js title=foo-bar-baz.js
 export const foo = 'foo';
@@ -214,15 +215,15 @@ export const bar = () => 'bar';
 export default () => 'baz';
 ```
 
-ماژول اصلی به کارخانه مسدودسازی منتقل می‌شود که می‌توانید از آن استفاده کنید تا مثلاً به صورت جزئی یک وابستگی را مسدود کنید:
+ماژول اصلی به factory ماک ارسال می‌شود که می‌توانید از آن برای مثال برای ماک کردن جزئی یک وابستگی استفاده کنید:
 
 ```js
 import { mock, fn } from '@wdio/browser-runner'
 import defaultExport, { bar, foo } from './foo-bar-baz.js';
 
 mock('./foo-bar-baz.js', async (originalModule) => {
-    // Mock the default export and named export 'foo'
-    // and propagate named export from the original module
+    // ماک کردن export پیش‌فرض و export نام‌گذاری شده 'foo'
+    // و انتقال export نام‌گذاری شده از ماژول اصلی
     return {
         __esModule: true,
         ...originalModule,
@@ -243,11 +244,11 @@ describe('partial mock', () => {
 })
 ```
 
-## مسدودسازی‌های دستی
+## ماک‌های دستی
 
-مسدودسازی‌های دستی با نوشتن یک ماژول در زیرمجموعه `__mocks__/` (همچنین گزینه `automockDir` را ببینید) تعریف می‌شوند. اگر ماژولی که در حال مسدودسازی آن هستید یک ماژول Node است (مانند: `lodash`)، مسدودسازی باید در دایرکتوری `__mocks__` قرار گیرد و به صورت خودکار مسدود خواهد شد. نیازی به فراخوانی صریح `mock('module_name')` نیست.
+ماک‌های دستی با نوشتن یک ماژول در زیرپوشه `__mocks__/` (همچنین گزینه `automockDir` را ببینید) تعریف می‌شوند. اگر ماژولی که ماک می‌کنید یک ماژول Node باشد (مثلاً: `lodash`)، ماک باید در پوشه `__mocks__` قرار گیرد و به‌طور خودکار ماک خواهد شد. نیازی به فراخوانی صریح `mock('module_name')` نیست.
 
-ماژول‌های محدود شده (همچنین به عنوان بسته‌های محدود شده شناخته می‌شوند) می‌توانند با ایجاد فایلی در ساختار دایرکتوری که با نام ماژول محدود شده مطابقت دارد، مسدود شوند. به عنوان مثال، برای مسدودسازی یک ماژول محدود شده به نام `@scope/project-name`، فایلی در `__mocks__/@scope/project-name.js` ایجاد کنید و دایرکتوری `@scope/` را به طور مناسب ایجاد کنید.
+ماژول‌های scoped (که با نام پکیج‌های scoped نیز شناخته می‌شوند) را می‌توان با ایجاد یک فایل در ساختار پوشه‌ای که با نام ماژول scoped مطابقت دارد ماک کرد. برای مثال، برای ماک کردن یک ماژول scoped به نام `@scope/project-name`، یک فایل در `__mocks__/@scope/project-name.js` ایجاد کنید و پوشه `@scope/` را نیز متناسب با آن بسازید.
 
 ```
 .
@@ -261,7 +262,7 @@ describe('partial mock', () => {
 └── views
 ```
 
-وقتی یک مسدودسازی دستی برای یک ماژول معین وجود داشته باشد، WebdriverIO از آن ماژول هنگام فراخوانی صریح `mock('moduleName')` استفاده می‌کند. با این حال، وقتی automock روی true تنظیم شده باشد، پیاده‌سازی مسدودسازی دستی به جای مسدودسازی ایجاد شده به صورت خودکار استفاده می‌شود، حتی اگر `mock('moduleName')` فراخوانی نشود. برای عدم استفاده از این رفتار، شما باید به صراحت `unmock('moduleName')` را در تست‌هایی که باید از پیاده‌سازی ماژول واقعی استفاده کنند، فراخوانی کنید، به عنوان مثال:
+هنگامی که یک ماک دستی برای یک ماژول مشخص وجود دارد، WebdriverIO هنگام فراخوانی صریح `mock('moduleName')` از آن ماژول استفاده خواهد کرد. با این حال، وقتی automock روی true تنظیم شده باشد، پیاده‌سازی ماک دستی به جای ماکی که به‌طور خودکار ایجاد می‌شود استفاده خواهد شد، حتی اگر `mock('moduleName')` فراخوانی نشده باشد. برای غیرفعال کردن این رفتار، باید در تست‌هایی که باید از پیاده‌سازی واقعی ماژول استفاده کنند، `unmock('moduleName')` را به‌طور صریح فراخوانی کنید، برای مثال:
 
 ```js
 import { unmock } from '@wdio/browser-runner'
@@ -269,16 +270,16 @@ import { unmock } from '@wdio/browser-runner'
 unmock('lodash')
 ```
 
-## بالابری
+## Hoisting
 
-برای اینکه مسدودسازی در مرورگر کار کند، WebdriverIO فایل‌های تست را بازنویسی کرده و فراخوانی‌های مسدودسازی را بالاتر از همه چیز قرار می‌دهد (همچنین به [این پست وبلاگ](https://www.coolcomputerclub.com/posts/jest-hoist-await/) در مورد مشکل بالابری در Jest مراجعه کنید). این امر محدودیت‌هایی را برای نحوه انتقال متغیرها به تفکیک‌کننده مسدودساز ایجاد می‌کند، به عنوان مثال:
+برای اینکه ماک کردن در مرورگر کار کند، WebdriverIO فایل‌های تست را بازنویسی می‌کند و فراخوانی‌های ماک را بالاتر از همه چیز قرار می‌دهد (hoist می‌کند) (همچنین [این پست وبلاگ](https://www.coolcomputerclub.com/posts/jest-hoist-await/) درباره مشکل hoisting در Jest را ببینید). این موضوع نحوه ارسال متغیرها به resolver ماک را محدود می‌کند، برای مثال:
 
 ```js title=component.test.js
 import dep from 'dependency'
 const variable = 'foobar'
 
 /**
- * ❌ this fails as `dep` and `variable` are not defined inside the mock resolver
+ * ❌ این کار نمی‌کند زیرا `dep` و `variable` درون resolver ماک تعریف نشده‌اند
  */
 mock('./some/module.ts', () => ({
     exportA: dep,
@@ -286,11 +287,11 @@ mock('./some/module.ts', () => ({
 }))
 ```
 
-برای رفع این مشکل، باید تمام متغیرهای مورد استفاده را درون تفکیک‌کننده تعریف کنید، به عنوان مثال:
+برای رفع این مشکل باید همه متغیرهای مورد استفاده را درون resolver تعریف کنید، برای مثال:
 
 ```js title=component.test.js
 /**
- * ✔️ this works as all variables are defined within the resolver
+ * ✔️ این کار می‌کند زیرا همه متغیرها درون resolver تعریف شده‌اند
  */
 mock('./some/module.ts', async () => {
     const dep = await import('dependency')
@@ -305,4 +306,8 @@ mock('./some/module.ts', async () => {
 
 ## درخواست‌ها
 
-اگر به دنبال مسدودسازی درخواست‌های مرورگر هستید، مانند فراخوانی‌های API، به بخش [درخواست‌های مسدودسازی و جاسوسی](/docs/mocksandspies) مراجعه کنید.
+اگر به دنبال ماک کردن درخواست‌های مرورگر، مانند فراخوانی‌های API، هستید، به بخش [Request Mock and Spies](/docs/mocksandspies) مراجعه کنید.
+
+در تست‌های کامپوننت، برای `browser.mock()` از یک الگوی URL مطلق با پروتکل و hostname ثابت استفاده کنید، مانند `https://api.webdriver.io/api/*`. یک الگوی بدون host مانند `*/api/*` همه درخواست‌های صفحه، از جمله ترافیک Vite و driver خود browser runner را رهگیری می‌کند.
+
+یک `*` تکی اسلش‌ها را نیز تطبیق می‌دهد. در یک الگوی رشته‌ای، `**` همان `*` است؛ در یک شیء `URLPattern`، از یک `*` تکی استفاده کنید. بخش [ایجاد یک ماک](/docs/mocksandspies#creating-a-mock) را ببینید.

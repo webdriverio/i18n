@@ -6,7 +6,7 @@ description: "با استفاده از ocrWaitForTextDisplayed از سرویس O
 
 منتظر بمانید تا یک متن خاص روی صفحه نمایش داده شود.
 
-## نحوه استفاده
+## استفاده
 
 ```js
 await browser.ocrWaitForTextDisplayed({
@@ -60,7 +60,7 @@ await browser.ocrWaitForTextDisplayed({
 
 <Option type="string" default={`Could not find the text "{selector}" within the requested time.`} required="no">
 
-این گزینه پیام خطای پیش‌فرض را بازنویسی می‌کند.
+پیام خطای پیش‌فرض را بازنویسی می‌کند.
 
 </Option>
 #### مثال
@@ -76,7 +76,7 @@ await browser.ocrWaitForTextDisplayed({
 
 <Option type="number" default="0.25" required="no">
 
-هرچه کنتراست بیشتر باشد، تصویر تیره‌تر می‌شود و برعکس. این می‌تواند به یافتن متن در تصویر کمک کند. این گزینه مقادیری بین `-1` و `1` را می‌پذیرد.
+هر چه کنتراست بیشتر باشد، تصویر تیره‌تر می‌شود و برعکس. این می‌تواند به پیدا کردن متن در تصویر کمک کند. این گزینه مقادیری بین `-1` و `1` را می‌پذیرد.
 
 </Option>
 #### مثال
@@ -92,7 +92,7 @@ await browser.ocrWaitForTextDisplayed({
 
 <Option type="number" required="WebdriverIO.Element | ChainablePromiseElement | Rectangle">
 
-این ناحیه‌ای از صفحه است که OCR باید در آن به دنبال متن بگردد. این می‌تواند یک المنت یا یک مستطیل شامل `x`، `y`، `width` و `height` باشد.
+این ناحیه جستجو در صفحه است که OCR باید در آن به دنبال متن بگردد. این می‌تواند یک المنت یا یک مستطیل شامل `x`، `y`، `width` و `height` باشد.
 
 </Option>
 #### مثال
@@ -125,7 +125,7 @@ await browser.ocrWaitForTextDisplayed({
 
 <Option type="string" default="eng" required="No">
 
-زبانی که Tesseract تشخیص خواهد داد. اطلاعات بیشتر را می‌توانید [اینجا](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) و زبان‌های پشتیبانی‌شده را [اینجا](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts) بیابید.
+زبانی که Tesseract تشخیص خواهد داد. اطلاعات بیشتر را می‌توانید [اینجا](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) و زبان‌های پشتیبانی‌شده را [اینجا](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts) پیدا کنید.
 
 </Option>
 #### مثال
@@ -141,13 +141,13 @@ await browser.ocrWaitForTextDisplayed({
 
 ### `fuzzyFindOptions`
 
-با گزینه‌های زیر می‌توانید منطق فازی یافتن متن را تغییر دهید. این ممکن است به یافتن تطابق بهتر کمک کند.
+می‌توانید منطق فازی برای پیدا کردن متن را با گزینه‌های زیر تغییر دهید. این ممکن است به پیدا کردن تطابق بهتر کمک کند.
 
 #### `fuzzyFindOptions.distance`
 
 <Option type="number" default="100" required="no">
 
-تعیین می‌کند که تطابق چقدر باید به مکان فازی (که توسط location مشخص می‌شود) نزدیک باشد. یک تطابق دقیق حروف که به اندازه distance کاراکتر از مکان فازی فاصله داشته باشد، به‌عنوان عدم تطابق کامل امتیازدهی می‌شود. فاصله 0 نیاز دارد که تطابق دقیقاً در مکان مشخص‌شده باشد. فاصله 1000 نیاز دارد که یک تطابق کامل در محدوده 800 کاراکتری از مکان باشد تا با استفاده از آستانه 0.8 یافت شود.
+تعیین می‌کند که تطابق چقدر باید به موقعیت فازی (مشخص‌شده توسط location) نزدیک باشد. تطابق دقیق حرفی که به اندازه distance کاراکتر از موقعیت فازی فاصله داشته باشد، به عنوان عدم تطابق کامل امتیاز می‌گیرد. فاصله 0 نیازمند آن است که تطابق دقیقاً در موقعیت مشخص‌شده باشد. فاصله 1000 نیازمند آن است که یک تطابق کامل در محدوده 800 کاراکتری از موقعیت قرار داشته باشد تا با آستانه 0.8 پیدا شود.
 
 </Option>
 ##### مثال
@@ -165,7 +165,7 @@ await browser.ocrWaitForTextDisplayed({
 
 <Option type="number" default="0" required="no">
 
-به‌طور تقریبی تعیین می‌کند که الگو انتظار می‌رود در کجای متن یافت شود.
+تعیین می‌کند که الگو تقریباً در کجای متن انتظار می‌رود پیدا شود.
 
 </Option>
 ##### مثال
@@ -183,7 +183,7 @@ await browser.ocrWaitForTextDisplayed({
 
 <Option type="number" default="0.6" required="no">
 
-تعیین می‌کند الگوریتم تطابق در چه نقطه‌ای دست از جستجو بکشد. آستانه 0 نیاز به تطابق کامل (هم از نظر حروف و هم مکان) دارد، در حالی که آستانه 1.0 با هر چیزی تطابق خواهد داشت.
+اینکه الگوریتم تطابق در چه نقطه‌ای دست از جستجو می‌کشد. آستانه 0 نیازمند تطابق کامل (هم از نظر حروف و هم موقعیت) است، آستانه 1.0 با هر چیزی تطابق خواهد داشت.
 
 </Option>
 ##### مثال
@@ -201,7 +201,7 @@ await browser.ocrWaitForTextDisplayed({
 
 <Option type="boolean" default="false" required="no">
 
-آیا جستجو باید به بزرگی و کوچکی حروف حساس باشد یا خیر.
+اینکه آیا جستجو باید به بزرگی و کوچکی حروف حساس باشد.
 
 </Option>
 ##### مثال
@@ -219,7 +219,7 @@ await browser.ocrWaitForTextDisplayed({
 
 <Option type="number" default="2" required="no">
 
-فقط تطابق‌هایی که طول آن‌ها از این مقدار بیشتر باشد بازگردانده می‌شوند. (به‌عنوان مثال، اگر می‌خواهید تطابق‌های تک‌کاراکتری را در نتیجه نادیده بگیرید، آن را روی 2 تنظیم کنید)
+فقط تطابق‌هایی که طولشان از این مقدار بیشتر باشد برگردانده می‌شوند. (برای مثال، اگر می‌خواهید تطابق‌های تک‌کاراکتری را در نتیجه نادیده بگیرید، آن را روی 2 تنظیم کنید)
 
 </Option>
 ##### مثال

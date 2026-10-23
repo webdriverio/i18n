@@ -1,16 +1,16 @@
 ---
 id: ocr-set-value
 title: ocrSetValue
-description: "Saisissez du texte dans un champ de saisie repéré par son texte visible avec ocrSetValue, qui trouve le champ grâce à l'OCR et à la correspondance approximative."
+description: "Saisissez du texte dans un champ de saisie localisé par son texte visible avec ocrSetValue, qui trouve le champ grâce à l'OCR et à la correspondance approximative."
 ---
 
-Envoie une séquence de frappes au clavier à un élément. La commande va :
+Envoie une séquence de frappes de touches à un élément. Cette commande va :
 
 -   détecter automatiquement l'élément
--   donner le focus au champ en cliquant dessus
+-   mettre le focus sur le champ en cliquant dessus
 -   définir la valeur dans le champ
 
-La commande recherche le texte fourni et tente de trouver une correspondance grâce à la logique floue (Fuzzy Logic) de [Fuse.js](https://fusejs.io/). Cela signifie que même si vous fournissez un sélecteur contenant une faute de frappe, ou si le texte trouvé ne correspond pas à 100 %, elle essaiera tout de même de vous renvoyer un élément. Consultez les [logs](#logs) ci-dessous.
+La commande recherchera le texte fourni et essaiera de trouver une correspondance basée sur la logique floue (Fuzzy Logic) de [Fuse.js](https://fusejs.io/). Cela signifie que si vous fournissez un sélecteur comportant une faute de frappe, ou si le texte trouvé ne correspond pas à 100 %, la commande essaiera tout de même de vous renvoyer un élément. Consultez les [logs](#logs) ci-dessous.
 
 ## Utilisation
 
@@ -120,7 +120,7 @@ await browser.ocrSetValue({
 
 <Option type="number" required="WebdriverIO.Element | ChainablePromiseElement | Rectangle">
 
-Il s'agit de la zone de recherche de l'écran dans laquelle l'OCR doit chercher du texte. Il peut s'agir d'un élément ou d'un rectangle contenant `x`, `y`, `width` et `height`
+Il s'agit de la zone de recherche à l'écran dans laquelle l'OCR doit chercher du texte. Il peut s'agir d'un élément ou d'un rectangle contenant `x`, `y`, `width` et `height`
 
 </Option>
 #### Exemple
@@ -156,7 +156,7 @@ await browser.ocrSetValue({
 
 <Option type="string" default="eng" required="No">
 
-La langue que Tesseract va reconnaître. Plus d'informations sont disponibles [ici](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) et les langues prises en charge sont disponibles [ici](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
+La langue que Tesseract reconnaîtra. Plus d'informations sont disponibles [ici](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) et les langues prises en charge sont disponibles [ici](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
 
 </Option>
 #### Exemple
@@ -181,7 +181,7 @@ Vous pouvez cliquer sur l'écran par rapport à l'élément correspondant. Cela 
 
 Les combinaisons suivantes sont autorisées
 
--   propriétés seules
+-   propriétés uniques
 -   `above` + `left` ou `above` + `right`
 -   `below` + `left` ou `below` + `right`
 
@@ -197,7 +197,7 @@ Les combinaisons suivantes ne sont **PAS** autorisées
 
 <Option type="number" required="no">
 
-Cliquer x pixels au-dessus (`above`) de l'élément correspondant.
+Clique x pixels au-dessus (`above`) de l'élément correspondant.
 
 </Option>
 ##### Exemple
@@ -216,7 +216,7 @@ await browser.ocrSetValue({
 
 <Option type="number" required="no">
 
-Cliquer x pixels à droite (`right`) de l'élément correspondant.
+Clique x pixels à droite (`right`) de l'élément correspondant.
 
 </Option>
 ##### Exemple
@@ -235,7 +235,7 @@ await browser.ocrSetValue({
 
 <Option type="number" required="no">
 
-Cliquer x pixels en dessous (`below`) de l'élément correspondant.
+Clique x pixels en dessous (`below`) de l'élément correspondant.
 
 </Option>
 ##### Exemple
@@ -254,7 +254,7 @@ await browser.ocrSetValue({
 
 <Option type="number" required="no">
 
-Cliquer x pixels à gauche (`left`) de l'élément correspondant.
+Clique x pixels à gauche (`left`) de l'élément correspondant.
 
 </Option>
 ##### Exemple
@@ -271,13 +271,13 @@ await browser.ocrSetValue({
 
 ### `fuzzyFindOptions`
 
-Vous pouvez modifier la logique floue utilisée pour trouver du texte grâce aux options suivantes. Cela peut aider à trouver une meilleure correspondance
+Vous pouvez modifier la logique floue utilisée pour trouver du texte avec les options suivantes. Cela peut aider à trouver une meilleure correspondance
 
 #### `fuzzyFindOptions.distance`
 
 <Option type="number" default="100" required="no">
 
-Détermine à quel point la correspondance doit être proche de l'emplacement approximatif (spécifié par location). Une correspondance exacte de lettre située à distance caractères de l'emplacement approximatif serait considérée comme une non-correspondance totale. Une distance de 0 exige que la correspondance se trouve exactement à l'emplacement spécifié. Une distance de 1000 exigerait qu'une correspondance parfaite se trouve à moins de 800 caractères de l'emplacement pour être trouvée avec un seuil (threshold) de 0.8.
+Détermine à quel point la correspondance doit être proche de la position approximative (spécifiée par location). Une correspondance exacte de lettres située à distance caractères de la position approximative serait considérée comme une non-correspondance totale. Une distance de 0 exige que la correspondance se trouve exactement à la position spécifiée. Une distance de 1000 exigerait qu'une correspondance parfaite se trouve à moins de 800 caractères de la position pour être trouvée avec un seuil (threshold) de 0.8.
 
 </Option>
 ##### Exemple
@@ -315,7 +315,7 @@ await browser.ocrSetValue({
 
 <Option type="number" default="0.6" required="no">
 
-Le point à partir duquel l'algorithme de correspondance abandonne. Un seuil de 0 exige une correspondance parfaite (à la fois des lettres et de l'emplacement), un seuil de 1.0 correspondrait à n'importe quoi.
+Détermine à partir de quel moment l'algorithme de correspondance abandonne. Un seuil de 0 exige une correspondance parfaite (des lettres et de la position), un seuil de 1.0 correspondrait à n'importe quoi.
 
 </Option>
 ##### Exemple
@@ -372,7 +372,7 @@ await browser.ocrSetValue({
 
 <Option type="number" default="false" required="no">
 
-Lorsque la valeur est `true`, la fonction de correspondance continue jusqu'à la fin du motif de recherche, même si une correspondance parfaite a déjà été trouvée dans la chaîne.
+Lorsque la valeur est `true`, la fonction de correspondance continuera jusqu'à la fin d'un motif de recherche même si une correspondance parfaite a déjà été trouvée dans la chaîne.
 
 </Option>
 ##### Exemple

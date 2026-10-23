@@ -1,20 +1,20 @@
 ---
 id: testrunner
 title: مُشغّل الاختبارات
-description: "ثبّت مُشغّل اختبارات WDIO من @wdio/cli واستخدم أوامره config وrun وinstall وrepl وsession لإعداد مجموعات الاختبارات وتشغيلها."
+description: "ثبّت مُشغّل اختبارات WDIO من @wdio/cli واستخدم أوامر config وrun وinstall وrepl وsession الخاصة به لإعداد مجموعات الاختبار وتشغيلها."
 ---
 
-يُشغّل مُشغّل اختبارات WebdriverIO مجموعة اختباراتك انطلاقًا من ملف إعدادات. فهو يبدأ عاملًا (worker) واحدًا لكل قدرة (capability)، ويربط إطار العمل والخدمات والمُبلِّغات (reporters) الخاصة بك، ويُشغّل ملفات المواصفات (specs) بالتوازي. استخدمه في كل مشروع اختبارات؛ ولا تستخدم [الوضع المستقل](/docs/setuptypes) إلا عندما تُضمِّن WebdriverIO في أدواتك الخاصة.
+يُشغّل مُشغّل اختبارات WebdriverIO مجموعة اختباراتك انطلاقًا من ملف إعدادات. فهو يبدأ عاملًا (worker) واحدًا لكل قدرة (capability)، ويربط إطار العمل والخدمات والمُبلِّغات (reporters) الخاصة بك، ويُشغّل ملفات المواصفات (specs) بالتوازي. استخدمه في كل مشروع اختبار؛ ولا تستخدم [الوضع المستقل](/docs/setuptypes) إلا عندما تُضمّن WebdriverIO في أدواتك الخاصة.
 
-يأتي مُشغّل الاختبارات ضمن الحزمة `@wdio/cli`:
+يأتي مُشغّل الاختبارات ضمن حزمة `@wdio/cli`:
 
 ```sh npm2yarn
 npm install --save-dev @wdio/cli
 ```
 
-يُشغّل الأمر `npx wdio` واجهة سطر الأوامر نفسها عندما لا تكون `@wdio/cli` مثبتة بعد. إذ يثبّت npm الحزمة غير المُقيَّدة بنطاق [`wdio`](https://www.npmjs.com/package/wdio)، وتقوم تلك الحزمة بتشغيل `@wdio/cli`.
+يُشغّل الأمر `npx wdio` واجهة سطر الأوامر نفسها عندما لا تكون `@wdio/cli` مثبتة بعد. إذ يُثبّت npm الحزمة غير المُقيّدة بنطاق [`wdio`](https://www.npmjs.com/package/wdio)، وتقوم تلك الحزمة بتشغيل `@wdio/cli`.
 
-لإعداد مشروع جديد، شغّل معالج الإعدادات. يطرح عليك بعض الأسئلة، ويثبّت الحزم، ويكتب ملف `wdio.conf.ts`:
+لإعداد مشروع جديد، شغّل معالج الإعدادات. سيطرح عليك بضعة أسئلة، ثم يُثبّت الحزم ويكتب ملف `wdio.conf.ts`:
 
 ```sh
 npx wdio config
@@ -26,7 +26,7 @@ npx wdio config
 npx wdio run wdio.conf.ts
 ```
 
-`run` هو الأمر الافتراضي، لذا فإن `npx wdio wdio.conf.ts` يؤدي الشيء نفسه. في ملفات المواصفات، استورد الجلسة من `@wdio/globals`:
+الأمر `run` هو الأمر الافتراضي، لذا فإن `npx wdio wdio.conf.ts` يؤدي الشيء نفسه. في ملفات المواصفات، استورد الجلسة من `@wdio/globals`:
 
 ```ts title="test/specs/example.e2e.ts"
 import { browser, $, expect } from '@wdio/globals'
@@ -68,13 +68,13 @@ Options:
 
 ### `wdio config`
 
-يُشغّل الأمر `config` معالج الإعدادات وينشئ ملف `wdio.conf.ts` (أو `wdio.conf.js`) بناءً على إجاباتك.
+يُشغّل الأمر `config` معالج الإعدادات ويُنشئ ملف `wdio.conf.ts` (أو `wdio.conf.js`) بناءً على إجاباتك.
 
 ```sh
 npx wdio config
 ```
 
-مرّر `--yes` لاستخدام القيم الافتراضية (Mocha وChrome وكائنات الصفحات) دون أي مطالبات. ولكل سؤال في المعالج علامة (flag) مقابلة أيضًا، لذا يمكنك الإجابة عن بعضها أو جميعها من سطر الأوامر:
+مرّر `--yes` لاستخدام القيم الافتراضية (Mocha وChrome وكائنات الصفحات) دون أي مطالبات. ولكل سؤال في المعالج علامة (flag) مقابلة، لذا يمكنك الإجابة عن بعضها أو جميعها من سطر الأوامر:
 
 ```sh
 npx wdio config --yes --framework cucumber --no-typescript --reporters spec,junit
@@ -90,15 +90,15 @@ npx wdio config --yes --framework cucumber --no-typescript --reporters spec,juni
     --help     Show help, including a flag for every wizard question   [boolean]
 ```
 
-يثبّت المعالج الحزم باستخدام مدير الحزم الذي يُشغّله: فالأمر `pnpm wdio config` يستخدم pnpm، و`yarn wdio config` يستخدم Yarn، و`npx` يستخدم npm.
+يُثبّت المعالج الحزم باستخدام مدير الحزم الذي شغّله: فالأمر `pnpm wdio config` يستخدم pnpm، و`yarn wdio config` يستخدم Yarn، و`npx` يستخدم npm.
 
-يسرد الأمر `npx wdio config --help` علامات المعالج والقيم التي تقبلها. ويُعدّ استخدام علامة لسؤال لا يطرحه المعالج في إعدادك خطأً، وكذلك استخدام قيمة لا يعرضها. راجع [الإجابة عن المعالج باستخدام العلامات](/docs/gettingstarted#answer-the-wizard-with-flags) للاطلاع على أمثلة.
+يسرد الأمر `npx wdio config --help` علامات المعالج والقيم التي تقبلها. ويُعدّ استخدام علامة لسؤال لا يطرحه المعالج في إعدادك خطأً، وكذلك استخدام قيمة لا يُتيحها. راجع [الإجابة عن أسئلة المعالج باستخدام العلامات](/docs/gettingstarted#answer-the-wizard-with-flags) للاطلاع على أمثلة.
 
 ### `wdio run`
 
 > هذا هو الأمر الافتراضي لتشغيل إعداداتك.
 
-يحمّل الأمر `run` ملف الإعدادات الخاص بك ويُشغّل اختباراتك. وتتجاوز خيارات سطر الأوامر الخيارات المطابقة لها في ملف الإعدادات.
+يُحمّل الأمر `run` ملف الإعدادات ويُشغّل اختباراتك. وتتجاوز خيارات سطر الأوامر الخيارات المطابقة لها في ملف الإعدادات.
 
 ```sh
 npx wdio run wdio.conf.ts --spec test/specs/login.e2e.ts
@@ -153,17 +153,17 @@ npx wdio run wdio.conf.ts --spec test/specs/login.e2e.ts
 أمثلة:
 
 ```sh
-# تشغيل مجموعة اختبارات واحدة
+# تشغيل مجموعة واحدة
 npx wdio run wdio.conf.ts --suite login
 
-# تشغيل الجزء الأول من أربعة أجزاء، مثلًا في مصفوفة CI
+# تشغيل الجزء الأول من أربعة أجزاء، على سبيل المثال في مصفوفة CI
 npx wdio run wdio.conf.ts --shard 1/4
 
-# تشغيل جميع المتصفحات بدون واجهة، أو فرض الوضع المرئي
+# تشغيل جميع المتصفحات دون واجهة رسومية، أو فرض الوضع المرئي
 npx wdio run wdio.conf.ts --headless
 npx wdio run wdio.conf.ts --headless=false
 
-# تعيين خيارات إطار العمل باستخدام صيغة النقطة
+# تعيين خيارات إطار العمل باستخدام الترميز النقطي
 npx wdio run wdio.conf.ts --mochaOpts.timeout 60000
 
 # تشغيل سيناريو Cucumber حسب رقم السطر
@@ -172,25 +172,25 @@ npx wdio run wdio.conf.ts --spec ./features/login.feature:5
 # استخدام ملف tsconfig.json مخصص
 npx wdio run wdio.conf.ts --tsConfigPath=./configs/bdd-tsconfig.json
 
-# إيقاف الاختبارات الفاشلة و browser.debug() مؤقتًا ليتمكن وكيل برمجة من فحصها
+# إيقاف الاختبارات الفاشلة و browser.debug() مؤقتًا ليتمكن وكيل برمجي من فحصها
 npx wdio run wdio.conf.ts --debug=agent
 ```
 
-يتجاوز الخيار `--tsConfigPath` إعداد [`tsConfigPath`](/docs/configurationfile) في إعداداتك. راجع [TypeScript](/docs/typescript) لمعرفة كيف يُترجم WebdriverIO ملفات المواصفات باستخدام `tsx`.
+يتجاوز الخيار `--tsConfigPath` إعداد [`tsConfigPath`](/docs/configurationfile) في ملف إعداداتك. راجع [TypeScript](/docs/typescript) لمعرفة كيف يُترجم WebdriverIO ملفات المواصفات الخاصة بك باستخدام `tsx`.
 
 ### `wdio install`
 
-يضيف الأمر `install` مُبلِّغًا أو خدمة أو إطار عمل أو إضافة أو مُشغّلًا إلى مشروع قائم. فهو يثبّت الحزمة، ويضيفها إلى ملف `package.json`، ويحدّث ملف الإعدادات الخاص بك.
+يُضيف الأمر `install` مُبلِّغًا أو خدمة أو إطار عمل أو إضافة أو مُشغّلًا إلى مشروع قائم. فهو يُثبّت الحزمة، ويُضيفها إلى ملف `package.json`، ويُحدّث ملف الإعدادات.
 
 ```sh
-npx wdio install service sauce        # installs @wdio/sauce-service
-npx wdio install reporter dot         # installs @wdio/dot-reporter
-npx wdio install framework mocha      # installs @wdio/mocha-framework
+npx wdio install service sauce        # يُثبّت @wdio/sauce-service
+npx wdio install reporter dot         # يُثبّت @wdio/dot-reporter
+npx wdio install framework mocha      # يُثبّت @wdio/mocha-framework
 ```
 
-تُثبَّت الحزم باستخدام مدير الحزم الذي يُشغّل الأمر، لذا فإن `pnpm wdio install reporter dot` يثبّت باستخدام pnpm، و`yarn wdio install reporter dot` باستخدام Yarn. أما `npx` والاستدعاءات المباشرة فتستخدم npm.
+تُثبَّت الحزم باستخدام مدير الحزم الذي شغّل الأمر، لذا فإن `pnpm wdio install reporter dot` يُثبّت باستخدام pnpm، و`yarn wdio install reporter dot` باستخدام Yarn. أما `npx` والاستدعاءات المباشرة فتستخدم npm.
 
-إذا لم يكن ملف الإعدادات الخاص بك هو `wdio.conf.(js|ts|cjs|mjs)` في المجلد الحالي، فمرّر موقعه:
+إذا لم يكن ملف إعداداتك هو `wdio.conf.(js|ts|cjs|mjs)` في المجلد الحالي، فمرّر موقعه:
 
 ```sh
 npx wdio install service sauce --config="./path/to/wdio.conf.ts"
@@ -214,7 +214,7 @@ qmate-service, robonut, qunit, roku, obsidian, null-driver
 
 ```
 spec, dot, junit, allure, sumologic, concise, json, reportportal, video,
-cucumberjs-json, mochawesome, timeline, html-nice, slack, teamcity, delta,
+cucumberjs-json, mochawesome, timeline, html, slack, teamcity, delta,
 testrail, light, jsonhtml
 ```
 
@@ -233,7 +233,7 @@ runner: local, browser
 
 ### `wdio repl`
 
-يبدأ الأمر `repl` جلسة WebDriver ويفتح موجّهًا تفاعليًا تُشغّل فيه أوامر WebdriverIO. استخدمه لتجربة المحددات والأوامر دون كتابة ملف مواصفات. راجع [واجهة REPL](/docs/repl) لمزيد من المعلومات.
+يبدأ الأمر `repl` جلسة WebDriver ويفتح موجّهًا تفاعليًا تُشغّل فيه أوامر WebdriverIO. استخدمه لتجربة المُحدِّدات (selectors) والأوامر دون كتابة ملف مواصفات. راجع [واجهة REPL](/docs/repl) لمزيد من التفاصيل.
 
 بدء متصفح Chrome محلي:
 
@@ -247,19 +247,19 @@ npx wdio repl chrome
 npx wdio repl chrome --user $SAUCE_USERNAME --key $SAUCE_ACCESS_KEY
 ```
 
-استخدام قدرة من ملف الإعدادات الخاص بك، حسب الفهرس أو حسب اسمها في وضع التحكم المتعدد (multi-remote):
+استخدام قدرة (capability) من ملف إعداداتك، حسب الفهرس أو حسب اسمها في وضع multi-remote:
 
 ```sh
 npx wdio repl ./wdio.conf.ts 0 -p 9515
 ```
 
-الارتباط بجلسة [`wdio session`](/docs/session) قيد التشغيل بدلًا من بدء متصفح جديد:
+الاتصال بجلسة [`wdio session`](/docs/session) قيد التشغيل بدلًا من بدء متصفح جديد:
 
 ```sh
 npx wdio repl --session default
 ```
 
-يقبل `repl` خيارات الاتصال الخاصة بـ[أمر run](#wdio-run) (`--hostname` و`--port` و`--path` و`--user` و`--key` و`--logLevel` و...) بالإضافة إلى خيارات الأجهزة المحمولة التالية. استخدم الصيغتين الطويلتين `--user` و`--udid`: إذ إن `-u` هو الاسم المختصر لكليهما.
+يقبل الأمر `repl` خيارات الاتصال الخاصة بـ[أمر run](#wdio-run) (`--hostname`، `--port`، `--path`، `--user`، `--key`، `--logLevel`، ...) بالإضافة إلى خيارات الأجهزة المحمولة التالية. استخدم الصيغتين الطويلتين `--user` و`--udid`: إذ إن `-u` هو الاسم المستعار القصير لكليهما.
 
 ```
 -v, --platformVersion  Version of OS for mobile devices                 [string]
@@ -271,7 +271,7 @@ npx wdio repl --session default
 
 ### `wdio session`
 
-يتحكم الأمر `session` في متصفح أو تطبيق جوال أو تطبيق سطح مكتب من سطر الأوامر، بأمر واحد في كل استدعاء. وهو مصمم لوكلاء البرمجة: إذ يفتحون جلسة، ويلتقطون لقطات، وينقرون ويكتبون، ثم يصدّرون ما قاموا به على هيئة اختبار. راجع [wdio session](/docs/session) للاطلاع على سير العمل، و[أوامر wdio session](/docs/session-commands) للاطلاع على جميع الإجراءات.
+يتحكّم الأمر `session` في متصفح أو تطبيق محمول أو تطبيق سطح مكتب من سطر الأوامر، بأمر واحد في كل استدعاء. وقد صُمّم خصيصًا للوكلاء البرمجيين (coding agents): إذ يفتحون جلسة، ويلتقطون لقطات، وينقرون ويكتبون، ثم يُصدّرون ما قاموا به على شكل اختبار. راجع [wdio session](/docs/session) للاطلاع على سير العمل، و[أوامر wdio session](/docs/session-commands) للاطلاع على جميع الإجراءات.
 
 ```sh
 npx wdio session --help
@@ -282,4 +282,4 @@ npx wdio session --help
 - [ملف الإعدادات](/docs/configurationfile): جميع خيارات `wdio.conf.ts`
 - [البدء](/docs/gettingstarted): إعداد مشروع باستخدام المعالج
 - [واجهة REPL](/docs/repl): تصحيح الأوامر بشكل تفاعلي
-- [wdio session](/docs/session): التحكم في متصفح من سطر الأوامر أو من خلال وكيل
+- [wdio session](/docs/session): التحكّم في متصفح من سطر الأوامر أو عبر وكيل

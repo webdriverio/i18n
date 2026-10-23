@@ -1,10 +1,10 @@
 ---
 id: ocr-wait-for-text-displayed
 title: ocrWaitForTextDisplayed
-description: "Attendez qu'un texte spécifique s'affiche à l'écran avec ocrWaitForTextDisplayed du service OCR."
+description: "Attendez qu'un texte spécifique soit affiché à l'écran avec ocrWaitForTextDisplayed du service OCR."
 ---
 
-Attendre qu'un texte spécifique s'affiche à l'écran.
+Attendre qu'un texte spécifique soit affiché à l'écran.
 
 ## Utilisation
 
@@ -76,7 +76,7 @@ await browser.ocrWaitForTextDisplayed({
 
 <Option type="number" default="0.25" required="no">
 
-Plus le contraste est élevé, plus l'image est sombre, et inversement. Cela peut aider à trouver du texte dans une image. Accepte des valeurs comprises entre `-1` et `1`.
+Plus le contraste est élevé, plus l'image est sombre, et inversement. Cela peut aider à trouver du texte dans une image. Accepte des valeurs entre `-1` et `1`.
 
 </Option>
 #### Exemple
@@ -92,7 +92,7 @@ await browser.ocrWaitForTextDisplayed({
 
 <Option type="number" required="WebdriverIO.Element | ChainablePromiseElement | Rectangle">
 
-Il s'agit de la zone de recherche à l'écran dans laquelle l'OCR doit chercher du texte. Il peut s'agir d'un élément ou d'un rectangle contenant `x`, `y`, `width` et `height`
+Il s'agit de la zone de recherche à l'écran où l'OCR doit chercher du texte. Cela peut être un élément ou un rectangle contenant `x`, `y`, `width` et `height`
 
 </Option>
 #### Exemple
@@ -147,7 +147,7 @@ Vous pouvez modifier la logique floue (fuzzy) de recherche de texte avec les opt
 
 <Option type="number" default="100" required="no">
 
-Détermine à quel point la correspondance doit être proche de l'emplacement flou (spécifié par location). Une correspondance exacte de lettres située à distance caractères de l'emplacement flou serait considérée comme une non-correspondance complète. Une distance de 0 exige que la correspondance se trouve à l'emplacement exact spécifié. Une distance de 1000 exigerait qu'une correspondance parfaite se trouve à moins de 800 caractères de l'emplacement pour être trouvée avec un seuil de 0.8.
+Détermine à quel point la correspondance doit être proche de l'emplacement approximatif (spécifié par location). Une correspondance exacte de lettre située à distance caractères de l'emplacement approximatif serait considérée comme une non-correspondance totale. Une distance de 0 exige que la correspondance se trouve exactement à l'emplacement spécifié. Une distance de 1000 exigerait qu'une correspondance parfaite se trouve à moins de 800 caractères de l'emplacement pour être trouvée avec un seuil (threshold) de 0.8.
 
 </Option>
 ##### Exemple
@@ -165,7 +165,7 @@ await browser.ocrWaitForTextDisplayed({
 
 <Option type="number" default="0" required="no">
 
-Détermine approximativement à quel endroit du texte le motif est censé être trouvé.
+Détermine approximativement à quel endroit du texte le motif est censé se trouver.
 
 </Option>
 ##### Exemple
@@ -183,7 +183,7 @@ await browser.ocrWaitForTextDisplayed({
 
 <Option type="number" default="0.6" required="no">
 
-À quel moment l'algorithme de correspondance abandonne. Un seuil de 0 exige une correspondance parfaite (des lettres et de l'emplacement), un seuil de 1.0 correspondrait à n'importe quoi.
+À partir de quel moment l'algorithme de correspondance abandonne. Un seuil de 0 exige une correspondance parfaite (à la fois des lettres et de l'emplacement), un seuil de 1.0 correspondrait à n'importe quoi.
 
 </Option>
 ##### Exemple

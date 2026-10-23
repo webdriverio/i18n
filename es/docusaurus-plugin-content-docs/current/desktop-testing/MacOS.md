@@ -4,7 +4,7 @@ title: MacOS
 description: "Automatiza aplicaciones nativas de macOS con WebdriverIO usando Appium y el driver Mac2, comenzando desde el asistente de configuración del proyecto."
 ---
 
-WebdriverIO puede automatizar cualquier aplicación de MacOS usando [Appium](https://appium.io/). Todo lo que necesitas es tener [XCode](https://developer.apple.com/xcode/) instalado en tu sistema, Appium y el [Mac2 Driver](https://github.com/appium/appium-mac2-driver) instalados como dependencias y las capabilities correctas configuradas.
+WebdriverIO puede automatizar cualquier aplicación de MacOS usando [Appium](https://appium.io/). Todo lo que necesitas es tener [XCode](https://developer.apple.com/xcode/) instalado en tu sistema, Appium y el [Mac2 Driver](https://appium.github.io/appium-mac2-driver/) instalados como dependencia y las capabilities correctas configuradas.
 
 ## Primeros pasos
 
@@ -38,8 +38,8 @@ describe('My Login application', () => {
 })
 ```
 
-__Nota:__ la aplicación Calculadora se abrió automáticamente al inicio de la sesión porque se definió `'appium:bundleId': 'com.apple.calculator'` como opción de capability. Puedes cambiar de aplicación en cualquier momento durante la sesión.
+__Nota:__ la aplicación de la calculadora se abrió automáticamente al comienzo de la sesión porque `'appium:bundleId': 'com.apple.calculator'` se definió como opción de capability. Puedes cambiar de aplicación en cualquier momento durante la sesión.
 
 ## Más información
 
-Para obtener información sobre los detalles específicos de las pruebas en MacOS, te recomendamos consultar el proyecto [Appium Mac2 Driver](https://github.com/appium/appium-mac2-driver).
+Para obtener información sobre los detalles específicos de las pruebas en MacOS, te recomendamos consultar el proyecto [Appium Mac2 Driver](https://appium.github.io/appium-mac2-driver/).

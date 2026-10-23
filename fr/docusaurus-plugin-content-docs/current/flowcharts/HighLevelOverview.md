@@ -1,9 +1,9 @@
 ---
 id: highleveloverview
 title: Vue d'ensemble
-description: "Consultez un organigramme illustrant comment l'écosystème WebdriverIO et ses packages principaux interagissent lors de l'exécution d'un test."
+description: "Consultez un organigramme montrant comment l'écosystème WebdriverIO et ses packages principaux interagissent lors de l'exécution d'un test."
 ---
-L'organigramme ci-dessous offre une vue d'ensemble de la manière dont l'écosystème WebdriverIO interagit avec les packages principaux.
+L'organigramme fournit une vue d'ensemble de la manière dont l'écosystème WebdriverIO interagit avec les packages principaux.
 
 ```mermaid
 graph LR
@@ -15,7 +15,7 @@ graph LR
     LAUNCHER
     LISTOFSERVICES-->LOCALRUNNER
     LISTOFSERVICES-->RUNNER
-    REPORTER["Any package that ends with -reporter<br>@wdio/allure-reporter<br>@wdio/concise-reporter<br>@wdio/dot-reporter<br>@wdio/junit-reporter<br>@wdio/reporter<br>@wdio/spec-reporter<br>@wdio/sumologic-reporter<br>@wdio/json-reporter<br>wdio-reportportal-reporter<br>wdio-video-reporter<br>@rpii/wdio-html-reporter<br>wdio-mochawesome-reporter<br>wdio-timeline-reporter<br>wdio-cucumberjs-json-reporter"]-->RUNNER
+    REPORTER["Any package that ends with -reporter<br>@wdio/allure-reporter<br>@wdio/concise-reporter<br>@wdio/cucumberjs-json-reporter<br>@wdio/dot-reporter<br>@wdio/html-reporter<br>@wdio/junit-reporter<br>@wdio/reporter<br>@wdio/spec-reporter<br>@wdio/sumologic-reporter<br>@wdio/video-reporter<br>@wdio/json-reporter<br>wdio-reportportal-reporter<br>wdio-mochawesome-reporter<br>wdio-timeline-reporter"]-->RUNNER
     FRAMEWORK["Any package that ends with -framework<br>@wdio/jasmine-framework<br>@wdio/mocha-framework<br>@wdio/cucumber-framework<br>"]-->
     RUNNER
     WEBDRIVER["webdriverio<br>webdriver"]-->

@@ -1,17 +1,17 @@
 ---
 id: tauri
 title: Tauri
-description: "Testez des applications de bureau Tauri sous Windows, macOS et Linux avec le service Tauri de WebdriverIO, à l'aide de l'assistant de configuration ou d'une configuration manuelle."
+description: "Testez les applications de bureau Tauri sur Windows, macOS et Linux avec le service Tauri de WebdriverIO, en utilisant l'assistant de configuration ou une configuration manuelle."
 ---
 
-[Tauri](https://tauri.app/) est un framework permettant de créer des applications de bureau multiplateformes légères et sécurisées, à l'aide d'un backend Rust et de la webview native du système d'exploitation. Le service Tauri de WebdriverIO automatise la détection, le lancement et le pilotage des applications Tauri sous Windows (WebView2), macOS (WKWebView) et Linux (WebKitGTK), de sorte que la même suite de tests fonctionne partout.
+[Tauri](https://tauri.app/) est un framework permettant de créer des applications de bureau multiplateformes légères et sécurisées, utilisant un backend Rust et la webview native du système d'exploitation. Le service Tauri de WebdriverIO automatise la découverte, le lancement et le pilotage des applications Tauri sur Windows (WebView2), macOS (WKWebView) et Linux (WebKitGTK), de sorte que la même suite de tests fonctionne partout.
 
-Les avantages de l'utilisation de WebdriverIO pour tester des applications Tauri sont :
+Les avantages d'utiliser WebdriverIO pour tester des applications Tauri sont :
 
 - 🚗 provisionnement automatique de la couche WebDriver — choisissez `tauri-driver`, le driver CrabNebula ou le plugin intégré à l'application
-- 📦 détection multiplateforme des binaires (driver Edge WebView2 fourni sous Windows)
+- 📦 détection multiplateforme des binaires (driver Edge WebView2 inclus sur Windows)
 - 🧩 `@wdio/tauri-plugin` optionnel pour une intégration plus riche dans la webview (`browser.tauri.execute`, mocking)
-- 🔗 test des deeplinks et des gestionnaires de protocoles
+- 🔗 tests des deeplinks et des gestionnaires de protocole
 - 🪵 transfert des logs Rust et frontend vers le reporter de tests WebdriverIO
 
 ## Premiers pas
@@ -22,17 +22,17 @@ Pour initialiser un nouveau projet WebdriverIO, exécutez :
 npm create wdio@latest ./
 ```
 
-Lorsque l'assistant vous demande quel type de tests vous souhaitez effectuer, sélectionnez _"Desktop Testing - of Electron, Tauri, or macOS Applications"_, puis choisissez _Tauri_ lors de la sélection du framework. L'assistant vous demandera ensuite quel fournisseur WebDriver vous souhaitez utiliser (le `tauri-driver` officiel, CrabNebula ou le plugin intégré) et si vous souhaitez utiliser le `@wdio/tauri-plugin` optionnel pour une intégration plus riche.
+Lorsque l'assistant vous demande quel type de test vous souhaitez effectuer, sélectionnez _"Desktop Testing - of Electron, Tauri, or macOS Applications"_, puis choisissez _Tauri_ lors de la sélection du framework. L'assistant vous demandera ensuite quel fournisseur WebDriver vous souhaitez utiliser (le `tauri-driver` officiel, CrabNebula ou le plugin intégré) et si vous souhaitez utiliser le `@wdio/tauri-plugin` optionnel pour une intégration plus riche.
 
-L'assistant installe automatiquement les paquets npm et affiche sur la sortie standard les ajouts Cargo nécessaires, que vous pourrez coller dans votre `src-tauri/Cargo.toml`.
+L'assistant installe automatiquement les paquets npm et affiche dans stdout les ajouts Cargo nécessaires, que vous devrez coller dans votre `src-tauri/Cargo.toml`.
 
 ## Configuration manuelle
 
-Si vous disposez déjà d'un projet WebdriverIO, installez le service :
+Si vous avez déjà un projet WebdriverIO, installez le service :
 
 ```sh
 npm install --save-dev @wdio/tauri-service
-# optionnel : intégration plus riche dans la webview
+# optional: richer in-webview integration
 npm install --save-dev @wdio/tauri-plugin
 ```
 
@@ -66,4 +66,4 @@ export const config: WebdriverIO.Config = {
 
 C'est tout 🎉
 
-Pour en savoir plus, consultez [la configuration du service Tauri](/docs/desktop-testing/tauri/configuration), [la mise en place du plugin Tauri](/docs/desktop-testing/tauri/plugin-setup), [les notes spécifiques aux plateformes](/docs/desktop-testing/tauri/platform-support) et [les cas d'utilisation courants](/docs/desktop-testing/tauri/usage-examples).
+Apprenez-en davantage sur [la configuration du service Tauri](/docs/desktop-testing/tauri/configuration), [la mise en place du plugin Tauri](/docs/desktop-testing/tauri/plugin-setup), [les notes spécifiques à chaque plateforme](/docs/desktop-testing/tauri/platform-support) et [les cas d'utilisation courants](/docs/desktop-testing/tauri/usage-examples).

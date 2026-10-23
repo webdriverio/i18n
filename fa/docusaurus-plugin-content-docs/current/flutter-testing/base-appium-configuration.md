@@ -4,7 +4,7 @@ title: پیکربندی پایه Appium
 description: "سرویس Appium و پکیج Flutter finder را نصب کنید و تنظیمات پایه Appium را برای تست اپلیکیشن‌های Flutter با WebdriverIO پیکربندی کنید."
 ---
 
-WebdriverIO از Appium برای اجرای تست‌ها روی امولاتورها، شبیه‌سازها و دستگاه‌های واقعی موبایل استفاده می‌کند. `@wdio/appium-service` به‌طور خودکار چرخه حیات سرور Appium را در طول اجرای تست‌ها مدیریت می‌کند.
+WebdriverIO از Appium برای اجرای تست‌ها روی امولاتورها، شبیه‌سازها و دستگاه‌های واقعی موبایل استفاده می‌کند. `@wdio/appium-service` به‌طور خودکار چرخه حیات سرور Appium را در طول اجرای تست مدیریت می‌کند.
 
 برای راه‌اندازی عمومی Appium و گزینه‌های capability، به [مستندات سرویس Appium](https://webdriver.io/docs/appium-service/) مراجعه کنید.
 
@@ -22,7 +22,7 @@ npm install --save-dev @wdio/appium-service appium appium-flutter-finder
 
 #### گزینه ۱: به‌عنوان وابستگی توسعه (توصیه‌شده برای CI/CD)
 
-افزودن مستقیم درایور به `devDependencies` تضمین می‌کند که همه اعضای تیم و پایپ‌لاین‌های CI/CD بدون نیاز به مراحل راه‌اندازی اضافی، درایور را به‌طور خودکار نصب داشته باشند:
+افزودن مستقیم درایور به `devDependencies` تضمین می‌کند که همه اعضای تیم و پایپ‌لاین‌های CI/CD بدون نیاز به مراحل راه‌اندازی اضافی، درایور را به‌طور خودکار نصب‌شده داشته باشند:
 
 ```bash
 npm install --save-dev appium-flutter-driver
@@ -44,6 +44,6 @@ npx appium driver install flutter
 ### مرور کلی پکیج‌ها
 
 این پکیج‌ها موارد زیر را فراهم می‌کنند:
-- **`@wdio/appium-service` و `appium`**: سرور Appium را در طول اجرای تست‌ها راه‌اندازی و مدیریت می‌کند.
-- **`appium-flutter-driver`**: درایور Appium که مسئول ارتباط با افزونه تست Flutter است.
+- **`@wdio/appium-service` و `appium`**: سرور Appium را در طول اجرای تست‌ها راه‌اندازی و مدیریت می‌کنند.
+- **`appium-flutter-driver`**: درایور Appium که مسئول برقراری ارتباط با افزونه تست Flutter است.
 - **`appium-flutter-finder`**: کتابخانه کمکی که استراتژی‌های locator مخصوص Flutter (`byValueKey`، `byText`، `byTooltip`) را فراهم می‌کند.

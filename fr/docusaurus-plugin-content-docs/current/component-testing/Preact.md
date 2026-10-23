@@ -4,7 +4,7 @@ title: Preact
 description: "Configurez le browser runner de WebdriverIO pour un projet Preact avec le preset preact et écrivez des tests de composants avec Testing Library."
 ---
 
-[Preact](https://preactjs.com/) est une alternative rapide de 3 ko à React avec la même API moderne. Vous pouvez tester les composants Preact directement dans un vrai navigateur en utilisant WebdriverIO et son [browser runner](/docs/runner#browser-runner).
+[Preact](https://preactjs.com/) est une alternative rapide de 3 Ko à React avec la même API moderne. Vous pouvez tester les composants Preact directement dans un vrai navigateur en utilisant WebdriverIO et son [browser runner](/docs/runner#browser-runner).
 
 ## Configuration
 
@@ -23,11 +23,11 @@ export const config = {
 
 :::info
 
-Si vous utilisez déjà [Vite](https://vitejs.dev/) comme serveur de développement, vous pouvez également simplement réutiliser votre configuration de `vite.config.ts` dans votre configuration WebdriverIO. Pour plus d'informations, consultez `viteConfig` dans les [options du runner](/docs/runner#runner-options).
+Si vous utilisez déjà [Vite](https://vitejs.dev/) comme serveur de développement, vous pouvez également réutiliser votre configuration de `vite.config.ts` dans votre configuration WebdriverIO. Pour plus d'informations, consultez `viteConfig` dans les [options du runner](/docs/runner#runner-options).
 
 :::
 
-Le preset Preact nécessite l'installation de `@preact/preset-vite`. Nous recommandons également d'utiliser [Testing Library](https://testing-library.com/) pour afficher le composant dans la page de test. Pour cela, vous devrez installer les dépendances supplémentaires suivantes :
+Le preset Preact nécessite l'installation de `@preact/preset-vite`. Nous recommandons également d'utiliser [Testing Library](https://testing-library.com/) pour afficher le composant dans la page de test. Vous devrez donc installer les dépendances supplémentaires suivantes :
 
 ```sh npm2yarn
 npm install --save-dev @testing-library/preact @preact/preset-vite

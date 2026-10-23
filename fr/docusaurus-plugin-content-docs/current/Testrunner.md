@@ -4,7 +4,7 @@ title: Testrunner
 description: "Installez le testrunner WDIO depuis @wdio/cli et utilisez ses commandes config, run, install, repl et session pour configurer et exécuter vos suites de tests."
 ---
 
-Le testrunner de WebdriverIO exécute votre suite de tests à partir d'un fichier de configuration. Il démarre un worker par capability, met en place votre framework, vos services et vos reporters, et exécute les specs en parallèle. Utilisez-le pour tous vos projets de test ; n'utilisez le [mode standalone](/docs/setuptypes) que si vous intégrez WebdriverIO dans vos propres outils.
+Le testrunner de WebdriverIO exécute votre suite de tests à partir d'un fichier de configuration. Il démarre un worker par capability, met en place votre framework, vos services et vos reporters, et exécute les specs en parallèle. Utilisez-le pour tous vos projets de test ; n'utilisez le [mode standalone](/docs/setuptypes) que lorsque vous intégrez WebdriverIO dans vos propres outils.
 
 Le testrunner est fourni dans le package `@wdio/cli` :
 
@@ -12,15 +12,15 @@ Le testrunner est fourni dans le package `@wdio/cli` :
 npm install --save-dev @wdio/cli
 ```
 
-`npx wdio` exécute la même CLI lorsque `@wdio/cli` n'est pas encore installé. npm installe le package sans scope [`wdio`](https://www.npmjs.com/package/wdio), et ce package démarre `@wdio/cli`.
+`npx wdio` exécute la même CLI lorsque `@wdio/cli` n'est pas encore installé. npm installe le package non scopé [`wdio`](https://www.npmjs.com/package/wdio), et ce package démarre `@wdio/cli`.
 
-Pour configurer un nouveau projet, lancez l'assistant de configuration. Il pose quelques questions, installe les packages et génère un `wdio.conf.ts` :
+Pour configurer un nouveau projet, lancez l'assistant de configuration. Il pose quelques questions, installe les packages et génère un fichier `wdio.conf.ts` :
 
 ```sh
 npx wdio config
 ```
 
-Ensuite, exécutez vos tests :
+Exécutez ensuite vos tests :
 
 ```sh
 npx wdio run wdio.conf.ts
@@ -68,13 +68,13 @@ Chaque commande affiche ses propres options avec `--help`, par exemple `npx wdio
 
 ### `wdio config`
 
-La commande `config` lance l'assistant de configuration et crée un `wdio.conf.ts` (ou `wdio.conf.js`) en fonction de vos réponses.
+La commande `config` lance l'assistant de configuration et crée un fichier `wdio.conf.ts` (ou `wdio.conf.js`) en fonction de vos réponses.
 
 ```sh
 npx wdio config
 ```
 
-Passez `--yes` pour utiliser les valeurs par défaut (Mocha, Chrome et page objects) sans aucune question. Chaque question de l'assistant possède également un flag, vous pouvez donc répondre à certaines ou à toutes directement en ligne de commande :
+Passez `--yes` pour utiliser les valeurs par défaut (Mocha, Chrome et page objects) sans invite. Chaque question de l'assistant dispose également d'un flag, ce qui vous permet de répondre à certaines ou à toutes les questions depuis la ligne de commande :
 
 ```sh
 npx wdio config --yes --framework cucumber --no-typescript --reporters spec,junit
@@ -153,7 +153,7 @@ Options :
 Exemples :
 
 ```sh
-# exécuter une seule suite
+# exécuter une suite
 npx wdio run wdio.conf.ts --suite login
 
 # exécuter le premier de quatre shards, par ex. dans une matrice CI
@@ -172,7 +172,7 @@ npx wdio run wdio.conf.ts --spec ./features/login.feature:5
 # utiliser un tsconfig.json personnalisé
 npx wdio run wdio.conf.ts --tsConfigPath=./configs/bdd-tsconfig.json
 
-# mettre en pause les tests en échec et browser.debug() pour qu'un agent de code puisse les inspecter
+# mettre en pause les tests en échec et browser.debug() pour qu'un agent de codage puisse les inspecter
 npx wdio run wdio.conf.ts --debug=agent
 ```
 
@@ -214,7 +214,7 @@ qmate-service, robonut, qunit, roku, obsidian, null-driver
 
 ```
 spec, dot, junit, allure, sumologic, concise, json, reportportal, video,
-cucumberjs-json, mochawesome, timeline, html-nice, slack, teamcity, delta,
+cucumberjs-json, mochawesome, timeline, html, slack, teamcity, delta,
 testrail, light, jsonhtml
 ```
 
@@ -233,7 +233,7 @@ runner: local, browser
 
 ### `wdio repl`
 
-La commande `repl` démarre une session WebDriver et ouvre une invite interactive dans laquelle vous exécutez des commandes WebdriverIO. Utilisez-la pour essayer des sélecteurs et des commandes sans écrire de spec. Consultez [Interface REPL](/docs/repl) pour en savoir plus.
+La commande `repl` démarre une session WebDriver et ouvre une invite interactive dans laquelle vous exécutez des commandes WebdriverIO. Utilisez-la pour tester des sélecteurs et des commandes sans écrire de spec. Consultez [Interface REPL](/docs/repl) pour en savoir plus.
 
 Démarrer un Chrome local :
 
@@ -247,7 +247,7 @@ Exécuter dans le cloud Sauce Labs :
 npx wdio repl chrome --user $SAUCE_USERNAME --key $SAUCE_ACCESS_KEY
 ```
 
-Utiliser une capability de votre fichier de configuration, par son index ou par son nom multiremote :
+Utiliser une capability de votre fichier de configuration, par son index ou par son nom multi-remote :
 
 ```sh
 npx wdio repl ./wdio.conf.ts 0 -p 9515
@@ -271,7 +271,7 @@ npx wdio repl --session default
 
 ### `wdio session`
 
-La commande `session` pilote un navigateur, une application mobile ou une application de bureau depuis le shell, une commande par appel. Elle est conçue pour les agents de code : ils ouvrent une session, prennent des snapshots, cliquent et saisissent du texte, puis exportent ce qu'ils ont fait sous forme de test. Consultez [wdio session](/docs/session) pour le workflow et [commandes wdio session](/docs/session-commands) pour toutes les actions.
+La commande `session` pilote un navigateur, une application mobile ou une application de bureau depuis le shell, une commande par appel. Elle est conçue pour les agents de codage : ils ouvrent une session, prennent des snapshots, cliquent et saisissent du texte, puis exportent ce qu'ils ont fait sous forme de test. Consultez [wdio session](/docs/session) pour le workflow et [Commandes wdio session](/docs/session-commands) pour toutes les actions.
 
 ```sh
 npx wdio session --help

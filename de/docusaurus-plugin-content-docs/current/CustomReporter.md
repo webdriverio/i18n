@@ -8,7 +8,7 @@ Sie können Ihren eigenen benutzerdefinierten Reporter für den WDIO-Testrunner 
 
 Alles, was Sie tun müssen, ist ein Node-Modul zu erstellen, das vom Paket `@wdio/reporter` erbt, damit es Nachrichten vom Test empfangen kann.
 
-Das grundlegende Setup sollte so aussehen:
+Die grundlegende Einrichtung sollte so aussehen:
 
 ```js
 import WDIOReporter from '@wdio/reporter'
@@ -56,13 +56,13 @@ export const config = {
 }
 ```
 
-Sie können den Reporter auch auf NPM veröffentlichen, damit ihn jeder nutzen kann. Benennen Sie das Paket wie andere Reporter `wdio-<reportername>-reporter` und versehen Sie es mit Schlüsselwörtern wie `wdio` oder `wdio-reporter`.
+Sie können den Reporter auch auf NPM veröffentlichen, damit jeder ihn nutzen kann. Benennen Sie das Paket wie andere Reporter `wdio-<reportername>-reporter` und versehen Sie es mit Keywords wie `wdio` oder `wdio-reporter`.
 
 ## Event Handler
 
 Sie können einen Event Handler für verschiedene Events registrieren, die während des Testens ausgelöst werden. Alle folgenden Handler erhalten Payloads mit nützlichen Informationen über den aktuellen Zustand und Fortschritt.
 
-Die Struktur dieser Payload-Objekte hängt vom Event ab und ist über die Frameworks hinweg (Mocha, Jasmine und Cucumber) vereinheitlicht. Sobald Sie einen benutzerdefinierten Reporter implementiert haben, sollte er für alle Frameworks funktionieren.
+Die Struktur dieser Payload-Objekte hängt vom Event ab und ist über die Frameworks (Mocha, Jasmine und Cucumber) hinweg vereinheitlicht. Sobald Sie einen benutzerdefinierten Reporter implementiert haben, sollte er mit allen Frameworks funktionieren.
 
 Die folgende Liste enthält alle möglichen Methoden, die Sie Ihrer Reporter-Klasse hinzufügen können:
 
@@ -106,9 +106,9 @@ Alle Event Handler sollten synchrone Routinen ausführen (andernfalls kommt es z
 
 Schauen Sie sich unbedingt den [Beispielbereich](https://github.com/webdriverio/webdriverio/tree/main/examples/wdio) an, in dem Sie einen beispielhaften benutzerdefinierten Reporter finden, der für jedes Event den Event-Namen ausgibt.
 
-Wenn Sie einen benutzerdefinierten Reporter implementiert haben, der für die Community nützlich sein könnte, zögern Sie nicht, einen Pull Request zu erstellen, damit wir den Reporter öffentlich verfügbar machen können!
+Wenn Sie einen benutzerdefinierten Reporter implementiert haben, der für die Community nützlich sein könnte, zögern Sie nicht, einen Pull Request zu erstellen, damit wir den Reporter der Öffentlichkeit zugänglich machen können!
 
-Außerdem können Sie, wenn Sie den WDIO-Testrunner über die `Launcher`-Schnittstelle ausführen, einen benutzerdefinierten Reporter nicht wie folgt als Funktion anwenden:
+Außerdem gilt: Wenn Sie den WDIO-Testrunner über die `Launcher`-Schnittstelle ausführen, können Sie einen benutzerdefinierten Reporter nicht wie folgt als Funktion übergeben:
 
 ```js
 import Launcher from '@wdio/cli'
@@ -116,19 +116,23 @@ import Launcher from '@wdio/cli'
 import CustomReporter from './reporter/my.custom.reporter'
 
 const launcher = new Launcher('/path/to/config.file.js', {
-    // dies wird NICHT funktionieren, da CustomReporter nicht serialisierbar ist
+    // dies funktioniert NICHT, da CustomReporter nicht serialisierbar ist
     reporters: ['dot', CustomReporter]
 })
 ```
 
 ## Reporter und parallele Tests
 
-Bei [parallelen Tests in einer Spec-Datei](./ParallelTests.md) überlappen sich die Tests einer Spec-Datei: `onTestStart` eines Tests kann vor `onTestEnd` eines anderen kommen, und Befehle verschiedener Tests verschränken sich. `WDIOReporter` übernimmt dies für Sie. Im parallelen Modus enthalten die Framework-Events zwei zusätzliche Felder:
+Bei [parallelen Tests in einer Spec-Datei](./ParallelTests.md) überlappen sich die Tests einer Spec-Datei: `onTestStart` eines Tests kann vor `onTestEnd` eines anderen kommen, und Befehle verschiedener Tests werden verschachtelt. `WDIOReporter` übernimmt das für Sie. Im parallelen Modus enthalten die Framework-Events zwei zusätzliche Felder:
 
-- `parentUid` bei `suite:start`, `hook:start` und `test:start`: die UID der zugehörigen Suite (`null` für eine Suite auf oberster Ebene). Der Reporter fügt die Suite, den Hook oder den Test dieser Suite hinzu, nicht der zuletzt gestarteten Suite.
+- `parentUid` bei `suite:start`, `hook:start` und `test:start`: die uid der zugehörigen Suite (`null` für eine Suite auf oberster Ebene). Der Reporter fügt die Suite, den Hook oder den Test dieser Suite hinzu und nicht der zuletzt gestarteten Suite.
 - `contextId` bei Test- und Befehls-Events: der Browsing-Kontext des Tests. Der Reporter fügt die Befehlsausgabe dem Test hinzu, der in diesem Kontext ausgeführt wurde.
 
-Die Bäume `suites`, `tests` und `hooks` des Reporters sind daher korrekt. Wenn Ihr Reporter einen eigenen Zustand verwaltet, verwenden Sie die `uid` des Tests oder der Suite als Schlüssel, anstatt einen einzelnen aktuellen Test zu verfolgen.
+Die Test-, Hook- und Suite-Statistiken behalten diese Felder, wenn das Event sie enthält: In `onTestEnd(test)` ist `test.contextId` der Browsing-Kontext des Tests und `test.parentUid` die uid seiner Suite. Ohne parallelen Modus haben die Statistiken keine solchen Eigenschaften.
+
+Die `suites`-, `tests`- und `hooks`-Bäume des Reporters sind daher korrekt. Wenn Ihr Reporter einen eigenen Zustand verwaltet, verwenden Sie die `uid` des Tests oder der Suite als Schlüssel, anstatt einen einzelnen aktuellen Test zu verfolgen.
+
+Ausgaben, die ohne Event kommen, wie z. B. Konsolenausgaben oder ein benutzerdefiniertes `process.emit`-Event, haben keine `uid`. Rufen Sie `this.getContextTest()` auf, um den Test zu erhalten, dessen Browsing-Kontext sie geschrieben hat. Im parallelen Modus gibt die Methode `undefined` zurück, wenn kein laufender Test diesen Kontext besitzt; ohne parallelen Modus gibt sie den zuletzt gestarteten Test zurück. `before()`-Hooks eines parallelen Tests laufen vor dessen `test:start`, sodass noch kein Test den Kontext besitzt; `this.getContextId()` gibt die rohe Kontext-ID zurück, die für den gesamten Test gleich bleibt.
 
 ```js
 import WDIOReporter from '@wdio/reporter'
@@ -191,7 +195,7 @@ Auf diese Weise wartet der Runner, bis alle Log-Informationen hochgeladen sind.
 Um den Reporter für die WebdriverIO-Community leichter nutzbar und auffindbar zu machen, befolgen Sie bitte diese Empfehlungen:
 
 * Services sollten diese Namenskonvention verwenden: `wdio-*-reporter`
-* Verwenden Sie NPM-Schlüsselwörter: `wdio-plugin`, `wdio-reporter`
+* Verwenden Sie NPM-Keywords: `wdio-plugin`, `wdio-reporter`
 * Der `main`-Eintrag sollte eine Instanz des Reporters `export`ieren
 * Beispiel-Reporter: [`@wdio/dot-service`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-dot-reporter)
 
@@ -206,9 +210,9 @@ export const config = {
 }
 ```
 
-### Veröffentlichten Service zur WDIO CLI und zur Dokumentation hinzufügen
+### Veröffentlichten Service zur WDIO CLI und Dokumentation hinzufügen
 
-Wir schätzen jedes neue Plugin sehr, das anderen helfen könnte, bessere Tests auszuführen! Wenn Sie ein solches Plugin erstellt haben, ziehen Sie bitte in Betracht, es zu unserer CLI und Dokumentation hinzuzufügen, damit es leichter gefunden werden kann.
+Wir schätzen jedes neue Plugin sehr, das anderen Menschen helfen könnte, bessere Tests durchzuführen! Wenn Sie ein solches Plugin erstellt haben, ziehen Sie bitte in Betracht, es zu unserer CLI und Dokumentation hinzuzufügen, damit es leichter gefunden werden kann.
 
 Bitte erstellen Sie einen Pull Request mit den folgenden Änderungen:
 

@@ -1,9 +1,9 @@
 ---
 id: highleveloverview
-title: Visión general de alto nivel
+title: Descripción general de alto nivel
 description: "Consulta un diagrama de flujo de cómo interactúan el ecosistema de WebdriverIO y sus paquetes principales durante la ejecución de una prueba."
 ---
-El diagrama de flujo ofrece una visión general de alto nivel de cómo el ecosistema de WebdriverIO interactúa con los paquetes principales.
+El diagrama de flujo ofrece una descripción general de alto nivel de cómo interactúa el ecosistema de WebdriverIO con los paquetes principales.
 
 ```mermaid
 graph LR
@@ -15,7 +15,7 @@ graph LR
     LAUNCHER
     LISTOFSERVICES-->LOCALRUNNER
     LISTOFSERVICES-->RUNNER
-    REPORTER["Any package that ends with -reporter<br>@wdio/allure-reporter<br>@wdio/concise-reporter<br>@wdio/dot-reporter<br>@wdio/junit-reporter<br>@wdio/reporter<br>@wdio/spec-reporter<br>@wdio/sumologic-reporter<br>@wdio/json-reporter<br>wdio-reportportal-reporter<br>wdio-video-reporter<br>@rpii/wdio-html-reporter<br>wdio-mochawesome-reporter<br>wdio-timeline-reporter<br>wdio-cucumberjs-json-reporter"]-->RUNNER
+    REPORTER["Any package that ends with -reporter<br>@wdio/allure-reporter<br>@wdio/concise-reporter<br>@wdio/cucumberjs-json-reporter<br>@wdio/dot-reporter<br>@wdio/html-reporter<br>@wdio/junit-reporter<br>@wdio/reporter<br>@wdio/spec-reporter<br>@wdio/sumologic-reporter<br>@wdio/video-reporter<br>@wdio/json-reporter<br>wdio-reportportal-reporter<br>wdio-mochawesome-reporter<br>wdio-timeline-reporter"]-->RUNNER
     FRAMEWORK["Any package that ends with -framework<br>@wdio/jasmine-framework<br>@wdio/mocha-framework<br>@wdio/cucumber-framework<br>"]-->
     RUNNER
     WEBDRIVER["webdriverio<br>webdriver"]-->

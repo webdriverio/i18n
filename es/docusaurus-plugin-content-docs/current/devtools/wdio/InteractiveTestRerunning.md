@@ -1,30 +1,30 @@
 ---
 id: interactive-test-rerunning
-title: Re-ejecución interactiva de pruebas y visualización
-description: "Observa cómo se ejecutan las pruebas con vistas previas del navegador en vivo y capturas de pantalla por comando, y luego vuelve a ejecutar pruebas individuales o suites desde la interfaz de DevTools."
+title: Reejecución interactiva de pruebas y visualización
+description: "Observa la ejecución de las pruebas con vistas previas del navegador en vivo y capturas de pantalla por comando, y luego vuelve a ejecutar pruebas individuales o suites desde la interfaz de DevTools."
 ---
 
 Observa cómo se ejecutan tus pruebas en tiempo real con vistas previas del navegador en vivo y capturas de pantalla automáticas tomadas después de cada comando de WebDriver. La interfaz muestra una línea de tiempo visual completa de la ejecución de tus pruebas, mostrando el estado exacto del navegador en cada paso.
 
-Una vez completada la ejecución inicial de las pruebas, haz clic en cualquier caso de prueba o suite en la interfaz de DevTools para volver a ejecutarlo al instante. Esto elimina la necesidad de reiniciar todo tu test runner o modificar tu código, acelerando drásticamente los ciclos de depuración.
+Una vez finalizada la ejecución inicial de las pruebas, haz clic en cualquier caso de prueba o suite en la interfaz de DevTools para volver a ejecutarlo al instante. Esto elimina la necesidad de reiniciar todo el ejecutor de pruebas o de modificar tu código, lo que acelera drásticamente los ciclos de depuración.
 
 **Características principales:**
 - **Visualización en tiempo real** - Captura automática de pantalla después de cada comando (click, toBeExisting, etc.)
 - **Vista previa del navegador en vivo** - Observa el estado actual de tu aplicación durante la ejecución de las pruebas
 - **Línea de tiempo de comandos** - Consulta registros detallados con marcas de tiempo para cada acción
-- **Re-ejecución interactiva** - Haz clic en cualquier prueba o suite para volver a ejecutarla al instante
-- **Ejecución en la misma sesión** - Las pruebas se vuelven a ejecutar en la misma sesión del navegador para obtener retroalimentación más rápida
+- **Reejecución interactiva** - Haz clic en cualquier prueba o suite para volver a ejecutarla al instante
+- **Misma ventana del panel** - Las reejecuciones inician un nuevo proceso de pruebas y se transmiten a la ventana del panel existente, sin abrir nuevas pestañas
 - **Historial desplazable** - Revisa cualquier punto de la ejecución de las pruebas
 
 ## Demo
 
-### ▶️ Test Runner
+### ▶️ Ejecutor de pruebas
 ![Test Runner Demo](/img/devtools/test-runner.gif)
 
-### 🛠️ Test Rerunner
+### 🛠️ Reejecutor de pruebas
 ![Test Rerunner Demo](/img/devtools/test-rerunner.gif)
 
-### 🛑 Detener el Test Runner
+### 🛑 Detener el ejecutor de pruebas
 ![Stop Test Runner Demo](/img/devtools/stop-runner.gif)
 
 ### ⚡ Acciones, instantáneas y registros de comandos

@@ -1,17 +1,17 @@
 ---
 id: coverage
-title: Couverture de code
+title: Couverture
 description: "Collectez la couverture de code pour les tests de composants avec le browser runner, qui instrumente votre code avec istanbul via Vite."
 ---
 
-Le browser runner de WebdriverIO prend en charge les rapports de couverture de code en utilisant [`istanbul`](https://istanbul.js.org/). Le testrunner instrumentera automatiquement votre code en utilisant Vite et capturera la couverture de code pour vous.
+Le browser runner de WebdriverIO prend en charge les rapports de couverture de code à l'aide d'[`istanbul`](https://istanbul.js.org/). Le testrunner instrumentera automatiquement votre code à l'aide de Vite et capturera la couverture de code pour vous.
 
 ## Comment ça fonctionne
 
-Le `@wdio/browser-runner` utilise Vite pour servir votre application. Lorsque vous activez la couverture, il ajoute un plugin au serveur Vite qui tente d'instrumenter votre code source à la volée lorsqu'il est demandé par le navigateur.
+Le `@wdio/browser-runner` utilise Vite pour servir votre application. Lorsque vous activez la couverture, il ajoute un plugin au serveur Vite qui tente d'instrumenter votre code source à la volée au fur et à mesure qu'il est demandé par le navigateur.
 
 :::warning Important
-**Ne quittez pas la page du test runner !**
+**Ne quittez pas le test runner !**
 
 La couverture de code repose sur le fait que les fichiers sont servis et instrumentés par le serveur Vite local démarré par WebdriverIO.
 Si vous utilisez `browser.url('http://...')` ou `browser.url('file://...')` pour naviguer vers une autre page, vous quittez l'environnement instrumenté. Votre code s'exécutera, mais **aucune couverture ne sera collectée**.
@@ -71,16 +71,16 @@ coverage: {
 
 ## Ignorer du code
 
-Il peut y avoir certaines sections de votre base de code que vous souhaitez délibérément exclure du suivi de couverture. Pour ce faire, vous pouvez utiliser les indications d'analyse suivantes :
+Il se peut que vous souhaitiez exclure délibérément certaines sections de votre base de code du suivi de couverture. Pour ce faire, vous pouvez utiliser les indications d'analyse suivantes :
 
 - `/* istanbul ignore if */` : ignore la prochaine instruction if.
 - `/* istanbul ignore else */` : ignore la partie else d'une instruction if.
-- `/* istanbul ignore next */` : ignore l'élément suivant dans le code source (fonctions, instructions if, classes, etc.).
+- `/* istanbul ignore next */` : ignore le prochain élément du code source (fonctions, instructions if, classes, etc.).
 - `/* istanbul ignore file */` : ignore un fichier source entier (ceci doit être placé en haut du fichier).
 
 :::info
 
-Il est recommandé d'exclure vos fichiers de test des rapports de couverture car cela pourrait provoquer des erreurs, par exemple lors de l'appel de la commande `execute`. Si vous souhaitez les conserver dans votre rapport, assurez-vous d'exclure leur instrumentation via :
+Il est recommandé d'exclure vos fichiers de test du rapport de couverture, car cela pourrait provoquer des erreurs, par exemple lors de l'appel de la commande `execute`. Si vous souhaitez les conserver dans votre rapport, assurez-vous d'exclure leur instrumentation via :
 
 ```ts
 await browser.execute(/* istanbul ignore next */() => {

@@ -4,24 +4,24 @@ title: WebdriverIO pour les agents de codage
 description: Configurez Cursor, Claude Code, Copilot ou tout autre agent de codage pour écrire, exécuter et déboguer des tests WebdriverIO à l'aide de la documentation lisible par machine, du serveur MCP WebdriverIO et des traces DevTools.
 ---
 
-La plupart des tests WebdriverIO sont aujourd'hui écrits avec l'aide d'un agent de codage. Cette page explique comment fournir à un agent les trois éléments dont il a besoin pour bien faire ce travail : **une documentation à jour** (pour qu'il écrive du code v10 au lieu de deviner), **un moyen de piloter l'application testée** (pour qu'il puisse explorer l'interface et vérifier les sélecteurs) et **des exécutions de tests débogables** (pour qu'il puisse corriger lui-même les tests en échec).
+La plupart des tests WebdriverIO sont aujourd'hui écrits avec l'aide d'un agent de codage. Cette page explique comment fournir à un agent les trois éléments dont il a besoin pour bien faire ce travail : **une documentation à jour** (afin qu'il écrive du code v10 au lieu de deviner), **un moyen de piloter l'application testée** (afin qu'il puisse explorer l'interface utilisateur et vérifier les sélecteurs) et **des exécutions de tests débogables** (afin qu'il puisse corriger lui-même les tests en échec).
 
-## 1. Donnez la documentation à votre agent
+## 1. Fournissez la documentation à votre agent
 
 Chaque page de ce site est disponible en Markdown épuré, sans navigation, scripts ni mise en forme :
 
-| Ressource | URL | À utiliser pour |
+| Ressource | URL | Utilisation |
 | --- | --- | --- |
 | Index de la documentation | [`https://webdriver.io/llms.txt`](https://webdriver.io/llms.txt) | Une carte organisée de toutes les pages avec un résumé d'une ligne. Commencez ici. |
-| Documentation complète | [`https://webdriver.io/llms-full.txt`](https://webdriver.io/llms-full.txt) | L'intégralité de la documentation dans un seul fichier, pour les agents disposant de grandes fenêtres de contexte. |
-| N'importe quelle page | Ajoutez `.md` à l'URL, par ex. [`/docs/api/browser/url.md`](https://webdriver.io/docs/api/browser/url.md) | Charger exactement la page dont l'agent a besoin. |
+| Documentation complète | [`https://webdriver.io/llms-full.txt`](https://webdriver.io/llms-full.txt) | La documentation complète dans un seul fichier, pour les agents disposant de grandes fenêtres de contexte. |
+| Une page individuelle | Ajoutez `.md` à l'URL, par ex. [`/docs/api/browser/url.md`](https://webdriver.io/docs/api/browser/url.md) | Charger exactement la page dont l'agent a besoin. |
 | Négociation de contenu | Demandez n'importe quelle URL `/docs/*` avec `Accept: text/markdown` | Les agents et outils qui récupèrent les URL telles quelles. |
 
-Chaque page de documentation dispose également d'un menu **Copy page** offrant des options pour copier la page en Markdown ou l'ouvrir directement dans ChatGPT, Claude ou Cursor.
+Chaque page de documentation dispose également d'un menu **Copy page** avec des options pour copier la page en Markdown ou l'ouvrir directement dans ChatGPT, Claude ou Cursor.
 
 ### Serveur MCP de la documentation
 
-La documentation est également disponible sous forme de serveur MCP distant à l'adresse `https://webdriver.io/mcp`. Il fournit trois outils à un agent : `search_docs` pour trouver la bonne page, `get_page` pour la lire en Markdown et `list_sections` pour charger une section entière en une seule fois. Ajoutez-le à côté du serveur MCP WebdriverIO décrit ci-dessous :
+La documentation est également disponible sous forme de serveur MCP distant à l'adresse `https://webdriver.io/mcp`. Il fournit à un agent trois outils : `search_docs` pour trouver la bonne page, `get_page` pour la lire en Markdown et `list_sections` pour charger une section entière en une seule fois. Ajoutez-le à côté du serveur MCP WebdriverIO décrit ci-dessous :
 
 ```json title=".mcp.json"
 {
@@ -37,17 +37,17 @@ Pour Claude Code, exécutez `claude mcp add --transport http webdriverio-docs ht
 
 ## Laissez votre agent utiliser `wdio session`
 
-[`wdio session`](/docs/session) maintient une session WebdriverIO active entre les commandes shell. Un agent peut ouvrir un navigateur, un téléphone ou une application de bureau, prendre un instantané de ce qui est affiché à l'écran, agir sur des références et exporter les étapes qui ont fonctionné sous forme de test. C'est la manière par défaut de piloter une application depuis un agent de codage. Le [serveur MCP](/docs/mcp) présenté dans la section suivante est l'alternative lorsque l'agent doit appeler des outils plutôt que le shell.
+[`wdio session`](/docs/session) maintient une session WebdriverIO active entre les commandes shell. Un agent peut ouvrir un navigateur, un téléphone ou une application de bureau, capturer un instantané de ce qui est affiché à l'écran, agir sur des refs et exporter les étapes qui ont fonctionné sous forme de test. C'est la méthode par défaut pour piloter une application depuis un agent de codage. Le [serveur MCP](/docs/mcp) décrit dans la section suivante est l'alternative lorsque l'agent doit appeler des outils plutôt que le shell.
 
-Installez la compétence (skill) dans le projet :
+Installez le skill dans le projet :
 
 ```sh
 npx wdio session skill --install .
 ```
 
-Cela crée le fichier `.agents/skills/wdio-session/SKILL.md`. `npm init wdio` crée ce même fichier lorsque vous acceptez la prise en charge des agents de codage, et ajoute les règles de projet ci-dessous.
+Cela crée le fichier `.agents/skills/wdio-session/SKILL.md`. `npm init wdio` crée le même fichier lorsque vous acceptez la prise en charge des agents de codage, et ajoute les règles de projet ci-dessous.
 
-Un agent peut créer le projet lui-même. L'assistant accepte un flag pour chaque question, et `--yes` remplit les valeurs par défaut pour le reste, de sorte qu'il n'attend jamais de saisie :
+Un agent peut créer le projet lui-même. L'assistant accepte un flag pour chaque question, et `--yes` applique les valeurs par défaut pour le reste, de sorte qu'il n'attend jamais de saisie :
 
 ```sh
 npm init wdio@latest . -- --yes --typescript --framework mocha --browsers chrome --reporters spec
@@ -59,7 +59,7 @@ npm init wdio@latest . -- --yes --typescript --framework mocha --browsers chrome
 
 Pour rendre la documentation disponible dans chaque conversation, ajoutez l'index à votre agent :
 
-- **Cursor** : ajoutez `https://webdriver.io/llms.txt` comme documentation personnalisée dans les paramètres de Cursor (_Indexing & Docs_), puis référencez-la dans le chat avec `@` et le nom que vous lui avez donné.
+- **Cursor** : ajoutez `https://webdriver.io/llms.txt` comme documentation personnalisée dans les paramètres de Cursor (_Indexing & Docs_), puis référencez-la dans la conversation avec `@` suivi du nom que vous lui avez donné.
 - **Claude Code / Codex / autres agents CLI** : ajoutez le lien au fichier `AGENTS.md` ou `CLAUDE.md` de votre projet (voir les [règles de projet](#3-add-project-rules) ci-dessous). Les agents récupèrent les pages dont ils ont besoin à la demande.
 
 ## 2. Laissez votre agent piloter le navigateur ou l'application
@@ -110,7 +110,7 @@ Les règles ci-dessus reflètent les recommandations des pages [Bonnes pratiques
 
 ## 4. Laissez l'agent déboguer les tests en échec
 
-Le service [WebdriverIO DevTools](/docs/devtools) peut enregistrer une **trace** de chaque exécution : un artefact portable contenant une transcription Markdown étape par étape, des captures d'écran, des instantanés de l'arbre d'accessibilité et des journaux réseau pour chaque action. Cela donne à un agent les mêmes informations qu'un humain obtient en regardant le test, sans avoir besoin d'une fenêtre de navigateur.
+Le service [WebdriverIO DevTools](/docs/devtools) peut enregistrer une **trace** de chaque exécution : un artefact portable contenant une transcription Markdown étape par étape, des captures d'écran, des instantanés de l'arbre d'accessibilité et des journaux réseau pour chaque action. Cela fournit à un agent les mêmes informations qu'un humain obtient en regardant le test, sans avoir besoin d'une fenêtre de navigateur.
 
 Installez le service et activez le mode trace :
 
@@ -124,9 +124,9 @@ export const config: WebdriverIO.Config = {
     services: [
         ['devtools', {
             mode: 'trace',
-            // une trace par test permet de transmettre facilement un seul échec à un agent
+            // une trace par test permet de confier facilement un seul échec à un agent
             traceGranularity: 'test',
-            // des fichiers simples au lieu d'un zip, pour que les agents puissent les lire directement
+            // des fichiers simples plutôt qu'un zip, pour que les agents puissent les lire directement
             traceFormat: 'ndjson-directory'
         }]
     ]
@@ -137,7 +137,7 @@ Après une exécution, les traces sont écrites dans `test-results/`. Indiquez �
 
 ## Flux de travail recommandé
 
-1. Demandez à l'agent d'explorer la fonctionnalité à tester avec le serveur MCP et de proposer des sélecteurs.
+1. Demandez à l'agent d'explorer la fonctionnalité testée avec le serveur MCP et de proposer des sélecteurs.
 2. Laissez-le écrire la spec et le page object en suivant les règles de votre projet, en récupérant les pages de documentation WebdriverIO selon les besoins.
 3. Faites-lui exécuter la spec seule avec `--spec` et itérer jusqu'à ce qu'elle réussisse.
 4. Si un test échoue en CI, donnez à l'agent la trace de ce test et laissez-le corriger le test ou signaler le bug.
@@ -148,4 +148,4 @@ Après une exécution, les traces sont écrites dans `test-results/`. Indiquez �
 - [WebdriverIO MCP](/docs/mcp) - tous les outils fournis par le serveur MCP
 - [DevTools](/docs/devtools) - mode live et mode trace
 - [Bonnes pratiques](/docs/bestpractices) - à quoi ressemblent de bons tests WebdriverIO
-- [De la v9 à la v10](/docs/v10-migration#migrate-with-a-coding-agent) - la compétence de migration pour une suite existante
+- [De v9 à v10](/docs/v10-migration#migrate-with-a-coding-agent) - le skill de migration pour une suite existante

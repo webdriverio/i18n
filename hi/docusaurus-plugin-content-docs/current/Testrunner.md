@@ -4,7 +4,7 @@ title: टेस्टरनर
 description: "@wdio/cli से WDIO टेस्टरनर इंस्टॉल करें और टेस्ट सूट सेट अप करने और चलाने के लिए इसके config, run, install, repl और session कमांड का उपयोग करें।"
 ---
 
-WebdriverIO टेस्टरनर आपके टेस्ट सूट को एक कॉन्फ़िगरेशन फ़ाइल से चलाता है। यह प्रत्येक capability के लिए एक वर्कर शुरू करता है, आपके फ्रेमवर्क, सर्विसेज़ और रिपोर्टर्स को जोड़ता है, और specs को समानांतर में चलाता है। हर टेस्ट प्रोजेक्ट के लिए इसका उपयोग करें; [स्टैंडअलोन मोड](/docs/setuptypes) का उपयोग केवल तभी करें जब आप WebdriverIO को अपनी स्वयं की टूलिंग में एम्बेड करते हैं।
+WebdriverIO टेस्टरनर एक कॉन्फ़िगरेशन फ़ाइल से आपका टेस्ट सूट चलाता है। यह प्रत्येक capability के लिए एक worker शुरू करता है, आपके फ्रेमवर्क, सर्विसेज़ और रिपोर्टर्स को जोड़ता है, और specs को समानांतर रूप से चलाता है। हर टेस्ट प्रोजेक्ट के लिए इसका उपयोग करें; [standalone mode](/docs/setuptypes) का उपयोग केवल तभी करें जब आप WebdriverIO को अपने स्वयं के टूलिंग में एम्बेड करते हैं।
 
 टेस्टरनर `@wdio/cli` पैकेज में आता है:
 
@@ -12,21 +12,21 @@ WebdriverIO टेस्टरनर आपके टेस्ट सूट क�
 npm install --save-dev @wdio/cli
 ```
 
-जब `@wdio/cli` अभी तक इंस्टॉल नहीं है, तब भी `npx wdio` वही CLI चलाता है। npm बिना स्कोप वाला [`wdio`](https://www.npmjs.com/package/wdio) पैकेज इंस्टॉल करता है, और वह पैकेज `@wdio/cli` को शुरू करता है।
+जब `@wdio/cli` अभी तक इंस्टॉल नहीं हुआ है, तब `npx wdio` वही CLI चलाता है। npm बिना scope वाला [`wdio`](https://www.npmjs.com/package/wdio) पैकेज इंस्टॉल करता है, और वह पैकेज `@wdio/cli` शुरू करता है।
 
-एक नया प्रोजेक्ट सेट अप करने के लिए, कॉन्फ़िगरेशन विज़ार्ड चलाएँ। यह कुछ प्रश्न पूछता है, पैकेज इंस्टॉल करता है और एक `wdio.conf.ts` लिखता है:
+नया प्रोजेक्ट सेट अप करने के लिए, कॉन्फ़िगरेशन विज़ार्ड चलाएं। यह कुछ प्रश्न पूछता है, पैकेज इंस्टॉल करता है और एक `wdio.conf.ts` लिखता है:
 
 ```sh
 npx wdio config
 ```
 
-फिर अपने टेस्ट चलाएँ:
+फिर अपने टेस्ट चलाएं:
 
 ```sh
 npx wdio run wdio.conf.ts
 ```
 
-`run` डिफ़ॉल्ट कमांड है, इसलिए `npx wdio wdio.conf.ts` भी यही करता है। अपने specs में, `@wdio/globals` से सेशन इम्पोर्ट करें:
+`run` डिफ़ॉल्ट कमांड है, इसलिए `npx wdio wdio.conf.ts` भी यही करता है। अपने specs में, `@wdio/globals` से session इम्पोर्ट करें:
 
 ```ts title="test/specs/example.e2e.ts"
 import { browser, $, expect } from '@wdio/globals'
@@ -39,7 +39,7 @@ describe('webdriver.io', () => {
 })
 ```
 
-`wdio.conf.ts` के हर विकल्प के लिए [कॉन्फ़िगरेशन फ़ाइल](/docs/configurationfile) देखें।
+`wdio.conf.ts` के हर विकल्प के लिए [Configuration File](/docs/configurationfile) देखें।
 
 ## कमांड्स
 
@@ -64,7 +64,7 @@ Options:
   --version  Show version number                                       [boolean]
 ```
 
-हर कमांड `--help` के साथ अपने स्वयं के विकल्प प्रिंट करता है, उदाहरण के लिए `npx wdio run --help`।
+हर कमांड `--help` के साथ अपने विकल्प प्रिंट करता है, उदाहरण के लिए `npx wdio run --help`।
 
 ### `wdio config`
 
@@ -74,7 +74,7 @@ Options:
 npx wdio config
 ```
 
-बिना पूछे डिफ़ॉल्ट (Mocha, Chrome और पेज ऑब्जेक्ट्स) का उपयोग करने के लिए `--yes` पास करें। हर विज़ार्ड प्रश्न के लिए एक फ़्लैग भी है, इसलिए आप उनमें से कुछ या सभी का उत्तर कमांड लाइन पर दे सकते हैं:
+बिना पूछे डिफ़ॉल्ट (Mocha, Chrome और page objects) का उपयोग करने के लिए `--yes` पास करें। विज़ार्ड के हर प्रश्न के लिए एक फ़्लैग भी है, इसलिए आप उनमें से कुछ या सभी का उत्तर कमांड लाइन पर दे सकते हैं:
 
 ```sh
 npx wdio config --yes --framework cucumber --no-typescript --reporters spec,junit
@@ -92,13 +92,13 @@ npx wdio config --yes --framework cucumber --no-typescript --reporters spec,juni
 
 विज़ार्ड उसी पैकेज मैनेजर से पैकेज इंस्टॉल करता है जो इसे चलाता है: `pnpm wdio config` pnpm का उपयोग करता है, `yarn wdio config` Yarn का उपयोग करता है, और `npx` npm का उपयोग करता है।
 
-`npx wdio config --help` विज़ार्ड फ़्लैग्स और उनके द्वारा स्वीकार किए जाने वाले मानों को सूचीबद्ध करता है। किसी ऐसे प्रश्न के लिए फ़्लैग जो विज़ार्ड आपके सेटअप के लिए नहीं पूछता, एक त्रुटि है, और ऐसा मान भी त्रुटि है जो यह प्रदान नहीं करता। उदाहरणों के लिए [फ़्लैग्स के साथ विज़ार्ड का उत्तर दें](/docs/gettingstarted#answer-the-wizard-with-flags) देखें।
+`npx wdio config --help` विज़ार्ड फ़्लैग्स और उनके द्वारा स्वीकार किए जाने वाले मानों की सूची देता है। किसी ऐसे प्रश्न का फ़्लैग जो विज़ार्ड आपके सेटअप के लिए नहीं पूछता, एक त्रुटि है, और ऐसा मान भी त्रुटि है जो वह प्रदान नहीं करता। उदाहरणों के लिए [Answer the wizard with flags](/docs/gettingstarted#answer-the-wizard-with-flags) देखें।
 
 ### `wdio run`
 
 > यह आपके कॉन्फ़िगरेशन को चलाने के लिए डिफ़ॉल्ट कमांड है।
 
-`run` कमांड आपकी कॉन्फ़िगरेशन फ़ाइल लोड करता है और आपके टेस्ट चलाता है। कमांड लाइन विकल्प कॉन्फ़िगरेशन फ़ाइल में मेल खाने वाले विकल्पों को ओवरराइड करते हैं।
+`run` कमांड आपकी कॉन्फ़िगरेशन फ़ाइल लोड करता है और आपके टेस्ट चलाता है। कमांड लाइन विकल्प कॉन्फ़िगरेशन फ़ाइल के संबंधित विकल्पों को ओवरराइड करते हैं।
 
 ```sh
 npx wdio run wdio.conf.ts --spec test/specs/login.e2e.ts
@@ -153,34 +153,34 @@ npx wdio run wdio.conf.ts --spec test/specs/login.e2e.ts
 उदाहरण:
 
 ```sh
-# एक सूट चलाएँ
+# एक suite चलाएं
 npx wdio run wdio.conf.ts --suite login
 
-# चार शार्ड्स में से पहला चलाएँ, उदाहरण के लिए CI मैट्रिक्स में
+# चार shards में से पहला चलाएं, उदाहरण के लिए CI matrix में
 npx wdio run wdio.conf.ts --shard 1/4
 
-# सभी ब्राउज़र headless चलाएँ, या headed मोड को बाध्य करें
+# सभी ब्राउज़र headless चलाएं, या headed मोड को बाध्य करें
 npx wdio run wdio.conf.ts --headless
 npx wdio run wdio.conf.ts --headless=false
 
-# डॉट नोटेशन के साथ फ्रेमवर्क विकल्प सेट करें
+# dot notation के साथ फ्रेमवर्क विकल्प सेट करें
 npx wdio run wdio.conf.ts --mochaOpts.timeout 60000
 
-# लाइन नंबर द्वारा एक Cucumber परिदृश्य चलाएँ
+# लाइन नंबर द्वारा एक Cucumber scenario चलाएं
 npx wdio run wdio.conf.ts --spec ./features/login.feature:5
 
 # एक कस्टम tsconfig.json का उपयोग करें
 npx wdio run wdio.conf.ts --tsConfigPath=./configs/bdd-tsconfig.json
 
-# विफल टेस्ट और browser.debug() को रोकें ताकि एक कोडिंग एजेंट उनका निरीक्षण कर सके
+# विफल टेस्ट और browser.debug() को रोकें ताकि एक coding agent उनका निरीक्षण कर सके
 npx wdio run wdio.conf.ts --debug=agent
 ```
 
-`--tsConfigPath` आपके कॉन्फ़िगरेशन की [`tsConfigPath`](/docs/configurationfile) सेटिंग को ओवरराइड करता है। WebdriverIO आपके specs को `tsx` के साथ कैसे कंपाइल करता है, इसके लिए [TypeScript](/docs/typescript) देखें।
+`--tsConfigPath` आपके कॉन्फ़िगरेशन की [`tsConfigPath`](/docs/configurationfile) सेटिंग को ओवरराइड करता है। WebdriverIO `tsx` के साथ आपके specs को कैसे कंपाइल करता है, इसके लिए [TypeScript](/docs/typescript) देखें।
 
 ### `wdio install`
 
-`install` कमांड किसी मौजूदा प्रोजेक्ट में एक रिपोर्टर, सर्विस, फ्रेमवर्क, प्लगइन या रनर जोड़ता है। यह पैकेज इंस्टॉल करता है, इसे आपके `package.json` में जोड़ता है और आपकी कॉन्फ़िगरेशन फ़ाइल को अपडेट करता है।
+`install` कमांड किसी मौजूदा प्रोजेक्ट में एक रिपोर्टर, सर्विस, फ्रेमवर्क, प्लगइन या रनर जोड़ता है। यह पैकेज इंस्टॉल करता है, उसे आपकी `package.json` में जोड़ता है और आपकी कॉन्फ़िगरेशन फ़ाइल को अपडेट करता है।
 
 ```sh
 npx wdio install service sauce        # @wdio/sauce-service इंस्टॉल करता है
@@ -214,11 +214,11 @@ qmate-service, robonut, qunit, roku, obsidian, null-driver
 
 ```
 spec, dot, junit, allure, sumologic, concise, json, reportportal, video,
-cucumberjs-json, mochawesome, timeline, html-nice, slack, teamcity, delta,
+cucumberjs-json, mochawesome, timeline, html, slack, teamcity, delta,
 testrail, light, jsonhtml
 ```
 
-#### समर्थित फ्रेमवर्क की सूची
+#### समर्थित फ्रेमवर्क्स की सूची
 
 ```
 mocha, jasmine, cucumber
@@ -233,7 +233,7 @@ runner: local, browser
 
 ### `wdio repl`
 
-`repl` कमांड एक WebDriver सेशन शुरू करता है और एक इंटरैक्टिव प्रॉम्प्ट खोलता है जहाँ आप WebdriverIO कमांड चलाते हैं। बिना spec लिखे सेलेक्टर्स और कमांड्स को आज़माने के लिए इसका उपयोग करें। अधिक जानकारी के लिए [REPL इंटरफ़ेस](/docs/repl) देखें।
+`repl` कमांड एक WebDriver session शुरू करता है और एक इंटरैक्टिव प्रॉम्प्ट खोलता है जहां आप WebdriverIO कमांड चलाते हैं। बिना spec लिखे selectors और कमांड्स आज़माने के लिए इसका उपयोग करें। अधिक जानकारी के लिए [REPL interface](/docs/repl) देखें।
 
 एक लोकल Chrome शुरू करें:
 
@@ -241,7 +241,7 @@ runner: local, browser
 npx wdio repl chrome
 ```
 
-Sauce Labs क्लाउड में चलाएँ:
+Sauce Labs क्लाउड में चलाएं:
 
 ```sh
 npx wdio repl chrome --user $SAUCE_USERNAME --key $SAUCE_ACCESS_KEY
@@ -259,7 +259,7 @@ npx wdio repl ./wdio.conf.ts 0 -p 9515
 npx wdio repl --session default
 ```
 
-`repl` [run कमांड](#wdio-run) के कनेक्शन विकल्प (`--hostname`, `--port`, `--path`, `--user`, `--key`, `--logLevel`, ...) और ये मोबाइल विकल्प स्वीकार करता है। लंबे `--user` और `--udid` रूपों का उपयोग करें: `-u` दोनों का छोटा उपनाम है।
+`repl` [run command](#wdio-run) के कनेक्शन विकल्प (`--hostname`, `--port`, `--path`, `--user`, `--key`, `--logLevel`, ...) और ये मोबाइल विकल्प स्वीकार करता है। लंबे `--user` और `--udid` रूपों का उपयोग करें: `-u` दोनों का छोटा उपनाम है।
 
 ```
 -v, --platformVersion  Version of OS for mobile devices                 [string]
@@ -271,15 +271,15 @@ npx wdio repl --session default
 
 ### `wdio session`
 
-`session` कमांड शेल से एक ब्राउज़र, मोबाइल ऐप या डेस्कटॉप ऐप को चलाता है, प्रति कॉल एक कमांड। यह कोडिंग एजेंट्स के लिए बनाया गया है: वे एक सेशन खोलते हैं, स्नैपशॉट लेते हैं, क्लिक और टाइप करते हैं, और जो उन्होंने किया उसे एक टेस्ट के रूप में एक्सपोर्ट करते हैं। वर्कफ़्लो के लिए [wdio session](/docs/session) और हर एक्शन के लिए [wdio session कमांड्स](/docs/session-commands) देखें।
+`session` कमांड शेल से एक ब्राउज़र, मोबाइल ऐप या डेस्कटॉप ऐप को चलाता है, प्रति कॉल एक कमांड। यह coding agents के लिए बनाया गया है: वे एक session खोलते हैं, snapshots लेते हैं, क्लिक और टाइप करते हैं, और जो उन्होंने किया उसे एक टेस्ट के रूप में एक्सपोर्ट करते हैं। वर्कफ़्लो के लिए [wdio session](/docs/session) और हर action के लिए [wdio session commands](/docs/session-commands) देखें।
 
 ```sh
 npx wdio session --help
 ```
 
-## अगले चरण
+## अगले कदम
 
-- [कॉन्फ़िगरेशन फ़ाइल](/docs/configurationfile): `wdio.conf.ts` का हर विकल्प
-- [शुरुआत करें](/docs/gettingstarted): विज़ार्ड के साथ एक प्रोजेक्ट सेट अप करें
-- [REPL इंटरफ़ेस](/docs/repl): कमांड्स को इंटरैक्टिव रूप से डीबग करें
-- [wdio session](/docs/session): शेल या एक एजेंट से ब्राउज़र चलाएँ
+- [Configuration File](/docs/configurationfile): `wdio.conf.ts` का हर विकल्प
+- [Getting Started](/docs/gettingstarted): विज़ार्ड के साथ एक प्रोजेक्ट सेट अप करें
+- [REPL interface](/docs/repl): कमांड्स को इंटरैक्टिव रूप से डीबग करें
+- [wdio session](/docs/session): शेल या एक agent से ब्राउज़र चलाएं

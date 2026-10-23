@@ -20,9 +20,9 @@ npm install --save-dev @wdio/appium-service appium appium-flutter-finder
 
 Vous pouvez installer l'Appium Flutter Driver (`appium-flutter-driver`) de l'une des deux manières suivantes :
 
-#### Option 1 : En tant que dépendance de développement (recommandé pour le CI/CD)
+#### Option 1 : En tant que dépendance de développement (recommandé pour CI/CD)
 
-Ajouter le driver directement à vos `devDependencies` garantit que tous les membres de l'équipe et tous les pipelines CI/CD disposent automatiquement du driver installé, sans étapes de configuration supplémentaires :
+Ajouter le driver directement à vos `devDependencies` garantit que tous les membres de l'équipe et les pipelines CI/CD disposent automatiquement du driver, sans nécessiter d'étapes de configuration supplémentaires :
 
 ```bash
 npm install --save-dev appium-flutter-driver
@@ -33,9 +33,9 @@ npm install --save-dev appium-flutter-driver
 > npm install --save-dev @wdio/appium-service appium appium-flutter-finder appium-flutter-driver
 > ```
 
-#### Option 2 : Via la CLI d'Appium (configuration locale)
+#### Option 2 : Via la CLI Appium (configuration locale)
 
-Vous pouvez également installer le driver localement dans votre environnement Appium à l'aide de la CLI d'Appium :
+Vous pouvez aussi installer le driver localement dans votre environnement Appium à l'aide de la CLI Appium :
 
 ```bash
 npx appium driver install flutter
@@ -46,4 +46,4 @@ npx appium driver install flutter
 Ces packages fournissent :
 - **`@wdio/appium-service` & `appium`** : démarre et gère le serveur Appium pendant l'exécution des tests.
 - **`appium-flutter-driver`** : le driver Appium chargé de communiquer avec l'extension de test de Flutter.
-- **`appium-flutter-finder`** : bibliothèque d'assistance fournissant des stratégies de localisation spécifiques à Flutter (`byValueKey`, `byText`, `byTooltip`).
+- **`appium-flutter-finder`** : bibliothèque utilitaire fournissant des stratégies de localisation spécifiques à Flutter (`byValueKey`, `byText`, `byTooltip`).
