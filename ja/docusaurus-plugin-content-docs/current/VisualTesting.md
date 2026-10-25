@@ -12,26 +12,26 @@ import TabItem from '@theme/TabItem';
 WebdriverIOは、以下の環境で画面、要素、またはフルページの画像比較を提供します
 
 -   🖥️ デスクトップブラウザ（Chrome / Firefox / Safari / Microsoft Edge）
--   📱 モバイル / タブレットブラウザ（Androidエミュレーター上のChrome / iOSシミュレーター上のSafari / シミュレーター / 実機）Appium経由
--   📱 ネイティブアプリ（Androidエミュレーター / iOSシミュレーター / 実機）Appium経由（🌟 **新機能** 🌟）
--   📳 ハイブリッドアプリ Appium経由
+-   📱 Appium経由のモバイル / タブレットブラウザ（Androidエミュレータ上のChrome / iOSシミュレータ上のSafari / シミュレータ / 実機）
+-   📱 Appium経由のネイティブアプリ（Androidエミュレータ / iOSシミュレータ / 実機）（🌟 **新機能** 🌟）
+-   📳 Appium経由のハイブリッドアプリ
 
-これは軽量なWebdriverIOサービスである[`@wdio/visual-service`](https://www.npmjs.com/package/@wdio/visual-service)を通じて提供されます。
+これらは軽量なWebdriverIOサービスである[`@wdio/visual-service`](https://www.npmjs.com/package/@wdio/visual-service)を通じて提供されます。
 
 これにより、以下のことが可能になります：
 
 -   **画面/要素/フルページ**のスクリーンショットを保存したり、ベースラインと比較したりする
 -   ベースラインが存在しない場合に自動的に**ベースラインを作成**する
--   比較中に**カスタム領域をブロック**したり、ステータスバーやツールバー（モバイルのみ）を**自動的に除外**したりする
+-   比較時に**カスタム領域をブロックアウト**し、さらにステータスバーやツールバー（モバイルのみ）を**自動的に除外**する
 -   要素のスクリーンショットのサイズを拡大する
--   ウェブサイトの比較中に**テキストを非表示**にして：
-    -   **安定性を向上**させ、フォントレンダリングによる不安定さを防ぐ
+-   ウェブサイト比較時に**テキストを非表示**にして：
+    -   **安定性を向上**させ、フォントレンダリングの不安定さを防ぐ
     -   ウェブサイトの**レイアウト**のみに焦点を当てる
--   **異なる比較方法**と、より読みやすいテストのための**追加のマッチャー**セットを使用する
--   ウェブサイトが**キーボードによるタブ操作をどのようにサポートしているか**を検証する。[ウェブサイトのタブ操作](#tabbing-through-a-website)も参照してください
--   その他多数。[サービス](./visual-testing/service-options)および[メソッド](./visual-testing/method-options)のオプションを参照してください
+-   **異なる比較方法**や、テストを読みやすくするための**追加のマッチャー**を使用する
+-   ウェブサイトが**キーボードでのタブ移動をどのようにサポートするか**を検証する。[ウェブサイトのタブ移動](#tabbing-through-a-website)も参照してください
+-   その他多数。[サービス](./visual-testing/service-options)と[メソッド](./visual-testing/method-options)のオプションを参照してください
 
-このサービスは、すべてのブラウザ/デバイスに必要なデータとスクリーンショットを取得するための軽量モジュールです。比較機能は、YIQ色空間を使用した高速かつ正確な知覚的画像比較ライブラリである[Pixelmatch](https://github.com/mapbox/pixelmatch)によって提供されています。画像は、ネイティブ依存関係のないPNGコーデックである[fast-png](https://github.com/image-js/fast-png)で処理されます。
+このサービスは、すべてのブラウザ/デバイスに必要なデータとスクリーンショットを取得するための軽量モジュールです。比較機能は、高速で正確な知覚的画像比較ライブラリである[Pixelmatch](https://github.com/mapbox/pixelmatch)によるものです。v11以降では、OKLab色空間でHyAB距離（pixelmatch 8）を使用して色の差異を測定しており、これは人間の色の見え方により近いものです。画像は、ネイティブ依存関係のないPNGコーデックである[fast-png](https://github.com/image-js/fast-png)で処理されます。
 
 :::info ネイティブ/ハイブリッドアプリに関する注意
 メソッド`saveScreen`、`saveElement`、`checkScreen`、`checkElement`およびマッチャー`toMatchScreenSnapshot`と`toMatchElementSnapshot`は、ネイティブアプリ/コンテキストで使用できます。
@@ -39,21 +39,43 @@ WebdriverIOは、以下の環境で画面、要素、またはフルページの
 ハイブリッドアプリで使用する場合は、サービス設定でプロパティ`isHybridApp:true`を使用してください。
 :::
 
+:::caution v10からアップグレードしますか？
+
+`@wdio/visual-service` **v11**は**WebdriverIO v10**（およびNode.js 22.19以降）のみをサポートしています。WebdriverIO v9を使用する場合は、`@wdio/visual-service@10`のままにしてください。
+
+v11では、YIQの代わりにpixelmatch 8（OKLab色空間、HyAB距離）で色を比較します。しきい値のスケールと`ignore*`プリセットは変更されていませんが、同じ画像でも**不一致率がv10と若干異なる場合があります**。テストコードを変更する必要はありません。チェックが正確な不一致率や厳しい許容値に依存している場合は、アップグレード後に再確認してください。
+
+v11の一部の修正により、ベースラインが一度変更される場合もあります：
+
+-   **大きな要素のiOS要素スクリーンショット：** ビューポート内に完全に収まっていない要素の場合、画像は要素全体のサイズでしたが、ビューポート外の部分は黒くなっていました（[appium/appium#22939](https://github.com/appium/appium/issues/22939)）。現在は、Androidと同様に、画像には要素の表示部分のみが含まれます。
+-   **`biDiOrigin: 'viewport'`を使用した要素スクリーンショット：** WebDriver BiDiセッションでは、ページがスクロールされている場合でも、スクリーンショットは要素自体を切り取るようになりました。
+-   **スクロールの復元：** 要素チェック（`autoElementScroll`使用時）とフルページチェックは、ページを元の位置にスクロールして戻すようになりました。その直後に実行されるビューポートチェックでは、異なる画像が得られる可能性があります。
+
+すべての変更については、[v11移行ガイド](https://github.com/webdriverio/visual-testing/blob/main/docs/v11-migration.md)を参照してください。
+
+:::
+
 :::caution v9（またはそれ以前）からアップグレードしますか？
 
-`@wdio/visual-service` **v10**では、比較エンジンが**ResembleJS**から**[Pixelmatch](https://github.com/mapbox/pixelmatch)**に変更されました。Pixelmatchは生のRGBではなく知覚的（YIQ）カラーモデルを使用するため、不一致率はv9とは異なります。これは次のことを意味します：
+`@wdio/visual-service` **v10**では、比較エンジンが**ResembleJS**から**[Pixelmatch](https://github.com/mapbox/pixelmatch)**に変更されました。Pixelmatchは生のRGBではなく知覚的な（YIQ）カラーモデルを使用するため、不一致率はv9とは異なります。これは以下を意味します：
 
 -   **テストコードを変更する必要はありません。** すべてのメソッド名、オプション名、マッチャーは同一です。
--   **ベースライン画像を更新する必要がある場合があります。** アップグレード後、テストスイートを実行し、ビジュアルの差分を確認してください。失敗した個々のベースラインは`--update-visual-baseline`で更新できます。または、ベースラインフォルダ全体を削除し、`autoSaveBaseline`によって最初から再作成させることもできます。詳細は[FAQ](/docs/visual-testing/faq#my-visual-tests-fail-with-a-difference-how-can-i-update-my-baseline)を参照してください。
+-   **ベースライン画像の更新が必要になる場合があります。** アップグレード後、テストスイートを実行して視覚的な差分を確認してください。失敗した個々のベースラインは`--update-visual-baseline`で更新するか、ベースラインフォルダ全体を削除して`autoSaveBaseline`で一から再作成させることができます。詳細については[FAQ](/docs/visual-testing/faq#my-visual-tests-fail-with-a-difference-how-can-i-update-my-baseline)を参照してください。
 
 :::
 
 ## インストール
 
-最も簡単な方法は、以下のコマンドで`@wdio/visual-service`を`package.json`の開発依存関係として追加することです：
+最も簡単な方法は、以下のコマンドで`@wdio/visual-service`を`package.json`のdev-dependencyとして追加することです：
 
 ```sh
 npm install --save-dev @wdio/visual-service
+```
+
+これによりv11がインストールされますが、v11にはWebdriverIO v10が必要です。WebdriverIO v9のプロジェクトでは、サービスのv10をインストールしてください：
+
+```sh
+npm install --save-dev @wdio/visual-service@10
 ```
 
 ## 使用方法
@@ -73,7 +95,7 @@ export const config = {
         [
             "visual",
             {
-                // いくつかのオプション、詳細はドキュメントを参照
+                // いくつかのオプション。詳細はドキュメントを参照
                 baselineFolder: path.join(process.cwd(), "tests", "baseline"),
                 formatImageName: "{tag}-{logName}-{width}x{height}",
                 screenshotPath: path.join(process.cwd(), "tmp"),
@@ -91,11 +113,11 @@ export const config = {
 WebdriverIOの設定が完了したら、[テスト](/docs/visual-testing/writing-tests)にビジュアルアサーションを追加できます。
 
 ### Capabilities
-ビジュアルテストモジュールを使用するために、**capabilitiesに追加のオプションを加える必要はありません**。ただし、場合によっては、`logName`などの追加のメタデータをビジュアルテストに追加したいことがあります。
+Visual Testingモジュールを使用するために、**capabilitiesに追加のオプションを加える必要はありません**。ただし、場合によっては、`logName`などの追加のメタデータをビジュアルテストに追加したいことがあります。
 
-`logName`を使用すると、各capabilityにカスタム名を割り当てることができ、その名前を画像ファイル名に含めることができます。これは、異なるブラウザ、デバイス、または設定で撮影されたスクリーンショットを区別するのに特に便利です。
+`logName`を使用すると、各capabilityにカスタム名を割り当て、それを画像ファイル名に含めることができます。これは、異なるブラウザ、デバイス、または設定で撮影されたスクリーンショットを区別するのに特に便利です。
 
-これを有効にするには、`capabilities`セクションで`logName`を定義し、ビジュアルテストサービスの`formatImageName`オプションがそれを参照するようにします。設定方法は次のとおりです：
+これを有効にするには、`capabilities`セクションで`logName`を定義し、Visual Testingサービスの`formatImageName`オプションがそれを参照するようにします。設定方法は以下の通りです：
 
 ```js
 import path from "node:path";
@@ -124,7 +146,7 @@ export const config = {
         [
             "visual",
             {
-                // いくつかのオプション、詳細はドキュメントを参照
+                // いくつかのオプション。詳細はドキュメントを参照
                 baselineFolder: path.join(process.cwd(), "tests", "baseline"),
                 screenshotPath: path.join(process.cwd(), "tmp"),
                 // 以下のフォーマットはcapabilitiesの`logName`を使用します
@@ -150,16 +172,15 @@ export const config = {
 
 3. カスタム命名の利点：
 
-    - 異なるブラウザやデバイスからのスクリーンショットを区別することがはるかに簡単になります。特にベースラインの管理や不一致のデバッグを行う際に役立ちます。
+    - 異なるブラウザやデバイスのスクリーンショットの区別がはるかに簡単になり、特にベースラインの管理や不一致のデバッグ時に役立ちます。
 
 4. デフォルトに関する注意：
 
-    -capabilitiesで`logName`が設定されていない場合、`formatImageName`オプションはファイル名内でそれを空文字列として表示します（`homepage--15-1920x1080.png`）
+    -capabilitiesで`logName`が設定されていない場合、`formatImageName`オプションはファイル名内でそれを空の文字列として表示します（`homepage--15-1920x1080.png`）
 
 ### WebdriverIO マルチリモート
 
-[マルチリモート](https://webdriver.io/docs/multiremote/)もサポートしています。これを正しく動作させるには、以下に示すように
-capabilitiesに`wdio-ics:options`を追加してください。これにより、各スクリーンショットに独自の一意の名前が付けられます。
+[マルチリモート](https://webdriver.io/docs/multiremote/)もサポートしています。これを正しく機能させるには、以下のようにcapabilitiesに`wdio-ics:options`を追加してください。これにより、各スクリーンショットに一意の名前が付けられます。
 
 [テストの作成](/docs/visual-testing/writing-tests)は、[テストランナー](https://webdriver.io/docs/testrunner)を使用する場合と何も変わりません
 
@@ -197,7 +218,7 @@ export const config = {
 
 ### プログラムによる実行
 
-`remote`オプションを介して`@wdio/visual-service`を使用する最小限の例を次に示します：
+以下は、`remote`オプションを介して`@wdio/visual-service`を使用する最小限の例です：
 
 ```js
 import { remote } from "webdriverio";
@@ -219,41 +240,41 @@ visualService.remoteSetup(browser);
 
 await browser.url("https://webdriver.io/");
 
-// スクリーンショットの保存のみを行う場合はこちらを使用します
+// スクリーンショットを保存するだけの場合はこちらを使用
 await browser.saveFullPageScreen("examplePaged", {});
 
-// 検証を行う場合はこちらを使用します。両方のメソッドを組み合わせる必要はありません。FAQを参照してください
+// 検証する場合はこちらを使用。両方のメソッドを組み合わせる必要はありません。FAQを参照してください
 await browser.checkFullPageScreen("examplePaged", {});
 
 await browser.deleteSession();
 ```
 
-### ウェブサイトのタブ操作
+### ウェブサイトのタブ移動
 
-キーボードの<kbd>TAB</kbd>キーを使用して、ウェブサイトがアクセシブルかどうかを確認できます。アクセシビリティのこの部分のテストは、これまで常に時間のかかる（手動の）作業であり、自動化によって行うのはかなり困難でした。
-`saveTabbablePage`および`checkTabbablePage`メソッドを使用すると、ウェブサイト上に線と点を描画してタブ順序を検証できるようになりました。
+キーボードの<kbd>TAB</kbd>キーを使用して、ウェブサイトがアクセシブルかどうかを確認できます。アクセシビリティのこの部分のテストは、これまで常に時間のかかる（手動の）作業であり、自動化で行うのはかなり困難でした。
+`saveTabbablePage`と`checkTabbablePage`メソッドを使用すると、ウェブサイト上に線と点を描画してタブ順序を検証できるようになりました。
 
 これはデスクトップブラウザでのみ有用であり、モバイルデバイスでは**有用ではない\*\***ことに注意してください。すべてのデスクトップブラウザがこの機能をサポートしています。
 
 :::note
 
-この機能は、[Viv Richards](https://github.com/vivrichards600)氏のブログ記事["AUTOMATING PAGE TABABILITY (IS THAT A WORD?) WITH VISUAL TESTING"](https://vivrichards.co.uk/accessibility/automating-page-tab-flows-using-visual-testing-and-javascript)に触発されたものです。
+この機能は、[Viv Richards](https://github.com/vivrichards600)のブログ記事["AUTOMATING PAGE TABABILITY (IS THAT A WORD?) WITH VISUAL TESTING"](https://vivrichards.co.uk/accessibility/automating-page-tab-flows-using-visual-testing-and-javascript)に触発されたものです。
 
-タブ移動可能な要素の選択方法は、モジュール[tabbable](https://github.com/davidtheclark/tabbable)に基づいています。タブ操作に関して問題がある場合は、[README.md](https://github.com/davidtheclark/tabbable/blob/master/README.md)、特に[More ](https://github.com/davidtheclark/tabbable/blob/master/README.md#more-details)Detailsセクションを確認してください。
+タブ移動可能な要素の選択方法は、モジュール[tabbable](https://github.com/davidtheclark/tabbable)に基づいています。タブ移動に関して問題がある場合は、[README.md](https://github.com/davidtheclark/tabbable/blob/master/README.md)、特に[More ](https://github.com/davidtheclark/tabbable/blob/master/README.md#more-details)Detailsセクションを確認してください。
 
 :::
 
 #### 仕組み
 
-どちらのメソッドも、ウェブサイト上に`canvas`要素を作成し、エンドユーザーがTABを使用した場合にどこに移動するかを示す線と点を描画します。その後、フルページのスクリーンショットを作成して、フローの概要を把握できるようにします。
+どちらのメソッドもウェブサイト上に`canvas`要素を作成し、エンドユーザーがTABを使用した場合にどこに移動するかを示す線と点を描画します。その後、フローの全体像を把握できるようにフルページのスクリーンショットを作成します。
 
 :::important
 
-**`saveTabbablePage`は、スクリーンショットを作成する必要があり、**ベースライン**画像と比較**したくない場合にのみ使用してください。\*\*\*\*
+**スクリーンショットを作成する必要があり、**ベースライン**画像と比較したく**ない**場合にのみ、`saveTabbablePage`を使用してください。\*\*\*\*
 
 :::
 
-タブ操作のフローをベースラインと比較したい場合は、`checkTabbablePage`メソッドを使用できます。2つのメソッドを一緒に使用する必要は**ありません**。サービスのインスタンス化時に`autoSaveBaseline: true`を指定することで自動的に作成できるベースライン画像がすでに存在する場合、
+タブ移動のフローをベースラインと比較したい場合は、`checkTabbablePage`メソッドを使用できます。2つのメソッドを一緒に使用する必要は**ありません**。サービスのインスタンス化時に`autoSaveBaseline: true`を指定することで自動的に作成できるベースライン画像が既に存在する場合、
 `checkTabbablePage`はまず_実際の_画像を作成し、それをベースラインと比較します。
 
 ##### オプション
@@ -262,16 +283,16 @@ await browser.deleteSession();
 
 #### 例
 
-以下は、[テスト用ウェブサイト](https://guinea-pig.webdriver.io/image-compare.html)でタブ操作がどのように機能するかの例です：
+以下は、[guinea pigウェブサイト](https://guinea-pig.webdriver.io/image-compare.html)でタブ移動がどのように機能するかの例です：
 
 ![WDIO tabbing example](/img/visual/tabbable-chrome-latest-1366x768.png)
 
-### 失敗したビジュアルスナップショットを自動的に更新する
+### 失敗したビジュアルスナップショットの自動更新
 
-コマンドラインに引数`--update-visual-baseline`を追加して、ベースライン画像を更新します。これにより
+コマンドラインで引数`--update-visual-baseline`を追加することで、ベースライン画像を更新できます。これにより、
 
--   実際に撮影されたスクリーンショットが自動的にコピーされ、ベースラインフォルダに配置されます
--   差異がある場合でも、ベースラインが更新されているため、テストは合格となります
+-   撮影された実際のスクリーンショットを自動的にコピーしてベースラインフォルダに配置します
+-   差異がある場合でも、ベースラインが更新されたためテストは合格となります
 
 **使用方法：**
 
@@ -279,7 +300,7 @@ await browser.deleteSession();
 npm run test.local.desktop  --update-visual-baseline
 ```
 
-ログをinfo/debugモードで実行すると、次のログが追加されるのが確認できます
+ログをinfo/debugモードで実行すると、以下のログが追加されます
 
 ```logs
 [0-0] ..............
@@ -291,9 +312,9 @@ npm run test.local.desktop  --update-visual-baseline
 [0-0] ..........
 ```
 
-## TypeScriptのサポート
+## TypeScriptサポート
 
-このモジュールにはTypeScriptのサポートが含まれており、ビジュアルテストサービスを使用する際に、自動補完、型安全性、および開発者体験の向上の恩恵を受けることができます。
+このモジュールにはTypeScriptサポートが含まれており、Visual Testingサービスを使用する際に、自動補完、型安全性、および開発者体験の向上の恩恵を受けることができます。
 
 ### ステップ1：型定義を追加する
 TypeScriptがモジュールの型を認識できるようにするには、tsconfig.jsonのtypesフィールドに次のエントリを追加します：
@@ -339,11 +360,13 @@ export const config = {
 
 ### バージョン10以降（現行）
 
-バージョン10以降では、このモジュールには一般的な[プロジェクト要件](/docs/gettingstarted#system-requirements)以外に追加のシステム依存関係はありません。知覚的画像比較には[Pixelmatch](https://github.com/mapbox/pixelmatch)を、画像のエンコード/デコードには[fast-png](https://github.com/image-js/fast-png)を使用しています。どちらもネイティブ依存関係のない純粋なJavaScriptです。
+バージョン10以降では、このモジュールには一般的な[プロジェクト要件](/docs/gettingstarted#system-requirements)以外の追加のシステム依存関係はありません。知覚的画像比較には[Pixelmatch](https://github.com/mapbox/pixelmatch)を、画像のエンコード/デコードには[fast-png](https://github.com/image-js/fast-png)を使用しています。どちらもネイティブ依存関係のない純粋なJavaScriptです。
+
+バージョン11にはWebdriverIO v10とNode.js 22.19以降が必要です。バージョン10はWebdriverIO v9（9.29.1以降）およびv10で動作します。
 
 ### バージョン5から9（レガシー）
 
-バージョン5から9では、完全にJavaScriptで書かれたネイティブ依存関係のないNode用画像処理ライブラリである[Jimp](https://github.com/jimp-dev/jimp)を使用していました。追加のシステム依存関係は不要でした。
+バージョン5から9では、完全にJavaScriptで書かれ、ネイティブ依存関係のないNode用の画像処理ライブラリである[Jimp](https://github.com/jimp-dev/jimp)を使用していました。追加のシステム依存関係は必要ありませんでした。
 
 ### バージョン4以前
 
@@ -351,9 +374,9 @@ export const config = {
 
 #### インストールの詳細
 
-デフォルトでは、プロジェクトの`npm install`中にmacOS、Linux、Windows用のバイナリがダウンロードされます。サポートされていないOSまたはプロセッサアーキテクチャの場合、モジュールはシステム上でコンパイルされます。これにはCairoやPangoを含むいくつかの依存関係が必要です。
+デフォルトでは、プロジェクトの`npm install`時にmacOS、Linux、Windows用のバイナリがダウンロードされます。サポートされていないOSまたはプロセッサアーキテクチャを使用している場合、モジュールはシステム上でコンパイルされます。これにはCairoやPangoなど、いくつかの依存関係が必要です。
 
-詳細なインストール情報については、[node-canvas wiki](https://github.com/Automattic/node-canvas/wiki/_pages)を参照してください。以下は一般的なオペレーティングシステム向けの1行インストール手順です。`libgif/giflib`、`librsvg`、`libjpeg`はオプションであり、それぞれGIF、SVG、JPEGのサポートにのみ必要であることに注意してください。Cairo v1.10.0以降が必要です。
+詳細なインストール情報については、[node-canvas wiki](https://github.com/Automattic/node-canvas/wiki/_pages)を参照してください。以下は、一般的なオペレーティングシステム向けの1行のインストール手順です。`libgif/giflib`、`librsvg`、`libjpeg`はオプションであり、それぞれGIF、SVG、JPEGのサポートにのみ必要であることに注意してください。Cairo v1.10.0以降が必要です。
 
 <Tabs
 defaultValue="osx"
@@ -375,7 +398,7 @@ values={[
      brew install pkg-config cairo pango libpng jpeg giflib librsvg pixman
      ```
 
-    **Mac OS X v10.11+：** 最近Mac OS X v10.11+にアップデートし、コンパイル時に問題が発生している場合は、次のコマンドを実行してください：`xcode-select --install`。この問題の詳細については[Stack Overflow](http://stackoverflow.com/a/32929012/148072)を参照してください。
+    **Mac OS X v10.11+：** 最近Mac OS X v10.11+にアップデートし、コンパイル時に問題が発生している場合は、次のコマンドを実行してください：`xcode-select --install`。この問題の詳細は[Stack Overflow](http://stackoverflow.com/a/32929012/148072)をご覧ください。
     Xcode 10.0以降がインストールされている場合、ソースからビルドするにはNPM 6.4.1以降が必要です。
 
 </TabItem>

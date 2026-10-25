@@ -34,6 +34,6 @@ graph TD
 | Testo della documentazione API dei comandi | JSDoc sul comando webdriverio | `pnpm run docs:generate` |
 | Testo della documentazione API dei protocolli | `description` / `ref` della specifica del protocollo | `pnpm run docs:generate` |
 
-Vedi anche [Panoramica di alto livello](/docs/flowcharts/highleveloverview). Le specifiche dei protocolli sono
-gestite da `packages/wdio-protocols`; il plugin del compilatore si trova in
+Vedi anche [Panoramica di alto livello](/docs/flowcharts/highleveloverview). Le specifiche dei protocolli
+appartengono a `packages/wdio-protocols`; il plugin del compilatore si trova in
 `infra/compiler/src/type-generation`.

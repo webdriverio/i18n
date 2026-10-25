@@ -1,14 +1,14 @@
 ---
 id: lit
 title: Lit
-description: "Configura il browser runner di WebdriverIO per i web component Lit e scrivi test che interrogano elementi all'interno di shadow root annidate."
+description: "Configura il browser runner di WebdriverIO per i web component Lit e scrivi test che interrogano elementi all'interno di shadow root annidati."
 ---
 
-Lit è una semplice libreria per creare web component veloci e leggeri. Testare i web component Lit con WebdriverIO è molto facile grazie ai [selettori shadow DOM](/docs/selectors#deep-selectors) di WebdriverIO, con cui puoi interrogare gli elementi annidati nelle shadow root con un unico comando.
+Lit è una semplice libreria per creare web component veloci e leggeri. Testare i web component Lit con WebdriverIO è molto facile grazie ai [selettori shadow DOM](/docs/selectors#deep-selectors) di WebdriverIO: puoi interrogare elementi annidati negli shadow root con un solo comando.
 
-## Setup
+## Configurazione
 
-Per configurare WebdriverIO all'interno del tuo progetto Lit, segui le [istruzioni](/docs/component-testing#set-up) nella nostra documentazione sul component testing. Per Lit non hai bisogno di un preset, poiché i web component Lit non devono passare attraverso un compilatore: sono puri miglioramenti dei web component.
+Per configurare WebdriverIO all'interno del tuo progetto Lit, segui le [istruzioni](/docs/component-testing#set-up) nella nostra documentazione sul component testing. Per Lit non hai bisogno di un preset, poiché i web component Lit non devono essere elaborati da un compilatore: sono semplici estensioni dei web component.
 
 Una volta completata la configurazione, puoi avviare i test eseguendo:
 
@@ -16,9 +16,9 @@ Una volta completata la configurazione, puoi avviare i test eseguendo:
 npx wdio run ./wdio.conf.js
 ```
 
-## Scrivere Test
+## Scrivere i test
 
-Supponendo di avere il seguente componente Lit:
+Supponiamo di avere il seguente componente Lit:
 
 ```ts title="./components/Component.ts"
 import { LitElement, css, html } from 'lit'

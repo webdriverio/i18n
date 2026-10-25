@@ -4,7 +4,7 @@ title: Proxy-Einrichtung
 description: "Leiten Sie Anfragen über einen Proxy, entweder zwischen Ihren Tests und dem Treiber oder zwischen dem Browser und dem Internet."
 ---
 
-Sie können zwei verschiedene Arten von Anfragen durch einen Proxy tunneln:
+Sie können zwei verschiedene Arten von Anfragen über einen Proxy tunneln:
 
 - Verbindung zwischen Ihrem Testskript und dem Browser-Treiber (oder WebDriver-Endpunkt)
 - Verbindung zwischen dem Browser und dem Internet
@@ -24,7 +24,7 @@ export HTTPS_PROXY=http://my.corp.proxy.com:9090
 export NO_PROXY=localhost,127.0.0.1,.internal.domain
 ```
 
-Führen Sie dann Ihre Tests wie gewohnt aus. WebdriverIO verwendet diese Umgebungsvariablen automatisch für die Proxy-Konfiguration.
+Führen Sie Ihre Tests dann wie gewohnt aus. WebdriverIO verwendet diese Umgebungsvariablen automatisch für die Proxy-Konfiguration.
 
 ### Option 2: Verwendung von undicis setGlobalDispatcher
 
@@ -55,7 +55,7 @@ Weitere Informationen zur Konfiguration des Proxys finden Sie [hier](https://git
 
 ### Welche Methode sollte ich verwenden?
 
-- **Verwenden Sie Umgebungsvariablen**, wenn Sie einen einfachen, standardisierten Ansatz wünschen, der mit verschiedenen Tools funktioniert und keine Codeänderungen erfordert.
+- **Verwenden Sie Umgebungsvariablen**, wenn Sie einen einfachen Standardansatz wünschen, der mit verschiedenen Tools funktioniert und keine Codeänderungen erfordert.
 - **Verwenden Sie setGlobalDispatcher**, wenn Sie erweiterte Proxy-Funktionen wie benutzerdefinierte Authentifizierung oder unterschiedliche Proxy-Konfigurationen pro Umgebung benötigen oder das Proxy-Verhalten programmatisch steuern möchten.
 
 Beide Methoden werden vollständig unterstützt, und WebdriverIO prüft zuerst, ob ein globaler Dispatcher vorhanden ist, bevor auf Umgebungsvariablen zurückgegriffen wird.
@@ -70,7 +70,7 @@ sc -u $SAUCE_USERNAME -k $SAUCE_ACCESS_KEY --no-autodetect -p http://my.corp.pro
 
 ## Proxy für Browser- und Treiber-Downloads
 
-WebdriverIO lädt den benötigten Browser und Treiber herunter, wenn diese noch nicht installiert sind.
+WebdriverIO lädt den Browser und den benötigten Treiber herunter, wenn diese noch nicht installiert sind.
 
 - **Geckodriver- und Edgedriver**-Downloads verwenden `HTTPS_PROXY`, `HTTP_PROXY` und `NO_PROXY`. Ein mit `setGlobalDispatcher` gesetzter Dispatcher hat Vorrang vor diesen Variablen.
 - **Chrome-, Chromium-, Firefox- und Chromedriver**-Downloads verwenden `HTTPS_PROXY`, `HTTP_PROXY` und `NO_PROXY` nur, wenn eine der folgenden Bedingungen erfüllt ist:
@@ -80,19 +80,19 @@ WebdriverIO lädt den benötigten Browser und Treiber herunter, wenn diese noch 
     npm install --save-dev proxy-agent
     ```
 
-  - Node.js läuft mit seiner integrierten Proxy-Unterstützung (Node.js 22.21.0 / 24.5.0 oder neuer):
+  - Node.js läuft mit seiner integrierten Proxy-Unterstützung:
 
     ```bash
     NODE_USE_ENV_PROXY=1 npx wdio run ./wdio.conf.ts
     ```
 
-  WebdriverIO installiert `proxy-agent` nicht für Sie, da dessen Abhängigkeitsbaum Sicherheitshinweise ohne verfügbaren Fix aufweist. Wenn eine Proxy-Variable gesetzt ist und keine der beiden Optionen aktiv ist, protokolliert WebdriverIO vor dem ersten Download eine Warnung.
+  WebdriverIO installiert `proxy-agent` nicht automatisch für Sie, da dessen Abhängigkeitsbaum Sicherheitswarnungen ohne verfügbare Korrektur aufweist. Wenn eine Proxy-Variable gesetzt ist und keine der beiden Optionen aktiv ist, gibt WebdriverIO vor dem ersten Download eine Warnung aus.
 
 ## Proxy zwischen Browser und Internet
 
-Um die Verbindung zwischen dem Browser und dem Internet zu tunneln, können Sie einen Proxy einrichten. Dies kann beispielsweise nützlich sein, um Netzwerkinformationen und andere Daten mit Tools wie [BrowserMob Proxy](https://github.com/lightbody/browsermob-proxy) zu erfassen.
+Um die Verbindung zwischen dem Browser und dem Internet zu tunneln, können Sie einen Proxy einrichten. Dies kann (zum Beispiel) nützlich sein, um Netzwerkinformationen und andere Daten mit Tools wie [BrowserMob Proxy](https://github.com/lightbody/browsermob-proxy) zu erfassen.
 
-Die `proxy`-Parameter können über die Standard-Capabilities folgendermaßen angewendet werden:
+Die `proxy`-Parameter können wie folgt über die Standard-Capabilities angewendet werden:
 
 ```js title="wdio.conf.js"
 export const config = {

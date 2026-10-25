@@ -4,7 +4,7 @@ title: ब्राउज़र लॉग्स
 description: "WebDriver Bidi लॉग इवेंट्स के साथ टेस्ट के दौरान ब्राउज़र कंसोल लॉग्स कैप्चर करें और एकत्रित संदेशों के विरुद्ध असर्ट करें।"
 ---
 
-टेस्ट चलाते समय ब्राउज़र महत्वपूर्ण जानकारी लॉग कर सकता है जिसमें आपकी रुचि हो या जिसके विरुद्ध आप असर्ट करना चाहते हों।
+टेस्ट चलाते समय ब्राउज़र ऐसी महत्वपूर्ण जानकारी लॉग कर सकता है जिसमें आपकी रुचि हो या जिसके विरुद्ध आप असर्ट करना चाहते हों।
 
 <Tabs
 defaultValue="bidi"
@@ -16,13 +16,13 @@ values={[
 
 <TabItem value='bidi'>
 
-WebDriver Bidi का उपयोग करते समय, जो WebdriverIO द्वारा ब्राउज़र को ऑटोमेट करने का डिफ़ॉल्ट तरीका है, आप ब्राउज़र से आने वाले इवेंट्स को सब्सक्राइब कर सकते हैं। लॉग इवेंट्स के लिए आपको `log.entryAdded'` पर सुनना होगा, उदाहरण के लिए:
+WebDriver Bidi का उपयोग करते समय, जो कि WebdriverIO द्वारा ब्राउज़र को ऑटोमेट करने का डिफ़ॉल्ट तरीका है, आप ब्राउज़र से आने वाले इवेंट्स को सब्सक्राइब कर सकते हैं। लॉग इवेंट्स के लिए आपको `log.entryAdded'` पर सुनना होगा, उदाहरण के लिए:
 
 ```ts
 await browser.sessionSubscribe({ events: ['log.entryAdded'] })
 
 /**
- * returns: {"type":"console","method":"log","realm":null,"args":[{"type":"string","value":"Hello Bidi"}],"level":"info","text":"Hello Bidi","timestamp":1657282076037}
+ * लौटाता है: {"type":"console","method":"log","realm":null,"args":[{"type":"string","value":"Hello Bidi"}],"level":"info","text":"Hello Bidi","timestamp":1657282076037}
  */
 browser.on('log.entryAdded', (entryAdded) => console.log('received %s', entryAdded))
 ```
@@ -45,7 +45,7 @@ describe('should log when doing a certain action', () => {
     })
 
     it('should trigger the console event', () => {
-        // ब्राउज़र को कंसोल पर एक संदेश भेजने के लिए ट्रिगर करें
+        // ब्राउज़र को कंसोल पर संदेश भेजने के लिए ट्रिगर करें
         ...
 
         // असर्ट करें कि लॉग कैप्चर हुआ या नहीं
@@ -63,7 +63,7 @@ describe('should log when doing a certain action', () => {
 
 <TabItem value='classic'>
 
-यदि `'wdio:enforceWebDriverClassic': true` कैपेबिलिटी के साथ Bidi अक्षम है, तो Chromium सेशन अभी भी `getLogs` के साथ ब्राउज़र लॉग बफ़र पढ़ सकते हैं:
+यदि `'wdio:enforceWebDriverClassic': true` कैपेबिलिटी के साथ Bidi अक्षम है, तो भी Chromium सेशन `getLogs` के साथ ब्राउज़र लॉग बफ़र पढ़ सकते हैं:
 
 ```ts
 const logs = await browser.getLogs('browser')
@@ -71,7 +71,7 @@ const logMessage = logs.find((log) => log.message.includes('Hello Bidi'))
 expect(logMessage).toBeTruthy()
 ```
 
-नोट: `getLogs` कमांड ब्राउज़र से केवल सबसे हाल के लॉग्स ही प्राप्त कर सकता है। यदि लॉग संदेश बहुत पुराने हो जाते हैं तो यह उन्हें अंततः हटा सकता है।
+नोट: `getLogs` कमांड केवल ब्राउज़र से सबसे हाल के लॉग्स ही प्राप्त कर सकती है। यदि लॉग संदेश बहुत पुराने हो जाते हैं तो यह अंततः उन्हें साफ़ कर सकती है।
 </TabItem>
 
 </Tabs>

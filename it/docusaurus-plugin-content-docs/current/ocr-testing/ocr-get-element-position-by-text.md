@@ -4,7 +4,7 @@ title: ocrGetElementPositionByText
 description: "Ottieni la posizione sullo schermo di un testo con ocrGetElementPositionByText, utilizzando l'OCR e la corrispondenza fuzzy per trovarlo."
 ---
 
-Ottiene la posizione di un testo sullo schermo. Il comando cercherà il testo fornito e proverà a trovare una corrispondenza basata sulla Fuzzy Logic di [Fuse.js](https://fusejs.io/). Questo significa che, anche se fornisci un selettore con un errore di battitura o se il testo trovato non corrisponde al 100%, il comando proverà comunque a restituirti un elemento. Vedi i [log](#logs) qui sotto.
+Ottieni la posizione di un testo sullo schermo. Il comando cercherà il testo fornito e proverà a trovare una corrispondenza basata sulla Fuzzy Logic di [Fuse.js](https://fusejs.io/). Ciò significa che, anche se fornisci un selettore con un errore di battitura, o se il testo trovato non corrisponde al 100%, cercherà comunque di restituirti un elemento. Vedi i [log](#logs) qui sotto.
 
 ## Utilizzo
 
@@ -54,7 +54,7 @@ result = {
 
 <Option type="string" required="yes">
 
-Il testo che vuoi cercare su cui fare clic.
+Il testo che vuoi cercare per fare clic su di esso.
 
 </Option>
 #### Esempio
@@ -116,7 +116,7 @@ await browser.ocrGetElementPositionByText({
 
 <Option type="string" default="eng" required="No">
 
-La lingua che Tesseract riconoscerà. Maggiori informazioni sono disponibili [qui](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) e le lingue supportate sono disponibili [qui](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
+La lingua che Tesseract riconoscerà. Maggiori informazioni sono disponibili [qui](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) e le lingue supportate si trovano [qui](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
 
 </Option>
 #### Esempio
@@ -138,7 +138,7 @@ Puoi modificare la logica fuzzy per trovare il testo con le seguenti opzioni. Qu
 
 <Option type="number" default="100" required="no">
 
-Determina quanto la corrispondenza deve essere vicina alla posizione fuzzy (specificata da location). Una corrispondenza esatta di lettere che si trova a distance caratteri di distanza dalla posizione fuzzy verrebbe valutata come una mancata corrispondenza completa. Una distance di 0 richiede che la corrispondenza si trovi esattamente nella posizione specificata. Una distance di 1000 richiederebbe che una corrispondenza perfetta si trovi entro 800 caratteri dalla posizione per essere trovata utilizzando una threshold di 0.8.
+Determina quanto la corrispondenza debba essere vicina alla posizione fuzzy (specificata da location). Una corrispondenza esatta di lettere che si trova a distance caratteri di distanza dalla posizione fuzzy verrebbe valutata come una completa mancata corrispondenza. Una distance pari a 0 richiede che la corrispondenza si trovi esattamente nella posizione specificata. Una distance pari a 1000 richiederebbe che una corrispondenza perfetta si trovi entro 800 caratteri dalla posizione per essere trovata usando una threshold di 0.8.
 
 </Option>
 ##### Esempio
@@ -210,7 +210,7 @@ await browser.ocrGetElementPositionByText({
 
 <Option type="number" default="2" required="no">
 
-Verranno restituite solo le corrispondenze la cui lunghezza supera questo valore. (Ad esempio, se vuoi ignorare le corrispondenze di un solo carattere nel risultato, impostalo a 2)
+Verranno restituite solo le corrispondenze la cui lunghezza supera questo valore. (Ad esempio, se vuoi ignorare le corrispondenze di un singolo carattere nel risultato, impostalo a 2)
 
 </Option>
 ##### Esempio
@@ -228,7 +228,7 @@ await browser.ocrGetElementPositionByText({
 
 <Option type="number" default="false" required="no">
 
-Quando è `true`, la funzione di corrispondenza continuerà fino alla fine di un pattern di ricerca anche se è già stata individuata una corrispondenza perfetta nella stringa.
+Quando è `true`, la funzione di corrispondenza continuerà fino alla fine del pattern di ricerca anche se una corrispondenza perfetta è già stata individuata nella stringa.
 
 </Option>
 ##### Esempio

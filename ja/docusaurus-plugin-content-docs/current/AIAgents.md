@@ -1,10 +1,10 @@
 ---
 id: ai-agents
 title: コーディングエージェントのためのWebdriverIO
-description: 機械可読なドキュメント、WebdriverIO MCPサーバー、DevToolsトレースを使用して、Cursor、Claude Code、Copilot、その他のコーディングエージェントがWebdriverIOテストを作成、実行、デバッグできるように設定します。
+description: 機械可読なドキュメント、WebdriverIO MCPサーバー、DevToolsトレースを使用して、Cursor、Claude Code、Copilot、その他のコーディングエージェントがWebdriverIOテストを作成、実行、デバッグできるようにセットアップします。
 ---
 
-現在、ほとんどのWebdriverIOテストはコーディングエージェントと一緒に作成されています。このページでは、エージェントがそれをうまく行うために必要な3つのものを提供する方法を紹介します：**最新のドキュメント**（推測ではなくv10のコードを書けるように）、**テスト対象のアプリを操作する手段**（UIを探索してセレクターを検証できるように）、そして**デバッグ可能なテスト実行**（失敗したテストを自分で修正できるように）です。
+現在、ほとんどのWebdriverIOテストはコーディングエージェントと一緒に書かれています。このページでは、エージェントがそれをうまく行うために必要な3つのものを提供する方法を紹介します：**最新のドキュメント**（推測ではなくv10のコードを書けるように）、**テスト対象のアプリを操作する手段**（UIを探索し、セレクターを検証できるように）、そして**デバッグ可能なテスト実行**（失敗したテストを自力で修正できるように）です。
 
 ## 1. エージェントにドキュメントを提供する
 
@@ -12,16 +12,16 @@ description: 機械可読なドキュメント、WebdriverIO MCPサーバー、D
 
 | リソース | URL | 用途 |
 | --- | --- | --- |
-| ドキュメントインデックス | [`https://webdriver.io/llms.txt`](https://webdriver.io/llms.txt) | 1行の要約付きで全ページを厳選したマップ。ここから始めてください。 |
+| ドキュメントインデックス | [`https://webdriver.io/llms.txt`](https://webdriver.io/llms.txt) | 全ページを1行の要約付きでまとめた厳選マップ。ここから始めてください。 |
 | 完全なドキュメント | [`https://webdriver.io/llms-full.txt`](https://webdriver.io/llms-full.txt) | 大きなコンテキストウィンドウを持つエージェント向けに、ドキュメント全体を1つのファイルにまとめたもの。 |
-| 任意の単一ページ | URLに`.md`を追加します。例：[`/docs/api/browser/url.md`](https://webdriver.io/docs/api/browser/url.md) | エージェントが必要とするページだけを正確に読み込む。 |
-| コンテンツネゴシエーション | `Accept: text/markdown`を付けて任意の`/docs/*` URLをリクエストします | URLをそのまま取得するエージェントやツール。 |
+| 任意の単一ページ | URLに`.md`を付加します。例：[`/docs/api/browser/url.md`](https://webdriver.io/docs/api/browser/url.md) | エージェントが必要とするページだけを正確に読み込む。 |
+| コンテンツネゴシエーション | 任意の`/docs/*` URLを`Accept: text/markdown`でリクエスト | URLをそのまま取得するエージェントやツール。 |
 
 各ドキュメントページには**Copy page**メニューもあり、ページをMarkdownとしてコピーしたり、ChatGPT、Claude、Cursorで直接開いたりするオプションがあります。
 
-### Docs MCPサーバー
+### ドキュメントMCPサーバー
 
-ドキュメントは、`https://webdriver.io/mcp`のリモートMCPサーバーとしても利用できます。これによりエージェントは3つのツールを使えるようになります：適切なページを見つける`search_docs`、ページをMarkdownとして読む`get_page`、セクション全体を一度に読み込む`list_sections`です。以下で説明するWebdriverIO MCPサーバーと並べて追加してください：
+ドキュメントは`https://webdriver.io/mcp`でリモートMCPサーバーとしても利用できます。これによりエージェントは3つのツールを使えるようになります：適切なページを見つける`search_docs`、ページをMarkdownとして読む`get_page`、セクション全体を一度に読み込む`list_sections`です。以下で説明するWebdriverIO MCPサーバーと並べて追加してください：
 
 ```json title=".mcp.json"
 {
@@ -33,21 +33,21 @@ description: 機械可読なドキュメント、WebdriverIO MCPサーバー、D
 }
 ```
 
-Claude Codeの場合は、`claude mcp add --transport http webdriverio-docs https://webdriver.io/mcp`を実行してください。
+Claude Codeの場合は、`claude mcp add --transport http webdriverio-docs https://webdriver.io/mcp`を実行します。
 
 ## エージェントに`wdio session`を使わせる
 
-[`wdio session`](/docs/session)は、シェルコマンド間でWebdriverIOセッションを維持します。エージェントはブラウザ、スマートフォン、デスクトップアプリを開き、画面上の内容のスナップショットを取得し、refに対して操作を行い、うまくいった手順をテストとしてエクスポートできます。これがコーディングエージェントからアプリを操作するデフォルトの方法です。エージェントがシェルではなくツールを呼び出すべき場合は、次のセクションの[MCPサーバー](/docs/mcp)が代替手段となります。
+[`wdio session`](/docs/session)は、シェルコマンド間でWebdriverIOセッションを維持します。エージェントはブラウザ、スマートフォン、デスクトップアプリを開き、画面上の内容のスナップショットを取得し、refに対して操作を行い、うまくいった手順をテストとしてエクスポートできます。これがコーディングエージェントからアプリを操作するデフォルトの方法です。次のセクションで説明する[MCPサーバー](/docs/mcp)は、エージェントにシェルではなくツールを呼び出させたい場合の代替手段です。
 
-スキルをプロジェクトにインストールします：
+プロジェクトにスキルをインストールします：
 
 ```sh
 npx wdio session skill --install .
 ```
 
-これにより`.agents/skills/wdio-session/SKILL.md`が書き込まれます。`npm init wdio`でコーディングエージェントのサポートを有効にした場合も同じファイルが書き込まれ、さらに以下のプロジェクトルールが追加されます。
+これにより`.agents/skills/wdio-session/SKILL.md`が書き込まれます。`npm init wdio`でも、コーディングエージェントのサポートを有効にすると同じファイルが書き込まれ、さらに以下のプロジェクトルールが追加されます。
 
-エージェントはプロジェクトを自分で作成することもできます。ウィザードはすべての質問に対応するフラグを受け付け、`--yes`は残りの項目をデフォルト値で埋めるため、入力待ちになることはありません：
+エージェントは自分でプロジェクトを作成することもできます。ウィザードはすべての質問に対応するフラグを受け付け、`--yes`で残りをデフォルト値で埋めるため、入力待ちになることはありません：
 
 ```sh
 npm init wdio@latest . -- --yes --typescript --framework mocha --browsers chrome --reporters spec
@@ -57,14 +57,14 @@ npm init wdio@latest . -- --yes --typescript --framework mocha --browsers chrome
 
 ### エージェントにドキュメントを追加する
 
-すべてのチャットでドキュメントを利用できるようにするには、インデックスをエージェントに追加します：
+すべてのチャットでドキュメントを利用できるようにするには、エージェントにインデックスを追加します：
 
-- **Cursor**: Cursorの設定（_Indexing & Docs_）で`https://webdriver.io/llms.txt`をカスタムドキュメントとして追加し、チャットで`@`と付けた名前を使って参照します。
-- **Claude Code / Codex / その他のCLIエージェント**: プロジェクトの`AGENTS.md`または`CLAUDE.md`にリンクを追加します（以下の[プロジェクトルール](#3-add-project-rules)を参照）。エージェントは必要なページをオンデマンドで取得します。
+- **Cursor**：Cursorの設定（_Indexing & Docs_）で`https://webdriver.io/llms.txt`をカスタムドキュメントとして追加し、チャットで`@`と付けた名前で参照します。
+- **Claude Code / Codex / その他のCLIエージェント**：プロジェクトの`AGENTS.md`または`CLAUDE.md`にリンクを追加します（以下の[プロジェクトルール](#3-add-project-rules)を参照）。エージェントは必要なページをオンデマンドで取得します。
 
 ## 2. エージェントにブラウザやアプリを操作させる
 
-[WebdriverIO MCPサーバー](/docs/mcp)（`@wdio/mcp`）を使用すると、エージェントはブラウザ（Chrome、Firefox、Edge、Safari）、ネイティブおよびハイブリッドのモバイルアプリ（Appium経由）、クラウドデバイスを開き、アクセシビリティツリーを調べ、クリック、入力、スクリーンショットの取得を行えます。エージェントはこれを使って、テストを書く前にページを探索したり、堅牢なセレクターを見つけたり、失敗をステップごとに再現したりします。
+[WebdriverIO MCPサーバー](/docs/mcp)（`@wdio/mcp`）を使うと、エージェントはブラウザ（Chrome、Firefox、Edge、Safari）、ネイティブおよびハイブリッドのモバイルアプリ（Appium経由）、クラウドデバイスを開き、アクセシビリティツリーを調べ、クリック、入力、スクリーンショットの取得を行えます。エージェントはこれを使って、テストを書く前にページを探索したり、堅牢なセレクターを見つけたり、失敗をステップごとに再現したりします。
 
 MCPクライアントの設定（例えばプロジェクト内の`.mcp.json`や`.cursor/mcp.json`）に追加します：
 
@@ -85,11 +85,11 @@ Claude Codeの場合は、コマンドラインから登録します：
 claude mcp add --transport stdio wdio-mcp -- npx -y @wdio/mcp
 ```
 
-セッションオプションについては[MCP設定](/docs/mcp/configuration)を、BrowserStack、Sauce Labs、TestMu AI、TestingBotでの実行については[クラウドプロバイダー](/docs/mcp/cloud-providers)を参照してください。
+セッションオプションについては[MCP設定](/docs/mcp/configuration)を、BrowserStack、Sauce Labs、TestMu AI、TestingBotで実行するには[クラウドプロバイダー](/docs/mcp/cloud-providers)を参照してください。
 
 ## 3. プロジェクトルールを追加する
 
-エージェントは、プロジェクトの規約が文書化されている場合、はるかに確実にそれに従います。テストプロジェクトの`AGENTS.md`（または`CLAUDE.md`、`.cursor/rules`）に次のようなセクションを追加し、パスとコマンドを調整してください：
+エージェントは、プロジェクトの規約が文書化されていると、はるかに確実にそれに従います。テストプロジェクトの`AGENTS.md`（または`CLAUDE.md`、`.cursor/rules`）に次のようなセクションを追加し、パスとコマンドを調整してください：
 
 ````md title="AGENTS.md"
 ## End-to-end tests (WebdriverIO v10)
@@ -110,7 +110,7 @@ claude mcp add --transport stdio wdio-mcp -- npx -y @wdio/mcp
 
 ## 4. エージェントに失敗したテストをデバッグさせる
 
-[WebdriverIO DevTools](/docs/devtools)サービスは、すべての実行の**トレース**を記録できます。これはポータブルなアーティファクトで、ステップごとのMarkdownトランスクリプト、スクリーンショット、アクセシビリティツリーのスナップショット、各アクションのネットワークログが含まれます。これにより、エージェントはブラウザウィンドウを必要とせずに、人間がテストを見て得るのと同じ情報を得られます。
+[WebdriverIO DevTools](/docs/devtools)サービスは、すべての実行の**トレース**を記録できます。これは、各アクションのステップごとのMarkdownトランスクリプト、スクリーンショット、アクセシビリティツリーのスナップショット、ネットワークログを含むポータブルな成果物です。これにより、エージェントはブラウザウィンドウを必要とせずに、人間がテストを見て得るのと同じ情報を得ることができます。
 
 サービスをインストールし、トレースモードを有効にします：
 
@@ -126,7 +126,7 @@ export const config: WebdriverIO.Config = {
             mode: 'trace',
             // テストごとに1つのトレースにすると、単一の失敗をエージェントに渡しやすくなります
             traceGranularity: 'test',
-            // zipではなくプレーンファイルにすることで、エージェントが直接読み取れます
+            // zipではなくプレーンなファイルにすることで、エージェントが直接読めるようにします
             traceFormat: 'ndjson-directory'
         }]
     ]
@@ -137,9 +137,9 @@ export const config: WebdriverIO.Config = {
 
 ## 推奨ワークフロー
 
-1. エージェントにMCPサーバーを使ってテスト対象の機能を探索させ、セレクターを提案させます。
-2. プロジェクトルールに従って、必要に応じてWebdriverIOのドキュメントページを取得しながら、specとページオブジェクトを書かせます。
-3. `--spec`で単一のspecを実行させ、パスするまで繰り返させます。
+1. エージェントに、MCPサーバーを使ってテスト対象の機能を探索させ、セレクターを提案させます。
+2. プロジェクトルールに従い、必要に応じてWebdriverIOのドキュメントページを取得しながら、スペックとページオブジェクトを書かせます。
+3. `--spec`で単一のスペックを実行させ、パスするまで繰り返させます。
 4. CIでテストが失敗した場合は、そのテストのトレースをエージェントに渡し、テストを修正させるかバグを報告させます。
 
 ## 次のステップ

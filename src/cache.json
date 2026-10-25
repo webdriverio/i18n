@@ -122,7 +122,9 @@
       "es",
       "fa",
       "fr",
-      "hi"
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/BambooIntegration.md": {
@@ -133,7 +135,9 @@
       "es",
       "fa",
       "fr",
-      "hi"
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/BestPractices.md": {
@@ -190,7 +194,9 @@
       "es",
       "fa",
       "fr",
-      "hi"
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/CloudServices.md": {
@@ -201,7 +207,9 @@
       "es",
       "fa",
       "fr",
-      "hi"
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/ComponentTesting.md": {
@@ -212,7 +220,9 @@
       "es",
       "fa",
       "fr",
-      "hi"
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Configuration.md": {
@@ -223,7 +233,9 @@
       "es",
       "fa",
       "fr",
-      "hi"
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/ConfigurationFile.md": {
@@ -257,7 +269,9 @@
       "es",
       "fa",
       "fr",
-      "hi"
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/CustomMatchers.md": {
@@ -268,18 +282,22 @@
       "es",
       "fa",
       "fr",
-      "hi"
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/CustomReporter.md": {
-    "hash": "94b41680f644406d7f92dfe138a9202675ef5b4610d54680caa3e54c1b5a19cf",
+    "hash": "2d84bec299e15850134d67811bf9240ce1df4df3a2922f13363a4903f5da2d9c",
     "languages": [
       "ar",
       "de",
       "es",
       "fa",
       "fr",
-      "hi"
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/CustomServices.md": {
@@ -313,7 +331,9 @@
       "es",
       "fa",
       "fr",
-      "hi"
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Docker.md": {
@@ -324,7 +344,9 @@
       "es",
       "fa",
       "fr",
-      "hi"
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/DriverBinaries.md": {
@@ -404,18 +426,22 @@
       "es",
       "fa",
       "fr",
-      "hi"
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/GettingStarted.md": {
-    "hash": "70cddff47c6c8dba6a48ca3334c04de614bd525b9dd23840db8d7f6fb52c5290",
+    "hash": "909378a2435216e07a372c46b827f0d1e6e36194b24706c0c0b9303df35ed3be",
     "languages": [
       "ar",
       "de",
       "es",
       "fa",
       "fr",
-      "hi"
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/GithubActions.md": {
@@ -472,7 +498,9 @@
       "es",
       "fa",
       "fr",
-      "hi"
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Multiremote.md": {
@@ -483,7 +511,9 @@
       "es",
       "fa",
       "fr",
-      "hi"
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/OrganizingTestSuites.md": {
@@ -494,7 +524,9 @@
       "es",
       "fa",
       "fr",
-      "hi"
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/PageObjects.md": {
@@ -551,18 +583,22 @@
       "es",
       "fa",
       "fr",
-      "hi"
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Proxy.md": {
-    "hash": "798bfeb92c24815aa705272dfdb2936ee1ccd0c9d06b1fde1e05753e1cd7ba37",
+    "hash": "bc4d40d99997ecb6d5b9b5fa8552a11e92f43ae5fc70d58baef907cf1cc9a9c2",
     "languages": [
       "ar",
       "de",
       "es",
       "fa",
       "fr",
-      "hi"
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Record.md": {
@@ -573,7 +609,9 @@
       "es",
       "fa",
       "fr",
-      "hi"
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Retry.md": {
@@ -584,7 +622,9 @@
       "es",
       "fa",
       "fr",
-      "hi"
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Runner.md": {
@@ -594,7 +634,10 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Selectors.md": {
@@ -605,7 +648,9 @@
       "es",
       "fa",
       "fr",
-      "hi"
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/SeleniumGrid.md": {
@@ -639,7 +684,9 @@
       "es",
       "fa",
       "fr",
-      "hi"
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Sharding.md": {
@@ -742,7 +789,9 @@
       "es",
       "fa",
       "fr",
-      "hi"
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Timeouts.md": {
@@ -753,7 +802,9 @@
       "es",
       "fa",
       "fr",
-      "hi"
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/TypeScript.md": {
@@ -780,14 +831,16 @@
     ]
   },
   "en/docusaurus-plugin-content-docs/current/VisualTesting.md": {
-    "hash": "30620d7c3382b312a501484e2b937a15375464085be633394c7c162b0801e63c",
+    "hash": "9826ffc2536e82cf4b5ef8b88321ebabbe927380cae215588f6b0633339925b4",
     "languages": [
       "ar",
       "de",
       "es",
       "fa",
       "fr",
-      "hi"
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/WatchFiles.md": {
@@ -843,7 +896,9 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/accessibility-testing/BrowserStack.md": {
@@ -853,7 +908,9 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/Environment.md": {
@@ -886,7 +943,9 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/Browser.md": {
@@ -896,7 +955,9 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/Clock.md": {
@@ -952,7 +1013,9 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/Mobile.md": {
@@ -962,7 +1025,9 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/Mock.md": {
@@ -972,7 +1037,9 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/Modules.md": {
@@ -982,7 +1049,9 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/Protocols.md": {
@@ -992,7 +1061,9 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/best-practices/BrowserLogs.md": {
@@ -1002,7 +1073,9 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/best-practices/FileDownloads.md": {
@@ -1012,7 +1085,9 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/component-testing/Lit.md": {
@@ -1022,7 +1097,9 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/component-testing/Preact.md": {
@@ -1032,7 +1109,9 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/component-testing/React.md": {
@@ -1042,7 +1121,9 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/component-testing/Solid.md": {
@@ -1052,7 +1133,9 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/component-testing/Stencil.md": {
@@ -1062,7 +1145,9 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/component-testing/Svelte.md": {
@@ -1072,7 +1157,9 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/component-testing/Vue.md": {
@@ -1082,7 +1169,9 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/component-testing/coverage.md": {
@@ -1092,7 +1181,9 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/component-testing/mocking.md": {
@@ -1102,7 +1193,9 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/desktop-testing/Electron.md": {
@@ -1112,7 +1205,9 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/desktop-testing/MacOS.md": {
@@ -1122,7 +1217,9 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/desktop-testing/Windows.md": {
@@ -1132,7 +1229,9 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/extension-testing/VSCodeExtension.md": {
@@ -1142,7 +1241,9 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/extension-testing/WebExtension.md": {
@@ -1152,7 +1253,9 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/flowcharts/CreateLocalWorkerProcess.md": {
@@ -1162,7 +1265,10 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/flowcharts/HighLevelOverview.md": {
@@ -1172,7 +1278,10 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/flowcharts/TestExecution.md": {
@@ -1182,7 +1291,10 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/flowcharts/WDIOCommands.md": {
@@ -1192,7 +1304,10 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/ocr-testing/cli-wizard.md": {
@@ -1202,7 +1317,10 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/ocr-testing/getting-started.md": {
@@ -1304,7 +1422,10 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/ocr-testing/ocr-get-text.md": {
@@ -1314,7 +1435,10 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/ocr-testing/ocr-set-value.md": {
@@ -1324,7 +1448,10 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/ocr-testing/ocr-wait-for-text-displayed.md": {
@@ -1334,7 +1461,10 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/ocr-testing/what-is-wdio-ocr-service.md": {
@@ -1344,7 +1474,10 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/percy-overview.md": {
@@ -1493,7 +1626,9 @@
       "es",
       "fa",
       "fr",
-      "hi"
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/visual-testing/faq.md": {
@@ -1504,7 +1639,9 @@
       "es",
       "fa",
       "fr",
-      "hi"
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/visual-testing/integrate-with-app-percy.md": {
@@ -1538,7 +1675,9 @@
       "es",
       "fa",
       "fr",
-      "hi"
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/visual-testing/method-options.md": {
@@ -1595,7 +1734,9 @@
       "es",
       "fa",
       "fr",
-      "hi"
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/visual-testing/service-options.md": {
@@ -4667,7 +4808,9 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/_dot-reporter.md": {
@@ -5862,7 +6005,9 @@
       "es",
       "fa",
       "fr",
-      "hi"
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/HeadlessAndXvfb.md": {
@@ -5918,7 +6063,9 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/mcp/tools.md": {
@@ -5928,7 +6075,10 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/mcp/configuration.md": {
@@ -5938,7 +6088,10 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/MCP.md": {
@@ -5971,7 +6124,10 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/mcp/faq.md": {
@@ -5981,7 +6137,10 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/devtools/TestLens.md": {
@@ -6107,7 +6266,9 @@
       "es",
       "fa",
       "fr",
-      "hi"
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Arm64Chromedriver.md": {
@@ -6118,7 +6279,9 @@
       "es",
       "fa",
       "fr",
-      "hi"
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/AISteps.md": {
@@ -6129,7 +6292,9 @@
       "es",
       "fa",
       "fr",
-      "hi"
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/Session.md": {
@@ -6140,7 +6305,9 @@
       "es",
       "fa",
       "fr",
-      "hi"
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/HeadlessAndDisplayServers.md": {
@@ -6151,7 +6318,9 @@
       "es",
       "fa",
       "fr",
-      "hi"
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/session/debug.md": {
@@ -6162,18 +6331,22 @@
       "es",
       "fa",
       "fr",
-      "hi"
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/v10Migration.md": {
-    "hash": "67b5987dbac854878a9b9105d60378316fde9d8cfe608c73c18cb9644d34b6cb",
+    "hash": "bf33a4f84408df25db8235f908e427d43ac5efe8759574a6a0cda3e60d2749f4",
     "languages": [
       "ar",
       "de",
       "es",
       "fa",
       "fr",
-      "hi"
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/session/snapshots.md": {
@@ -6184,7 +6357,9 @@
       "es",
       "fa",
       "fr",
-      "hi"
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/session/export.md": {
@@ -6195,7 +6370,9 @@
       "es",
       "fa",
       "fr",
-      "hi"
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/platforms/Mobile.md": {
@@ -6205,7 +6382,10 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/session/targets.md": {
@@ -6215,7 +6395,10 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/session/exec.md": {
@@ -6226,18 +6409,22 @@
       "es",
       "fa",
       "fr",
-      "hi"
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/ParallelTests.md": {
-    "hash": "2d8156afdda0b11d83ed028240a54e5f69cdcfb132f3c8a5cc35a4e7657b51cb",
+    "hash": "222cd5ae23433a832aa10d92ead6c3f0d3311de7a73c7a08431fbc251f159c00",
     "languages": [
       "ar",
       "de",
       "es",
       "fa",
       "fr",
-      "hi"
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/AIAgents.md": {
@@ -6248,7 +6435,9 @@
       "es",
       "fa",
       "fr",
-      "hi"
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/platforms/Desktop.md": {
@@ -6258,7 +6447,10 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/mcp/cloud-providers.md": {
@@ -6268,7 +6460,10 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/platforms/Apps.md": {
@@ -6278,7 +6473,10 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/platforms/Web.md": {
@@ -6288,7 +6486,10 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/flutter-testing/introduction.md": {
@@ -6298,7 +6499,10 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/mcp/transport.md": {
@@ -6308,7 +6512,10 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/flutter-testing/base-appium-configuration.md": {
@@ -6318,7 +6525,10 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/mcp/resources.md": {
@@ -6328,7 +6538,10 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/flutter-testing/preparing-flutter-application.md": {
@@ -6338,7 +6551,10 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/flutter-testing/setting-up-webdriverio.md": {
@@ -6348,7 +6564,10 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/devtools/wdio/NetworkLogs.md": {
@@ -6358,7 +6577,9 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/devtools/wdio/ConsoleLogs.md": {
@@ -6368,7 +6589,9 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/devtools/wdio/MultiFrameworkSupport.md": {
@@ -6378,7 +6601,9 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/devtools/CrossFrameworkSupport.md": {
@@ -6388,7 +6613,9 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/flutter-testing/writing-tests.md": {
@@ -6398,7 +6625,10 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/session/commands.md": {
@@ -6409,7 +6639,9 @@
       "es",
       "fa",
       "fr",
-      "hi"
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/flowcharts/TypeGeneration.md": {
@@ -6419,7 +6651,10 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it",
+      "ja"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/devtools/Dashboard.md": {
@@ -6429,7 +6664,9 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/devtools/AllureIntegration.md": {
@@ -6439,7 +6676,9 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/devtools/GettingStarted.md": {
@@ -6449,7 +6688,9 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/devtools/Limitations.md": {
@@ -6459,7 +6700,9 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/devtools/TracePlayer.md": {
@@ -6469,7 +6712,9 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/devtools/Wdio.md": {
@@ -6479,7 +6724,9 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/devtools/Nightwatch.md": {
@@ -6489,7 +6736,9 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/devtools/wdio/InteractiveTestRerunning.md": {
@@ -6499,7 +6748,9 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/devtools/Reference.md": {
@@ -6509,7 +6760,9 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/devtools/wdio/Metadata.md": {
@@ -6519,7 +6772,9 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/desktop-testing/Dioxus.md": {
@@ -6529,7 +6784,9 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/devtools/wdio/TestLens.md": {
@@ -6539,7 +6796,9 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/devtools/wdio/Screencast.md": {
@@ -6549,7 +6808,9 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/devtools/wdio/PreserveAndRerun.md": {
@@ -6559,7 +6820,9 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/devtools/wdio/TraceMode.md": {
@@ -6569,7 +6832,9 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/desktop-testing/Tauri.md": {
@@ -6579,7 +6844,9 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/devtools/Selenium.md": {
@@ -6589,7 +6856,9 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/api/BrowsingContext.md": {
@@ -6599,7 +6868,9 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it"
     ]
   },
   "en/docusaurus-plugin-content-docs/current/devtools/MobileTesting.md": {
@@ -6609,7 +6880,9 @@
       "de",
       "es",
       "fa",
-      "fr"
+      "fr",
+      "hi",
+      "it"
     ]
   }
 }

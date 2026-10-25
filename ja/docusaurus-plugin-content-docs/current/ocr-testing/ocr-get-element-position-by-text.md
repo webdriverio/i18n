@@ -4,9 +4,9 @@ title: ocrGetElementPositionByText
 description: "ocrGetElementPositionByText を使用して、OCR とファジーマッチングによりテキストの画面上の位置を取得します。"
 ---
 
-画面上のテキストの位置を取得します。このコマンドは指定されたテキストを検索し、[Fuse.js](https://fusejs.io/) のファジーロジックに基づいて一致するものを見つけようとします。つまり、セレクタにタイプミスがあった場合や、見つかったテキストが 100% 一致しない場合でも、要素を返そうとします。以下の[ログ](#logs)を参照してください。
+画面上のテキストの位置を取得します。このコマンドは指定されたテキストを検索し、[Fuse.js](https://fusejs.io/) のファジーロジックに基づいて一致するものを見つけようとします。つまり、セレクターにタイプミスがあった場合や、見つかったテキストが 100% 一致しない場合でも、要素を返そうとします。以下の[ログ](#logs)を参照してください。
 
-## 使用方法
+## Usage
 
 ```js
 const result = await browser.ocrGetElementPositionByText("Username");
@@ -14,9 +14,9 @@ const result = await browser.ocrGetElementPositionByText("Username");
 console.log("result = ", JSON.stringify(result, null, 2));
 ```
 
-## 出力
+## Output
 
-### 結果
+### Result
 
 ```logs
 result = {
@@ -39,16 +39,16 @@ result = {
 }
 ```
 
-### ログ
+### Logs
 
 ```log
-# "Start3d" を検索し、見つかったテキストが "Started" であったにもかかわらず、一致が見つかっている
+# "Start3d" を検索し、見つかったテキストが "Started" であっても一致を見つけています
 [0-0] 2024-05-25T17:29:59.179Z INFO webdriver: COMMAND ocrGetElementPositionByText(<object>)
 ......................
 [0-0] 2024-05-25T17:29:59.993Z INFO @wdio/ocr-service:ocrGetElementPositionByText: Multiple matches were found based on the word "Start3d". The match "Started" with score "85.71%" will be used.
 ```
 
-## オプション
+## Options
 
 ### `text`
 
@@ -57,7 +57,7 @@ result = {
 クリックするために検索したいテキストです。
 
 </Option>
-#### 例
+#### Example
 
 ```js
 await browser.ocrGetElementPositionByText({ text: "WebdriverIO" });
@@ -70,7 +70,7 @@ await browser.ocrGetElementPositionByText({ text: "WebdriverIO" });
 コントラストが高いほど画像は暗くなり、低いほど明るくなります。これは画像内のテキストを見つけるのに役立ちます。`-1` から `1` の間の値を受け付けます。
 
 </Option>
-#### 例
+#### Example
 
 ```js
 await browser.ocrGetElementPositionByText({
@@ -86,7 +86,7 @@ await browser.ocrGetElementPositionByText({
 OCR がテキストを探す必要がある画面内の検索領域です。要素、または `x`、`y`、`width`、`height` を含む矩形を指定できます。
 
 </Option>
-#### 例
+#### Example
 
 ```js
 await browser.ocrGetElementPositionByText({
@@ -116,10 +116,10 @@ await browser.ocrGetElementPositionByText({
 
 <Option type="string" default="eng" required="No">
 
-Tesseract が認識する言語です。詳細は[こちら](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions)、サポートされている言語は[こちら](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts)で確認できます。
+Tesseract が認識する言語です。詳細は[こちら](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions)で確認でき、サポートされている言語は[こちら](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts)で確認できます。
 
 </Option>
-#### 例
+#### Example
 
 ```js
 import { SUPPORTED_OCR_LANGUAGES } from "@wdio/ocr-service";
@@ -132,16 +132,16 @@ await browser.ocrGetElementPositionByText({
 
 ### `fuzzyFindOptions`
 
-以下のオプションを使用して、テキストを見つけるためのファジーロジックを変更できます。これにより、より適切な一致を見つけられる場合があります。
+以下のオプションを使用して、テキストを見つけるためのファジーロジックを変更できます。これにより、より良い一致が見つかる場合があります。
 
 #### `fuzzyFindOptions.distance`
 
 <Option type="number" default="100" required="no">
 
-一致がファジー位置（location で指定）にどれだけ近くなければならないかを決定します。ファジー位置から distance 文字離れた位置にある完全な文字一致は、完全な不一致としてスコア付けされます。distance が 0 の場合、一致は指定された正確な位置にある必要があります。distance が 1000 の場合、threshold 0.8 を使用して見つけるには、完全な一致が location から 800 文字以内にある必要があります。
+一致がファジーロケーション（location で指定）にどれだけ近くなければならないかを決定します。ファジーロケーションから distance 文字離れた位置にある完全な文字一致は、完全な不一致としてスコア付けされます。distance が 0 の場合、一致は指定された正確な位置にある必要があります。distance が 1000 の場合、threshold 0.8 を使用すると、完全一致が location から 800 文字以内にある必要があります。
 
 </Option>
-##### 例
+##### Example
 
 ```js
 await browser.ocrGetElementPositionByText({
@@ -156,10 +156,10 @@ await browser.ocrGetElementPositionByText({
 
 <Option type="number" default="0" required="no">
 
-テキスト内のおおよそどの位置でパターンが見つかると予想されるかを決定します。
+テキスト内のどのあたりでパターンが見つかると予想されるかをおおよそ決定します。
 
 </Option>
-##### 例
+##### Example
 
 ```js
 await browser.ocrGetElementPositionByText({
@@ -174,10 +174,10 @@ await browser.ocrGetElementPositionByText({
 
 <Option type="number" default="0.6" required="no">
 
-マッチングアルゴリズムがどの時点で諦めるかを指定します。threshold が 0 の場合は（文字と位置の両方で）完全な一致が必要となり、threshold が 1.0 の場合はあらゆるものに一致します。
+マッチングアルゴリズムがどの時点で諦めるかを決定します。threshold が 0 の場合は（文字と位置の両方で）完全一致が必要となり、threshold が 1.0 の場合はすべてに一致します。
 
 </Option>
-##### 例
+##### Example
 
 ```js
 await browser.ocrGetElementPositionByText({
@@ -192,10 +192,10 @@ await browser.ocrGetElementPositionByText({
 
 <Option type="boolean" default="false" required="no">
 
-検索で大文字と小文字を区別するかどうかを指定します。
+検索で大文字と小文字を区別するかどうかです。
 
 </Option>
-##### 例
+##### Example
 
 ```js
 await browser.ocrGetElementPositionByText({
@@ -210,10 +210,10 @@ await browser.ocrGetElementPositionByText({
 
 <Option type="number" default="2" required="no">
 
-長さがこの値を超える一致のみが返されます。（例えば、結果から1文字の一致を除外したい場合は、2 に設定します）
+長さがこの値を超える一致のみが返されます。（例えば、結果から 1 文字の一致を除外したい場合は 2 に設定します）
 
 </Option>
-##### 例
+##### Example
 
 ```js
 await browser.ocrGetElementPositionByText({
@@ -228,10 +228,10 @@ await browser.ocrGetElementPositionByText({
 
 <Option type="number" default="false" required="no">
 
-`true` の場合、文字列内で完全な一致がすでに見つかっていても、マッチング関数は検索パターンの最後まで処理を続行します。
+`true` の場合、文字列内で完全一致がすでに見つかっていても、マッチング関数は検索パターンの最後まで処理を続けます。
 
 </Option>
-##### 例
+##### Example
 
 ```js
 await browser.ocrGetElementPositionByText({

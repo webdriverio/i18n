@@ -1,10 +1,10 @@
 ---
 id: stencil
 title: Stencil
-description: "Configura il browser runner di WebdriverIO per i componenti Stencil, esegui il rendering con l'helper render e attendi gli aggiornamenti degli elementi."
+description: "Configura il browser runner di WebdriverIO per i componenti Stencil, renderizzali con l'helper render e attendi gli aggiornamenti degli elementi."
 ---
 
-[Stencil](https://stenciljs.com/) è una libreria per costruire librerie di componenti riutilizzabili e scalabili. Puoi testare i componenti Stencil direttamente in un browser reale utilizzando WebdriverIO e il suo [browser runner](/docs/runner#browser-runner).
+[Stencil](https://stenciljs.com/) è una libreria per creare librerie di componenti riutilizzabili e scalabili. Puoi testare i componenti Stencil direttamente in un browser reale utilizzando WebdriverIO e il suo [browser runner](/docs/runner#browser-runner).
 
 ## Configurazione
 
@@ -33,7 +33,7 @@ Puoi quindi avviare i test eseguendo:
 npx wdio run ./wdio.conf.ts
 ```
 
-## Scrivere i test
+## Scrivere i Test
 
 Supponendo di avere i seguenti componenti Stencil:
 
@@ -66,7 +66,7 @@ export class MyName {
 
 ### `render`
 
-Nel tuo test usa il metodo `render` di `@wdio/browser-runner/stencil` per collegare il componente alla pagina di test. Per interagire con il componente consigliamo di utilizzare i comandi WebdriverIO, poiché si comportano in modo più simile alle interazioni reali dell'utente, ad esempio:
+Nel tuo test usa il metodo `render` di `@wdio/browser-runner/stencil` per collegare il componente alla pagina di test. Per interagire con il componente consigliamo di utilizzare i comandi di WebdriverIO, poiché si comportano in modo più simile alle reali interazioni dell'utente, ad esempio:
 
 ```tsx title="app.test.tsx"
 import { expect } from '@wdio/globals'
@@ -87,7 +87,7 @@ describe('Stencil Component Testing', () => {
 })
 ```
 
-#### Opzioni di render
+#### Opzioni di Render
 
 Il metodo `render` fornisce le seguenti opzioni:
 
@@ -107,13 +107,13 @@ __Predefinito:__ `true`
 
 ##### `template`
 
-Il JSX iniziale utilizzato per generare il test. Usa `template` quando vuoi inizializzare un componente utilizzando le sue proprietà, invece dei suoi attributi HTML. Eseguirà il rendering del template specificato (JSX) in `document.body`.
+Il JSX iniziale utilizzato per generare il test. Usa `template` quando vuoi inizializzare un componente utilizzando le sue proprietà, invece dei suoi attributi HTML. Renderizzerà il template specificato (JSX) in `document.body`.
 
 __Tipo:__ `JSX.Template`
 
 ##### `html`
 
-L'HTML iniziale utilizzato per generare il test. Può essere utile per costruire una raccolta di componenti che lavorano insieme e assegnare attributi HTML.
+L'HTML iniziale utilizzato per generare il test. Può essere utile per costruire una collezione di componenti che lavorano insieme e assegnare attributi HTML.
 
 __Tipo:__ `string`
 
@@ -132,12 +132,12 @@ __Predefinito:__ `false`
 
 ##### `attachStyles`
 
-Per impostazione predefinita, gli stili non vengono collegati al DOM e non si riflettono nell'HTML serializzato. Impostando questa opzione su `true`, gli stili del componente verranno inclusi nell'output serializzabile.
+Per impostazione predefinita, gli stili non vengono collegati al DOM e non vengono riflessi nell'HTML serializzato. Impostando questa opzione su `true` gli stili del componente verranno inclusi nell'output serializzabile.
 
 __Tipo:__ `boolean`<br />
 __Predefinito:__ `false`
 
-#### Ambiente di render
+#### Ambiente di Render
 
 Il metodo `render` restituisce un oggetto ambiente che fornisce alcuni helper di utilità per gestire l'ambiente del componente.
 
@@ -161,7 +161,7 @@ __Tipo:__ `Record<string, string>`
 
 ##### `container`
 
-Elemento contenitore in cui viene eseguito il rendering del template.
+Elemento contenitore in cui viene renderizzato il template.
 
 __Tipo:__ `HTMLElement`
 
@@ -201,9 +201,9 @@ await waitForChanges()
 expect(page.root.querySelector('div')).toBeDefined()
 ```
 
-## Aggiornamenti degli elementi
+## Aggiornamenti degli Elementi
 
-Se definisci proprietà o stati nel tuo componente Stencil, devi gestire quando queste modifiche devono essere applicate al componente affinché venga eseguito nuovamente il rendering.
+Se definisci proprietà o stati nel tuo componente Stencil, devi gestire quando queste modifiche devono essere applicate al componente affinché venga renderizzato nuovamente.
 
 
 ## Esempi

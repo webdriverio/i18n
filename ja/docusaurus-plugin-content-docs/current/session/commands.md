@@ -7,7 +7,7 @@ slug: /session-commands
 
 <!-- Generated from packages/wdio-session/src/actions/specs.ts by `pnpm run docs:session-commands`. Do not edit by hand. -->
 
-`wdio session` のすべてのアクションです。グローバルフラグはすべてのアクションに適用されます。同じテキストは `npx wdio session <action> --help` でも表示されます。[WebdriverIO Session](/docs/session) セクションの他のページでは、[ターゲット](/docs/session/targets)、[スナップショット](/docs/session/snapshots)、[`exec`](/docs/session/exec)、[エクスポート](/docs/session/export)、[デバッグ](/docs/session/debug)について説明しています。
+`wdio session` のすべてのアクションを掲載しています。グローバルフラグはすべてのアクションに適用されます。同じ内容は `npx wdio session <action> --help` でも表示されます。[WebdriverIO Session](/docs/session) セクションの他のページでは、[ターゲット](/docs/session/targets)、[スナップショット](/docs/session/snapshots)、[`exec`](/docs/session/exec)、[エクスポート](/docs/session/export)、[デバッグ](/docs/session/debug)について説明しています。
 
 ```sh
 npx wdio session <action> [arguments] [flags]
@@ -18,20 +18,20 @@ npx wdio session <action> [arguments] [flags]
 | フラグ | 説明 |
 | --- | --- |
 | `-s, --session` | セッション名（環境変数 WDIO_SESSION、デフォルトは "default"） |
-| `--json` | 1 つの JSON オブジェクトを出力（環境変数 WDIO_SESSION_JSON=1） |
-| `--timeout` | リクエストのタイムアウト（ミリ秒、wait 以外は 60000 が上限） |
+| `--json` | JSON オブジェクトを 1 つ出力する（環境変数 WDIO_SESSION_JSON=1） |
+| `--timeout` | リクエストのタイムアウト（ミリ秒、wait 以外は上限 60000） |
 | `-q, --quiet` | 成功時は要求されたデータ以外何も出力しない |
 | `--color` | --no-color で色を無効化 |
 
-終了コード: 0 は成功、1 はアクションまたはコードの失敗、2 は使用方法のエラー、3 は依存関係または認証情報の不足、4 はその名前のセッションが存在しないことを示します。
+終了コード: 0 成功、1 アクションまたはコードの失敗、2 使用方法の誤り、3 依存関係または認証情報の不足、4 その名前のセッションが存在しない。
 
 ## `open`
 
 セッションを開始します: browser、android、ios、macos、windows、electron、tauri、dioxus、または wdio 設定ファイル。
 
-`close` するまで、または --idle-timeout（デフォルト 30m）の間アイドル状態が続くまでセッションを維持するバックグラウンドデーモンを起動します。--headed を指定しない限り、ブラウザはヘッドレスで実行されます。セッション名、ターゲット、スナップショット・スクリーンショット・エクスポートが保存されるアーティファクトディレクトリ、さらに URL を指定して開いたブラウザの場合はそのページのインタラクティブスナップショットを出力します。
+`close` されるまで、または --idle-timeout（デフォルト 30m）の間アイドル状態が続くまで、セッションを維持するバックグラウンドデーモンを起動します。--headed を指定しない限り、ブラウザはヘッドレスで実行されます。セッション名、ターゲット、スナップショット・スクリーンショット・エクスポートが保存される成果物ディレクトリを出力し、URL を指定して開いたブラウザの場合はそのページのインタラクティブスナップショットも出力します。
 
-1 つの名前につき 1 セッションです。すでに実行中の名前で開こうとすると失敗します。そのセッションを使うか、閉じるか、--replace を指定してください。`-s <name>` は 2 つのセッションを同時に必要とする場合にのみ指定します。
+1 つの名前につき 1 つのセッションです。すでに実行中の名前で開こうとすると失敗します。そのセッションを使うか、閉じるか、--replace を指定してください。`-s <name>` は 2 つのセッションを同時に必要とする場合にのみ指定します。
 
 ```sh
 npx wdio session open <target> [url]
@@ -49,8 +49,8 @@ npx wdio session open <target> [url]
 | フラグ | 説明 |
 | --- | --- |
 | `--replace` | 同じ名前で実行中のセッションを先に閉じる |
-| `--launch-timeout <n>` | セッションが準備完了になるまで待機するミリ秒数 |
-| `--idle-timeout <value>` | リクエストがないままこの時間が経過したら終了する（例: 30m、0 で無効化） |
+| `--launch-timeout <n>` | セッションの準備ができるまで待機するミリ秒 |
+| `--idle-timeout <value>` | リクエストがないままこの時間が経過したら終了する（例: 30m、0 で無効） |
 | `--capabilities <value>` | 追加の capabilities（JSON または JSON ファイルへのパス） |
 | `--hostname <value>` | リモート WebDriver のホスト |
 | `--port <n>` | リモート WebDriver のポート |
@@ -64,13 +64,13 @@ npx wdio session open <target> [url]
 | `--viewport <value>` | 初期ビューポート（例: 1280x720） |
 | `--browser-version <value>` | ブラウザのバージョン |
 | `--binary <value>` | ブラウザのバイナリ |
-| `--arg <value>` | 追加のブラウザ引数。`-` で始まる値には `=` が必要です（例: `--arg=--disable-gpu`）（複数指定可） |
-| `--profile <value>` | 永続プロファイルのディレクトリ |
+| `--arg <value>` | 追加のブラウザ引数。`-` で始まる値には `=` が必要（例: `--arg=--disable-gpu`）（複数指定可） |
+| `--profile <value>` | 永続プロファイルディレクトリ |
 | `--attach <value>` | 実行中の Chrome/Edge にアタッチする（デバッグポートまたは URL） |
-| `--app <value>` | アプリファイルまたはクラウドのアプリ URL |
+| `--app <value>` | アプリファイルまたはクラウドアプリの URL |
 | `--package <value>` | Android アプリのパッケージ |
 | `--activity <value>` | Android アプリのアクティビティ |
-| `--bundle-id <value>` | iOS/macOS のバンドル ID |
+| `--bundle-id <value>` | iOS/macOS の bundle id |
 | `--browser <value>` | モバイル Web ブラウザ（chrome、safari） |
 | `--device <value>` | デバイス名 |
 | `--platform-version <value>` | プラットフォームのバージョン |
@@ -79,7 +79,7 @@ npx wdio session open <target> [url]
 | `--full-reset` | appium:fullReset |
 | `--orientation <portrait\|landscape>` | 初期の画面の向き |
 | `--appium-url <value>` | 実行中の Appium サーバーを使用する |
-| `--app-arg <value>` | デスクトップアプリに渡す引数。`-` で始まる値には `=` が必要です（例: `--app-arg=--no-sandbox`）（複数指定可） |
+| `--app-arg <value>` | デスクトップアプリに渡す引数。`-` で始まる値には `=` が必要（例: `--app-arg=--no-sandbox`）（複数指定可） |
 | `--chromedriver <value>` | Electron: Chromedriver のバイナリ |
 | `--electron-version <value>` | Electron: バージョン検出を上書きする |
 | `--provider <browserstack\|saucelabs\|testingbot\|testmu>` | クラウドプロバイダー |
@@ -87,15 +87,15 @@ npx wdio session open <target> [url]
 | `--os-version <value>` | クラウド: デスクトップ OS のバージョン |
 | `--region <value>` | クラウド: Sauce Labs のリージョン |
 | `--tunnel <value>` | クラウド: プロバイダーのトンネルを起動する（または "external"） |
-| `--tunnel-name <value>` | クラウド: トンネルの識別子 |
-| `--project <value>` | クラウド: プロジェクトのラベル |
-| `--build <value>` | クラウド: ビルドのラベル |
-| `--name <value>` | クラウド: セッション名のラベル |
+| `--tunnel-name <value>` | クラウド: トンネル識別子 |
+| `--project <value>` | クラウド: プロジェクトラベル |
+| `--build <value>` | クラウド: ビルドラベル |
+| `--name <value>` | クラウド: セッション名ラベル |
 
 **例**
 
 ```sh
-# ローカルアプリをヘッドレス Chrome で開く
+# ローカルアプリでヘッドレス Chrome を開く
 npx wdio session open chrome http://localhost:3000
 
 # ウィンドウを表示して Firefox を開く
@@ -117,7 +117,7 @@ npx wdio session open ./wdio.conf.ts 0
 npx wdio session open chrome https://example.com --provider browserstack
 ```
 
-関連: [`snapshot`](#snapshot)、[`close`](#close)、[`doctor`](#doctor)。
+関連項目: [`snapshot`](#snapshot)、[`close`](#close)、[`doctor`](#doctor)。
 
 ## `close`
 
@@ -134,7 +134,7 @@ npx wdio session close
 | フラグ | 説明 |
 | --- | --- |
 | `--all` | すべてのセッションを閉じる |
-| `--clean` | アーティファクトディレクトリも削除する |
+| `--clean` | 成果物ディレクトリも削除する |
 
 **例**
 
@@ -142,17 +142,17 @@ npx wdio session close
 # デフォルトのセッションを閉じる
 npx wdio session close
 
-# すべてのセッションを閉じてアーティファクトを削除する
+# すべてのセッションを閉じ、その成果物を削除する
 npx wdio session close --all --clean
 ```
 
-関連: [`open`](#open)、[`list`](#list)。
+関連項目: [`open`](#open)、[`list`](#list)。
 
 ## `list`
 
 実行中のセッションを一覧表示します。
 
-セッションごとに 1 行（名前、ターゲット、URL、経過時間）を出力します。異常終了したセッションが残した状態は削除されます。
+セッションごとに 1 行ずつ、名前、ターゲット、URL、経過時間を出力します。終了したセッションが残した状態は削除されます。
 
 ```sh
 npx wdio session list
@@ -165,13 +165,13 @@ npx wdio session list
 npx wdio session list
 ```
 
-関連: [`info`](#info)、[`status`](#status)。
+関連項目: [`info`](#info)、[`status`](#status)。
 
 ## `info`
 
 セッションの詳細を表示します。
 
-ターゲット、ブラウザとバージョン、BiDi サポート、アーティファクトディレクトリ、そして現在の URL・タイトル・ウィンドウサイズ・フレーム（Web）またはコンテキストとアクティビティ（モバイル）を出力します。
+ターゲット、ブラウザとバージョン、BiDi サポート、成果物ディレクトリ、そして現在の URL、タイトル、ウィンドウサイズ、フレーム（Web）またはコンテキストとアクティビティ（モバイル）を出力します。
 
 ```sh
 npx wdio session info
@@ -180,17 +180,17 @@ npx wdio session info
 **例**
 
 ```sh
-# セッションの現在地と実行内容を表示する
+# セッションの現在地と実行対象を表示する
 npx wdio session info
 ```
 
-関連: [`list`](#list)、[`get`](#get)。
+関連項目: [`list`](#list)、[`get`](#get)。
 
 ## `restart`
 
 同じターゲットとフラグで閉じて再度開きます。
 
-記録された履歴は保持されるため、`export` には再起動前のステップも含まれます。
+記録された履歴は保持されるため、`export` は再起動前のステップも含みます。
 
 ```sh
 npx wdio session restart
@@ -203,7 +203,7 @@ npx wdio session restart
 npx wdio session restart
 ```
 
-関連: [`open`](#open)、[`close`](#close)。
+関連項目: [`open`](#open)、[`close`](#close)。
 
 ## `status`
 
@@ -220,15 +220,15 @@ npx wdio session status
 npx wdio session status || npx wdio session open chrome http://localhost:3000
 ```
 
-関連: [`list`](#list)、[`open`](#open)。
+関連項目: [`list`](#list)、[`open`](#open)。
 
 ## `exec`
 
 stdin、-e、またはファイルから WebdriverIO のコードを実行します。
 
-`browser`、`$`、`$$`、`expect`、`ref('e3')` がスコープ内にある非同期関数として実行されます。トップレベルの変数は呼び出し間で保持されます。アクションを指定せずに `wdio session` を実行し、stdin にコードをパイプすると `exec` が実行されます。
+`browser`、`$`、`$$`、`expect`、`ref('e3')` がスコープ内にある async 関数として実行されます。トップレベルの変数は呼び出し間で保持されます。アクションなしの `wdio session` は、stdin にコードがパイプされると `exec` を実行します。
 
-コマンドには必ず `await` を付けてください。`$` は要素を 1 つだけ返し、複数の要素が一致した場合は StrictSelectorError をスローします。1 つのアクション（click、fill など）で済む場合はそちらを優先し、ループ、条件分岐、アサーションには `exec` を使用してください。
+コマンドには必ず `await` を付けてください。`$` は要素をちょうど 1 つ返し、複数の要素が一致した場合は StrictSelectorError をスローします。1 つのアクション（click、fill など）で済む場合はそちらを優先し、ループ、条件分岐、アサーションには `exec` を使用してください。
 
 ```sh
 npx wdio session exec [file]
@@ -266,13 +266,13 @@ JS
 npx wdio session exec ./scripts/login.ts
 ```
 
-関連: [`helpers`](#helpers)、[`history`](#history)、[`export`](#export)。
+関連項目: [`helpers`](#helpers)、[`history`](#history)、[`export`](#export)。
 
 ## `helpers`
 
 .wdio/helpers にあるプロジェクトのヘルパーを一覧表示します。
 
-.wdio/helpers 配下の各ファイルは、browser を受け取り addCommand でカスタムコマンドを登録する関数をデフォルトエクスポートします。ヘルパーはセッションを開いたときに読み込まれ、エクスポートされたテストではカスタムコマンドになります。
+.wdio/helpers 配下の各ファイルは、browser を受け取り addCommand でカスタムコマンドを登録する関数を default export します。ヘルパーはセッションを開いたときに読み込まれ、エクスポートされたテストではカスタムコマンドになります。
 
 ```sh
 npx wdio session helpers
@@ -287,24 +287,24 @@ npx wdio session helpers
 **例**
 
 ```sh
-# ヘルパーと追加されるコマンドを一覧表示する
+# ヘルパーと、それらが追加するコマンドを一覧表示する
 npx wdio session helpers
 
-# ヘルパーの変更を反映する
+# ヘルパーへの変更を反映する
 npx wdio session helpers --reload
 ```
 
-関連: [`exec`](#exec)、[`export`](#export)。
+関連項目: [`exec`](#exec)、[`export`](#export)。
 
 ## `snapshot`
 
-ref 付きのアクセシビリティスナップショットです。Web、ネイティブモバイル、ネイティブデスクトップに適用されます。
+ref 付きのアクセシビリティスナップショット。Web、ネイティブモバイル、ネイティブデスクトップに適用されます。
 
-アクセシビリティツリーを 1 行に 1 ノードずつ出力します（例: `button "Add to cart" [ref=e3]`）。ref は click、fill、get などのアクションに渡せます。ref は要素が存在する間有効で、削除された要素に対するアクションは REF_STALE で失敗します。
+アクセシビリティツリーを 1 行に 1 ノードずつ出力します（例: `button "Add to cart" [ref=e3]`）。ref を click、fill、get などのアクションに渡します。ref は要素が存在する間は有効で、削除された要素に対するアクションは REF_STALE で失敗します。
 
-すべてのスナップショットはアーティファクトディレクトリに書き込まれます。--max-chars より長い出力は分割して出力されます。最初の部分が出力され、次の部分には `--offset <line>` を使用します。`find` は全体を検索します。
+すべてのスナップショットは成果物ディレクトリに書き込まれます。--max-chars より長い出力は分割して出力されます。最初の部分が出力され、次の部分には `--offset <line>` を使用します。`find` はスナップショット全体を検索します。
 
-テキストのレイアウトと --json の形式は実験的なものであり、マイナーリリースで変更される可能性があります。ref の構文と ref を受け取るアクションは安定しています。
+テキストのレイアウトと --json の形式は実験的なもので、マイナーリリースで変更される可能性があります。ref の構文と ref を受け取るアクションは安定しています。
 
 ```sh
 npx wdio session snapshot
@@ -314,14 +314,14 @@ npx wdio session snapshot
 
 | フラグ | 説明 |
 | --- | --- |
-| `--depth <n>` | 最大深度 |
-| `--scope <value>` | この ref またはセレクター以下のみをスナップショットする |
+| `--depth <n>` | 最大の深さ |
+| `--scope <value>` | この ref またはセレクター配下のみをスナップショットする |
 | `-i, --interactive` | インタラクティブな要素のみ |
-| `--all` | 非表示の要素も含める |
+| `--all` | 非表示の要素を含める |
 | `--boxes` | バウンディングボックスを付加する |
-| `--viewport` | ビューポート内にあるもののみ（Web: diff のベースラインは更新しない） |
+| `--viewport` | ビューポート内のもののみ（Web: diff のベースラインを更新しない） |
 | `--selectors` | 各 ref 行の末尾に最適なセレクターを付ける |
-| `--compact` | コンテンツを持たない名前なしノードを除外する |
+| `--compact` | 内容のない名前なしノードを除外する |
 | `-u, --urls` | リンクの href を含める |
 | `--file-only` | ファイルへの書き込みのみ行う |
 | `--max-chars <n>` | 一度に出力する最大文字数（デフォルト 8000） |
@@ -330,7 +330,7 @@ npx wdio session snapshot
 **例**
 
 ```sh
-# インタラクティブな要素のみ。最初に確認する一般的な方法
+# インタラクティブな要素のみ。通常の最初の確認方法
 npx wdio session snapshot -i
 
 # リンク先を含むページ全体
@@ -342,20 +342,20 @@ npx wdio session snapshot --scope "#checkout" --depth 4
 # 現在画面に表示されているもの
 npx wdio session snapshot --viewport -i
 
-# テストに使えるセレクター付きの各 ref
+# テストで使えるセレクター付きの各 ref
 npx wdio session snapshot --selectors -i
 
 # 操作してから再度確認する
 npx wdio session click e3 && npx wdio session snapshot -i
 ```
 
-関連: [`find`](#find)、[`diff`](#diff)、[`screenshot`](#screenshot)。
+関連項目: [`find`](#find)、[`diff`](#diff)、[`screenshot`](#screenshot)。
 
 ## `read`
 
 ページのテキストを Markdown として読み取ります。Web に適用されます。
 
-見出し、段落、リスト項目、テーブル行、URL 付きのリンクを、ページがメインコンテンツを示している場合（main、article）はそこから、そうでなければページ全体から取得します。ナビゲーション、フッター、非表示のテキストは除外されます。--max-chars（デフォルト 6000）で切り詰められ、切り詰め箇所には次の部分を読むための --offset が示されます。--scope を指定すると、そのセクションが表示領域までスクロールされます。「ページに何が書かれているか」を知るために使用し、操作対象の ref が必要な場合は snapshot または find を使用してください。
+ページがメインコンテンツ（main、article）を示している場合はそこから、そうでなければページ全体から、見出し、段落、リスト項目、テーブルの行、URL 付きのリンクを読み取ります。ナビゲーション、フッター、非表示のテキストは除外されます。--max-chars（デフォルト 6000）で切り詰められ、切り詰め箇所には次の部分を読むための --offset が示されます。--scope を指定すると、そのセクションがスクロールして表示されます。「ページに何が書かれているか」を知るために使い、操作対象の ref が必要な場合は snapshot や find を使用してください。
 
 ```sh
 npx wdio session read
@@ -365,7 +365,7 @@ npx wdio session read
 
 | フラグ | 説明 |
 | --- | --- |
-| `--scope <value>` | この ref またはセレクター以下のみを読み取る |
+| `--scope <value>` | この ref またはセレクター配下のみを読み取る |
 | `--max-chars <n>` | 出力する最大文字数（デフォルト 6000） |
 | `--offset <n>` | 長いページの次の部分として、テキストのこの文字位置から開始する |
 
@@ -379,13 +379,13 @@ npx wdio session read
 npx wdio session read --scope e12
 ```
 
-関連: [`find`](#find)、[`snapshot`](#snapshot)、[`get`](#get)。
+関連項目: [`find`](#find)、[`snapshot`](#snapshot)、[`get`](#get)。
 
 ## `find`
 
 新しいスナップショットからテキストを検索します。Web、ネイティブモバイル、ネイティブデスクトップに適用されます。
 
-新しいスナップショットを取得し、各一致箇所をその周囲のノード（例: リスト項目全体。一致箇所の隣にある値も含まれます）とともに、行番号と ref 付きで出力し、最初の一致箇所を表示領域までスクロールします。マッチングでは大文字小文字を無視し、次にスペースを無視し（"SO2" で "SO 2" が見つかります）、さらにすべての単語と類似する単語を探します。ページの非表示部分（閉じたメニュー、タブ、「もっと見る」）にのみ存在するテキストは、その旨が示されます。大きなページのスナップショット全体を読むより低コストです。-A/-B/-C を指定すると、grep のように単純な前後行を出力します。
+新しいスナップショットを取得し、各一致箇所をその周囲のノード（例: リスト項目全体。一致箇所の隣にある値も含まれます）とともに行番号と ref 付きで出力し、最初の一致箇所をスクロールして表示します。マッチングは大文字小文字を無視し、次にスペースを無視し（"SO2" で "SO 2" が見つかります）、さらにすべての単語や類似する単語を探します。ページの非表示部分（閉じたメニュー、タブ、「もっと見る」）にのみ存在するテキストは、その旨が示されます。大きなページのスナップショット全体を読むよりも低コストです。-A/-B/-C を指定すると、grep のように単純な前後の行を出力します。
 
 ```sh
 npx wdio session find <text>
@@ -402,11 +402,11 @@ npx wdio session find <text>
 | フラグ | 説明 |
 | --- | --- |
 | `--regex` | テキストを正規表現として扱う |
-| `--scope <value>` | この ref またはセレクター以下のみを検索する |
-| `-C, --context <n>` | 周囲のノードの代わりに前後のコンテキスト行を表示する |
+| `--scope <value>` | この ref またはセレクター配下のみを検索する |
+| `-C, --context <n>` | 周囲のノードの代わりに前後のコンテキスト行を出力する |
 | `-A, --after-context <n>` | 各一致箇所の後のコンテキスト行数 |
 | `-B, --before-context <n>` | 各一致箇所の前のコンテキスト行数 |
-| `--offset <n>` | 出力が切り詰められた場合に次の一致を表示するため、この数の一致をスキップする |
+| `--offset <n>` | 出力が切り詰められたとき、次の一致箇所のためにこの数だけスキップする |
 
 **例**
 
@@ -418,13 +418,13 @@ npx wdio session find "Add to cart"
 npx wdio session find "^\s*link" --regex --context 0
 ```
 
-関連: [`snapshot`](#snapshot)、[`wait`](#wait)。
+関連項目: [`snapshot`](#snapshot)、[`wait`](#wait)。
 
 ## `diff`
 
 新しいスナップショットを前回のものと比較します。Web、ネイティブモバイル、ネイティブデスクトップに適用されます。
 
-前回のスナップショットからの変更を unified diff 形式で出力するか、"No changes" を出力します。最初の呼び出しではベースラインが保存されます。アクションの後に使用すると、ページ全体を読み直さずにそのアクションによる変化を確認できます。Web では、`--viewport` なしで取得した最後のスナップショットがベースラインになります。
+前回のスナップショット以降に変化した内容を unified diff で出力するか、"No changes" を出力します。最初の呼び出しでベースラインが保存されます。アクションの後に使用すると、ページ全体を読み直さずにそのアクションの影響を確認できます。Web では、ベースラインは `--viewport` なしで取得した最後のスナップショットです。
 
 ```sh
 npx wdio session diff
@@ -448,13 +448,13 @@ npx wdio session click e7 && npx wdio session diff
 npx wdio session diff --baseline before.yml
 ```
 
-関連: [`snapshot`](#snapshot)、[`find`](#find)。
+関連項目: [`snapshot`](#snapshot)、[`find`](#find)。
 
 ## `screenshot`
 
 ビューポート、要素、またはページ全体の PNG を保存します。Web、ネイティブモバイル、ネイティブデスクトップに適用されます。
 
-ファイルパスと画像サイズを出力します。レイアウトや見た目に関する疑問にはスクリーンショットを撮り、テキストや状態の確認には `snapshot` と `get` を使用してください。
+ファイルパスと画像サイズを出力します。レイアウトや見た目に関する確認にはスクリーンショットを使い、テキストや状態の読み取りには `snapshot` と `get` を使用してください。
 
 ```sh
 npx wdio session screenshot [target]
@@ -486,13 +486,13 @@ npx wdio session screenshot e5 --path card.png
 npx wdio session screenshot --full
 ```
 
-関連: [`visual`](#visual)、[`pdf`](#pdf)、[`snapshot`](#snapshot)。
+関連項目: [`visual`](#visual)、[`pdf`](#pdf)、[`snapshot`](#snapshot)。
 
 ## `pdf`
 
 現在のページを PDF として保存します。Web に適用されます。
 
-`browser.savePDF` を呼び出します。BiDi セッションでは、Chrome、Edge、Firefox において、ヘッドありでもヘッドレスでも `browsingContext.print` で印刷します。Classic セッションでは `printPage` を使用しますが、古い Chrome ではヘッドレスでのみサポートされています。
+`browser.savePDF` を呼び出します。BiDi セッションでは、Chrome、Edge、Firefox でヘッドあり・ヘッドレスのいずれでも `browsingContext.print` で印刷します。Classic セッションでは `printPage` を使用しますが、古い Chrome ではヘッドレスでのみサポートされます。
 
 ```sh
 npx wdio session pdf [file]
@@ -517,13 +517,13 @@ npx wdio session pdf [file]
 npx wdio session pdf report.pdf
 ```
 
-関連: [`screenshot`](#screenshot)。
+関連項目: [`screenshot`](#screenshot)。
 
 ## `source`
 
 ページの HTML またはアプリの XML を保存します。Web、ネイティブモバイル、ネイティブデスクトップに適用されます。
 
-ファイルを書き込み、そのパスとサイズを出力します。セレクター用の属性など、必要な情報がスナップショットに表示されない場合に使用します。
+ファイルを書き込み、そのパスとサイズを出力します。セレクター用の属性など、スナップショットでは見えない情報が必要な場合に使用してください。
 
 ```sh
 npx wdio session source
@@ -542,13 +542,13 @@ npx wdio session source
 npx wdio session source --path page.html
 ```
 
-関連: [`snapshot`](#snapshot)、[`get`](#get)。
+関連項目: [`snapshot`](#snapshot)、[`get`](#get)。
 
 ## `get`
 
-テキスト、HTML、値、属性、タイトル、URL、件数、またはボックスを読み取ります。Web に適用されます。
+テキスト、html、値、属性、タイトル、URL、件数、またはボックスを読み取ります。Web に適用されます。
 
-値を出力し、続いて実行した WebdriverIO のコード（`→ …`）を出力します。値のみを出力するには -q を指定します（シェル変数に取り込む場合など）。アサーションを書く前に値を読み取ってください。
+値を出力し、続いて実行した WebdriverIO のコード（`→ …`）を出力します。値のみを出力するには -q を指定します（例: シェル変数に取り込む場合）。アサーションを書く前に値を読み取ってください。
 
 ```sh
 npx wdio session get <sub> [target] [name]
@@ -581,7 +581,7 @@ npx wdio session get attr e3 href
 npx wdio session get count "aria/Remove"
 ```
 
-関連: [`is`](#is)、[`wait`](#wait)、[`exec`](#exec)。
+関連項目: [`is`](#is)、[`wait`](#wait)、[`exec`](#exec)。
 
 ## `is`
 
@@ -610,13 +610,13 @@ npx wdio session is visible e1
 npx wdio session is enabled "aria/Place order"
 ```
 
-関連: [`get`](#get)、[`wait`](#wait)。
+関連項目: [`get`](#get)、[`wait`](#wait)。
 
 ## `logs`
 
 前回の呼び出し以降のコンソール、ページエラー、ネットワーク、デバイスのログを出力します。Web、ネイティブモバイルに適用されます。
 
-呼び出すたびに読み取りカーソルが進むため、次の呼び出しでは新しいエントリのみが表示されます。アクションの後に実行すると、そのアクションが引き起こしたエラーを確認できます。
+呼び出すたびに読み取りカーソルが進むため、次の呼び出しでは新しいエントリのみが表示されます。アクションの後に実行して、そのアクションが引き起こしたエラーを確認してください。
 
 ```sh
 npx wdio session logs
@@ -638,17 +638,17 @@ npx wdio session logs
 # クリックによって発生したエラー
 npx wdio session click e4 && npx wdio session logs --errors
 
-# 最近のエントリを、次の呼び出し用に残したまま表示する
+# 最近のエントリを、次の呼び出しのために残しておく
 npx wdio session logs --since 30s --peek
 ```
 
-関連: [`requests`](#requests)。
+関連項目: [`requests`](#requests)。
 
 ## `navigate`
 
 URL を開きます。Web に適用されます。
 
-`example.com`、完全な URL、baseUrl からの相対パスを受け付けます。先にフレームから抜けます。新しい URL とタイトルを出力します。
+`example.com`、完全な URL、および baseUrl からの相対パスを受け付けます。先にフレームから抜けます。新しい URL とタイトルを出力します。
 
 ```sh
 npx wdio session navigate <url>
@@ -670,11 +670,11 @@ npx wdio session navigate /cart && npx wdio session snapshot -i
 npx wdio session navigate example.com
 ```
 
-関連: [`back`](#back)、[`reload`](#reload)、[`wait`](#wait)。
+関連項目: [`back`](#back)、[`reload`](#reload)、[`wait`](#wait)。
 
 ## `back`
 
-前に戻ります。Web に適用されます。
+戻ります。Web に適用されます。
 
 ```sh
 npx wdio session back
@@ -687,11 +687,11 @@ npx wdio session back
 npx wdio session back
 ```
 
-関連: [`forward`](#forward)、[`navigate`](#navigate)。
+関連項目: [`forward`](#forward)、[`navigate`](#navigate)。
 
 ## `forward`
 
-次に進みます。Web に適用されます。
+進みます。Web に適用されます。
 
 ```sh
 npx wdio session forward
@@ -704,7 +704,7 @@ npx wdio session forward
 npx wdio session forward
 ```
 
-関連: [`back`](#back)、[`navigate`](#navigate)。
+関連項目: [`back`](#back)、[`navigate`](#navigate)。
 
 ## `reload`
 
@@ -717,19 +717,19 @@ npx wdio session reload
 **例**
 
 ```sh
-# 再読み込みしてネットワークが落ち着くまで待つ
+# 再読み込みし、ネットワークが落ち着くまで待つ
 npx wdio session reload && npx wdio session wait --load networkidle
 ```
 
-関連: [`navigate`](#navigate)、[`wait`](#wait)。
+関連項目: [`navigate`](#navigate)、[`wait`](#wait)。
 
 ## `wait`
 
 要素、テキスト、URL、読み込み状態、条件、または数ミリ秒を待機します。Web に適用されます。
 
-ref またはセレクター、--text、--url、--load、--fn、ミリ秒のうち、いずれか 1 つだけを指定してください。--limit を過ぎると終了コード 1 で失敗します。
+ref またはセレクター、--text、--url、--load、--fn、ミリ秒のうち、ちょうど 1 つを指定します。--limit を超えると終了コード 1 で失敗します。
 
-ここでもチェーン内の `sleep` でも、一時停止より条件を優先してください。30 秒を超える一時停止は拒否されます。
+ここでも、チェーン内の `sleep` よりも、一時停止より条件を優先してください。30 秒を超える一時停止は拒否されます。
 
 ```sh
 npx wdio session wait [target]
@@ -745,12 +745,12 @@ npx wdio session wait [target]
 
 | フラグ | 説明 |
 | --- | --- |
-| `--text <value>` | ページにこのテキストが含まれるまで待つ |
-| `--url <value>` | URL が一致するまで待つ（部分文字列、または * と ** のグロブ） |
+| `--text <value>` | ページにこのテキストが含まれるまで待機する |
+| `--url <value>` | URL が一致するまで待機する（部分文字列、または * と ** のグロブ） |
 | `--load <value>` | domcontentloaded、load、または networkidle |
-| `--fn <value>` | この JavaScript 式が true になるまで待つ |
-| `--state <value>` | ターゲット指定時: visible（デフォルト）、hidden、enabled、または disabled |
-| `--limit <n>` | 待機するミリ秒数（デフォルト 10000） |
+| `--fn <value>` | この JavaScript 式が true になるまで待機する |
+| `--state <value>` | target と併用: visible（デフォルト）、hidden、enabled、または disabled |
+| `--limit <n>` | 待機するミリ秒（デフォルト 10000） |
 
 **例**
 
@@ -774,13 +774,13 @@ npx wdio session wait --load networkidle
 npx wdio session wait 500
 ```
 
-関連: [`find`](#find)、[`is`](#is)、[`get`](#get)。
+関連項目: [`find`](#find)、[`is`](#is)、[`get`](#get)。
 
 ## `click`
 
 要素をクリックします。Web、ネイティブモバイル、ネイティブデスクトップに適用されます。
 
-クリックした対象と、クリックによってページ遷移した場合は新しい URL を出力します。次のページで ref を使う前に新しいスナップショットを取得してください。非表示の要素や覆われている要素は、何が邪魔しているかを示して即座に失敗します。`x,y` を指定すると、canvas や地図のように ref を持たない対象に対して、ビューポート上の一点（スクリーンショットと同様に左上からのピクセル数）をクリックします。
+クリックした対象を出力し、クリックによってページ遷移した場合は新しい URL も出力します。次のページで ref を使う前に新しいスナップショットを取得してください。非表示または覆われている要素の場合は、遮っているものを示してすぐに失敗します。`x,y` を指定すると、canvas や地図など ref を持たないものに対して、ビューポートの一点（スクリーンショットと同様に左上からのピクセル）をクリックします。
 
 ```sh
 npx wdio session click <target>
@@ -798,7 +798,7 @@ npx wdio session click <target>
 | --- | --- |
 | `--double` | ダブルクリック |
 | `--right` | 右クリック |
-| `--new-tab` | リンクを新しいタブで開いて切り替える |
+| `--new-tab` | リンクを新しいタブで開き、そのタブに切り替える |
 
 **例**
 
@@ -809,17 +809,17 @@ npx wdio session click e3
 # アクセシブルネームでクリックする
 npx wdio session click "aria/Add to cart"
 
-# クリックし、待ち、再度確認する
+# クリックし、待機し、再度確認する
 npx wdio session click e3 && npx wdio session wait --load networkidle && npx wdio session snapshot -i
 
 # リンクを新しいタブで開く
 npx wdio session click e8 --new-tab
 
-# ビューポート上の一点をクリックする（例: 地図上）
+# ビューポートの一点をクリックする（例: 地図上）
 npx wdio session click 320,480
 ```
 
-関連: [`tap`](#tap)、[`fill`](#fill)、[`wait`](#wait)、[`snapshot`](#snapshot)。
+関連項目: [`tap`](#tap)、[`fill`](#fill)、[`wait`](#wait)、[`snapshot`](#snapshot)。
 
 ## `tap`
 
@@ -842,13 +842,13 @@ npx wdio session tap <target>
 npx wdio session tap e2
 ```
 
-関連: [`click`](#click)、[`long-press`](#long-press)、[`swipe`](#swipe)。
+関連項目: [`click`](#click)、[`long-press`](#long-press)、[`swipe`](#swipe)。
 
 ## `fill`
 
 入力欄の値を置き換えます。Web、ネイティブモバイル、ネイティブデスクトップに適用されます。
 
-最初にフィールドをクリアします。フォーカスされている要素に入力するには `type` を、Enter などのキーを送信するには `press` を使用してください。
+先にフィールドをクリアします。フォーカスのある要素に入力するには `type` を、Enter などのキーを送信するには `press` を使用してください。
 
 ```sh
 npx wdio session fill <target> <text..>
@@ -859,7 +859,7 @@ npx wdio session fill <target> <text..>
 | 名前 | 必須 | 説明 |
 | --- | --- | --- |
 | `target` | はい | ref（e12）または WebdriverIO セレクター |
-| `text` | はい | テキスト（ターゲットの後の単語はスペースで連結されます） |
+| `text` | はい | テキスト（target の後の単語はスペースで連結される） |
 
 **例**
 
@@ -871,13 +871,13 @@ npx wdio session fill e2 ada@example.com
 npx wdio session fill e2 ada@example.com && npx wdio session fill e4 secret && npx wdio session press Enter
 ```
 
-関連: [`type`](#type)、[`press`](#press)、[`select`](#select)、[`check`](#check)。
+関連項目: [`type`](#type)、[`press`](#press)、[`select`](#select)、[`check`](#check)。
 
 ## `type`
 
-要素またはフォーカスされている要素に入力します。Web、ネイティブモバイル、ネイティブデスクトップに適用されます。
+要素またはフォーカスのある要素に入力します。Web、ネイティブモバイル、ネイティブデスクトップに適用されます。
 
-何もクリアせずにテキストをキー入力として送信します。`type e2 Ada` は e2 に、`type Ada` はフォーカスされている要素に入力します。値を置き換えるには `fill` を使用してください。
+何もクリアせずにテキストをキー入力として送信します。`type e2 Ada` は e2 に、`type Ada` はフォーカスのある要素に入力します。値を置き換えるには `fill` を使用してください。
 
 ```sh
 npx wdio session type <text..>
@@ -887,7 +887,7 @@ npx wdio session type <text..>
 
 | 名前 | 必須 | 説明 |
 | --- | --- | --- |
-| `text` | はい | テキスト（単語はスペースで連結されます）。フォーカスされている要素ではなく特定の要素に入力するには、`type e2 Ada` のように ref から始めます |
+| `text` | はい | テキスト（単語はスペースで連結される）。フォーカスのある要素ではなく特定の要素に入力するには、`type e2 Ada` のように ref から始める |
 
 **例**
 
@@ -895,17 +895,17 @@ npx wdio session type <text..>
 # フィールドに入力する
 npx wdio session type e5 hello
 
-# フォーカスされている要素に入力する
+# フォーカスのある要素に入力する
 npx wdio session focus e5 && npx wdio session type "hello"
 ```
 
-関連: [`fill`](#fill)、[`press`](#press)、[`focus`](#focus)。
+関連項目: [`fill`](#fill)、[`press`](#press)、[`focus`](#focus)。
 
 ## `press`
 
 キーを押します（例: Enter、Control+a）。Web、ネイティブデスクトップに適用されます。
 
-キーは + で組み合わせます。名前は大文字小文字を区別せず、ctrl、cmd、esc、up、down、left、right を短縮形として使用できます。
+キーは + で組み合わせます。名前の大文字小文字は区別されません。ctrl、cmd、esc、up、down、left、right は短縮形として受け付けられます。
 
 ```sh
 npx wdio session press <keys>
@@ -921,7 +921,7 @@ npx wdio session press <keys>
 
 | フラグ | 説明 |
 | --- | --- |
-| `--times <n>` | この回数だけ押す（最大 100）。スライダーを動かす場合など |
+| `--times <n>` | この回数だけ押す（最大 100）。例: スライダーを動かす場合 |
 
 **例**
 
@@ -929,17 +929,17 @@ npx wdio session press <keys>
 # フォームを送信する
 npx wdio session press Enter
 
-# フォーカスされたスライダーを 5 ステップ動かす
+# フォーカスのあるスライダーを 5 ステップ動かす
 npx wdio session press ArrowRight --times 5
 
 # すべて選択する
 npx wdio session press Control+a
 
-# フォーカスを戻す
+# フォーカスを前に戻す
 npx wdio session press Shift+Tab
 ```
 
-関連: [`type`](#type)、[`fill`](#fill)。
+関連項目: [`type`](#type)、[`fill`](#fill)。
 
 ## `select`
 
@@ -972,13 +972,13 @@ npx wdio session select e6 Germany
 npx wdio session select e6 de --by value
 ```
 
-関連: [`fill`](#fill)、[`check`](#check)。
+関連項目: [`fill`](#fill)、[`check`](#check)。
 
 ## `upload`
 
 ファイル入力を設定します。Web に適用されます。
 
-パスは作業ディレクトリからの相対パスです。ファイル選択ダイアログを開くボタンではなく、`<input type="file">` 自体をターゲットにしてください。
+パスは作業ディレクトリからの相対パスです。ファイル選択ダイアログを開くボタンではなく、`<input type="file">` 自体を対象にしてください。
 
 ```sh
 npx wdio session upload <target> <file>
@@ -998,7 +998,7 @@ npx wdio session upload <target> <file>
 npx wdio session upload e9 ./fixtures/avatar.png
 ```
 
-関連: [`fill`](#fill)。
+関連項目: [`fill`](#fill)。
 
 ## `hover`
 
@@ -1021,7 +1021,7 @@ npx wdio session hover <target>
 npx wdio session hover e4 && npx wdio session snapshot -i
 ```
 
-関連: [`click`](#click)。
+関連項目: [`click`](#click)。
 
 ## `focus`
 
@@ -1044,7 +1044,7 @@ npx wdio session focus <target>
 npx wdio session focus e5
 ```
 
-関連: [`type`](#type)、[`press`](#press)。
+関連項目: [`type`](#type)、[`press`](#press)。
 
 ## `check`
 
@@ -1069,7 +1069,7 @@ npx wdio session check <target>
 npx wdio session check e7
 ```
 
-関連: [`uncheck`](#uncheck)、[`is`](#is)。
+関連項目: [`uncheck`](#uncheck)、[`is`](#is)。
 
 ## `uncheck`
 
@@ -1090,11 +1090,11 @@ npx wdio session uncheck <target>
 **例**
 
 ```sh
-# ニュースレターの購読を解除する
+# ニュースレターの受信を解除する
 npx wdio session uncheck e7
 ```
 
-関連: [`check`](#check)、[`is`](#is)。
+関連項目: [`check`](#check)、[`is`](#is)。
 
 ## `drag`
 
@@ -1118,13 +1118,13 @@ npx wdio session drag <from> <to>
 npx wdio session drag e3 e9
 ```
 
-関連: [`scroll`](#scroll)。
+関連項目: [`scroll`](#scroll)。
 
 ## `scroll`
 
-要素を表示領域までスクロールするか、ページをスクロールします。Web に適用されます。
+要素をスクロールして表示するか、ページをスクロールします。Web に適用されます。
 
-ターゲットを指定しない場合は 600px 下にスクロールします。遅延読み込みされたコンテンツは次のスナップショットに表示されます。
+target を指定しない場合は 600px 下にスクロールします。遅延読み込みされたコンテンツは次のスナップショットに表示されます。
 
 ```sh
 npx wdio session scroll [target]
@@ -1145,7 +1145,7 @@ npx wdio session scroll [target]
 **例**
 
 ```sh
-# 要素を表示領域に移動する
+# 要素を表示領域に入れる
 npx wdio session scroll e40
 
 # さらに結果を読み込んで確認する
@@ -1155,7 +1155,7 @@ npx wdio session scroll bottom && npx wdio session snapshot -i
 npx wdio session scroll down --px 1200
 ```
 
-関連: [`swipe`](#swipe)、[`snapshot`](#snapshot)。
+関連項目: [`swipe`](#swipe)、[`snapshot`](#snapshot)。
 
 ## `swipe`
 
@@ -1184,7 +1184,7 @@ npx wdio session swipe <direction>
 npx wdio session swipe up && npx wdio session snapshot
 ```
 
-関連: [`scroll`](#scroll)、[`tap`](#tap)。
+関連項目: [`scroll`](#scroll)、[`tap`](#tap)。
 
 ## `long-press`
 
@@ -1213,13 +1213,13 @@ npx wdio session long-press <target>
 npx wdio session long-press e4 --duration 1500
 ```
 
-関連: [`tap`](#tap)。
+関連項目: [`tap`](#tap)。
 
 ## `tabs`
 
-タブを一覧表示、開く、切り替え、または閉じます。Web に適用されます。
+タブの一覧表示、オープン、切り替え、クローズを行います。Web に適用されます。
 
-サブコマンドを指定しない場合は、インデックス付きでタブを一覧表示し、現在のタブにマークを付けます。`new` はタブを開いて切り替えます。`switch` と `close` はインデックスまたはハンドルを受け取ります。
+サブコマンドなしの場合は、タブをインデックス付きで一覧表示し、現在のタブにはマークが付きます。`new` はタブを開いてそのタブに切り替えます。`switch` と `close` はインデックスまたはハンドルを受け取ります。
 
 ```sh
 npx wdio session tabs [sub] [arg]
@@ -1248,7 +1248,7 @@ npx wdio session tabs switch 0
 npx wdio session tabs close 1
 ```
 
-関連: [`windows`](#windows)、[`frame`](#frame)。
+関連項目: [`windows`](#windows)、[`frame`](#frame)。
 
 ## `windows`
 
@@ -1275,13 +1275,13 @@ npx wdio session windows
 npx wdio session windows switch 1
 ```
 
-関連: [`tabs`](#tabs)。
+関連項目: [`tabs`](#tabs)。
 
 ## `frame`
 
 iframe の中、親、またはトップに切り替えます。Web に適用されます。
 
-ページのスナップショットにはすでに iframe のコンテンツが、アクションで直接使える ref 付きで表示されるため、`frame` が必要になるのは、しばらく 1 つのフレーム内で作業する場合や、スナップショットで省略されたフレームを確認する場合のみです。スナップショットとアクションは、切り替え直すまで現在のフレームに適用されます。`navigate` はトップのドキュメントに戻ります。
+ページのスナップショットにはすでに iframe の内容が、アクションで直接使える ref 付きで表示されるため、`frame` が必要なのは、しばらく 1 つのフレーム内で作業する場合や、スナップショットで途中までしか表示されなかったフレームを確認する場合だけです。スナップショットとアクションは、元に戻すまで現在のフレームに適用されます。`navigate` はトップのドキュメントに戻ります。
 
 ```sh
 npx wdio session frame <target>
@@ -1303,11 +1303,11 @@ npx wdio session frame e12 && npx wdio session snapshot -i
 npx wdio session frame top
 ```
 
-関連: [`tabs`](#tabs)、[`snapshot`](#snapshot)。
+関連項目: [`tabs`](#tabs)、[`snapshot`](#snapshot)。
 
 ## `contexts`
 
-ネイティブ/WebView コンテキストを一覧表示または切り替えます。ネイティブモバイルに適用されます。
+ネイティブ/webview のコンテキストを一覧表示または切り替えます。ネイティブモバイルに適用されます。
 
 ```sh
 npx wdio session contexts [sub] [name]
@@ -1326,17 +1326,17 @@ npx wdio session contexts [sub] [name]
 # NATIVE_APP と WEBVIEW のコンテキストを一覧表示する
 npx wdio session contexts
 
-# WebView を操作する
+# webview を操作する
 npx wdio session contexts switch WEBVIEW_com.example.shop
 ```
 
-関連: [`snapshot`](#snapshot)。
+関連項目: [`snapshot`](#snapshot)。
 
 ## `dialog`
 
-開いているダイアログを承諾、却下、または報告します。Web、ネイティブモバイルに適用されます。
+開いているダイアログを承認、却下、または報告します。Web、ネイティブモバイルに適用されます。
 
-開いている alert、confirm、prompt は他のアクションをブロックし、それらのアクションはこのコマンドの実行を促すヒントとともに失敗します。
+開いている alert、confirm、prompt は他のアクションをブロックし、それらのアクションはこのコマンドを実行するよう促すヒント付きで失敗します。
 
 ```sh
 npx wdio session dialog <sub>
@@ -1367,11 +1367,11 @@ npx wdio session dialog accept
 npx wdio session dialog accept --text "Ada"
 ```
 
-関連: [`click`](#click)。
+関連項目: [`click`](#click)。
 
 ## `app`
 
-アプリを起動、終了、インストール、または状態を照会します。ネイティブモバイル、ネイティブデスクトップに適用されます。
+アプリの起動、終了、インストール、または状態の照会を行います。ネイティブモバイル、ネイティブデスクトップに適用されます。
 
 ```sh
 npx wdio session app <sub> <id>
@@ -1382,7 +1382,7 @@ npx wdio session app <sub> <id>
 | 名前 | 必須 | 説明 |
 | --- | --- | --- |
 | `sub` | はい | launch \| terminate \| install \| state |
-| `id` | はい | アプリ ID、バンドル ID、またはファイル |
+| `id` | はい | アプリ id、bundle id、またはファイル |
 
 **例**
 
@@ -1390,11 +1390,11 @@ npx wdio session app <sub> <id>
 # アプリを再起動する
 npx wdio session app terminate com.example.shop && npx wdio session app launch com.example.shop
 
-# 実行中かどうか
+# 実行中か？
 npx wdio session app state com.example.shop
 ```
 
-関連: [`deeplink`](#deeplink)、[`background`](#background)。
+関連項目: [`deeplink`](#deeplink)、[`background`](#background)。
 
 ## `deeplink`
 
@@ -1414,7 +1414,7 @@ npx wdio session deeplink <url>
 
 | フラグ | 説明 |
 | --- | --- |
-| `--package <value>` | Android のパッケージまたは iOS のバンドル ID |
+| `--package <value>` | Android のパッケージまたは iOS の bundle id |
 
 **例**
 
@@ -1423,7 +1423,7 @@ npx wdio session deeplink <url>
 npx wdio session deeplink shop://product/42 --package com.example.shop
 ```
 
-関連: [`app`](#app)。
+関連項目: [`app`](#app)。
 
 ## `rotate`
 
@@ -1463,13 +1463,13 @@ npx wdio session keyboard <sub>
 **例**
 
 ```sh
-# キーボードの下にある要素を表示させる
+# キーボードの下にある要素を表示する
 npx wdio session keyboard hide
 ```
 
 ## `background`
 
-アプリをバックグラウンドに送ります。ネイティブモバイルに適用されます。
+アプリをバックグラウンドに移動します。ネイティブモバイルに適用されます。
 
 ```sh
 npx wdio session background <seconds>
@@ -1479,16 +1479,16 @@ npx wdio session background <seconds>
 
 | 名前 | 必須 | 説明 |
 | --- | --- | --- |
-| `seconds` | はい | 秒数（-1 でバックグラウンドのまま維持） |
+| `seconds` | はい | 秒数（-1 でバックグラウンドのままにする） |
 
 **例**
 
 ```sh
-# アプリを 3 秒間バックグラウンドにする
+# アプリを 3 秒間バックグラウンドに移動する
 npx wdio session background 3
 ```
 
-関連: [`app`](#app)。
+関連項目: [`app`](#app)。
 
 ## `lock`
 
@@ -1505,7 +1505,7 @@ npx wdio session lock
 npx wdio session lock
 ```
 
-関連: [`unlock`](#unlock)。
+関連項目: [`unlock`](#unlock)。
 
 ## `unlock`
 
@@ -1522,7 +1522,7 @@ npx wdio session unlock
 npx wdio session unlock
 ```
 
-関連: [`lock`](#lock)。
+関連項目: [`lock`](#lock)。
 
 ## `geolocation`
 
@@ -1552,13 +1552,13 @@ npx wdio session geolocation <lat> <lon>
 npx wdio session geolocation 52.52 13.405
 ```
 
-関連: [`emulate`](#emulate)。
+関連項目: [`emulate`](#emulate)。
 
 ## `emulate`
 
-デバイス、ビューポート、ネットワーク、CPU、時計、または BiDi エミュレーションスコープをエミュレートします。Web に適用されます。
+デバイス、ビューポート、ネットワーク、CPU、時計、または BiDi のエミュレーションスコープをエミュレートします。Web に適用されます。
 
-エミュレーションは `emulate reset` を実行するかセッションが終了するまで維持され、同じ種類を再度設定すると置き換えられます。値を指定せずに `emulate device` を実行するとデバイス名が一覧表示されます。ネットワークプリセットと CPU スロットリングには Chromium ブラウザが必要です。
+エミュレーションは `emulate reset` を実行するかセッションが終了するまで維持され、同じ種類を再度設定すると置き換えられます。値なしの `emulate device` はデバイス名を一覧表示します。ネットワークプリセットと CPU スロットリングには Chromium ブラウザが必要です。
 
 ```sh
 npx wdio session emulate <sub> [value]
@@ -1603,11 +1603,11 @@ npx wdio session emulate media prefersReducedMotion=reduce
 npx wdio session emulate reset
 ```
 
-関連: [`geolocation`](#geolocation)、[`screenshot`](#screenshot)。
+関連項目: [`geolocation`](#geolocation)、[`screenshot`](#screenshot)。
 
 ## `requests`
 
-キャプチャされたネットワークリクエストを一覧表示します（BiDi）。Web に適用されます。
+キャプチャしたネットワークリクエストを一覧表示します（BiDi）。Web に適用されます。
 
 ```sh
 npx wdio session requests
@@ -1632,13 +1632,13 @@ npx wdio session requests --filter "**/api/**"
 npx wdio session click e3 && npx wdio session requests --failed --since 10s
 ```
 
-関連: [`mock`](#mock)、[`logs`](#logs)。
+関連項目: [`mock`](#mock)、[`logs`](#logs)。
 
 ## `mock`
 
 URL パターンに対するレスポンスをモックします（BiDi）。Web に適用されます。
 
-モック ID（m1、m2、…）を出力します。同じパターンを再度モックすると、以前のモックが置き換えられます。
+モック id（m1、m2、…）を出力します。同じパターンを再度モックすると、以前のモックが置き換えられます。
 
 ```sh
 npx wdio session mock <pattern>
@@ -1674,7 +1674,7 @@ npx wdio session mock "**/api/cart" --status 500 --once
 npx wdio session mock "**/*.png" --abort
 ```
 
-関連: [`unmock`](#unmock)、[`requests`](#requests)。
+関連項目: [`unmock`](#unmock)、[`requests`](#requests)。
 
 ## `unmock`
 
@@ -1688,7 +1688,7 @@ npx wdio session unmock [pattern]
 
 | 名前 | 必須 | 説明 |
 | --- | --- | --- |
-| `pattern` | いいえ | パターンまたはモック ID |
+| `pattern` | いいえ | パターンまたはモック id |
 
 **フラグ**
 
@@ -1706,13 +1706,13 @@ npx wdio session unmock m1
 npx wdio session unmock --all
 ```
 
-関連: [`mock`](#mock)。
+関連項目: [`mock`](#mock)。
 
 ## `cookies`
 
-Cookie を取得、設定、またはクリアします。Web に適用されます。
+Cookie の取得、設定、またはクリアを行います。Web に適用されます。
 
-サブコマンドを指定しない場合は、すべての Cookie を name=value 形式で出力します。名前を指定せずに `clear` を実行すると、すべての Cookie が削除されます。
+サブコマンドなしの場合は、すべての Cookie を name=value 形式で出力します。名前なしの `clear` はすべての Cookie を削除します。
 
 ```sh
 npx wdio session cookies [sub] [name] [value]
@@ -1723,7 +1723,7 @@ npx wdio session cookies [sub] [name] [value]
 | 名前 | 必須 | 説明 |
 | --- | --- | --- |
 | `sub` | いいえ | get \| set \| clear |
-| `name` | いいえ | Cookie 名 |
+| `name` | いいえ | Cookie の名前 |
 | `value` | いいえ | Cookie の値 |
 
 **フラグ**
@@ -1753,13 +1753,13 @@ npx wdio session cookies set session abc && npx wdio session reload
 npx wdio session cookies clear
 ```
 
-関連: [`storage`](#storage)、[`state`](#state)。
+関連項目: [`storage`](#storage)、[`state`](#state)。
 
 ## `storage`
 
-localStorage（または sessionStorage）を取得、設定、またはクリアします。Web に適用されます。
+localStorage（または sessionStorage）の取得、設定、またはクリアを行います。Web に適用されます。
 
-サブコマンドを指定しない場合は、すべてのエントリを出力します。キーを指定せずに `clear` を実行すると、ストアが空になります。
+サブコマンドなしの場合は、すべてのエントリを出力します。キーなしの `clear` はストアを空にします。
 
 ```sh
 npx wdio session storage [sub] [key] [value]
@@ -1792,13 +1792,13 @@ npx wdio session storage set token abc
 npx wdio session storage clear --session-storage
 ```
 
-関連: [`cookies`](#cookies)、[`state`](#state)。
+関連項目: [`cookies`](#cookies)、[`state`](#state)。
 
 ## `state`
 
 Cookie とストレージを保存または読み込みます。Web に適用されます。
 
-`save` は現在のオリジンの Cookie、localStorage、sessionStorage を JSON ファイルに書き込みます。`load` はそのオリジンを開いてそれらを復元します（ログインを省略する場合など）。
+`save` は現在のオリジンの Cookie、localStorage、sessionStorage を JSON ファイルに書き込みます。`load` はそのオリジンを開いてそれらを復元します（例: ログインをスキップする場合）。
 
 ```sh
 npx wdio session state <sub> <file>
@@ -1821,13 +1821,13 @@ npx wdio session state save .wdio/logged-in.json
 npx wdio session state load .wdio/logged-in.json && npx wdio session reload
 ```
 
-関連: [`cookies`](#cookies)、[`storage`](#storage)。
+関連項目: [`cookies`](#cookies)、[`storage`](#storage)。
 
 ## `visual`
 
-@wdio/visual-service によるビジュアルスナップショットです。Web、ネイティブモバイル、ネイティブデスクトップに適用されます。
+@wdio/visual-service によるビジュアルスナップショット。Web、ネイティブモバイル、ネイティブデスクトップに適用されます。
 
-`save` は .wdio/visual/baseline にベースラインを保存し、`check` はそれと比較して差異を出力し、`accept` は最後の実画像をベースラインにし、`list` はタグを表示します。プロジェクトに @wdio/visual-service が必要です。
+`save` は .wdio/visual/baseline にベースラインを保存し、`check` はそれと比較して不一致を出力し、`accept` は最後の実際の画像をベースラインにし、`list` はタグを表示します。プロジェクトに @wdio/visual-service が必要です。
 
 ```sh
 npx wdio session visual <sub> [tag]
@@ -1847,7 +1847,7 @@ npx wdio session visual <sub> [tag]
 | `--element <value>` | この要素のみ |
 | `--full` | ページ全体 |
 | `--tabbable` | タブ移動可能なページ |
-| `--threshold <n>` | 許容される差異（パーセント、デフォルト 0） |
+| `--threshold <n>` | 許容される不一致（パーセント、デフォルト 0） |
 | `--all` | accept: すべてのタグ |
 
 **例**
@@ -1863,7 +1863,7 @@ npx wdio session visual check cart --threshold 0.5
 npx wdio session visual accept cart
 ```
 
-関連: [`screenshot`](#screenshot)。
+関連項目: [`screenshot`](#screenshot)。
 
 ## `trace`
 
@@ -1885,8 +1885,8 @@ npx wdio session trace <sub>
 
 | フラグ | 説明 |
 | --- | --- |
-| `--screenshots` | 各ステップ後にスクリーンショットを撮る（--no-screenshots でスキップ） |
-| `--snapshots` | 各ステップ後にスナップショットを取得する（--no-snapshots でスキップ） |
+| `--screenshots` | 各ステップの後にスクリーンショットを撮る（--no-screenshots でスキップ） |
+| `--snapshots` | 各ステップの後にスナップショットを取る（--no-snapshots でスキップ） |
 
 **例**
 
@@ -1898,7 +1898,7 @@ npx wdio session trace start
 npx wdio session trace stop
 ```
 
-関連: [`record`](#record)、[`history`](#history)。
+関連項目: [`record`](#record)、[`history`](#history)。
 
 ## `record`
 
@@ -1918,7 +1918,7 @@ npx wdio session record <sub>
 
 | フラグ | 説明 |
 | --- | --- |
-| `--fps <n>` | フレームレート（デフォルト 5） |
+| `--fps <n>` | 1 秒あたりのフレーム数（デフォルト 5） |
 | `--path <value>` | 出力ファイル |
 
 **例**
@@ -1931,7 +1931,7 @@ npx wdio session record start
 npx wdio session record stop --path checkout.mp4
 ```
 
-関連: [`trace`](#trace)、[`screenshot`](#screenshot)。
+関連項目: [`trace`](#trace)、[`screenshot`](#screenshot)。
 
 ## `history`
 
@@ -1959,13 +1959,13 @@ npx wdio session history
 npx wdio session history --clear
 ```
 
-関連: [`export`](#export)、[`exec`](#exec)。
+関連項目: [`export`](#export)、[`exec`](#exec)。
 
 ## `export`
 
 履歴からスペックを生成します。
 
-記録されたステップを含む describe/it 形式のスペックを書き出します。ref は安定したセレクターに、ヘルパーはカスタムコマンドになります。--out を指定しない場合、ファイルはアーティファクトディレクトリに出力されます。`wdio run` で実行して、パスすることを確認してください。
+記録されたステップを含む describe/it 形式のスペックを書き出します。ref は安定したセレクターに、ヘルパーはカスタムコマンドになります。--out を指定しない場合、ファイルは成果物ディレクトリに保存されます。`wdio run` で実行して、パスすることを確認してください。
 
 ```sh
 npx wdio session export
@@ -1990,7 +1990,7 @@ npx wdio session export --out test/specs/cart.e2e.ts
 npx wdio session export --out test/specs/cart.e2e.ts && npx wdio run wdio.conf.ts --spec test/specs/cart.e2e.ts
 ```
 
-関連: [`history`](#history)、[`helpers`](#helpers)。
+関連項目: [`history`](#history)、[`helpers`](#helpers)。
 
 ## `resume`
 
@@ -2005,17 +2005,17 @@ npx wdio session resume
 **例**
 
 ```sh
-# 一時停止中のテストを確認してから続行させる
+# 一時停止したテストを確認してから続行させる
 npx wdio session -s debug-0-0 snapshot -i && npx wdio session -s debug-0-0 resume
 ```
 
-関連: [`close`](#close)、[`list`](#list)。
+関連項目: [`close`](#close)、[`list`](#list)。
 
 ## `doctor`
 
 環境をチェックします。
 
-チェックごとに 1 行を出力し、失敗したものには修正方法を示します。チェックが失敗した場合は 1 で終了します。
+チェックごとに 1 行を出力し、失敗した各項目には修正方法を示します。チェックが失敗すると 1 で終了します。
 
 ```sh
 npx wdio session doctor [target]
@@ -2037,7 +2037,7 @@ npx wdio session doctor
 npx wdio session doctor android
 ```
 
-関連: [`open`](#open)。
+関連項目: [`open`](#open)。
 
 ## `skill`
 

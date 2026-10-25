@@ -21,7 +21,7 @@ await browser.ocrWaitForTextDisplayed({
 ```log
 [0-0] 2024-05-26T04:32:52.005Z INFO webdriver: COMMAND ocrWaitForTextDisplayed(<object>)
 ......................
-# ocrWaitForTextDisplayed utilizza ocrGetElementPositionByText internamente, ecco perché vedi il comando ocrGetElementPositionByText nei log
+# ocrWaitForTextDisplayed usa ocrGetElementPositionByText internamente, ecco perché vedi il comando ocrGetElementPositionByText nei log
 [0-0] 2024-05-26T04:32:52.735Z INFO @wdio/ocr-service:ocrGetElementPositionByText: Multiple matches were found based on the word "specFileRetries". The match "specFileRetries" with score "100%" will be used.
 ```
 
@@ -31,7 +31,7 @@ await browser.ocrWaitForTextDisplayed({
 
 <Option type="string" required="yes">
 
-Il testo che vuoi cercare su cui fare clic.
+Il testo che vuoi cercare per fare clic su di esso.
 
 </Option>
 #### Esempio
@@ -147,7 +147,7 @@ Puoi modificare la logica fuzzy per trovare il testo con le seguenti opzioni. Qu
 
 <Option type="number" default="100" required="no">
 
-Determina quanto la corrispondenza deve essere vicina alla posizione fuzzy (specificata da location). Una corrispondenza esatta di lettere che si trova a distance caratteri dalla posizione fuzzy verrebbe valutata come una mancata corrispondenza completa. Una distanza di 0 richiede che la corrispondenza si trovi esattamente nella posizione specificata. Una distanza di 1000 richiederebbe che una corrispondenza perfetta si trovi entro 800 caratteri dalla posizione per essere trovata utilizzando una soglia di 0.8.
+Determina quanto la corrispondenza deve essere vicina alla posizione fuzzy (specificata da location). Una corrispondenza esatta di lettere che si trova a distance caratteri di distanza dalla posizione fuzzy verrebbe valutata come una mancata corrispondenza completa. Una distance di 0 richiede che la corrispondenza si trovi esattamente nella posizione specificata. Una distance di 1000 richiederebbe che una corrispondenza perfetta si trovi entro 800 caratteri dalla posizione per essere trovata usando una threshold di 0.8.
 
 </Option>
 ##### Esempio
@@ -183,7 +183,7 @@ await browser.ocrWaitForTextDisplayed({
 
 <Option type="number" default="0.6" required="no">
 
-Il punto in cui l'algoritmo di corrispondenza si arrende. Una soglia di 0 richiede una corrispondenza perfetta (sia delle lettere che della posizione), una soglia di 1.0 corrisponderebbe a qualsiasi cosa.
+Il punto in cui l'algoritmo di corrispondenza si arrende. Una threshold di 0 richiede una corrispondenza perfetta (sia delle lettere che della posizione), una threshold di 1.0 corrisponderebbe a qualsiasi cosa.
 
 </Option>
 ##### Esempio
@@ -219,7 +219,7 @@ await browser.ocrWaitForTextDisplayed({
 
 <Option type="number" default="2" required="no">
 
-Verranno restituite solo le corrispondenze la cui lunghezza supera questo valore. (Ad esempio, se vuoi ignorare le corrispondenze di un solo carattere nel risultato, impostalo a 2)
+Verranno restituite solo le corrispondenze la cui lunghezza supera questo valore. (Ad esempio, se vuoi ignorare le corrispondenze di un singolo carattere nel risultato, impostalo a 2)
 
 </Option>
 ##### Esempio
@@ -237,7 +237,7 @@ await browser.ocrWaitForTextDisplayed({
 
 <Option type="number" default="false" required="no">
 
-Quando è `true`, la funzione di corrispondenza continuerà fino alla fine del pattern di ricerca anche se è già stata individuata una corrispondenza perfetta nella stringa.
+Quando è `true`, la funzione di corrispondenza continuerà fino alla fine di un pattern di ricerca anche se è già stata individuata una corrispondenza perfetta nella stringa.
 
 </Option>
 ##### Esempio

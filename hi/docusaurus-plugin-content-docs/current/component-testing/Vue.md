@@ -4,7 +4,7 @@ title: Vue.js
 description: "Vue.js के लिए WebdriverIO ब्राउज़र रनर सेट अप करें, Testing Library के साथ कंपोनेंट टेस्ट लिखें और async कंपोनेंट्स तथा Nuxt ऐप्स का परीक्षण करें।"
 ---
 
-[Vue.js](https://vuejs.org/) वेब यूज़र इंटरफ़ेस बनाने के लिए एक सुलभ, उच्च प्रदर्शन वाला और बहुमुखी फ्रेमवर्क है। आप WebdriverIO और इसके [ब्राउज़र रनर](/docs/runner#browser-runner) का उपयोग करके Vue.js कंपोनेंट्स को सीधे एक वास्तविक ब्राउज़र में टेस्ट कर सकते हैं।
+[Vue.js](https://vuejs.org/) वेब यूजर इंटरफेस बनाने के लिए एक सुलभ, उच्च-प्रदर्शन वाला और बहुमुखी फ्रेमवर्क है। आप WebdriverIO और इसके [ब्राउज़र रनर](/docs/runner#browser-runner) का उपयोग करके Vue.js कंपोनेंट्स का परीक्षण सीधे एक वास्तविक ब्राउज़र में कर सकते हैं।
 
 ## सेटअप
 
@@ -23,17 +23,17 @@ export const config = {
 
 :::info
 
-यदि आप पहले से ही डेवलपमेंट सर्वर के रूप में [Vite](https://vitejs.dev/) का उपयोग कर रहे हैं, तो आप अपने WebdriverIO कॉन्फ़िग में `vite.config.ts` के अपने कॉन्फ़िगरेशन का पुन: उपयोग भी कर सकते हैं। अधिक जानकारी के लिए, [रनर विकल्पों](/docs/runner#runner-options) में `viteConfig` देखें।
+यदि आप पहले से ही डेवलपमेंट सर्वर के रूप में [Vite](https://vitejs.dev/) का उपयोग कर रहे हैं, तो आप अपने WebdriverIO कॉन्फ़िग में `vite.config.ts` के अपने कॉन्फ़िगरेशन का पुनः उपयोग भी कर सकते हैं। अधिक जानकारी के लिए, [रनर विकल्पों](/docs/runner#runner-options) में `viteConfig` देखें।
 
 :::
 
-Vue प्रीसेट के लिए `@vitejs/plugin-vue` का इंस्टॉल होना आवश्यक है। साथ ही, हम कंपोनेंट को टेस्ट पेज में रेंडर करने के लिए [Testing Library](https://testing-library.com/) का उपयोग करने की सलाह देते हैं। इसलिए आपको निम्नलिखित अतिरिक्त डिपेंडेंसी इंस्टॉल करनी होंगी:
+Vue प्रीसेट के लिए `@vitejs/plugin-vue` का इंस्टॉल होना आवश्यक है। साथ ही, हम कंपोनेंट को टेस्ट पेज में रेंडर करने के लिए [Testing Library](https://testing-library.com/) का उपयोग करने की सलाह देते हैं। इसलिए आपको निम्नलिखित अतिरिक्त डिपेंडेंसीज़ इंस्टॉल करनी होंगी:
 
 ```sh npm2yarn
 npm install --save-dev @testing-library/vue @vitejs/plugin-vue
 ```
 
-फिर आप निम्न कमांड चलाकर टेस्ट शुरू कर सकते हैं:
+फिर आप निम्नलिखित कमांड चलाकर टेस्ट शुरू कर सकते हैं:
 
 ```sh
 npx wdio run ./wdio.conf.js
@@ -66,7 +66,7 @@ export default {
 </script>
 ```
 
-अपने टेस्ट में कंपोनेंट को DOM में रेंडर करें और उस पर असर्शन चलाएँ। कंपोनेंट को टेस्ट पेज से जोड़ने के लिए हम [`@vue/test-utils`](https://test-utils.vuejs.org/) या [`@testing-library/vue`](https://testing-library.com/docs/vue-testing-library/intro/) में से किसी एक का उपयोग करने की सलाह देते हैं। कंपोनेंट के साथ इंटरैक्ट करने के लिए WebdriverIO कमांड्स का उपयोग करें क्योंकि वे वास्तविक यूज़र इंटरैक्शन के अधिक करीब व्यवहार करती हैं, उदाहरण के लिए:
+अपने टेस्ट में कंपोनेंट को DOM में रेंडर करें और उस पर असर्शन चलाएँ। कंपोनेंट को टेस्ट पेज से जोड़ने के लिए हम [`@vue/test-utils`](https://test-utils.vuejs.org/) या [`@testing-library/vue`](https://testing-library.com/docs/vue-testing-library/intro/) में से किसी एक का उपयोग करने की सलाह देते हैं। कंपोनेंट के साथ इंटरैक्ट करने के लिए WebdriverIO कमांड्स का उपयोग करें, क्योंकि वे वास्तविक यूज़र इंटरैक्शन के अधिक करीब व्यवहार करती हैं, उदाहरण के लिए:
 
 
 <Tabs
@@ -114,8 +114,8 @@ describe('Vue Component Testing', () => {
         // render मेथड आपके कंपोनेंट को क्वेरी करने के लिए यूटिलिटीज़ का एक संग्रह लौटाता है।
         const { getByText } = render(Component)
 
-        // getByText दिए गए टेक्स्ट से मेल खाने वाला पहला नोड लौटाता है, और
-        // यदि कोई एलिमेंट मेल नहीं खाता या एक से अधिक मेल मिलते हैं तो एरर थ्रो करता है।
+        // getByText दिए गए टेक्स्ट के लिए पहला मेल खाने वाला नोड लौटाता है, और
+        // यदि कोई एलिमेंट मेल नहीं खाता या एक से अधिक मेल मिलते हैं तो एरर फेंकता है।
         getByText('Times clicked: 0')
 
         const button = await $(getByText('increment'))
@@ -150,7 +150,7 @@ const posts = await res.json()
 </template>
 ```
 
-तो हम कंपोनेंट को रेंडर करने के लिए [`@vue/test-utils`](https://www.npmjs.com/package/@vue/test-utils) और एक छोटे suspense रैपर का उपयोग करने की सलाह देते हैं। दुर्भाग्य से [`@testing-library/vue`](https://github.com/testing-library/vue-testing-library/issues/230) में अभी इसके लिए सपोर्ट नहीं है। निम्नलिखित सामग्री के साथ एक `helper.ts` फ़ाइल बनाएँ:
+तो कंपोनेंट को रेंडर करने के लिए हम [`@vue/test-utils`](https://www.npmjs.com/package/@vue/test-utils) और एक छोटे suspense रैपर का उपयोग करने की सलाह देते हैं। दुर्भाग्य से [`@testing-library/vue`](https://github.com/testing-library/vue-testing-library/issues/230) में अभी इसका समर्थन नहीं है। निम्नलिखित सामग्री के साथ एक `helper.ts` फ़ाइल बनाएँ:
 
 ```ts
 import { mount, type VueWrapper as VueWrapperImport } from '@vue/test-utils'
@@ -191,7 +191,7 @@ export function renderAsyncComponent(vueComponent: ReturnType<typeof defineCompo
 }
 ```
 
-फिर कंपोनेंट को इस प्रकार इम्पोर्ट और टेस्ट करें:
+फिर कंपोनेंट को निम्नलिखित तरीके से इम्पोर्ट और टेस्ट करें:
 
 ```ts
 import { $, expect } from '@wdio/globals'
@@ -217,11 +217,11 @@ describe('Testing Async Components', () => {
 
 ## Nuxt में Vue कंपोनेंट्स का परीक्षण
 
-यदि आप वेब फ्रेमवर्क [Nuxt](https://nuxt.com/) का उपयोग कर रहे हैं, तो WebdriverIO स्वचालित रूप से [auto-import](https://nuxt.com/docs/guide/concepts/auto-imports) फ़ीचर को सक्षम कर देगा और आपके Vue कंपोनेंट्स और Nuxt पेजों का परीक्षण आसान बना देगा। हालाँकि, कोई भी [Nuxt मॉड्यूल](https://nuxt.com/modules) जिन्हें आप अपने कॉन्फ़िग में परिभाषित करते हैं और जिन्हें Nuxt एप्लिकेशन के कॉन्टेक्स्ट की आवश्यकता होती है, उन्हें सपोर्ट नहीं किया जा सकता।
+यदि आप वेब फ्रेमवर्क [Nuxt](https://nuxt.com/) का उपयोग कर रहे हैं, तो WebdriverIO स्वचालित रूप से [auto-import](https://nuxt.com/docs/guide/concepts/auto-imports) फ़ीचर को सक्षम कर देगा और आपके Vue कंपोनेंट्स तथा Nuxt पेजों का परीक्षण आसान बना देगा। हालाँकि, ऐसे किसी भी [Nuxt मॉड्यूल](https://nuxt.com/modules) का समर्थन नहीं किया जा सकता जिसे आप अपने कॉन्फ़िग में परिभाषित करते हैं और जिसे Nuxt एप्लिकेशन के संदर्भ (context) की आवश्यकता होती है।
 
 __इसके कारण हैं:__
-- WebdriverIO केवल ब्राउज़र वातावरण में Nuxt एप्लिकेशन को आरंभ नहीं कर सकता
-- कंपोनेंट टेस्ट का Nuxt वातावरण पर बहुत अधिक निर्भर होना जटिलता पैदा करता है, और हम इन टेस्ट को e2e टेस्ट के रूप में चलाने की सलाह देते हैं
+- WebdriverIO केवल ब्राउज़र एनवायरनमेंट में Nuxt एप्लिकेशन को आरंभ नहीं कर सकता
+- कंपोनेंट टेस्ट्स का Nuxt एनवायरनमेंट पर बहुत अधिक निर्भर होना जटिलता पैदा करता है, इसलिए हम इन टेस्ट्स को e2e टेस्ट्स के रूप में चलाने की सलाह देते हैं
 
 :::info
 
@@ -231,16 +231,16 @@ WebdriverIO, Nuxt एप्लिकेशन पर e2e टेस्ट चल�
 
 ### बिल्ट-इन composables को मॉक करना
 
-यदि आपका कंपोनेंट किसी नेटिव Nuxt composable का उपयोग करता है, उदाहरण के लिए [`useNuxtData`](https://nuxt.com/docs/api/composables/use-nuxt-data), तो WebdriverIO इन फ़ंक्शंस को स्वचालित रूप से मॉक कर देगा और आपको उनके व्यवहार को संशोधित करने या उनके विरुद्ध असर्ट करने की अनुमति देगा, उदाहरण के लिए:
+यदि आपका कंपोनेंट किसी नेटिव Nuxt composable का उपयोग करता है, जैसे [`useNuxtData`](https://nuxt.com/docs/api/composables/use-nuxt-data), तो WebdriverIO इन फ़ंक्शंस को स्वचालित रूप से मॉक कर देगा और आपको उनके व्यवहार को संशोधित करने या उनके विरुद्ध असर्ट करने की अनुमति देगा, उदाहरण के लिए:
 
 ```ts
 import { mocked } from '@wdio/browser-runner'
 
-// उदाहरण के लिए, आपका कंपोनेंट `useNuxtData` को निम्न तरीके से कॉल करता है
+// उदाहरण के लिए, आपका कंपोनेंट `useNuxtData` को निम्नलिखित तरीके से कॉल करता है
 // `const { data: posts } = useNuxtData('posts')`
 // अपने टेस्ट में आप इसके विरुद्ध असर्ट कर सकते हैं
 expect(useNuxtData).toBeCalledWith('posts')
-// और उनके व्यवहार को बदल सकते हैं
+// और उनका व्यवहार बदल सकते हैं
 mocked(useNuxtData).mockReturnValue({
     data: [...]
 })
@@ -266,13 +266,13 @@ export default defineNuxtConfig({
 const superbase = useSupabaseClient()
 ```
 
-तो टेस्ट निम्न कारण से विफल हो जाएगा:
+तो टेस्ट निम्नलिखित कारण से विफल हो जाएगा:
 
 ```
 ReferenceError: useSupabaseClient is not defined
 ```
 
-यहाँ, हम या तो उस पूरे मॉड्यूल को मॉक करने की सलाह देते हैं जो `useSupabaseClient` फ़ंक्शन का उपयोग करता है, या एक ग्लोबल वेरिएबल बनाने की जो इस फ़ंक्शन को मॉक करे, उदाहरण के लिए:
+यहाँ, हम सलाह देते हैं कि या तो उस पूरे मॉड्यूल को मॉक करें जो `useSupabaseClient` फ़ंक्शन का उपयोग करता है, या एक ग्लोबल वेरिएबल बनाएँ जो इस फ़ंक्शन को मॉक करे, उदाहरण के लिए:
 
 ```ts
 import { fn } from '@wdio/browser-runner'

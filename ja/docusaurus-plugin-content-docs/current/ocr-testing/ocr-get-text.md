@@ -36,7 +36,7 @@ result = "VS docs API Blog Contribute Community Sponsor v8 *Engishy CV} Q OQ G a
 
 <Option type="number" default="0.25" required="no">
 
-コントラストが高いほど画像は暗くなり、低いほど明るくなります。これは画像内のテキストを見つけるのに役立ちます。`-1`から`1`までの値を受け付けます。
+コントラストが高いほど画像は暗くなり、低いほど明るくなります。これにより、画像内のテキストを見つけやすくなる場合があります。`-1`から`1`までの値を受け付けます。
 
 </Option>
 #### 例
@@ -49,7 +49,7 @@ await browser.ocrGetText({ contrast: 0.5 });
 
 <Option type="number" required="WebdriverIO.Element | ChainablePromiseElement | Rectangle">
 
-OCRがテキストを探す必要がある画面内の検索領域です。要素、または`x`、`y`、`width`、`height`を含む矩形を指定できます。
+OCRがテキストを探す画面内の検索領域です。要素、または`x`、`y`、`width`、`height`を含む矩形を指定できます。
 
 </Option>
 #### 例
@@ -75,7 +75,7 @@ await browser.ocrGetText({
 
 <Option type="string" default="eng" required="No">
 
-Tesseractが認識する言語です。詳細は[こちら](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions)を、サポートされている言語は[こちら](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts)を参照してください。
+Tesseractが認識する言語です。詳細は[こちら](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions)、サポートされている言語は[こちら](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts)で確認できます。
 
 </Option>
 #### 例

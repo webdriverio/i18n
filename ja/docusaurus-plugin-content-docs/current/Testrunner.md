@@ -1,10 +1,10 @@
 ---
 id: testrunner
 title: テストランナー
-description: "@wdio/cli から WDIO テストランナーをインストールし、config、run、install、repl、session コマンドを使ってテストスイートをセットアップして実行します。"
+description: "@wdio/cli から WDIO テストランナーをインストールし、config、run、install、repl、session コマンドを使ってテストスイートをセットアップ・実行します。"
 ---
 
-WebdriverIO テストランナーは、設定ファイルに基づいてテストスイートを実行します。ケイパビリティごとに 1 つのワーカーを起動し、フレームワーク、サービス、レポーターを組み込んで、スペックを並列に実行します。すべてのテストプロジェクトでテストランナーを使用してください。[スタンドアロンモード](/docs/setuptypes)は、WebdriverIO を独自のツールに組み込む場合にのみ使用します。
+WebdriverIO テストランナーは、設定ファイルに基づいてテストスイートを実行します。capability ごとに 1 つのワーカーを起動し、フレームワーク、サービス、レポーターを接続して、spec を並列に実行します。すべてのテストプロジェクトでテストランナーを使用してください。[スタンドアロンモード](/docs/setuptypes)は、WebdriverIO を独自のツールに組み込む場合にのみ使用します。
 
 テストランナーは `@wdio/cli` パッケージに含まれています:
 
@@ -26,7 +26,7 @@ npx wdio config
 npx wdio run wdio.conf.ts
 ```
 
-`run` はデフォルトのコマンドなので、`npx wdio wdio.conf.ts` でも同じ動作になります。スペック内では、`@wdio/globals` からセッションをインポートします:
+`run` はデフォルトのコマンドなので、`npx wdio wdio.conf.ts` でも同じ動作になります。spec では、`@wdio/globals` からセッションをインポートします:
 
 ```ts title="test/specs/example.e2e.ts"
 import { browser, $, expect } from '@wdio/globals'
@@ -64,7 +64,7 @@ Options:
   --version  Show version number                                       [boolean]
 ```
 
-各コマンドは `--help` で独自のオプションを表示します。例: `npx wdio run --help`
+各コマンドは `--help` で独自のオプションを表示します。例: `npx wdio run --help`。
 
 ### `wdio config`
 
@@ -74,7 +74,7 @@ Options:
 npx wdio config
 ```
 
-`--yes` を渡すと、プロンプトを表示せずにデフォルト(Mocha、Chrome、ページオブジェクト)を使用します。ウィザードの各質問にはそれぞれ対応するフラグもあるため、一部またはすべての質問にコマンドラインで回答できます:
+`--yes` を渡すと、プロンプトを表示せずにデフォルト(Mocha、Chrome、ページオブジェクト)を使用します。ウィザードの各質問には対応するフラグもあるため、一部またはすべての質問にコマンドラインで回答できます:
 
 ```sh
 npx wdio config --yes --framework cucumber --no-typescript --reporters spec,junit
@@ -92,7 +92,7 @@ npx wdio config --yes --framework cucumber --no-typescript --reporters spec,juni
 
 ウィザードは、それを実行したパッケージマネージャーでパッケージをインストールします。`pnpm wdio config` は pnpm を、`yarn wdio config` は Yarn を、`npx` は npm を使用します。
 
-`npx wdio config --help` は、ウィザードのフラグと、それぞれが受け付ける値を一覧表示します。ウィザードがあなたのセットアップでは尋ねない質問のフラグを指定するとエラーになり、ウィザードが提示しない値を指定した場合もエラーになります。例については、[フラグでウィザードに回答する](/docs/gettingstarted#answer-the-wizard-with-flags)を参照してください。
+`npx wdio config --help` は、ウィザードのフラグと受け付ける値を一覧表示します。お使いのセットアップでウィザードが尋ねない質問のフラグを指定するとエラーになり、ウィザードが提供していない値を指定した場合もエラーになります。例については、[フラグでウィザードに回答する](/docs/gettingstarted#answer-the-wizard-with-flags)を参照してください。
 
 ### `wdio run`
 
@@ -156,27 +156,27 @@ npx wdio run wdio.conf.ts --spec test/specs/login.e2e.ts
 # 1 つのスイートを実行
 npx wdio run wdio.conf.ts --suite login
 
-# 4 つのシャードのうち最初のシャードを実行(例: CI マトリックス内で)
+# 4 つのシャードのうち最初のシャードを実行(例: CI マトリックス内)
 npx wdio run wdio.conf.ts --shard 1/4
 
-# すべてのブラウザをヘッドレスで実行、またはヘッドありモードを強制
+# すべてのブラウザをヘッドレスで実行、またはヘッドモードを強制
 npx wdio run wdio.conf.ts --headless
 npx wdio run wdio.conf.ts --headless=false
 
 # ドット記法でフレームワークのオプションを設定
 npx wdio run wdio.conf.ts --mochaOpts.timeout 60000
 
-# 行番号を指定して Cucumber シナリオを実行
+# 行番号を指定して Cucumber のシナリオを実行
 npx wdio run wdio.conf.ts --spec ./features/login.feature:5
 
 # カスタムの tsconfig.json を使用
 npx wdio run wdio.conf.ts --tsConfigPath=./configs/bdd-tsconfig.json
 
-# 失敗したテストと browser.debug() を一時停止し、コーディングエージェントが調査できるようにする
+# 失敗したテストと browser.debug() で一時停止し、コーディングエージェントが調査できるようにする
 npx wdio run wdio.conf.ts --debug=agent
 ```
 
-`--tsConfigPath` は、設定の [`tsConfigPath`](/docs/configurationfile) 設定を上書きします。WebdriverIO が `tsx` を使ってスペックをコンパイルする方法については、[TypeScript](/docs/typescript) を参照してください。
+`--tsConfigPath` は、設定の [`tsConfigPath`](/docs/configurationfile) 設定を上書きします。WebdriverIO が `tsx` を使って spec をコンパイルする方法については、[TypeScript](/docs/typescript) を参照してください。
 
 ### `wdio install`
 
@@ -190,13 +190,13 @@ npx wdio install framework mocha      # @wdio/mocha-framework をインストー
 
 パッケージは、コマンドを実行したパッケージマネージャーでインストールされます。そのため、`pnpm wdio install reporter dot` は pnpm で、`yarn wdio install reporter dot` は Yarn でインストールします。`npx` や直接呼び出した場合は npm を使用します。
 
-設定ファイルが現在のフォルダにある `wdio.conf.(js|ts|cjs|mjs)` でない場合は、その場所を指定します:
+設定ファイルが現在のフォルダ内の `wdio.conf.(js|ts|cjs|mjs)` でない場合は、その場所を渡します:
 
 ```sh
 npx wdio install service sauce --config="./path/to/wdio.conf.ts"
 ```
 
-`npx wdio install --help` は、サポートされているすべてのパッケージとその npm 名を表示します。
+`npx wdio install --help` は、サポートされているすべてのパッケージを npm 名とともに表示します。
 
 #### サポートされているサービスの一覧
 
@@ -214,7 +214,7 @@ qmate-service, robonut, qunit, roku, obsidian, null-driver
 
 ```
 spec, dot, junit, allure, sumologic, concise, json, reportportal, video,
-cucumberjs-json, mochawesome, timeline, html-nice, slack, teamcity, delta,
+cucumberjs-json, mochawesome, timeline, html, slack, teamcity, delta,
 testrail, light, jsonhtml
 ```
 
@@ -233,7 +233,7 @@ runner: local, browser
 
 ### `wdio repl`
 
-`repl` コマンドは WebDriver セッションを開始し、WebdriverIO コマンドを実行できる対話型プロンプトを開きます。スペックを書かずにセレクターやコマンドを試すのに使用します。詳しくは [REPL インターフェース](/docs/repl)を参照してください。
+`repl` コマンドは WebDriver セッションを開始し、WebdriverIO コマンドを実行できる対話型プロンプトを開きます。spec を書かずにセレクターやコマンドを試すのに使用します。詳しくは [REPL インターフェース](/docs/repl)を参照してください。
 
 ローカルの Chrome を起動します:
 
@@ -247,7 +247,7 @@ Sauce Labs クラウドで実行します:
 npx wdio repl chrome --user $SAUCE_USERNAME --key $SAUCE_ACCESS_KEY
 ```
 
-設定ファイルのケイパビリティを、インデックスまたはマルチリモート名で指定して使用します:
+設定ファイルの capability を、インデックスまたはマルチリモート名で指定して使用します:
 
 ```sh
 npx wdio repl ./wdio.conf.ts 0 -p 9515
@@ -259,7 +259,7 @@ npx wdio repl ./wdio.conf.ts 0 -p 9515
 npx wdio repl --session default
 ```
 
-`repl` は、[run コマンド](#wdio-run)の接続オプション(`--hostname`、`--port`、`--path`、`--user`、`--key`、`--logLevel` など)と、以下のモバイル向けオプションを受け付けます。`-u` は両方の短縮エイリアスになっているため、`--user` と `--udid` は長い形式で指定してください。
+`repl` は、[run コマンド](#wdio-run)の接続オプション(`--hostname`、`--port`、`--path`、`--user`、`--key`、`--logLevel` など)と、以下のモバイル用オプションを受け付けます。`-u` は両方の短いエイリアスであるため、`--user` と `--udid` は長い形式を使用してください。
 
 ```
 -v, --platformVersion  Version of OS for mobile devices                 [string]
@@ -271,7 +271,7 @@ npx wdio repl --session default
 
 ### `wdio session`
 
-`session` コマンドは、シェルからブラウザ、モバイルアプリ、またはデスクトップアプリを、1 回の呼び出しにつき 1 つのコマンドで操作します。これはコーディングエージェント向けに作られており、エージェントはセッションを開き、スナップショットを取得し、クリックや入力を行い、実行した操作をテストとしてエクスポートします。ワークフローについては [wdio session](/docs/session) を、すべてのアクションについては [wdio session コマンド](/docs/session-commands)を参照してください。
+`session` コマンドは、シェルからブラウザ、モバイルアプリ、またはデスクトップアプリを、1 回の呼び出しにつき 1 つのコマンドで操作します。これはコーディングエージェント向けに作られており、エージェントはセッションを開き、スナップショットを取得し、クリックや入力を行い、実行した操作をテストとしてエクスポートできます。ワークフローについては [wdio session](/docs/session) を、すべてのアクションについては [wdio session コマンド](/docs/session-commands)を参照してください。
 
 ```sh
 npx wdio session --help

@@ -11,7 +11,7 @@ I pacchetti di protocollo ([`webdriver`](https://www.npmjs.com/package/webdriver
 
 #### `newSession(options, modifier, userPrototype, customCommandWrapper)`
 
-Avvia una nuova sessione con capabilities specifiche. In base alla risposta della sessione, verranno forniti i comandi dei diversi protocolli.
+Avvia una nuova sessione con capabilities specifiche. In base alla risposta della sessione, verranno forniti comandi di protocolli diversi.
 
 ##### Parametri
 
@@ -151,7 +151,7 @@ console.log(await matrix.getTitle())
 
 #### `Key`
 
-Un oggetto contenente costanti di caratteri speciali da utilizzare con il comando [`browser.keys`](/docs/api/browser/keys). Queste costanti rappresentano tasti speciali che possono essere inviati al browser, come `Enter`, `Tab`, `Escape`, tasti freccia, tasti funzione e altro ancora.
+Un oggetto contenente costanti di caratteri speciali da utilizzare con il comando [`browser.keys`](/docs/api/browser/keys). Queste costanti rappresentano tasti speciali che possono essere inviati al browser, come `Enter`, `Tab`, `Escape`, i tasti freccia, i tasti funzione e altro ancora.
 
 ##### Esempio
 
@@ -196,7 +196,7 @@ I seguenti tasti speciali sono disponibili tramite l'oggetto `Key`:
 | `Key.Enter` | Tasto Invio |
 | `Key.Pause` | Tasto Pausa |
 | `Key.Escape` | Tasto Esc |
-| `Key.Space` | Tasto Spazio |
+| `Key.Space` | Barra spaziatrice |
 | `Key.PageUp` | Tasto Pagina su |
 | `Key.PageDown` | Tasto Pagina giù |
 | `Key.End` | Tasto Fine |
@@ -220,12 +220,12 @@ I seguenti tasti speciali sono disponibili tramite l'oggetto `Key`:
 | Costante | Descrizione |
 |----------|-------------|
 | `Key.Numpad0` - `Key.Numpad9` | Tastierino numerico 0-9 |
-| `Key.Multiply` | Moltiplicazione del tastierino numerico |
-| `Key.Add` | Addizione del tastierino numerico |
-| `Key.Separator` | Separatore del tastierino numerico |
-| `Key.Subtract` | Sottrazione del tastierino numerico |
-| `Key.Decimal` | Decimale del tastierino numerico |
-| `Key.Divide` | Divisione del tastierino numerico |
+| `Key.Multiply` | Moltiplicazione (tastierino numerico) |
+| `Key.Add` | Addizione (tastierino numerico) |
+| `Key.Separator` | Separatore (tastierino numerico) |
+| `Key.Subtract` | Sottrazione (tastierino numerico) |
+| `Key.Decimal` | Decimale (tastierino numerico) |
+| `Key.Divide` | Divisione (tastierino numerico) |
 
 **Tasti funzione:**
 
@@ -241,7 +241,7 @@ I seguenti tasti speciali sono disponibili tramite l'oggetto `Key`:
 
 :::info Tasti modificatori multipiattaforma
 
-La costante `Key.Ctrl` offre un modo pratico per utilizzare il modificatore "control" su diversi sistemi operativi. Su macOS corrisponde al tasto `Command`, mentre su Windows e Linux corrisponde al tasto `Control`. Questo è utile quando si scrivono test che devono funzionare su più piattaforme, ad esempio per le operazioni di seleziona tutto (`Ctrl+A`), copia (`Ctrl+C`) o incolla (`Ctrl+V`).
+La costante `Key.Ctrl` offre un modo pratico per utilizzare il modificatore "control" su diversi sistemi operativi. Su macOS corrisponde al tasto `Command`, mentre su Windows e Linux corrisponde al tasto `Control`. Questo è utile quando si scrivono test che devono funzionare su più piattaforme, ad es. per le operazioni di seleziona tutto (`Ctrl+A`), copia (`Ctrl+C`) o incolla (`Ctrl+V`).
 
 :::
 
@@ -272,7 +272,7 @@ const Launcher = require('@wdio/cli').default
 </TabItem>
 </Tabs>
 
-Dopodiché, crea un'istanza del launcher ed esegui il test.
+Successivamente, crea un'istanza del launcher ed esegui il test.
 
 #### `Launcher(configPath, opts)`
 
@@ -299,7 +299,7 @@ wdio.run().then((exitCode) => {
 })
 ```
 
-Il comando `run` restituisce una [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise). Viene risolta se i test sono stati eseguiti con successo o sono falliti, e viene rifiutata se il launcher non è stato in grado di avviare l'esecuzione dei test.
+Il comando `run` restituisce una [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise). Viene risolta se i test sono stati eseguiti con successo o sono falliti, e viene rifiutata se il launcher non è riuscito ad avviare l'esecuzione dei test.
 
 ## `@wdio/browser-runner`
 
@@ -325,7 +325,7 @@ Metodo per effettuare il mock di un file o di un modulo di dipendenza.
 
 ##### Parametri
 
-- `moduleName`: un percorso relativo al file di cui effettuare il mock oppure il nome di un modulo.
+- `moduleName`: un percorso relativo al file da sottoporre a mock oppure il nome di un modulo.
 - `factory`: funzione che restituisce il valore mockato (opzionale)
 
 ##### Esempio

@@ -1,13 +1,13 @@
 ---
 id: docker
 title: Docker
-description: "ブラウザがプリインストールされたDockerコンテナ内でWebdriverIOのテストスイートを実行し、どのマシンでも一貫した結果を得られるようにします。"
+description: "ブラウザがプリインストールされた Docker コンテナ内で WebdriverIO のテストスイートを実行し、どのマシンでも一貫した結果を得ることができます。"
 ---
 
-Dockerは強力なコンテナ化技術で、テストスイートをどのシステムでも同じように動作するコンテナにカプセル化することができます。これにより、ブラウザやプラットフォームのバージョンの違いによる不安定さを回避できます。コンテナ内でテストを実行するには、プロジェクトディレクトリに`Dockerfile`を作成します。例：
+Docker は強力なコンテナ化技術であり、テストスイートをどのシステムでも同じように動作するコンテナにカプセル化することができます。これにより、ブラウザやプラットフォームのバージョンの違いによる不安定さ（flakiness）を回避できます。コンテナ内でテストを実行するには、プロジェクトディレクトリに `Dockerfile` を作成します。例：
 
 ```Dockerfile
-FROM selenium/standalone-chrome:134.0-20250323 # Change the browser and version according to your needs
+FROM selenium/standalone-chrome:134.0-20250323 # 必要に応じてブラウザとバージョンを変更してください
 WORKDIR /app
 ADD . /app
 
@@ -16,17 +16,17 @@ RUN npm install
 CMD npx wdio
 ```
 
-Dockerイメージに`node_modules`を含めず、イメージのビルド時にインストールされるようにしてください。そのためには、次の内容で`.dockerignore`ファイルを追加します：
+Docker イメージに `node_modules` を含めず、イメージのビルド時にインストールされるようにしてください。そのためには、次の内容で `.dockerignore` ファイルを追加します：
 
 ```
 node_modules
 ```
 
 :::info
-ここでは、SeleniumとGoogle Chromeがプリインストールされた Docker イメージを使用しています。さまざまなブラウザ構成やブラウザバージョンのイメージが利用可能です。Seleniumプロジェクトが管理しているイメージについては[Docker Hub](https://hub.docker.com/u/selenium)を確認してください。
+ここでは Selenium と Google Chrome がプリインストールされた Docker イメージを使用しています。さまざまなブラウザ構成やブラウザバージョンを備えたイメージが用意されています。Selenium プロジェクトがメンテナンスしているイメージは [Docker Hub](https://hub.docker.com/u/selenium) で確認してください。
 :::
 
-DockerコンテナではGoogle Chromeをヘッドレスモードでしか実行できないため、`wdio.conf.js`を変更してヘッドレスモードで実行されるようにする必要があります：
+Docker コンテナ内では Google Chrome をヘッドレスモードでしか実行できないため、そのように動作するよう `wdio.conf.js` を変更する必要があります：
 
 ```js title="wdio.conf.js"
 export const config = {
@@ -48,18 +48,29 @@ export const config = {
 }
 ```
 
-[自動化プロトコル](/docs/automationProtocols)で説明したように、WebdriverIOはWebDriverプロトコルまたはWebDriver BiDiプロトコルを使用して実行できます。イメージにインストールされているChromeのバージョンが、`package.json`で定義している[Chromedriver](https://www.npmjs.com/package/chromedriver)のバージョンと一致していることを確認してください。
+[自動化プロトコル](/docs/automationProtocols)で説明したように、WebdriverIO は WebDriver プロトコルまたは WebDriver BiDi プロトコルを使用して実行できます。イメージにインストールされている Chrome のバージョンが、`package.json` で定義した [Chromedriver](https://www.npmjs.com/package/chromedriver) のバージョンと一致していることを確認してください。
 
-Dockerコンテナをビルドするには、次のコマンドを実行します：
+Docker コンテナをビルドするには、次を実行します：
 
 ```sh
 docker build -t mytest -f Dockerfile .
 ```
 
-次に、テストを実行するには以下を実行します：
+その後、テストを実行するには次を実行します：
 
 ```sh
 docker run -it mytest
 ```
 
-Dockerイメージの設定方法の詳細については、[Dockerのドキュメント](https://docs.docker.com/)を確認してください。
+Docker イメージの設定方法の詳細については、[Docker のドキュメント](https://docs.docker.com/)を参照してください。
+
+## WebdriverIO がブラウザをダウンロードするイメージ
+
+イメージにブラウザが含まれていない場合、WebdriverIO は Chrome、Chromium、Firefox、Chromedriver を自らダウンロードします。Chrome、Chromium、Chromedriver は zip ファイルとして提供され、WebdriverIO は Linux と macOS では `unzip` コマンド（Windows では `tar.exe` または PowerShell）を使ってそれらを展開します。`node:24-slim` などのスリムイメージや最小構成の Alpine イメージには `unzip` が含まれていないため、`Dockerfile` でインストールしてください：
+
+```Dockerfile
+FROM node:24-slim
+RUN apt-get update && apt-get install -y --no-install-recommends unzip && rm -rf /var/lib/apt/lists/*
+```
+
+Alpine では `RUN apk add --no-cache unzip` を使用してください。これがないと、ダウンロードは `Extraction failed: no zip archiver is available` というエラーで失敗します。

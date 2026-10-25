@@ -1,12 +1,12 @@
 ---
 id: mobile
-title: App mobili
-description: Configura ed esegui test WebdriverIO per app native, ibride e web mobile su emulatori Android, simulatori iOS, dispositivi reali e cloud di dispositivi.
+title: App Mobile
+description: Configura ed esegui test WebdriverIO per app native, ibride e web mobile su emulatori Android, simulatori iOS, dispositivi reali e device cloud.
 ---
 
-WebdriverIO automatizza Android e iOS tramite [Appium](/docs/appium), che utilizza il protocollo WebDriver. I tuoi test usano lo stesso oggetto `browser` (con alias `driver`), gli stessi selettori `$`/`$$` e gli stessi matcher `expect` dei test per browser. Appium indirizza ogni sessione a un driver di piattaforma scelto tramite `appium:automationName`. Per Android si tratta di `UiAutomator2`, con Espresso come alternativa che sblocca ulteriori strategie di selezione. Per iOS e iPadOS è `XCUITest`. Con questi driver puoi testare app native e web mobile in Chrome su Android o Safari su iOS. Puoi anche testare app ibride, passando dal contesto nativo alle webview incorporate e viceversa. Le sessioni possono essere eseguite su emulatori Android, simulatori iOS, dispositivi reali o cloud di dispositivi come Sauce Labs, BrowserStack, TestingBot e TestMu AI. Il [`@wdio/appium-service`](/docs/appium-service) avvia e arresta per te un server Appium locale. Oltre all'API Appium di base, WebdriverIO aggiunge [comandi mobile](/docs/api/mobile) multipiattaforma come `tap`, `swipe`, `longPress`, `scrollIntoView` e `switchContext`.
+WebdriverIO automatizza Android e iOS tramite [Appium](/docs/appium), che utilizza il protocollo WebDriver. I tuoi test usano lo stesso oggetto `browser` (con alias `driver`), gli stessi selettori `$`/`$$` e gli stessi matcher `expect` dei test per browser. Appium indirizza ogni sessione a un driver di piattaforma scelto tramite `appium:automationName`. Per Android si tratta di `UiAutomator2`, con Espresso come alternativa che sblocca strategie di selezione aggiuntive. Per iOS e iPadOS è `XCUITest`. Con questi driver puoi testare app native e il web mobile in Chrome su Android o Safari su iOS. Puoi anche testare app ibride, passando dal contesto nativo alle webview incorporate e viceversa. Le sessioni possono essere eseguite su emulatori Android, simulatori iOS, dispositivi reali o device cloud come Sauce Labs, BrowserStack, TestingBot e TestMu AI. Il [`@wdio/appium-service`](/docs/appium-service) avvia e arresta per te un server Appium locale. Oltre all'API Appium di base, WebdriverIO aggiunge [comandi mobile](/docs/api/mobile) multipiattaforma come `tap`, `swipe`, `longPress`, `scrollIntoView` e `switchContext`.
 
-## Avvio rapido
+## Guida rapida
 
 Prerequisiti: Android Studio con un Android SDK e un emulatore per Android; Xcode e un simulatore su macOS per iOS. `npx appium-installer` ti guida nella configurazione dell'ambiente, e `npm init wdio@latest .` crea la struttura di un progetto mobile (scegli Android o iOS). Per configurare manualmente:
 
@@ -68,11 +68,11 @@ describe('My app', () => {
 npx wdio run ./wdio.conf.ts
 ```
 
-`~` è il selettore accessibility id: corrisponde a `content-description` su Android e ad `accessibilityIdentifier` su iOS, ed è la strategia multipiattaforma preferita. Sostituisci gli id di esempio, il titolo della webview e il percorso dell'app con i tuoi.
+`~` è il selettore accessibility id: corrisponde a `content-description` su Android e ad `accessibilityIdentifier` su iOS, ed è la strategia multipiattaforma consigliata. Sostituisci gli id di esempio, il titolo della webview e il percorso dell'app con i tuoi.
 
 Gli altri target cambiano solo le capabilities:
 
-```ts title="iOS simulator (native app)"
+```ts title="Simulatore iOS (app nativa)"
 {
     platformName: 'iOS',
     'appium:deviceName': 'iPhone Simulator',
@@ -82,7 +82,7 @@ Gli altri target cambiano solo le capabilities:
 }
 ```
 
-```ts title="Mobile web (Chrome on an Android emulator)"
+```ts title="Web mobile (Chrome su un emulatore Android)"
 {
     platformName: 'Android',
     browserName: 'Chrome',
@@ -97,27 +97,27 @@ Per il web mobile su iOS, usa `platformName: 'iOS'`, `browserName: 'Safari'` e `
 ## Scegli il tuo percorso
 
 - [Configurazione di Appium](/docs/appium): quali piattaforme copre Appium (iOS, Android, Tizen, app TV) e come installare la toolchain.
-- [Servizio Appium](/docs/appium-service): opzioni del servizio (`args`, `command`, `logPath`), `npx start-appium-inspector` per aprire l'Appium Inspector e un ottimizzatore in beta per selettori XPath lenti.
-- [Comandi mobile](/docs/api/mobile): gesti e helper multipiattaforma. Copre le app ibride con [`getContexts`](/docs/api/mobile/getContexts) e [`switchContext`](/docs/api/mobile/switchContext), oltre alle capabilities delle webview per iOS.
-- [Selettori mobile](/docs/selectors#mobile-selectors): accessibility id, Android UiAutomator, matcher data/view di Espresso e predicate string e class chain di iOS.
+- [Appium Service](/docs/appium-service): opzioni del servizio (`args`, `command`, `logPath`), `npx start-appium-inspector` per aprire l'Appium Inspector e un ottimizzatore beta per i selettori XPath lenti.
+- [Comandi Mobile](/docs/api/mobile): gesti e helper multipiattaforma. Copre le app ibride con [`getContexts`](/docs/api/mobile/getContexts) e [`switchContext`](/docs/api/mobile/switchContext), oltre alle capabilities delle webview per iOS.
+- [Selettori Mobile](/docs/selectors#mobile-selectors): accessibility id, Android UiAutomator, matcher data/view di Espresso e predicate string e class chain di iOS.
 - [Comandi del protocollo Appium](/docs/api/appium): gli endpoint Appium di base disponibili su `driver`.
-- [App Flutter](/docs/flutter-testing/introduction): perché Flutter richiede l'Appium Flutter Driver, poi [prepara l'app](/docs/flutter-testing/preparing-flutter-application), [configura Appium](/docs/flutter-testing/base-appium-configuration), [configura WebdriverIO](/docs/flutter-testing/setting-up-webdriverio) e [scrivi i test](/docs/flutter-testing/writing-tests).
-- [Servizi cloud](/docs/cloudservices): connettiti a Sauce Labs, BrowserStack, TestingBot, TestMu AI, Perfecto o RobotActions per eseguire su dispositivi reali ospitati.
-- [Test visivi](/docs/visual-testing): confronto di immagini per app native, app ibride e browser mobile. Per Percy su mobile, consulta [App Percy](/docs/visual-testing/integrate-with-app-percy).
+- [App Flutter](/docs/flutter-testing/introduction): perché Flutter necessita dell'Appium Flutter Driver, poi [prepara l'app](/docs/flutter-testing/preparing-flutter-application), [configura Appium](/docs/flutter-testing/base-appium-configuration), [configura WebdriverIO](/docs/flutter-testing/setting-up-webdriverio) e [scrivi i test](/docs/flutter-testing/writing-tests).
+- [Servizi Cloud](/docs/cloudservices): connettiti a Sauce Labs, BrowserStack, TestingBot, TestMu AI, Perfecto o RobotActions per eseguire su dispositivi reali ospitati.
+- [Visual Testing](/docs/visual-testing): confronto di immagini per app native, app ibride e browser mobile. Per Percy su mobile, consulta [App Percy](/docs/visual-testing/integrate-with-app-percy).
 - [Multi-remote](/docs/multiremote): coordina più dispositivi o browser in un unico test.
 
-Emulare il viewport di un dispositivo in un browser desktop con [`browser.emulate('device', ...)`](/docs/emulation) non è un test mobile. I motori dei browser desktop differiscono da quelli mobili, quindi usa invece Appium con un vero browser mobile.
+Emulare il viewport di un dispositivo in un browser desktop con [`browser.emulate('device', ...)`](/docs/emulation) non equivale a fare test mobile. I motori dei browser desktop differiscono da quelli mobile, quindi usa invece Appium con un vero browser mobile.
 
 ## Risoluzione dei problemi
 
 - La sessione non si avvia: assicurati che il driver Appium per il tuo `appium:automationName` sia installato e che l'emulatore o il simulatore sia in esecuzione. Usa `port: 4723` a meno che tu non abbia cambiato la porta di Appium.
-- iOS non trova una webview: prova `appium:webviewConnectRetries`, `appium:webviewConnectTimeout` o `appium:includeSafariInWebviews` (vedi [App ibride](/docs/api/mobile#hybrid-apps)).
+- iOS non trova una webview: prova `appium:webviewConnectRetries`, `appium:webviewConnectTimeout` o `appium:includeSafariInWebviews` (vedi [App Ibride](/docs/api/mobile#hybrid-apps)).
 - La webview Android tarda ad apparire: regola `androidWebviewConnectionRetryTime` e `androidWebviewConnectTimeout` su `getContexts`/`switchContext`.
-- I widget Flutter non vengono trovati con i selettori nativi: è normale. Usa il driver Flutter e i finder descritti nella [guida Flutter](/docs/flutter-testing/introduction).
+- I widget Flutter non vengono trovati con i selettori nativi: è il comportamento previsto. Usa il driver Flutter e i finder descritti nella [guida Flutter](/docs/flutter-testing/introduction).
 
 ## Prossimi passi
 
-- Riferimenti per [Configurazione](/docs/configuration) e [Capabilities](/docs/capabilities).
+- Riferimenti di [Configurazione](/docs/configuration) e [Capabilities](/docs/capabilities).
 - [Page Object Pattern](/docs/pageobjects) per condividere le schermate tra le spec Android e iOS.
 - [MCP](/docs/mcp) per consentire a un agente AI di pilotare sessioni iOS e Android tramite Appium.
-- Altre piattaforme: [Browser web](/docs/platforms/web), [App desktop](/docs/platforms/desktop), [Estensioni ed editor](/docs/platforms/apps-and-extensions).
+- Altre piattaforme: [Browser Web](/docs/platforms/web), [App Desktop](/docs/platforms/desktop), [Estensioni ed Editor](/docs/platforms/apps-and-extensions).

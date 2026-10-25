@@ -1,7 +1,7 @@
 ---
 id: ocr-get-text
 title: ocrGetText
-description: "OCR सेवा के ocrGetText के साथ स्क्रीन पर या किसी विशिष्ट क्षेत्र में दिखाया गया टेक्स्ट पढ़ें।"
+description: "OCR सर्विस के ocrGetText से स्क्रीन पर या किसी विशिष्ट क्षेत्र में दिखाया गया टेक्स्ट पढ़ें।"
 ---
 
 किसी इमेज पर मौजूद टेक्स्ट प्राप्त करें।
@@ -75,7 +75,7 @@ await browser.ocrGetText({
 
 <Option type="string" default="eng" required="No">
 
-वह भाषा जिसे Tesseract पहचानेगा। अधिक जानकारी [यहाँ](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) मिल सकती है और समर्थित भाषाएँ [यहाँ](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts) मिल सकती हैं।
+वह भाषा जिसे Tesseract पहचानेगा। अधिक जानकारी [यहाँ](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) मिल सकती है और समर्थित भाषाएँ [यहाँ](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts) देखी जा सकती हैं।
 
 </Option>
 #### उदाहरण

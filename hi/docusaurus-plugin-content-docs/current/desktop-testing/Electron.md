@@ -1,15 +1,15 @@
 ---
 id: electron
 title: Electron
-description: "WebdriverIO Electron सर्विस के साथ Electron ऐप्स का परीक्षण करें, जो Chromedriver सेट अप करती है, आपकी ऐप बाइनरी का पता लगाती है और आपको Electron APIs को मॉक करने देती है।"
+description: "WebdriverIO Electron सर्विस के साथ Electron ऐप्स का परीक्षण करें, जो Chromedriver को सेट अप करती है, आपकी ऐप बाइनरी का पता लगाती है और आपको Electron APIs को मॉक करने देती है।"
 ---
 
-Electron, JavaScript, HTML और CSS का उपयोग करके डेस्कटॉप एप्लिकेशन बनाने के लिए एक फ्रेमवर्क है। अपनी बाइनरी में Chromium और Node.js को एम्बेड करके, Electron आपको एक ही JavaScript कोडबेस बनाए रखने और ऐसे क्रॉस-प्लेटफ़ॉर्म ऐप्स बनाने की सुविधा देता है जो Windows, macOS और Linux पर काम करते हैं — किसी नेटिव डेवलपमेंट अनुभव की आवश्यकता नहीं है।
+Electron, JavaScript, HTML और CSS का उपयोग करके डेस्कटॉप एप्लिकेशन बनाने के लिए एक फ्रेमवर्क है। Chromium और Node.js को अपनी बाइनरी में एम्बेड करके, Electron आपको एक ही JavaScript कोडबेस बनाए रखने और ऐसे क्रॉस-प्लेटफ़ॉर्म ऐप्स बनाने की सुविधा देता है जो Windows, macOS और Linux पर काम करते हैं — इसके लिए किसी नेटिव डेवलपमेंट अनुभव की आवश्यकता नहीं है।
 
-WebdriverIO एक एकीकृत सर्विस प्रदान करता है जो आपके Electron ऐप के साथ इंटरैक्शन को सरल बनाती है और उसका परीक्षण करना बहुत आसान बना देती है। Electron एप्लिकेशन के परीक्षण के लिए WebdriverIO का उपयोग करने के लाभ हैं:
+WebdriverIO एक एकीकृत सर्विस प्रदान करता है जो आपके Electron ऐप के साथ इंटरैक्शन को सरल बनाती है और इसका परीक्षण करना बहुत आसान बना देती है। Electron एप्लिकेशन के परीक्षण के लिए WebdriverIO का उपयोग करने के लाभ हैं:
 
-- 🚗 आवश्यक Chromedriver का ऑटो-सेटअप
-- 📦 आपके Electron एप्लिकेशन के पाथ का स्वचालित पता लगाना - [Electron Forge](https://www.electronforge.io/) और [Electron Builder](https://www.electron.build/) को सपोर्ट करता है
+- 🚗 आवश्यक Chromedriver का स्वचालित सेटअप
+- 📦 आपके Electron एप्लिकेशन के पाथ का स्वचालित पता लगाना - [Electron Forge](https://www.electronforge.io/) और [Electron Builder](https://www.electron.build/) का समर्थन करता है
 - 🧩 अपने टेस्ट के भीतर Electron APIs तक पहुँच
 - 🕵️ Vitest जैसी API के माध्यम से Electron APIs की मॉकिंग
 
@@ -20,17 +20,17 @@ WebdriverIO एक एकीकृत सर्विस प्रदान क�
     title="Getting Started with ElectronJS Testing in WebdriverIO"
 />
 
-या निम्नलिखित सेक्शन में दी गई गाइड का पालन करें।
+या निम्नलिखित अनुभाग में दी गई गाइड का पालन करें।
 
 ## शुरुआत करना
 
-एक नया WebdriverIO प्रोजेक्ट शुरू करने के लिए, यह चलाएँ:
+एक नया WebdriverIO प्रोजेक्ट शुरू करने के लिए, चलाएँ:
 
 ```sh
 npm create wdio@latest ./
 ```
 
-एक इंस्टॉलेशन विज़ार्ड इस प्रक्रिया में आपका मार्गदर्शन करेगा। जब पूछा जाए कि आप किस प्रकार का परीक्षण करना चाहते हैं, तो _"Desktop Testing - of Electron, Tauri, or macOS Applications"_ चुनें, फिर फ्रेमवर्क प्रॉम्प्ट पर _Electron_ चुनें। इसके बाद अपने कंपाइल किए गए Electron एप्लिकेशन का पाथ दें, उदा. `./dist`, फिर बस डिफ़ॉल्ट विकल्प रखें या अपनी पसंद के अनुसार बदलें।
+एक इंस्टॉलेशन विज़ार्ड इस प्रक्रिया में आपका मार्गदर्शन करेगा। जब पूछा जाए कि आप किस प्रकार का परीक्षण करना चाहते हैं, तो _"Desktop Testing - of Electron, Tauri, or macOS Applications"_ चुनें, फिर फ्रेमवर्क प्रॉम्प्ट पर _Electron_ चुनें। इसके बाद अपने कंपाइल किए गए Electron एप्लिकेशन का पाथ प्रदान करें, जैसे `./dist`, फिर बस डिफ़ॉल्ट विकल्प रखें या अपनी पसंद के अनुसार उन्हें बदलें।
 
 कॉन्फ़िगरेशन विज़ार्ड सभी आवश्यक पैकेज इंस्टॉल करेगा और आपके एप्लिकेशन का परीक्षण करने के लिए आवश्यक कॉन्फ़िगरेशन के साथ एक `wdio.conf.js` या `wdio.conf.ts` बनाएगा। यदि आप कुछ टेस्ट फ़ाइलें स्वचालित रूप से जनरेट करने के लिए सहमत होते हैं, तो आप `npm run wdio` के माध्यम से अपना पहला टेस्ट चला सकते हैं।
 
@@ -57,4 +57,4 @@ export const config: WebdriverIO.Config = {
 
 बस इतना ही 🎉
 
-[Electron सर्विस को कॉन्फ़िगर करने](/docs/desktop-testing/electron/configuration), [Electron APIs को मॉक करने](/docs/desktop-testing/electron/api-reference) और [Electron APIs तक पहुँचने](/docs/desktop-testing/electron/api) के बारे में अधिक जानें।
+[Electron सर्विस को कॉन्फ़िगर करने](/docs/desktop-testing/electron/configuration), [Electron APIs को मॉक करने](/docs/desktop-testing/electron/api-reference) और [Electron APIs तक पहुँचने](/docs/desktop-testing/electron/api) के तरीके के बारे में और जानें।

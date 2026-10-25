@@ -1,13 +1,13 @@
 ---
 id: getting-started
-title: Per Iniziare
-description: "Installa WebdriverIO DevTools ed esegui il tuo primo test in live mode o trace mode per riprodurre il DOM, gli screenshot, la rete e l'output della console."
+title: Per iniziare
+description: "Installa WebdriverIO DevTools ed esegui il tuo primo test in modalità live o in modalità trace per riprodurre il DOM, gli screenshot, la rete e l'output della console."
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-WebdriverIO DevTools offre ai tuoi test end-to-end nel browser un'interfaccia in stile developer tools per eseguire, fare il debug e ispezionare l'automazione: replay del DOM, screenshot per ogni comando, acquisizione di rete e console e screencast delle sessioni. Funziona in due modalità. La **live mode** apre una [dashboard](/docs/devtools/dashboard) interattiva in una finestra del browser mentre i tuoi test vengono eseguiti, così puoi osservarli e rieseguirli in tempo reale. La **trace mode** salta l'interfaccia e scrive un [trace artifact](/docs/devtools/wdio/trace-mode) (`trace.zip`) portabile e offline che puoi aprire in seguito nel player `show-trace`, ideale per la CI. Questa pagina ti permette di iniziare rapidamente con la live mode; la trace mode è a una sola opzione di distanza.
+WebdriverIO DevTools offre ai tuoi test end-to-end nel browser un'interfaccia in stile strumenti per sviluppatori per eseguire, fare il debug e ispezionare l'automazione: replay del DOM, screenshot per ogni comando, acquisizione di rete e console e screencast delle sessioni. Funziona in due modalità. La **modalità live** apre una [dashboard](/docs/devtools/dashboard) interattiva in una finestra del browser mentre i tuoi test vengono eseguiti, così puoi osservarli e rieseguirli in tempo reale. La **modalità trace** salta l'interfaccia e scrive un [artefatto di trace](/docs/devtools/wdio/trace-mode) (`trace.zip`) portabile e offline che puoi aprire in seguito nel player `show-trace`, ideale per la CI. Questa pagina ti porta rapidamente alla modalità live; la modalità trace è a una sola opzione di distanza.
 
 ## Installazione e prima esecuzione
 
@@ -19,11 +19,12 @@ values={[
 {label: 'WebdriverIO', value: 'wdio'},
 {label: 'Selenium', value: 'selenium'},
 {label: 'Nightwatch', value: 'nightwatch'},
+{label: 'Python', value: 'python'},
 ]}
 >
 <TabItem value="wdio">
 
-Installa il service:
+Installa il servizio:
 
 ```sh
 npm install @wdio/devtools-service --save-dev
@@ -38,7 +39,7 @@ export const config = {
 }
 ```
 
-Esegui i tuoi test WebdriverIO normalmente: l'interfaccia di DevTools si apre automaticamente e i test iniziano subito a essere visualizzati.
+Esegui i tuoi test WebdriverIO come di consueto: l'interfaccia di DevTools si apre automaticamente e i test iniziano subito a essere visualizzati.
 
 </TabItem>
 <TabItem value="selenium">
@@ -49,7 +50,7 @@ Funziona con Mocha, Jest, Cucumber o un semplice script `node`: il plugin rileva
 npm install @wdio/selenium-devtools
 ```
 
-Aggiungi un singolo import e una chiamata a `configure` all'inizio del tuo file di test (nell'esempio, Mocha):
+Aggiungi un singolo import e una chiamata a `configure` all'inizio del tuo file di test (esempio con Mocha):
 
 ```js
 // tests/example.test.js
@@ -97,7 +98,7 @@ Installa l'adapter:
 npm install @wdio/nightwatch-devtools
 ```
 
-Collegalo alla tua configurazione di Nightwatch tramite `globals`, senza bisogno di modificare i file di test:
+Collegalo alla configurazione di Nightwatch tramite `globals`, senza bisogno di modificare i file di test:
 
 ```js
 // nightwatch.conf.cjs
@@ -119,7 +120,7 @@ module.exports = {
 }
 ```
 
-Esegui i tuoi test normalmente: l'interfaccia di DevTools si apre automaticamente:
+Esegui i tuoi test come di consueto: l'interfaccia di DevTools si apre automaticamente:
 
 ```bash
 nightwatch
@@ -128,10 +129,30 @@ nightwatch
 Consulta la [pagina di Nightwatch](/docs/devtools/nightwatch) per la configurazione con Cucumber/BDD.
 
 </TabItem>
+<TabItem value="python">
+
+Richiede Python 3.10+, `selenium>=4.44` e Node.js 22.19+ nel `PATH` (il backend della dashboard è un'applicazione Node). Installa l'adapter, poi il backend una sola volta:
+
+```bash
+pip install selenium-devtools-py
+selenium-devtools install-backend
+```
+
+Con pytest non serve aggiungere nulla ai file di test. Attiva l'acquisizione con un flag:
+
+```bash
+pytest --devtools tests/          # dashboard live
+pytest --devtools-trace tests/    # scrive invece un archivio di trace
+```
+
+Consulta le schede Python nella [pagina di Selenium](/docs/devtools/selenium) per script semplici, opzioni ini e variabili d'ambiente.
+
+</TabItem>
 </Tabs>
 
 ## Prossimi passi
 
-- **[Trace Mode](/docs/devtools/wdio/trace-mode)**: imposta `mode: 'trace'` per saltare l'interfaccia e produrre un trace artifact portabile e offline per la CI.
-- **[Riferimento della configurazione](/docs/devtools/reference)**: tutte le opzioni per tutti e tre gli adapter.
-- **Framework**: guide complete per ogni adapter: [WebdriverIO](/docs/devtools/wdio), [Selenium](/docs/devtools/selenium), [Nightwatch](/docs/devtools/nightwatch).
+- **[Modalità Trace](/docs/devtools/wdio/trace-mode)**: imposta `mode: 'trace'` per saltare l'interfaccia e produrre un artefatto di trace portabile e offline per la CI.
+- **[Riferimento di configurazione](/docs/devtools/reference)**: tutte le opzioni di tutti gli adapter.
+- **[Test su dispositivi mobili](/docs/devtools/mobile)**: acquisisci le sessioni Appium.
+- **Framework**: guide complete per ciascun adapter: [WebdriverIO](/docs/devtools/wdio), [Selenium](/docs/devtools/selenium), [Nightwatch](/docs/devtools/nightwatch).

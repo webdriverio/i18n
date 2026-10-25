@@ -11,7 +11,7 @@ npx wdio session open chrome http://localhost:3000
 npx wdio session snapshot --interactive
 ```
 
-Una riga si presenta così: `button "Add to cart" [ref=e3]`. Il comando successivo usa quel ref:
+Una riga ha questo aspetto: `button "Add to cart" [ref=e3]`. Il comando successivo usa quel ref:
 
 ```sh
 npx wdio session click e3
@@ -30,7 +30,7 @@ Il layout testuale di uno snapshot, e la forma che `--json` stampa per esso, son
 | Comando | Usalo per |
 | --- | --- |
 | `snapshot --interactive` | Gli elementi su cui puoi agire, ciascuno con un ref |
-| `find "Add to cart"` | Ogni corrispondenza con il nodo che la contiene, ad es. un intero elemento di lista, così un valore accanto alla corrispondenza viene incluso. `-A`, `-B` e `-C` stampano semplici righe di contesto come grep |
+| `find "Add to cart"` | Ogni corrispondenza con il nodo che la circonda, ad es. un intero elemento di lista, così un valore accanto alla corrispondenza viene incluso. `-A`, `-B` e `-C` stampano righe di contesto semplici come grep |
 | `diff` | Cosa è cambiato dallo snapshot precedente |
 | `screenshot` | Il layout. Saltalo quando uno snapshot risponde alla domanda |
 | `source` | L'HTML della pagina o l'XML nativo |
@@ -47,9 +47,9 @@ Changes:
 + - status "Subscription started. Confirmation code: 4F2A9C"
 ```
 
-Quando l'azione ha aperto una scheda, il report lo indica (`Opened a new tab [1]: https://…`); la sessione resta sulla scheda corrente finché non esegui `tabs switch`. Quando la pagina è un controllo anti-bot (Cloudflare, DataDome, Akamai, …) anziché il sito, il report lo indica anche in questo caso, una volta per pagina. La sessione non tenta di superarlo; in un browser headless suggerisce di riaprire con `--headed`.
+Quando l'azione ha aperto una scheda, il report lo indica (`Opened a new tab [1]: https://…`); la sessione resta sulla scheda corrente finché non esegui `tabs switch`. Quando la pagina è un controllo anti-bot (Cloudflare, DataDome, Akamai, …) anziché il sito, il report indica anche questo, una volta per pagina. La sessione non tenta di superarlo; in un browser headless suggerisce di riaprire con `--headed`.
 
-Sulla stessa pagina ottieni le righe nuove o modificate con i loro ref, incluso il testo non interattivo, come lo status qui sopra. Dopo una navigazione ottieni gli elementi interattivi della nuova pagina oppure, per una pagina grande, un riepilogo di una riga che rimanda a `find`. Quindi raramente hai bisogno di uno `snapshot` separato dopo un'azione. Imposta `WDIO_SESSION_CHANGES=0` per disattivare il report e passa `open --no-snapshot` per saltare lo snapshot dopo `open`.
+Sulla stessa pagina ottieni le righe nuove o modificate con i loro ref, incluso il testo non interattivo, come lo status qui sopra. Dopo una navigazione ottieni gli elementi interattivi della nuova pagina oppure, per una pagina grande, un riepilogo di una riga che rimanda a `find`. Quindi raramente ti serve un `snapshot` separato dopo un'azione. Imposta `WDIO_SESSION_CHANGES=0` per disattivare il report, e passa `open --no-snapshot` per saltare lo snapshot dopo `open`.
 
 ## Frame
 
@@ -65,23 +65,23 @@ Le azioni su questi ref entrano nel frame, agiscono e tornano alla pagina, e il 
 
 ## Shadow DOM ed elementi cliccabili senza ruolo
 
-Con WebDriver BiDi, lo snapshot copre anche gli shadow root chiusi, e gli elementi che hanno solo un listener di click (un'icona collegata con `addEventListener`) ricevono un ref. Un elemento di questo tipo non ha un nome accessibile, quindi lo snapshot lo descrive:
+Con WebDriver BiDi, lo snapshot copre anche gli shadow root chiusi, e gli elementi che hanno solo un listener di click (un'icona collegata con `addEventListener`) ricevono un ref. Un elemento del genere non ha un nome accessibile, quindi lo snapshot lo descrive:
 
 ```text
 - generic [ref=e8] (icon 3 of 3 in "Invoice #1002 · Contoso Ltd · $860.00")
 ```
 
-Su Android, iOS, macOS e Windows lo snapshot proviene dal page source di Appium. Due controlli che condividono un accessibility id restano ref separati quando il resto dei loro selettori è diverso. `snapshot --scope e3` limita l'albero a quel ref.
+Su Android, iOS, macOS e Windows lo snapshot proviene dal page source di Appium. Due controlli che condividono un accessibility id restano ref separati quando il resto dei loro selettori differisce. `snapshot --scope e3` limita l'albero a quel ref.
 
 ## Controlli ripetuti
 
-Quando più controlli condividono un ruolo e un nome, come il pulsante "Add to cart" di ogni riga in una tabella di prodotti, la riga del ref termina con `∈ "<text>"`, il testo della riga, della card o dell'elemento di lista che contiene quel controllo e nessun altro con lo stesso nome:
+Quando diversi controlli condividono un ruolo e un nome, come il pulsante "Add to cart" di ogni riga in una tabella di prodotti, la riga del ref termina con `∈ "<text>"`, il testo della riga, card o elemento di lista che contiene quel controllo e nessun altro con lo stesso nome:
 
 ```text
 - button "Add to cart" [ref=e9] ∈ "Desk lamp · Brass · In stock · $49.00"
 ```
 
-Il testo viene troncato a 80 caratteri. Un controllo il cui elemento è un landmark della pagina (un link "Sign in" sia nell'header sia nel footer) non lo riceve. L'etichetta di un controllo di form visibile non viene elencata: il nome lo porta il controllo stesso.
+Il testo viene troncato a 80 caratteri. Un controllo il cui elemento è un landmark della pagina (un link "Sign in" sia nell'header sia nel footer) non lo riceve. L'etichetta di un controllo di form visibile non viene elencata: è il controllo a portare il nome.
 
 ## Tap nativi
 
@@ -105,4 +105,4 @@ npx wdio session tap e3
 ## Prossimi passi
 
 - [Eseguire codice](/docs/session/exec) — asserzioni e passaggi che richiedono più di un comando
-- [Comandi](/docs/session-commands) — i flag di `snapshot`, `find`, `diff`, `screenshot` e `source`
+- [Comandi](/docs/session-commands) — flag di `snapshot`, `find`, `diff`, `screenshot` e `source`

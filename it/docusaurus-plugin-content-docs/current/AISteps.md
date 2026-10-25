@@ -1,10 +1,10 @@
 ---
 id: ai-steps
-title: Passaggi AI nei test
-description: Scrivi i passaggi dei test come intenzioni con browser.act() e leggi dati tipizzati con browser.extract() usando @wdio/ai-service, quindi riproducili da una cache salvata nel repository senza un modello e verifica ogni riparazione.
+title: Step AI nei test
+description: Scrivi gli step dei test come intenzioni con browser.act() e leggi dati tipizzati con browser.extract() usando @wdio/ai-service, poi riproducili da una cache versionata senza un modello e revisiona ogni riparazione.
 ---
 
-`@wdio/ai-service` consente a un test di descrivere un passaggio invece di programmarlo: `browser.act('Add a blue shirt to the cart')` chiede al tuo modello di eseguirlo, registra i comandi WebdriverIO che ha eseguito e li riproduce da un file di cache in ogni esecuzione successiva. Il modello viene richiamato solo quando la pagina è cambiata e un passaggio registrato non può più essere riparato senza di esso. Usalo per flussi il cui markup cambia spesso, oppure per far funzionare un test prima di conoscere i selettori. Usa i normali comandi WebdriverIO per tutto ciò che sai già come programmare.
+`@wdio/ai-service` permette a un test di descrivere uno step invece di programmarlo: `browser.act('Add a blue shirt to the cart')` chiede al tuo modello di eseguirlo, registra i comandi WebdriverIO che ha eseguito e li riproduce da un file di cache a ogni esecuzione successiva. Il modello viene chiamato di nuovo solo quando la pagina è cambiata e uno step registrato non può più essere riparato senza di esso. Usalo per flussi il cui markup cambia spesso, o per far funzionare un test prima di conoscere i selettori. Usa i normali comandi WebdriverIO per tutto ciò che sai già come programmare.
 
 ## Configurare il servizio
 
@@ -30,7 +30,7 @@ export const config: WebdriverIO.Config = {
 }
 ```
 
-`webSocketUrl: true` apre una sessione WebDriver BiDi. Il servizio funziona anche con WebDriver Classic, ma BiDi gli permette di verificare cosa ha fatto ogni passaggio e di leggere le risposte API della pagina. Consulta la pagina [AI Service](/docs/ai-service) per tutte le opzioni e i provider, inclusi i modelli locali tramite Ollama.
+`webSocketUrl: true` apre una sessione WebDriver BiDi. Il servizio funziona anche con WebDriver Classic, ma BiDi gli permette di verificare cosa ha fatto ogni step e di leggere le risposte API della pagina. Consulta la pagina [AI Service](/docs/ai-service) per tutte le opzioni e i provider, inclusi i modelli locali tramite Ollama.
 
 ## Scrivere un test
 
@@ -52,9 +52,9 @@ describe('cart', () => {
 })
 ```
 
-- `act` esegue il passaggio e non effettua mai asserzioni. Verifica il risultato con `expect`.
-- `extract` legge soltanto la pagina e convalida la risposta rispetto allo schema. Non viene mai memorizzato nella cache.
-- I segreti vanno nei segnaposto. Il modello vede `{{password}}`, mai il valore:
+- `act` esegue lo step e non effettua mai asserzioni. Verifica il risultato con `expect`.
+- `extract` si limita a leggere la pagina e convalida la risposta rispetto allo schema. Non viene mai messo in cache.
+- I segreti vanno nei placeholder. Il modello vede `{{password}}`, mai il valore:
 
 ```ts
 await browser.act('Log in as {{email}} with password {{password}}', {
@@ -68,9 +68,9 @@ await browser.act('Log in as {{email}} with password {{password}}', {
 await $('form#billing').act('Fill in a valid German address')
 ```
 
-## Registra una volta, riproduci senza un modello
+## Registra una volta, riproduci senza modello
 
-La prima esecuzione registra i passaggi di ogni chiamata `act` in `__act__/<spec file>.json` accanto alla spec:
+La prima esecuzione registra gli step di ogni chiamata `act` in `__act__/<spec file>.json` accanto alla spec:
 
 ```sh
 npx wdio run wdio.conf.ts --spec test/specs/cart.e2e.ts
@@ -82,15 +82,15 @@ Esegui il commit della directory `__act__`. Le esecuzioni successive riproducono
 | --- | --- |
 | `auto` (predefinito) | `write` in locale, `heal` quando `process.env.CI` è impostato |
 | `write` | registrare e aggiornare i file di cache |
-| `heal` | CI: riparare i passaggi non riusciti, scrivere le voci riparate in `<outputDir>/act-cache/` e lasciare invariati i file di cache |
-| `locked` | esecuzioni CI che non devono chiamare un modello: solo riproduzione, fallisce quando un passaggio non può essere riparato senza il modello |
+| `heal` | CI: riparare gli step che falliscono, scrivere le voci riparate in `<outputDir>/act-cache/` e lasciare intatti i file di cache |
+| `locked` | esecuzioni CI che non devono chiamare un modello: solo riproduzione, fallisce quando uno step non può essere riparato senza il modello |
 | `off` | interrogare sempre il modello |
 
 Esegui `npx wdio run wdio.conf.ts -s` per registrare di nuovo ogni chiamata `act`.
 
-## Verificare le riparazioni
+## Revisionare le riparazioni
 
-Quando un passaggio registrato fallisce, il servizio prova prima gli altri selettori registrati per l'elemento e poi il suo ruolo e nome accessibile. Solo se anche questo fallisce, il modello prosegue dal passaggio non riuscito. Ogni passaggio riprodotto o riparato deve fare ciò che faceva al momento della registrazione: inviare le stesse richieste, navigare verso la stessa pagina e modificare le stesse parti della pagina. Una riparazione su un pulsante simile ma sbagliato viene rifiutata.
+Quando uno step registrato fallisce, il servizio prova prima gli altri selettori che ha registrato per l'elemento e poi il suo ruolo e il suo nome accessibile. Solo se questo non funziona il modello riprende dallo step che fallisce. Ogni step riprodotto o riparato deve fare ciò che faceva al momento della registrazione: inviare le stesse richieste, navigare alla stessa pagina e modificare le stesse parti della pagina. Una riparazione su un pulsante simile ma sbagliato viene rifiutata.
 
 L'esecuzione termina con un riepilogo:
 
@@ -101,9 +101,9 @@ Healed:
     evidence: ./logs/ai/heals/cart.e2e.ts-cart-adds-a-shirt-1c71c48d
 ```
 
-La cartella delle evidenze contiene uno screenshot della pagina al momento del fallimento del passaggio, uno dopo ogni passaggio di riparazione e un video della riparazione nei browser che registrano uno screencast WebDriver BiDi (attualmente Firefox). Verifica la riparazione, quindi esegui il commit del file di cache aggiornato.
+La cartella delle evidenze contiene uno screenshot della pagina al momento del fallimento dello step, uno dopo ogni step di riparazione e un video della riparazione nei browser che registrano uno screencast WebDriver BiDi (attualmente Firefox). Revisiona la riparazione, quindi esegui il commit del file di cache aggiornato.
 
-## Trasformare i passaggi in codice normale
+## Trasformare gli step in codice normale
 
 Una volta che un flusso è stabile, sostituisci le sue chiamate `act` con i comandi registrati:
 
@@ -126,11 +126,11 @@ await $('role/button[name="Add to cart"]').click()
 | `[@wdio/ai-service] The "anthropic" provider needs "@langchain/anthropic". Install it with `npm install --save-dev @langchain/anthropic`.` | Installa il pacchetto del provider. |
 | `[@wdio/ai-service] No API key for "anthropic". Set ANTHROPIC_API_KEY or pass `apiKey` in the model config.` | Esporta la chiave nella shell o nel secret CI che esegue i test. |
 | `act("…") failed: no cached steps for "…" and the cache is locked` | Registra la chiamata in locale con `cache: 'write'` ed esegui il commit del file `__act__`. |
-| `act("…") failed: cached step 1 (…) ran, but the step no longer causes POST /api/cart → 2xx. The app may have changed behavior, not just markup.` | L'elemento è ancora presente ma fa qualcos'altro: si tratta di una regressione, non di una modifica del markup. Controlla l'applicazione. |
-| `act("…") failed: …` seguito da `Evidence: <folder>` | Il modello non è riuscito a completare l'istruzione. La cartella contiene ogni snapshot acquisito, gli eventi della console e di rete e i passaggi eseguiti. |
+| `act("…") failed: cached step 1 (…) ran, but the step no longer causes POST /api/cart → 2xx. The app may have changed behavior, not just markup.` | L'elemento è ancora presente ma fa qualcos'altro: si tratta di una regressione, non di una modifica al markup. Controlla l'applicazione. |
+| `act("…") failed: …` seguito da `Evidence: <folder>` | Il modello non è riuscito a completare l'istruzione. La cartella contiene ogni snapshot acquisito, gli eventi della console e di rete e gli step eseguiti. |
 
-## Passi successivi
+## Prossimi passi
 
-- [AI Service](/docs/ai-service): tutte le opzioni, il formato della cache, gli effetti dei passaggi e il workspace
-- [Selettori](/docs/selectors#role-selector): il selettore `role/` usato dai passaggi registrati
-- [WebdriverIO per agenti di programmazione](/docs/ai-agents): scrivi test insieme a un agente di programmazione
+- [AI Service](/docs/ai-service): tutte le opzioni, il formato della cache, gli effetti degli step e il workspace
+- [Selettori](/docs/selectors#role-selector): il selettore `role/` usato dagli step registrati
+- [WebdriverIO per Coding Agent](/docs/ai-agents): scrivi test insieme a un coding agent

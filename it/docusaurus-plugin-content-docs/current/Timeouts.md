@@ -4,9 +4,9 @@ title: Timeout
 description: "Configura i timeout della sessione WebDriver, i timeout waitfor di WebdriverIO e i timeout del framework di test per mantenere i test affidabili."
 ---
 
-Ogni comando in WebdriverIO è un'operazione asincrona. Viene inviata una richiesta al server Selenium (o a un servizio cloud come [Sauce Labs](https://saucelabs.com)), e la sua risposta contiene il risultato una volta che l'azione è stata completata o è fallita.
+Ogni comando in WebdriverIO è un'operazione asincrona. Una richiesta viene inviata al server Selenium (o a un servizio cloud come [Sauce Labs](https://saucelabs.com)), e la sua risposta contiene il risultato una volta che l'azione è stata completata o è fallita.
 
-Pertanto, il tempo è una componente cruciale nell'intero processo di test. Quando una determinata azione dipende dallo stato di un'altra azione, è necessario assicurarsi che vengano eseguite nell'ordine corretto. I timeout svolgono un ruolo importante nella gestione di questi problemi.
+Pertanto, il tempo è una componente cruciale dell'intero processo di test. Quando una determinata azione dipende dallo stato di un'altra azione, è necessario assicurarsi che vengano eseguite nell'ordine corretto. I timeout svolgono un ruolo importante nella gestione di questi problemi.
 
 <LiteYouTubeEmbed
     id="5oI37h4qxEw"
@@ -37,11 +37,11 @@ Puoi impostare questo timeout in questo modo:
 await browser.setTimeout({ 'pageLoad': 10000 })
 ```
 
-> `pageLoad` è il nome dei [timeout](https://www.w3.org/TR/webdriver/#set-timeouts) di WebDriver. WebdriverIO v10 accetta solo quella chiave.
+> `pageLoad` è il nome dei [timeout](https://www.w3.org/TR/webdriver/#set-timeouts) di WebDriver. WebdriverIO v10 accetta solo questa chiave.
 
 ### Timeout di attesa implicita della sessione
 
-Una sessione ha un timeout di attesa implicita associato. Questo specifica il tempo di attesa per la strategia implicita di localizzazione degli elementi quando si localizzano elementi usando i comandi [`findElement`](/docs/api/webdriver#findelement) o [`findElements`](/docs/api/webdriver#findelements) (rispettivamente [`$`](/docs/api/browser/$) o [`$$`](/docs/api/browser/$$), quando si esegue WebdriverIO con o senza il testrunner WDIO). Salvo diversa indicazione, è di 0 millisecondi.
+Una sessione ha un timeout di attesa implicita associato. Questo specifica il tempo di attesa per la strategia di localizzazione implicita degli elementi quando si localizzano elementi tramite i comandi [`findElement`](/docs/api/webdriver#findelement) o [`findElements`](/docs/api/webdriver#findelements) (rispettivamente [`$`](/docs/api/browser/$) o [`$$`](/docs/api/browser/$$), quando si esegue WebdriverIO con o senza il testrunner WDIO). Salvo diversa indicazione, è di 0 millisecondi.
 
 Puoi impostare questo timeout tramite:
 
@@ -53,7 +53,7 @@ await browser.setTimeout({ 'implicit': 5000 })
 
 ### Timeout `WaitFor*`
 
-WebdriverIO fornisce diversi comandi per attendere che gli elementi raggiungano un determinato stato (ad es. abilitato, visibile, esistente). Questi comandi accettano come argomenti un selettore e un numero di timeout, che determina per quanto tempo l'istanza deve attendere che l'elemento raggiunga lo stato. L'opzione `waitforTimeout` ti permette di impostare il timeout globale per tutti i comandi `waitFor*`, così non devi impostare lo stesso timeout più e più volte. _(Nota la `f` minuscola!)_
+WebdriverIO fornisce diversi comandi per attendere che gli elementi raggiungano un determinato stato (ad es. abilitato, visibile, esistente). Questi comandi accettano un argomento selettore e un numero di timeout, che determina per quanto tempo l'istanza deve attendere che l'elemento raggiunga lo stato. L'opzione `waitforTimeout` consente di impostare il timeout globale per tutti i comandi `waitFor*`, così non è necessario impostare lo stesso timeout più e più volte. _(Nota la `f` minuscola!)_
 
 ```js
 // wdio.conf.js
@@ -64,7 +64,7 @@ export const config = {
 }
 ```
 
-Nei tuoi test, ora puoi fare così:
+Nei tuoi test, ora puoi fare questo:
 
 ```js
 const myElem = await $('#myElem')
@@ -74,9 +74,33 @@ await myElem.waitForDisplayed()
 await myElem.waitForDisplayed({ timeout: 10000 })
 ```
 
+### Un elemento che la pagina ha rimosso
+
+Quando la pagina rimuove o renderizza di nuovo un elemento, WebdriverIO lo ritrova tramite il suo selettore e attende fino a `waitforTimeout`. Se è presente, il comando viene eseguito su di esso. In caso contrario, il comando fallisce con:
+
+- `message`: `Can't call <command> on element with selector "<selector>" because element wasn't found` (un elemento di `$$()`: `… "<selector>" at index <n> …`; un genitore rimosso: il messaggio riguarda il genitore)
+- `cause`: l'errore stale element reference del driver
+
+`waitUntil` e `waitForEnabled` falliscono con un proprio errore, che ha questo errore come `cause`. `isDisplayed` e `isExisting` dell'elemento rimosso non attendono: restituiscono `false`. Per un figlio di un genitore rimosso, attendono e falliscono con questo errore.
+
+```ts title="test/specs/removed.e2e.ts"
+import { $, browser, expect } from '@wdio/globals'
+
+describe('a removed element', () => {
+    it('gives the error of an element that was not found again', async () => {
+        await browser.url('https://webdriver.io')
+        const title = await $('h1')
+        await browser.execute(() => document.querySelectorAll('h1').forEach((h1) => h1.remove()))
+
+        const error = await title.getText().then(() => null, (err: Error) => err)
+        expect(error?.message).toContain('because element wasn\'t found')
+    })
+})
+```
+
 ## Timeout relativi al framework
 
-Il framework di test che stai usando con WebdriverIO deve gestire i timeout, soprattutto perché tutto è asincrono. Questo garantisce che il processo di test non si blocchi se qualcosa va storto.
+Il framework di test che utilizzi con WebdriverIO deve gestire i timeout, soprattutto perché tutto è asincrono. Ciò garantisce che il processo di test non si blocchi se qualcosa va storto.
 
 Per impostazione predefinita, il timeout è di 10 secondi, il che significa che un singolo test non dovrebbe durare più di così.
 
@@ -98,7 +122,7 @@ it('should login into the application', async () => {
 })
 ```
 
-In Cucumber, il timeout si applica a una singola definizione di step. Tuttavia, se vuoi aumentare il timeout perché il tuo test richiede più tempo del valore predefinito, devi impostarlo nelle opzioni del framework.
+In Cucumber, il timeout si applica a una singola step definition. Tuttavia, se vuoi aumentare il timeout perché il tuo test dura più del valore predefinito, devi impostarlo nelle opzioni del framework.
 
 <Tabs
   defaultValue="mocha"
@@ -154,3 +178,11 @@ export const config = {
 
 </TabItem>
 </Tabs>
+
+### Timeout di Mocha e gli hook di WebdriverIO
+
+Un test o un hook di Mocha può modificare il proprio timeout con `this.timeout(ms)`. Usa una `function`, non una arrow function, per ottenere `this`. WebdriverIO segue la modifica, anche `this.timeout(0)`, che disattiva il timeout. Con `mochaOpts.parallelMode`, si applica solo `mochaOpts.timeout`: `this.timeout()` in un test o in un hook genera un errore, e un timeout di una suite o di `it(...).timeout()` viene ignorato, con un avviso. Vedi [Test paralleli in un file spec](./ParallelTests.md#hooks-and-timeouts).
+
+Il timeout di un test include il tempo del suo hook `beforeTest`, poiché Mocha avvia il timer prima dell'hook. Con l'[opzione retry](./Retry.md#rerun-single-tests-in-jasmine-or-mocha) di WebdriverIO, tutti i tentativi di un test condividono un unico timeout.
+
+Quando un test o un hook va in timeout, WebdriverIO esegue `afterTest` (o `afterHook`) prima che Mocha avvii il test successivo, in modo che quell'hook non possa essere eseguito contemporaneamente al test successivo. Mocha attende questi hook fino a un ulteriore timeout del test.

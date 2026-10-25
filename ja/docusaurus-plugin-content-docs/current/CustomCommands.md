@@ -1,10 +1,10 @@
 ---
 id: customcommands
 title: カスタムコマンド
-description: "addCommand を使って独自のブラウザコマンドや要素コマンドを追加し、既存のコマンドを上書きし、TypeScript の型定義を拡張します。"
+description: "addCommand で独自のブラウザコマンドや要素コマンドを追加し、既存のコマンドを上書きし、TypeScript の型定義を拡張します。"
 ---
 
-独自のコマンドセットで `browser` インスタンスを拡張したい場合は、ブラウザメソッド `addCommand` を使用できます。コマンドは、スペックと同じように非同期で記述できます。
+`browser` インスタンスを独自のコマンドセットで拡張したい場合は、ブラウザメソッド `addCommand` を利用できます。コマンドはスペックと同じように非同期で記述できます。
 
 ## パラメータ
 
@@ -12,7 +12,7 @@ description: "addCommand を使って独自のブラウザコマンドや要素�
 
 <Option type="String">
 
-コマンドを定義する名前で、ブラウザまたは要素のスコープにアタッチされます。
+コマンドを定義する名前で、ブラウザまたは要素のスコープに追加されます。
 
 </Option>
 
@@ -20,25 +20,25 @@ description: "addCommand を使って独自のブラウザコマンドや要素�
 
 <Option type="Function">
 
-コマンドが呼び出されたときに実行される関数です。`this` スコープは、コマンドがブラウザ、要素、ブラウジングコンテキストのいずれにアタッチされるかに応じて、[`WebdriverIO.Browser`](/docs/api/browser)、[`WebdriverIO.Element`](/docs/api/element)、または `WebdriverIO.BrowsingContext` になります。
+コマンドが呼び出されたときに実行される関数です。`this` スコープは、コマンドがブラウザ、要素、ブラウジングコンテキストのいずれに追加されるかに応じて、[`WebdriverIO.Browser`](/docs/api/browser)、[`WebdriverIO.Element`](/docs/api/element)、または `WebdriverIO.BrowsingContext` になります。
 
 </Option>
 
 ### オプション
 
-カスタムコマンドの動作を変更する設定オプションのオブジェクト
+カスタムコマンドの動作を変更する設定オプションを持つオブジェクト
 
-#### ターゲットスコープ
+#### 対象スコープ
 
 <Option type="Boolean" default="false" name="attachToElement">
 
-コマンドをブラウザスコープと要素スコープのどちらにアタッチするかを決定するフラグです。`true` に設定すると、コマンドは要素コマンドになります。
+コマンドをブラウザスコープと要素スコープのどちらに追加するかを決めるフラグです。`true` に設定すると、コマンドは要素コマンドになります。
 
 </Option>
 
 <Option type="Boolean" default="false" name="attachToBrowsingContext">
 
-すべてのブラウジングコンテキスト、つまり WebDriver BiDi セッションにおいて `browser.url()`、`browser.newWindow()`、`browser.browsingContexts()`、`context.frame()` が返すタブ、ウィンドウ、フレームにコマンドをアタッチするためのフラグです。`attachToElement` と組み合わせることはできません。[ブラウジングコンテキスト](#browsing-contexts)を参照してください。
+コマンドをすべてのブラウジングコンテキストに追加するフラグです。ブラウジングコンテキストとは、WebDriver BiDi セッションにおいて `browser.url()`、`browser.newWindow()`、`browser.browsingContexts()`、`context.frame()` が返すタブ、ウィンドウ、フレームのことです。`attachToElement` と組み合わせることはできません。[ブラウジングコンテキスト](#browsing-contexts)を参照してください。
 
 </Option>
 
@@ -46,7 +46,7 @@ description: "addCommand を使って独自のブラウザコマンドや要素�
 
 <Option type="Boolean" default="false" name="disableElementImplicitWait">
 
-カスタムコマンドを呼び出す前に、要素が存在するまで暗黙的に待機するかどうかを決定するフラグです。
+カスタムコマンドを呼び出す前に、要素が存在するまで暗黙的に待機するかどうかを決めるフラグです。
 
 </Option>
 
@@ -65,7 +65,7 @@ browser.addCommand('getUrlAndTitle', async function (customVar) {
 })
 ```
 
-さらに、`attachToElement` を `true` に設定することで、独自のコマンドセットで要素インスタンスを拡張することもできます。この場合のスコープ（`this`）は [`WebdriverIO.Element`](/docs/api/element) オブジェクトです。
+さらに、`attachToElement` を `true` に設定することで、要素インスタンスを独自のコマンドセットで拡張することもできます。この場合のスコープ（`this`）は [`WebdriverIO.Element`](/docs/api/element) オブジェクトです。
 
 ```js
 browser.addCommand("waitAndClick", async function () {
@@ -85,9 +85,9 @@ browser.addCommand("waitAndClick", async function () {
 }, { attachToElement: true, disableElementImplicitWait: true })
 ```
 
-カスタムコマンドを使用すると、頻繁に使用する特定の一連のコマンドを1回の呼び出しにまとめることができます。カスタムコマンドはテストスイートのどの時点でも定義できますが、コマンドが最初に使用される*前に*定義されていることを確認してください。（`wdio.conf.js` の `before` フックは、コマンドを作成するのに適した場所の1つです。）
+カスタムコマンドを使うと、頻繁に使用する特定のコマンドシーケンスを1回の呼び出しにまとめることができます。カスタムコマンドはテストスイートのどの時点でも定義できますが、コマンドが最初に使用される*前に*定義されていることを確認してください。（`wdio.conf.js` の `before` フックは、カスタムコマンドを作成するのに適した場所の1つです。）
 
-定義すると、次のように使用できます：
+定義したら、次のように使用できます：
 
 ```js
 it('should use my custom command', async () => {
@@ -100,7 +100,7 @@ it('should use my custom command', async () => {
 })
 ```
 
-__注意:__ カスタムコマンドを `browser` スコープに登録した場合、そのコマンドは要素からはアクセスできません。同様に、コマンドを要素スコープに登録した場合、`browser` スコープからはアクセスできません：
+__注意：__ カスタムコマンドを `browser` スコープに登録した場合、そのコマンドは要素からはアクセスできません。同様に、コマンドを要素スコープに登録した場合、`browser` スコープからはアクセスできません：
 
 ```js
 browser.addCommand("myCustomBrowserCommand", () => { return 1 })
@@ -119,7 +119,7 @@ console.log(typeof browser.myCustomElementCommand2) // "undefined" を出力
 console.log(await elem3.myCustomElementCommand2('foobar')) // "2" を出力
 ```
 
-__注意:__ カスタムコマンドをチェーンする必要がある場合、コマンド名は `$` で終わる必要があります。
+__注意：__ カスタムコマンドをチェーンする必要がある場合は、コマンド名を `$` で終わらせる必要があります。
 
 ```js
 browser.addCommand("user$", (locator) => { return ele })
@@ -127,9 +127,9 @@ browser.addCommand("user$", (locator) => { return ele }, { attachToElement: true
 await browser.user$('foo').user$('bar').click()
 ```
 
-`browser` スコープに過剰な数のカスタムコマンドを詰め込まないように注意してください。
+`browser` スコープに過剰な数のカスタムコマンドを追加しないよう注意してください。
 
-カスタムロジックは[ページオブジェクト](pageobjects)で定義し、特定のページに紐付けることをお勧めします。
+カスタムロジックは [ページオブジェクト](pageobjects) で定義し、特定のページに紐付けることをお勧めします。
 
 ### ブラウジングコンテキスト
 
@@ -148,9 +148,9 @@ const frame = await page.frame('iframe')
 console.log(await frame.heading())
 ```
 
-このコマンドは、既に存在するコンテキストと、後から作成されるすべてのコンテキスト（別オリジンのフレームを含む）で使用できます。タブやウィンドウでのみ意味を持つコマンドは、`this.isFrame` をチェックできます。
+このコマンドは、既存のコンテキストと、後から作成されるすべてのコンテキスト（別オリジンのフレームを含む）で利用できます。タブやウィンドウでのみ意味を持つコマンドは、`this.isFrame` をチェックできます。
 
-ブラウジングコンテキスト自体に対して `addCommand` や `overwriteCommand` を呼び出すと例外がスローされます。コマンドはブラウザに登録してください。
+ブラウジングコンテキスト自体に対して `addCommand` や `overwriteCommand` を呼び出すとエラーがスローされます。コマンドはブラウザに登録してください。
 
 ### マルチリモート
 
@@ -162,7 +162,7 @@ console.log(await frame.heading())
 import { multiRemoteBrowser } from '@wdio/globals'
 
 multiRemoteBrowser.addCommand('getUrlAndTitle', async function (this: WebdriverIO.MultiRemoteBrowser, customVar: any) {
-    // `this` は以下を参照します:
+    // `this` が参照するもの:
     //      - browser の場合は MultiRemoteBrowser スコープ
     //      - インスタンスの場合は Browser スコープ
     return {
@@ -196,12 +196,12 @@ multiRemoteBrowser.getInstance('browserA').getUrlAndTitle()
 
 ## 型定義の拡張
 
-TypeScript を使用すると、WebdriverIO のインターフェースを簡単に拡張できます。次のようにカスタムコマンドに型を追加します：
+TypeScript を使えば、WebdriverIO のインターフェースを簡単に拡張できます。次のようにしてカスタムコマンドに型を追加します：
 
 1. 型定義ファイルを作成します（例：`./src/types/wdio.d.ts`）
-2. a. モジュール形式の型定義ファイル（型定義ファイル内で import/export と `declare global WebdriverIO` を使用）を使用する場合は、`tsconfig.json` の `include` プロパティにファイルパスを含めてください。
+2. a. モジュール形式の型定義ファイル（型定義ファイル内で import/export と `declare global WebdriverIO` を使用）を使う場合は、`tsconfig.json` の `include` プロパティにファイルパスを含めてください。
 
-   b. アンビエント形式の型定義ファイル（型定義ファイル内で import/export を使用せず、カスタムコマンドに `declare namespace WebdriverIO` を使用）を使用する場合は、`tsconfig.json` に `include` セクションが含まれて*いない*ことを確認してください。`include` セクションがあると、そこに記載されていないすべての型定義ファイルが TypeScript に認識されなくなります。
+   b. アンビエント形式の型定義ファイル（型定義ファイル内で import/export を使用せず、カスタムコマンドに `declare namespace WebdriverIO` を使用）を使う場合は、`tsconfig.json` に `include` セクションが*含まれていない*ことを確認してください。`include` セクションがあると、そこに記載されていないすべての型定義ファイルが TypeScript に認識されなくなります。
 
 <Tabs
   defaultValue="modules"
@@ -295,7 +295,7 @@ declare namespace WebdriverIO {
 
 ## サードパーティライブラリの統合
 
-Promise をサポートする外部ライブラリ（例：データベース呼び出しを行うもの）を使用する場合、それらを統合する良い方法は、特定の API メソッドをカスタムコマンドでラップすることです。
+Promise をサポートする外部ライブラリ（例：データベース呼び出しを行うもの）を使用する場合、特定の API メソッドをカスタムコマンドでラップするのが、それらを統合する良い方法です。
 
 Promise を返すと、WebdriverIO は Promise が解決されるまで次のコマンドに進まないようにします。Promise が拒否された場合、コマンドはエラーをスローします。
 
@@ -306,7 +306,7 @@ browser.addCommand('makeRequest', async (url) => {
 })
 ```
 
-あとは、WDIO のテストスペックで使用するだけです：
+あとは WDIO のテストスペックで使用するだけです：
 
 ```js
 it('execute external library in a sync way', async () => {
@@ -316,13 +316,13 @@ it('execute external library in a sync way', async () => {
 })
 ```
 
-**注意:** カスタムコマンドの結果は、返した Promise の結果になります。
+**注意：** カスタムコマンドの結果は、返した Promise の結果になります。
 
 ## コマンドの上書き
 
-`overwriteCommand` を使用して、ネイティブコマンドを上書きすることもできます。
+`overwriteCommand` を使って、ネイティブコマンドを上書きすることもできます。
 
-フレームワークの予測できない動作につながる可能性があるため、これは推奨されません！
+フレームワークの予測不能な動作につながる可能性があるため、これは推奨されません！
 
 全体的なアプローチは `addCommand` と似ていますが、唯一の違いは、コマンド関数の最初の引数が上書きしようとしている元の関数であることです。以下の例を参照してください。
 
@@ -343,7 +343,7 @@ browser.overwriteCommand('pause', async function (this, originalPauseFunction, m
     return ms
 })
 
-// その後、以前と同じように使用します
+// その後、これまで通り使用します
 console.log(`was sleeping for ${await browser.pause(1000)}`)
 ```
 
@@ -353,8 +353,8 @@ console.log(`was sleeping for ${await browser.pause(1000)}`)
 
 ```js
 /**
- * 要素がクリック可能でない場合、要素までスクロールを試みます。
- * 要素が表示されていない、またはクリック可能でない場合でも JS でクリックするには { force: true } を渡します。
+ * 要素がクリックできない場合は、要素までスクロールを試みます。
+ * 要素が表示されていない、またはクリックできない場合でも JS でクリックするには { force: true } を渡します。
  * `options?: ClickOptions` で元の関数の引数の型を維持できることを示します
  *
  * @param this of func - 元の関数が呼び出された要素
@@ -382,16 +382,16 @@ browser.overwriteCommand(
             }
         }
 
-        // js でクリック
+        // JS でクリック
         console.warn('WARN: Using force click for', this.selector)
         await browser.execute((el) => {
             el.click()
         }, this)
     },
-    { attachToElement: true }, // 要素にアタッチすることを忘れないでください
+    { attachToElement: true }, // 要素に追加するのを忘れないでください
 )
 
-// その後、以前と同じように使用します
+// その後、これまで通り使用します
 const elem = await $('body')
 await elem.click()
 
@@ -401,7 +401,7 @@ await elem.click({ force: true })
 
 ### ブラウジングコンテキストコマンドの上書き
 
-`attachToBrowsingContext` を `true` に設定すると、すべてのタブ、ウィンドウ、フレームの組み込みコマンドまたはカスタムコマンドを上書きできます。元のコマンドは、呼び出されたコンテキストにバインドされます：
+`attachToBrowsingContext` を `true` に設定すると、すべてのタブ、ウィンドウ、フレームの組み込みコマンドまたはカスタムコマンドを上書きできます。元のコマンドは、それが呼び出されたコンテキストにバインドされます：
 
 ```js
 browser.overwriteCommand('getTitle', async function (this, originalGetTitle) {
@@ -416,7 +416,7 @@ console.log(await frame.getTitle()) // "frame: ..."
 
 ## WebDriver コマンドの追加
 
-WebDriver プロトコルを使用していて、[`@wdio/protocols`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-protocols/src/protocols) のどのプロトコル定義にも定義されていない追加コマンドをサポートするプラットフォームでテストを実行する場合は、`addCommand` インターフェースを通じて手動で追加できます。`webdriver` パッケージは、これらの新しいエンドポイントを他のコマンドと同じ方法で登録できるコマンドラッパーを提供しており、同じパラメータチェックとエラー処理を備えています。この新しいエンドポイントを登録するには、コマンドラッパーをインポートし、次のように新しいコマンドを登録します：
+WebDriver プロトコルを使用していて、[`@wdio/protocols`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-protocols/src/protocols) のどのプロトコル定義にも定義されていない追加コマンドをサポートするプラットフォームでテストを実行する場合は、`addCommand` インターフェースを通じてそれらを手動で追加できます。`webdriver` パッケージは、これらの新しいエンドポイントを他のコマンドと同じ方法で登録できるコマンドラッパーを提供しており、同じパラメータチェックとエラー処理が提供されます。この新しいエンドポイントを登録するには、コマンドラッパーをインポートし、次のようにして新しいコマンドを登録します：
 
 ```js
 import { command } from 'webdriver'
@@ -438,7 +438,7 @@ browser.addCommand('myNewCommand', command('POST', '/session/:sessionId/foobar/:
 }))
 ```
 
-無効なパラメータでこのコマンドを呼び出すと、事前定義されたプロトコルコマンドと同じエラー処理が行われます。例：
+このコマンドを無効なパラメータで呼び出すと、事前定義されたプロトコルコマンドと同じエラー処理が行われます。例：
 
 ```js
 // 必須の url パラメータとペイロードなしでコマンドを呼び出す
@@ -459,10 +459,10 @@ await browser.myNewCommand()
  */
 ```
 
-コマンドを正しく呼び出すと（例：`browser.myNewCommand('foo', 'bar')`）、`{ foo: 'bar' }` のようなペイロードで、例えば `http://localhost:4444/session/7bae3c4c55c3bf82f54894ddc83c5f31/foobar/foo` に WebDriver リクエストが正しく送信されます。
+コマンドを正しく呼び出すと（例：`browser.myNewCommand('foo', 'bar')`）、`{ foo: 'bar' }` のようなペイロードで、例えば `http://localhost:4444/session/7bae3c4c55c3bf82f54894ddc83c5f31/foobar/foo` に対して WebDriver リクエストが正しく送信されます。
 
 :::note
-`:sessionId` url パラメータは、WebDriver セッションのセッション ID に自動的に置き換えられます。他の url パラメータも適用できますが、`variables` 内で定義する必要があります。
+`:sessionId` URL パラメータは、WebDriver セッションのセッション ID に自動的に置き換えられます。その他の URL パラメータも適用できますが、`variables` 内で定義する必要があります。
 :::
 
 プロトコルコマンドの定義方法の例については、[`@wdio/protocols`](https://github.com/webdriverio/webdriverio/tree/main/packages/wdio-protocols/src/protocols) パッケージを参照してください。

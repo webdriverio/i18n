@@ -1,7 +1,7 @@
 ---
 id: createlocalworkerprocess
 title: Creare un processo worker
-description: "Segui un diagramma di flusso che mostra come il local runner di WebdriverIO crea un processo worker per eseguire un file di specifica."
+description: "Segui un diagramma di flusso che mostra come il local runner di WebdriverIO crea un processo worker per eseguire un file spec."
 ---
 Questo diagramma di flusso spiega come viene creato un processo worker.
 

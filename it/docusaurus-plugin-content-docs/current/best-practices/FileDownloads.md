@@ -1,7 +1,7 @@
 ---
 id: file-download
 title: Download di file
-description: "Configura le directory di download per Chrome, Firefox ed Edge, attendi il completamento dei download e verifica i file scaricati su tutti i browser."
+description: "Configura le directory di download per Chrome, Firefox ed Edge, attendi il completamento dei download e verifica i file scaricati su diversi browser."
 ---
 
 Quando si automatizzano i download di file nei test web, è essenziale gestirli in modo coerente tra i diversi browser per garantire un'esecuzione affidabile dei test.
@@ -24,7 +24,7 @@ const downloadPath = path.join(__dirname, 'downloads');
 
 ## Strategie di attesa
 
-Non implementare strategie di attesa adeguate può portare a race condition o a test inaffidabili, specialmente per quanto riguarda il completamento dei download. Implementa strategie di attesa **esplicite** per attendere il completamento dei download dei file, garantendo la sincronizzazione tra i passaggi del test.
+Non implementare strategie di attesa adeguate può portare a race condition o a test inaffidabili, specialmente per il completamento dei download. Implementa strategie di attesa **esplicite** per attendere il completamento dei download dei file, garantendo la sincronizzazione tra i passaggi del test.
 
 ```javascript
 // 👎
@@ -83,9 +83,9 @@ https://github.com/webdriverio/example-recipes/blob/84dda93011234d0b2a34ee0cfb3c
 
 Per un esempio di implementazione, consulta la [WebdriverIO Test Download Behavior Recipe](https://github.com/webdriverio/example-recipes/tree/main/testDownloadBehavior).
 
-## Configurazione dei download per i browser Chromium
+## Configurazione dei download nei browser Chromium
 
-Per modificare il percorso di download per i browser __basati su Chromium__ (come Chrome, Edge, Brave, ecc.) si può utilizzare il metodo `getPuppeteer` di WebDriverIO per accedere ai Chrome DevTools.
+Per modificare il percorso di download per i browser __basati su Chromium__ (come Chrome, Edge, Brave, ecc.) puoi utilizzare il metodo `getPuppeteer` di WebDriverIO per accedere ai Chrome DevTools.
 
 ```javascript
 const page = await browser.getPuppeteer();
@@ -95,17 +95,17 @@ const cdpSession = await page.target().createCDPSession();
 await cdpSession.send('Browser.setDownloadBehavior', { behavior: 'allow', downloadPath: downloadPath });
 ```
 
-## Gestione di download multipli
+## Gestione di download multipli di file
 
-Quando si affrontano scenari che prevedono il download di più file, è essenziale implementare strategie per gestire e validare efficacemente ogni download. Considera i seguenti approcci:
+Quando si affrontano scenari che prevedono il download di più file, è essenziale implementare strategie per gestire e validare efficacemente ciascun download. Considera i seguenti approcci:
 
-__Gestione sequenziale dei download:__ Scarica i file uno alla volta e verifica ogni download prima di avviare il successivo, per garantire un'esecuzione ordinata e una validazione accurata.
+__Gestione sequenziale dei download:__ Scarica i file uno alla volta e verifica ciascun download prima di avviare il successivo, per garantire un'esecuzione ordinata e una validazione accurata.
 
-__Gestione parallela dei download:__ Utilizza tecniche di programmazione asincrona per avviare più download di file contemporaneamente, ottimizzando i tempi di esecuzione dei test. Implementa meccanismi di validazione robusti per verificare tutti i download al loro completamento.
+__Gestione parallela dei download:__ Utilizza tecniche di programmazione asincrona per avviare più download di file contemporaneamente, ottimizzando il tempo di esecuzione dei test. Implementa meccanismi di validazione robusti per verificare tutti i download al loro completamento.
 
 ## Considerazioni sulla compatibilità cross-browser
 
-Sebbene WebDriverIO fornisca un'interfaccia unificata per l'automazione dei browser, è essenziale tenere conto delle differenze nel comportamento e nelle capacità dei browser. Valuta di testare la funzionalità di download dei file su diversi browser per garantirne compatibilità e coerenza.
+Sebbene WebDriverIO fornisca un'interfaccia unificata per l'automazione dei browser, è essenziale tenere conto delle differenze nel comportamento e nelle funzionalità dei browser. Valuta di testare la funzionalità di download dei file su diversi browser per garantire compatibilità e coerenza.
 
 __Configurazioni specifiche per browser:__ Adatta le impostazioni del percorso di download e le strategie di attesa per tenere conto delle differenze di comportamento e preferenze tra Chrome, Firefox, Edge e gli altri browser supportati.
 

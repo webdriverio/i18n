@@ -4,31 +4,31 @@ title: Selettori
 description: "Scegli i selettori per individuare gli elementi nelle pagine web e nelle app mobili durante l'automazione con il server MCP di WebdriverIO."
 ---
 
-Il server MCP di WebdriverIO supporta diverse strategie di selezione per individuare gli elementi nelle pagine web e nelle app mobili.
+Il server MCP di WebdriverIO supporta molteplici strategie di selezione per individuare gli elementi nelle pagine web e nelle app mobili.
 
 :::info
 
-Per una documentazione completa sui selettori, comprese tutte le strategie di selezione di WebdriverIO, consulta la guida principale [Selettori](/docs/selectors). Questa pagina si concentra sui selettori comunemente utilizzati con il server MCP.
+Per una documentazione completa sui selettori, incluse tutte le strategie di selezione di WebdriverIO, consulta la guida principale [Selettori](/docs/selectors). Questa pagina si concentra sui selettori comunemente utilizzati con il server MCP.
 
 :::
 
 ## Selettori Web
 
-Per l'automazione del browser, il server MCP supporta tutti i selettori standard di WebdriverIO. I più utilizzati includono:
+Per l'automazione del browser, il server MCP supporta tutti i selettori standard di WebdriverIO. I più comunemente utilizzati includono:
 
-| Selettore | Esempio                        | Descrizione                          |
-| --------- | ------------------------------ | ------------------------------------ |
-| CSS       | `#login-button`, `.submit-btn` | Selettori CSS standard               |
-| XPath     | `//button[@id='submit']`       | Espressioni XPath                    |
-| Text      | `button=Submit`, `a*=Click`    | Selettori di testo di WebdriverIO    |
-| ARIA      | `aria/Submit Button`           | Selettori per nome di accessibilità  |
-| Test ID   | `[data-testid="submit"]`       | Consigliati per i test               |
+| Selettore | Esempio                        | Descrizione                       |
+| --------- | ------------------------------ | --------------------------------- |
+| CSS       | `#login-button`, `.submit-btn` | Selettori CSS standard            |
+| XPath     | `//button[@id='submit']`       | Espressioni XPath                 |
+| Text      | `button=Submit`, `a*=Click`    | Selettori di testo di WebdriverIO |
+| ARIA      | `aria/Submit Button`           | Selettori per nome accessibile    |
+| Test ID   | `[data-testid="submit"]`       | Consigliato per i test            |
 
-Per esempi dettagliati e buone pratiche, consulta la documentazione sui [Selettori](/docs/selectors).
+Per esempi dettagliati e best practice, consulta la documentazione [Selettori](/docs/selectors).
 
 ## Selettori Mobile
 
-I selettori mobile funzionano sia su piattaforme iOS che Android tramite Appium.
+I selettori mobile funzionano sia con piattaforme iOS che Android tramite Appium.
 
 ### Accessibility ID (Consigliato)
 
@@ -44,10 +44,10 @@ Gli Accessibility ID sono il **selettore multipiattaforma più affidabile**. Fun
 ~usernameField
 ```
 
-:::tip Buona pratica
+:::tip Best Practice
 Preferisci sempre gli accessibility ID quando disponibili. Offrono:
 - Compatibilità multipiattaforma (iOS + Android)
-- Stabilità rispetto alle modifiche dell'interfaccia utente
+- Stabilità nonostante le modifiche all'interfaccia
 - Migliore manutenibilità dei test
 - Migliore accessibilità della tua app
 :::
@@ -145,21 +145,21 @@ Le Predicate String di iOS sono veloci e potenti per l'automazione iOS.
 
 **Operatori dei predicati:**
 
-| Operatore    | Descrizione                    |
-| ------------ | ------------------------------ |
-| `==`         | Uguale                         |
-| `!=`         | Diverso                        |
-| `CONTAINS`   | Contiene la sottostringa       |
-| `BEGINSWITH` | Inizia con                     |
-| `ENDSWITH`   | Termina con                    |
+| Operatore    | Descrizione                     |
+| ------------ | ------------------------------- |
+| `==`         | Uguale                          |
+| `!=`         | Diverso                         |
+| `CONTAINS`   | Contiene la sottostringa        |
+| `BEGINSWITH` | Inizia con                      |
+| `ENDSWITH`   | Termina con                     |
 | `LIKE`       | Corrispondenza con caratteri jolly |
-| `MATCHES`    | Corrispondenza con regex       |
-| `AND`        | AND logico                     |
-| `OR`         | OR logico                      |
+| `MATCHES`    | Corrispondenza con regex        |
+| `AND`        | AND logico                      |
+| `OR`         | OR logico                       |
 
 #### Class Chain
 
-Le Class Chain di iOS consentono di individuare gli elementi in modo gerarchico con buone prestazioni.
+Le Class Chain di iOS consentono di individuare elementi in modo gerarchico con buone prestazioni.
 
 ```text
 # Figlio diretto
@@ -171,7 +171,7 @@ Le Class Chain di iOS consentono di individuare gli elementi in modo gerarchico 
 # Per indice
 -ios class chain:**/XCUIElementTypeCell[3]
 
-# Combinato con un predicato
+# Combinato con predicato
 -ios class chain:**/XCUIElementTypeButton[`name == "submit" AND visible == 1`]
 
 # Gerarchico
@@ -201,7 +201,7 @@ XPath funziona su iOS ma è più lento delle predicate string.
 
 ## Strategia di selezione multipiattaforma
 
-Quando scrivi test che devono funzionare sia su iOS che su Android, utilizza questo ordine di priorità:
+Quando scrivi test che devono funzionare sia su iOS che su Android, usa questo ordine di priorità:
 
 ### 1. Accessibility ID (Migliore)
 
@@ -210,9 +210,9 @@ Quando scrivi test che devono funzionare sia su iOS che su Android, utilizza que
 ~loginButton
 ```
 
-### 2. Specifico per piattaforma con logica condizionale
+### 2. Specifici per piattaforma con logica condizionale
 
-Quando gli accessibility ID non sono disponibili, utilizza selettori specifici per la piattaforma:
+Quando gli accessibility ID non sono disponibili, usa selettori specifici per piattaforma:
 
 **Android:**
 ```text
@@ -248,11 +248,11 @@ XPath funziona su entrambe le piattaforme ma con tipi di elementi diversi:
 | `android.widget.EditText`     | Campo di testo           |
 | `android.widget.TextView`     | Etichetta di testo       |
 | `android.widget.ImageView`    | Immagine                 |
-| `android.widget.ImageButton`  | Pulsante con immagine    |
+| `android.widget.ImageButton`  | Pulsante immagine        |
 | `android.widget.CheckBox`     | Casella di controllo     |
 | `android.widget.RadioButton`  | Pulsante di opzione      |
 | `android.widget.Switch`       | Interruttore             |
-| `android.widget.Spinner`      | Menu a tendina           |
+| `android.widget.Spinner`      | Menu a discesa           |
 | `android.widget.ListView`     | Vista elenco             |
 | `android.widget.RecyclerView` | Recycler view            |
 | `android.widget.ScrollView`   | Contenitore scorrevole   |
@@ -274,7 +274,7 @@ XPath funziona su entrambe le piattaforme ma con tipi di elementi diversi:
 | `XCUIElementTypeCollectionView`  | Collection view       |
 | `XCUIElementTypeScrollView`      | Vista scorrevole      |
 
-## Buone pratiche
+## Best Practice
 
 ### Da fare
 
@@ -284,7 +284,7 @@ XPath funziona su entrambe le piattaforme ma con tipi di elementi diversi:
 - **Preferisci le predicate string** rispetto a XPath su iOS
 - **Mantieni i selettori semplici** e specifici
 
-### Da non fare
+### Da evitare
 
 - **Evita espressioni XPath lunghe** - sono lente e fragili
 - **Non fare affidamento sugli indici** per elenchi dinamici
@@ -331,13 +331,13 @@ android=new UiSelector().text("Submit")
 
 ### Utilizzo di `get_elements`
 
-Lo strumento `get_elements` del server MCP restituisce diverse strategie di selezione per ogni elemento:
+Lo strumento `get_elements` del server MCP restituisce molteplici strategie di selezione per ciascun elemento:
 
 ```text
 Ask: "Get all visible elements on the screen"
 ```
 
-Questo restituisce gli elementi con selettori pre-generati che puoi utilizzare direttamente.
+Questo restituisce gli elementi con selettori pre-generati che puoi usare direttamente.
 
 #### Opzioni avanzate
 
@@ -350,7 +350,7 @@ Get visible elements with elementType "visual"
 # Ottieni gli elementi con le loro coordinate per il debug del layout
 Get visible elements with includeBounds enabled
 
-# Ottieni i 20 elementi successivi (paginazione)
+# Ottieni i successivi 20 elementi (paginazione)
 Get visible elements with limit 20 and offset 20
 
 # Includi i contenitori di layout per il debug

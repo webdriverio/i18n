@@ -1,10 +1,10 @@
 ---
 id: browser-logs
 title: Log del Browser
-description: "Cattura i log della console del browser durante un test con gli eventi di log di WebDriver Bidi ed esegui asserzioni sui messaggi raccolti."
+description: "Cattura i log della console del browser durante un test con gli eventi di log di WebDriver Bidi e verifica i messaggi raccolti."
 ---
 
-Durante l'esecuzione dei test, il browser potrebbe registrare informazioni importanti che ti interessano o su cui vuoi eseguire asserzioni.
+Durante l'esecuzione dei test, il browser potrebbe registrare informazioni importanti che ti interessano o su cui vuoi effettuare delle verifiche.
 
 <Tabs
 defaultValue="bidi"
@@ -16,7 +16,7 @@ values={[
 
 <TabItem value='bidi'>
 
-Quando si utilizza WebDriver Bidi, che è il modo predefinito con cui WebdriverIO automatizza il browser, puoi iscriverti agli eventi provenienti dal browser. Per gli eventi di log devi metterti in ascolto su `log.entryAdded'`, ad esempio:
+Quando utilizzi WebDriver Bidi, che è il modo predefinito con cui WebdriverIO automatizza il browser, puoi sottoscriverti agli eventi provenienti dal browser. Per gli eventi di log devi metterti in ascolto su `log.entryAdded'`, ad esempio:
 
 ```ts
 await browser.sessionSubscribe({ events: ['log.entryAdded'] })
@@ -27,7 +27,7 @@ await browser.sessionSubscribe({ events: ['log.entryAdded'] })
 browser.on('log.entryAdded', (entryAdded) => console.log('received %s', entryAdded))
 ```
 
-In un test puoi semplicemente inserire gli eventi di log in un array ed eseguire asserzioni su quell'array una volta completata la tua azione, ad esempio:
+In un test puoi semplicemente inserire gli eventi di log in un array e verificare quell'array una volta completata l'azione, ad esempio:
 
 ```ts
 import type { local } from 'webdriver'

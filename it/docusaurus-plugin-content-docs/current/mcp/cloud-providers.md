@@ -1,7 +1,7 @@
 ---
 id: cloud-providers
 title: Provider Cloud
-description: "Esegui sessioni browser e mobile di WebdriverIO MCP su device farm cloud, incluse credenziali, caricamento delle app, tunnel e reportistica."
+description: "Esegui sessioni browser e mobile di WebdriverIO MCP su device farm cloud, incluse credenziali, caricamento di app, tunnel e reportistica."
 ---
 
 Il server WebdriverIO MCP offre supporto nativo per l'esecuzione di sessioni di automazione browser e mobile su device farm cloud. Non sono richiesti driver locali, emulatori o simulatori. Sono supportati quattro provider:
@@ -9,7 +9,7 @@ Il server WebdriverIO MCP offre supporto nativo per l'esecuzione di sessioni di 
 - **BrowserStack** — [Automate](https://www.browserstack.com/automate) (browser) e [App Automate](https://www.browserstack.com/app-automate) (app mobile)
 - **Sauce Labs** — cloud di dispositivi reali e browser virtuali di [Sauce Labs](https://saucelabs.com)
 - **TestMu (precedentemente LambdaTest)** — cloud di dispositivi reali e browser di [TestMu](https://www.lambdatest.com)
-- **TestingBot** — cloud di dispositivi reali e grid di browser di [TestingBot](https://testingbot.com)
+- **TestingBot** — cloud di dispositivi reali e griglia di browser di [TestingBot](https://testingbot.com)
 
 Tutti e quattro i provider condividono lo stesso flusso di lavoro: imposta le credenziali, carica facoltativamente un'app mobile, quindi chiama `start_session` con il nome del provider. Le etichette di reportistica, la configurazione del tunnel e il ciclo di vita delle app mobile sono identici tra i provider.
 
@@ -35,14 +35,14 @@ export TESTINGBOT_KEY="your_key"
 export TESTINGBOT_SECRET="your_secret"
 ```
 
-| Provider     | Variabile Username      | Variabile Access Key      | Dove trovarla                                                          |
-| ------------ | ----------------------- | ------------------------- | ---------------------------------------------------------------------- |
+| Provider     | Variabile Username      | Variabile Access Key      | Dove trovarla                                                      |
+| ------------ | ----------------------- | ------------------------- | ------------------------------------------------------------------ |
 | BrowserStack | `BROWSERSTACK_USERNAME` | `BROWSERSTACK_ACCESS_KEY` | [Impostazioni account](https://www.browserstack.com/accounts/settings) |
-| Sauce Labs   | `SAUCE_USERNAME`        | `SAUCE_ACCESS_KEY`        | [Impostazioni utente](https://app.saucelabs.com/user-settings)         |
+| Sauce Labs   | `SAUCE_USERNAME`        | `SAUCE_ACCESS_KEY`        | [Impostazioni utente](https://app.saucelabs.com/user-settings)           |
 | TestMu       | `TESTMU_USERNAME`       | `TESTMU_ACCESS_KEY`       | [Impostazioni account](https://accounts.lambdatest.com/detail/profile) |
 | TestingBot   | `TESTINGBOT_KEY`        | `TESTINGBOT_SECRET`       | [Impostazioni account](https://testingbot.com/membership)              |
 
-## Automazione browser
+## Automazione Browser
 
 Esegui una sessione browser su qualsiasi provider cloud impostando `provider` in `start_session`:
 
@@ -87,7 +87,7 @@ start_session({
 })
 ```
 
-Tutti i provider supportano `browser`: `"chrome"`, `"firefox"`, `"edge"`, `"safari"`. Se ometti `os` / `osVersion`, il provider utilizza valori predefiniti ragionevoli (tipicamente l'ultima versione di Linux per le sessioni browser).
+Tutti i provider supportano `browser`: `"chrome"`, `"firefox"`, `"edge"`, `"safari"`. Se ometti `os` / `osVersion`, il provider utilizza valori predefiniti ragionevoli (in genere l'ultima versione di Linux per le sessioni browser).
 
 ### Regioni di Sauce Labs
 
@@ -104,7 +104,7 @@ start_session({
 
 Valori supportati: `"us-west-1"`, `"eu-central-1"` (predefinito), `"apac-southeast-1"`.
 
-## Automazione di app mobile
+## Automazione di App Mobile
 
 Il flusso di lavoro mobile prevede tre passaggi, identici per tutti i provider:
 
@@ -123,7 +123,7 @@ Ciascuno restituisce un riferimento all'app che utilizzerai in `start_session`:
 - TestMu: `lt://abc123...`
 - TestingBot: `https://api.testingbot.com/v1/storage/<app_url>`
 
-Puoi facoltativamente impostare un `customId` per avere riferimenti stabili tra i vari caricamenti:
+Puoi facoltativamente impostare un `customId` per avere riferimenti stabili tra i caricamenti:
 
 ```js
 upload_app({ provider: "saucelabs", path: "/path/to/app.ipa", customId: "MyApp-v2.1" })
@@ -188,7 +188,7 @@ start_session({
 })
 ```
 
-## Tunnel locale
+## Tunnel Locale
 
 Tutti e tre i provider supportano un tunnel locale, in modo che le sessioni cloud possano raggiungere i server sulla tua macchina (localhost, ambienti di staging, servizi interni).
 
@@ -234,7 +234,7 @@ start_session({
 
 ### Configurazione manuale del tunnel
 
-Se preferisci eseguire il tunnel manualmente, leggi le istruzioni di configurazione dalla risorsa MCP relativa al tuo provider e alla tua piattaforma. Ad esempio:
+Se preferisci eseguire il tunnel manualmente, leggi le istruzioni di configurazione dalla risorsa MCP per il tuo provider e la tua piattaforma. Ad esempio:
 
 ```text
 // Leggi le istruzioni di configurazione (dal tuo client AI)
@@ -264,10 +264,10 @@ start_session({
 Le sessioni compaiono nella dashboard del provider sotto il progetto e la build specificati:
 - BrowserStack: [Dashboard Automate](https://automate.browserstack.com)
 - Sauce Labs: [Risultati dei test](https://app.saucelabs.com/dashboard/builds)
-- TestMu: [Dashboard di automazione](https://automation.lambdatest.com)
+- TestMu: [Dashboard Automation](https://automation.lambdatest.com)
 - TestingBot: [Risultati dei test](https://testingbot.com/members)
 
-## Note specifiche per provider
+## Note Specifiche per Provider
 
 ### BrowserStack
 
@@ -277,7 +277,7 @@ Le sessioni compaiono nella dashboard del provider sotto il progetto e la build 
 ### Sauce Labs
 
 - **Le regioni sono importanti.** La regione predefinita è `eu-central-1`. Se il tuo account si trova in una regione diversa, imposta `region` su `start_session`, `list_apps` e `upload_app` in modo che corrisponda.
-- Le sessioni mobile supportano `automationName` (`"XCUITest"` o `"UiAutomator2"`); i valori predefiniti sono adeguati per ciascuna piattaforma.
+- Le sessioni mobile supportano `automationName` (`"XCUITest"` o `"UiAutomator2"`); i valori predefiniti sono appropriati per ciascuna piattaforma.
 - Il tunnel Sauce Connect è gestito automaticamente tramite il pacchetto npm `saucelabs`. Non è necessario alcun binario esterno per `tunnel: true`.
 
 ### TestMu
@@ -294,4 +294,4 @@ Le sessioni compaiono nella dashboard del provider sotto il progetto e la build 
 - Le credenziali utilizzano `TESTINGBOT_KEY` e `TESTINGBOT_SECRET` (non una coppia username/access-key come gli altri provider).
 - Il tunnel è gestito automaticamente tramite il pacchetto npm `testingbot-tunnel-launcher` (richiede Java 11+).
 - Nessun parametro di regione: l'hub di TestingBot è globale.
-- La modalità browser/emulatore mobile è supportata: imposta `platform: "android"` o `"ios"` con un nome di `browser` (ad es. `"chrome"`) invece di `app`.
+- È supportata la modalità browser/emulatore mobile: imposta `platform: "android"` o `"ios"` con un nome di `browser` (ad es. `"chrome"`) invece di `app`.

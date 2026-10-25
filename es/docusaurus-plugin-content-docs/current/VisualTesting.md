@@ -1,7 +1,7 @@
 ---
 id: visual-testing
-title: Pruebas visuales
-description: "Compara capturas de pantalla de pantallas, elementos o páginas completas con imágenes de referencia mediante @wdio/visual-service, incluyendo la instalación y el uso."
+title: Pruebas Visuales
+description: "Compara capturas de pantalla de pantallas, elementos o páginas completas con imágenes de referencia usando @wdio/visual-service, incluyendo instalación y uso."
 ---
 
 import Tabs from '@theme/Tabs';
@@ -9,58 +9,58 @@ import TabItem from '@theme/TabItem';
 
 ## ¿Qué puede hacer?
 
-WebdriverIO proporciona comparaciones de imágenes de pantallas, elementos o páginas completas para
+WebdriverIO proporciona comparaciones de imágenes en pantallas, elementos o páginas completas para
 
 -   🖥️ Navegadores de escritorio (Chrome / Firefox / Safari / Microsoft Edge)
--   📱 Navegadores móviles / de tablet (Chrome en emuladores de Android / Safari en simuladores de iOS / simuladores / dispositivos reales) a través de Appium
--   📱 Aplicaciones nativas (emuladores de Android / simuladores de iOS / dispositivos reales) a través de Appium (🌟 **NUEVO** 🌟)
--   📳 Aplicaciones híbridas a través de Appium
+-   📱 Navegadores móviles / tabletas (Chrome en emuladores de Android / Safari en simuladores de iOS / simuladores / dispositivos reales) mediante Appium
+-   📱 Aplicaciones nativas (emuladores de Android / simuladores de iOS / dispositivos reales) mediante Appium (🌟 **NUEVO** 🌟)
+-   📳 Aplicaciones híbridas mediante Appium
 
-mediante [`@wdio/visual-service`](https://www.npmjs.com/package/@wdio/visual-service), que es un servicio ligero de WebdriverIO.
+a través de [`@wdio/visual-service`](https://www.npmjs.com/package/@wdio/visual-service), que es un servicio ligero de WebdriverIO.
 
 Esto te permite:
 
--   guardar o comparar **pantallas/elementos/páginas completas** con una imagen de referencia (baseline)
--   **crear automáticamente una baseline** cuando no existe ninguna
--   **ocultar regiones personalizadas** e incluso **excluir automáticamente** la barra de estado y/o las barras de herramientas (solo en móviles) durante una comparación
+-   guardar o comparar capturas de **pantallas/elementos/páginas completas** con una imagen de referencia (baseline)
+-   **crear automáticamente una imagen de referencia** cuando no existe ninguna
+-   **ocultar regiones personalizadas** e incluso **excluir automáticamente** la barra de estado y/o las barras de herramientas (solo móvil) durante una comparación
 -   aumentar las dimensiones de las capturas de pantalla de elementos
 -   **ocultar texto** durante la comparación de sitios web para:
-    -   **mejorar la estabilidad** y evitar la inestabilidad en el renderizado de fuentes
-    -   centrarte únicamente en el **diseño (layout)** de un sitio web
--   usar **diferentes métodos de comparación** y un conjunto de **matchers adicionales** para obtener pruebas más legibles
--   verificar cómo tu sitio web **admite la navegación con la tecla Tab de tu teclado)**, consulta también [Navegar con Tab por un sitio web](#tabbing-through-a-website)
+    -   **mejorar la estabilidad** y evitar inestabilidad en el renderizado de fuentes
+    -   centrarse solo en el **diseño** de un sitio web
+-   usar **diferentes métodos de comparación** y un conjunto de **matchers adicionales** para pruebas más legibles
+-   verificar cómo tu sitio web **soporta la navegación con la tecla tabulador de tu teclado)**, consulta también [Navegar con el tabulador por un sitio web](#tabbing-through-a-website)
 -   y mucho más, consulta las opciones del [servicio](./visual-testing/service-options) y de los [métodos](./visual-testing/method-options)
 
-El servicio es un módulo ligero para obtener los datos y las capturas de pantalla necesarios para todos los navegadores/dispositivos. La potencia de comparación proviene de [Pixelmatch](https://github.com/mapbox/pixelmatch), una biblioteca de comparación perceptual de imágenes rápida y precisa. Desde la v11, mide las diferencias de color en el espacio de color OKLab con la distancia HyAB (pixelmatch 8), que se acerca más a cómo las personas perciben los colores. Las imágenes se procesan con [fast-png](https://github.com/image-js/fast-png), un códec PNG sin dependencias nativas.
+El servicio es un módulo ligero para obtener los datos y capturas de pantalla necesarios para todos los navegadores/dispositivos. La potencia de comparación proviene de [Pixelmatch](https://github.com/mapbox/pixelmatch), una biblioteca de comparación perceptual de imágenes rápida y precisa. Desde la v11, mide las diferencias de color en el espacio de color OKLab con la distancia HyAB (pixelmatch 8), que se acerca más a cómo las personas perciben los colores. Las imágenes se procesan con [fast-png](https://github.com/image-js/fast-png), un códec PNG sin dependencias nativas.
 
 :::info NOTA Para aplicaciones nativas/híbridas
-Los métodos `saveScreen`, `saveElement`, `checkScreen`, `checkElement` y los matchers `toMatchScreenSnapshot` y `toMatchElementSnapshot` se pueden usar para aplicaciones/contextos nativos.
+Los métodos `saveScreen`, `saveElement`, `checkScreen`, `checkElement` y los matchers `toMatchScreenSnapshot` y `toMatchElementSnapshot` pueden usarse para aplicaciones/contextos nativos.
 
-Usa la propiedad `isHybridApp:true` en la configuración de tu servicio cuando quieras usarlo para aplicaciones híbridas.
+Usa la propiedad `isHybridApp:true` en la configuración del servicio cuando quieras usarlo para aplicaciones híbridas.
 :::
 
-:::caution ¿Actualizas desde la v10?
+:::caution ¿Actualizando desde la v10?
 
-`@wdio/visual-service` **v11** solo es compatible con **WebdriverIO v10** (y Node.js 22.19 o posterior). Con WebdriverIO v9, quédate en `@wdio/visual-service@10`.
+`@wdio/visual-service` **v11** solo es compatible con **WebdriverIO v10** (y Node.js 22.19 o posterior). Con WebdriverIO v9, mantente en `@wdio/visual-service@10`.
 
-La v11 compara los colores con pixelmatch 8 (espacio de color OKLab, distancia HyAB) en lugar de YIQ. La escala del umbral y los presets `ignore*` no han cambiado, pero **los porcentajes de discrepancia pueden diferir ligeramente** de la v10 para las mismas imágenes. No es necesario cambiar el código de tus pruebas. Si una comprobación depende de un porcentaje de discrepancia exacto o de una tolerancia muy ajustada, vuelve a revisarla después de la actualización.
+La v11 compara colores con pixelmatch 8 (espacio de color OKLab, distancia HyAB) en lugar de YIQ. La escala del umbral y los preajustes `ignore*` no han cambiado, pero **los porcentajes de discrepancia pueden diferir un poco** de la v10 para las mismas imágenes. Tu código de pruebas no necesita cambios. Si una comprobación depende de un porcentaje de discrepancia exacto o de una tolerancia ajustada, revísala de nuevo después de la actualización.
 
-Algunas correcciones de la v11 también pueden cambiar una baseline una única vez:
+Algunas correcciones en la v11 también pueden cambiar una imagen de referencia una vez:
 
--   **Capturas de pantalla de elementos grandes en iOS:** para un elemento que no está completamente dentro del viewport, la imagen tenía el tamaño del elemento completo, pero la parte fuera del viewport aparecía en negro ([appium/appium#22939](https://github.com/appium/appium/issues/22939)). Ahora la imagen solo contiene la parte visible del elemento, como en Android.
--   **Capturas de pantalla de elementos con `biDiOrigin: 'viewport'`:** en una sesión de WebDriver BiDi, la captura ahora recorta el propio elemento, también cuando la página tiene scroll.
--   **Restauración del scroll:** las comprobaciones de elementos (con `autoElementScroll`) y las comprobaciones de página completa ahora devuelven el scroll de la página a donde estaba. Una comprobación del viewport que se ejecute justo después puede producir una imagen diferente.
+-   **Capturas de pantalla de elementos grandes en iOS:** para un elemento que no está completamente dentro del viewport, la imagen tenía el tamaño del elemento completo, pero la parte fuera del viewport era negra ([appium/appium#22939](https://github.com/appium/appium/issues/22939)). Ahora la imagen solo contiene la parte visible del elemento, como en Android.
+-   **Capturas de pantalla de elementos con `biDiOrigin: 'viewport'`:** en una sesión WebDriver BiDi, la captura de pantalla ahora recorta el propio elemento, también cuando la página tiene desplazamiento.
+-   **Desplazamiento de vuelta:** las comprobaciones de elementos (con `autoElementScroll`) y las comprobaciones de página completa ahora desplazan la página de vuelta a donde estaba. Una comprobación del viewport que se ejecute justo después puede dar una imagen distinta.
 
 Consulta la [guía de migración a la v11](https://github.com/webdriverio/visual-testing/blob/main/docs/v11-migration.md) para ver todos los cambios.
 
 :::
 
-:::caution ¿Actualizas desde la v9 (o anterior)?
+:::caution ¿Actualizando desde la v9 (o anterior)?
 
-`@wdio/visual-service` **v10** cambió el motor de comparación de **ResembleJS** a **[Pixelmatch](https://github.com/mapbox/pixelmatch)**. Pixelmatch usa un modelo de color perceptual (YIQ) en lugar de RGB sin procesar, por lo que los porcentajes de discrepancia diferirán de la v9. Esto significa que:
+`@wdio/visual-service` **v10** cambió el motor de comparación de **ResembleJS** a **[Pixelmatch](https://github.com/mapbox/pixelmatch)**. Pixelmatch utiliza un modelo de color perceptual (YIQ) en lugar de RGB sin procesar, por lo que los porcentajes de discrepancia diferirán de la v9. Esto significa:
 
--   **No es necesario cambiar el código de tus pruebas.** Todos los nombres de métodos, nombres de opciones y matchers son idénticos.
--   **Es posible que tengas que actualizar tus imágenes de baseline.** Después de actualizar, ejecuta tu conjunto de pruebas y revisa las diferencias visuales. Puedes actualizar baselines individuales que fallen con `--update-visual-baseline`, o eliminar toda la carpeta de baselines y dejar que `autoSaveBaseline` la vuelva a crear desde cero. Consulta las [preguntas frecuentes](/docs/visual-testing/faq#my-visual-tests-fail-with-a-difference-how-can-i-update-my-baseline) para más detalles.
+-   **Tu código de pruebas no necesita cambios.** Todos los nombres de métodos, nombres de opciones y matchers son idénticos.
+-   **Puede que tengas que actualizar tus imágenes de referencia.** Después de actualizar, ejecuta tu suite de pruebas y revisa las diferencias visuales. Puedes actualizar imágenes de referencia individuales que fallen con `--update-visual-baseline`, o eliminar toda tu carpeta de imágenes de referencia y dejar que `autoSaveBaseline` la recree desde cero. Consulta las [Preguntas frecuentes](/docs/visual-testing/faq#my-visual-tests-fail-with-a-difference-how-can-i-update-my-baseline) para más detalles.
 
 :::
 
@@ -80,7 +80,7 @@ npm install --save-dev @wdio/visual-service@10
 
 ## Uso
 
-`@wdio/visual-service` se puede usar como un servicio normal. Puedes configurarlo en tu archivo de configuración de la siguiente manera:
+`@wdio/visual-service` puede usarse como un servicio normal. Puedes configurarlo en tu archivo de configuración de la siguiente manera:
 
 ```js
 import path from "node:path";
@@ -95,7 +95,7 @@ export const config = {
         [
             "visual",
             {
-                // Algunas opciones, consulta la documentación para ver más
+                // Algunas opciones, consulta la documentación para más
                 baselineFolder: path.join(process.cwd(), "tests", "baseline"),
                 formatImageName: "{tag}-{logName}-{width}x{height}",
                 screenshotPath: path.join(process.cwd(), "tmp"),
@@ -113,9 +113,9 @@ Puedes encontrar más opciones del servicio [aquí](/docs/visual-testing/service
 Una vez configurado en tu configuración de WebdriverIO, puedes empezar a añadir aserciones visuales a [tus pruebas](/docs/visual-testing/writing-tests).
 
 ### Capabilities
-Para usar el módulo de pruebas visuales, **no necesitas añadir ninguna opción adicional a tus capabilities**. Sin embargo, en algunos casos puede que quieras añadir metadatos adicionales a tus pruebas visuales, como un `logName`.
+Para usar el módulo de pruebas visuales, **no necesitas añadir ninguna opción adicional a tus capabilities**. Sin embargo, en algunos casos, puede que quieras añadir metadatos adicionales a tus pruebas visuales, como un `logName`.
 
-El `logName` te permite asignar un nombre personalizado a cada capability, que luego se puede incluir en los nombres de archivo de las imágenes. Esto es especialmente útil para distinguir las capturas de pantalla tomadas en diferentes navegadores, dispositivos o configuraciones.
+El `logName` te permite asignar un nombre personalizado a cada capability, que luego puede incluirse en los nombres de archivo de las imágenes. Esto es especialmente útil para distinguir capturas de pantalla tomadas en diferentes navegadores, dispositivos o configuraciones.
 
 Para habilitarlo, puedes definir `logName` en la sección `capabilities` y asegurarte de que la opción `formatImageName` del servicio de pruebas visuales lo referencie. Así es como puedes configurarlo:
 
@@ -146,7 +146,7 @@ export const config = {
         [
             "visual",
             {
-                // Algunas opciones, consulta la documentación para ver más
+                // Algunas opciones, consulta la documentación para más
                 baselineFolder: path.join(process.cwd(), "tests", "baseline"),
                 screenshotPath: path.join(process.cwd(), "tmp"),
                 // El formato siguiente usará el `logName` de las capabilities
@@ -166,13 +166,13 @@ export const config = {
 
 2. Nombres de imagen personalizados:
 
-    - La opción `formatImageName` integra el `logName` en los nombres de archivo de las capturas de pantalla. Por ejemplo, si el `tag` es homepage y la resolución es `1920x1080`, el nombre de archivo resultante podría ser así:
+    - La opción `formatImageName` integra el `logName` en los nombres de archivo de las capturas de pantalla. Por ejemplo, si el `tag` es homepage y la resolución es `1920x1080`, el nombre de archivo resultante podría verse así:
 
         `homepage-chrome-mac-15-1920x1080.png`
 
-3. Ventajas de los nombres personalizados:
+3. Beneficios de los nombres personalizados:
 
-    - Distinguir entre capturas de pantalla de diferentes navegadores o dispositivos resulta mucho más fácil, especialmente al gestionar baselines y depurar discrepancias.
+    - Distinguir entre capturas de pantalla de diferentes navegadores o dispositivos resulta mucho más fácil, especialmente al gestionar imágenes de referencia y depurar discrepancias.
 
 4. Nota sobre los valores predeterminados:
 
@@ -180,7 +180,7 @@ export const config = {
 
 ### WebdriverIO multi-remote
 
-También admitimos [multi-remote](https://webdriver.io/docs/multiremote/). Para que esto funcione correctamente, asegúrate de añadir `wdio-ics:options` a tus
+También soportamos [multi-remote](https://webdriver.io/docs/multiremote/). Para que esto funcione correctamente, asegúrate de añadir `wdio-ics:options` a tus
 capabilities como puedes ver a continuación. Esto garantizará que cada captura de pantalla tenga su propio nombre único.
 
 [Escribir tus pruebas](/docs/visual-testing/writing-tests) no será diferente en comparación con usar el [testrunner](https://webdriver.io/docs/testrunner)
@@ -219,7 +219,7 @@ export const config = {
 
 ### Ejecución programática
 
-Este es un ejemplo mínimo de cómo usar `@wdio/visual-service` mediante las opciones de `remote`:
+Aquí tienes un ejemplo mínimo de cómo usar `@wdio/visual-service` mediante opciones de `remote`:
 
 ```js
 import { remote } from "webdriverio";
@@ -250,16 +250,16 @@ await browser.checkFullPageScreen("examplePaged", {});
 await browser.deleteSession();
 ```
 
-### Navegar con Tab por un sitio web
+### Navegar con el tabulador por un sitio web
 
-Puedes comprobar si un sitio web es accesible usando la tecla <kbd>TAB</kbd> del teclado. Probar esta parte de la accesibilidad siempre ha sido un trabajo (manual) que consume mucho tiempo y bastante difícil de realizar mediante automatización.
+Puedes comprobar si un sitio web es accesible usando la tecla <kbd>TAB</kbd> del teclado. Probar esta parte de la accesibilidad siempre ha sido una tarea (manual) que consume mucho tiempo y bastante difícil de realizar mediante automatización.
 Con los métodos `saveTabbablePage` y `checkTabbablePage`, ahora puedes dibujar líneas y puntos en tu sitio web para verificar el orden de tabulación.
 
-Ten en cuenta que esto solo es útil para navegadores de escritorio y **NO\*\*** para dispositivos móviles. Todos los navegadores de escritorio admiten esta funcionalidad.
+Ten en cuenta que esto solo es útil para navegadores de escritorio y **NO\*\*** para dispositivos móviles. Todos los navegadores de escritorio soportan esta funcionalidad.
 
 :::note
 
-Este trabajo está inspirado en la entrada de blog de [Viv Richards](https://github.com/vivrichards600) sobre ["AUTOMATING PAGE TABABILITY (IS THAT A WORD?) WITH VISUAL TESTING"](https://vivrichards.co.uk/accessibility/automating-page-tab-flows-using-visual-testing-and-javascript).
+El trabajo está inspirado en la publicación del blog de [Viv Richards](https://github.com/vivrichards600) sobre ["AUTOMATING PAGE TABABILITY (IS THAT A WORD?) WITH VISUAL TESTING"](https://vivrichards.co.uk/accessibility/automating-page-tab-flows-using-visual-testing-and-javascript).
 
 La forma en que se seleccionan los elementos tabulables se basa en el módulo [tabbable](https://github.com/davidtheclark/tabbable). Si hay algún problema relacionado con la tabulación, consulta el [README.md](https://github.com/davidtheclark/tabbable/blob/master/README.md) y especialmente la sección [More ](https://github.com/davidtheclark/tabbable/blob/master/README.md#more-details)Details.
 
@@ -267,16 +267,16 @@ La forma en que se seleccionan los elementos tabulables se basa en el módulo [t
 
 #### Cómo funciona
 
-Ambos métodos crearán un elemento `canvas` en tu sitio web y dibujarán líneas y puntos para mostrarte adónde iría tu TAB si un usuario final lo usara. Después, crearán una captura de pantalla de la página completa para darte una buena visión general del flujo.
+Ambos métodos crearán un elemento `canvas` en tu sitio web y dibujarán líneas y puntos para mostrarte a dónde iría tu TAB si un usuario final lo usara. Después, crearán una captura de pantalla de página completa para darte una buena visión general del flujo.
 
 :::important
 
-**Usa `saveTabbablePage` solo cuando necesites crear una captura de pantalla y NO quieras compararla **con una imagen de **baseline**.\*\*\*\*
+**Usa `saveTabbablePage` solo cuando necesites crear una captura de pantalla y NO quieras compararla **con una imagen de **referencia**.\*\*\*\*
 
 :::
 
-Cuando quieras comparar el flujo de tabulación con una baseline, puedes usar el método `checkTabbablePage`. **NO** necesitas usar los dos métodos juntos. Si ya se ha creado una imagen de baseline, lo cual se puede hacer automáticamente proporcionando `autoSaveBaseline: true` al instanciar el servicio,
-`checkTabbablePage` primero creará la imagen _actual_ y luego la comparará con la baseline.
+Cuando quieras comparar el flujo de tabulación con una imagen de referencia, puedes usar el método `checkTabbablePage`. **NO** necesitas usar los dos métodos juntos. Si ya existe una imagen de referencia, lo cual puede hacerse automáticamente proporcionando `autoSaveBaseline: true` al instanciar el servicio,
+`checkTabbablePage` primero creará la imagen _actual_ y luego la comparará con la imagen de referencia.
 
 ##### Opciones
 
@@ -290,10 +290,10 @@ Este es un ejemplo de cómo funciona la tabulación en nuestro [sitio web de pru
 
 ### Actualizar automáticamente las instantáneas visuales fallidas
 
-Actualiza las imágenes de baseline desde la línea de comandos añadiendo el argumento `--update-visual-baseline`. Esto
+Actualiza las imágenes de referencia desde la línea de comandos añadiendo el argumento `--update-visual-baseline`. Esto
 
--   copiará automáticamente la captura de pantalla actual tomada y la colocará en la carpeta de baselines
--   si hay diferencias, hará que la prueba pase porque la baseline ha sido actualizada
+-   copiará automáticamente la captura de pantalla actual tomada y la colocará en la carpeta de imágenes de referencia
+-   si hay diferencias, dejará pasar la prueba porque la imagen de referencia se ha actualizado
 
 **Uso:**
 
@@ -301,7 +301,7 @@ Actualiza las imágenes de baseline desde la línea de comandos añadiendo el ar
 npm run test.local.desktop  --update-visual-baseline
 ```
 
-Al ejecutar los logs en modo info/debug, verás que se añaden los siguientes logs
+Al ejecutar con los logs en modo info/debug, verás que se añaden los siguientes logs
 
 ```logs
 [0-0] ..............
@@ -317,8 +317,8 @@ Al ejecutar los logs en modo info/debug, verás que se añaden los siguientes lo
 
 Este módulo incluye soporte para TypeScript, lo que te permite beneficiarte del autocompletado, la seguridad de tipos y una mejor experiencia de desarrollo al usar el servicio de pruebas visuales.
 
-### Paso 1: Añadir las definiciones de tipos
-Para asegurarte de que TypeScript reconozca los tipos del módulo, añade la siguiente entrada al campo types de tu tsconfig.json:
+### Paso 1: Añadir definiciones de tipos
+Para asegurarte de que TypeScript reconoce los tipos del módulo, añade la siguiente entrada al campo types de tu tsconfig.json:
 
 ```json
 {
@@ -361,13 +361,13 @@ export const config = {
 
 ### Versión 10 y superiores (actual)
 
-Para la versión 10 y superiores, este módulo no tiene dependencias de sistema adicionales más allá de los [requisitos generales del proyecto](/docs/gettingstarted#system-requirements). Usa [Pixelmatch](https://github.com/mapbox/pixelmatch) para la comparación perceptual de imágenes y [fast-png](https://github.com/image-js/fast-png) para la codificación/decodificación de imágenes. Ambos son JavaScript puro sin dependencias nativas.
+Para la versión 10 y superiores, este módulo no tiene dependencias del sistema adicionales más allá de los [requisitos generales del proyecto](/docs/gettingstarted#system-requirements). Utiliza [Pixelmatch](https://github.com/mapbox/pixelmatch) para la comparación perceptual de imágenes y [fast-png](https://github.com/image-js/fast-png) para la codificación/decodificación de imágenes. Ambas están escritas íntegramente en JavaScript, sin dependencias nativas.
 
-La versión 11 necesita WebdriverIO v10 y Node.js 22.19 o posterior, igual que WebdriverIO v10. La versión 10 funciona con WebdriverIO v9 (9.29.1 o posterior) y v10.
+La versión 11 necesita WebdriverIO v10 y Node.js 22.19 o posterior. La versión 10 funciona con WebdriverIO v9 (9.29.1 o posterior) y v10.
 
 ### Versiones 5 a 9 (heredadas)
 
-Las versiones 5 a 9 usaban [Jimp](https://github.com/jimp-dev/jimp), una biblioteca de procesamiento de imágenes para Node escrita completamente en JavaScript, sin dependencias nativas. No se requerían dependencias de sistema adicionales.
+Las versiones 5 a 9 usaban [Jimp](https://github.com/jimp-dev/jimp), una biblioteca de procesamiento de imágenes para Node escrita íntegramente en JavaScript, sin dependencias nativas. No se requerían dependencias del sistema adicionales.
 
 ### Versión 4 e inferiores
 
@@ -377,7 +377,7 @@ Para la versión 4 e inferiores, este módulo depende de [Canvas](https://github
 
 De forma predeterminada, los binarios para macOS, Linux y Windows se descargarán durante el `npm install` de tu proyecto. Si no tienes un sistema operativo o una arquitectura de procesador compatibles, el módulo se compilará en tu sistema. Esto requiere varias dependencias, incluidas Cairo y Pango.
 
-Para obtener información detallada sobre la instalación, consulta la [wiki de node-canvas](https://github.com/Automattic/node-canvas/wiki/_pages). A continuación se muestran instrucciones de instalación de una sola línea para los sistemas operativos más comunes. Ten en cuenta que `libgif/giflib`, `librsvg` y `libjpeg` son opcionales y solo son necesarios para el soporte de GIF, SVG y JPEG, respectivamente. Se requiere Cairo v1.10.0 o posterior.
+Para obtener información detallada sobre la instalación, consulta la [wiki de node-canvas](https://github.com/Automattic/node-canvas/wiki/_pages). A continuación se muestran instrucciones de instalación de una línea para sistemas operativos comunes. Ten en cuenta que `libgif/giflib`, `librsvg` y `libjpeg` son opcionales y solo se necesitan para el soporte de GIF, SVG y JPEG, respectivamente. Se requiere Cairo v1.10.0 o posterior.
 
 <Tabs
 defaultValue="osx"

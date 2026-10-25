@@ -4,7 +4,7 @@ title: Testrunner
 description: "Installa il testrunner WDIO da @wdio/cli e usa i suoi comandi config, run, install, repl e session per configurare ed eseguire le suite di test."
 ---
 
-Il testrunner di WebdriverIO esegue la tua suite di test a partire da un file di configurazione. Avvia un worker per ogni capability, collega il tuo framework, i servizi e i reporter, ed esegue gli spec in parallelo. Usalo per ogni progetto di test; usa la [modalità standalone](/docs/setuptypes) solo quando integri WebdriverIO nei tuoi strumenti.
+Il testrunner di WebdriverIO esegue la tua suite di test a partire da un file di configurazione. Avvia un worker per ogni capability, collega il tuo framework, i servizi e i reporter, ed esegue le spec in parallelo. Usalo per ogni progetto di test; usa la [modalità standalone](/docs/setuptypes) solo quando integri WebdriverIO nei tuoi strumenti.
 
 Il testrunner è incluso nel pacchetto `@wdio/cli`:
 
@@ -14,7 +14,7 @@ npm install --save-dev @wdio/cli
 
 `npx wdio` esegue la stessa CLI quando `@wdio/cli` non è ancora installato. npm installa il pacchetto senza scope [`wdio`](https://www.npmjs.com/package/wdio), e quel pacchetto avvia `@wdio/cli`.
 
-Per configurare un nuovo progetto, esegui la procedura guidata di configurazione. Pone alcune domande, installa i pacchetti e scrive un `wdio.conf.ts`:
+Per configurare un nuovo progetto, esegui la procedura guidata di configurazione. Pone alcune domande, installa i pacchetti e scrive un file `wdio.conf.ts`:
 
 ```sh
 npx wdio config
@@ -26,7 +26,7 @@ Poi esegui i tuoi test:
 npx wdio run wdio.conf.ts
 ```
 
-`run` è il comando predefinito, quindi `npx wdio wdio.conf.ts` fa la stessa cosa. Nei tuoi spec, importa la sessione da `@wdio/globals`:
+`run` è il comando predefinito, quindi `npx wdio wdio.conf.ts` fa la stessa cosa. Nelle tue spec, importa la sessione da `@wdio/globals`:
 
 ```ts title="test/specs/example.e2e.ts"
 import { browser, $, expect } from '@wdio/globals'
@@ -68,13 +68,13 @@ Ogni comando mostra le proprie opzioni con `--help`, ad esempio `npx wdio run --
 
 ### `wdio config`
 
-Il comando `config` esegue la procedura guidata di configurazione e crea un `wdio.conf.ts` (o `wdio.conf.js`) in base alle tue risposte.
+Il comando `config` esegue la procedura guidata di configurazione e crea un file `wdio.conf.ts` (o `wdio.conf.js`) in base alle tue risposte.
 
 ```sh
 npx wdio config
 ```
 
-Passa `--yes` per usare i valori predefiniti (Mocha, Chrome e page object) senza richieste. Ogni domanda della procedura guidata ha anche un flag, quindi puoi rispondere ad alcune o a tutte dalla riga di comando:
+Passa `--yes` per usare i valori predefiniti (Mocha, Chrome e page object) senza domande. Ogni domanda della procedura guidata ha anche un flag, quindi puoi rispondere ad alcune o a tutte direttamente dalla riga di comando:
 
 ```sh
 npx wdio config --yes --framework cucumber --no-typescript --reporters spec,junit
@@ -92,13 +92,13 @@ Opzioni:
 
 La procedura guidata installa i pacchetti con il package manager che la esegue: `pnpm wdio config` usa pnpm, `yarn wdio config` usa Yarn e `npx` usa npm.
 
-`npx wdio config --help` elenca i flag della procedura guidata e i valori che accettano. Un flag per una domanda che la procedura guidata non pone per la tua configurazione genera un errore, così come un valore che non viene offerto. Consulta [Rispondere alla procedura guidata con i flag](/docs/gettingstarted#answer-the-wizard-with-flags) per alcuni esempi.
+`npx wdio config --help` elenca i flag della procedura guidata e i valori che accettano. Un flag per una domanda che la procedura guidata non pone per la tua configurazione genera un errore, così come un valore che non offre. Consulta [Rispondere alla procedura guidata con i flag](/docs/gettingstarted#answer-the-wizard-with-flags) per alcuni esempi.
 
 ### `wdio run`
 
 > Questo è il comando predefinito per eseguire la tua configurazione.
 
-Il comando `run` carica il tuo file di configurazione ed esegue i tuoi test. Le opzioni della riga di comando sovrascrivono le opzioni corrispondenti nel file di configurazione.
+Il comando `run` carica il tuo file di configurazione ed esegue i tuoi test. Le opzioni da riga di comando sovrascrivono le opzioni corrispondenti nel file di configurazione.
 
 ```sh
 npx wdio run wdio.conf.ts --spec test/specs/login.e2e.ts
@@ -159,24 +159,24 @@ npx wdio run wdio.conf.ts --suite login
 # esegui il primo di quattro shard, ad es. in una matrice CI
 npx wdio run wdio.conf.ts --shard 1/4
 
-# esegui tutti i browser in modalità headless, o forza la modalità con interfaccia
+# esegui tutti i browser in modalità headless, o forza la modalità headed
 npx wdio run wdio.conf.ts --headless
 npx wdio run wdio.conf.ts --headless=false
 
 # imposta le opzioni del framework con la notazione a punti
 npx wdio run wdio.conf.ts --mochaOpts.timeout 60000
 
-# esegui uno scenario Cucumber tramite numero di riga
+# esegui uno scenario Cucumber per numero di riga
 npx wdio run wdio.conf.ts --spec ./features/login.feature:5
 
 # usa un tsconfig.json personalizzato
 npx wdio run wdio.conf.ts --tsConfigPath=./configs/bdd-tsconfig.json
 
-# metti in pausa i test falliti e browser.debug() in modo che un coding agent possa ispezionarli
+# metti in pausa i test falliti e browser.debug() così che un agente di programmazione possa ispezionarli
 npx wdio run wdio.conf.ts --debug=agent
 ```
 
-`--tsConfigPath` sovrascrive l'impostazione [`tsConfigPath`](/docs/configurationfile) della tua configurazione. Consulta [TypeScript](/docs/typescript) per sapere come WebdriverIO compila i tuoi spec con `tsx`.
+`--tsConfigPath` sovrascrive l'impostazione [`tsConfigPath`](/docs/configurationfile) della tua configurazione. Consulta [TypeScript](/docs/typescript) per sapere come WebdriverIO compila le tue spec con `tsx`.
 
 ### `wdio install`
 
@@ -214,7 +214,7 @@ qmate-service, robonut, qunit, roku, obsidian, null-driver
 
 ```
 spec, dot, junit, allure, sumologic, concise, json, reportportal, video,
-cucumberjs-json, mochawesome, timeline, html-nice, slack, teamcity, delta,
+cucumberjs-json, mochawesome, timeline, html, slack, teamcity, delta,
 testrail, light, jsonhtml
 ```
 
@@ -233,7 +233,7 @@ runner: local, browser
 
 ### `wdio repl`
 
-Il comando `repl` avvia una sessione WebDriver e apre un prompt interattivo in cui puoi eseguire comandi WebdriverIO. Usalo per provare selettori e comandi senza scrivere uno spec. Consulta [Interfaccia REPL](/docs/repl) per maggiori informazioni.
+Il comando `repl` avvia una sessione WebDriver e apre un prompt interattivo in cui puoi eseguire comandi WebdriverIO. Usalo per provare selettori e comandi senza scrivere una spec. Consulta [Interfaccia REPL](/docs/repl) per maggiori informazioni.
 
 Avvia un Chrome locale:
 
@@ -271,7 +271,7 @@ npx wdio repl --session default
 
 ### `wdio session`
 
-Il comando `session` controlla un browser, un'app mobile o un'app desktop dalla shell, un comando per ogni chiamata. È pensato per i coding agent: aprono una sessione, acquisiscono snapshot, cliccano e digitano, ed esportano ciò che hanno fatto come test. Consulta [wdio session](/docs/session) per il flusso di lavoro e [comandi di wdio session](/docs/session-commands) per ogni azione.
+Il comando `session` controlla un browser, un'app mobile o un'app desktop dalla shell, un comando per ogni chiamata. È pensato per gli agenti di programmazione: aprono una sessione, acquisiscono snapshot, cliccano e digitano, ed esportano ciò che hanno fatto come test. Consulta [wdio session](/docs/session) per il flusso di lavoro e [comandi di wdio session](/docs/session-commands) per ogni azione.
 
 ```sh
 npx wdio session --help
@@ -282,4 +282,4 @@ npx wdio session --help
 - [File di configurazione](/docs/configurationfile): tutte le opzioni di `wdio.conf.ts`
 - [Per iniziare](/docs/gettingstarted): configura un progetto con la procedura guidata
 - [Interfaccia REPL](/docs/repl): esegui il debug dei comandi in modo interattivo
-- [wdio session](/docs/session): controlla un browser dalla shell o da un agent
+- [wdio session](/docs/session): controlla un browser dalla shell o da un agente

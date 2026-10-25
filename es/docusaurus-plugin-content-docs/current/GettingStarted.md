@@ -4,14 +4,14 @@ title: Primeros pasos
 description: Crea un proyecto de WebdriverIO con npm init wdio@latest, ejecuta tu primera prueba y encuentra la siguiente guía para tu plataforma.
 ---
 
-Configura WebdriverIO en un proyecto existente o nuevo con un solo comando y luego ejecuta tu primera prueba. El asistente de configuración te pregunta qué quieres probar (web, móvil, escritorio o extensiones de VS Code), qué framework y reporters usar, e instala todo por ti.
+Configura WebdriverIO en un proyecto existente o nuevo con un solo comando y luego ejecuta tu primera prueba. El asistente de configuración te pregunta qué quieres probar (web, móvil, escritorio o extensiones de VS Code), qué framework y qué reporters usar, e instala todo por ti.
 
 :::info
-Esta es la documentación de WebdriverIO __v10__. ¿Todavía usas la v9? Consulta la [documentación de v9](https://v9.webdriver.io) o sigue la [guía de migración a v10](/docs/v10-migration).
+Esta es la documentación de WebdriverIO __v10__. ¿Todavía usas la v9? Consulta la [documentación de la v9](https://v9.webdriver.io) o sigue la [guía de migración a la v10](/docs/v10-migration).
 :::
 
 :::tip ¿Usas un agente de programación?
-Apúntalo a [`https://webdriver.io/llms.txt`](https://webdriver.io/llms.txt) o conecta el servidor MCP de la documentación en `https://webdriver.io/mcp`. Consulta [WebdriverIO para agentes de programación](/docs/ai-agents).
+Indícale [`https://webdriver.io/llms.txt`](https://webdriver.io/llms.txt) o conecta el servidor MCP de la documentación en `https://webdriver.io/mcp`. Consulta [WebdriverIO para agentes de programación](/docs/ai-agents).
 :::
 
 ## Iniciar una configuración de WebdriverIO
@@ -33,7 +33,7 @@ El [WebdriverIO Starter Toolkit](https://www.npmjs.com/package/create-wdio) aña
 npm init wdio@latest .
 ```
 
-o si quieres crear un proyecto nuevo:
+o, si quieres crear un proyecto nuevo:
 
 ```sh
 npm init wdio@latest ./path/to/new/project
@@ -46,7 +46,7 @@ npm init wdio@latest ./path/to/new/project
 yarn create wdio .
 ```
 
-o si quieres crear un proyecto nuevo:
+o, si quieres crear un proyecto nuevo:
 
 ```sh
 yarn create wdio ./path/to/new/project
@@ -59,7 +59,7 @@ yarn create wdio ./path/to/new/project
 pnpm create wdio@latest .
 ```
 
-o si quieres crear un proyecto nuevo:
+o, si quieres crear un proyecto nuevo:
 
 ```sh
 pnpm create wdio@latest ./path/to/new/project
@@ -72,7 +72,7 @@ pnpm create wdio@latest ./path/to/new/project
 bun create wdio@latest .
 ```
 
-o si quieres crear un proyecto nuevo:
+o, si quieres crear un proyecto nuevo:
 
 ```sh
 bun create wdio@latest ./path/to/new/project
@@ -128,7 +128,7 @@ bun create wdio@latest . --yes
 
 ### Responder al asistente con flags
 
-Cada pregunta del asistente tiene un flag de línea de comandos. Un flag responde a su pregunta y el asistente solo pregunta el resto. Junto con `--yes`, el asistente usa los valores predeterminados para el resto y nunca solicita nada, que es lo que necesita un agente de programación o un job de CI:
+Cada pregunta del asistente tiene un flag de línea de comandos. Un flag responde a su pregunta y el asistente solo pregunta el resto. Junto con `--yes`, el asistente usa los valores predeterminados para el resto y nunca muestra preguntas, que es lo que necesita un agente de programación o un job de CI:
 
 ```sh
 # Cucumber en JavaScript, con los reporters spec y JUnit
@@ -155,7 +155,7 @@ Los flags más comunes:
 | --- | --- |
 | `--runner` | `e2e` (predeterminado), `component`, `desktop`, `vscode`, `roku` |
 | `--framework` | `mocha` (predeterminado), `jasmine`, `cucumber`, `serenity-mocha`, `serenity-jasmine`, `serenity-cucumber` |
-| `--typescript` / `--no-typescript` | TypeScript es el predeterminado cuando el proyecto tiene un `tsconfig.json` |
+| `--typescript` / `--no-typescript` | TypeScript es el valor predeterminado cuando el proyecto tiene un `tsconfig.json` |
 | `--browsers` | Lista separada por comas de `chrome` (predeterminado), `firefox`, `safari`, `edge` |
 | `--mobile-environment` | `android`, `ios` |
 | `--backend` | `local` (predeterminado), `saucelabs`, `browserstack`, `experitest`, `grid`, `other` |
@@ -165,9 +165,9 @@ Los flags más comunes:
 | `--agent-support` / `--no-agent-support` | Escribe la sección de `AGENTS.md` y la skill `wdio-session` (activado por defecto) |
 | `--npm-install` / `--no-npm-install` | Instala las dependencias (activado por defecto) |
 
-`npm init wdio@latest -- --help` lista todos los flags, los valores que aceptan y la pregunta que responden. Los flags booleanos aceptan el prefijo `--no-`. Los mismos flags funcionan con `npx wdio config`.
+`npm init wdio@latest -- --help` lista todos los flags, los valores que aceptan y la pregunta que responden. Los flags booleanos admiten el prefijo `--no-`. Los mismos flags funcionan con `npx wdio config`.
 
-El asistente comprueba cada flag con respecto a tu configuración. Un valor desconocido, un flag para una pregunta que no haría o un valor que no ofrecería para tu configuración lo detienen con el código de salida 2 antes de escribir cualquier archivo:
+El asistente comprueba cada flag con respecto a tu configuración. Un valor desconocido, un flag para una pregunta que no haría o un valor que no ofrecería para tu configuración lo detienen con el código de salida 2 antes de escribir ningún archivo:
 
 ```
 Error: --preset does not apply to this setup. UI framework of your components (with --runner component).
@@ -213,7 +213,7 @@ Si quieres usar WebdriverIO como motor de automatización en [modo standalone](/
 https://github.com/webdriverio/example-recipes/blob/fc362f2f8dd823d294b9bb5f92bd5991339d4591/getting-started/run-in-script.js#L2-L19
 ```
 
-__Nota:__ todos los comandos de WebdriverIO son asíncronos y deben manejarse correctamente usando [`async/await`](https://javascript.info/async-await).
+__Nota:__ todos los comandos de WebdriverIO son asíncronos y deben gestionarse correctamente usando [`async/await`](https://javascript.info/async-await).
 
 ## Grabar pruebas
 
@@ -223,8 +223,8 @@ WebdriverIO proporciona herramientas para ayudarte a empezar grabando tus accion
 
 Necesitarás tener [Node.js](http://nodejs.org) instalado.
 
-- Instala al menos la v22.19.0 o superior, ya que es la versión LTS más antigua compatible
-- Solo se admiten oficialmente las versiones que son o serán versiones LTS
+- Instala al menos la v22.23.4, v24.22.1 o v26.12.1 (o una versión posterior de estas líneas). Son las primeras versiones con el [almacén de CA actualizado](https://nodejs.org/en/blog/vulnerability/october-2026-security-releases) tras el compromiso de la CA intermedia de eMudhra
+- Solo las versiones que son o serán una versión LTS tienen soporte oficial
 
 Si Node no está instalado actualmente en tu sistema, te sugerimos utilizar una herramienta como [NVM](https://github.com/creationix/nvm) o [Volta](https://volta.sh/) para ayudarte a gestionar varias versiones activas de Node.js. NVM es una opción popular, aunque Volta también es una buena alternativa.
 
@@ -239,7 +239,7 @@ Hay más vídeos en el [canal oficial de YouTube](https://youtube.com/@webdriver
 
 ## Próximos pasos
 
-- Elige tu plataforma: [Navegadores web](/docs/platforms/web), [Aplicaciones móviles](/docs/platforms/mobile), [Aplicaciones de escritorio](/docs/platforms/desktop) o [Extensiones y editores](/docs/platforms/apps-and-extensions)
+- Elige tu plataforma: [navegadores web](/docs/platforms/web), [aplicaciones móviles](/docs/platforms/mobile), [aplicaciones de escritorio](/docs/platforms/desktop) o [extensiones y editores](/docs/platforms/apps-and-extensions)
 - Aprende a [seleccionar elementos](/docs/selectors) y a escribir [aserciones](/docs/assertion)
 - Configura el test runner en [`wdio.conf.ts`](/docs/configurationfile)
 - Obtén ayuda en [Discord](https://discord.webdriver.io)

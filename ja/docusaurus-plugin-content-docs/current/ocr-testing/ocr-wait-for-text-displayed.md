@@ -21,7 +21,7 @@ await browser.ocrWaitForTextDisplayed({
 ```log
 [0-0] 2024-05-26T04:32:52.005Z INFO webdriver: COMMAND ocrWaitForTextDisplayed(<object>)
 ......................
-# ocrWaitForTextDisplayedは内部でocrGetElementPositionByTextを使用しているため、ログにocrGetElementPositionByTextコマンドが表示されます
+# ocrWaitForTextDisplayed は内部で ocrGetElementPositionByText を使用しているため、ログに ocrGetElementPositionByText コマンドが表示されます
 [0-0] 2024-05-26T04:32:52.735Z INFO @wdio/ocr-service:ocrGetElementPositionByText: Multiple matches were found based on the word "specFileRetries". The match "specFileRetries" with score "100%" will be used.
 ```
 
@@ -44,7 +44,7 @@ await browser.ocrWaitForTextDisplayed({ text: "specFileRetries" });
 
 <Option type="number" default="18000 (18 seconds)" required="no">
 
-ミリ秒単位の時間です。OCR処理には時間がかかる場合があるため、低すぎる値を設定しないように注意してください。
+ミリ秒単位の時間です。OCR処理には時間がかかる場合があるため、値を小さく設定しすぎないよう注意してください。
 
 </Option>
 #### 例
@@ -125,7 +125,7 @@ await browser.ocrWaitForTextDisplayed({
 
 <Option type="string" default="eng" required="No">
 
-Tesseractが認識する言語です。詳細は[こちら](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions)で、サポートされている言語は[こちら](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts)で確認できます。
+Tesseractが認識する言語です。詳細は[こちら](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions)、サポートされている言語は[こちら](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts)で確認できます。
 
 </Option>
 #### 例
@@ -147,7 +147,7 @@ await browser.ocrWaitForTextDisplayed({
 
 <Option type="number" default="100" required="no">
 
-一致がファジー位置（locationで指定）にどれだけ近くなければならないかを決定します。ファジー位置からdistance文字離れた位置にある完全な文字一致は、完全な不一致としてスコア付けされます。distanceが0の場合、指定された正確な位置で一致する必要があります。distanceが1000の場合、threshold 0.8を使用して検出されるには、完全一致が位置から800文字以内にある必要があります。
+一致がファジー位置（locationで指定）にどれだけ近くなければならないかを決定します。ファジー位置からdistance文字離れた位置にある完全な文字の一致は、完全な不一致としてスコア付けされます。distanceが0の場合、一致は指定された正確な位置にある必要があります。distanceが1000の場合、threshold 0.8を使用すると、完全な一致はlocationから800文字以内にある必要があります。
 
 </Option>
 ##### 例
@@ -165,7 +165,7 @@ await browser.ocrWaitForTextDisplayed({
 
 <Option type="number" default="0" required="no">
 
-テキスト内のどのあたりでパターンが見つかると予想されるかを決定します。
+パターンがテキスト内のおおよそどの位置で見つかると予想されるかを決定します。
 
 </Option>
 ##### 例
@@ -183,7 +183,7 @@ await browser.ocrWaitForTextDisplayed({
 
 <Option type="number" default="0.6" required="no">
 
-マッチングアルゴリズムがどの時点で諦めるかを指定します。thresholdが0の場合は（文字と位置の両方の）完全一致が必要で、thresholdが1.0の場合は何にでも一致します。
+マッチングアルゴリズムがどの時点で諦めるかを指定します。thresholdが0の場合は（文字と位置の両方について）完全な一致が必要となり、thresholdが1.0の場合はあらゆるものに一致します。
 
 </Option>
 ##### 例
@@ -219,7 +219,7 @@ await browser.ocrWaitForTextDisplayed({
 
 <Option type="number" default="2" required="no">
 
-長さがこの値を超える一致のみが返されます。（例えば、結果から1文字の一致を除外したい場合は、2に設定します）
+長さがこの値を超える一致のみが返されます。（例えば、結果から1文字の一致を無視したい場合は、2に設定します）
 
 </Option>
 ##### 例
@@ -237,7 +237,7 @@ await browser.ocrWaitForTextDisplayed({
 
 <Option type="number" default="false" required="no">
 
-`true`の場合、文字列内で既に完全一致が見つかっていても、マッチング関数は検索パターンの最後まで処理を続けます。
+`true`の場合、文字列内で既に完全な一致が見つかっていても、マッチング関数は検索パターンの最後まで処理を続けます。
 
 </Option>
 ##### 例

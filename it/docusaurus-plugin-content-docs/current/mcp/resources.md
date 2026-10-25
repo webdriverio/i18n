@@ -1,17 +1,17 @@
 ---
 id: resources
 title: Risorse
-description: "Leggi lo stato della sessione attiva, la cronologia delle sessioni e i dettagli di configurazione dei cloud provider tramite le risorse wdio:// in sola lettura del server MCP di WebdriverIO."
+description: "Leggi lo stato della sessione in tempo reale, la cronologia delle sessioni e i dettagli di configurazione dei provider cloud tramite le risorse wdio:// in sola lettura del server MCP di WebdriverIO."
 ---
 
-Le risorse MCP forniscono accesso in sola lettura allo stato della sessione attiva. A differenza dei tool, le risorse vengono lette dal modello AI quando lo ritiene opportuno; non eseguono azioni. Tutte le risorse utilizzano lo schema URI `wdio://`.
+Le risorse MCP forniscono accesso in sola lettura allo stato della sessione in tempo reale. A differenza dei tool, le risorse vengono recuperate dal modello AI a sua discrezione; non eseguono azioni. Tutte le risorse utilizzano lo schema URI `wdio://`.
 
-## Quando usare le risorse e quando i tool
+## Quando usare le risorse rispetto ai tool
 
 - **Risorse** — stato contestuale che cambia man mano che interagisci: elementi correnti, screenshot, cookie, albero di accessibilità. Leggile prima di agire per capire cosa c'è sullo schermo.
 - **Tool** — azioni che modificano lo stato: clic, navigazione, impostazione di valori.
 
-Preferisci `wdio://session/current/elements` a `get_screenshot` per individuare gli elementi; restituisce selettori pronti all'uso e consuma molti meno token.
+Preferisci `wdio://session/current/elements` a `get_screenshot` per l'individuazione degli elementi; restituisce selettori pronti all'uso e consuma molti meno token.
 
 ## Cronologia delle sessioni
 
@@ -44,7 +44,7 @@ Log JSON degli step per la sessione attualmente attiva. Contiene tutti gli step 
 
 ### `wdio://session/current/code`
 
-Codice JavaScript WebdriverIO generato per la sessione attualmente attiva. Generato automaticamente dagli step registrati. Incollalo in un file di test WebdriverIO per riprodurre la sessione.
+JavaScript WebdriverIO generato per la sessione attualmente attiva. Generato automaticamente dagli step registrati. Incollalo in un file di test WebdriverIO per riprodurre la sessione.
 
 ---
 
@@ -56,15 +56,15 @@ Log degli step per una sessione specifica tramite ID. Template URI — sostituis
 
 ### `wdio://session/{sessionId}/code`
 
-Codice JavaScript WebdriverIO generato per una sessione specifica tramite ID. Template URI — sostituisci `{sessionId}` con l'ID ottenuto da `wdio://sessions`.
+JavaScript WebdriverIO generato per una sessione specifica tramite ID. Template URI — sostituisci `{sessionId}` con l'ID ottenuto da `wdio://sessions`.
 
-## Stato della pagina attiva (sessione corrente)
+## Stato della pagina in tempo reale (sessione corrente)
 
 ### `wdio://session/current/elements`
 
 Elementi interagibili nella pagina corrente. Restituisce selettori pronti all'uso, testo degli elementi e informazioni sulla visibilità.
 
-**Questa è la risorsa principale per capire cosa c'è sullo schermo.** Leggila prima di cliccare o digitare. È molto più veloce ed economica di uno screenshot.
+**Questa è la risorsa principale per capire cosa c'è sullo schermo.** Leggila prima di fare clic o digitare. È molto più veloce ed economica di uno screenshot.
 
 Per filtri avanzati (solo viewport, contenitori, bounding box, paginazione), usa invece il tool `get_elements`.
 
@@ -96,9 +96,9 @@ Per risultati filtrati (per ruolo, paginati), usa il tool `get_accessibility_tre
 
 ### `wdio://session/current/screenshot`
 
-Screenshot della pagina o dello schermo corrente come immagine codificata in base64. Ridimensionato automaticamente (max 2000px) e compresso (max 1 MB).
+Screenshot della pagina o dello schermo corrente come immagine codificata in base64. Ridimensionata automaticamente (max 2000px) e compressa (max 1 MB).
 
-Usalo per la verifica visiva o per il debug del layout. Per individuare gli elementi, preferisci `wdio://session/current/elements`.
+Usala per la verifica visiva o il debug del layout. Per l'individuazione degli elementi, preferisci `wdio://session/current/elements`.
 
 ---
 
@@ -177,7 +177,7 @@ Per un output con nomi descrittivi, usa invece il tool `get_app_state`.
 
 ### `wdio://session/current/geolocation`
 
-Override della geolocalizzazione del dispositivo attualmente impostato da `set_geolocation`.
+Override della geolocalizzazione del dispositivo attualmente impostato tramite `set_geolocation`.
 
 ```json
 {
@@ -191,7 +191,7 @@ Override della geolocalizzazione del dispositivo attualmente impostato da `set_g
 
 ### `wdio://session/current/logs`
 
-Log della sessione corrente. Restituisce i messaggi della console del browser e le eccezioni JavaScript (sessioni Chromium), l'output di logcat (Android) o i log di crash/syslog (iOS).
+Log della sessione corrente. Restituisce i messaggi della console del browser e le eccezioni JavaScript (sessioni Chromium), l'output di logcat (Android) o crash/syslog (iOS).
 
 ```json
 {
@@ -207,13 +207,13 @@ Log della sessione corrente. Restituisce i messaggi della console del browser e 
 
 ### `wdio://session/current/capabilities`
 
-Capabilities grezze restituite dal server WebDriver o Appium per la sessione corrente. Utile per il debug; mostra i valori effettivi accettati dal driver, inclusi i valori predefiniti applicati dal cloud provider o da Appium.
+Capabilities grezze restituite dal server WebDriver o Appium per la sessione corrente. Utile per il debug; mostra i valori effettivi accettati dal driver, inclusi i valori predefiniti applicati dal provider cloud o da Appium.
 
-## Cloud provider
+## Provider cloud
 
 ### `wdio://browserstack/local-binary`
 
-URL di download specifico per piattaforma e istruzioni di configurazione del daemon per il binario BrowserStack Local. Leggila prima di usare `tunnel: true` o `tunnel: "external"` con `provider: "browserstack"`; contiene i comandi esatti per il tuo sistema operativo e la tua architettura.
+URL di download specifico per la piattaforma e istruzioni di configurazione del daemon per il binario BrowserStack Local. Leggila prima di usare `tunnel: true` o `tunnel: "external"` con `provider: "browserstack"`; contiene i comandi esatti per il tuo sistema operativo e la tua architettura.
 
 ```json
 {
@@ -233,7 +233,7 @@ URL di download specifico per piattaforma e istruzioni di configurazione del dae
 
 ### `wdio://saucelabs/local-binary`
 
-URL di download specifico per piattaforma e istruzioni di configurazione del daemon per Sauce Connect Proxy. Leggila prima di usare `tunnel: "external"` con `provider: "saucelabs"`; con `tunnel: true` l'SDK gestisce automaticamente Sauce Connect.
+URL di download specifico per la piattaforma e istruzioni di configurazione del daemon per Sauce Connect Proxy. Leggila prima di usare `tunnel: "external"` con `provider: "saucelabs"`; con `tunnel: true` l'SDK gestisce automaticamente Sauce Connect.
 
 ```json
 {
@@ -253,7 +253,7 @@ URL di download specifico per piattaforma e istruzioni di configurazione del dae
 
 ### `wdio://testmu/local-binary`
 
-URL di download specifico per piattaforma e istruzioni di configurazione del daemon per TestMu Tunnel. Necessaria solo per `tunnel: "external"` con `provider: "testmu"` — con `tunnel: true` l'SDK gestisce automaticamente il tunnel tramite `@lambdatest/node-tunnel`.
+URL di download specifico per la piattaforma e istruzioni di configurazione del daemon per TestMu Tunnel. Necessaria solo per `tunnel: "external"` con `provider: "testmu"` — con `tunnel: true` l'SDK gestisce automaticamente il tunnel tramite `@lambdatest/node-tunnel`.
 
 ```json
 {

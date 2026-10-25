@@ -4,7 +4,7 @@ title: wdio session
 description: Controlla un browser, un'app mobile o un'app desktop dalla shell con brevi comandi wdio session, poi esporta i passaggi come test.
 ---
 
-`wdio session` mantiene attiva una sessione WebdriverIO attraverso molti brevi comandi shell. Usalo per esplorare un'interfaccia utente, verificare una modifica e trasformare i passaggi che hanno funzionato in un test. Fa parte di `@wdio/cli` (WebdriverIO v10).
+`wdio session` mantiene attiva una singola sessione WebdriverIO attraverso molti brevi comandi della shell. Usalo per esplorare un'interfaccia utente, verificare una modifica e trasformare i passaggi che hanno funzionato in un test. Fa parte di `@wdio/cli` (WebdriverIO v10).
 
 ```sh
 npx wdio session open chrome http://localhost:3000
@@ -14,7 +14,7 @@ npx wdio session export --out test/specs/cart.e2e.ts
 npx wdio session close
 ```
 
-La sessione si chiama `default`. Passa `-s <name>` solo quando hai bisogno di due sessioni contemporaneamente. La pagina [targets](/docs/session/targets) controlla una guinea pig Expo in una finestra Chrome headed e in una finestra Electron, entrambe a dimensione desktop. I comandi Android e iOS per la stessa app si trovano in quella pagina.
+La sessione si chiama `default`. Passa `-s <name>` solo quando ti servono due sessioni contemporaneamente. La pagina [target](/docs/session/targets) controlla un'unica app guinea pig Expo in una finestra di Chrome con interfaccia visibile e in una finestra Electron, entrambe a dimensione desktop. I comandi Android e iOS per la stessa app si trovano in quella pagina.
 
 ## Installazione
 
@@ -25,15 +25,15 @@ npx wdio session --help
 npx wdio session click --help
 ```
 
-`--help` stampa il flusso di lavoro, le azioni per gruppo, i flag globali e i codici di uscita. `<action> --help` stampa gli argomenti, i flag, le piattaforme, gli esempi e le azioni correlate di quell'azione. Lo stesso testo si trova nella pagina [commands](/docs/session-commands). La skill per agenti mantiene solo il ciclo principale e rimanda gli agenti a `--help` per il resto, così non diventa obsoleta quando la CLI cambia.
+`--help` stampa il flusso di lavoro, le azioni raggruppate, i flag globali e i codici di uscita. `<action> --help` stampa gli argomenti, i flag, le piattaforme, gli esempi e le azioni correlate di quell'azione. Lo stesso testo si trova nella pagina dei [comandi](/docs/session-commands). La skill per agenti contiene solo il ciclo principale e rimanda gli agenti a `--help` per il resto, così non diventa obsoleta quando la CLI cambia.
 
-Crea lo scaffold di un progetto con:
+Crea lo scheletro di un progetto con:
 
 ```sh
 npm init wdio@latest
 ```
 
-Accetta "Set up coding agent support" per scrivere `.agents/skills/wdio-session/SKILL.md`, una sezione `AGENTS.md` e una voce `.wdio/session/` nel gitignore. Installa la skill in un secondo momento con:
+Accetta "Set up coding agent support" per scrivere `.agents/skills/wdio-session/SKILL.md`, una sezione in `AGENTS.md` e una voce `.wdio/session/` nel gitignore. Installa la skill in un secondo momento con:
 
 ```sh
 npx wdio session skill --install .
@@ -43,24 +43,24 @@ npx wdio session skill --install .
 
 ## Aprire una pagina e interagire con essa
 
-Apri Chrome headless (aggiungi `--headed` per mostrare la finestra). `open` stampa gli elementi interattivi della pagina:
+Apri Chrome in modalità headless (aggiungi `--headed` per mostrare la finestra). `open` stampa gli elementi interattivi della pagina:
 
 ```sh
 npx wdio session open chrome http://localhost:3000
 ```
 
-Un elemento appare come `button "Add to cart" [ref=e3]`. Usa quel ref. Ogni azione riporta cosa ha modificato nella pagina, con i ref per i nuovi elementi, quindi raramente ti serve uno `snapshot` separato:
+Un elemento appare come `button "Add to cart" [ref=e3]`. Usa quel ref. Ogni azione riporta cosa ha modificato nella pagina, con i ref dei nuovi elementi, quindi raramente ti serve uno `snapshot` separato:
 
 ```sh
 npx wdio session click e3
 npx wdio session exec -e "await expect($('aria/Cart (1)')).toBeDisplayed()"
 ```
 
-`open firefox`, `open edge` e `open safari` accettano lo stesso URL. Chrome, Firefox ed Edge vengono scaricati al primo utilizzo quando non sono installati. Safari richiede macOS.
+`open firefox`, `open edge` e `open safari` accettano lo stesso URL. Chrome, Firefox ed Edge vengono scaricati al primo utilizzo se non sono installati. Safari richiede macOS.
 
 ### Android
 
-Android e iOS funzionano tramite Appium 3. `doctor android` segnala un server o un driver mancante insieme al comando di installazione.
+Android e iOS vengono eseguiti tramite Appium 3. `doctor android` segnala un server o un driver mancante insieme al comando di installazione.
 
 ```sh
 npx wdio session doctor android
@@ -79,26 +79,26 @@ npx wdio session snapshot --interactive
 npx wdio session click e2
 ```
 
-`open tauri ./my-app` e `open dioxus ./my-app` richiedono il rispettivo driver nel `PATH`. Su Linux senza `DISPLAY` o `WAYLAND_DISPLAY`, installa Xvfb o weston.
+`open tauri ./my-app` e `open dioxus ./my-app` richiedono che il relativo driver sia nel `PATH`. Su Linux senza `DISPLAY` o `WAYLAND_DISPLAY`, installa Xvfb o weston.
 
 ## Osservazione e ref
 
 | Comando | Usalo per |
 | --- | --- |
-| `snapshot --interactive` | Gli elementi su cui puoi agire, ciascuno con un ref |
-| `snapshot --compact` | Lo stesso albero senza i wrapper vuoti privi di nome |
-| `snapshot --urls` | Gli indirizzi di ciascun link |
+| `snapshot --interactive` | Gli elementi con cui puoi interagire, ciascuno con un ref |
+| `snapshot --compact` | Lo stesso albero senza i contenitori vuoti privi di nome |
+| `snapshot --urls` | Gli indirizzi di ogni link |
 | `find "Add to cart"` | Una riga da uno snapshot aggiornato |
 | `diff` | Cosa è cambiato rispetto allo snapshot precedente |
 | `screenshot` | Il layout. Evitalo quando uno snapshot risponde alla domanda |
-| `pdf` | Un PDF della pagina corrente (`pdf report.pdf`). Le sessioni BiDi stampano sia in modalità headed che headless |
+| `pdf` | Un PDF della pagina corrente (`pdf report.pdf`). Le sessioni BiDi stampano sia con interfaccia visibile che in modalità headless |
 | `source` | L'HTML della pagina o l'XML nativo |
 
 I ref provengono dall'ultimo snapshot. Dopo una navigazione, esegui di nuovo lo snapshot. Un ref vecchio fallisce con `REF_STALE`. Un ref sconosciuto fallisce con `REF_NOT_FOUND`.
 
 ## `exec`
 
-`exec` esegue codice WebdriverIO. Usa sempre `await` con i comandi. `$` restituisce un elemento e genera un errore quando è assente. Non esiste una modalità sincrona né `browser.element`.
+`exec` esegue codice WebdriverIO. Usa sempre `await` con i comandi. `$` restituisce un elemento e genera un errore quando manca. Non esiste una modalità sincrona né `browser.element`.
 
 ```sh
 npx wdio session exec -e "await browser.getTitle()"
@@ -119,13 +119,13 @@ npx wdio run wdio.conf.ts --spec test/specs/cart.e2e.ts
 npx wdio session close
 ```
 
-`open firefox`, `open edge` e `open safari` accettano lo stesso URL. Gli altri target, gli snapshot, `exec`, l'esportazione e un'esecuzione di test in pausa sono trattati in pagine separate di questa sezione.
+`open firefox`, `open edge` e `open safari` accettano lo stesso URL. Gli altri target, gli snapshot, `exec`, l'esportazione e l'esecuzione di un test in pausa sono trattati in pagine separate di questa sezione.
 
 ## Questa sezione
 
 | Pagina | Usala per |
 | --- | --- |
-| [Targets](/docs/session/targets) | Browser, Android, iOS, desktop, Electron, Tauri, Dioxus e dispositivi cloud, inclusa l'app demo in Chrome, Android ed Electron |
+| [Target](/docs/session/targets) | Browser, Android, iOS, desktop, Electron, Tauri, Dioxus e dispositivi cloud, inclusa l'app demo in Chrome, Android ed Electron |
 | [Snapshot e ref](/docs/session/snapshots) | Cosa c'è sullo schermo e i ref su cui fai clic |
 | [Eseguire codice](/docs/session/exec) | `exec`, asserzioni e controlli visivi |
 | [Esportare un test](/docs/session/export) | Spec, page object e `.wdio/helpers` |
@@ -140,14 +140,14 @@ npx wdio session close
 | `REF_STALE` / `REF_NOT_FOUND` | Esegui di nuovo `snapshot` e usa un ref da quell'output. |
 | `NOT_EDITABLE` | Il target di `fill` non è un campo modificabile e non contiene un singolo campo modificabile al suo interno (o dietro `aria-controls`/`aria-owns`/label). Esegui `snapshot --scope <target>` e compila il ref del campo. |
 | `MISSING_DEPENDENCY` | Installa il pacchetto indicato nell'errore, oppure esegui `wdio session doctor <target>`. |
-| `MISSING_APPIUM_DRIVER` | Esegui la riga `npx appium driver install …` riportata nell'errore. |
+| `MISSING_APPIUM_DRIVER` | Esegui la riga `npx appium driver install …` indicata nell'errore. |
 | `MISSING_CREDENTIALS` | Esporta le variabili indicate. Doctor non stampa mai i loro valori. |
 | `Session closed from wdio session` | La sessione di debug è stata chiusa. Riprendi invece di chiudere quando il test deve continuare. |
 
-Codici di uscita: 0 successo, 1 l'azione è fallita, 2 utilizzo errato, 3 dipendenza o credenziali mancanti, 4 nessuna sessione con quel nome.
+Codici di uscita: 0 successo, 1 l'azione è fallita, 2 errore di utilizzo, 3 una dipendenza o credenziali mancanti, 4 nessuna sessione con quel nome.
 
 ## Prossimi passi
 
-- [Targets](/docs/session/targets) — apri un browser, un'app Android o iOS, o una finestra Electron
-- [WebdriverIO per agenti di programmazione](/docs/ai-agents) — skill, documentazione e regole del progetto
+- [Target](/docs/session/targets) — apri un browser, un'app Android o iOS, o una finestra Electron
+- [WebdriverIO per gli agenti di programmazione](/docs/ai-agents) — skill, documentazione e regole di progetto
 - [Comandi di wdio session](/docs/session-commands) — ogni azione e flag

@@ -1,7 +1,7 @@
 ---
 id: wdiocommands
 title: WDIO コマンド
-description: "@wdio/cli の run、repl、install、config コマンドが引数を解析して実行する流れをフローチャートで確認します。"
+description: "@wdio/cli の run、repl、install、config コマンドがどのように引数を解析し実行されるかをフローチャートで確認できます。"
 ---
 このフローチャートは、@wdio/cli の run、repl、config、install コマンドの概要を示しています。
 

@@ -1,7 +1,7 @@
 ---
 id: wdiocommands
 title: WDIO कमांड्स
-description: "फ़्लोचार्ट के ज़रिए समझें कि @wdio/cli की run, repl, install और config कमांड्स आर्ग्युमेंट्स को कैसे पार्स और एक्ज़ीक्यूट करती हैं।"
+description: "फ़्लोचार्ट के माध्यम से जानें कि @wdio/cli की run, repl, install और config कमांड्स आर्ग्युमेंट्स को कैसे पार्स और एक्ज़ीक्यूट करती हैं।"
 ---
 यह फ़्लोचार्ट @wdio/cli की run, repl, config और install कमांड्स का एक उच्च-स्तरीय अवलोकन प्रदान करता है।
 

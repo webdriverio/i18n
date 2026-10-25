@@ -4,52 +4,52 @@ title: Sicurezza
 description: "Proteggi i dati di test sensibili seguendo le best practice di sicurezza e mascherando password e chiavi nei log e nei report."
 ---
 
-WebdriverIO tiene conto dell'aspetto della sicurezza quando fornisce soluzioni. Di seguito sono riportati alcuni modi per rendere più sicuri i tuoi test.
+WebdriverIO tiene in considerazione l'aspetto della sicurezza quando fornisce soluzioni. Di seguito sono riportati alcuni modi per proteggere meglio i tuoi test.
 
 ## Best Practice
 
 - Non inserire mai direttamente nel codice dati sensibili che potrebbero danneggiare la tua organizzazione se esposti in chiaro.
 - Utilizza un meccanismo (come un vault) per archiviare in modo sicuro chiavi e password e recuperarle all'avvio dei tuoi test end-to-end.
-- Verifica che nessun dato sensibile sia esposto nei Log e dal provider cloud, come i token di autenticazione nei Network Log.
+- Verifica che nessun dato sensibile venga esposto nei log e dal provider cloud, come i token di autenticazione nei Network Log.
 
 :::info
 
-Anche per i dati di test, è fondamentale chiedersi se, nelle mani sbagliate, una persona malintenzionata potrebbe recuperare informazioni o utilizzare tali risorse con intenti dannosi.
+Anche per i dati di test, è essenziale chiedersi se, finendo nelle mani sbagliate, una persona malintenzionata potrebbe recuperare informazioni o utilizzare tali risorse con intenti malevoli.
 
 :::
 
 ## Mascheramento dei Dati Sensibili
 
-Se utilizzi dati sensibili durante i tuoi test, è fondamentale assicurarsi che non siano visibili a tutti, ad esempio nei log. Inoltre, quando si utilizza un provider cloud, sono spesso coinvolte chiavi private. Queste informazioni devono essere mascherate da log, reporter e altri punti di contatto. Di seguito vengono fornite alcune soluzioni di mascheramento per eseguire i test senza esporre tali valori.
+Se utilizzi dati sensibili durante i tuoi test, è essenziale assicurarsi che non siano visibili a tutti, ad esempio nei log. Inoltre, quando si utilizza un provider cloud, sono spesso coinvolte chiavi private. Queste informazioni devono essere mascherate nei log, nei reporter e in altri punti di contatto. Di seguito vengono fornite alcune soluzioni di mascheramento per eseguire i test senza esporre tali valori.
 
 ### WebDriverIO
 
-#### Mascherare il Valore di Testo dei Comandi
+#### Mascherare il Valore Testuale dei Comandi
 
 I comandi `addValue` e `setValue` supportano un valore booleano mask per mascherare il testo nei log e nei reporter. Inoltre, anche altri strumenti, come gli strumenti di performance e gli strumenti di terze parti, riceveranno la versione mascherata, migliorando la sicurezza.
 
-Ad esempio, se stai utilizzando un utente reale di produzione e devi inserire una password che vuoi mascherare, ora è possibile farlo con il seguente codice:
+Ad esempio, se stai utilizzando un utente reale di produzione e devi inserire una password che vuoi mascherare, ora è possibile farlo nel modo seguente:
 
 ```ts
   async enterPassword(userPassword) {
     const passwordInputElement = $('Password');
 
-    // Ottieni il focus
+    // Get focus
     await passwordInputElement.click();
 
     await passwordInputElement.setValue(userPassword, { mask: true });
   }
 ```
 
-Quanto sopra nasconderà il valore del testo dai log di WDIO nel modo seguente:
+Il codice sopra nasconderà il valore testuale nei log di WDIO come segue:
 
 Esempio di log:
 ```text
 INFO webdriver: DATA { text: "**MASKED**" }
 ```
 
-Anche i reporter, come Allure, e gli strumenti di terze parti come Percy di BrowserStack gestiranno la versione mascherata.
-In combinazione con la versione appropriata di Appium, anche i log di Appium saranno privi dei tuoi dati sensibili.
+Anche i reporter, come i reporter Allure, e gli strumenti di terze parti come Percy di BrowserStack gestiranno la versione mascherata.
+Abbinati alla versione corretta di Appium, anche i log di Appium saranno privi dei tuoi dati sensibili.
 
 :::info
 
@@ -64,11 +64,11 @@ Versione minima richiesta:
 
 :::
 
-#### Mascherare nei Log di WDIO
+#### Mascheramento nei Log di WDIO
 
-Utilizzando la configurazione `maskingPatterns`, possiamo mascherare le informazioni sensibili dai log di WDIO. Tuttavia, i log di Appium non sono coperti.
+Utilizzando la configurazione `maskingPatterns`, possiamo mascherare le informazioni sensibili nei log di WDIO. Tuttavia, i log di Appium non sono coperti.
 
-Ad esempio, se stai utilizzando un provider cloud e il livello info, quasi certamente farai "trapelare" la chiave dell'utente come mostrato di seguito:
+Ad esempio, se stai utilizzando un provider cloud e usi il livello info, quasi certamente farai "trapelare" la chiave dell'utente come mostrato di seguito:
 
 ```text
 INFO @wdio/local-runner: Start worker 0-0 with arg: ./wdio.conf.ts --user=cloud_user --key=myCloudSecretExposedKey --spec myTest.test.ts
@@ -81,7 +81,7 @@ INFO @wdio/local-runner: Start worker 0-0 with arg: ./wdio.conf.ts --user=cloud_
 ```
 
 Puoi ottenere quanto sopra fornendo l'espressione regolare al campo `maskingPatterns` della configurazione.
-  - Per più espressioni regolari, utilizza una singola stringa ma con valori separati da virgola.
+  - Per più espressioni regolari, utilizza una singola stringa con valori separati da virgola.
   - Per maggiori dettagli sui pattern di mascheramento, consulta la [sezione Masking Patterns nel README di WDIO Logger](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-logger/README.md#masking-patterns).
 
 ```ts
@@ -113,12 +113,12 @@ Versione minima richiesta:
 :::
 
 :::warning
-Per i segreti passati tramite riga di comando, il mascheramento potrebbe non funzionare perché il file wdio.conf.ts viene analizzato più avanti nel ciclo di esecuzione. In questi casi è fortemente consigliato, e molto più sicuro, utilizzare le variabili d'ambiente.
+Per i segreti passati tramite riga di comando, il mascheramento potrebbe non funzionare perché il file wdio.conf.ts viene analizzato più tardi nel ciclo di esecuzione. In questi casi è fortemente consigliato, e molto più sicuro, utilizzare le variabili d'ambiente.
 :::
 
 #### Disabilitare i Logger di WDIO
 
-Un altro modo per bloccare il logging di dati sensibili è abbassare o silenziare il livello di log oppure disabilitare il logger.
+Un altro modo per bloccare il logging dei dati sensibili è abbassare o silenziare il livello di log oppure disabilitare il logger.
 Si può ottenere nel modo seguente:
 
 ```ts
@@ -182,4 +182,4 @@ const appium = [
 #### BrowserStack
 
 Anche BrowserStack offre un certo livello di mascheramento per nascondere alcuni dati; vedi [hide sensitive data](https://www.browserstack.com/docs/automate/selenium/hide-sensitive-data)
- - Purtroppo, la soluzione è "tutto o niente", quindi tutti i valori di testo dei comandi forniti verranno mascherati.
+ - Purtroppo, la soluzione è del tipo tutto-o-niente, quindi tutti i valori testuali dei comandi forniti verranno mascherati.

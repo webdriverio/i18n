@@ -4,7 +4,7 @@ title: 設定
 description: "WebDriver、スタンドアロンのWebdriverIO、およびWDIOテストランナーのすべての設定オプションを、テストランナーのすべてのフックを含めて確認できます。"
 ---
 
-[セットアップの種類](/docs/setuptypes)（例：生のプロトコルバインディングを使用する場合、WebdriverIOをスタンドアロンパッケージとして使用する場合、またはWDIOテストランナーを使用する場合）に応じて、環境を制御するために利用できるオプションが異なります。
+[セットアップの種類](/docs/setuptypes)（例：生のプロトコルバインディングを使用する場合、WebdriverIOをスタンドアロンパッケージとして使用する場合、またはWDIOテストランナーを使用する場合）によって、環境を制御するために利用できるオプションが異なります。
 
 ## WebDriverオプション
 
@@ -30,7 +30,7 @@ description: "WebDriver、スタンドアロンのWebdriverIO、およびWDIOテ
 
 <Option type="Number" default="undefined">
 
-ドライバーサーバーが稼働しているポート。
+ドライバーサーバーが使用しているポート。
 
 </Option>
 
@@ -54,7 +54,7 @@ description: "WebDriver、スタンドアロンのWebdriverIO、およびWDIOテ
 
 <Option type="String" default="undefined">
 
-クラウドサービスのユーザー名（[Sauce Labs](https://saucelabs.com)、[Browserstack](https://www.browserstack.com)、[TestingBot](https://testingbot.com)、または[TestMu AI](https://www.testmuai.com/)のアカウントでのみ動作します）。設定すると、WebdriverIOが自動的に接続オプションを設定します。クラウドプロバイダーを使用しない場合は、他のWebDriverバックエンドの認証に使用できます。
+クラウドサービスのユーザー名（[Sauce Labs](https://saucelabs.com)、[Browserstack](https://www.browserstack.com)、[TestingBot](https://testingbot.com)、または[TestMu AI](https://www.testmuai.com/)のアカウントでのみ機能します）。設定すると、WebdriverIOが自動的に接続オプションを設定します。クラウドプロバイダーを使用しない場合は、他のWebDriverバックエンドの認証に使用できます。
 
 </Option>
 
@@ -62,7 +62,7 @@ description: "WebDriver、スタンドアロンのWebdriverIO、およびWDIOテ
 
 <Option type="String" default="undefined">
 
-クラウドサービスのアクセスキーまたはシークレットキー（[Sauce Labs](https://saucelabs.com)、[Browserstack](https://www.browserstack.com)、[TestingBot](https://testingbot.com)、または[TestMu AI](https://www.testmuai.com/)のアカウントでのみ動作します）。設定すると、WebdriverIOが自動的に接続オプションを設定します。クラウドプロバイダーを使用しない場合は、他のWebDriverバックエンドの認証に使用できます。
+クラウドサービスのアクセスキーまたはシークレットキー（[Sauce Labs](https://saucelabs.com)、[Browserstack](https://www.browserstack.com)、[TestingBot](https://testingbot.com)、または[TestMu AI](https://www.testmuai.com/)のアカウントでのみ機能します）。設定すると、WebdriverIOが自動的に接続オプションを設定します。クラウドプロバイダーを使用しない場合は、他のWebDriverバックエンドの認証に使用できます。
 
 </Option>
 
@@ -70,18 +70,18 @@ description: "WebDriver、スタンドアロンのWebdriverIO、およびWDIOテ
 
 <Option type="Object" default="null">
 
-WebDriverセッションで実行したいcapabilitiesを定義します。詳細については[WebDriverプロトコル](https://w3c.github.io/webdriver/#capabilities)を確認してください。
+WebDriverセッションで実行したいケイパビリティを定義します。詳細については[WebDriverプロトコル](https://w3c.github.io/webdriver/#capabilities)を参照してください。
 
-WebDriverベースのcapabilitiesに加えて、リモートブラウザやデバイスをより詳細に設定できるブラウザ固有およびベンダー固有のオプションを適用できます。これらは対応するベンダーのドキュメントに記載されています。例：
+WebDriverベースのケイパビリティに加えて、リモートブラウザやデバイスをより詳細に設定できるブラウザ固有およびベンダー固有のオプションを適用できます。これらは対応するベンダーのドキュメントに記載されています。例：
 
-- `goog:chromeOptions`: [Google Chrome](https://chromedriver.chromium.org/capabilities#h.p_ID_106)用
-- `moz:firefoxOptions`: [Mozilla Firefox](https://firefox-source-docs.mozilla.org/testing/geckodriver/Capabilities.html)用
-- `ms:edgeOptions`: [Microsoft Edge](https://docs.microsoft.com/en-us/microsoft-edge/webdriver-chromium/capabilities-edge-options#using-the-edgeoptions-class)用
-- `sauce:options`: [Sauce Labs](https://docs.saucelabs.com/dev/test-configuration-options/#desktop-and-mobile-capabilities-sauce-specific--optional)用
-- `bstack:options`: [BrowserStack](https://www.browserstack.com/automate/capabilities?tag=selenium-4#)用
-- `selenoid:options`: [Selenoid](https://github.com/aerokube/selenoid/blob/master/docs/special-capabilities.adoc)用
+- `goog:chromeOptions`：[Google Chrome](https://chromedriver.chromium.org/capabilities#h.p_ID_106)用
+- `moz:firefoxOptions`：[Mozilla Firefox](https://firefox-source-docs.mozilla.org/testing/geckodriver/Capabilities.html)用
+- `ms:edgeOptions`：[Microsoft Edge](https://docs.microsoft.com/en-us/microsoft-edge/webdriver-chromium/capabilities-edge-options#using-the-edgeoptions-class)用
+- `sauce:options`：[Sauce Labs](https://docs.saucelabs.com/dev/test-configuration-options/#desktop-and-mobile-capabilities-sauce-specific--optional)用
+- `bstack:options`：[BrowserStack](https://www.browserstack.com/automate/capabilities?tag=selenium-4#)用
+- `selenoid:options`：[Selenoid](https://github.com/aerokube/selenoid/blob/master/docs/special-capabilities.adoc)用
 
-さらに、Sauce Labsの[Automated Test Configurator](https://docs.saucelabs.com/basics/platform-configurator/)は便利なユーティリティで、必要なcapabilitiesをクリックして組み合わせることでこのオブジェクトを作成できます。
+また、Sauce Labsの[Automated Test Configurator](https://docs.saucelabs.com/basics/platform-configurator/)も便利なユーティリティです。必要なケイパビリティをクリックして組み合わせることで、このオブジェクトを作成できます。
 
 </Option>
 **例：**
@@ -108,7 +108,7 @@ WebDriverベースのcapabilitiesに加えて、リモートブラウザやデ�
 
 <Option type="String" default="null">
 
-すべてのテストランナーのログファイル（レポーターのログや`wdio`ログを含む）を保存するディレクトリ。設定しない場合、すべてのログは`stdout`にストリーミングされます。ほとんどのレポーターは`stdout`にログを出力するように作られているため、このオプションは、レポートをファイルに出力する方が適している特定のレポーター（例えば`junit`レポーターなど）に対してのみ使用することをお勧めします。
+すべてのテストランナーのログファイル（レポーターのログと`wdio`ログを含む）を保存するディレクトリ。設定しない場合、すべてのログは`stdout`にストリーミングされます。ほとんどのレポーターは`stdout`にログを出力するように作られているため、このオプションは、レポートをファイルに出力する方が理にかなっている特定のレポーター（例えば`junit`レポーターなど）にのみ使用することをお勧めします。
 
 スタンドアロンモードで実行する場合、WebdriverIOによって生成されるログは`wdio`ログのみです。
 
@@ -134,7 +134,19 @@ Seleniumサーバーへのリクエストの最大リトライ回数。
 
 <Option type="Number" default="180000">
 
-WebDriver Bidiコマンドがブラウザからレスポンスを受け取るまでのタイムアウト（ミリ秒）。[`execute`](/docs/api/browser/execute)など、正当な理由でデフォルトより解決に時間がかかるコマンドを実行する場合はこの値を増やしてください。そうしないと、ブラウザの処理が完了する前にWebdriverIOが待機を打ち切ってしまいます。
+WebDriver Bidiコマンドがブラウザからレスポンスを受け取るまでのタイムアウト（ミリ秒）。[`execute`](/docs/api/browser/execute)などのコマンドで、正当にデフォルトより長く解決に時間がかかるものを実行する場合は、この値を増やしてください。そうしないと、ブラウザの処理が完了する前にWebdriverIOが待機を諦めてしまいます。
+
+`execute`はセッションの`script`タイムアウト（デフォルトは30秒、[`setTimeout`](/docs/api/browser/setTimeout)を参照）でも停止します。`bidiResponseTimeout`より長い`script`タイムアウトにする場合は、両方を増やしてください。
+
+</Option>
+
+### bidiConnectTimeout
+
+<Option type="Number" default="10000">
+
+ブラウザがWebDriver Bidi接続を受け入れるまでのタイムアウト（ミリ秒）。これを過ぎると、セッションはWebDriver Classicで続行され、[`mock`](/docs/api/browser/mock)などのBidi専用コマンドは失敗します。起動時に負荷が高いブラウザ（例：CIランナー上で複数のブラウザが同時に起動する場合）が接続を遅れて受け入れる場合は、この値を増やしてください。
+
+このオプションはNode.jsのセッションに適用されます。ブラウザ内（例えば[ブラウザランナー](/docs/runner#browser-runner)を使用する場合）では、接続は開くか失敗するまで待機します。
 
 </Option>
 
@@ -153,7 +165,7 @@ WebDriver Bidiコマンドがブラウザからレスポンスを受け取るま
 
 <Option type="Object" default={`{}`}>
 
-すべてのWebDriverリクエストに渡すカスタム`headers`を指定します。Selenium GridがBasic認証を必要とする場合は、このオプションを通じて`Authorization`ヘッダーを渡し、WebDriverリクエストを認証することをお勧めします。例：
+すべてのWebDriverリクエストに渡すカスタム`headers`を指定します。Selenium GridがBasic認証を必要とする場合は、このオプションを通じて`Authorization`ヘッダーを渡してWebDriverリクエストを認証することをお勧めします。例：
 
 ```ts wdio.conf.ts
 import { Buffer } from 'buffer';
@@ -207,7 +219,7 @@ SSL証明書が有効であることを要求しないかどうか。
 <Option type="Boolean" default="true">
 
 [Appiumのダイレクト接続機能](https://appiumpro.com/editions/86-connecting-directly-to-appium-hosts-in-distributed-environments)を有効にするかどうか。
-フラグが有効でも、レスポンスに適切なキーが含まれていない場合は何も行いません。
+フラグが有効でも、レスポンスに適切なキーが含まれていない場合は何もしません。
 
 </Option>
 
@@ -223,8 +235,8 @@ SSL証明書が有効であることを要求しないかどうか。
 
 <Option type="String" default="undefined">
 
-より安全なロギングのために、`maskingPatterns`で設定した正規表現によってログ内の機密情報を難読化できます。
- - 文字列の形式は、フラグ付きまたはフラグなしの正規表現（例：`/.../i`）で、複数の正規表現はカンマで区切ります。
+より安全なロギングのために、`maskingPatterns`で設定された正規表現により、ログから機密情報を難読化できます。
+ - 文字列の形式は、フラグ付きまたはフラグなしの正規表現（例：`/.../i`）で、複数の正規表現はカンマ区切りで指定します。
  - マスキングパターンの詳細については、[WDIO Logger READMEのMasking Patternsセクション](https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-logger/README.md#masking-patterns)を参照してください。
 
 </Option>
@@ -255,14 +267,13 @@ import type { Client, AttachOptions } from 'webdriver';
 export default class YourAutomationLibrary {
     /**
      * 自動化セッションを開始し、対応する自動化コマンドを持つWebdriverIOの
-     * [モナド](https://github.com/webdriverio/webdriverio/blob/940cd30939864bdbdacb2e94ee6e8ada9b1cc74c/packages/wdio-utils/src/monad.ts)
-     * を返します。リファレンス実装として[webdriver](https://www.npmjs.com/package/webdriver)パッケージを
-     * 参照してください
+     * [monad](https://github.com/webdriverio/webdriverio/blob/940cd30939864bdbdacb2e94ee6e8ada9b1cc74c/packages/wdio-utils/src/monad.ts)を返します。
+     * リファレンス実装として[webdriver](https://www.npmjs.com/package/webdriver)パッケージを参照してください
      *
-     * @param {Capabilities.RemoteConfig} options WebdriverIOのオプション
+     * @param {Capabilities.RemoteConfig} options WebdriverIOオプション
      * @param {Function} hook 関数から返される前にクライアントを変更できるフック
-     * @param {PropertyDescriptorMap} userPrototype ユーザーがカスタムプロトコルコマンドを追加できるようにします
-     * @param {Function} customCommandWrapper コマンドの実行を変更できるようにします
+     * @param {PropertyDescriptorMap} userPrototype ユーザーがカスタムプロトコルコマンドを追加できるようにする
+     * @param {Function} customCommandWrapper コマンドの実行を変更できるようにする
      * @returns WebdriverIO互換のクライアントインスタンス
      */
     static newSession(
@@ -273,7 +284,7 @@ export default class YourAutomationLibrary {
     ): Promise<Client>;
 
     /**
-     * ユーザーが既存のセッションにアタッチできるようにします
+     * ユーザーが既存のセッションにアタッチできるようにする
      * @optional
      */
     static attachToSession(
@@ -283,8 +294,8 @@ export default class YourAutomationLibrary {
     ): Client;
 
     /**
-     * インスタンスのセッションIDとブラウザのcapabilitiesを、渡されたブラウザオブジェクトに
-     * 直接新しいセッションのものとして変更します
+     * 渡されたブラウザオブジェクトに対して、インスタンスのセッションIDと
+     * ブラウザケイパビリティを新しいセッションのものに直接変更します
      *
      * @optional
      * @param   {object} instance  新しいブラウザセッションから取得したオブジェクト
@@ -303,7 +314,7 @@ export default class YourAutomationLibrary {
 
 <Option type="String" default="null">
 
-ベースURLを設定することで、`url`コマンドの呼び出しを短くできます。
+ベースURLを設定することで、`url`コマンドの呼び出しを短縮できます。
 - `url`パラメータが`/`で始まる場合、`baseUrl`が先頭に付加されます（`baseUrl`にパスがある場合、そのパスは除きます）。
 - `url`パラメータがスキームや`/`なしで始まる場合（`some/path`など）、完全な`baseUrl`がそのまま先頭に付加されます。
 
@@ -315,7 +326,7 @@ export default class YourAutomationLibrary {
 
 すべての`waitFor*`コマンドのデフォルトタイムアウト。（オプション名の`f`が小文字であることに注意してください。）このタイムアウトは`waitFor*`で始まるコマンドとそのデフォルトの待機時間に__のみ__影響します。
 
-_テスト_のタイムアウトを増やすには、フレームワークのドキュメントを参照してください。
+_テスト_のタイムアウトを延長するには、フレームワークのドキュメントを参照してください。
 
 </Option>
 
@@ -323,7 +334,7 @@ _テスト_のタイムアウトを増やすには、フレームワークのド
 
 <Option type="Number" default="100">
 
-すべての`waitFor*`コマンドが、期待される状態（例：可視性）が変化したかどうかを確認するデフォルトの間隔。
+すべての`waitFor*`コマンドが、期待される状態（例：表示状態）が変化したかどうかを確認するためのデフォルトの間隔。
 
 </Option>
 
@@ -331,11 +342,11 @@ _テスト_のタイムアウトを増やすには、フレームワークのド
 
 <Option type="Boolean" default="true">
 
-指定したセレクターが複数の要素に解決された場合、最初に一致した要素を暗黙的に使用する代わりに、[`$`](/docs/api/browser/$)コマンドが`StrictSelectorError`をスローするようにします。`$$`には影響しません。
+指定されたセレクターが複数の要素に解決された場合に、最初に一致した要素を黙って使用する代わりに、[`$`](/docs/api/browser/$)コマンドが`StrictSelectorError`をスローするようにします。`$$`には影響しません。
 
-単一のクエリでこれを無効にするには、第2引数として`{ strict: false }`を渡します。例：`$('button', { strict: false })`。
+第2引数として`{ strict: false }`を渡すことで、単一のクエリに対してこの動作を無効にできます。例：`$('button', { strict: false })`。
 
-詳細については[セレクター](/docs/selectors#strict-mode)ガイドを参照してください。
+詳細は[セレクター](/docs/selectors#strict-mode)ガイドを参照してください。
 
 </Option>
 
@@ -343,7 +354,7 @@ _テスト_のタイムアウトを増やすには、フレームワークのド
 
 <Option type="Number" default="10485760 (10MB)">
 
-[`mock`](/docs/api/browser/mock)コマンドを使用する際に返されるレスポンスボディの最大サイズ（バイト単位）。`0`を指定すると、スパイしたペイロードのデータ収集が無効になります。
+[`mock`](/docs/api/browser/mock)コマンドを使用する際に返すことができるレスポンスボディの最大サイズ（バイト単位）。`0`を指定すると、スパイしたペイロードのデータ収集が無効になります。
 
 </Option>
 
@@ -352,12 +363,12 @@ _テスト_のタイムアウトを増やすには、フレームワークのド
 <Option type="String" default="us" values="us | eu | us-west-1 | eu-central-1 | us-east-4 | asia-south-2 | staging">
 
 Sauce Labsで実行する場合、異なるデータセンター間でテストを実行するよう選択できます。
-短いリージョン名`us`（デフォルト、`us-west-1`に対応）または`eu`（`eu-central-1`に対応）を使用するか、完全なリージョン名を直接指定してください。
+短いリージョン名`us`（デフォルト、`us-west-1`に対応）または`eu`（`eu-central-1`に対応）を使用するか、完全なリージョン名を直接使用してください。
 
-__注意：__ これは、Sauce Labsアカウントに紐付いた`user`および`key`オプションを指定した場合にのみ効果があります。
+__注意：__ これは、Sauce Labsアカウントに関連付けられた`user`と`key`オプションを指定した場合にのみ効果があります。
 
 </Option>
-*（VMおよびEM/シミュレーターのみ。ただし`us-east-4`と`asia-south-2`は実機のみをホストしています）*
+*（VMおよび/またはエミュレーター/シミュレーターのみ。ただし、実機のみをホストする`us-east-4`と`asia-south-2`を除く）*
 
 ## テストランナーオプション
 
@@ -367,7 +378,7 @@ __注意：__ これは、Sauce Labsアカウントに紐付いた`user`およ�
 
 <Option type="(String | String[])[]" default="[]">
 
-テスト実行のためのspecを定義します。globパターンを指定して複数のファイルを一度にマッチさせることも、globまたはパスのセットを配列でラップして単一のワーカープロセス内で実行することもできます。すべてのパスは設定ファイルのパスからの相対パスとして扱われます。
+テスト実行用のスペックを定義します。複数のファイルを一度にマッチさせるglobパターンを指定するか、globまたはパスのセットを配列でラップして単一のワーカープロセス内で実行することができます。すべてのパスは設定ファイルのパスからの相対パスとして扱われます。
 
 </Option>
 
@@ -375,7 +386,7 @@ __注意：__ これは、Sauce Labsアカウントに紐付いた`user`およ�
 
 <Option type="String[]" default="[]">
 
-テスト実行からspecを除外します。すべてのパスは設定ファイルのパスからの相対パスとして扱われます。
+テスト実行からスペックを除外します。すべてのパスは設定ファイルのパスからの相対パスとして扱われます。
 
 </Option>
 
@@ -391,9 +402,9 @@ __注意：__ これは、Sauce Labsアカウントに紐付いた`user`およ�
 
 <Option type="Object|Object[]" default={`[{ 'wdio:maxInstances': 5, browserName: 'firefox' }]`}>
 
-上記の`capabilities`セクションと同じですが、[マルチリモート](/docs/multiremote)オブジェクト、または並列実行のための複数のWebDriverセッションを配列で指定するオプションがあります。
+上記の`capabilities`セクションと同じですが、[マルチリモート](/docs/multiremote)オブジェクト、または並列実行用に複数のWebDriverセッションを配列で指定するオプションがあります。
 
-[上記](/docs/configuration#capabilities)で定義したのと同じベンダー固有およびブラウザ固有のcapabilitiesを適用できます。
+[上記](/docs/configuration#capabilities)で定義されたのと同じベンダー固有およびブラウザ固有のケイパビリティを適用できます。
 
 </Option>
 
@@ -403,9 +414,9 @@ __注意：__ これは、Sauce Labsアカウントに紐付いた`user`およ�
 
 並列実行されるワーカーの合計最大数。
 
-__注意：__ Sauce Labsのマシンなどの外部ベンダーでテストを実行する場合は、`100`のような大きな数値を指定できます。その場合、テストは単一のマシンではなく、複数のVMで実行されます。ローカルの開発マシンでテストを実行する場合は、`3`、`4`、`5`などのより妥当な数値を使用してください。基本的に、これは同時に起動してテストを実行するブラウザの数であるため、マシンのRAM容量や、マシン上で実行されている他のアプリの数に依存します。
+__注意：__ Sauce Labsのマシンなど外部ベンダーでテストを実行する場合は、`100`のような大きな数値にすることもできます。その場合、テストは単一のマシンではなく、複数のVMで実行されます。ローカルの開発マシンでテストを実行する場合は、`3`、`4`、`5`のようなより妥当な数値を使用してください。基本的に、これは同時に起動してテストを実行するブラウザの数であるため、マシンのRAMの量や、マシン上で実行されている他のアプリの数によって異なります。
 
-`wdio:maxInstances` capabilityを使用して、capabilityオブジェクト内で`maxInstances`を適用することもできます。これにより、その特定のcapabilityの並列セッション数が制限されます。
+`wdio:maxInstances`ケイパビリティを使用して、ケイパビリティオブジェクト内で`maxInstances`を適用することもできます。これにより、その特定のケイパビリティの並列セッション数が制限されます。
 
 </Option>
 
@@ -413,7 +424,7 @@ __注意：__ Sauce Labsのマシンなどの外部ベンダーでテストを�
 
 <Option type="Number" default="100">
 
-capabilityごとに並列実行されるワーカーの合計最大数。
+ケイパビリティごとに並列実行されるワーカーの合計最大数。
 
 </Option>
 
@@ -428,7 +439,7 @@ WebdriverIOのグローバル（例：`browser`、`$`、`$$`）をグローバ�
 import { browser, $, $$, expect } from '@wdio/globals'
 ```
 
-注意：WebdriverIOはテストフレームワーク固有のグローバルの注入は扱いません。
+注意：WebdriverIOは、テストフレームワーク固有のグローバルの挿入は扱いません。
 
 </Option>
 
@@ -436,8 +447,8 @@ import { browser, $, $$, expect } from '@wdio/globals'
 
 <Option type="Number" default="0 (don't bail; run all tests)">
 
-特定の数のテストが失敗した後にテスト実行を停止したい場合は、`bail`を使用してください。
-（デフォルトは`0`で、何があってもすべてのテストを実行します。）**注意：** ここでいうテストとは、単一のspecファイル内のすべてのテスト（MochaまたはJasmineを使用する場合）、またはfeatureファイル内のすべてのステップ（Cucumberを使用する場合）を指します。単一のテストファイル内のテストでbailの動作を制御したい場合は、利用可能な[フレームワーク](frameworks)オプションを確認してください。
+特定の数のテスト失敗後にテスト実行を停止したい場合は、`bail`を使用してください。
+（デフォルトは`0`で、何があってもすべてのテストを実行します。）**注意：** ここでいうテストとは、単一のスペックファイル内のすべてのテスト（MochaまたはJasmineを使用する場合）、またはフィーチャーファイル内のすべてのステップ（Cucumberを使用する場合）を指します。単一のテストファイルのテスト内でbailの動作を制御したい場合は、利用可能な[フレームワーク](frameworks)オプションを確認してください。
 
 </Option>
 
@@ -445,7 +456,7 @@ import { browser, $, $$, expect } from '@wdio/globals'
 
 <Option type="Number" default="0">
 
-specファイル全体が失敗した場合に、そのspecファイル全体をリトライする回数。
+スペックファイル全体が失敗した場合に、そのスペックファイル全体をリトライする回数。
 
 </Option>
 
@@ -453,7 +464,7 @@ specファイル全体が失敗した場合に、そのspecファイル全体を
 
 <Option type="Number" default="0">
 
-specファイルのリトライ試行間の遅延（秒）
+スペックファイルのリトライ試行間の遅延（秒）
 
 </Option>
 
@@ -461,7 +472,7 @@ specファイルのリトライ試行間の遅延（秒）
 
 <Option type="Boolean" default="true">
 
-リトライされるspecファイルを直ちにリトライするか、キューの最後に延期するか。
+リトライされるスペックファイルを即座にリトライするか、キューの最後に延期するかどうか。
 
 </Option>
 
@@ -473,7 +484,7 @@ specファイルのリトライ試行間の遅延（秒）
 
 `false`に設定すると、異なるテストファイルからのログがリアルタイムで出力されます。並列実行時には、異なるファイルからのログ出力が混在する可能性があることに注意してください。
 
-`true`に設定すると、ログ出力はTest Specごとにグループ化され、Test Specが完了した時点でのみ出力されます。
+`true`に設定すると、ログ出力はテストスペックごとにグループ化され、テストスペックが完了したときにのみ出力されます。
 
 デフォルトでは`false`に設定されているため、ログはリアルタイムで出力されます。
 
@@ -483,7 +494,7 @@ specファイルのリトライ試行間の遅延（秒）
 
 <Option type="Boolean" default="true">
 
-WebdriverIOが各テストの終了時にすべてのソフトアサーションを自動的にアサートするかどうかを制御します。`true`に設定すると、蓄積されたソフトアサーションが自動的にチェックされ、いずれかのアサーションが失敗した場合はテストが失敗します。`false`に設定すると、ソフトアサーションをチェックするためにassertメソッドを手動で呼び出す必要があります。
+各テストの終了時に、WebdriverIOがすべてのソフトアサーションを自動的にアサートするかどうかを制御します。`true`に設定すると、蓄積されたソフトアサーションが自動的にチェックされ、失敗したアサーションがあればテストが失敗します。`false`に設定すると、ソフトアサーションをチェックするためにassertメソッドを手動で呼び出す必要があります。
 
 </Option>
 
@@ -491,7 +502,7 @@ WebdriverIOが各テストの終了時にすべてのソフトアサーション
 
 <Option type="String[]|Object[]" default="[]">
 
-サービスは、自分で対処したくない特定の作業を引き受けます。ほとんど手間をかけずにテストセットアップを強化できます。
+サービスは、あなたが自分で対応したくない特定の作業を引き受けます。ほとんど手間をかけずにテストセットアップを強化できます。
 
 </Option>
 
@@ -507,7 +518,7 @@ WDIOテストランナーで使用するテストフレームワークを定義�
 
 <Option type="Object" default={`{ timeout: 10000 }`}>
 
-フレームワーク固有のオプション。利用可能なオプションについては、フレームワークアダプターのドキュメントを参照してください。詳細は[フレームワーク](frameworks)をご覧ください。
+フレームワーク固有のオプション。利用可能なオプションについては、フレームワークアダプターのドキュメントを参照してください。詳細は[フレームワーク](frameworks)を参照してください。
 
 </Option>
 
@@ -515,7 +526,7 @@ WDIOテストランナーで使用するテストフレームワークを定義�
 
 <Option type="String[]" default="[]">
 
-行番号付きのCucumber featureのリスト（[Cucumberフレームワークを使用する場合](./Frameworks.md#using-cucumber)）。
+行番号付きのcucumberフィーチャーのリスト（[cucumberフレームワークを使用する](./Frameworks.md#using-cucumber)場合）。
 
 </Option>
 
@@ -524,7 +535,7 @@ WDIOテストランナーで使用するテストフレームワークを定義�
 <Option type="String[]|Object[]" default="[]">
 
 使用するレポーターのリスト。レポーターは文字列、または
-`['reporterName', { /* reporter options */}]`の配列のいずれかで指定できます。配列の場合、最初の要素はレポーター名の文字列、2番目の要素はレポーターオプションのオブジェクトです。
+`['reporterName', { /* reporter options */}]`形式の配列で指定できます。配列の場合、最初の要素はレポーター名の文字列、2番目の要素はレポーターオプションのオブジェクトです。
 
 </Option>
 例：
@@ -544,7 +555,7 @@ reporters: [
 
 <Option type="Number" default="100 (ms)">
 
-レポーターがログを非同期で報告する場合（例：ログをサードパーティベンダーにストリーミングする場合）に、同期されているかどうかをチェックする間隔を決定します。
+レポーターがログを非同期でレポートする場合（例：ログがサードパーティベンダーにストリーミングされる場合）に、同期されているかどうかを確認する間隔を決定します。
 
 </Option>
 
@@ -552,7 +563,7 @@ reporters: [
 
 <Option type="Number" default="5000 (ms)">
 
-テストランナーがエラーをスローするまでに、レポーターがすべてのログのアップロードを完了する必要がある最大時間を決定します。
+テストランナーがエラーをスローするまでに、レポーターがすべてのログのアップロードを完了するための最大時間を決定します。
 
 </Option>
 
@@ -560,7 +571,7 @@ reporters: [
 
 <Option type="String[]" default="null">
 
-子プロセスを起動する際に指定するNodeの引数。
+子プロセスを起動する際に指定するNode引数。
 
 </Option>
 
@@ -592,7 +603,7 @@ CPUプロファイル（`.cpuprofile`）とヒーププロファイル（`.heapp
 
 <Option type="String[]" default="[]">
 
-`--watch`フラグを付けて実行する際に、テストランナーに他のファイル（例：アプリケーションファイル）も追加で監視させるための、globをサポートする文字列パターンのリスト。デフォルトでは、テストランナーはすでにすべてのspecファイルを監視しています。
+`--watch`フラグを付けて実行する際に、テストランナーが追加で他のファイル（例：アプリケーションファイル）を監視するように指示する、globをサポートする文字列パターンのリスト。デフォルトでは、テストランナーはすでにすべてのスペックファイルを監視しています。
 
 </Option>
 
@@ -600,7 +611,7 @@ CPUプロファイル（`.cpuprofile`）とヒーププロファイル（`.heapp
 
 <Option type="'new' | 'all' | 'none'" default="none if not provided and tests run in CI, new if not provided, otherwise what's been provided">
 
-スナップショットを更新したい場合に設定します。理想的にはCLIパラメータの一部として使用します。例：`wdio run wdio.conf.js --s`。
+スナップショットを更新したい場合はtrueに設定します。理想的にはCLIパラメータの一部として使用します。例：`wdio run wdio.conf.js --s`。
 
 </Option>
 
@@ -608,7 +619,7 @@ CPUプロファイル（`.cpuprofile`）とヒーププロファイル（`.heapp
 
 <Option type="(testPath: string, snapExtension: string) => string" default="stores snapshot files in __snapshots__ directory next to test file">
 
-デフォルトのスナップショットパスを上書きします。例えば、スナップショットをテストファイルの隣に保存する場合：
+デフォルトのスナップショットパスを上書きします。例えば、テストファイルの隣にスナップショットを保存する場合などです。
 
 ```ts title="wdio.conf.ts"
 export const config: WebdriverIO.Config = {
@@ -632,7 +643,7 @@ WDIOはTypeScriptファイルのコンパイルに`tsx`を使用します。TSCo
 
 <Option type="Boolean" default="true">
 
-Linux上で`DISPLAY`も`WAYLAND_DISPLAY`も設定されていない場合に、実行用の仮想ディスプレイを起動します。ヘッドレスで実行する場合や、クラウドサービスまたはリモートグリッドのみで実行する場合は`false`に設定してください。これはディスプレイサーバーを起動するかどうかのみを制御します：`WAYLAND_DISPLAY`のみが設定されている場合でも、テストランナーは実行時に`XDG_SESSION_TYPE`、`GDK_BACKEND`、`ELECTRON_OZONE_PLATFORM_HINT`を`wayland`に設定します。[ヘッドレスとディスプレイサーバー](/docs/headless-and-display-servers)を参照してください。
+Linux上で`DISPLAY`も`WAYLAND_DISPLAY`も設定されていない場合に、実行用の仮想ディスプレイを起動します。ヘッドレスで実行する場合や、クラウドサービスまたはリモートグリッドでのみ実行する場合は`false`に設定してください。これはディスプレイサーバーを起動するかどうかのみを制御します。`WAYLAND_DISPLAY`のみが設定されている場合でも、テストランナーは実行のために`XDG_SESSION_TYPE`、`GDK_BACKEND`、`ELECTRON_OZONE_PLATFORM_HINT`を`wayland`に設定します。[ヘッドレスとディスプレイサーバー](/docs/headless-and-display-servers)を参照してください。
 
 </Option>
 
@@ -640,7 +651,7 @@ Linux上で`DISPLAY`も`WAYLAND_DISPLAY`も設定されていない場合に、�
 
 <Option type="String" default="auto" values="auto | wayland | xvfb">
 
-起動するディスプレイサーバー。`auto`はWestonを試し、Westonが存在しないか起動に失敗した場合はXvfbにフォールバックします。`wayland`と`xvfb`はそのサーバーのみを試します。
+起動するディスプレイサーバー。`auto`はWestonを試し、Westonが見つからないか起動に失敗した場合はXvfbにフォールバックします。`wayland`と`xvfb`は、そのサーバーのみを試します。
 
 </Option>
 
@@ -648,7 +659,7 @@ Linux上で`DISPLAY`も`WAYLAND_DISPLAY`も設定されていない場合に、�
 
 <Option type="Boolean" default="false">
 
-インストール済みのディスプレイサーバーがいずれも起動しない場合に、システムのパッケージマネージャーを使用して不足しているディスプレイサーバーをインストールします。
+インストール済みのディスプレイサーバーがどれも起動しない場合に、システムのパッケージマネージャーを使用して不足しているディスプレイサーバーをインストールします。
 
 </Option>
 
@@ -656,7 +667,7 @@ Linux上で`DISPLAY`も`WAYLAND_DISPLAY`も設定されていない場合に、�
 
 <Option type="String" default="sudo" values="root | sudo">
 
-組み込みのインストールの実行方法：`root`はrootとして実行している場合にのみインストールします。`sudo`はrootでない場合に非対話型の`sudo -n`を使用し、`sudo`がインストールされていない場合はそれなしでインストールします。
+組み込みのインストールの実行方法：`root`はrootとして実行している場合にのみインストールし、`sudo`はrootでない場合に非対話型の`sudo -n`を使用するか、`sudo`がインストールされていない場合はそれなしでインストールします。
 
 </Option>
 
@@ -664,7 +675,7 @@ Linux上で`DISPLAY`も`WAYLAND_DISPLAY`も設定されていない場合に、�
 
 <Option type="String | String[]">
 
-組み込みのインストールの代わりに、そのまま`sudo`なしで実行するコマンド。`displayServerAutoInstall: true`の場合にのみ実行されます。文字列の場合はシェル内で実行され、配列の場合はシェルなしで実行されます。`auto`の場合、まずWeston用に実行され、Westonがまだ利用できないか起動に失敗し、かつXvfbがまだ存在しない場合にのみ、Xvfb用に再度実行されます。もう一方のサーバーの試行をスキップするには、`displayServer`をこのコマンドがインストールするサーバーに設定してください。
+組み込みのインストールの代わりに、そのまま`sudo`なしで実行するコマンド。`displayServerAutoInstall: true`の場合にのみ実行されます。文字列はシェル内で実行され、配列はシェルなしで実行されます。`auto`の場合、まずWeston用に実行され、Westonがまだ利用できないか起動に失敗し、かつXvfbがまだ見つからない場合にのみ、Xvfb用に再度実行されます。もう一方のサーバーの試行をスキップするには、`displayServer`をこのコマンドでインストールするサーバーに設定してください。
 
 </Option>
 
@@ -694,11 +705,11 @@ Linux上で`DISPLAY`も`WAYLAND_DISPLAY`も設定されていない場合に、�
 
 ## フック
 
-WDIOテストランナーでは、テストのライフサイクルの特定のタイミングでトリガーされるフックを設定できます。これにより、カスタムアクション（例：テストが失敗した場合にスクリーンショットを撮る）が可能になります。
+WDIOテストランナーでは、テストライフサイクルの特定のタイミングでトリガーされるフックを設定できます。これにより、カスタムアクション（例：テストが失敗した場合にスクリーンショットを撮る）が可能になります。
 
-すべてのフックは、パラメータとしてライフサイクルに関する特定の情報（例：テストスイートやテストに関する情報）を受け取ります。すべてのフックのプロパティについては、[サンプル設定](https://github.com/webdriverio/webdriverio/blob/master/examples/wdio.conf.js#L183-L326)で詳しく確認してください。
+すべてのフックは、パラメータとしてライフサイクルに関する特定の情報（例：テストスイートやテストに関する情報）を持っています。すべてのフックのプロパティについては、[サンプル設定](https://github.com/webdriverio/webdriverio/blob/master/examples/wdio.conf.js#L183-L326)を参照してください。
 
-**注意：** 一部のフック（`onPrepare`、`onWorkerStart`、`onWorkerEnd`、`onComplete`）は別のプロセスで実行されるため、ワーカープロセス内に存在する他のフックとグローバルデータを共有できません。
+**注意：** 一部のフック（`onPrepare`、`onWorkerStart`、`onWorkerEnd`、`onComplete`）は異なるプロセスで実行されるため、ワーカープロセス内にある他のフックとグローバルデータを共有することはできません。
 
 ### onPrepare
 
@@ -706,8 +717,8 @@ WDIOテストランナーでは、テストのライフサイクルの特定の�
 
 パラメータ：
 
-- `config` (`object`): WebdriverIOの設定オブジェクト
-- `param` (`object[]`): capabilitiesの詳細のリスト
+- `config` (`object`)：WebdriverIO設定オブジェクト
+- `param` (`object[]`)：ケイパビリティの詳細のリスト
 
 ### onWorkerStart
 
@@ -715,11 +726,11 @@ WDIOテストランナーでは、テストのライフサイクルの特定の�
 
 パラメータ：
 
-- `cid` (`string`): capability ID（例：0-0）
-- `caps` (`object`): ワーカー内で生成されるセッションのcapabilitiesを含むオブジェクト
-- `specs` (`string[]`): ワーカープロセスで実行されるspec
-- `args` (`object`): ワーカーが初期化された時点でメインの設定とマージされるオブジェクト
-- `execArgv` (`string[]`): ワーカープロセスに渡される文字列引数のリスト
+- `cid` (`string`)：ケイパビリティID（例：0-0）
+- `caps` (`object`)：ワーカー内で生成されるセッションのケイパビリティを含む
+- `specs` (`string[]`)：ワーカープロセスで実行されるスペック
+- `args` (`object`)：ワーカーが初期化されるとメイン設定とマージされるオブジェクト
+- `execArgv` (`string[]`)：ワーカープロセスに渡される文字列引数のリスト
 
 ### onWorkerEnd
 
@@ -727,31 +738,31 @@ WDIOテストランナーでは、テストのライフサイクルの特定の�
 
 パラメータ：
 
-- `cid` (`string`): capability ID（例：0-0）
-- `exitCode` (`number`): 0 - 成功、1 - 失敗。シグナルによって終了したワーカーは、代わりに`128` + シグナル番号を報告します。例：`SIGSEGV`の場合は`139`
-- `specs` (`string[]`): ワーカープロセスで実行されるspec
-- `retries` (`number`): [_「specファイル単位でリトライを追加する」_](./Retry.md#add-retries-on-a-per-specfile-basis)で定義されている、使用されたspecレベルのリトライ回数
-- `signal` (`string`): ワーカーを終了させたシグナル（例：`SIGSEGV`）。自ら終了した場合は`null`
+- `cid` (`string`)：ケイパビリティID（例：0-0）
+- `exitCode` (`number`)：0 - 成功、1 - 失敗。シグナルによって終了したワーカーは、代わりに`128` + シグナル番号を報告します（例：`SIGSEGV`の場合は`139`）
+- `specs` (`string[]`)：ワーカープロセスで実行されるスペック
+- `retries` (`number`)：[_「スペックファイル単位でリトライを追加する」_](./Retry.md#add-retries-on-a-per-specfile-basis)で定義されている、使用されたスペックレベルのリトライ回数
+- `signal` (`string`)：ワーカーを終了させたシグナル（例：`SIGSEGV`）、または自ら終了した場合は`null`
 
 ### beforeSession
 
-webdriverセッションとテストフレームワークを初期化する直前に実行されます。capabilityやspecに応じて設定を操作できます。
+webdriverセッションとテストフレームワークを初期化する直前に実行されます。ケイパビリティやスペックに応じて設定を操作できます。
 
 パラメータ：
 
-- `config` (`object`): WebdriverIOの設定オブジェクト
-- `caps` (`object`): ワーカー内で生成されるセッションのcapabilitiesを含むオブジェクト
-- `specs` (`string[]`): ワーカープロセスで実行されるspec
+- `config` (`object`)：WebdriverIO設定オブジェクト
+- `caps` (`object`)：ワーカー内で生成されるセッションのケイパビリティを含む
+- `specs` (`string[]`)：ワーカープロセスで実行されるスペック
 
 ### before
 
-テストの実行が開始される前に実行されます。この時点で`browser`などのすべてのグローバル変数にアクセスできます。カスタムコマンドを定義するのに最適な場所です。
+テストの実行が始まる前に実行されます。この時点で、`browser`などのすべてのグローバル変数にアクセスできます。カスタムコマンドを定義するのに最適な場所です。
 
 パラメータ：
 
-- `caps` (`object`): ワーカー内で生成されるセッションのcapabilitiesを含むオブジェクト
-- `specs` (`string[]`): ワーカープロセスで実行されるspec
-- `browser` (`object`): 作成されたブラウザ/デバイスセッションのインスタンス
+- `caps` (`object`)：ワーカー内で生成されるセッションのケイパビリティを含む
+- `specs` (`string[]`)：ワーカープロセスで実行されるスペック
+- `browser` (`object`)：作成されたブラウザ/デバイスセッションのインスタンス
 
 ### beforeSuite
 
@@ -759,26 +770,26 @@ webdriverセッションとテストフレームワークを初期化する直�
 
 パラメータ：
 
-- `suite` (`object`): スイートの詳細
+- `suite` (`object`)：スイートの詳細
 
 ### beforeHook
 
-スイート内のフックが開始される*前*に実行されるフック（例：MochaでbeforeEachを呼び出す前に実行されます）
+スイート内のフックが開始される*前*に実行されるフック（例：MochaでbeforeEachを呼び出す前に実行）
 
 パラメータ：
 
-- `test` (`object`): テストの詳細
-- `context` (`object`): テストコンテキスト（CucumberではWorldオブジェクトを表します）
+- `test` (`object`)：テストの詳細
+- `context` (`object`)：テストコンテキスト（CucumberではWorldオブジェクトを表す）
 
 ### afterHook
 
-スイート内のフックが終了した*後*に実行されるフック（例：MochaでafterEachを呼び出した後に実行されます）
+スイート内のフックが終了した*後*に実行されるフック（例：MochaでafterEachを呼び出した後に実行）
 
 パラメータ：
 
-- `test` (`object`): テストの詳細
-- `context` (`object`): テストコンテキスト（CucumberではWorldオブジェクトを表します）
-- `result` (`object`): フックの結果（`error`、`result`、`duration`、`passed`、`retries`プロパティを含みます）
+- `test` (`object`)：テストの詳細
+- `context` (`object`)：テストコンテキスト（CucumberではWorldオブジェクトを表す）
+- `result` (`object`)：フックの結果（`error`、`result`、`duration`、`passed`、`retries`プロパティを含む）
 
 ### beforeTest
 
@@ -786,43 +797,43 @@ webdriverセッションとテストフレームワークを初期化する直�
 
 パラメータ：
 
-- `test` (`object`): テストの詳細
-- `context` (`object`): テストが実行されたスコープオブジェクト
+- `test` (`object`)：テストの詳細
+- `context` (`object`)：テストが実行されたスコープオブジェクト
 
 ### beforeCommand
 
-WebdriverIOコマンドが実行される前に実行されます。
+WebdriverIOコマンドが実行される前に実行されます。要素コマンドの場合、WebdriverIOが要素を待機する前に実行されます（[自動待機](./AutoWait.md)を参照）。
 
 パラメータ：
 
-- `commandName` (`string`): コマンド名
-- `args` (`*`): コマンドが受け取る引数
+- `commandName` (`string`)：コマンド名
+- `args` (`*`)：コマンドが受け取る引数
 
 ### afterCommand
 
-WebdriverIOコマンドが実行された後に実行されます。
+WebdriverIOコマンドが実行された後に実行されます。要素コマンドの場合、要素の待機の後に実行されます。WebdriverIOが要素コマンドをリトライする場合（例えばstale elementの後）、フックは最後の試行の結果またはエラーを受け取ります。
 
 パラメータ：
 
-- `commandName` (`string`): コマンド名
-- `args` (`*`): コマンドが受け取る引数
-- `result` (`*`): コマンドの結果
-- `error` (`Error`): エラーがある場合はエラーオブジェクト
+- `commandName` (`string`)：コマンド名
+- `args` (`*`)：コマンドが受け取る引数
+- `result` (`*`)：コマンドの結果
+- `error` (`Error`)：エラーがある場合はエラーオブジェクト
 
 ### afterTest
 
-テスト（Mocha/Jasmine）が終了した後に実行される関数。
+テスト（Mocha/Jasmine）が終了した後に実行される関数。テストがタイムアウトした後にも実行されます。Mochaでは、次のテストはこのフックが終了した後に開始されます（Mochaはテストのタイムアウト1回分まで追加で待機します。[タイムアウト](./Timeouts.md#mocha-timeouts-and-the-webdriverio-hooks)を参照）。
 
 パラメータ：
 
-- `test` (`object`): テストの詳細
-- `context` (`object`): テストが実行されたスコープオブジェクト
-- `result.error` (`Error`): テストが失敗した場合はエラーオブジェクト、それ以外の場合は`undefined`
-- `result.result` (`Any`): テスト関数の戻り値オブジェクト
-- `result.duration` (`Number`): テストの所要時間
-- `result.passed` (`Boolean`): テストが成功した場合はtrue、それ以外の場合はfalse
-- `result.retries` (`Object`): [MochaおよびJasmine](./Retry.md#rerun-single-tests-in-jasmine-or-mocha)ならびに[Cucumber](./Retry.md#rerunning-in-cucumber)で定義されている、単一テストに関するリトライの情報。例：`{ attempts: 0, limit: 0 }`、参照
-- `result` (`object`): フックの結果（`error`、`result`、`duration`、`passed`、`retries`プロパティを含みます）
+- `test` (`object`)：テストの詳細
+- `context` (`object`)：テストが実行されたスコープオブジェクト
+- `result.error` (`Error`)：テストが失敗した場合はエラーオブジェクト、それ以外の場合は`undefined`
+- `result.result` (`Any`)：テスト関数の戻り値オブジェクト
+- `result.duration` (`Number`)：テストの所要時間
+- `result.passed` (`Boolean`)：テストが成功した場合はtrue、それ以外の場合はfalse
+- `result.retries` (`Object`)：[MochaとJasmine](./Retry.md#rerun-single-tests-in-jasmine-or-mocha)および[Cucumber](./Retry.md#rerunning-in-cucumber)で定義されている、単一テストに関するリトライの情報（例：`{ attempts: 0, limit: 0 }`）
+- `result` (`object`)：フックの結果（`error`、`result`、`duration`、`passed`、`retries`プロパティを含む）
 
 ### afterSuite
 
@@ -830,17 +841,17 @@ WebdriverIOコマンドが実行された後に実行されます。
 
 パラメータ：
 
-- `suite` (`object`): スイートの詳細
+- `suite` (`object`)：スイートの詳細
 
 ### after
 
-すべてのテストが完了した後に実行されます。テストのすべてのグローバル変数に引き続きアクセスできます。
+すべてのテストが完了した後に実行されます。テストからのすべてのグローバル変数に引き続きアクセスできます。
 
 パラメータ：
 
-- `result` (`number`): 0 - テスト成功、1 - テスト失敗
-- `caps` (`object`): ワーカー内で生成されるセッションのcapabilitiesを含むオブジェクト
-- `specs` (`string[]`): ワーカープロセスで実行されるspec
+- `result` (`number`)：0 - テスト成功、1 - テスト失敗
+- `caps` (`object`)：ワーカー内で生成されるセッションのケイパビリティを含む
+- `specs` (`string[]`)：ワーカープロセスで実行されるスペック
 
 ### afterSession
 
@@ -848,20 +859,20 @@ webdriverセッションを終了した直後に実行されます。
 
 パラメータ：
 
-- `config` (`object`): WebdriverIOの設定オブジェクト
-- `caps` (`object`): ワーカー内で生成されるセッションのcapabilitiesを含むオブジェクト
-- `specs` (`string[]`): ワーカープロセスで実行されるspec
+- `config` (`object`)：WebdriverIO設定オブジェクト
+- `caps` (`object`)：ワーカー内で生成されるセッションのケイパビリティを含む
+- `specs` (`string[]`)：ワーカープロセスで実行されるスペック
 
 ### onComplete
 
-すべてのワーカーがシャットダウンし、プロセスが終了しようとする時に実行されます。onCompleteフック内でスローされたエラーは、テスト実行の失敗につながります。
+すべてのワーカーがシャットダウンし、プロセスが終了しようとしているときに実行されます。onCompleteフックでエラーがスローされると、テスト実行は失敗します。
 
 パラメータ：
 
-- `exitCode` (`number`): 0 - 成功、1 - 失敗
-- `config` (`object`): WebdriverIOの設定オブジェクト
-- `caps` (`object`): ワーカー内で生成されるセッションのcapabilitiesを含むオブジェクト
-- `result` (`object`): テスト結果を含む結果オブジェクト
+- `exitCode` (`number`)：0 - 成功、1 - 失敗
+- `config` (`object`)：WebdriverIO設定オブジェクト
+- `caps` (`object`)：ワーカー内で生成されるセッションのケイパビリティを含む
+- `result` (`object`)：テスト結果を含む結果オブジェクト
 
 ### onReload
 
@@ -869,72 +880,72 @@ webdriverセッションを終了した直後に実行されます。
 
 パラメータ：
 
-- `oldSessionId` (`string`): 古いセッションのセッションID
-- `newSessionId` (`string`): 新しいセッションのセッションID
+- `oldSessionId` (`string`)：古いセッションのセッションID
+- `newSessionId` (`string`)：新しいセッションのセッションID
 
 ### beforeFeature
 
-Cucumber Featureの前に実行されます。
+Cucumberフィーチャーの前に実行されます。
 
 パラメータ：
 
-- `uri` (`string`): featureファイルへのパス
-- `feature` ([`GherkinDocument.IFeature`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/json-to-messages/javascript/src/cucumber-generic/JSONSchema.ts#L8-L17)): Cucumberのfeatureオブジェクト
+- `uri` (`string`)：フィーチャーファイルへのパス
+- `feature` ([`GherkinDocument.IFeature`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/json-to-messages/javascript/src/cucumber-generic/JSONSchema.ts#L8-L17))：Cucumberフィーチャーオブジェクト
 
 ### afterFeature
 
-Cucumber Featureの後に実行されます。
+Cucumberフィーチャーの後に実行されます。
 
 パラメータ：
 
-- `uri` (`string`): featureファイルへのパス
-- `feature` ([`GherkinDocument.IFeature`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/json-to-messages/javascript/src/cucumber-generic/JSONSchema.ts#L8-L17)): Cucumberのfeatureオブジェクト
+- `uri` (`string`)：フィーチャーファイルへのパス
+- `feature` ([`GherkinDocument.IFeature`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/json-to-messages/javascript/src/cucumber-generic/JSONSchema.ts#L8-L17))：Cucumberフィーチャーオブジェクト
 
 ### beforeScenario
 
-Cucumber Scenarioの前に実行されます。
+Cucumberシナリオの前に実行されます。
 
 パラメータ：
 
-- `world` ([`ITestCaseHookParameter`](https://github.com/cucumber/cucumber-js/blob/ac124f7b2be5fa54d904c7feac077a2657b19440/src/support_code_library_builder/types.ts#L10-L15)): pickleとテストステップに関する情報を含むworldオブジェクト
-- `context` (`object`): CucumberのWorldオブジェクト
+- `world` ([`ITestCaseHookParameter`](https://github.com/cucumber/cucumber-js/blob/ac124f7b2be5fa54d904c7feac077a2657b19440/src/support_code_library_builder/types.ts#L10-L15))：pickleとテストステップに関する情報を含むworldオブジェクト
+- `context` (`object`)：Cucumber Worldオブジェクト
 
 ### afterScenario
 
-Cucumber Scenarioの後に実行されます。
+Cucumberシナリオの後に実行されます。
 
 パラメータ：
 
-- `world` ([`ITestCaseHookParameter`](https://github.com/cucumber/cucumber-js/blob/ac124f7b2be5fa54d904c7feac077a2657b19440/src/support_code_library_builder/types.ts#L10-L15)): pickleとテストステップに関する情報を含むworldオブジェクト
-- `result` (`object`): シナリオの結果を含む結果オブジェクト
-- `result.passed` (`boolean`): シナリオが成功した場合はtrue
-- `result.error` (`string`): シナリオが失敗した場合はエラースタック
-- `result.duration` (`number`): シナリオの所要時間（ミリ秒）
-- `context` (`object`): CucumberのWorldオブジェクト
+- `world` ([`ITestCaseHookParameter`](https://github.com/cucumber/cucumber-js/blob/ac124f7b2be5fa54d904c7feac077a2657b19440/src/support_code_library_builder/types.ts#L10-L15))：pickleとテストステップに関する情報を含むworldオブジェクト
+- `result` (`object`)：シナリオの結果を含む結果オブジェクト
+- `result.passed` (`boolean`)：シナリオが成功した場合はtrue
+- `result.error` (`string`)：シナリオが失敗した場合のエラースタック
+- `result.duration` (`number`)：シナリオの所要時間（ミリ秒）
+- `context` (`object`)：Cucumber Worldオブジェクト
 
 ### beforeStep
 
-Cucumber Stepの前に実行されます。
+Cucumberステップの前に実行されます。
 
 パラメータ：
 
-- `step` ([`Pickle.IPickleStep`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/messages/jsonschema/Pickle.json#L20-L49)): Cucumberのstepオブジェクト
-- `scenario` ([`IPickle`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/messages/jsonschema/Pickle.json#L137-L175)): Cucumberのscenarioオブジェクト
-- `context` (`object`): CucumberのWorldオブジェクト
+- `step` ([`Pickle.IPickleStep`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/messages/jsonschema/Pickle.json#L20-L49))：Cucumberステップオブジェクト
+- `scenario` ([`IPickle`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/messages/jsonschema/Pickle.json#L137-L175))：Cucumberシナリオオブジェクト
+- `context` (`object`)：Cucumber Worldオブジェクト
 
 ### afterStep
 
-Cucumber Stepの後に実行されます。
+Cucumberステップの後に実行されます。
 
 パラメータ：
 
-- `step` ([`Pickle.IPickleStep`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/messages/jsonschema/Pickle.json#L20-L49)): Cucumberのstepオブジェクト
-- `scenario` ([`IPickle`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/messages/jsonschema/Pickle.json#L137-L175)): Cucumberのscenarioオブジェクト
-- `result`: (`object`): ステップの結果を含む結果オブジェクト
-- `result.passed` (`boolean`): シナリオが成功した場合はtrue
-- `result.error` (`string`): シナリオが失敗した場合はエラースタック
-- `result.duration` (`number`): シナリオの所要時間（ミリ秒）
-- `context` (`object`): CucumberのWorldオブジェクト
+- `step` ([`Pickle.IPickleStep`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/messages/jsonschema/Pickle.json#L20-L49))：Cucumberステップオブジェクト
+- `scenario` ([`IPickle`](https://github.com/cucumber/common/blob/b94ce625967581de78d0fc32d84c35b46aa5a075/messages/jsonschema/Pickle.json#L137-L175))：Cucumberシナリオオブジェクト
+- `result`: (`object`)：ステップの結果を含む結果オブジェクト
+- `result.passed` (`boolean`)：シナリオが成功した場合はtrue
+- `result.error` (`string`)：シナリオが失敗した場合のエラースタック
+- `result.duration` (`number`)：シナリオの所要時間（ミリ秒）
+- `context` (`object`)：Cucumber Worldオブジェクト
 
 ### beforeAssertion
 
@@ -942,10 +953,10 @@ WebdriverIOのアサーションが行われる前に実行されるフック。
 
 パラメータ：
 
-- `params`: アサーション情報
-- `params.matcherName` (`string`): テストが呼び出したマッチャーの名前（例：`toHaveTitle`）。エイリアスの場合は、エイリアスの名前になります（例：`toExist`ではなく`toBeExisting`）。
-- `params.expectedValue`: マッチャーに渡される値
-- `params.options`: アサーションオプション
+- `params`：アサーション情報
+- `params.matcherName` (`string`)：テストが呼び出したマッチャーの名前（例：`toHaveTitle`）。エイリアスの場合は、エイリアスの名前になります（例：`toExist`ではなく`toBeExisting`）。
+- `params.expectedValue`：マッチャーに渡される値
+- `params.options`：アサーションオプション
 
 ### afterAssertion
 
@@ -953,8 +964,8 @@ WebdriverIOのアサーションが行われた後に実行されるフック。
 
 パラメータ：
 
-- `params`: アサーション情報
-- `params.matcherName` (`string`): テストが呼び出したマッチャーの名前（例：`toHaveTitle`）。エイリアスの場合は、エイリアスの名前になります（例：`toExist`ではなく`toBeExisting`）。
-- `params.expectedValue`: マッチャーに渡される値
-- `params.options`: アサーションオプション
-- `params.result` (`object`): マッチャーの結果。`pass`（`boolean`）と`message()`を含みます。`pass`は値が期待値と一致する場合に`true`となり、これは`.not`を使用した場合も同様です：`.not`を使用した場合、`pass`が`false`のときにアサーションが成功します。
+- `params`：アサーション情報
+- `params.matcherName` (`string`)：テストが呼び出したマッチャーの名前（例：`toHaveTitle`）。エイリアスの場合は、エイリアスの名前になります（例：`toExist`ではなく`toBeExisting`）。
+- `params.expectedValue`：マッチャーに渡される値
+- `params.options`：アサーションオプション
+- `params.result` (`object`)：マッチャーの結果。`pass` (`boolean`)と`message()`を持ちます。`pass`は値が期待値と一致する場合に`true`となり、これは`.not`を使用した場合も同様です。`.not`を使用した場合、`pass`が`false`のときにアサーションが成功します。

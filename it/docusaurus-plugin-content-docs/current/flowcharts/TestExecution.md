@@ -3,7 +3,7 @@ id: testexecution
 title: Esecuzione dei Test
 description: "Segui un diagramma di flusso del processo di esecuzione dei test e di come @wdio/runner interagisce con gli altri pacchetti WebdriverIO."
 ---
-Questo diagramma di flusso illustra il processo di esecuzione dei test e l'interazione tra @wdio/runner e la maggior parte degli altri pacchetti WebdriverIO.
+Questo diagramma di flusso spiega il processo di esecuzione dei test e l'interazione tra @wdio/runner e la maggior parte degli altri pacchetti WebdriverIO.
 
 ```mermaid
 graph TD

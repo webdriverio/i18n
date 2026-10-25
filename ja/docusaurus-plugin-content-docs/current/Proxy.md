@@ -11,16 +11,16 @@ description: "テストとドライバー間、またはブラウザとインタ
 
 ## ドライバーとテスト間のプロキシ
 
-会社がすべての送信リクエストに対して企業プロキシ（例：`http://my.corp.proxy.com:9090`）を使用している場合、WebdriverIOがプロキシを使用するように設定する方法は2つあります：
+会社ですべての送信リクエストに企業プロキシ（例：`http://my.corp.proxy.com:9090`）を使用している場合、WebdriverIOがそのプロキシを使用するように設定する方法は2つあります：
 
 ### オプション1：環境変数を使用する（推奨）
 
-WebdriverIO v9.12.0以降では、標準的なプロキシ環境変数を設定するだけで済みます：
+WebdriverIO v9.12.0以降では、標準のプロキシ環境変数を設定するだけで済みます：
 
 ```bash
 export HTTP_PROXY=http://my.corp.proxy.com:9090
 export HTTPS_PROXY=http://my.corp.proxy.com:9090
-# オプション：特定のホストでプロキシをバイパスする
+# オプション：特定のホストではプロキシをバイパスする
 export NO_PROXY=localhost,127.0.0.1,.internal.domain
 ```
 
@@ -28,7 +28,7 @@ export NO_PROXY=localhost,127.0.0.1,.internal.domain
 
 ### オプション2：undiciのsetGlobalDispatcherを使用する
 
-より高度なプロキシ設定が必要な場合や、プログラムによる制御が必要な場合は、undiciの`setGlobalDispatcher`メソッドを使用できます：
+より高度なプロキシ設定が必要な場合や、プログラムで制御する必要がある場合は、undiciの`setGlobalDispatcher`メソッドを使用できます：
 
 #### undiciをインストールする
 
@@ -53,7 +53,7 @@ export const config = {
 
 プロキシの設定に関する追加情報は[こちら](https://github.com/nodejs/undici/blob/main/docs/docs/api/ProxyAgent.md)で確認できます。
 
-### どちらの方法を使用すべきか？
+### どの方法を使用すべきか？
 
 - **環境変数を使用する**：さまざまなツールで機能し、コードの変更を必要としない、シンプルで標準的なアプローチを求める場合。
 - **setGlobalDispatcherを使用する**：カスタム認証、環境ごとに異なるプロキシ設定などの高度なプロキシ機能が必要な場合や、プロキシの動作をプログラムで制御したい場合。
@@ -68,9 +68,29 @@ export const config = {
 sc -u $SAUCE_USERNAME -k $SAUCE_ACCESS_KEY --no-autodetect -p http://my.corp.proxy.com:9090
 ```
 
+## ブラウザとドライバーのダウンロード用プロキシ
+
+WebdriverIOは、必要なブラウザとドライバーがまだインストールされていない場合、それらをダウンロードします。
+
+- **GeckodriverとEdgedriver**のダウンロードでは、`HTTPS_PROXY`、`HTTP_PROXY`、`NO_PROXY`が使用されます。`setGlobalDispatcher`で設定されたディスパッチャーは、これらの変数よりも優先されます。
+- **Chrome、Chromium、Firefox、Chromedriver**のダウンロードでは、次のいずれかに該当する場合にのみ`HTTPS_PROXY`、`HTTP_PROXY`、`NO_PROXY`が使用されます：
+  - プロジェクトに`proxy-agent`パッケージがインストールされている：
+
+    ```bash
+    npm install --save-dev proxy-agent
+    ```
+
+  - Node.jsが組み込みのプロキシサポートを有効にして実行されている：
+
+    ```bash
+    NODE_USE_ENV_PROXY=1 npx wdio run ./wdio.conf.ts
+    ```
+
+  `proxy-agent`の依存関係ツリーには修正されていないセキュリティアドバイザリが存在するため、WebdriverIOは`proxy-agent`を自動的にインストールしません。プロキシ変数が設定されているにもかかわらず、どちらのオプションも有効になっていない場合、WebdriverIOは最初のダウンロードの前に警告をログに出力します。
+
 ## ブラウザとインターネット間のプロキシ
 
-ブラウザとインターネット間の接続をトンネリングするためにプロキシを設定できます。これは、例えば[BrowserMob Proxy](https://github.com/lightbody/browsermob-proxy)などのツールを使用してネットワーク情報やその他のデータをキャプチャする場合に便利です。
+ブラウザとインターネット間の接続をトンネリングするために、プロキシを設定できます。これは、たとえば[BrowserMob Proxy](https://github.com/lightbody/browsermob-proxy)のようなツールでネットワーク情報やその他のデータをキャプチャする場合に役立ちます。
 
 `proxy`パラメータは、標準のcapabilitiesを介して次のように適用できます：
 

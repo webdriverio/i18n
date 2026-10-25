@@ -1,16 +1,16 @@
 ---
 id: ocr-set-value
 title: ocrSetValue
-description: "ocrSetValue を使用すると、表示されているテキストで特定した入力フィールドに入力できます。フィールドは OCR とファジーマッチングによって検出されます。"
+description: "ocrSetValue を使用すると、OCR とあいまい一致で入力フィールドを見つけ、表示テキストで特定したフィールドに入力できます。"
 ---
 
-要素に一連のキーストロークを送信します。このコマンドは次の処理を行います:
+要素に一連のキーストロークを送信します。このコマンドは次の処理を行います：
 
 -   要素を自動的に検出する
 -   フィールドをクリックしてフォーカスを当てる
 -   フィールドに値を設定する
 
-このコマンドは指定されたテキストを検索し、[Fuse.js](https://fusejs.io/) のファジーロジックに基づいて一致するものを見つけようとします。そのため、セレクターにタイプミスがあった場合や、見つかったテキストが 100% 一致しない場合でも、要素を返そうとします。以下の[ログ](#logs)を参照してください。
+このコマンドは指定されたテキストを検索し、[Fuse.js](https://fusejs.io/) のあいまい検索（Fuzzy Logic）に基づいて一致するものを見つけようとします。つまり、タイプミスのあるセレクターを指定した場合や、見つかったテキストが100%一致しない場合でも、要素を返そうとします。以下の[ログ](#logs)を参照してください。
 
 ## 使用方法
 
@@ -37,7 +37,7 @@ await brower.ocrSetValue({
 
 <Option type="string" required="yes">
 
-クリックするために検索するテキストです。
+クリックするために検索したいテキスト。
 
 </Option>
 #### 例
@@ -53,7 +53,7 @@ await browser.ocrSetValue({
 
 <Option type="string" required="yes">
 
-追加する値です。
+追加する値。
 
 </Option>
 #### 例
@@ -69,7 +69,7 @@ await browser.ocrSetValue({
 
 <Option type="boolean" default="false" required="no">
 
-値を入力フィールドに送信(submit)する必要があるかどうかです。これは、文字列の最後に「ENTER」が送信されることを意味します。
+値を入力フィールドに送信（submit）する必要があるかどうか。これは、文字列の最後に「ENTER」が送信されることを意味します。
 
 </Option>
 #### 例
@@ -86,7 +86,7 @@ await browser.ocrSetValue({
 
 <Option type="number" default="500 milliseconds" required="no">
 
-クリックの持続時間です。時間を長くすることで「ロングクリック」を行うこともできます。
+クリックの持続時間です。必要に応じて、時間を長くすることで「長押しクリック」を行うこともできます。
 
 </Option>
 #### 例
@@ -95,7 +95,7 @@ await browser.ocrSetValue({
 await browser.ocrSetValue({
     text: "WebdriverIO",
     value: "The Value",
-    clickDuration: 3000, // これは 3 秒です
+    clickDuration: 3000, // これは3秒です
 });
 ```
 
@@ -103,7 +103,7 @@ await browser.ocrSetValue({
 
 <Option type="number" default="0.25" required="no">
 
-コントラストが高いほど画像は暗くなり、低いほど明るくなります。これは画像内のテキストを見つけるのに役立ちます。`-1` から `1` までの値を受け付けます。
+コントラストが高いほど画像は暗くなり、低いほど明るくなります。これは画像内のテキストを見つけるのに役立ちます。`-1` から `1` の間の値を受け付けます。
 
 </Option>
 #### 例
@@ -175,7 +175,7 @@ await browser.ocrSetValue({
 
 <Option type="object" required="no">
 
-一致した要素を基準とした相対位置で画面をクリックできます。一致した要素から `above`(上)、`right`(右)、`below`(下)、`left`(左)への相対ピクセルで指定します。
+一致した要素を基準とした相対位置で画面をクリックできます。一致した要素から `above`（上）、`right`（右）、`below`（下）、`left`（左）への相対ピクセルに基づいて指定できます。
 
 :::note
 
@@ -197,7 +197,7 @@ await browser.ocrSetValue({
 
 <Option type="number" required="no">
 
-一致した要素の x ピクセル `above`(上)をクリックします。
+一致した要素の x ピクセル `above`（上）をクリックします。
 
 </Option>
 ##### 例
@@ -216,7 +216,7 @@ await browser.ocrSetValue({
 
 <Option type="number" required="no">
 
-一致した要素から x ピクセル `right`(右)をクリックします。
+一致した要素から x ピクセル `right`（右）をクリックします。
 
 </Option>
 ##### 例
@@ -235,7 +235,7 @@ await browser.ocrSetValue({
 
 <Option type="number" required="no">
 
-一致した要素の x ピクセル `below`(下)をクリックします。
+一致した要素の x ピクセル `below`（下）をクリックします。
 
 </Option>
 ##### 例
@@ -254,7 +254,7 @@ await browser.ocrSetValue({
 
 <Option type="number" required="no">
 
-一致した要素から x ピクセル `left`(左)をクリックします。
+一致した要素から x ピクセル `left`（左）をクリックします。
 
 </Option>
 ##### 例
@@ -271,13 +271,13 @@ await browser.ocrSetValue({
 
 ### `fuzzyFindOptions`
 
-以下のオプションを使用して、テキストを検索するファジーロジックを変更できます。これにより、より適切な一致を見つけやすくなる場合があります。
+以下のオプションで、テキストを検索するためのあいまい検索ロジックを変更できます。これにより、より適切な一致が見つかる可能性があります。
 
 #### `fuzzyFindOptions.distance`
 
 <Option type="number" default="100" required="no">
 
-一致がファジー位置(location で指定)にどれだけ近くなければならないかを決定します。ファジー位置から distance 文字離れた位置での完全な文字一致は、完全な不一致としてスコア付けされます。distance が 0 の場合、一致は指定された正確な位置にある必要があります。distance が 1000 の場合、threshold 0.8 を使用して見つけるには、完全一致が location から 800 文字以内にある必要があります。
+一致があいまい位置（location で指定）にどれだけ近くなければならないかを決定します。あいまい位置から distance 文字離れた位置での完全な文字一致は、完全な不一致としてスコア付けされます。distance が 0 の場合、一致は指定された正確な位置にある必要があります。distance が 1000 の場合、threshold 0.8 を使用して見つけるには、完全な一致が location から 800 文字以内にある必要があります。
 
 </Option>
 ##### 例
@@ -296,7 +296,7 @@ await browser.ocrSetValue({
 
 <Option type="number" default="0" required="no">
 
-テキスト内のどのあたりでパターンが見つかると予想されるかを決定します。
+テキスト内のどのあたりでパターンが見つかると予想されるかを、おおよそ決定します。
 
 </Option>
 ##### 例
@@ -315,7 +315,7 @@ await browser.ocrSetValue({
 
 <Option type="number" default="0.6" required="no">
 
-マッチングアルゴリズムがどの時点で諦めるかを指定します。threshold が 0 の場合は(文字と位置の両方で)完全一致が必要となり、threshold が 1.0 の場合はあらゆるものに一致します。
+マッチングアルゴリズムがどの時点で諦めるかを指定します。threshold が 0 の場合は（文字と位置の両方で）完全な一致が必要となり、threshold が 1.0 の場合は何にでも一致します。
 
 </Option>
 ##### 例
@@ -334,7 +334,7 @@ await browser.ocrSetValue({
 
 <Option type="boolean" default="false" required="no">
 
-検索で大文字と小文字を区別するかどうかです。
+検索で大文字と小文字を区別するかどうか。
 
 </Option>
 ##### 例
@@ -353,7 +353,7 @@ await browser.ocrSetValue({
 
 <Option type="number" default="2" required="no">
 
-長さがこの値を超える一致のみが返されます。(例えば、結果から 1 文字の一致を除外したい場合は 2 に設定します)
+長さがこの値を超える一致のみが返されます。（例えば、結果から1文字の一致を除外したい場合は、2に設定します）
 
 </Option>
 ##### 例
@@ -372,7 +372,7 @@ await browser.ocrSetValue({
 
 <Option type="number" default="false" required="no">
 
-`true` の場合、文字列内で完全一致がすでに見つかっていても、マッチング関数は検索パターンの最後まで処理を続けます。
+`true` の場合、文字列内で完全な一致がすでに見つかっていても、マッチング関数は検索パターンの最後まで処理を続けます。
 
 </Option>
 ##### 例

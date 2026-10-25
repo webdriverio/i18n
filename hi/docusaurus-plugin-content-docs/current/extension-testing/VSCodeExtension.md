@@ -1,17 +1,17 @@
 ---
 id: vscode-extensions
 title: VS Code एक्सटेंशन टेस्टिंग
-description: "WebdriverIO और VS Code सर्विस के साथ डेस्कटॉप IDE में या वेब एक्सटेंशन के रूप में VS Code एक्सटेंशन का एंड टू एंड परीक्षण करें।"
+description: "WebdriverIO और VS Code सर्विस के साथ डेस्कटॉप IDE में या वेब एक्सटेंशन के रूप में VS Code एक्सटेंशन का एंड-टू-एंड परीक्षण करें।"
 ---
 
-WebdriverIO आपको अपने [VS Code](https://code.visualstudio.com/) एक्सटेंशन का VS Code Desktop IDE में या वेब एक्सटेंशन के रूप में एंड टू एंड सहजता से परीक्षण करने की सुविधा देता है। आपको केवल अपने एक्सटेंशन का पाथ देना होता है और बाकी काम फ्रेमवर्क कर देता है। [`wdio-vscode-service`](https://www.npmjs.com/package/wdio-vscode-service) के साथ हर चीज़ का ध्यान रखा जाता है और इसके अलावा भी बहुत कुछ:
+WebdriverIO आपको अपने [VS Code](https://code.visualstudio.com/) एक्सटेंशन का VS Code Desktop IDE में या वेब एक्सटेंशन के रूप में सहजता से एंड-टू-एंड परीक्षण करने की सुविधा देता है। आपको केवल अपने एक्सटेंशन का पाथ प्रदान करना होता है और बाकी काम फ्रेमवर्क करता है। [`wdio-vscode-service`](https://www.npmjs.com/package/wdio-vscode-service) के साथ हर चीज़ का ध्यान रखा जाता है और इससे भी बहुत कुछ:
 
-- 🏗️ VSCode इंस्टॉल करना (stable, insiders या कोई निर्दिष्ट वर्शन)
-- ⬇️ दिए गए VSCode वर्शन के लिए विशिष्ट Chromedriver डाउनलोड करना
+- 🏗️ VSCode इंस्टॉल करना (stable, insiders या कोई निर्दिष्ट संस्करण)
+- ⬇️ दिए गए VSCode संस्करण के लिए विशिष्ट Chromedriver डाउनलोड करना
 - 🚀 आपको अपने टेस्ट से VSCode API तक पहुँचने में सक्षम बनाता है
-- 🖥️ कस्टम यूज़र सेटिंग्स के साथ VSCode शुरू करना (Ubuntu, MacOS और Windows पर VSCode के सपोर्ट सहित)
+- 🖥️ कस्टम यूज़र सेटिंग्स के साथ VSCode शुरू करना (Ubuntu, MacOS और Windows पर VSCode के समर्थन सहित)
 - 🌐 या वेब एक्सटेंशन के परीक्षण के लिए किसी भी ब्राउज़र द्वारा एक्सेस किए जाने हेतु सर्वर से VSCode सर्व करना
-- 📔 आपके VSCode वर्शन से मेल खाते लोकेटर्स के साथ पेज ऑब्जेक्ट्स को बूटस्ट्रैप करना
+- 📔 आपके VSCode संस्करण से मेल खाने वाले लोकेटर के साथ पेज ऑब्जेक्ट्स को बूटस्ट्रैप करना
 
 ## शुरुआत करना
 
@@ -21,11 +21,11 @@ WebdriverIO आपको अपने [VS Code](https://code.visualstudio.com/) 
 npm create wdio@latest ./
 ```
 
-एक इंस्टॉलेशन विज़ार्ड इस प्रक्रिया में आपका मार्गदर्शन करेगा। जब यह पूछे कि आप किस प्रकार का परीक्षण करना चाहते हैं, तो _"VS Code Extension Testing"_ चुनना सुनिश्चित करें, इसके बाद बस डिफ़ॉल्ट रहने दें या अपनी पसंद के अनुसार बदलाव करें।
+एक इंस्टॉलेशन विज़ार्ड इस प्रक्रिया में आपका मार्गदर्शन करेगा। जब यह आपसे पूछे कि आप किस प्रकार की टेस्टिंग करना चाहते हैं, तो _"VS Code Extension Testing"_ का चयन करना सुनिश्चित करें, उसके बाद बस डिफ़ॉल्ट को बनाए रखें या अपनी पसंद के अनुसार बदलाव करें।
 
 ## उदाहरण कॉन्फ़िगरेशन
 
-सर्विस का उपयोग करने के लिए आपको अपनी सर्विसेज़ की सूची में `vscode` जोड़ना होगा, जिसके बाद वैकल्पिक रूप से एक कॉन्फ़िगरेशन ऑब्जेक्ट दिया जा सकता है। इससे WebdriverIO दिए गए VSCode बाइनरी और उपयुक्त Chromedriver वर्शन डाउनलोड करेगा:
+सर्विस का उपयोग करने के लिए आपको अपनी सर्विसेज़ की सूची में `vscode` जोड़ना होगा, जिसके बाद वैकल्पिक रूप से एक कॉन्फ़िगरेशन ऑब्जेक्ट दिया जा सकता है। इससे WebdriverIO दिए गए VSCode बाइनरी और उपयुक्त Chromedriver संस्करण डाउनलोड करेगा:
 
 ```js
 // wdio.conf.ts
@@ -44,15 +44,15 @@ export const config = {
     }],
     services: ['vscode'],
     /**
-     * वैकल्पिक रूप से आप वह पाथ निर्धारित कर सकते हैं जहाँ WebdriverIO सभी
-     * VSCode और Chromedriver बाइनरी स्टोर करता है, उदाहरण:
+     * optionally you can define the path WebdriverIO stores all
+     * VSCode and Chromedriver binaries, e.g.:
      * services: [['vscode', { cachePath: __dirname }]]
      */
     // ...
 };
 ```
 
-यदि आप `wdio:vscodeOptions` को `vscode` के अलावा किसी अन्य `browserName` के साथ परिभाषित करते हैं, जैसे `chrome`, तो सर्विस एक्सटेंशन को वेब एक्सटेंशन के रूप में सर्व करेगी। यदि आप Chrome पर परीक्षण करते हैं तो किसी अतिरिक्त ड्राइवर सर्विस की आवश्यकता नहीं है, उदाहरण:
+यदि आप `wdio:vscodeOptions` को `vscode` के अलावा किसी अन्य `browserName` के साथ परिभाषित करते हैं, जैसे `chrome`, तो सर्विस एक्सटेंशन को वेब एक्सटेंशन के रूप में सर्व करेगी। यदि आप Chrome पर परीक्षण करते हैं तो किसी अतिरिक्त ड्राइवर सर्विस की आवश्यकता नहीं है, उदाहरण के लिए:
 
 ```js
 // wdio.conf.ts
@@ -70,11 +70,11 @@ export const config = {
 };
 ```
 
-_नोट:_ वेब एक्सटेंशन का परीक्षण करते समय आप `browserVersion` के रूप में केवल `stable` या `insiders` में से चुन सकते हैं।
+_नोट:_ वेब एक्सटेंशन का परीक्षण करते समय आप `browserVersion` के रूप में केवल `stable` या `insiders` में से ही चुन सकते हैं।
 
 ### TypeScript सेटअप
 
-अपनी `tsconfig.json` में अपनी types की सूची में `wdio-vscode-service` जोड़ना सुनिश्चित करें:
+अपनी `tsconfig.json` में अपने टाइप्स की सूची में `wdio-vscode-service` जोड़ना सुनिश्चित करें:
 
 ```json
 {
@@ -94,7 +94,7 @@ _नोट:_ वेब एक्सटेंशन का परीक्षण 
 
 ## उपयोग
 
-फिर आप अपने इच्छित VSCode वर्शन से मेल खाते लोकेटर्स के पेज ऑब्जेक्ट्स तक पहुँचने के लिए `getWorkbench` मेथड का उपयोग कर सकते हैं:
+इसके बाद आप अपने इच्छित VSCode संस्करण से मेल खाने वाले लोकेटर के पेज ऑब्जेक्ट्स तक पहुँचने के लिए `getWorkbench` मेथड का उपयोग कर सकते हैं:
 
 ```ts
 describe('WDIO VSCode Service', () => {
@@ -110,7 +110,7 @@ describe('WDIO VSCode Service', () => {
 
 ### VSCode APIs तक पहुँचना
 
-यदि आप [VSCode API](https://code.visualstudio.com/api/references/vscode-api) के माध्यम से कोई विशेष ऑटोमेशन निष्पादित करना चाहते हैं, तो आप कस्टम `executeWorkbench` कमांड के ज़रिए रिमोट कमांड चलाकर ऐसा कर सकते हैं। यह कमांड आपको अपने टेस्ट से VSCode एनवायरनमेंट के अंदर कोड को रिमोट रूप से निष्पादित करने और VSCode API तक पहुँचने की सुविधा देती है। आप फ़ंक्शन में मनचाहे पैरामीटर पास कर सकते हैं जो फिर फ़ंक्शन में प्रसारित हो जाएँगे। `vscode` ऑब्जेक्ट हमेशा पहले आर्गुमेंट के रूप में पास किया जाएगा, जिसके बाद बाहरी फ़ंक्शन पैरामीटर आएँगे। ध्यान दें कि आप फ़ंक्शन के स्कोप के बाहर के वेरिएबल्स तक नहीं पहुँच सकते क्योंकि कॉलबैक रिमोट रूप से निष्पादित होता है। यहाँ एक उदाहरण है:
+यदि आप [VSCode API](https://code.visualstudio.com/api/references/vscode-api) के माध्यम से कोई विशेष ऑटोमेशन निष्पादित करना चाहते हैं, तो आप कस्टम `executeWorkbench` कमांड के ज़रिए रिमोट कमांड चलाकर ऐसा कर सकते हैं। यह कमांड आपको अपने टेस्ट से VSCode एनवायरनमेंट के अंदर कोड को रिमोट रूप से निष्पादित करने देता है और VSCode API तक पहुँचने में सक्षम बनाता है। आप फ़ंक्शन में मनमाने पैरामीटर पास कर सकते हैं, जो फिर फ़ंक्शन में आगे भेज दिए जाएँगे। `vscode` ऑब्जेक्ट हमेशा पहले आर्गुमेंट के रूप में पास किया जाएगा, जिसके बाद बाहरी फ़ंक्शन पैरामीटर आएँगे। ध्यान दें कि आप फ़ंक्शन के स्कोप के बाहर के वेरिएबल्स तक नहीं पहुँच सकते क्योंकि कॉलबैक रिमोट रूप से निष्पादित होता है। यहाँ एक उदाहरण है:
 
 ```ts
 const workbench = await browser.getWorkbench()
@@ -126,7 +126,7 @@ console.log(await notifs[0].getMessage()) // आउटपुट: "I am an API ca
 
 ## अधिक जानकारी
 
-आप [`wdio-vscode-service`](https://www.npmjs.com/package/wdio-vscode-service) को कॉन्फ़िगर करने और कस्टम पेज ऑब्जेक्ट्स बनाने के बारे में [सर्विस डॉक्स](/docs/wdio-vscode-service) में अधिक जान सकते हैं। आप [Christian Bromann](https://twitter.com/bromann) की [_Testing Complex VSCode Extensions With the Power of Web Standards_](https://www.youtube.com/watch?v=PhGNTioBUiU) पर निम्नलिखित टॉक भी देख सकते हैं:
+आप [`wdio-vscode-service`](https://www.npmjs.com/package/wdio-vscode-service) को कॉन्फ़िगर करने और कस्टम पेज ऑब्जेक्ट्स बनाने के तरीके के बारे में [सर्विस डॉक्स](/docs/wdio-vscode-service) में अधिक जान सकते हैं। आप [_Testing Complex VSCode Extensions With the Power of Web Standards_](https://www.youtube.com/watch?v=PhGNTioBUiU) पर [Christian Bromann](https://twitter.com/bromann) की निम्नलिखित टॉक भी देख सकते हैं:
 
 <LiteYouTubeEmbed
     id="PhGNTioBUiU"

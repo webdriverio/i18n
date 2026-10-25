@@ -7,7 +7,7 @@ description: "WebdriverIO DevTools इंस्टॉल करें और DOM
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-WebdriverIO DevTools आपके end-to-end ब्राउज़र टेस्ट को ऑटोमेशन चलाने, डीबग करने और जांचने के लिए एक डेवलपर-टूल्स UI देता है — DOM रीप्ले, प्रति-कमांड स्क्रीनशॉट, नेटवर्क और कंसोल कैप्चर, और सेशन स्क्रीनकास्ट। यह दो मोड में चलता है। **लाइव मोड** आपके टेस्ट चलने के दौरान एक ब्राउज़र विंडो में एक इंटरैक्टिव [डैशबोर्ड](/docs/devtools/dashboard) खोलता है, ताकि आप उन्हें रियल टाइम में देख सकें और दोबारा चला सकें। **ट्रेस मोड** UI को छोड़ देता है और एक पोर्टेबल, ऑफ़लाइन [ट्रेस आर्टिफ़ैक्ट](/docs/devtools/wdio/trace-mode) (`trace.zip`) लिखता है जिसे आप बाद में `show-trace` प्लेयर में खोल सकते हैं — CI के लिए आदर्श। यह पेज आपको जल्दी से लाइव मोड में ले जाता है; ट्रेस मोड बस एक विकल्प की दूरी पर है।
+WebdriverIO DevTools आपके end-to-end ब्राउज़र टेस्ट को ऑटोमेशन चलाने, डीबग करने और जांचने के लिए एक developer-tools UI देता है — DOM रीप्ले, प्रति-कमांड स्क्रीनशॉट, नेटवर्क और कंसोल कैप्चर, और सेशन स्क्रीनकास्ट। यह दो मोड में चलता है। **लाइव मोड** आपके टेस्ट चलने के दौरान एक ब्राउज़र विंडो में इंटरैक्टिव [डैशबोर्ड](/docs/devtools/dashboard) खोलता है, ताकि आप उन्हें रियल टाइम में देख सकें और दोबारा चला सकें। **ट्रेस मोड** UI को छोड़ देता है और एक पोर्टेबल, ऑफ़लाइन [ट्रेस आर्टिफैक्ट](/docs/devtools/wdio/trace-mode) (`trace.zip`) लिखता है जिसे आप बाद में `show-trace` प्लेयर में खोल सकते हैं — CI के लिए आदर्श। यह पेज आपको जल्दी से लाइव मोड में ले जाता है; ट्रेस मोड बस एक विकल्प की दूरी पर है।
 
 ## इंस्टॉल और पहला रन
 
@@ -19,6 +19,7 @@ values={[
 {label: 'WebdriverIO', value: 'wdio'},
 {label: 'Selenium', value: 'selenium'},
 {label: 'Nightwatch', value: 'nightwatch'},
+{label: 'Python', value: 'python'},
 ]}
 >
 <TabItem value="wdio">
@@ -29,7 +30,7 @@ values={[
 npm install @wdio/devtools-service --save-dev
 ```
 
-इसे अपने टेस्ट-रनर कॉन्फ़िग में जोड़ें:
+इसे अपने test-runner कॉन्फ़िग में जोड़ें:
 
 ```ts
 // wdio.conf.ts
@@ -80,13 +81,13 @@ describe('smoke test', function () {
 })
 ```
 
-इसे चलाएं — DevTools UI एक नई Chrome विंडो में खुलता है:
+इसे चलाएं — DevTools UI एक नई Chrome विंडो में खुल जाता है:
 
 ```bash
 mocha --timeout 60000 tests/example.test.js
 ```
 
-Jest, Cucumber, और साधारण-Node सेटअप के लिए [Selenium पेज](/docs/devtools/selenium) देखें।
+Jest, Cucumber, और साधारण Node सेटअप के लिए [Selenium पेज](/docs/devtools/selenium) देखें।
 
 </TabItem>
 <TabItem value="nightwatch">
@@ -97,7 +98,7 @@ Jest, Cucumber, और साधारण-Node सेटअप के लिए 
 npm install @wdio/nightwatch-devtools
 ```
 
-इसे `globals` के माध्यम से अपने Nightwatch कॉन्फ़िग में जोड़ें — टेस्ट फ़ाइलों में किसी बदलाव की ज़रूरत नहीं:
+इसे `globals` के ज़रिए अपने Nightwatch कॉन्फ़िग में जोड़ें — टेस्ट फ़ाइलों में किसी बदलाव की ज़रूरत नहीं:
 
 ```js
 // nightwatch.conf.cjs
@@ -128,10 +129,30 @@ nightwatch
 Cucumber/BDD सेटअप के लिए [Nightwatch पेज](/docs/devtools/nightwatch) देखें।
 
 </TabItem>
+<TabItem value="python">
+
+Python 3.10+, `selenium>=4.44`, और `PATH` पर Node.js 22.19+ की आवश्यकता है (डैशबोर्ड बैकएंड एक Node एप्लिकेशन है)। एडैप्टर इंस्टॉल करें, फिर एक बार बैकएंड इंस्टॉल करें:
+
+```bash
+pip install selenium-devtools-py
+selenium-devtools install-backend
+```
+
+pytest के तहत आपकी टेस्ट फ़ाइलों में कुछ भी नहीं जोड़ना पड़ता। एक फ़्लैग के साथ कैप्चर चालू करें:
+
+```bash
+pytest --devtools tests/          # लाइव डैशबोर्ड
+pytest --devtools-trace tests/    # इसके बजाय एक ट्रेस आर्काइव लिखें
+```
+
+साधारण स्क्रिप्ट, ini विकल्पों और एनवायरनमेंट वेरिएबल्स के लिए [Selenium पेज](/docs/devtools/selenium) पर Python टैब देखें।
+
+</TabItem>
 </Tabs>
 
 ## अगले कदम
 
-- **[ट्रेस मोड](/docs/devtools/wdio/trace-mode)** — UI को छोड़ने और CI के लिए एक पोर्टेबल, ऑफ़लाइन ट्रेस आर्टिफ़ैक्ट बनाने के लिए `mode: 'trace'` सेट करें।
-- **[कॉन्फ़िगरेशन संदर्भ](/docs/devtools/reference)** — तीनों एडैप्टर के सभी विकल्प।
-- **फ़्रेमवर्क** — प्रत्येक एडैप्टर के लिए पूर्ण गाइड: [WebdriverIO](/docs/devtools/wdio), [Selenium](/docs/devtools/selenium), [Nightwatch](/docs/devtools/nightwatch)।
+- **[ट्रेस मोड](/docs/devtools/wdio/trace-mode)** — UI को छोड़ने और CI के लिए एक पोर्टेबल, ऑफ़लाइन ट्रेस आर्टिफैक्ट बनाने के लिए `mode: 'trace'` सेट करें।
+- **[कॉन्फ़िगरेशन संदर्भ](/docs/devtools/reference)**: सभी एडैप्टर्स के हर विकल्प।
+- **[मोबाइल टेस्टिंग](/docs/devtools/mobile)**: Appium सेशन कैप्चर करें।
+- **फ़्रेमवर्क** — प्रति-एडैप्टर पूर्ण गाइड: [WebdriverIO](/docs/devtools/wdio), [Selenium](/docs/devtools/selenium), [Nightwatch](/docs/devtools/nightwatch)।

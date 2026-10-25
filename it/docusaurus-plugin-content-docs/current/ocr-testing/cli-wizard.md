@@ -1,52 +1,52 @@
 ---
 id: cli-wizard
-title: Wizard CLI
-description: "Verifica quale testo il servizio OCR riesce a trovare in un'immagine senza eseguire un test, utilizzando il wizard CLI OCR."
+title: Procedura guidata CLI
+description: "Verifica quale testo il servizio OCR riesce a trovare in un'immagine senza eseguire un test, utilizzando la procedura guidata CLI di OCR."
 ---
 
-Puoi verificare quale testo può essere trovato in un'immagine senza eseguire un test utilizzando l'OCR CLI Wizard. Le uniche cose necessarie sono:
+Puoi verificare quale testo può essere trovato in un'immagine senza eseguire un test utilizzando la procedura guidata CLI di OCR. Le uniche cose necessarie sono:
 
--   aver installato `@wdio/ocr-service` come dipendenza, vedi [Getting Started](./getting-started)
+-   aver installato `@wdio/ocr-service` come dipendenza, vedi [Per Iniziare](./getting-started)
 -   un'immagine che vuoi elaborare
 
-Quindi esegui il seguente comando per avviare il wizard
+Quindi esegui il seguente comando per avviare la procedura guidata
 
 ```sh
 npx ocr-service
 ```
 
-Questo avvierà un wizard che ti guiderà attraverso i passaggi per selezionare un'immagine e utilizzare un haystack più la modalità avanzata. Vengono poste le seguenti domande
+Questo avvierà una procedura guidata che ti accompagnerà attraverso i passaggi per selezionare un'immagine e utilizzare un haystack più la modalità avanzata. Vengono poste le seguenti domande
 
-## Come vorresti specificare il file?
+## How would you like to specify the file?
 
 È possibile selezionare le seguenti opzioni
 
--   Usa un "file explorer"
--   Digita manualmente il percorso del file
+-   Use a "file explorer"
+-   Type the file path manually
 
-### Usa un "file explorer"
+### Use a "file explorer"
 
-Il wizard CLI offre l'opzione di utilizzare un "file explorer" per cercare i file sul tuo sistema. Parte dalla cartella da cui esegui il comando. Dopo aver selezionato un'immagine (usa i tasti freccia e il tasto INVIO) passerai alla domanda successiva
+La procedura guidata CLI offre l'opzione di utilizzare un "file explorer" per cercare file sul tuo sistema. Parte dalla cartella da cui richiami il comando. Dopo aver selezionato un'immagine (usa i tasti freccia e il tasto INVIO) passerai alla domanda successiva
 
-### Digita manualmente il percorso del file
+### Type the file path manually
 
-Si tratta di un percorso diretto a un file da qualche parte sulla tua macchina locale
+Si tratta di un percorso diretto a un file da qualche parte sul tuo computer locale
 
-### Vorresti utilizzare un haystack?
+### Would you like to use a haystack?
 
-Qui hai la possibilità di selezionare un'area da elaborare. Questo può velocizzare il processo o ridurre/restringere la quantità di testo che il motore OCR potrebbe trovare. Devi fornire i dati `x`, `y`, `width`, `height` in base alle seguenti domande:
+Qui hai la possibilità di selezionare un'area che deve essere elaborata. Questo può velocizzare il processo o ridurre/restringere la quantità di testo che il motore OCR potrebbe trovare. Devi fornire i dati `x`, `y`, `width`, `height` in base alle seguenti domande:
 
--   Inserisci la coordinata x:
--   Inserisci la coordinata y:
--   Inserisci la larghezza:
--   Inserisci l'altezza:
+-   Enter the x coordinate:
+-   Enter the y coordinate:
+-   Enter the width:
+-   Enter the height:
 
-## Vuoi utilizzare la modalità avanzata?
+## Do you want to use the advanced mode?
 
-La modalità avanzata include funzionalità extra come:
+La modalità avanzata includerà funzionalità extra come:
 
 -   l'impostazione del contrasto
--   altre ne seguiranno in futuro
+-   altre funzionalità in arrivo in futuro
 
 ## Demo
 

@@ -4,17 +4,17 @@ title: リクエストのモックとスパイ
 description: "browser.mock を使ってテスト内でネットワークリクエストとレスポンスをモックし、リクエストを中断したり、スパイで呼び出しを検査したりします。"
 ---
 
-WebdriverIO には、ネットワークレスポンスを変更する機能が組み込まれています。これにより、バックエンドやモックサーバーをセットアップすることなく、フロントエンドアプリケーションのテストに集中できます。REST API リクエストなどの Web リソースに対するカスタムレスポンスをテスト内で定義し、動的に変更することができます。
+WebdriverIO には、ネットワークレスポンスを変更するための機能が組み込まれています。これにより、バックエンドやモックサーバーをセットアップすることなく、フロントエンドアプリケーションのテストに集中できます。テスト内で REST API リクエストなどの Web リソースに対するカスタムレスポンスを定義し、動的に変更することができます。
 
 :::info
 
-`mock` コマンドを使用するには WebDriver Bidi のサポートが必要です。通常、Chromium ベースのブラウザや Firefox でローカルにテストを実行する場合や、Selenium Grid v4 以上を使用する場合はサポートされています。クラウドでテストを実行する場合は、クラウドプロバイダーが WebDriver Bidi をサポートしていることを確認してください。
+`mock` コマンドを使用するには、WebDriver Bidi のサポートが必要です。通常、Chromium ベースのブラウザや Firefox でローカルにテストを実行する場合、また Selenium Grid v4 以上を使用する場合はサポートされています。クラウドでテストを実行する場合は、クラウドプロバイダーが WebDriver Bidi をサポートしていることを確認してください。
 
 :::
 
 ## モックの作成
 
-レスポンスを変更する前に、まずモックを定義する必要があります。このモックはリソース URL によって記述され、[リクエストメソッド](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods)や[ヘッダー](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers)でフィルタリングできます。リソースは [`URLPattern`](https://developer.mozilla.org/en-US/docs/Web/API/URLPattern) を使用してマッチングされ、`*` は任意の文字列にマッチします。プロトコルを含まない URL はリクエストのパスのみと照合されるため、`*/users/list` は任意のオリジン上のそのパスにマッチします：
+レスポンスを変更する前に、まずモックを定義する必要があります。このモックはリソースの URL によって記述され、[リクエストメソッド](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods)や[ヘッダー](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers)でフィルタリングできます。リソースは [`URLPattern`](https://developer.mozilla.org/en-US/docs/Web/API/URLPattern) を使用してマッチングされ、`*` は任意の文字列にマッチします。プロトコルを含まない URL はリクエストのパスのみに対してマッチングされるため、`*/users/list` は任意のオリジン上のそのパスにマッチします:
 
 ```js
 // "/users/list" で終わるすべてのリソースをモックする
@@ -29,25 +29,35 @@ const strictMock = await browser.mock('*', {
     statusCode: 200
 })
 
-// 文字列の代わりに `URLPattern` を渡すこともできます。ポリフィルは
-// ネイティブの URLPattern をサポートしないランタイムでも動作します
+// 文字列の代わりに `URLPattern` を渡すこともできます。この polyfill は
+// ネイティブの URLPattern をサポートしていないランタイムでも動作します
 import { URLPattern } from 'urlpattern-polyfill'
 const patternMock = await browser.mock(new URLPattern({ pathname: '/users/list' }))
 ```
 
+:::info
+
+単一の `*` は `/` を含む任意の文字にマッチします。文字列パターンでは、WebdriverIO は `**` を `*` に変換するため、`'**/api/**'` は `'*/api/*'` と同じです。
+
+同じ URL パターンと同じフィルターオプションを持つ 2 つ目のモックは、1 つ目のモックを置き換えます。WebdriverIO は 1 つ目のモックをリストアするため、そのモックはリクエストを変更したり呼び出しを記録したりしなくなります。両方のモックを保持するには、異なるフィルターオプションを指定してください。例えば、文字列 `'**/users'` と `'*/users'` は同じモックですが、`'*/users'` と `{ method: 'POST' }` を指定した `'*/users'` は 2 つの異なるモックです。
+
+:::
+
 :::warning
 
-URL のワイルドカードには単一の `*` を使用してください。これは `/` にもマッチします。`**/api/**` や `**/data.json` のように固定テキストの前にワイルドカードを連続させると、無関係な URL に対して過度な正規表現のバックトラッキングが発生し、テストがフリーズする可能性があります。[issue #13548](https://github.com/webdriverio/webdriverio/issues/13548) を参照してください。コンポーネントテストでは、ランナーのトラフィックをインターセプトの対象外にするため、固定のプロトコルとホスト名も使用してください。[コンポーネントテストのリクエストモック](/docs/component-testing/mocking#requests)を参照してください。
+WebdriverIO は `URLPattern` オブジェクトを変更しません。オブジェクトでは単一の `*` を使用してください。`{ pathname: '**/api/**' }` のように固定テキストの前にワイルドカードを繰り返すと、マッチしない長い URL に対するマッチングが非常に遅くなり、テストがフリーズする可能性があります。[issue #13548](https://github.com/webdriverio/webdriverio/issues/13548) を参照してください。
+
+コンポーネントテストでは、ランナーのトラフィックがインターセプトの対象外になるよう、固定のプロトコルとホスト名を使用してください。詳しくは[コンポーネントテストのリクエストモック](/docs/component-testing/mocking#requests)を参照してください。
 
 :::
 
 ## カスタムレスポンスの指定
 
-モックを定義したら、それに対するカスタムレスポンスを定義できます。カスタムレスポンスには、JSON で応答するためのオブジェクト、カスタムフィクスチャで応答するためのローカルファイル、またはインターネット上のリソースでレスポンスを置き換えるための Web リソースを指定できます。
+モックを定義したら、それに対するカスタムレスポンスを定義できます。カスタムレスポンスには、JSON を返すオブジェクト、カスタムフィクスチャを返すローカルファイル、またはレスポンスをインターネット上のリソースに置き換える Web リソースのいずれかを指定できます。
 
 ### API リクエストのモック
 
-JSON レスポンスを期待する API リクエストをモックするには、返したい任意のオブジェクトを引数としてモックオブジェクトの `respond` を呼び出すだけです。例：
+JSON レスポンスを期待する API リクエストをモックするには、返したい任意のオブジェクトを指定してモックオブジェクトの `respond` を呼び出すだけです。例:
 
 ```js
 const mock = await browser.mock('https://todo-backend-express-knex.herokuapp.com/')
@@ -74,7 +84,7 @@ console.log(await $$('#todo-list li').map(el => el.getText()))
 // 出力: "[ 'Injected (non) completed Todo', 'Injected completed Todo' ]"
 ```
 
-次のようにモックレスポンスのパラメータを渡すことで、レスポンスヘッダーやステータスコードも変更できます：
+次のようにモックレスポンスのパラメータを渡すことで、レスポンスヘッダーやステータスコードも変更できます:
 
 ```js
 mock.respond({ ... }, {
@@ -94,19 +104,19 @@ mock.respond({ ... }, {
 })
 ```
 
-`fetchResponse: false` はバックエンドを一切呼び出しません。`statusCode` または `responseHeaders` フィルターを指定して作成されたモックは、マッチするかどうかを判断するためにそのレスポンスを必要とするため、これらを組み合わせると `respond()` および `respondOnce()` はエラーをスローします。レスポンスフィルターを削除するか、`fetchResponse` を未設定のままにして、モックがバックエンドのレスポンスを読み取ってから置き換えられるようにしてください。
+`fetchResponse: false` はバックエンドを一切呼び出しません。`statusCode` または `responseHeaders` フィルターを指定して作成されたモックは、マッチするかどうかを判断するためにそのレスポンスを必要とするため、これらを組み合わせると `respond()` と `respondOnce()` はエラーをスローします。レスポンスフィルターを削除するか、`fetchResponse` を未設定のままにして、モックがバックエンドのレスポンスを読み取ってから置き換えられるようにしてください。
 
-カスタムレスポンスはフィクスチャファイルに保存しておくことを推奨します。そうすれば、次のようにテスト内で読み込むだけで済みます：
+カスタムレスポンスはフィクスチャファイルに保存し、次のようにテスト内で読み込むことをお勧めします:
 
 ```js
-// JSON インポートアサーションをサポートするには Node.js v16.14.0 以上が必要です
+// JSON import assertions をサポートするには Node.js v16.14.0 以上が必要です
 import responseFixture from './__fixtures__/apiResponse.json' assert { type: 'json' }
 mock.respond(responseFixture)
 ```
 
 ### テキストリソースのモック
 
-JavaScript や CSS ファイル、その他のテキストベースのリソースを変更したい場合は、ファイルパスを渡すだけで、WebdriverIO が元のリソースをそれに置き換えます。例：
+JavaScript や CSS ファイル、その他のテキストベースのリソースを変更したい場合は、ファイルパスを渡すだけで、WebdriverIO が元のリソースをそれに置き換えます。例:
 
 ```js
 const scriptMock = await browser.mock('*/script.min.js')
@@ -118,7 +128,7 @@ scriptMock.respond('alert("I am a mocked resource")')
 
 ### Web リソースのリダイレクト
 
-目的のレスポンスがすでに Web 上でホストされている場合は、Web リソースを別の Web リソースに置き換えることもできます。これは個々のページリソースだけでなく、Web ページ自体にも有効です。例：
+目的のレスポンスがすでに Web 上にホストされている場合は、Web リソースを別の Web リソースに置き換えることもできます。これは個々のページリソースだけでなく、Web ページ自体にも機能します。例:
 
 ```js
 const pageMock = await browser.mock('https://google.com/')
@@ -129,7 +139,7 @@ console.log(await browser.getTitle()) // "WebdriverIO · Next-gen browser and mo
 
 ### 動的レスポンス
 
-モックレスポンスが元のリソースのレスポンスに依存する場合は、元のレスポンスをパラメータとして受け取る関数を渡し、その戻り値に基づいてモックを設定することで、リソースを動的に変更することもできます。例：
+モックレスポンスが元のリソースのレスポンスに依存する場合は、元のレスポンスをパラメータとして受け取り、その戻り値に基づいてモックを設定する関数を渡すことで、リソースを動的に変更することもできます。例:
 
 ```js
 const mock = await browser.mock('https://todo-backend-express-knex.herokuapp.com/', {
@@ -157,7 +167,7 @@ console.log(await $$('#todo-list li label').map((el) => el.getText()))
 
 ## モックの中断
 
-カスタムレスポンスを返す代わりに、次のいずれかの HTTP エラーでリクエストを中断することもできます：
+カスタムレスポンスを返す代わりに、次のいずれかの HTTP エラーでリクエストを中断することもできます:
 
 - Failed
 - Aborted
@@ -174,7 +184,7 @@ console.log(await $$('#todo-list li label').map((el) => el.getText()))
 - BlockedByClient
 - BlockedByResponse
 
-これは、機能テストに悪影響を与えるサードパーティのスクリプトをページからブロックしたい場合に非常に便利です。`abort` または `abortOnce` を呼び出すだけでモックを中断できます。例：
+これは、機能テストに悪影響を与えるサードパーティのスクリプトをページからブロックしたい場合に非常に便利です。`abort` または `abortOnce` を呼び出すだけでモックを中断できます。例:
 
 ```js
 const mock = await browser.mock('https://www.google-analytics.com/*')
@@ -183,7 +193,7 @@ mock.abort('Failed')
 
 ## スパイ
 
-すべてのモックは自動的にスパイとなり、ブラウザがそのリソースに対して行ったリクエストの数をカウントします。モックにカスタムレスポンスや中断理由を適用しない場合は、通常受け取るデフォルトのレスポンスでそのまま処理が続行されます。これにより、ブラウザが特定の API エンドポイントなどに対して何回リクエストを行ったかを確認できます。
+すべてのモックは自動的にスパイとなり、ブラウザがそのリソースに対して行ったリクエストの数をカウントします。モックにカスタムレスポンスや中断理由を適用しない場合、通常受け取るデフォルトのレスポンスで処理が続行されます。これにより、例えば特定の API エンドポイントに対してブラウザが何回リクエストを行ったかを確認できます。
 
 ```js
 const mock = await browser.mock('*/user', { method: 'post' })
@@ -195,24 +205,24 @@ await $('password').setValue('password123')
 await $('password_repeat').setValue('password123')
 await $('button[type="submit"]').click()
 
-// API リクエストが行われたか確認する
+// API リクエストが行われたかを確認する
 expect(mock.calls.length).toBe(1)
 
 // レスポンスをアサートする
 expect(mock.calls[0].body).toEqual({ success: true })
 ```
 
-マッチするリクエストがレスポンスを返すまで待機する必要がある場合は、`mock.waitForResponse(options)` を使用してください。API リファレンス：[waitForResponse](/docs/api/mock/waitForResponse) を参照してください。
+マッチするリクエストがレスポンスを返すまで待機する必要がある場合は、`mock.waitForResponse(options)` を使用してください。API リファレンス: [waitForResponse](/docs/api/mock/waitForResponse) を参照してください。
 
 ## マルチリモート
 
-[マルチリモート](/docs/multiremote)ブラウザでは、`mock()` は単一の `Mock` ではなく `MultiRemoteMock` を返します。`respond()` や `restore()` などのメソッドはすべてのインスタンスで実行されます。`waitForResponse()` は、すべてのインスタンスがマッチするレスポンスを受け取るまで待機します。キャプチャされたリクエストは、そのブラウザのモックに保持されます：
+[マルチリモート](/docs/multiremote)ブラウザでは、`mock()` は単一の `Mock` ではなく `MultiRemoteMock` を返します。`respond()` や `restore()` などのメソッドはすべてのインスタンスで実行されます。`waitForResponse()` は、すべてのインスタンスがマッチするレスポンスを受け取るまで待機します。キャプチャされたリクエストは、そのブラウザのモックに保持されます:
 
 ```ts
 const mock = await browser.mock('*/user', { method: 'post' })
 mock.respond({ success: true })
 
-// 各セッションがリクエストを送信するように、すべてのブラウザでユーザーを登録する
+// 各セッションがリクエストを送信するよう、すべてのブラウザでユーザーを登録する
 await browser.$('#username').setValue('randomUser')
 await browser.$('#password').setValue('password123')
 await browser.$('#password_repeat').setValue('password123')
@@ -224,9 +234,9 @@ expect(mock.getInstance('myChromeBrowser').calls).toHaveLength(1)
 expect(mock.getInstance('myFirefoxBrowser').calls).toHaveLength(1)
 ```
 
-`mock.instances` は、モックが作成された順にそれらの名前を一覧表示します。名前がその一覧にない場合、`getInstance` は `Multi-remote object has no instance named "<name>"` をスローします。`browser.select('myFirefoxBrowser', 'myChromeBrowser')` から作成されたモックでは Firefox が最初に表示されるため、`browser.instances` とは順序が異なる場合があります。
+`mock.instances` は、モックが作成された順にそれらの名前を列挙します。名前がそのリストにない場合、`getInstance` は `Multi-remote object has no instance named "<name>"` をスローします。`browser.select('myFirefoxBrowser', 'myChromeBrowser')` から作成されたモックでは Firefox が先に列挙されるため、`browser.instances` とは順序が異なる場合があります。
 
-1 つのブラウザのみをスタブするには、そのインスタンスで `mock()` を呼び出します：
+1 つのブラウザのみをスタブするには、そのインスタンスで `mock()` を呼び出します:
 
 ```ts
 const chromeOnly = await browser.getInstance('myChromeBrowser').mock('*/user')

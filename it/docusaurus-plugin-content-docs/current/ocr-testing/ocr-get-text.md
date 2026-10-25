@@ -1,7 +1,7 @@
 ---
 id: ocr-get-text
 title: ocrGetText
-description: "Leggi il testo mostrato sullo schermo o in un'area specifica con ocrGetText del servizio OCR."
+description: "Leggi il testo mostrato sullo schermo o in un'area specifica con ocrGetText dal servizio OCR."
 ---
 
 Ottieni il testo presente in un'immagine.

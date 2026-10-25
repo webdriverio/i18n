@@ -1,22 +1,22 @@
 ---
 id: gettingstarted
 title: はじめに
-description: npm init wdio@latest で WebdriverIO プロジェクトを作成し、最初のテストを実行して、お使いのプラットフォーム向けの次のガイドを見つけましょう。
+description: npm init wdio@latest で WebdriverIO プロジェクトを作成し、最初のテストを実行して、使用するプラットフォーム向けの次のガイドを見つけましょう。
 ---
 
-1つのコマンドで既存または新規のプロジェクトに WebdriverIO をセットアップし、最初のテストを実行しましょう。設定ウィザードは、何をテストしたいか（Web、モバイル、デスクトップ、または VS Code 拡張機能）、どのフレームワークとレポーターを使用するかを尋ね、必要なものをすべてインストールします。
+1つのコマンドで既存または新規のプロジェクトに WebdriverIO をセットアップし、最初のテストを実行しましょう。設定ウィザードは、何をテストしたいか（Web、モバイル、デスクトップ、または VS Code 拡張機能）、どのフレームワークとレポーターを使用するかを尋ね、すべてをインストールしてくれます。
 
 :::info
-これは WebdriverIO __v10__ のドキュメントです。まだ v9 をお使いですか？[v9 ドキュメント](https://v9.webdriver.io)を使用するか、[v10 移行ガイド](/docs/v10-migration)に従ってください。
+これは WebdriverIO __v10__ のドキュメントです。まだ v9 をお使いですか？[v9 のドキュメント](https://v9.webdriver.io)を使用するか、[v10 移行ガイド](/docs/v10-migration)に従ってください。
 :::
 
 :::tip コーディングエージェントを使用していますか？
-エージェントに [`https://webdriver.io/llms.txt`](https://webdriver.io/llms.txt) を参照させるか、`https://webdriver.io/mcp` のドキュメント MCP サーバーに接続してください。詳しくは [WebdriverIO for Coding Agents](/docs/ai-agents) をご覧ください。
+エージェントに [`https://webdriver.io/llms.txt`](https://webdriver.io/llms.txt) を参照させるか、`https://webdriver.io/mcp` のドキュメント MCP サーバーに接続してください。詳しくは [コーディングエージェント向け WebdriverIO](/docs/ai-agents) を参照してください。
 :::
 
 ## WebdriverIO のセットアップを開始する
 
-[WebdriverIO Starter Toolkit](https://www.npmjs.com/package/create-wdio) は、既存または新規のプロジェクトに完全な WebdriverIO セットアップを追加します。既存プロジェクトのルートディレクトリで、次を実行します：
+[WebdriverIO Starter Toolkit](https://www.npmjs.com/package/create-wdio) は、既存または新規のプロジェクトに完全な WebdriverIO のセットアップを追加します。既存のプロジェクトのルートディレクトリで、次を実行します：
 
 <Tabs
   defaultValue="npm"
@@ -85,7 +85,7 @@ bun create wdio@latest ./path/to/new/project
 
 <CreateProjectAnimation />
 
-ウィザードは、セットアップをガイドする一連の質問を表示します。`--yes` パラメータを渡すと、[Page Object](https://martinfowler.com/bliki/PageObject.html) パターンを使用し、Mocha と Chrome を使うデフォルトのセットアップを選択できます。
+ウィザードはセットアップを案内する一連の質問を表示します。`--yes` パラメータを渡すと、[Page Object](https://martinfowler.com/bliki/PageObject.html) パターンを使用し、Mocha と Chrome を用いるデフォルトのセットアップを選択できます。
 
 <Tabs
   defaultValue="npm"
@@ -128,7 +128,7 @@ bun create wdio@latest . --yes
 
 ### フラグでウィザードに回答する
 
-ウィザードのすべての質問には、対応するコマンドラインフラグがあります。フラグはその質問に回答し、ウィザードは残りの質問だけを尋ねます。`--yes` と組み合わせると、ウィザードは残りの質問にデフォルト値を使用し、一切プロンプトを表示しません。これはコーディングエージェントや CI ジョブに必要な動作です：
+ウィザードのすべての質問には、対応するコマンドラインフラグがあります。フラグはその質問に回答し、ウィザードは残りの質問のみを尋ねます。`--yes` と組み合わせると、ウィザードは残りの質問にデフォルト値を使用し、一切プロンプトを表示しません。これはコーディングエージェントや CI ジョブに必要な動作です：
 
 ```sh
 # JavaScript で Cucumber を使用し、spec と JUnit レポーターを使用
@@ -147,9 +147,9 @@ npm init wdio@latest . -- --yes --runner component --preset react
 npm init wdio@latest . -- --yes --no-npm-install
 ```
 
-Yarn、pnpm、bun では、`--` セパレーターなしでフラグを渡します。例：`pnpm create wdio@latest . --yes --framework cucumber`
+Yarn、pnpm、bun では、`--` 区切りなしでフラグを渡します。例：`pnpm create wdio@latest . --yes --framework cucumber`。
 
-最も一般的なフラグ：
+よく使われるフラグ：
 
 | フラグ | 値 |
 | --- | --- |
@@ -162,12 +162,12 @@ Yarn、pnpm、bun では、`--` セパレーターなしでフラグを渡しま
 | `--preset` | `lit`、`vue`、`svelte`、`solid`、`stencil`、`react`、`preact`、`other`（`--runner component` と併用） |
 | `--desktop-framework` | `electron`、`tauri`、`dioxus`、`macos`（`--runner desktop` と併用） |
 | `--reporters`、`--services`、`--plugins` | カンマ区切りの短縮名。例：`--reporters spec,junit --services visual` |
-| `--agent-support` / `--no-agent-support` | `AGENTS.md` セクションと `wdio-session` スキルを書き出す（デフォルトで有効） |
+| `--agent-support` / `--no-agent-support` | `AGENTS.md` のセクションと `wdio-session` スキルを書き出す（デフォルトで有効） |
 | `--npm-install` / `--no-npm-install` | 依存関係をインストールする（デフォルトで有効） |
 
-`npm init wdio@latest -- --help` を実行すると、すべてのフラグ、受け付ける値、および回答する質問が一覧表示されます。ブール型のフラグには `--no-` プレフィックスを付けられます。同じフラグは `npx wdio config` でも使用できます。
+`npm init wdio@latest -- --help` を実行すると、すべてのフラグ、受け付ける値、および対応する質問が一覧表示されます。ブール値のフラグには `--no-` プレフィックスを付けることができます。同じフラグは `npx wdio config` でも使用できます。
 
-ウィザードは各フラグをセットアップ内容と照合します。不明な値、ウィザードが尋ねない質問に対するフラグ、またはセットアップで提示されない値が指定された場合、ファイルを書き出す前に終了コード 2 で停止します：
+ウィザードは各フラグをセットアップと照合してチェックします。不明な値、ウィザードが尋ねない質問に対するフラグ、またはセットアップに対して提示されない値が指定された場合、ファイルを書き出す前に終了コード 2 で停止します：
 
 ```
 Error: --preset does not apply to this setup. UI framework of your components (with --runner component).
@@ -175,7 +175,7 @@ Error: --preset does not apply to this setup. UI framework of your components (w
 
 ## CLI を手動でインストールする
 
-次の方法で、CLI パッケージをプロジェクトに手動で追加することもできます：
+次のようにして、CLI パッケージを手動でプロジェクトに追加することもできます：
 
 ```sh
 npm i --save-dev @wdio/cli
@@ -217,16 +217,16 @@ __注意：__ WebdriverIO のすべてのコマンドは非同期であり、[`a
 
 ## テストを記録する
 
-WebdriverIO は、画面上でのテスト操作を記録し、WebdriverIO のテストスクリプトを自動的に生成することで、すぐに始められるツールを提供しています。詳しくは [Chrome DevTools Recorder でテストを記録する](/docs/record) をご覧ください。
+WebdriverIO には、画面上でのテスト操作を記録し、WebdriverIO のテストスクリプトを自動生成することで、すぐに始められるよう支援するツールが用意されています。詳しくは [Chrome DevTools Recorder でテストを記録する](/docs/record) を参照してください。
 
 ## システム要件
 
 [Node.js](http://nodejs.org) がインストールされている必要があります。
 
-- サポートされている最も古い LTS バージョンである v22.19.0 以上をインストールしてください
-- LTS リリースである、または LTS リリースになる予定のリリースのみが公式にサポートされています
+- 少なくとも v22.23.4、v24.22.1、または v26.12.1（またはこれらの系列の以降のリリース）をインストールしてください。これらは、eMudhra 中間 CA の侵害に対応した[更新済み CA ストア](https://nodejs.org/en/blog/vulnerability/october-2026-security-releases)を含む最初のリリースです
+- LTS リリースである、または今後 LTS リリースとなるリリースのみが公式にサポートされます
 
-現在システムに Node がインストールされていない場合は、複数の Node.js バージョンを管理するために [NVM](https://github.com/creationix/nvm) や [Volta](https://volta.sh/) などのツールの利用をおすすめします。NVM は人気のある選択肢ですが、Volta も優れた代替手段です。
+現在システムに Node がインストールされていない場合は、複数の Node.js バージョンを管理するために [NVM](https://github.com/creationix/nvm) や [Volta](https://volta.sh/) などのツールを利用することをお勧めします。NVM は人気のある選択肢ですが、Volta も良い代替手段です。
 
 ## 紹介動画を見る
 
@@ -235,11 +235,11 @@ WebdriverIO は、画面上でのテスト操作を記録し、WebdriverIO の�
     title="Getting Started with WebdriverIO"
 />
 
-その他の動画は [公式 YouTube チャンネル](https://youtube.com/@webdriverio) でご覧いただけます。
+その他の動画は[公式 YouTube チャンネル](https://youtube.com/@webdriverio)にあります。
 
 ## 次のステップ
 
-- プラットフォームを選択する：[Web ブラウザ](/docs/platforms/web)、[モバイルアプリ](/docs/platforms/mobile)、[デスクトップアプリ](/docs/platforms/desktop)、または [拡張機能とエディタ](/docs/platforms/apps-and-extensions)
-- [要素の選択](/docs/selectors) と [アサーション](/docs/assertion) の書き方を学ぶ
+- プラットフォームを選択する：[Web ブラウザ](/docs/platforms/web)、[モバイルアプリ](/docs/platforms/mobile)、[デスクトップアプリ](/docs/platforms/desktop)、または[拡張機能とエディタ](/docs/platforms/apps-and-extensions)
+- [要素の選択](/docs/selectors)方法と[アサーション](/docs/assertion)の書き方を学ぶ
 - [`wdio.conf.ts`](/docs/configurationfile) でテストランナーを設定する
 - [Discord](https://discord.webdriver.io) でサポートを受ける

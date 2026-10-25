@@ -1,14 +1,14 @@
 ---
 id: apps-and-extensions
 title: 拡張機能とエディター
-description: ブラウザー拡張機能や VS Code 拡張機能を WebdriverIO セッションに読み込み、エンドツーエンドでテストします。
+description: ブラウザ拡張機能やVS Code拡張機能をWebdriverIOセッションに読み込み、エンドツーエンドでテストします。
 ---
 
-WebdriverIO は、ブラウザー拡張機能やエディター拡張機能を実際のホストアプリケーションに読み込んでテストします。ブラウザー（Web）拡張機能は Chrome または Firefox 内で動作します。拡張機能はブラウザーの capabilities を通じて読み込みます。Chrome では `goog:chromeOptions` 経由で `--load-extension` または base64 エンコードされた `.crx` を使用し、Firefox では `.xpi` に対して `browser.installAddOn()` を使用します。WebDriver BiDi セッションでは、`browser.installExtension()` と `browser.uninstallExtension()` を使ってセッション中に拡張機能をインストールおよび削除することもできます。Safari には BiDi セッションがないため、このコマンドは Safari には対応していません。あとは通常の WebDriver コマンドを使って、コンテンツスクリプトやポップアップページをテストできます。VS Code 拡張機能は、コミュニティ製の [`wdio-vscode-service`](/docs/wdio-vscode-service) を使ってテストします。このサービスは VS Code（stable、insiders、または特定のバージョン）と対応する Chromedriver をダウンロードし、拡張機能とカスタムユーザー設定を適用した状態で VS Code を起動します。ワークベンチ用のページオブジェクトは `browser.getWorkbench()` で利用でき、`browser.executeWorkbench()` を使うと VS Code API に対してコードを実行できます。同じサービスで VS Code をブラウザー上で提供し、Web 拡張機能をテストすることもできます。Obsidian プラグイン向けのコミュニティサービスもあります。
+WebdriverIOは、ブラウザ拡張機能やエディター拡張機能を実際のホストアプリケーションに読み込んでテストします。ブラウザ（Web）拡張機能はChromeまたはFirefox内で動作します。拡張機能はブラウザのcapabilitiesを通じて読み込みます。Chromeでは`--load-extension`または`goog:chromeOptions`経由のbase64エンコードされた`.crx`を、Firefoxでは`.xpi`に対して`browser.installAddOn()`を使用します。WebDriver BiDiセッションでは、`browser.installExtension()`と`browser.uninstallExtension()`を使ってセッションの途中で拡張機能をインストールおよび削除することもできます。SafariにはBiDiセッションがないため、このコマンドはSafariには対応していません。その後は、通常のWebDriverコマンドでコンテンツスクリプトやポップアップページをテストします。VS Code拡張機能は、コミュニティ製の[`wdio-vscode-service`](/docs/wdio-vscode-service)でテストします。このサービスはVS Code（stable、insiders、または特定のバージョン）と対応するChromedriverをダウンロードし、拡張機能とカスタムユーザー設定を適用した状態でVS Codeを起動します。ワークベンチ用のページオブジェクトは`browser.getWorkbench()`から利用でき、`browser.executeWorkbench()`はVS Code APIに対してコードを実行します。同じサービスでVS Codeをブラウザ上で提供し、Web拡張機能をテストすることもできます。Obsidianプラグイン向けにもコミュニティ製のサービスがあります。
 
 ## クイックスタート
 
-まず、テストランナーと TypeScript サポートをインストールします：
+まず、テストランナーとTypeScriptサポートをインストールします：
 
 ```sh
 npm install --save-dev @wdio/cli @wdio/local-runner @wdio/mocha-framework @wdio/spec-reporter tsx
@@ -22,9 +22,9 @@ npm install --save-dev @wdio/cli @wdio/local-runner @wdio/mocha-framework @wdio/
 }
 ```
 
-### Chrome 拡張機能
+### Chrome拡張機能
 
-拡張機能をフォルダー（ここでは `./dist`）にビルドし、Chrome の引数 `--load-extension` で読み込みます：
+拡張機能をフォルダー（ここでは`./dist`）にビルドし、Chromeの`--load-extension`引数で読み込みます：
 
 ```ts title="wdio.conf.ts"
 import path from 'node:path'
@@ -62,15 +62,15 @@ describe('My Web Extension', () => {
 })
 ```
 
-ツールバーの拡張機能アイコンをクリックする操作は機能しません。`default_popup` をテストするには、`chrome://extensions/` で拡張機能 ID を確認し、`browser.url()` で `chrome-extension://<id>/<popup>.html` を開きます。[Web 拡張機能ガイド](/docs/extension-testing/web-extensions#test-popup-modal-in-chrome)には、このためのすぐに使える `openExtensionPopup` カスタムコマンドが用意されています。
+ツールバーの拡張機能アイコンをクリックすることはできません。`default_popup`をテストするには、`chrome://extensions/`で拡張機能IDを確認し、`browser.url()`で`chrome-extension://<id>/<popup>.html`を開きます。[Web拡張機能ガイド](/docs/extension-testing/web-extensions#test-popup-modal-in-chrome)には、このためのすぐに使える`openExtensionPopup`カスタムコマンドが用意されています。
 
-### VS Code 拡張機能
+### VS Code拡張機能
 
 ```sh
 npm install --save-dev wdio-vscode-service
 ```
 
-`tsconfig.json` の `types` 配列に `"wdio-vscode-service"` を追加します。
+`tsconfig.json`の`types`配列に`"wdio-vscode-service"`を追加します。
 
 ```ts title="wdio.conf.ts"
 import url from 'node:url'
@@ -84,7 +84,7 @@ export const config: WebdriverIO.Config = {
         browserName: 'vscode',
         browserVersion: 'stable', // "insiders" や特定のバージョン（例: "1.80.0"）も指定可能
         'wdio:vscodeOptions': {
-            // 拡張機能の package.json があるディレクトリを指定
+            // 拡張機能のpackage.jsonがあるディレクトリを指定します
             extensionPath: __dirname,
             userSettings: {
                 'editor.fontSize': 14
@@ -113,28 +113,28 @@ describe('VS Code Extension Testing', () => {
 })
 ```
 
-拡張機能を VS Code Web 拡張機能としてテストするには、`wdio:vscodeOptions` はそのままにして `browserName: 'chrome'` を設定します。このモードでは、`browserVersion` には `stable` または `insiders` のみ指定できます。`npm create wdio@latest ./` で「VS Code Extension Testing」を選択すると、この構成が自動的に生成されます。
+拡張機能をVS Code Web拡張機能としてテストするには、`browserName: 'chrome'`を設定し、`wdio:vscodeOptions`はそのまま残します。このモードでは、`browserVersion`には`stable`または`insiders`のみ指定できます。`npm create wdio@latest ./`で「VS Code Extension Testing」を選択すると、このセットアップが自動的に生成されます。
 
-## 目的に合わせて選ぶ
+## 目的に応じたガイド
 
-- [Web 拡張機能のテスト](/docs/extension-testing/web-extensions)：Chrome（フォルダーまたは `.crx`）や Firefox（[`installAddOn`](/docs/api/gecko#installaddon) による `.xpi`）で拡張機能を読み込む方法、または [`installExtension`](/docs/api/browser/installExtension) を使ってセッション中にインストール・削除する方法。Safari Web 拡張機能は対象外です。
-- [Firefox Profile Service](/docs/firefox-profile-service)：拡張機能を含む Firefox プロファイルを構築します。
-- [VS Code 拡張機能のテスト](/docs/extension-testing/vscode-extensions)：設定、TypeScript のセットアップ、ワークベンチのページオブジェクト、`executeWorkbench`。
-- [VS Code Service](/docs/wdio-vscode-service)：`cachePath` などのすべてのサービスオプションと、カスタムページオブジェクトの書き方。
-- [Obsidian Plugin Testing Service](/docs/wdio-obsidian-service)：Windows、macOS、Linux、Android 上で、複数の Obsidian バージョンにわたって Obsidian プラグインをテストするコミュニティサービス。
-- [カスタムコマンド](/docs/customcommands)：`openExtensionPopup` のようなヘルパーをパッケージ化して再利用できます。
+- [Web拡張機能のテスト](/docs/extension-testing/web-extensions)：Chrome（フォルダーまたは`.crx`）やFirefox（[`installAddOn`](/docs/api/gecko#installaddon)経由の`.xpi`）に拡張機能を読み込む方法、または[`installExtension`](/docs/api/browser/installExtension)でセッションの途中に拡張機能をインストール・削除する方法。Safari Web拡張機能は対象外です。
+- [Firefox Profile Service](/docs/firefox-profile-service)：拡張機能を含むFirefoxプロファイルを作成します。
+- [VS Code拡張機能のテスト](/docs/extension-testing/vscode-extensions)：設定、TypeScriptのセットアップ、ワークベンチのページオブジェクト、`executeWorkbench`について。
+- [VS Code Service](/docs/wdio-vscode-service)：`cachePath`などのすべてのサービスオプションと、カスタムページオブジェクトの書き方。
+- [Obsidian Plugin Testing Service](/docs/wdio-obsidian-service)：Windows、macOS、Linux、Android上で、複数のObsidianバージョンにわたってObsidianプラグインをテストするコミュニティ製サービス。
+- [カスタムコマンド](/docs/customcommands)：`openExtensionPopup`のようなヘルパーをパッケージ化して再利用できます。
 
-Web 拡張機能のテストは通常の Chrome または Firefox セッションで実行されるため、セレクター、ネットワークモック、ビジュアルテストなど、[Web ブラウザー](/docs/platforms/web)の内容がすべて適用されます。
+Web拡張機能のテストは通常のChromeまたはFirefoxセッションで実行されるため、セレクター、ネットワークモック、ビジュアルテストなど、[Webブラウザ](/docs/platforms/web)に関する内容はすべて適用されます。
 
 ## トラブルシューティング
 
-- 署名の問題で Firefox がローカルでビルドした拡張機能を拒否する場合：プロファイル経由ではなく、`before` フックで `browser.installAddOn(extension.toString('base64'), true)` を使ってインストールしてください。`.xpi` は `npx web-ext build` でビルドします。
-- Chrome の代わりに Edge、Brave、Opera を使用する場合：通常は、そのブラウザーのオプション capability（例：`ms:edgeOptions`）で同じ引数が使えます。
-- VS Code と Chromedriver のバイナリはキャッシュディレクトリにダウンロードされます。保存場所を制御する（例：CI でキャッシュする）には、`services: [['vscode', { cachePath: __dirname }]]` を設定します。
-- TypeScript が `getWorkbench` や `executeWorkbench` を見つけられない場合：`compilerOptions.types` に `wdio-vscode-service` を追加してください。
+- Firefoxが署名の問題でローカルビルドした拡張機能を拒否する場合：プロファイル経由ではなく、`before`フックで`browser.installAddOn(extension.toString('base64'), true)`を使ってインストールしてください。`.xpi`は`npx web-ext build`でビルドします。
+- Chromeの代わりにEdge、Brave、Operaを使用する場合：通常、同じ引数をそのブラウザのオプションcapability（例：`ms:edgeOptions`）で使用できます。
+- VS CodeとChromedriverのバイナリはキャッシュディレクトリにダウンロードされます。保存先を制御するには（例：CIでキャッシュする場合）、`services: [['vscode', { cachePath: __dirname }]]`を設定してください。
+- TypeScriptが`getWorkbench`や`executeWorkbench`を見つけられない場合：`compilerOptions.types`に`wdio-vscode-service`を追加してください。
 
 ## 次のステップ
 
-- `wdio.conf.ts` のすべてのオプションについては [Configuration](/docs/configuration) リファレンスを参照してください。
-- Chromium ベースで構築されたデスクトップアプリ全体のテストについては [Electron](/docs/desktop-testing/electron) を参照してください。
-- その他のプラットフォーム：[Web ブラウザー](/docs/platforms/web)、[モバイルアプリ](/docs/platforms/mobile)、[デスクトップアプリ](/docs/platforms/desktop)。
+- すべての`wdio.conf.ts`オプションについては[設定](/docs/configuration)リファレンスを参照してください。
+- Chromiumベースのデスクトップアプリ全体をテストするには[Electron](/docs/desktop-testing/electron)を参照してください。
+- その他のプラットフォーム：[Webブラウザ](/docs/platforms/web)、[モバイルアプリ](/docs/platforms/mobile)、[デスクトップアプリ](/docs/platforms/desktop)。

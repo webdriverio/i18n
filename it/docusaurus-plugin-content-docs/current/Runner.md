@@ -1,7 +1,7 @@
 ---
 id: runner
 title: Runner
-description: "Scegli tra il local runner e il browser runner, e configura le opzioni del browser runner come preset, configurazione Vite e coverage."
+description: "Scegli tra il local runner e il browser runner, e configura le opzioni del browser runner come preset, configurazione di Vite e coverage."
 ---
 
 import CodeBlock from '@theme/CodeBlock';
@@ -10,12 +10,12 @@ Un runner in WebdriverIO orchestra come e dove vengono eseguiti i test quando si
 
 ## Local Runner
 
-Il [Local Runner](https://www.npmjs.com/package/@wdio/local-runner) avvia il tuo framework (ad es. Mocha, Jasmine o Cucumber) all'interno di un processo worker ed esegue tutti i tuoi file di test nel tuo ambiente Node.js. Ogni file di test viene eseguito in un processo worker separato per ogni capability, consentendo la massima concorrenza. Ogni processo worker utilizza una singola istanza del browser e quindi esegue la propria sessione del browser, consentendo il massimo isolamento.
+Il [Local Runner](https://www.npmjs.com/package/@wdio/local-runner) avvia il tuo framework (ad es. Mocha, Jasmine o Cucumber) all'interno di un processo worker ed esegue tutti i tuoi file di test nel tuo ambiente Node.js. Ogni file di test viene eseguito in un processo worker separato per ciascuna capability, consentendo la massima concorrenza. Ogni processo worker utilizza una singola istanza del browser e quindi esegue la propria sessione del browser, consentendo il massimo isolamento.
 
-Poiché ogni test viene eseguito nel proprio processo isolato, non è possibile condividere dati tra i file di test. Ci sono due modi per aggirare questo problema:
+Poiché ogni test viene eseguito nel proprio processo isolato, non è possibile condividere dati tra i file di test. Ci sono due modi per aggirare questo limite:
 
-- utilizzare il [`@wdio/shared-store-service`](https://www.npmjs.com/package/@wdio/shared-store-service) per condividere dati tra tutti i worker
-- raggruppare i file spec (leggi di più in [Organizzare la Test Suite](https://webdriver.io/docs/organizingsuites#grouping-test-specs-to-run-sequentially))
+- usare il [`@wdio/shared-store-service`](https://www.npmjs.com/package/@wdio/shared-store-service) per condividere dati tra tutti i worker
+- raggruppare i file spec (maggiori informazioni in [Organizzare la Test Suite](https://webdriver.io/docs/organizingsuites#grouping-test-specs-to-run-sequentially))
 
 Se non viene definito nient'altro nel `wdio.conf.js`, il Local Runner è il runner predefinito in WebdriverIO.
 
@@ -42,20 +42,20 @@ export const {
 
 ## Browser Runner
 
-A differenza del [Local Runner](https://www.npmjs.com/package/@wdio/local-runner), il [Browser Runner](https://www.npmjs.com/package/@wdio/browser-runner) avvia ed esegue il framework all'interno del browser. Questo ti permette di eseguire unit test o test di componenti in un browser reale anziché in un JSDOM come molti altri framework di test. Il bundle di test viene eseguito in Chrome 90, Edge 90, Firefox 90 e Safari 14.1 o versioni successive. Vedi [Supporto browser](/docs/component-testing#browser-support).
+A differenza del [Local Runner](https://www.npmjs.com/package/@wdio/local-runner), il [Browser Runner](https://www.npmjs.com/package/@wdio/browser-runner) avvia ed esegue il framework all'interno del browser. Questo ti consente di eseguire unit test o test di componenti in un browser reale anziché in un JSDOM come molti altri framework di test. Il bundle dei test viene eseguito in Chrome 90, Edge 90, Firefox 90 e Safari 14.1 o versioni successive. Vedi [Supporto dei browser](/docs/component-testing#browser-support).
 
-Sebbene [JSDOM](https://www.npmjs.com/package/jsdom) sia ampiamente utilizzato per scopi di test, alla fine non è un vero browser né è possibile emulare ambienti mobili con esso. Con questo runner, WebdriverIO ti consente di eseguire facilmente i tuoi test nel browser e di utilizzare i comandi WebDriver per interagire con gli elementi renderizzati sulla pagina.
+Sebbene [JSDOM](https://www.npmjs.com/package/jsdom) sia ampiamente utilizzato a scopo di test, in fin dei conti non è un vero browser, né è possibile emulare ambienti mobile con esso. Con questo runner WebdriverIO ti permette di eseguire facilmente i tuoi test nel browser e di utilizzare i comandi WebDriver per interagire con gli elementi renderizzati sulla pagina.
 
 Ecco una panoramica dell'esecuzione dei test in JSDOM rispetto al Browser Runner di WebdriverIO
 
 | | JSDOM | WebdriverIO Browser Runner |
 |-|-------|----------------------------|
-|1.| Esegue i tuoi test all'interno di Node.js utilizzando una reimplementazione degli standard web, in particolare gli standard WHATWG DOM e HTML | Esegue il tuo test in un browser reale ed esegue il codice in un ambiente che i tuoi utenti utilizzano |
-|2.| Le interazioni con i componenti possono essere solo imitate tramite JavaScript | Puoi utilizzare la [WebdriverIO API](api) per interagire con gli elementi attraverso il protocollo WebDriver |
-|3.| Il supporto Canvas richiede [dipendenze aggiuntive](https://www.npmjs.com/package/canvas) e [ha limitazioni](https://github.com/Automattic/node-canvas/issues) | Hai accesso alla vera [Canvas API](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API) |
-|4.| JSDOM ha alcune [avvertenze](https://github.com/jsdom/jsdom#caveats) e Web API non supportate | Tutte le Web API sono supportate poiché i test vengono eseguiti in un browser reale |
-|5.| Impossibile rilevare errori cross browser | Supporto per tutti i browser inclusi i browser mobili |
-|6.| __Non__ può testare gli pseudo stati degli elementi | Supporto per pseudo stati come `:hover` o `:active` |
+|1.| Esegue i tuoi test in Node.js utilizzando una reimplementazione degli standard web, in particolare gli standard WHATWG DOM e HTML | Esegue il tuo test in un browser reale ed esegue il codice in un ambiente utilizzato dai tuoi utenti |
+|2.| Le interazioni con i componenti possono essere solo imitate tramite JavaScript | Puoi utilizzare la [WebdriverIO API](api) per interagire con gli elementi tramite il protocollo WebDriver |
+|3.| Il supporto per Canvas richiede [dipendenze aggiuntive](https://www.npmjs.com/package/canvas) e [ha delle limitazioni](https://github.com/Automattic/node-canvas/issues) | Hai accesso alla vera [Canvas API](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API) |
+|4.| JSDOM presenta alcune [avvertenze](https://github.com/jsdom/jsdom#caveats) e Web API non supportate | Tutte le Web API sono supportate poiché i test vengono eseguiti in un browser reale |
+|5.| Impossibile rilevare errori cross-browser | Supporto per tutti i browser, inclusi i browser mobile |
+|6.| __Non__ può testare gli pseudo-stati degli elementi | Supporto per pseudo-stati come `:hover` o `:active` |
 
 Questo runner utilizza [Vite](https://vitejs.dev/) per compilare il tuo codice di test e caricarlo nel browser. Include preset per i seguenti framework di componenti:
 
@@ -95,7 +95,7 @@ Il Browser runner consente le seguenti configurazioni:
 
 #### `preset`
 
-Se testi componenti utilizzando uno dei framework sopra menzionati, puoi definire un preset che garantisce che tutto sia configurato immediatamente. Questa opzione non può essere utilizzata insieme a `viteConfig`.
+Se testi componenti utilizzando uno dei framework menzionati sopra, puoi definire un preset che garantisce che tutto sia configurato immediatamente. Questa opzione non può essere utilizzata insieme a `viteConfig`.
 
 __Tipo:__ `vue` | `svelte` | `solid` | `react` | `preact` | `stencil`<br />
 __Esempio:__
@@ -112,7 +112,7 @@ export const {
 
 #### `viteConfig`
 
-Definisci la tua [configurazione Vite](https://vitejs.dev/config/). Puoi passare un oggetto personalizzato o importare un file `vite.conf.ts` esistente se utilizzi Vite.js per lo sviluppo. Nota che WebdriverIO mantiene le configurazioni Vite personalizzate per impostare l'ambiente di test.
+Definisci la tua [configurazione di Vite](https://vitejs.dev/config/). Puoi passare un oggetto personalizzato oppure importare un file `vite.conf.ts` esistente se utilizzi Vite.js per lo sviluppo. Tieni presente che WebdriverIO mantiene le configurazioni personalizzate di Vite per impostare l'ambiente di test.
 
 __Tipo:__ `string` o [`UserConfig`](https://github.com/vitejs/vite/blob/52e64eb43287d241f3fd547c332e16bd9e301e95/packages/vite/src/node/config.ts#L119-L272) o `(env: ConfigEnv) => UserConfig | Promise<UserConfig>`<br />
 __Esempio:__
@@ -123,9 +123,9 @@ import viteConfig from '../vite.config.ts'
 export const {
     // ...
     runner: ['browser', { viteConfig }],
-    // o semplicemente:
+    // oppure semplicemente:
     runner: ['browser', { viteConfig: '../vites.config.ts' }],
-    // o usa una funzione se la tua configurazione vite contiene molti plugin
+    // oppure usa una funzione se la tua configurazione di vite contiene molti plugin
     // che vuoi risolvere solo quando il valore viene letto
     runner: ['browser', {
         viteConfig: () => ({
@@ -138,7 +138,7 @@ export const {
 
 #### `headless`
 
-Se impostato su `true`, il runner aggiornerà le capabilities per eseguire i test in modalità headless. Per impostazione predefinita, questo è abilitato negli ambienti CI in cui una variabile d'ambiente `CI` è impostata su `'1'` o `'true'`.
+Se impostato su `true`, il runner aggiornerà le capability per eseguire i test in modalità headless. Per impostazione predefinita, questa opzione è abilitata negli ambienti CI in cui una variabile d'ambiente `CI` è impostata su `'1'` o `'true'`.
 
 __Tipo:__ `boolean`<br />
 __Predefinito:__ `false`, impostato su `true` se la variabile d'ambiente `CI` è impostata
@@ -152,32 +152,32 @@ __Predefinito:__ `process.cwd()`
 
 #### `coverage`
 
-WebdriverIO supporta il reporting della coverage dei test tramite [`istanbul`](https://istanbul.js.org/). Vedi [Opzioni di Coverage](#coverage-options) per maggiori dettagli.
+WebdriverIO supporta il reporting della copertura dei test tramite [`istanbul`](https://istanbul.js.org/). Vedi [Opzioni di Coverage](#coverage-options) per maggiori dettagli.
 
 __Tipo:__ `object`<br />
 __Predefinito:__ `undefined`
 
 ### Opzioni di Coverage
 
-Le seguenti opzioni consentono di configurare il reporting della coverage.
+Le seguenti opzioni consentono di configurare il reporting della copertura.
 
 #### `enabled`
 
-Abilita la raccolta della coverage.
+Abilita la raccolta della copertura.
 
 __Tipo:__ `boolean`<br />
 __Predefinito:__ `false`
 
 #### `include`
 
-Elenco dei file inclusi nella coverage come pattern glob.
+Elenco dei file inclusi nella copertura come pattern glob.
 
 __Tipo:__ `string[]`<br />
 __Predefinito:__ `[**]`
 
 #### `exclude`
 
-Elenco dei file esclusi dalla coverage come pattern glob.
+Elenco dei file esclusi dalla copertura come pattern glob.
 
 __Tipo:__ `string[]`<br />
 __Predefinito:__
@@ -201,35 +201,35 @@ __Predefinito:__
 
 #### `extension`
 
-Elenco delle estensioni di file che il report dovrebbe includere.
+Elenco delle estensioni di file che il report deve includere.
 
 __Tipo:__ `string | string[]`<br />
 __Predefinito:__ `['.js', '.cjs', '.mjs', '.ts', '.mts', '.cts', '.tsx', '.jsx', '.vue', '.svelte']`
 
 #### `reportsDirectory`
 
-Directory in cui scrivere il report della coverage.
+Directory in cui scrivere il report di copertura.
 
 __Tipo:__ `string`<br />
 __Predefinito:__ `./coverage`
 
 #### `reporter`
 
-Reporter di coverage da utilizzare. Vedi la [documentazione di istanbul](https://istanbul.js.org/docs/advanced/alternative-reporters/) per un elenco dettagliato di tutti i reporter.
+Reporter di copertura da utilizzare. Vedi la [documentazione di istanbul](https://istanbul.js.org/docs/advanced/alternative-reporters/) per un elenco dettagliato di tutti i reporter.
 
 __Tipo:__ `string[]`<br />
 __Predefinito:__ `['text', 'html', 'clover', 'json-summary']`
 
 #### `perFile`
 
-Controlla le soglie per ogni file. Vedi `lines`, `functions`, `branches` e `statements` per le soglie effettive.
+Verifica le soglie per singolo file. Vedi `lines`, `functions`, `branches` e `statements` per le soglie effettive.
 
 __Tipo:__ `boolean`<br />
 __Predefinito:__ `false`
 
 #### `clean`
 
-Pulisce i risultati della coverage prima di eseguire i test.
+Pulisce i risultati della copertura prima di eseguire i test. La directory dei report viene pulita solo quando `enabled` è `true`, quindi l'output esistente al suo interno non viene toccato mentre la copertura è disabilitata.
 
 __Tipo:__ `boolean`<br />
 __Predefinito:__ `true`
@@ -264,9 +264,9 @@ __Predefinito:__ `undefined`
 
 ### Limitazioni
 
-Quando si utilizza il browser runner di WebdriverIO, è importante notare che i dialoghi che bloccano il thread come `alert` o `confirm` non possono essere utilizzati nativamente. Questo perché bloccano la pagina web, il che significa che WebdriverIO non può continuare a comunicare con la pagina, causando il blocco dell'esecuzione.
+Quando si utilizza il browser runner di WebdriverIO, è importante notare che i dialoghi che bloccano il thread, come `alert` o `confirm`, non possono essere utilizzati nativamente. Questo perché bloccano la pagina web, il che significa che WebdriverIO non può continuare a comunicare con la pagina, causando il blocco dell'esecuzione.
 
-In tali situazioni, WebdriverIO fornisce mock predefiniti con valori di ritorno predefiniti per queste API. Ciò garantisce che, se l'utente utilizza accidentalmente le web API sincrone dei popup, l'esecuzione non si blocchi. Tuttavia, è comunque consigliato all'utente di creare mock per queste web API per un'esperienza migliore. Leggi di più in [Mocking](/docs/component-testing/mocking).
+In tali situazioni, WebdriverIO fornisce mock predefiniti con valori di ritorno predefiniti per queste API. Ciò garantisce che, se l'utente utilizza accidentalmente le Web API sincrone per i popup, l'esecuzione non si blocchi. Tuttavia, è comunque consigliabile che l'utente crei dei mock per queste Web API per un'esperienza migliore. Maggiori informazioni in [Mocking](/docs/component-testing/mocking).
 
 ### Esempi
 

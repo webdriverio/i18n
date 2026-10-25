@@ -1,7 +1,7 @@
 ---
 id: configuration
 title: Configurazione
-description: "Configura il server MCP di WebdriverIO, incluse le opzioni di sessione, browser, mobile, cloud provider, rilevamento degli elementi e Appium."
+description: "Configura il server MCP di WebdriverIO, incluse le opzioni di sessione, browser, mobile, provider cloud, rilevamento degli elementi e Appium."
 ---
 
 Questa pagina documenta tutte le opzioni di configurazione per il server MCP di WebdriverIO.
@@ -42,12 +42,12 @@ La piattaforma da automatizzare.
 
 <Option type={`"local" | "browserstack" | "saucelabs" | "testmu" | "testingbot"`} default={`"local"`} required="No">
 
-Dove viene eseguita la sessione. Usa il nome di un cloud provider per i dispositivi remoti; ognuno richiede le proprie variabili d'ambiente. Consulta [Cloud Providers](./cloud-providers) per i dettagli.
+Dove viene eseguita la sessione. Usa il nome di un provider cloud per i dispositivi remoti; ognuno richiede le proprie variabili d'ambiente. Consulta [Provider cloud](./cloud-providers) per i dettagli.
 
 </Option>
 ## Opzioni della sessione browser
 
-Opzioni per le sessioni `platform: "browser"`.
+Opzioni per le sessioni con `platform: "browser"`.
 
 ### `browser`
 
@@ -60,14 +60,14 @@ Browser da avviare.
 
 <Option type="string" default={`"latest"`} required="No">
 
-Versione del browser. Solo per i cloud provider (predefinito: latest).
+Versione del browser. Solo per i provider cloud (predefinito: latest).
 
 </Option>
 ### `os` / `osVersion`
 
 <Option type="string" required="No">
 
-Sistema operativo per le sessioni browser sui cloud provider. Esempi: `os: "Windows"`, `osVersion: "11"` oppure `os: "OS X"`, `osVersion: "Sequoia"`.
+Sistema operativo per le sessioni browser sui provider cloud. Esempi: `os: "Windows"`, `osVersion: "11"` oppure `os: "OS X"`, `osVersion: "Sequoia"`.
 
 </Option>
 ### `headless`
@@ -118,7 +118,7 @@ Configurazione della connessione di debug remoto di Chrome. Si applica solo quan
 </Option>
 ## Opzioni della sessione mobile
 
-Opzioni per le sessioni `platform: "ios"` o `platform: "android"`.
+Opzioni per le sessioni con `platform: "ios"` o `platform: "android"`.
 
 ### `deviceName`
 
@@ -150,11 +150,11 @@ Driver di automazione. Il valore predefinito è `XCUITest` per iOS e `UiAutomato
 
 <Option type="string" required="No (Required for real iOS devices)">
 
-Unique Device Identifier. Obbligatorio per i dispositivi iOS reali (identificatore di 40 caratteri).
+Identificatore univoco del dispositivo (Unique Device Identifier). Obbligatorio per i dispositivi iOS reali (identificatore di 40 caratteri).
 
-**Come trovare l'UDID:**
--   **iOS:** Collega il dispositivo, apri il Finder, fai clic sul dispositivo → Numero di serie (fai clic per mostrare l'UDID)
--   **Android:** Esegui `adb devices` nel terminale
+**Trovare l'UDID:**
+-   **iOS:** collega il dispositivo, apri il Finder, fai clic sul dispositivo → Numero di serie (fai clic per mostrare l'UDID)
+-   **Android:** esegui `adb devices` nel terminale
 
 </Option>
 ### `appPath`
@@ -168,14 +168,14 @@ Percorso del file dell'applicazione da installare e avviare.
 -   Dispositivo iOS reale: file `.ipa`
 -   Android: file `.apk`
 
-È necessario fornire `appPath`, oppure `noReset: true` per connettersi a un'app già in esecuzione.
+È necessario fornire `appPath` oppure `noReset: true` per connettersi a un'app già in esecuzione.
 
 </Option>
 ### `app`
 
 <Option type="string" required="No">
 
-URL dell'app sul cloud provider (`bs://...` per BrowserStack, `storage:filename=` per Sauce Labs, `lt://...` per TestMu, app_url di TestingBot) oppure `customId`. Usato al posto di `appPath` per le sessioni mobile in cloud.
+URL dell'app del provider cloud (`bs://...` per BrowserStack, `storage:filename=` per Sauce Labs, `lt://...` per TestMu, app_url di TestingBot) oppure `customId`. Usato al posto di `appPath` per le sessioni mobile nel cloud.
 
 </Option>
 ### `appWaitActivity`
@@ -187,7 +187,7 @@ Activity da attendere all'avvio dell'app. Se non specificata, viene usata l'acti
 **Esempio:** `"com.example.app.MainActivity"`
 
 </Option>
-### Opzioni dello stato della sessione
+### Opzioni sullo stato della sessione
 
 #### `noReset`
 
@@ -195,7 +195,7 @@ Activity da attendere all'avvio dell'app. Se non specificata, viene usata l'acti
 
 Preserva lo stato dell'app tra le sessioni. Quando è `true`:
 -   I dati dell'app vengono preservati (stato di login, preferenze, ecc.)
--   La sessione verrà **scollegata (detach)** invece che chiusa (l'app resta in esecuzione)
+-   La sessione verrà **scollegata** (detach) invece che chiusa (l'app resta in esecuzione)
 -   Può essere usato senza `appPath` per connettersi a un'app già in esecuzione
 
 </Option>
@@ -216,7 +216,7 @@ Imposta `fullReset: false` con `noReset: true` per preservare completamente lo s
 
 <Option type="number" default="300" required="No">
 
-Quanto tempo (in secondi) Appium attenderà un nuovo comando prima di terminare la sessione. Aumentalo per sessioni di debug più lunghe.
+Per quanto tempo (in secondi) Appium attenderà un nuovo comando prima di terminare la sessione. Aumentalo per sessioni di debug più lunghe.
 
 </Option>
 ### Gestione automatica
@@ -225,10 +225,10 @@ Quanto tempo (in secondi) Appium attenderà un nuovo comando prima di terminare 
 
 <Option type="boolean" default="true" required="No">
 
-Concede automaticamente i permessi dell'app all'installazione/avvio (fotocamera, microfono, posizione, ecc.).
+Concede automaticamente i permessi all'app durante l'installazione/l'avvio (fotocamera, microfono, posizione, ecc.).
 
 :::note Solo Android
-Questa opzione riguarda principalmente Android. I permessi iOS devono essere gestiti diversamente a causa delle restrizioni di sistema.
+Questa opzione riguarda principalmente Android. I permessi su iOS devono essere gestiti diversamente a causa delle restrizioni di sistema.
 :::
 
 </Option>
@@ -236,14 +236,14 @@ Questa opzione riguarda principalmente Android. I permessi iOS devono essere ges
 
 <Option type="boolean" default="true" required="No">
 
-Accetta automaticamente gli avvisi di sistema (dialog) durante l'automazione ("Consentire le notifiche?", ecc.).
+Accetta automaticamente gli avvisi di sistema (finestre di dialogo) durante l'automazione ("Consentire le notifiche?", ecc.).
 
 </Option>
 #### `autoDismissAlerts`
 
 <Option type="boolean" default="false" required="No">
 
-Rifiuta gli avvisi di sistema invece di accettarli. Ha la precedenza su `autoAcceptAlerts` quando è `true`.
+Ignora gli avvisi di sistema invece di accettarli. Ha la precedenza su `autoAcceptAlerts` quando è `true`.
 
 </Option>
 ### Connessione al server Appium
@@ -266,18 +266,18 @@ start_session({
 Connessione al server Appium. Il valore predefinito è `{ host: "127.0.0.1", port: 4723, path: "/" }`.
 
 </Option>
-## Opzioni dei cloud provider
+## Opzioni dei provider cloud
 
 ### Credenziali
 
-Ogni cloud provider richiede le proprie variabili d'ambiente:
+Ogni provider cloud richiede le proprie variabili d'ambiente:
 
-| Provider     | Variabile username      | Variabile access key      |
-| ------------ | ----------------------- | ------------------------- |
-| BrowserStack | `BROWSERSTACK_USERNAME` | `BROWSERSTACK_ACCESS_KEY` |
-| Sauce Labs   | `SAUCE_USERNAME`        | `SAUCE_ACCESS_KEY`        |
-| TestMu       | `TESTMU_USERNAME`       | `TESTMU_ACCESS_KEY`       |
-| TestingBot   | `TESTINGBOT_KEY`        | `TESTINGBOT_SECRET`       |
+| Provider     | Variabile nome utente   | Variabile chiave di accesso |
+| ------------ | ----------------------- | --------------------------- |
+| BrowserStack | `BROWSERSTACK_USERNAME` | `BROWSERSTACK_ACCESS_KEY`   |
+| Sauce Labs   | `SAUCE_USERNAME`        | `SAUCE_ACCESS_KEY`          |
+| TestMu       | `TESTMU_USERNAME`       | `TESTMU_ACCESS_KEY`         |
+| TestingBot   | `TESTINGBOT_KEY`        | `TESTINGBOT_SECRET`         |
 
 Impostale prima di avviare il server MCP.
 
@@ -292,7 +292,7 @@ Regione del data center di Sauce Labs. Ignorata per gli altri provider.
 
 <Option type={`boolean | "external"`} default="false" required="No">
 
-Abilita l'instradamento tramite tunnel locale per le sessioni sui cloud provider (accesso a localhost, ambienti di staging, servizi interni).
+Abilita l'instradamento tramite tunnel locale per le sessioni sui provider cloud (accesso a localhost, ambienti di staging, servizi interni).
 
 -   `true` — Avvia automaticamente il tunnel prima della sessione e lo arresta alla chiusura
 -   `"external"` — Tunnel già in esecuzione esternamente; imposta solo i flag appropriati per il provider
@@ -311,7 +311,7 @@ Nome identificativo del tunnel. Obbligatorio quando `tunnel: "external"` per cor
 
 <Option type={`{ project?: string; build?: string; session?: string }`} required="No">
 
-Etichette della sessione del cloud provider visibili nella dashboard del provider. Funziona in modo identico su BrowserStack, Sauce Labs, TestMu e TestingBot.
+Etichette della sessione visibili nella dashboard del provider cloud. Funziona allo stesso modo su BrowserStack, Sauce Labs, TestMu e TestingBot.
 
 </Option>
 ### `trace`
@@ -336,7 +336,7 @@ Restituisce solo gli elementi visibili nel viewport corrente. Imposta su `true` 
 
 <Option type="boolean" default="false" required="No">
 
-Include gli elementi contenitore/di layout nei risultati:
+Include nei risultati gli elementi contenitore/di layout:
 
 **Contenitori Android:** `ViewGroup`, `FrameLayout`, `LinearLayout`, `RelativeLayout`, `ConstraintLayout`, `ScrollView`, `RecyclerView`
 
@@ -347,7 +347,7 @@ Include gli elementi contenitore/di layout nei risultati:
 
 <Option type="boolean" default="false" required="No">
 
-Include nella risposta le coordinate del bounding box dell'elemento (x, y, larghezza, altezza).
+Include nella risposta le coordinate del riquadro di delimitazione dell'elemento (x, y, larghezza, altezza).
 
 </Option>
 ### Paginazione
@@ -407,55 +407,55 @@ Get accessibility tree filtered to button and link roles
 
 Il tool `get_screenshot` non accetta parametri. Gli screenshot vengono elaborati automaticamente:
 
-| Ottimizzazione       | Valore   | Descrizione                                                     |
-| -------------------- | -------- | --------------------------------------------------------------- |
-| Dimensione massima   | 2000px   | Le immagini più grandi di 2000px vengono ridimensionate         |
-| Dimensione file max  | 1MB      | Le immagini vengono compresse per restare sotto 1MB             |
-| Formato              | PNG/JPEG | PNG con compressione massima; JPEG se necessario per le dimensioni |
+| Ottimizzazione       | Valore   | Descrizione                                                   |
+| -------------------- | -------- | ------------------------------------------------------------- |
+| Dimensione massima   | 2000px   | Le immagini più grandi di 2000px vengono ridimensionate       |
+| Peso massimo del file | 1MB     | Le immagini vengono compresse per restare sotto 1MB           |
+| Formato              | PNG/JPEG | PNG con compressione massima; JPEG se necessario per il peso  |
 
 ## Comportamento della sessione
 
 ### Tipi di sessione
 
-| Tipo      | Descrizione          | Auto-Detach                               |
-| --------- | -------------------- | ----------------------------------------- |
-| `browser` | Sessione browser     | No                                        |
-| `ios`     | Sessione app iOS     | Sì (se `noReset: true` o senza `appPath`) |
-| `android` | Sessione app Android | Sì (se `noReset: true` o senza `appPath`) |
+| Tipo      | Descrizione          | Detach automatico                               |
+| --------- | -------------------- | ----------------------------------------------- |
+| `browser` | Sessione browser     | No                                              |
+| `ios`     | Sessione app iOS     | Sì (se `noReset: true` o in assenza di `appPath`) |
+| `android` | Sessione app Android | Sì (se `noReset: true` o in assenza di `appPath`) |
 
 ### Modello a sessione singola
 
 Il server MCP opera con un **modello a sessione singola**:
 
 -   Può essere attiva una sola sessione browser OPPURE app alla volta
--   Avviare una nuova sessione chiuderà/scollegherà la sessione corrente
+-   L'avvio di una nuova sessione chiuderà/scollegherà la sessione corrente
 -   Lo stato della sessione viene mantenuto globalmente tra le chiamate ai tool
 
 ### Detach vs Close
 
-| Azione     | `detach: false` (Close)              | `detach: true` (Detach)                            |
-| ---------- | ------------------------------------ | -------------------------------------------------- |
-| Browser    | Chiude completamente il browser      | Mantiene il browser in esecuzione, disconnette WebDriver |
-| App mobile | Termina l'app                        | Mantiene l'app in esecuzione nello stato corrente  |
-| Caso d'uso | Ripartire da zero per la sessione successiva | Preservare lo stato, ispezione manuale     |
+| Azione         | `detach: false` (Chiusura)              | `detach: true` (Detach)                                  |
+| -------------- | --------------------------------------- | -------------------------------------------------------- |
+| Browser        | Chiude completamente il browser         | Mantiene il browser in esecuzione, disconnette WebDriver |
+| App mobile     | Termina l'app                           | Mantiene l'app in esecuzione nello stato corrente        |
+| Caso d'uso     | Ripartire da zero alla sessione successiva | Preservare lo stato, ispezione manuale                |
 
 ## Considerazioni sulle prestazioni
 
-### Automazione browser
+### Automazione del browser
 
 -   La **modalità headless** è più veloce ma non esegue il rendering degli elementi visivi
--   **Finestre più piccole** riducono il tempo di acquisizione degli screenshot
+-   **Dimensioni della finestra più piccole** riducono il tempo di acquisizione degli screenshot
 -   Il **rilevamento degli elementi** è ottimizzato con un'unica esecuzione di script
 -   L'**ottimizzazione degli screenshot** mantiene le immagini sotto 1MB per un'elaborazione efficiente
 
 ### Automazione mobile
 
--   Il **parsing del page source XML** usa solo 2 chiamate HTTP (contro le oltre 600 delle tradizionali query sugli elementi)
+-   Il **parsing del sorgente XML della pagina** usa solo 2 chiamate HTTP (contro oltre 600 per le query tradizionali sugli elementi)
 -   I **selettori Accessibility ID** sono i più veloci e affidabili
 -   I **selettori XPath** sono i più lenti; usali solo come ultima risorsa
--   La **paginazione** (`limit` e `offset`) riduce l'uso di token per le schermate con molti elementi
+-   La **paginazione** (`limit` e `offset`) riduce l'utilizzo di token per le schermate con molti elementi
 
-### Suggerimenti sull'uso dei token
+### Suggerimenti sull'utilizzo dei token
 
 | Impostazione               | Impatto                                                          |
 | -------------------------- | ---------------------------------------------------------------- |
@@ -491,7 +491,7 @@ appium --address 0.0.0.0 --port 4724
 # Avvia con il logging
 appium --log-level debug
 
-# Avvia con un base path specifico
+# Avvia con un percorso base specifico
 appium --base-path /wd/hub
 ```
 
@@ -532,6 +532,6 @@ curl http://localhost:4723/status
 ### Timeout della sessione
 
 Se le sessioni vanno in timeout durante il debug:
-1. Aumenta `newCommandTimeout` quando avvii la sessione
+1. Aumenta `newCommandTimeout` all'avvio della sessione
 2. Usa `noReset: true` per preservare lo stato tra le sessioni
 3. Usa `detach: true` alla chiusura per mantenere l'app in esecuzione

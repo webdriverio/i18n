@@ -1,22 +1,22 @@
 ---
 id: gettingstarted
 title: شروع به کار
-description: یک پروژه WebdriverIO با دستور npm init wdio@latest ایجاد کنید، اولین تست خود را اجرا کنید و راهنمای بعدی را برای پلتفرم خود پیدا کنید.
+description: با دستور npm init wdio@latest یک پروژه WebdriverIO بسازید، اولین تست خود را اجرا کنید و راهنمای بعدی را برای پلتفرم خود پیدا کنید.
 ---
 
-WebdriverIO را با یک دستور در یک پروژه موجود یا جدید راه‌اندازی کنید و سپس اولین تست خود را اجرا کنید. ویزارد پیکربندی از شما می‌پرسد که چه چیزی را می‌خواهید تست کنید (وب، موبایل، دسکتاپ یا افزونه‌های VS Code)، از کدام فریم‌ورک و گزارش‌دهنده‌ها استفاده کنید، و همه چیز را برای شما نصب می‌کند.
+WebdriverIO را با یک دستور در یک پروژه موجود یا جدید راه‌اندازی کنید و سپس اولین تست خود را اجرا کنید. ویزارد پیکربندی از شما می‌پرسد چه چیزی را می‌خواهید تست کنید (وب، موبایل، دسکتاپ یا افزونه‌های VS Code) و از کدام فریم‌ورک و گزارش‌دهنده‌ها استفاده کنید، و سپس همه چیز را برایتان نصب می‌کند.
 
 :::info
 این مستندات مربوط به WebdriverIO __v10__ است. هنوز از v9 استفاده می‌کنید؟ از [مستندات v9](https://v9.webdriver.io) استفاده کنید یا [راهنمای مهاجرت به v10](/docs/v10-migration) را دنبال کنید.
 :::
 
-:::tip از یک عامل کدنویسی استفاده می‌کنید؟
-آن را به [`https://webdriver.io/llms.txt`](https://webdriver.io/llms.txt) ارجاع دهید یا سرور MCP مستندات را در `https://webdriver.io/mcp` متصل کنید. به [WebdriverIO برای عامل‌های کدنویسی](/docs/ai-agents) مراجعه کنید.
+:::tip از یک عامل کدنویسی (coding agent) استفاده می‌کنید؟
+آن را به [`https://webdriver.io/llms.txt`](https://webdriver.io/llms.txt) ارجاع دهید یا سرور MCP مستندات را در `https://webdriver.io/mcp` متصل کنید. [WebdriverIO برای عامل‌های کدنویسی](/docs/ai-agents) را ببینید.
 :::
 
-## آغاز راه‌اندازی WebdriverIO
+## راه‌اندازی WebdriverIO
 
-[جعبه‌ابزار شروع WebdriverIO](https://www.npmjs.com/package/create-wdio) یک راه‌اندازی کامل WebdriverIO را به یک پروژه موجود یا جدید اضافه می‌کند. در دایرکتوری ریشه یک پروژه موجود، دستور زیر را اجرا کنید:
+[جعبه‌ابزار شروع WebdriverIO](https://www.npmjs.com/package/create-wdio) یک راه‌اندازی کامل WebdriverIO را به یک پروژه موجود یا جدید اضافه می‌کند. در پوشه ریشه یک پروژه موجود، دستور زیر را اجرا کنید:
 
 <Tabs
   defaultValue="npm"
@@ -33,7 +33,7 @@ WebdriverIO را با یک دستور در یک پروژه موجود یا جد�
 npm init wdio@latest .
 ```
 
-یا اگر می‌خواهید یک پروژه جدید ایجاد کنید:
+یا اگر می‌خواهید یک پروژه جدید بسازید:
 
 ```sh
 npm init wdio@latest ./path/to/new/project
@@ -46,7 +46,7 @@ npm init wdio@latest ./path/to/new/project
 yarn create wdio .
 ```
 
-یا اگر می‌خواهید یک پروژه جدید ایجاد کنید:
+یا اگر می‌خواهید یک پروژه جدید بسازید:
 
 ```sh
 yarn create wdio ./path/to/new/project
@@ -59,7 +59,7 @@ yarn create wdio ./path/to/new/project
 pnpm create wdio@latest .
 ```
 
-یا اگر می‌خواهید یک پروژه جدید ایجاد کنید:
+یا اگر می‌خواهید یک پروژه جدید بسازید:
 
 ```sh
 pnpm create wdio@latest ./path/to/new/project
@@ -72,7 +72,7 @@ pnpm create wdio@latest ./path/to/new/project
 bun create wdio@latest .
 ```
 
-یا اگر می‌خواهید یک پروژه جدید ایجاد کنید:
+یا اگر می‌خواهید یک پروژه جدید بسازید:
 
 ```sh
 bun create wdio@latest ./path/to/new/project
@@ -81,7 +81,7 @@ bun create wdio@latest ./path/to/new/project
 </TabItem>
 </Tabs>
 
-همین یک دستور ابزار CLI مربوط به WebdriverIO را دانلود کرده و یک ویزارد پیکربندی اجرا می‌کند که به شما در پیکربندی مجموعه تست‌هایتان کمک می‌کند.
+این تک دستور، ابزار CLI مربوط به WebdriverIO را دانلود می‌کند و یک ویزارد پیکربندی را اجرا می‌کند که به شما در پیکربندی مجموعه تست‌هایتان کمک می‌کند.
 
 <CreateProjectAnimation />
 
@@ -126,12 +126,12 @@ bun create wdio@latest . --yes
 </TabItem>
 </Tabs>
 
-### پاسخ به ویزارد با فلگ‌ها
+### پاسخ دادن به ویزارد با فلگ‌ها
 
-هر سؤال در ویزارد یک فلگ خط فرمان دارد. هر فلگ به سؤال مربوط به خود پاسخ می‌دهد و ویزارد فقط بقیه سؤالات را می‌پرسد. در کنار `--yes`، ویزارد برای بقیه از مقادیر پیش‌فرض استفاده می‌کند و هرگز سؤالی نمی‌پرسد، که دقیقاً همان چیزی است که یک عامل کدنویسی یا یک job در CI نیاز دارد:
+هر سؤال در ویزارد یک فلگ خط فرمان دارد. هر فلگ به سؤال مربوط به خود پاسخ می‌دهد و ویزارد فقط بقیه سؤالات را می‌پرسد. همراه با `--yes`، ویزارد برای بقیه از مقادیر پیش‌فرض استفاده می‌کند و هرگز چیزی نمی‌پرسد، که دقیقاً همان چیزی است که یک عامل کدنویسی یا یک کار CI نیاز دارد:
 
 ```sh
-# Cucumber به زبان JavaScript، با گزارش‌دهنده‌های spec و JUnit
+# Cucumber با JavaScript، همراه با گزارش‌دهنده‌های spec و JUnit
 npm init wdio@latest . -- --yes --framework cucumber --no-typescript --reporters spec,junit
 
 # Firefox و Edge به جای Chrome
@@ -147,7 +147,7 @@ npm init wdio@latest . -- --yes --runner component --preset react
 npm init wdio@latest . -- --yes --no-npm-install
 ```
 
-با Yarn، pnpm و bun، فلگ‌ها را بدون جداکننده `--` ارسال کنید، برای مثال `pnpm create wdio@latest . --yes --framework cucumber`.
+در Yarn، pnpm و bun، فلگ‌ها را بدون جداکننده `--` ارسال کنید، مثلاً `pnpm create wdio@latest . --yes --framework cucumber`.
 
 رایج‌ترین فلگ‌ها:
 
@@ -161,13 +161,13 @@ npm init wdio@latest . -- --yes --no-npm-install
 | `--backend` | `local` (پیش‌فرض)، `saucelabs`، `browserstack`، `experitest`، `grid`، `other` |
 | `--preset` | `lit`، `vue`، `svelte`، `solid`، `stencil`، `react`، `preact`، `other`، همراه با `--runner component` |
 | `--desktop-framework` | `electron`، `tauri`، `dioxus`، `macos`، همراه با `--runner desktop` |
-| `--reporters`، `--services`، `--plugins` | نام‌های کوتاه جداشده با کاما، برای مثال `--reporters spec,junit --services visual` |
-| `--agent-support` / `--no-agent-support` | نوشتن بخش `AGENTS.md` و مهارت `wdio-session` (به طور پیش‌فرض فعال) |
-| `--npm-install` / `--no-npm-install` | نصب وابستگی‌ها (به طور پیش‌فرض فعال) |
+| `--reporters`، `--services`، `--plugins` | نام‌های کوتاه جداشده با کاما، مثلاً `--reporters spec,junit --services visual` |
+| `--agent-support` / `--no-agent-support` | بخش `AGENTS.md` و مهارت `wdio-session` را می‌نویسد (به‌طور پیش‌فرض فعال) |
+| `--npm-install` / `--no-npm-install` | وابستگی‌ها را نصب می‌کند (به‌طور پیش‌فرض فعال) |
 
-دستور `npm init wdio@latest -- --help` همه فلگ‌ها، مقادیری که می‌پذیرند و سؤالی که به آن پاسخ می‌دهند را فهرست می‌کند. فلگ‌های بولی پیشوند `--no-` را می‌پذیرند. همین فلگ‌ها با `npx wdio config` نیز کار می‌کنند.
+دستور `npm init wdio@latest -- --help` همه فلگ‌ها، مقادیری که می‌پذیرند و سؤالی که به آن پاسخ می‌دهند را فهرست می‌کند. فلگ‌های بولی پیشوند `--no-` می‌پذیرند. همین فلگ‌ها با `npx wdio config` نیز کار می‌کنند.
 
-ویزارد هر فلگ را با راه‌اندازی شما مطابقت می‌دهد. یک مقدار ناشناخته، فلگی برای سؤالی که ویزارد نمی‌پرسد، یا مقداری که برای راه‌اندازی شما ارائه نمی‌کند، ویزارد را پیش از نوشتن هر فایلی با کد خروج 2 متوقف می‌کند:
+ویزارد هر فلگ را با راه‌اندازی شما بررسی می‌کند. یک مقدار ناشناخته، فلگی برای سؤالی که ویزارد آن را نمی‌پرسد، یا مقداری که برای راه‌اندازی شما ارائه نمی‌شود، باعث می‌شود ویزارد پیش از نوشتن هر فایلی با کد خروج 2 متوقف شود:
 
 ```
 Error: --preset does not apply to this setup. UI framework of your components (with --runner component).
@@ -175,7 +175,7 @@ Error: --preset does not apply to this setup. UI framework of your components (w
 
 ## نصب دستی CLI
 
-همچنین می‌توانید بسته CLI را به صورت دستی به پروژه خود اضافه کنید:
+همچنین می‌توانید بسته CLI را به‌صورت دستی به پروژه خود اضافه کنید:
 
 ```sh
 npm i --save-dev @wdio/cli
@@ -187,7 +187,7 @@ npx wdio config
 
 ## اجرای تست
 
-می‌توانید مجموعه تست خود را با استفاده از دستور `run` و ارجاع به فایل پیکربندی WebdriverIO که به تازگی ایجاد کرده‌اید، اجرا کنید:
+می‌توانید مجموعه تست خود را با استفاده از دستور `run` و ارجاع به فایل پیکربندی WebdriverIO که به‌تازگی ساخته‌اید اجرا کنید:
 
 ```sh
 npx wdio run ./wdio.conf.js
@@ -207,26 +207,26 @@ npx wdio run ./wdio.conf.js --suite exampleSuiteName
 
 ## اجرا در یک اسکریپت
 
-اگر می‌خواهید از WebdriverIO به عنوان یک موتور اتوماسیون در [حالت مستقل](/docs/setuptypes#standalone-mode) درون یک اسکریپت Node.JS استفاده کنید، می‌توانید WebdriverIO را مستقیماً نصب کرده و به عنوان یک بسته از آن استفاده کنید، برای مثال برای تهیه اسکرین‌شات از یک وب‌سایت:
+اگر می‌خواهید از WebdriverIO به‌عنوان یک موتور اتوماسیون در [حالت مستقل (Standalone Mode)](/docs/setuptypes#standalone-mode) درون یک اسکریپت Node.JS استفاده کنید، می‌توانید WebdriverIO را مستقیماً نصب کرده و از آن به‌عنوان یک بسته استفاده کنید، برای مثال برای گرفتن اسکرین‌شات از یک وب‌سایت:
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/fc362f2f8dd823d294b9bb5f92bd5991339d4591/getting-started/run-in-script.js#L2-L19
 ```
 
-__نکته:__ همه دستورات WebdriverIO ناهمگام (asynchronous) هستند و باید با استفاده از [`async/await`](https://javascript.info/async-await) به درستی مدیریت شوند.
+__نکته:__ همه دستورات WebdriverIO ناهمگام (asynchronous) هستند و باید با استفاده از [`async/await`](https://javascript.info/async-await) به‌درستی مدیریت شوند.
 
 ## ضبط تست‌ها
 
-WebdriverIO ابزارهایی ارائه می‌دهد که با ضبط اقدامات تست شما روی صفحه و تولید خودکار اسکریپت‌های تست WebdriverIO، به شما در شروع کار کمک می‌کند. برای اطلاعات بیشتر به [ضبط تست‌ها با Chrome DevTools Recorder](/docs/record) مراجعه کنید.
+WebdriverIO ابزارهایی ارائه می‌دهد که با ضبط اقدامات تست شما روی صفحه و تولید خودکار اسکریپت‌های تست WebdriverIO، به شما در شروع کار کمک می‌کنند. برای اطلاعات بیشتر، [ضبط تست‌ها با Chrome DevTools Recorder](/docs/record) را ببینید.
 
-## نیازمندی‌های سیستم
+## پیش‌نیازهای سیستم
 
-شما باید [Node.js](http://nodejs.org) را نصب داشته باشید.
+باید [Node.js](http://nodejs.org) را نصب داشته باشید.
 
-- حداقل نسخه v22.19.0 یا بالاتر را نصب کنید، زیرا این قدیمی‌ترین نسخه LTS پشتیبانی‌شده است
-- فقط نسخه‌هایی که LTS هستند یا در آینده LTS خواهند شد، به طور رسمی پشتیبانی می‌شوند
+- حداقل نسخه v22.23.4، v24.22.1 یا v26.12.1 (یا نسخه‌ای جدیدتر از این شاخه‌ها) را نصب کنید. این‌ها نخستین نسخه‌هایی هستند که دارای [مخزن CA به‌روزشده](https://nodejs.org/en/blog/vulnerability/october-2026-security-releases) به دلیل نفوذ به CA میانی eMudhra هستند
+- فقط نسخه‌هایی که LTS هستند یا در آینده LTS خواهند شد، به‌طور رسمی پشتیبانی می‌شوند
 
-اگر Node در حال حاضر روی سیستم شما نصب نیست، پیشنهاد می‌کنیم از ابزاری مانند [NVM](https://github.com/creationix/nvm) یا [Volta](https://volta.sh/) برای کمک به مدیریت چندین نسخه فعال Node.js استفاده کنید. NVM انتخاب محبوبی است، در حالی که Volta نیز جایگزین خوبی محسوب می‌شود.
+اگر Node در حال حاضر روی سیستم شما نصب نیست، پیشنهاد می‌کنیم از ابزاری مانند [NVM](https://github.com/creationix/nvm) یا [Volta](https://volta.sh/) برای کمک به مدیریت چندین نسخه فعال Node.js استفاده کنید. NVM یک انتخاب محبوب است، در حالی که Volta نیز جایگزین خوبی است.
 
 ## تماشای معرفی
 

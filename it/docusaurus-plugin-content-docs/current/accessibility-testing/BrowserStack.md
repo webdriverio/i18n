@@ -1,23 +1,23 @@
 ---
 id: browserstack
 title: Test di accessibilità con BrowserStack
-description: "Aggiungi scansioni automatizzate dell'accessibilità ai test WebdriverIO eseguiti su BrowserStack Automate ed esamina i problemi rilevati nei report di BrowserStack."
+description: "Aggiungi scansioni di accessibilità automatizzate ai test WebdriverIO eseguiti su BrowserStack Automate ed esamina i problemi rilevati nei report di BrowserStack."
 ---
 
 # Test di accessibilità con BrowserStack
 
-Puoi integrare facilmente i test di accessibilità nelle tue suite di test WebdriverIO utilizzando la [funzionalità Automated tests di BrowserStack Accessibility Testing](https://www.browserstack.com/docs/accessibility/automated-tests?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation).
+Puoi integrare facilmente i test di accessibilità nelle tue suite di test WebdriverIO utilizzando la [funzionalità di test automatizzati di BrowserStack Accessibility Testing](https://www.browserstack.com/docs/accessibility/automated-tests?utm_source=webdriverio&utm_medium=partnered&utm_campaign=documentation).
 
-## Vantaggi degli Automated tests in BrowserStack Accessibility Testing
+## Vantaggi dei test automatizzati in BrowserStack Accessibility Testing
 
-Per utilizzare gli Automated tests in BrowserStack Accessibility Testing, i tuoi test devono essere eseguiti su BrowserStack Automate.
+Per utilizzare i test automatizzati in BrowserStack Accessibility Testing, i tuoi test devono essere eseguiti su BrowserStack Automate.
 
-Di seguito sono elencati i vantaggi degli Automated tests:
+Questi sono i vantaggi dei test automatizzati:
 
-* Si integrano perfettamente nella tua suite di test automatizzati esistente.
-* Non è richiesta alcuna modifica al codice dei casi di test.
+* Si integrano perfettamente nella tua suite di test di automazione già esistente.
+* Non è necessaria alcuna modifica al codice dei casi di test.
 * Non richiedono alcuna manutenzione aggiuntiva per i test di accessibilità.
-* Consentono di comprendere le tendenze storiche e ottenere informazioni approfondite sui casi di test.
+* Permettono di comprendere le tendenze storiche e di ottenere informazioni dettagliate sui casi di test.
 
 ## Iniziare con BrowserStack Accessibility Testing
 

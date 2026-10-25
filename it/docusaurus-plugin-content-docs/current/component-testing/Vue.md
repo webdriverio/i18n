@@ -1,14 +1,14 @@
 ---
 id: vue
 title: Vue.js
-description: "Configura il browser runner di WebdriverIO per Vue.js, scrivi test dei componenti con Testing Library e testa componenti asincroni e app Nuxt."
+description: "Configura il browser runner di WebdriverIO per Vue.js, scrivi test dei componenti con Testing Library e testa componenti asincroni e applicazioni Nuxt."
 ---
 
 [Vue.js](https://vuejs.org/) è un framework accessibile, performante e versatile per la creazione di interfacce utente web. Puoi testare i componenti Vue.js direttamente in un browser reale utilizzando WebdriverIO e il suo [browser runner](/docs/runner#browser-runner).
 
 ## Configurazione
 
-Per configurare WebdriverIO all'interno del tuo progetto Vue.js, segui le [istruzioni](/docs/component-testing#set-up) nella nostra documentazione sul test dei componenti. Assicurati di selezionare `vue` come preset nelle opzioni del runner, ad esempio:
+Per configurare WebdriverIO all'interno del tuo progetto Vue.js, segui le [istruzioni](/docs/component-testing#set-up) nella nostra documentazione sul component testing. Assicurati di selezionare `vue` come preset nelle opzioni del runner, ad esempio:
 
 ```js
 // wdio.conf.js
@@ -23,7 +23,7 @@ export const config = {
 
 :::info
 
-Se stai già utilizzando [Vite](https://vitejs.dev/) come server di sviluppo, puoi anche semplicemente riutilizzare la tua configurazione in `vite.config.ts` all'interno della configurazione di WebdriverIO. Per ulteriori informazioni, consulta `viteConfig` nelle [opzioni del runner](/docs/runner#runner-options).
+Se stai già utilizzando [Vite](https://vitejs.dev/) come server di sviluppo, puoi anche semplicemente riutilizzare la tua configurazione in `vite.config.ts` all'interno della configurazione di WebdriverIO. Per maggiori informazioni, consulta `viteConfig` nelle [opzioni del runner](/docs/runner#runner-options).
 
 :::
 
@@ -39,7 +39,7 @@ Puoi quindi avviare i test eseguendo:
 npx wdio run ./wdio.conf.js
 ```
 
-## Scrivere i test
+## Scrivere i Test
 
 Supponendo di avere il seguente componente Vue.js:
 
@@ -135,7 +135,7 @@ describe('Vue Component Testing', () => {
 
 Puoi trovare un esempio completo di una suite di test dei componenti WebdriverIO per Vue.js nel nostro [repository di esempi](https://github.com/webdriverio/component-testing-examples/tree/main/vue-typescript-vite).
 
-## Testare componenti asincroni in Vue3
+## Testare Componenti Asincroni in Vue3
 
 Se stai utilizzando Vue v3 e stai testando [componenti asincroni](https://vuejs.org/guide/built-ins/suspense.html#async-setup) come il seguente:
 
@@ -215,11 +215,11 @@ describe('Testing Async Components', () => {
 })
 ```
 
-## Testare componenti Vue in Nuxt
+## Testare Componenti Vue in Nuxt
 
-Se stai utilizzando il framework web [Nuxt](https://nuxt.com/), WebdriverIO abiliterà automaticamente la funzionalità di [auto-import](https://nuxt.com/docs/guide/concepts/auto-imports) e renderà semplice testare i tuoi componenti Vue e le pagine Nuxt. Tuttavia, eventuali [moduli Nuxt](https://nuxt.com/modules) che potresti definire nella tua configurazione e che richiedono il contesto dell'applicazione Nuxt non possono essere supportati.
+Se stai utilizzando il framework web [Nuxt](https://nuxt.com/), WebdriverIO abiliterà automaticamente la funzionalità di [auto-import](https://nuxt.com/docs/guide/concepts/auto-imports) e renderà semplice testare i tuoi componenti Vue e le pagine Nuxt. Tuttavia, non è possibile supportare eventuali [moduli Nuxt](https://nuxt.com/modules) che potresti definire nella tua configurazione e che richiedono il contesto dell'applicazione Nuxt.
 
-__I motivi sono:__
+__I motivi sono i seguenti:__
 - WebdriverIO non può avviare un'applicazione Nuxt esclusivamente in un ambiente browser
 - Far dipendere troppo i test dei componenti dall'ambiente Nuxt crea complessità e consigliamo di eseguire questi test come test e2e
 
@@ -229,16 +229,16 @@ WebdriverIO fornisce anche un servizio per eseguire test e2e su applicazioni Nux
 
 :::
 
-### Mock dei composable integrati
+### Mocking dei composable integrati
 
-Nel caso in cui il tuo componente utilizzi un composable nativo di Nuxt, ad esempio [`useNuxtData`](https://nuxt.com/docs/api/composables/use-nuxt-data), WebdriverIO creerà automaticamente un mock di queste funzioni e ti permetterà di modificarne il comportamento o di eseguire asserzioni su di esse, ad esempio:
+Nel caso in cui il tuo componente utilizzi un composable nativo di Nuxt, ad esempio [`useNuxtData`](https://nuxt.com/docs/api/composables/use-nuxt-data), WebdriverIO simulerà automaticamente queste funzioni e ti permetterà di modificarne il comportamento o di effettuare asserzioni su di esse, ad esempio:
 
 ```ts
 import { mocked } from '@wdio/browser-runner'
 
-// ad esempio, il tuo componente chiama `useNuxtData` nel seguente modo
+// ad esempio, il tuo componente chiama `useNuxtData` nel modo seguente
 // `const { data: posts } = useNuxtData('posts')`
-// nel tuo test puoi eseguire asserzioni su di esso
+// nel tuo test puoi effettuare asserzioni su di esso
 expect(useNuxtData).toBeCalledWith('posts')
 // e modificarne il comportamento
 mocked(useNuxtData).mockReturnValue({
@@ -248,7 +248,7 @@ mocked(useNuxtData).mockReturnValue({
 
 ### Gestione dei composable di terze parti
 
-Tutti i [moduli di terze parti](https://nuxt.com/modules) che possono potenziare il tuo progetto Nuxt non possono essere sottoposti automaticamente a mock. In questi casi è necessario crearne il mock manualmente, ad esempio supponendo che la tua applicazione utilizzi il plugin del modulo [Supabase](https://nuxt.com/modules/supabase):
+Tutti i [moduli di terze parti](https://nuxt.com/modules) che possono potenziare il tuo progetto Nuxt non possono essere simulati automaticamente. In questi casi è necessario simularli manualmente, ad esempio se la tua applicazione utilizza il plugin del modulo [Supabase](https://nuxt.com/modules/supabase):
 
 ```js title=""
 export default defineNuxtConfig({
@@ -260,7 +260,7 @@ export default defineNuxtConfig({
 });
 ```
 
-e che tu crei un'istanza di Supabase da qualche parte nei tuoi composable, ad esempio:
+e crei un'istanza di Supabase da qualche parte nei tuoi composable, ad esempio:
 
 ```ts
 const superbase = useSupabaseClient()
@@ -272,7 +272,7 @@ il test fallirà a causa di:
 ReferenceError: useSupabaseClient is not defined
 ```
 
-In questo caso, consigliamo di creare un mock dell'intero modulo che utilizza la funzione `useSupabaseClient` oppure di creare una variabile globale che simuli questa funzione, ad esempio:
+In questo caso, consigliamo di simulare l'intero modulo che utilizza la funzione `useSupabaseClient` oppure di creare una variabile globale che simuli questa funzione, ad esempio:
 
 ```ts
 import { fn } from '@wdio/browser-runner'

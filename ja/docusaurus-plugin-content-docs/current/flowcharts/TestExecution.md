@@ -1,9 +1,9 @@
 ---
 id: testexecution
 title: テスト実行
-description: "テスト実行プロセスのフローチャートと、@wdio/runnerが他のWebdriverIOパッケージとどのように連携するかを確認します。"
+description: "テスト実行プロセスと、@wdio/runner が他の WebdriverIO パッケージとどのように連携するかをフローチャートで確認します。"
 ---
-このフローチャートは、テスト実行プロセスと、@wdio/runnerと他のほとんどのWebdriverIOパッケージとの間の連携について説明しています。
+このフローチャートは、テスト実行プロセスと、@wdio/runner と他の大部分の WebdriverIO パッケージとの間の連携について説明しています。
 
 ```mermaid
 graph TD

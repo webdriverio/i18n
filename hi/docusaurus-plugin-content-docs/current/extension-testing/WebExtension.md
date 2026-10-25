@@ -4,9 +4,9 @@ title: वेब एक्सटेंशन टेस्टिंग
 description: "WebdriverIO सेशन के लिए Chrome या Firefox में वेब एक्सटेंशन लोड करें, जिसमें सेशन के बीच में BiDi के माध्यम से इंस्टॉल और अनइंस्टॉल करना भी शामिल है।"
 ---
 
-WebdriverIO ब्राउज़र को ऑटोमेट करने के लिए एक आदर्श टूल है। वेब एक्सटेंशन ब्राउज़र का ही एक हिस्सा हैं और इन्हें भी उसी तरह ऑटोमेट किया जा सकता है। जब भी आपका वेब एक्सटेंशन वेबसाइटों पर JavaScript चलाने के लिए content scripts का उपयोग करता है या कोई popup modal प्रदान करता है, तो आप WebdriverIO का उपयोग करके उसके लिए e2e टेस्ट चला सकते हैं।
+WebdriverIO ब्राउज़र को ऑटोमेट करने के लिए एक आदर्श टूल है। वेब एक्सटेंशन ब्राउज़र का ही हिस्सा होते हैं और उन्हें भी इसी तरह ऑटोमेट किया जा सकता है। जब भी आपका वेब एक्सटेंशन वेबसाइटों पर JavaScript चलाने के लिए content scripts का उपयोग करता है या कोई popup modal प्रदान करता है, तो आप WebdriverIO का उपयोग करके उसके लिए e2e टेस्ट चला सकते हैं।
 
-नीचे दिए गए capability सेटअप के साथ पहले नेविगेशन से पहले एक्सटेंशन लोड करें। किसी [WebDriver BiDi](https://w3c.github.io/webdriver-bidi/#module-webExtension) सेशन के बीच में एक्सटेंशन इंस्टॉल करने और हटाने के लिए, [`installExtension`](/docs/api/browser/installExtension) और [`uninstallExtension`](/docs/api/browser/uninstallExtension) का उपयोग करें।
+नीचे दिए गए capability सेटअप के साथ पहले नेविगेशन से पहले एक्सटेंशन लोड करें। [WebDriver BiDi](https://w3c.github.io/webdriver-bidi/#module-webExtension) सेशन के बीच में किसी एक्सटेंशन को इंस्टॉल करने और हटाने के लिए, [`installExtension`](/docs/api/browser/installExtension) और [`uninstallExtension`](/docs/api/browser/uninstallExtension) का उपयोग करें।
 
 ## ब्राउज़र में वेब एक्सटेंशन लोड करना
 
@@ -14,13 +14,13 @@ WebdriverIO ब्राउज़र को ऑटोमेट करने क�
 
 :::info
 
-ये डॉक्स Safari वेब एक्सटेंशन को शामिल नहीं करते क्योंकि इसके लिए उनका सपोर्ट काफी पीछे है और यूज़र की मांग भी अधिक नहीं है। Safari में WebDriver BiDi सेशन भी नहीं है, इसलिए [`installExtension`](/docs/api/browser/installExtension) Safari को कवर नहीं करता। यदि आप Safari के लिए वेब एक्सटेंशन बना रहे हैं, तो कृपया [एक issue दर्ज करें](https://github.com/webdriverio/webdriverio/issues/new?assignees=&labels=Docs+%F0%9F%93%96%2CNeeds+Triaging+%E2%8F%B3&template=documentation.yml&title=%5B%F0%9F%93%96+Docs%5D%3A+%3Ctitle%3E) और इसे यहाँ शामिल करने में सहयोग करें।
+ये दस्तावेज़ Safari वेब एक्सटेंशन को शामिल नहीं करते हैं क्योंकि उनका समर्थन काफी पीछे है और उपयोगकर्ताओं की मांग अधिक नहीं है। Safari में कोई WebDriver BiDi सेशन भी नहीं है, इसलिए [`installExtension`](/docs/api/browser/installExtension) Safari को कवर नहीं करता। यदि आप Safari के लिए वेब एक्सटेंशन बना रहे हैं, तो कृपया [एक issue दर्ज करें](https://github.com/webdriverio/webdriverio/issues/new?assignees=&labels=Docs+%F0%9F%93%96%2CNeeds+Triaging+%E2%8F%B3&template=documentation.yml&title=%5B%F0%9F%93%96+Docs%5D%3A+%3Ctitle%3E) और इसे यहाँ शामिल करने में सहयोग करें।
 
 :::
 
 ### Chrome
 
-Chrome में वेब एक्सटेंशन को `crx` फ़ाइल की `base64` एन्कोडेड स्ट्रिंग प्रदान करके या वेब एक्सटेंशन फ़ोल्डर का पाथ प्रदान करके लोड किया जा सकता है। सबसे आसान तरीका दूसरा वाला है, जिसमें आप अपनी Chrome capabilities को इस प्रकार परिभाषित करते हैं:
+Chrome में वेब एक्सटेंशन लोड करना `crx` फ़ाइल की `base64` एन्कोडेड स्ट्रिंग प्रदान करके या वेब एक्सटेंशन फ़ोल्डर का पाथ प्रदान करके किया जा सकता है। सबसे आसान तरीका बाद वाला है, जिसके लिए अपनी Chrome capabilities को इस प्रकार परिभाषित करें:
 
 ```js wdio.conf.js
 import path from 'node:path'
@@ -33,7 +33,7 @@ export const config = {
     capabilities: [{
         browserName,
         'goog:chromeOptions': {
-            // मान लें कि आपकी wdio.conf.js रूट डायरेक्टरी में है और आपकी कंपाइल की गई
+            // यह मानते हुए कि आपकी wdio.conf.js रूट डायरेक्टरी में है और आपकी कंपाइल की गई
             // वेब एक्सटेंशन फ़ाइलें `./dist` फ़ोल्डर में स्थित हैं
             args: [`--load-extension=${path.join(__dirname, '..', '..', 'dist')}`]
         }
@@ -43,7 +43,7 @@ export const config = {
 
 :::info
 
-यदि आप Chrome के अलावा किसी अन्य ब्राउज़र को ऑटोमेट करते हैं, जैसे Brave, Edge या Opera, तो संभावना है कि ब्राउज़र विकल्प ऊपर दिए गए उदाहरण से मेल खाएँगे, बस एक अलग capability नाम का उपयोग होगा, जैसे `ms:edgeOptions`।
+यदि आप Chrome के अलावा किसी अन्य ब्राउज़र को ऑटोमेट करते हैं, जैसे Brave, Edge या Opera, तो संभावना है कि ब्राउज़र विकल्प ऊपर दिए गए उदाहरण से मेल खाएँगे, बस एक अलग capability नाम का उपयोग करना होगा, जैसे `ms:edgeOptions`।
 
 :::
 
@@ -70,7 +70,7 @@ export const config = {
 
 ### Firefox
 
-एक्सटेंशन वाली Firefox प्रोफ़ाइल बनाने के लिए आप अपने सेशन को उसी के अनुसार सेट अप करने हेतु [Firefox Profile Service](/docs/firefox-profile-service) का उपयोग कर सकते हैं। हालाँकि, आपको ऐसी समस्याओं का सामना करना पड़ सकता है जहाँ आपका लोकल रूप से डेवलप किया गया एक्सटेंशन साइनिंग समस्याओं के कारण लोड नहीं हो पाता। ऐसी स्थिति में आप [`installAddOn`](/docs/api/gecko#installaddon) कमांड के माध्यम से `before` हुक में भी एक्सटेंशन लोड कर सकते हैं, जैसे:
+एक्सटेंशन शामिल करने वाली Firefox प्रोफ़ाइल बनाने के लिए आप अपने सेशन को तदनुसार सेट करने हेतु [Firefox Profile Service](/docs/firefox-profile-service) का उपयोग कर सकते हैं। हालाँकि, आपको ऐसी समस्याओं का सामना करना पड़ सकता है जहाँ आपका स्थानीय रूप से विकसित एक्सटेंशन साइनिंग समस्याओं के कारण लोड नहीं हो पाता। इस स्थिति में आप [`installAddOn`](/docs/api/gecko#installaddon) कमांड के माध्यम से `before` हुक में भी एक्सटेंशन लोड कर सकते हैं, जैसे:
 
 ```js wdio.conf.js
 import path from 'node:path'
@@ -99,9 +99,9 @@ npx web-ext build -s dist/ -a . -n web-extension-firefox.xpi
 
 ## सेशन के दौरान एक्सटेंशन इंस्टॉल करें
 
-v10 से, [`browser.installExtension`](/docs/api/browser/installExtension) और [`browser.uninstallExtension`](/docs/api/browser/uninstallExtension) किसी WebDriver BiDi सेशन के बीच में वेब एक्सटेंशन इंस्टॉल करते हैं और उसकी id लौटाते हैं। इनका उपयोग तब करें जब एक्सटेंशन लॉन्च के समय मौजूद नहीं होना चाहिए, या जब एक ही टेस्ट उसे इंस्टॉल करता है, उसका परीक्षण करता है और उसे हटाता है।
+v10 से, [`browser.installExtension`](/docs/api/browser/installExtension) और [`browser.uninstallExtension`](/docs/api/browser/uninstallExtension) WebDriver BiDi सेशन के बीच में वेब एक्सटेंशन इंस्टॉल करते हैं और उसकी id लौटाते हैं। इनका उपयोग तब करें जब एक्सटेंशन लॉन्च के समय मौजूद नहीं होना चाहिए, या जब एक ही टेस्ट उसे इंस्टॉल करता है, उसका परीक्षण करता है, और उसे हटाता है।
 
-ऊपर दिया गया capability सेटअप और `installAddOn` पहले नेविगेशन से पहले एक्सटेंशन लोड करने का तरीका बने रहते हैं। `installExtension` उनकी जगह नहीं लेता। जब आप [spec payload](https://w3c.github.io/webdriver-bidi/#command-webExtension-install) स्वयं भेजना चाहते हैं, तब के लिए `browser.webExtensionInstall` और `browser.webExtensionUninstall` उपलब्ध रहते हैं।
+ऊपर दिया गया capability सेटअप और `installAddOn` पहले नेविगेशन से पहले एक्सटेंशन लोड करने का तरीका बने रहते हैं। `installExtension` उन्हें प्रतिस्थापित नहीं करता। जब आप स्वयं [spec payload](https://w3c.github.io/webdriver-bidi/#command-webExtension-install) भेजना चाहते हैं, तो `browser.webExtensionInstall` और `browser.webExtensionUninstall` उपलब्ध रहते हैं।
 
 ```ts title="test/specs/extension.e2e.ts"
 import path from 'node:path'
@@ -130,19 +130,19 @@ describe('web extension', () => {
 | --- | --- |
 | एक डायरेक्टरी पाथ | `path.resolve` के बाद `{ type: 'path', path }`। ब्राउज़र को उस डायरेक्टरी को पढ़ने में सक्षम होना चाहिए। |
 | एक `.zip`, `.xpi`, या `.crx` पाथ | `path.resolve` के बाद `{ type: 'archivePath', path }`। |
-| `{ base64: string }` | `{ type: 'base64', value }`। आर्काइव bytes। कोई भी अन्य ऑब्जेक्ट अस्वीकार कर दिया जाता है। |
+| `{ base64: string }` | `{ type: 'base64', value }`। आर्काइव बाइट्स। कोई भी अन्य ऑब्जेक्ट अस्वीकार कर दिया जाता है। |
 
-स्ट्रिंग पाथ हमेशा टेस्ट रनर पर resolve किया जाता है। रिमोट सेशन पर — यानी `localhost`, `127.0.0.1`, या `::1` के अलावा कोई hostname, या क्लाउड `user` और `key` — वह पाथ ब्राउज़र मशीन पर मौजूद पाथ नहीं होता। कमांड आर्काइव को पढ़ती है, या डायरेक्टरी को मेमोरी में zip करती है, और `base64` भेजती है। आपको लोकल बनाम रिमोट के लिए स्वयं अलग-अलग लॉजिक लिखने की ज़रूरत नहीं है। लोकल सेशन `path` या `archivePath` भेजते हैं और bytes नहीं पढ़ते।
+स्ट्रिंग पाथ हमेशा टेस्ट रनर पर resolve किया जाता है। रिमोट सेशन पर — `localhost`, `127.0.0.1`, या `::1` के अलावा कोई hostname, या क्लाउड `user` और `key` — वह पाथ ब्राउज़र मशीन पर मौजूद पाथ नहीं होता। कमांड आर्काइव को पढ़ता है, या डायरेक्टरी को मेमोरी में zip करता है, और `base64` भेजता है। आपको स्वयं लोकल बनाम रिमोट के लिए अलग-अलग लॉजिक लिखने की आवश्यकता नहीं है। लोकल सेशन `path` या `archivePath` भेजते हैं और बाइट्स नहीं पढ़ते।
 
-डायरेक्टरी को एक्सटेंशन रूट पर पॉइंट करें, यानी वह फ़ोल्डर जिसमें `manifest.json` मौजूद है।
+डायरेक्टरी को एक्सटेंशन रूट पर पॉइंट करें, यानी वह फ़ोल्डर जिसमें `manifest.json` होता है।
 
-सेशन को WebDriver BiDi सपोर्ट करना चाहिए। एक classic सेशन `installExtension requires a WebDriver BiDi session (webExtension.install)` एरर थ्रो करता है। जो ब्राउज़र BiDi को लागू करता है लेकिन इस मॉड्यूल को नहीं, उसमें कमांड `unsupported operation` (या मॉड्यूल अनुपस्थित होने पर `unknown command`) के साथ विफल होती है। खराब आर्काइव `invalid web extension` के साथ विफल होता है। किसी ऐसी id को अनइंस्टॉल करना जिसे ब्राउज़र नहीं जानता, `no such web extension` के साथ विफल होता है।
+सेशन को WebDriver BiDi का उपयोग करना चाहिए। क्लासिक सेशन `installExtension requires a WebDriver BiDi session (webExtension.install)` एरर देता है। जो ब्राउज़र BiDi को लागू करता है लेकिन इस मॉड्यूल को नहीं, उसमें कमांड `unsupported operation` (या मॉड्यूल अनुपस्थित होने पर `unknown command`) के साथ विफल हो जाता है। खराब आर्काइव `invalid web extension` के साथ विफल होता है। ऐसी id को अनइंस्टॉल करना जिसे ब्राउज़र नहीं जानता, `no such web extension` के साथ विफल होता है।
 
 `uninstallExtension` वह id स्ट्रिंग लेता है जो `installExtension` ने लौटाई थी।
 
 ### Chromium
 
-Chrome और Edge `webExtension.install` को लागू करते हैं, लेकिन इसे तब तक बंद रखते हैं जब तक आप ब्राउज़र को `--enable-unsafe-extension-debugging` और `--remote-debugging-pipe` के साथ शुरू नहीं करते। Chrome 136 और उससे नए वर्ज़न में, जब भी `--remote-debugging-pipe` सेट हो, `--user-data-dir` भी आवश्यक है। इन arguments के बिना कमांड `unknown error - Method not available` के साथ विफल होती है।
+Chrome और Edge `webExtension.install` को लागू करते हैं, लेकिन इसे तब तक बंद रखते हैं जब तक आप ब्राउज़र को `--enable-unsafe-extension-debugging` और `--remote-debugging-pipe` के साथ शुरू नहीं करते। Chrome 136 और नए संस्करणों में जब भी `--remote-debugging-pipe` सेट हो, तो `--user-data-dir` भी आवश्यक है। इन arguments के बिना कमांड `unknown error - Method not available` के साथ विफल हो जाता है।
 
 `--remote-debugging-pipe` ड्राइवर और ब्राउज़र के बीच का pipe है। BiDi सेशन अभी भी `webSocketUrl` का उपयोग करता है।
 
@@ -168,15 +168,15 @@ export const config: WebdriverIO.Config = {
 }
 ```
 
-Edge के लिए `ms:edgeOptions` का उपयोग करें। Firefox एक सामान्य BiDi सेशन में एक्सटेंशन लोड करता है और उसे इन arguments की आवश्यकता नहीं होती।
+Edge के लिए `ms:edgeOptions` का उपयोग करें। Firefox सामान्य BiDi सेशन में एक्सटेंशन लोड करता है और उसे इन arguments की आवश्यकता नहीं होती।
 
 ## टिप्स और ट्रिक्स
 
-निम्नलिखित सेक्शन में कुछ उपयोगी टिप्स और ट्रिक्स दिए गए हैं जो वेब एक्सटेंशन की टेस्टिंग करते समय सहायक हो सकते हैं।
+निम्नलिखित अनुभाग में उपयोगी टिप्स और ट्रिक्स का एक सेट है जो वेब एक्सटेंशन का परीक्षण करते समय सहायक हो सकता है।
 
-### Chrome में Popup Modal टेस्ट करें
+### Chrome में Popup Modal का परीक्षण करें
 
-यदि आप अपने [एक्सटेंशन manifest](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/browser_action) में `default_popup` browser action एंट्री परिभाषित करते हैं, तो आप उस HTML पेज को सीधे टेस्ट कर सकते हैं, क्योंकि ब्राउज़र के टॉप बार में एक्सटेंशन आइकन पर क्लिक करना काम नहीं करेगा। इसके बजाय, आपको popup html फ़ाइल को सीधे खोलना होगा।
+यदि आप अपने [extension manifest](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/browser_action) में `default_popup` browser action एंट्री परिभाषित करते हैं, तो आप उस HTML पेज का सीधे परीक्षण कर सकते हैं, क्योंकि ब्राउज़र के टॉप बार में एक्सटेंशन आइकन पर क्लिक करना काम नहीं करेगा। इसके बजाय, आपको popup html फ़ाइल को सीधे खोलना होगा।
 
 Chrome में यह एक्सटेंशन ID प्राप्त करके और `browser.url('...')` के माध्यम से popup पेज खोलकर काम करता है। उस पेज पर व्यवहार वैसा ही होगा जैसा popup के भीतर होता है। ऐसा करने के लिए हम निम्नलिखित कस्टम कमांड लिखने की सलाह देते हैं:
 
@@ -210,7 +210,7 @@ declare global {
 }
 ```
 
-अपनी `wdio.conf.js` में आप इस फ़ाइल को इम्पोर्ट कर सकते हैं और अपने `before` हुक में कस्टम कमांड रजिस्टर कर सकते हैं, जैसे:
+अपनी `wdio.conf.js` में आप इस फ़ाइल को import कर सकते हैं और अपने `before` हुक में कस्टम कमांड को रजिस्टर कर सकते हैं, जैसे:
 
 ```ts wdio.conf.ts
 import { browser } from '@wdio/globals'

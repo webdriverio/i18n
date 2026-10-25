@@ -1,6 +1,6 @@
 ---
 id: writing-tests
-title: Scrivere i test
+title: Scrivere i Test
 description: "Scrivi test WebdriverIO per app Flutter passando al contesto Flutter e interagendo con i widget tramite l'estensione flutter_driver."
 ---
 
@@ -12,21 +12,21 @@ Quando si avvia una sessione di automazione con Appium, il driver inizia l'esecu
 
 Poiché Flutter esegue il rendering della propria interfaccia utente all'interno di un Canvas isolato, gli elementi interni sono invisibili nel contesto `NATIVE_APP`. Per inviare comandi direttamente all'estensione di test di Flutter (`flutter_driver`), dobbiamo spostare esplicitamente il focus dell'automazione sul contesto `FLUTTER`. Senza questo cambio, qualsiasi tentativo di individuare un Widget genererà un errore di elemento non trovato.
 
-:::tip Best practice: cambia sempre contesto in `beforeEach`
-È una best practice consigliata includere `await driver.switchContext('FLUTTER')` in un hook `beforeEach` in ogni file di test. Questo garantisce che ogni test inizi l'esecuzione nel contesto `FLUTTER`, evitando instabilità o perdite di stato nel caso in cui un test precedente sia passato a `NATIVE_APP` (ad esempio, per gestire le finestre di dialogo dei permessi del sistema operativo) o se una sessione reimposta il contesto attivo.
+:::tip Best Practice: cambia sempre contesto in `beforeEach`
+È una best practice consigliata includere `await driver.switchContext('FLUTTER')` in un hook `beforeEach` in ogni file di test. Questo garantisce che ogni test inizi l'esecuzione nel contesto `FLUTTER`, evitando instabilità o fughe di stato nel caso in cui un test precedente sia passato a `NATIVE_APP` (ad esempio, per gestire le finestre di dialogo dei permessi del sistema operativo) o se una sessione reimposta il contesto attivo.
 :::
 
 ### Perché è necessario `appium-flutter-finder`?
 
-I selettori tradizionali di WebdriverIO, come `$('~selector')` o `$('#id')`, sono progettati per individuare gli elementi utilizzando strategie pensate per interfacce Web o native mobile (come resource ID o XPath).
+I selettori tradizionali di WebdriverIO, come `$('~selector')` o `$('#id')`, sono progettati per individuare elementi utilizzando strategie pensate per interfacce Web o native mobili (come resource ID o XPath).
 
-Flutter gestisce i propri elementi interni e utilizza metodi di ricerca proprietari (come `byValueKey`, `byText`, `byType`). La libreria `appium-flutter-finder` è necessaria perché funge da traduttore: espone queste strategie di localizzazione specifiche di Flutter in un formato serializzato (Base64/JSON) che `appium-flutter-driver` può interpretare ed eseguire all'interno della Dart Virtual Machine (VM).
+Flutter gestisce i propri elementi interni e utilizza metodi di ricerca proprietari (come `byValueKey`, `byText`, `byType`). La libreria `appium-flutter-finder` è necessaria perché agisce da traduttore: espone queste strategie di localizzazione specifiche di Flutter in un formato serializzato (Base64/JSON) che `appium-flutter-driver` può interpretare ed eseguire all'interno della Dart Virtual Machine (VM).
 
 ### Esempi pratici di test
 
-Documentiamo scenari comuni che utilizzano `appium-flutter-finder` per individuare i widget, combinati con comandi diretti dell'estensione eseguiti tramite `driver.execute('flutter:<command>')`.
+Documentiamo scenari comuni che utilizzano `appium-flutter-finder` per individuare i widget, combinato con comandi diretti dell'estensione eseguiti tramite `driver.execute('flutter:<command>')`.
 
-:::info Comandi e finder dell'estensione Flutter Driver
+:::info Comandi e Finder dell'estensione Flutter Driver
 `appium-flutter-driver` fornisce comandi specializzati per interagire con le applicazioni Flutter, tra cui:
 - `flutter:waitFor`: attende che un widget diventi visibile.
 - `flutter:waitForAbsent`: attende che un widget scompaia.
@@ -107,14 +107,14 @@ describe('Flutter & Native Context Switching Flow', () => {
     });
 
     it('The user should trigger a native dialog, interact with OS controls, and return to Flutter context.', async () => {
-        // 1. Nel contesto FLUTTER: clicca sul widget che attiva una finestra di dialogo di permesso o di avviso a livello di sistema operativo
+        // 1. Nel contesto FLUTTER: fai clic sul widget che attiva una finestra di dialogo di permesso o di avviso a livello di sistema operativo
         const buttonRequestPermission = find.byValueKey('request_permission_button');
         await driver.elementClick(buttonRequestPermission);
 
         // 2. Passa al contesto NATIVE_APP per interagire con la finestra di dialogo del sistema operativo
         await driver.switchContext('NATIVE_APP');
 
-        // Individua e clicca il pulsante nativo utilizzando i selettori standard di WebdriverIO
+        // Individua e fai clic sul pulsante nativo utilizzando i selettori standard di WebdriverIO
         const nativeAllowButton = await $('//*[@text="Allow" or @text="While using the app" or @label="Allow"]');
         await nativeAllowButton.waitForDisplayed();
         await nativeAllowButton.click();

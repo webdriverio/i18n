@@ -1,16 +1,16 @@
 ---
 id: ocr-set-value
 title: ocrSetValue
-description: "Digita in un campo di input individuato tramite il suo testo visibile con ocrSetValue, che trova il campo con OCR e corrispondenza fuzzy."
+description: "Digita in un campo di input individuato tramite il suo testo visibile con ocrSetValue, che trova il campo tramite OCR e corrispondenza fuzzy."
 ---
 
 Invia una sequenza di battiture di tasti a un elemento. Il comando:
 
 -   rileverà automaticamente l'elemento
--   metterà il focus sul campo facendo clic su di esso
+-   metterà il focus sul campo cliccandoci sopra
 -   imposterà il valore nel campo
 
-Il comando cercherà il testo fornito e proverà a trovare una corrispondenza basata sulla logica fuzzy di [Fuse.js](https://fusejs.io/). Ciò significa che, anche se dovessi fornire un selettore con un errore di battitura, o se il testo trovato non dovesse corrispondere al 100%, il comando proverà comunque a restituirti un elemento. Vedi i [log](#logs) qui sotto.
+Il comando cercherà il testo fornito e proverà a trovare una corrispondenza basata sulla logica fuzzy di [Fuse.js](https://fusejs.io/). Ciò significa che, anche se dovessi fornire un selettore con un errore di battitura o se il testo trovato non dovesse corrispondere al 100%, il comando proverà comunque a restituirti un elemento. Vedi i [log](#logs) qui sotto.
 
 ## Utilizzo
 
@@ -37,7 +37,7 @@ await brower.ocrSetValue({
 
 <Option type="string" required="yes">
 
-Il testo che vuoi cercare per farci clic sopra.
+Il testo da cercare su cui cliccare.
 
 </Option>
 #### Esempio
@@ -53,7 +53,7 @@ await browser.ocrSetValue({
 
 <Option type="string" required="yes">
 
-Valore da aggiungere.
+Il valore da aggiungere.
 
 </Option>
 #### Esempio
@@ -86,7 +86,7 @@ await browser.ocrSetValue({
 
 <Option type="number" default="500 milliseconds" required="no">
 
-Questa è la durata del clic. Se vuoi, puoi anche creare un "clic lungo" aumentando il tempo.
+Questa è la durata del clic. Se vuoi, puoi anche creare un "clic prolungato" aumentando il tempo.
 
 </Option>
 #### Esempio
@@ -95,7 +95,7 @@ Questa è la durata del clic. Se vuoi, puoi anche creare un "clic lungo" aumenta
 await browser.ocrSetValue({
     text: "WebdriverIO",
     value: "The Value",
-    clickDuration: 3000, // This is 3 seconds
+    clickDuration: 3000, // Questo corrisponde a 3 secondi
 });
 ```
 
@@ -132,14 +132,14 @@ await browser.ocrSetValue({
     haystack: $("elementSelector"),
 });
 
-// OR
+// OPPURE
 await browser.ocrSetValue({
     text: "WebdriverIO",
     value: "The Value",
     haystack: await $("elementSelector"),
 });
 
-// OR
+// OPPURE
 await browser.ocrSetValue({
     text: "WebdriverIO",
     value: "The Value",
@@ -156,7 +156,7 @@ await browser.ocrSetValue({
 
 <Option type="string" default="eng" required="No">
 
-La lingua che Tesseract riconoscerà. Maggiori informazioni sono disponibili [qui](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) e le lingue supportate sono disponibili [qui](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
+La lingua che Tesseract riconoscerà. Maggiori informazioni sono disponibili [qui](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions) e le lingue supportate sono elencate [qui](https://github.com/webdriverio/visual-testing/blob/main/packages/ocr-service/src/utils/constants.ts).
 
 </Option>
 #### Esempio
@@ -166,7 +166,7 @@ import { SUPPORTED_OCR_LANGUAGES } from "@wdio/ocr-service";
 await browser.ocrSetValue({
     text: "WebdriverIO",
     value: "The Value",
-    // Use Dutch as a language
+    // Usa l'olandese come lingua
     language: SUPPORTED_OCR_LANGUAGES.DUTCH,
 });
 ```
@@ -175,11 +175,11 @@ await browser.ocrSetValue({
 
 <Option type="object" required="no">
 
-Puoi fare clic sullo schermo in una posizione relativa all'elemento corrispondente. Ciò può essere fatto in base ai pixel relativi `above`, `right`, `below` o `left` rispetto all'elemento corrispondente
+Puoi cliccare sullo schermo in una posizione relativa all'elemento corrispondente. Questo può essere fatto in base ai pixel relativi `above`, `right`, `below` o `left` rispetto all'elemento corrispondente
 
 :::note
 
-Sono consentite le seguenti combinazioni
+Le seguenti combinazioni sono consentite
 
 -   proprietà singole
 -   `above` + `left` oppure `above` + `right`
@@ -197,7 +197,7 @@ Le seguenti combinazioni **NON** sono consentite
 
 <Option type="number" required="no">
 
-Fa clic x pixel sopra (`above`) l'elemento corrispondente.
+Clicca x pixel sopra (`above`) l'elemento corrispondente.
 
 </Option>
 ##### Esempio
@@ -216,7 +216,7 @@ await browser.ocrSetValue({
 
 <Option type="number" required="no">
 
-Fa clic x pixel a destra (`right`) dell'elemento corrispondente.
+Clicca x pixel a destra (`right`) dell'elemento corrispondente.
 
 </Option>
 ##### Esempio
@@ -235,7 +235,7 @@ await browser.ocrSetValue({
 
 <Option type="number" required="no">
 
-Fa clic x pixel sotto (`below`) l'elemento corrispondente.
+Clicca x pixel sotto (`below`) l'elemento corrispondente.
 
 </Option>
 ##### Esempio
@@ -254,7 +254,7 @@ await browser.ocrSetValue({
 
 <Option type="number" required="no">
 
-Fa clic x pixel a sinistra (`left`) dell'elemento corrispondente.
+Clicca x pixel a sinistra (`left`) dell'elemento corrispondente.
 
 </Option>
 ##### Esempio
@@ -271,13 +271,13 @@ await browser.ocrSetValue({
 
 ### `fuzzyFindOptions`
 
-Puoi modificare la logica fuzzy per trovare il testo con le seguenti opzioni. Questo potrebbe aiutare a trovare una corrispondenza migliore
+Puoi modificare la logica fuzzy per la ricerca del testo con le seguenti opzioni. Questo potrebbe aiutare a trovare una corrispondenza migliore
 
 #### `fuzzyFindOptions.distance`
 
 <Option type="number" default="100" required="no">
 
-Determina quanto la corrispondenza debba essere vicina alla posizione fuzzy (specificata da location). Una corrispondenza esatta di lettere che si trova a distance caratteri dalla posizione fuzzy verrebbe valutata come una mancata corrispondenza completa. Una distance di 0 richiede che la corrispondenza si trovi esattamente nella posizione specificata. Una distance di 1000 richiederebbe che una corrispondenza perfetta si trovi entro 800 caratteri dalla posizione per essere trovata utilizzando una threshold di 0.8.
+Determina quanto la corrispondenza deve essere vicina alla posizione fuzzy (specificata da location). Una corrispondenza esatta di lettere che si trova a distance caratteri di distanza dalla posizione fuzzy verrebbe valutata come una completa mancata corrispondenza. Una distance pari a 0 richiede che la corrispondenza si trovi esattamente nella posizione specificata. Una distance pari a 1000 richiederebbe che una corrispondenza perfetta si trovi entro 800 caratteri dalla posizione per essere trovata usando un threshold di 0.8.
 
 </Option>
 ##### Esempio
@@ -315,7 +315,7 @@ await browser.ocrSetValue({
 
 <Option type="number" default="0.6" required="no">
 
-Il punto in cui l'algoritmo di corrispondenza si arrende. Una threshold di 0 richiede una corrispondenza perfetta (sia delle lettere che della posizione), una threshold di 1.0 corrisponderebbe a qualsiasi cosa.
+Il punto in cui l'algoritmo di corrispondenza si arrende. Un threshold pari a 0 richiede una corrispondenza perfetta (sia delle lettere che della posizione), mentre un threshold pari a 1.0 corrisponderebbe a qualsiasi cosa.
 
 </Option>
 ##### Esempio
@@ -353,7 +353,7 @@ await browser.ocrSetValue({
 
 <Option type="number" default="2" required="no">
 
-Verranno restituite solo le corrispondenze la cui lunghezza supera questo valore. (Ad esempio, se vuoi ignorare le corrispondenze di un solo carattere nel risultato, impostalo a 2)
+Verranno restituite solo le corrispondenze la cui lunghezza supera questo valore. (Ad esempio, se vuoi ignorare le corrispondenze di un singolo carattere nel risultato, impostalo a 2)
 
 </Option>
 ##### Esempio
@@ -372,7 +372,7 @@ await browser.ocrSetValue({
 
 <Option type="number" default="false" required="no">
 
-Quando è `true`, la funzione di corrispondenza continuerà fino alla fine di un pattern di ricerca anche se è già stata individuata una corrispondenza perfetta nella stringa.
+Quando è `true`, la funzione di corrispondenza proseguirà fino alla fine del pattern di ricerca anche se è già stata trovata una corrispondenza perfetta nella stringa.
 
 </Option>
 ##### Esempio

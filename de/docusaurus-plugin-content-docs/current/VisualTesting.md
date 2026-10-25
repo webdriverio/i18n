@@ -16,36 +16,36 @@ WebdriverIO bietet Bildvergleiche von Bildschirmen, Elementen oder ganzen Seiten
 -   📱 Native Apps (Android-Emulatoren / iOS-Simulatoren / echte Geräte) über Appium (🌟 **NEU** 🌟)
 -   📳 Hybride Apps über Appium
 
-durch den [`@wdio/visual-service`](https://www.npmjs.com/package/@wdio/visual-service), einen schlanken WebdriverIO-Service.
+durch den [`@wdio/visual-service`](https://www.npmjs.com/package/@wdio/visual-service), einen leichtgewichtigen WebdriverIO-Service.
 
 Damit können Sie:
 
 -   **Bildschirme/Elemente/ganze Seiten** speichern oder mit einer Baseline vergleichen
--   automatisch **eine Baseline erstellen**, wenn keine Baseline vorhanden ist
+-   automatisch **eine Baseline erstellen**, wenn keine vorhanden ist
 -   **benutzerdefinierte Bereiche ausblenden** und sogar eine Status- und/oder Symbolleiste (nur mobil) während eines Vergleichs **automatisch ausschließen**
 -   die Abmessungen von Element-Screenshots vergrößern
 -   **Text ausblenden** während des Website-Vergleichs, um:
     -   die **Stabilität zu verbessern** und Unregelmäßigkeiten beim Schrift-Rendering zu vermeiden
     -   sich nur auf das **Layout** einer Website zu konzentrieren
 -   **verschiedene Vergleichsmethoden** und eine Reihe **zusätzlicher Matcher** für besser lesbare Tests verwenden
--   überprüfen, wie Ihre Website **das Tabben mit der Tastatur unterstützt)**, siehe auch [Tabbing durch eine Website](#tabbing-through-a-website)
+-   überprüfen, wie Ihre Website **die Navigation mit der Tabulatortaste unterstützt)**, siehe auch [Tabbing durch eine Website](#tabbing-through-a-website)
 -   und vieles mehr, siehe die [Service](./visual-testing/service-options)- und [Methoden](./visual-testing/method-options)-Optionen
 
-Der Service ist ein schlankes Modul, das die benötigten Daten und Screenshots für alle Browser/Geräte abruft. Die Vergleichsleistung stammt von [Pixelmatch](https://github.com/mapbox/pixelmatch), einer schnellen und genauen Bibliothek für wahrnehmungsbasierten Bildvergleich. Seit v11 misst sie Farbunterschiede im OKLab-Farbraum mit der HyAB-Distanz (pixelmatch 8), was näher daran ist, wie Menschen Farben wahrnehmen. Bilder werden mit [fast-png](https://github.com/image-js/fast-png) verarbeitet, einem PNG-Codec ohne native Abhängigkeiten.
+Der Service ist ein leichtgewichtiges Modul, um die benötigten Daten und Screenshots für alle Browser/Geräte abzurufen. Die Vergleichsleistung stammt von [Pixelmatch](https://github.com/mapbox/pixelmatch), einer schnellen und genauen Bibliothek für wahrnehmungsbasierte Bildvergleiche. Seit v11 misst sie Farbunterschiede im OKLab-Farbraum mit der HyAB-Distanz (pixelmatch 8), was näher daran ist, wie Menschen Farben sehen. Bilder werden mit [fast-png](https://github.com/image-js/fast-png) verarbeitet, einem PNG-Codec ohne native Abhängigkeiten.
 
-:::info HINWEIS Für Native/Hybride Apps
-Die Methoden `saveScreen`, `saveElement`, `checkScreen`, `checkElement` und die Matcher `toMatchScreenSnapshot` und `toMatchElementSnapshot` können für Native Apps/Kontexte verwendet werden.
+:::info HINWEIS für native/hybride Apps
+Die Methoden `saveScreen`, `saveElement`, `checkScreen`, `checkElement` und die Matcher `toMatchScreenSnapshot` und `toMatchElementSnapshot` können für native Apps/Kontexte verwendet werden.
 
 Bitte verwenden Sie die Eigenschaft `isHybridApp:true` in Ihren Service-Einstellungen, wenn Sie es für hybride Apps verwenden möchten.
 :::
 
 :::caution Upgrade von v10?
 
-`@wdio/visual-service` **v11** unterstützt nur **WebdriverIO v10** (und Node.js 22.19 oder höher). Bleiben Sie mit WebdriverIO v9 bei `@wdio/visual-service@10`.
+`@wdio/visual-service` **v11** unterstützt nur **WebdriverIO v10** (und Node.js 22.19 oder höher). Mit WebdriverIO v9 bleiben Sie bei `@wdio/visual-service@10`.
 
-v11 vergleicht Farben mit pixelmatch 8 (OKLab-Farbraum, HyAB-Distanz) statt mit YIQ. Die Schwellenwertskala und die `ignore*`-Voreinstellungen haben sich nicht geändert, aber **die Abweichungsprozentsätze können für dieselben Bilder leicht von v10 abweichen**. Ihr Testcode muss nicht geändert werden. Wenn eine Prüfung von einem exakten Abweichungsprozentsatz oder einer engen Toleranz abhängt, überprüfen Sie sie nach dem Upgrade erneut.
+v11 vergleicht Farben mit pixelmatch 8 (OKLab-Farbraum, HyAB-Distanz) statt mit YIQ. Die Schwellenwertskala und die `ignore*`-Voreinstellungen haben sich nicht geändert, aber **Abweichungsprozentsätze können sich für dieselben Bilder leicht von v10 unterscheiden**. Ihr Testcode muss nicht geändert werden. Wenn eine Prüfung von einem exakten Abweichungsprozentsatz oder einer engen Toleranz abhängt, überprüfen Sie diese nach dem Upgrade erneut.
 
-Einige Korrekturen in v11 können eine Baseline auch einmalig verändern:
+Einige Korrekturen in v11 können eine Baseline auch einmalig ändern:
 
 -   **iOS-Element-Screenshots großer Elemente:** Bei einem Element, das sich nicht vollständig im Viewport befand, hatte das Bild die Größe des gesamten Elements, aber der Teil außerhalb des Viewports war schwarz ([appium/appium#22939](https://github.com/appium/appium/issues/22939)). Das Bild enthält jetzt nur den sichtbaren Teil des Elements, wie bei Android.
 -   **Element-Screenshots mit `biDiOrigin: 'viewport'`:** In einer WebDriver-BiDi-Sitzung schneidet der Screenshot jetzt das Element selbst aus, auch wenn die Seite gescrollt ist.
@@ -57,10 +57,10 @@ Alle Änderungen finden Sie im [v11-Migrationsleitfaden](https://github.com/webd
 
 :::caution Upgrade von v9 (oder niedriger)?
 
-`@wdio/visual-service` **v10** hat die Vergleichs-Engine von **ResembleJS** auf **[Pixelmatch](https://github.com/mapbox/pixelmatch)** umgestellt. Pixelmatch verwendet ein wahrnehmungsbasiertes (YIQ) Farbmodell statt rohem RGB, daher unterscheiden sich die Abweichungsprozentsätze von v9. Das bedeutet:
+`@wdio/visual-service` **v10** hat die Vergleichs-Engine von **ResembleJS** auf **[Pixelmatch](https://github.com/mapbox/pixelmatch)** umgestellt. Pixelmatch verwendet ein wahrnehmungsbasiertes (YIQ) Farbmodell anstelle von reinem RGB, daher unterscheiden sich die Abweichungsprozentsätze von v9. Das bedeutet:
 
 -   **Ihr Testcode muss nicht geändert werden.** Alle Methodennamen, Optionsnamen und Matcher sind identisch.
--   **Ihre Baseline-Bilder müssen möglicherweise aktualisiert werden.** Führen Sie nach dem Upgrade Ihre Testsuite aus und überprüfen Sie alle visuellen Unterschiede. Sie können einzelne fehlschlagende Baselines mit `--update-visual-baseline` aktualisieren oder Ihren gesamten Baseline-Ordner löschen und ihn von `autoSaveBaseline` neu erstellen lassen. Details finden Sie in den [FAQ](/docs/visual-testing/faq#my-visual-tests-fail-with-a-difference-how-can-i-update-my-baseline).
+-   **Ihre Baseline-Bilder müssen möglicherweise aktualisiert werden.** Führen Sie nach dem Upgrade Ihre Testsuite aus und überprüfen Sie alle visuellen Unterschiede. Sie können einzelne fehlschlagende Baselines mit `--update-visual-baseline` aktualisieren oder Ihren gesamten Baseline-Ordner löschen und `autoSaveBaseline` ihn von Grund auf neu erstellen lassen. Details finden Sie in den [FAQ](/docs/visual-testing/faq#my-visual-tests-fail-with-a-difference-how-can-i-update-my-baseline).
 
 :::
 
@@ -95,7 +95,7 @@ export const config = {
         [
             "visual",
             {
-                // Einige Optionen, siehe die Dokumentation für mehr
+                // Einige Optionen, siehe die Dokumentation für weitere
                 baselineFolder: path.join(process.cwd(), "tests", "baseline"),
                 formatImageName: "{tag}-{logName}-{width}x{height}",
                 screenshotPath: path.join(process.cwd(), "tmp"),
@@ -110,14 +110,14 @@ export const config = {
 
 Weitere Service-Optionen finden Sie [hier](/docs/visual-testing/service-options).
 
-Sobald alles in Ihrer WebdriverIO-Konfiguration eingerichtet ist, können Sie visuelle Assertions zu [Ihren Tests](/docs/visual-testing/writing-tests) hinzufügen.
+Sobald dies in Ihrer WebdriverIO-Konfiguration eingerichtet ist, können Sie visuelle Assertions zu [Ihren Tests](/docs/visual-testing/writing-tests) hinzufügen.
 
 ### Capabilities
-Um das Visual-Testing-Modul zu verwenden, **müssen Sie Ihren Capabilities keine zusätzlichen Optionen hinzufügen**. In manchen Fällen möchten Sie Ihren visuellen Tests jedoch zusätzliche Metadaten hinzufügen, wie z. B. einen `logName`.
+Um das Visual-Testing-Modul zu verwenden, **müssen Sie Ihren Capabilities keine zusätzlichen Optionen hinzufügen**. In einigen Fällen möchten Sie jedoch möglicherweise zusätzliche Metadaten zu Ihren visuellen Tests hinzufügen, wie z. B. einen `logName`.
 
-Mit dem `logName` können Sie jeder Capability einen benutzerdefinierten Namen zuweisen, der dann in die Bilddateinamen aufgenommen werden kann. Dies ist besonders nützlich, um Screenshots zu unterscheiden, die in verschiedenen Browsern, auf verschiedenen Geräten oder mit verschiedenen Konfigurationen aufgenommen wurden.
+Mit `logName` können Sie jeder Capability einen benutzerdefinierten Namen zuweisen, der dann in die Bilddateinamen aufgenommen werden kann. Dies ist besonders nützlich, um Screenshots zu unterscheiden, die in verschiedenen Browsern, auf verschiedenen Geräten oder mit verschiedenen Konfigurationen aufgenommen wurden.
 
-Um dies zu aktivieren, können Sie `logName` im Abschnitt `capabilities` definieren und sicherstellen, dass die Option `formatImageName` im Visual-Testing-Service darauf verweist. So richten Sie es ein:
+Um dies zu aktivieren, können Sie `logName` im Abschnitt `capabilities` definieren und sicherstellen, dass die Option `formatImageName` im Visual-Testing-Service darauf verweist. So können Sie es einrichten:
 
 ```js
 import path from "node:path";
@@ -146,7 +146,7 @@ export const config = {
         [
             "visual",
             {
-                // Einige Optionen, siehe die Dokumentation für mehr
+                // Einige Optionen, siehe die Dokumentation für weitere
                 baselineFolder: path.join(process.cwd(), "tests", "baseline"),
                 screenshotPath: path.join(process.cwd(), "tmp"),
                 // Das folgende Format verwendet den `logName` aus den Capabilities
@@ -162,17 +162,17 @@ export const config = {
 #### Wie es funktioniert
 1. Einrichten des `logName`:
 
-    - Weisen Sie im Abschnitt `capabilities` jedem Browser oder Gerät einen eindeutigen `logName` zu. Zum Beispiel kennzeichnet `chrome-mac-15` Tests, die in Chrome unter macOS Version 15 laufen.
+    - Weisen Sie im Abschnitt `capabilities` jedem Browser oder Gerät einen eindeutigen `logName` zu. Zum Beispiel identifiziert `chrome-mac-15` Tests, die in Chrome auf macOS Version 15 laufen.
 
 2. Benutzerdefinierte Bildbenennung:
 
-    - Die Option `formatImageName` integriert den `logName` in die Screenshot-Dateinamen. Wenn der `tag` beispielsweise homepage ist und die Auflösung `1920x1080` beträgt, könnte der resultierende Dateiname so aussehen:
+    - Die Option `formatImageName` integriert den `logName` in die Screenshot-Dateinamen. Wenn beispielsweise der `tag` homepage ist und die Auflösung `1920x1080` beträgt, könnte der resultierende Dateiname so aussehen:
 
         `homepage-chrome-mac-15-1920x1080.png`
 
 3. Vorteile der benutzerdefinierten Benennung:
 
-    - Die Unterscheidung zwischen Screenshots verschiedener Browser oder Geräte wird deutlich einfacher, insbesondere bei der Verwaltung von Baselines und der Fehlersuche bei Abweichungen.
+    - Die Unterscheidung zwischen Screenshots aus verschiedenen Browsern oder Geräten wird viel einfacher, insbesondere beim Verwalten von Baselines und beim Debuggen von Abweichungen.
 
 4. Hinweis zu Standardwerten:
 
@@ -195,7 +195,7 @@ export const config = {
                 "goog:chromeOptions": {
                     args: ["disable-infobars"],
                 },
-                // DIES!!!
+                // DAS HIER!!!
                 "wdio-ics:options": {
                     logName: "chrome-latest-one",
                 },
@@ -207,7 +207,7 @@ export const config = {
                 "goog:chromeOptions": {
                     args: ["disable-infobars"],
                 },
-                // DIES!!!
+                // DAS HIER!!!
                 "wdio-ics:options": {
                     logName: "chrome-latest-two",
                 },
@@ -219,7 +219,7 @@ export const config = {
 
 ### Programmatische Ausführung
 
-Hier ist ein minimales Beispiel, wie Sie `@wdio/visual-service` über `remote`-Optionen verwenden:
+Hier ist ein minimales Beispiel, wie Sie `@wdio/visual-service` über `remote`-Optionen verwenden können:
 
 ```js
 import { remote } from "webdriverio";
@@ -252,7 +252,7 @@ await browser.deleteSession();
 
 ### Tabbing durch eine Website
 
-Sie können prüfen, ob eine Website mit der Tastatur-<kbd>TAB</kbd>-Taste zugänglich ist. Das Testen dieses Teils der Barrierefreiheit war schon immer eine zeitaufwändige (manuelle) Aufgabe und ziemlich schwer zu automatisieren.
+Sie können prüfen, ob eine Website mit der <kbd>TAB</kbd>-Taste der Tastatur zugänglich ist. Das Testen dieses Teils der Barrierefreiheit war schon immer eine zeitaufwändige (manuelle) Aufgabe und durch Automatisierung ziemlich schwer umzusetzen.
 Mit den Methoden `saveTabbablePage` und `checkTabbablePage` können Sie jetzt Linien und Punkte auf Ihrer Website zeichnen, um die Tab-Reihenfolge zu überprüfen.
 
 Beachten Sie, dass dies nur für Desktop-Browser nützlich ist und **NICHT\*\*** für mobile Geräte. Alle Desktop-Browser unterstützen diese Funktion.
@@ -275,7 +275,7 @@ Beide Methoden erstellen ein `canvas`-Element auf Ihrer Website und zeichnen Lin
 
 :::
 
-Wenn Sie den Tab-Ablauf mit einer Baseline vergleichen möchten, können Sie die Methode `checkTabbablePage` verwenden. Sie müssen die beiden Methoden **NICHT** zusammen verwenden. Wenn bereits ein Baseline-Bild erstellt wurde, was automatisch durch Angabe von `autoSaveBaseline: true` bei der Instanziierung des Service erfolgen kann,
+Wenn Sie den Tabbing-Ablauf mit einer Baseline vergleichen möchten, können Sie die Methode `checkTabbablePage` verwenden. Sie müssen die beiden Methoden **NICHT** zusammen verwenden. Wenn bereits ein Baseline-Bild erstellt wurde, was automatisch geschehen kann, indem Sie beim Instanziieren des Service `autoSaveBaseline: true` angeben,
 erstellt `checkTabbablePage` zuerst das _tatsächliche_ Bild und vergleicht es dann mit der Baseline.
 
 ##### Optionen
@@ -301,7 +301,7 @@ Aktualisieren Sie die Baseline-Bilder über die Befehlszeile, indem Sie das Argu
 npm run test.local.desktop  --update-visual-baseline
 ```
 
-Wenn Sie Logs im Info-/Debug-Modus ausführen, sehen Sie die folgenden hinzugefügten Logs
+Wenn Sie im Log-Modus info/debug ausführen, sehen Sie die folgenden hinzugefügten Logs
 
 ```logs
 [0-0] ..............
@@ -315,7 +315,7 @@ Wenn Sie Logs im Info-/Debug-Modus ausführen, sehen Sie die folgenden hinzugef�
 
 ## TypeScript-Unterstützung
 
-Dieses Modul bietet TypeScript-Unterstützung, sodass Sie bei der Verwendung des Visual-Testing-Service von Autovervollständigung, Typsicherheit und einer verbesserten Entwicklererfahrung profitieren.
+Dieses Modul enthält TypeScript-Unterstützung, sodass Sie bei der Verwendung des Visual-Testing-Service von Autovervollständigung, Typsicherheit und einer verbesserten Entwicklererfahrung profitieren.
 
 ### Schritt 1: Typdefinitionen hinzufügen
 Damit TypeScript die Modultypen erkennt, fügen Sie den folgenden Eintrag zum Feld types in Ihrer tsconfig.json hinzu:
@@ -334,7 +334,7 @@ Um die Typprüfung der Service-Optionen zu erzwingen, aktualisieren Sie Ihre Web
 ```ts
 // wdio.conf.ts
 import { join } from 'node:path';
-// Die Typdefinition importieren
+// Typdefinition importieren
 import type { VisualServiceOptions } from '@wdio/visual-service';
 
 export const config = {
@@ -361,13 +361,13 @@ export const config = {
 
 ### Version 10 und höher (aktuell)
 
-Ab Version 10 hat dieses Modul keine zusätzlichen Systemabhängigkeiten über die allgemeinen [Projektanforderungen](/docs/gettingstarted#system-requirements) hinaus. Es verwendet [Pixelmatch](https://github.com/mapbox/pixelmatch) für den wahrnehmungsbasierten Bildvergleich und [fast-png](https://github.com/image-js/fast-png) für die Bildkodierung/-dekodierung. Beide sind reines JavaScript ohne native Abhängigkeiten.
+Ab Version 10 hat dieses Modul keine zusätzlichen Systemabhängigkeiten über die allgemeinen [Projektanforderungen](/docs/gettingstarted#system-requirements) hinaus. Es verwendet [Pixelmatch](https://github.com/mapbox/pixelmatch) für wahrnehmungsbasierte Bildvergleiche und [fast-png](https://github.com/image-js/fast-png) für die Bildkodierung/-dekodierung. Beide sind reines JavaScript ohne native Abhängigkeiten.
 
-Version 11 benötigt WebdriverIO v10 und Node.js 22.19 oder höher, genau wie WebdriverIO v10. Version 10 funktioniert mit WebdriverIO v9 (9.29.1 oder höher) und v10.
+Version 11 benötigt WebdriverIO v10 und Node.js 22.19 oder höher. Version 10 funktioniert mit WebdriverIO v9 (9.29.1 oder höher) und v10.
 
-### Version 5 bis 9 (veraltet)
+### Version 5 bis 9 (Legacy)
 
-Die Versionen 5 bis 9 verwendeten [Jimp](https://github.com/jimp-dev/jimp), eine vollständig in JavaScript geschriebene Bildverarbeitungsbibliothek für Node ohne native Abhängigkeiten. Es waren keine zusätzlichen Systemabhängigkeiten erforderlich.
+Die Versionen 5 bis 9 verwendeten [Jimp](https://github.com/jimp-dev/jimp), eine Bildverarbeitungsbibliothek für Node, die vollständig in JavaScript geschrieben ist und keine nativen Abhängigkeiten hat. Es waren keine zusätzlichen Systemabhängigkeiten erforderlich.
 
 ### Version 4 und niedriger
 
@@ -375,9 +375,9 @@ Für Version 4 und niedriger basiert dieses Modul auf [Canvas](https://github.co
 
 #### Installationsdetails
 
-Standardmäßig werden Binärdateien für macOS, Linux und Windows während des `npm install` Ihres Projekts heruntergeladen. Wenn Sie kein unterstütztes Betriebssystem oder keine unterstützte Prozessorarchitektur haben, wird das Modul auf Ihrem System kompiliert. Dies erfordert mehrere Abhängigkeiten, darunter Cairo und Pango.
+Standardmäßig werden während des `npm install` Ihres Projekts Binärdateien für macOS, Linux und Windows heruntergeladen. Wenn Sie kein unterstütztes Betriebssystem oder keine unterstützte Prozessorarchitektur haben, wird das Modul auf Ihrem System kompiliert. Dies erfordert mehrere Abhängigkeiten, darunter Cairo und Pango.
 
-Ausführliche Installationsinformationen finden Sie im [node-canvas-Wiki](https://github.com/Automattic/node-canvas/wiki/_pages). Nachfolgend finden Sie einzeilige Installationsanweisungen für gängige Betriebssysteme. Beachten Sie, dass `libgif/giflib`, `librsvg` und `libjpeg` optional sind und nur für die GIF-, SVG- bzw. JPEG-Unterstützung benötigt werden. Cairo v1.10.0 oder höher ist erforderlich.
+Detaillierte Installationsinformationen finden Sie im [node-canvas-Wiki](https://github.com/Automattic/node-canvas/wiki/_pages). Nachfolgend finden Sie einzeilige Installationsanweisungen für gängige Betriebssysteme. Beachten Sie, dass `libgif/giflib`, `librsvg` und `libjpeg` optional sind und nur für die Unterstützung von GIF, SVG bzw. JPEG benötigt werden. Cairo v1.10.0 oder höher ist erforderlich.
 
 <Tabs
 defaultValue="osx"

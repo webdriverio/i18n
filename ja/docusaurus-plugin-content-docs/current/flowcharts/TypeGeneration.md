@@ -1,10 +1,11 @@
 ---
 id: typegeneration
 title: 型生成
-description: "プロトコル仕様がどのようにTypeScriptの型、型付けテスト、APIドキュメントに変換されるか、また再生成の前にどのソースファイルを編集すべきかを確認します。"
+description: "プロトコル仕様がどのようにTypeScriptの型、型テスト、APIドキュメントに変換されるのか、また再生成の前にどのソースファイルを編集すべきかを確認します。"
 ---
-プロトコル仕様がTypeScriptの型、型付けテスト、APIドキュメントになるまでの流れ。
-エージェントへ：生成されたファイルを手動で編集しないでください。このチャート内のソースを変更してから再生成してください。
+プロトコル仕様がどのようにTypeScriptの型、型テスト、APIドキュメントになるのかを説明します。
+エージェントへ：生成されたファイルを手動で編集しないでください。このチャート内のソースを変更し、
+再生成してください。
 
 ```mermaid
 graph TD
@@ -25,14 +26,14 @@ graph TD
 
 ## 編集する場所
 
-| 変更したい内容 | 編集する場所 | その後に実行するコマンド |
+| 変更したい内容 | 編集する場所 | 実行するコマンド |
 |--------------------|-----------|----------|
 | WebDriver / Appium / ベンダーコマンドの形式 | `packages/wdio-protocols/src/protocols/*.ts` | `pnpm run compile:all` および `pnpm run test:typings:webdriver` |
-| ユーザー向けの `browser.*` / `$().*` コマンド | `packages/webdriverio/src/commands/**` と、その単体テストおよび型付けスニペット | `pnpm run test:package webdriverio` および `pnpm run test:typings:webdriverio` |
+| ユーザー向けの `browser.*` / `$().*` コマンド | `packages/webdriverio/src/commands/**` とそのユニットテストおよび型スニペット | `pnpm run test:package webdriverio` および `pnpm run test:typings:webdriverio` |
 | BiDiの型 | `infra/bidiCodegen/` | `pnpm run generate:bidi` |
 | コマンドAPIドキュメントのテキスト | webdriverioコマンドのJSDoc | `pnpm run docs:generate` |
 | プロトコルAPIドキュメントのテキスト | プロトコル仕様の `description` / `ref` | `pnpm run docs:generate` |
 
-[ハイレベルな概要](/docs/flowcharts/highleveloverview)も参照してください。プロトコル仕様は
+[概要](/docs/flowcharts/highleveloverview)も参照してください。プロトコル仕様は
 `packages/wdio-protocols` が管理しており、コンパイラプラグインは
 `infra/compiler/src/type-generation` にあります。

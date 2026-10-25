@@ -1,13 +1,13 @@
 ---
 id: preparing-flutter-application
 title: Preparare l'app Flutter
-description: "Abilita l'estensione flutter_driver in un'app Flutter e genera una build di test in modo che WebdriverIO e Appium possano interagire con i suoi widget."
+description: "Abilita l'estensione flutter_driver in un'app Flutter e produci una build di test in modo che WebdriverIO e Appium possano interagire con i suoi widget."
 ---
 
-Affinché WebdriverIO e Appium possano ispezionare e interagire con gli elementi interni del canvas Flutter, l'applicazione deve esporre un canale di comunicazione. Ciò si ottiene abilitando l'estensione di test di Flutter nel codice sorgente dell'applicazione.
+Affinché WebdriverIO e Appium possano ispezionare e interagire con gli elementi interni del canvas di Flutter, l'applicazione deve esporre un canale di comunicazione. Ciò si ottiene abilitando l'estensione di test di Flutter nel codice sorgente dell'applicazione.
 
 :::info Condivisione con i team di sviluppo
-Gli automation engineer (QA) spesso non hanno accesso diretto al codice sorgente dell'app Flutter. Se non gestisci tu stesso il codice dell'app, condividi questa pagina con il tuo team di sviluppo in modo che possa aggiungere l'estensione `flutter_driver` e fornire una build di test (`.apk`, `.app` o `.ipa`).
+Gli automation engineer (QA) spesso non hanno accesso diretto al codice sorgente dell'app Flutter. Se non gestisci tu stesso il codice dell'app, condividi questa pagina con il tuo team di sviluppo affinché possa aggiungere l'estensione `flutter_driver` e fornire una build di test (`.apk`, `.app` o `.ipa`).
 :::
 
 :::note Estensione legacy
@@ -63,7 +63,7 @@ class MyApp extends StatelessWidget {
 ```
 
 :::tip Best practice: entry point di test separato
-Per evitare che il codice di strumentazione dei test finisca nelle build di produzione, crea un file di entry point separato (ad esempio `lib/main_e2e.dart`) che abiliti l'estensione e richiami l'app principale. In questo modo le build di produzione restano pulite e sicure:
+Per evitare che il codice di strumentazione per i test finisca nelle build di produzione, crea un file di entry point separato (ad esempio `lib/main_e2e.dart`) che abiliti l'estensione e richiami l'app principale. In questo modo le build di produzione restano pulite e sicure:
 
 ```dart
 import 'package:flutter_driver/driver_extension.dart';

@@ -4,19 +4,19 @@ title: البدء
 description: أنشئ مشروع WebdriverIO باستخدام npm init wdio@latest، وشغّل اختبارك الأول، واعثر على الدليل التالي المناسب لمنصتك.
 ---
 
-قم بإعداد WebdriverIO في مشروع حالي أو جديد بأمر واحد، ثم شغّل اختبارك الأول. يسألك معالج الإعداد عمّا تريد اختباره (الويب، أو الأجهزة المحمولة، أو تطبيقات سطح المكتب، أو إضافات VS Code)، وعن إطار العمل والمُبلِّغات (reporters) التي تريد استخدامها، ثم يثبّت كل شيء نيابةً عنك.
+أعدّ WebdriverIO في مشروع قائم أو جديد بأمر واحد، ثم شغّل اختبارك الأول. يسألك معالج الإعداد عمّا تريد اختباره (الويب، أو الأجهزة المحمولة، أو تطبيقات سطح المكتب، أو إضافات VS Code)، وعن إطار العمل والمُبلِّغات (reporters) التي تريد استخدامها، ثم يثبّت كل شيء نيابةً عنك.
 
 :::info
 هذه هي وثائق WebdriverIO __v10__. هل ما زلت تستخدم v9؟ استخدم [وثائق v9](https://v9.webdriver.io) أو اتبع [دليل الترحيل إلى v10](/docs/v10-migration).
 :::
 
-:::tip هل تستخدم وكيل برمجة (coding agent)؟
+:::tip هل تستخدم وكيل برمجة؟
 وجّهه إلى [`https://webdriver.io/llms.txt`](https://webdriver.io/llms.txt) أو اربطه بخادم MCP الخاص بالوثائق على `https://webdriver.io/mcp`. راجع [WebdriverIO لوكلاء البرمجة](/docs/ai-agents).
 :::
 
 ## بدء إعداد WebdriverIO
 
-تضيف [مجموعة أدوات WebdriverIO للبدء](https://www.npmjs.com/package/create-wdio) إعدادًا كاملًا لـ WebdriverIO إلى مشروع حالي أو جديد. في المجلد الجذر لمشروع حالي، شغّل:
+تضيف [مجموعة أدوات WebdriverIO للبدء](https://www.npmjs.com/package/create-wdio) إعدادًا كاملًا لـ WebdriverIO إلى مشروع قائم أو جديد. في المجلد الجذر لمشروع قائم، شغّل:
 
 <Tabs
   defaultValue="npm"
@@ -81,11 +81,11 @@ bun create wdio@latest ./path/to/new/project
 </TabItem>
 </Tabs>
 
-يقوم هذا الأمر الواحد بتنزيل أداة سطر أوامر WebdriverIO وتشغيل معالج إعداد يساعدك على تهيئة مجموعة اختباراتك.
+يقوم هذا الأمر الواحد بتنزيل أداة سطر الأوامر الخاصة بـ WebdriverIO وتشغيل معالج إعداد يساعدك على تهيئة مجموعة اختباراتك.
 
 <CreateProjectAnimation />
 
-سيطرح المعالج مجموعة من الأسئلة التي ترشدك خلال عملية الإعداد. يمكنك تمرير المعامل `--yes` لاختيار إعداد افتراضي يستخدم Mocha مع Chrome باستخدام نمط [Page Object](https://martinfowler.com/bliki/PageObject.html).
+سيطرح المعالج مجموعة من الأسئلة التي ترشدك خلال عملية الإعداد. يمكنك تمرير المعامل `--yes` لاختيار إعداد افتراضي يستخدم Mocha مع Chrome باتباع نمط [Page Object](https://martinfowler.com/bliki/PageObject.html).
 
 <Tabs
   defaultValue="npm"
@@ -126,28 +126,28 @@ bun create wdio@latest . --yes
 </TabItem>
 </Tabs>
 
-### الإجابة عن أسئلة المعالج باستخدام الخيارات (flags)
+### الإجابة عن أسئلة المعالج باستخدام الخيارات
 
-لكل سؤال في المعالج خيار مقابل في سطر الأوامر. يجيب الخيار عن السؤال المقابل له، ولا يسأل المعالج إلا عن الباقي. وعند استخدامه مع `--yes`، يستخدم المعالج القيم الافتراضية للباقي ولا يطرح أي سؤال أبدًا، وهذا ما يحتاجه وكيل البرمجة أو مهمة CI:
+لكل سؤال في المعالج خيار (flag) مقابل في سطر الأوامر. يجيب الخيار عن سؤاله، ولا يطرح المعالج إلا الأسئلة المتبقية. وعند استخدامه مع `--yes`، يستخدم المعالج القيم الافتراضية لبقية الأسئلة ولا يطرح أي سؤال على الإطلاق، وهذا ما يحتاجه وكيل البرمجة أو مهمة CI:
 
 ```sh
-# Cucumber بلغة JavaScript، مع مُبلِّغَي spec وJUnit
+# Cucumber بلغة JavaScript، مع مُبلِّغَي spec و JUnit
 npm init wdio@latest . -- --yes --framework cucumber --no-typescript --reporters spec,junit
 
-# Firefox وEdge بدلًا من Chrome
+# Firefox و Edge بدلًا من Chrome
 npm init wdio@latest . -- --yes --browsers firefox,edge
 
-# تطبيق Android باستخدام Appium
+# تطبيق Android مع Appium
 npm init wdio@latest . -- --yes --mobile-environment android
 
-# اختبارات مكونات React
+# اختبارات مكوّنات React
 npm init wdio@latest . -- --yes --runner component --preset react
 
-# كتابة ملف الإعداد، مع تثبيت التبعيات بنفسك
+# كتابة ملف الإعداد، مع تثبيت الاعتماديات بنفسك
 npm init wdio@latest . -- --yes --no-npm-install
 ```
 
-مع Yarn وpnpm وbun، مرّر الخيارات دون الفاصل `--`، على سبيل المثال `pnpm create wdio@latest . --yes --framework cucumber`.
+مع Yarn و pnpm و bun، مرّر الخيارات بدون الفاصل `--`، على سبيل المثال `pnpm create wdio@latest . --yes --framework cucumber`.
 
 الخيارات الأكثر شيوعًا:
 
@@ -163,19 +163,19 @@ npm init wdio@latest . -- --yes --no-npm-install
 | `--desktop-framework` | `electron`، `tauri`، `dioxus`، `macos`، مع `--runner desktop` |
 | `--reporters`، `--services`، `--plugins` | أسماء مختصرة مفصولة بفواصل، على سبيل المثال `--reporters spec,junit --services visual` |
 | `--agent-support` / `--no-agent-support` | كتابة قسم `AGENTS.md` ومهارة `wdio-session` (مفعّل افتراضيًا) |
-| `--npm-install` / `--no-npm-install` | تثبيت التبعيات (مفعّل افتراضيًا) |
+| `--npm-install` / `--no-npm-install` | تثبيت الاعتماديات (مفعّل افتراضيًا) |
 
-يعرض الأمر `npm init wdio@latest -- --help` جميع الخيارات، والقيم التي يقبلها كل منها، والسؤال الذي يجيب عنه. تأخذ الخيارات المنطقية (Boolean) البادئة `--no-`. وتعمل الخيارات نفسها مع `npx wdio config`.
+يعرض الأمر `npm init wdio@latest -- --help` جميع الخيارات، والقيم التي يقبلها كل منها، والسؤال الذي يجيب عنه. تقبل الخيارات المنطقية (Boolean) البادئة `--no-`. وتعمل الخيارات نفسها مع `npx wdio config`.
 
-يتحقق المعالج من كل خيار مقابل إعدادك. فالقيمة غير المعروفة، أو الخيار الخاص بسؤال لن يطرحه، أو القيمة التي لن يعرضها لإعدادك، توقفه برمز الخروج 2 قبل أن يكتب أي ملف:
+يتحقق المعالج من كل خيار مقارنةً بإعدادك. فإذا كانت هناك قيمة غير معروفة، أو خيار لسؤال لن يطرحه، أو قيمة لن يعرضها لإعدادك، فإنه يتوقف برمز الخروج 2 قبل أن يكتب أي ملف:
 
 ```
 Error: --preset does not apply to this setup. UI framework of your components (with --runner component).
 ```
 
-## تثبيت واجهة سطر الأوامر يدويًا
+## تثبيت أداة سطر الأوامر يدويًا
 
-يمكنك أيضًا إضافة حزمة واجهة سطر الأوامر إلى مشروعك يدويًا عبر:
+يمكنك أيضًا إضافة حزمة سطر الأوامر إلى مشروعك يدويًا عبر:
 
 ```sh
 npm i --save-dev @wdio/cli
@@ -187,7 +187,7 @@ npx wdio config
 
 ## تشغيل الاختبار
 
-يمكنك بدء تشغيل مجموعة اختباراتك باستخدام الأمر `run` مع الإشارة إلى ملف إعداد WebdriverIO الذي أنشأته للتو:
+يمكنك بدء مجموعة اختباراتك باستخدام الأمر `run` والإشارة إلى ملف إعداد WebdriverIO الذي أنشأته للتو:
 
 ```sh
 npx wdio run ./wdio.conf.js
@@ -199,15 +199,15 @@ npx wdio run ./wdio.conf.js
 npx wdio run ./wdio.conf.js --spec example.e2e.js
 ```
 
-أو تعريف مجموعات (suites) في ملف الإعداد وتشغيل ملفات الاختبار المعرّفة في مجموعة معينة فقط:
+أو تعريف مجموعات (suites) في ملف الإعداد الخاص بك وتشغيل ملفات الاختبار المعرّفة في مجموعة معينة فقط:
 
 ```sh
 npx wdio run ./wdio.conf.js --suite exampleSuiteName
 ```
 
-## التشغيل داخل سكربت
+## التشغيل داخل سكريبت
 
-إذا كنت ترغب في استخدام WebdriverIO كمحرك أتمتة في [الوضع المستقل](/docs/setuptypes#standalone-mode) داخل سكربت Node.JS، يمكنك أيضًا تثبيت WebdriverIO مباشرةً واستخدامه كحزمة، على سبيل المثال لالتقاط لقطة شاشة لموقع ويب:
+إذا كنت ترغب في استخدام WebdriverIO كمحرك أتمتة في [الوضع المستقل](/docs/setuptypes#standalone-mode) داخل سكريبت Node.JS، يمكنك أيضًا تثبيت WebdriverIO مباشرةً واستخدامه كحزمة، على سبيل المثال لالتقاط لقطة شاشة لموقع ويب:
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/fc362f2f8dd823d294b9bb5f92bd5991339d4591/getting-started/run-in-script.js#L2-L19
@@ -217,16 +217,16 @@ __ملاحظة:__ جميع أوامر WebdriverIO غير متزامنة ويجب
 
 ## تسجيل الاختبارات
 
-يوفر WebdriverIO أدوات تساعدك على البدء من خلال تسجيل إجراءات اختبارك على الشاشة وإنشاء سكربتات اختبار WebdriverIO تلقائيًا. راجع [تسجيل الاختبارات باستخدام Chrome DevTools Recorder](/docs/record) لمزيد من المعلومات.
+يوفر WebdriverIO أدوات تساعدك على البدء عن طريق تسجيل إجراءات الاختبار التي تقوم بها على الشاشة وإنشاء سكريبتات اختبار WebdriverIO تلقائيًا. راجع [تسجيل الاختبارات باستخدام Chrome DevTools Recorder](/docs/record) لمزيد من المعلومات.
 
 ## متطلبات النظام
 
 ستحتاج إلى تثبيت [Node.js](http://nodejs.org).
 
-- ثبّت الإصدار v22.19.0 على الأقل أو أعلى، لأنه أقدم إصدار LTS مدعوم
-- الإصدارات التي هي أو ستصبح إصدارات LTS فقط هي المدعومة رسميًا
+- ثبّت على الأقل الإصدار v22.23.4 أو v24.22.1 أو v26.12.1 (أو إصدارًا أحدث من هذه السلاسل). هذه هي الإصدارات الأولى التي تتضمن [مخزن CA المحدَّث](https://nodejs.org/en/blog/vulnerability/october-2026-security-releases) بعد اختراق شهادة CA الوسيطة الخاصة بـ eMudhra
+- الإصدارات المدعومة رسميًا هي فقط تلك التي تُعدّ إصدارات LTS أو ستصبح كذلك
 
-إذا لم يكن Node مثبتًا حاليًا على نظامك، نقترح استخدام أداة مثل [NVM](https://github.com/creationix/nvm) أو [Volta](https://volta.sh/) للمساعدة في إدارة عدة إصدارات نشطة من Node.js. يُعد NVM خيارًا شائعًا، بينما يُعد Volta أيضًا بديلًا جيدًا.
+إذا لم يكن Node مثبتًا حاليًا على نظامك، نقترح استخدام أداة مثل [NVM](https://github.com/creationix/nvm) أو [Volta](https://volta.sh/) للمساعدة في إدارة عدة إصدارات نشطة من Node.js. يُعدّ NVM خيارًا شائعًا، بينما يُعدّ Volta بديلًا جيدًا أيضًا.
 
 ## شاهد المقدمة
 
@@ -235,11 +235,11 @@ __ملاحظة:__ جميع أوامر WebdriverIO غير متزامنة ويجب
     title="Getting Started with WebdriverIO"
 />
 
-يتوفر المزيد من مقاطع الفيديو على [قناة YouTube الرسمية](https://youtube.com/@webdriverio).
+تتوفر المزيد من مقاطع الفيديو على [قناة YouTube الرسمية](https://youtube.com/@webdriverio).
 
 ## الخطوات التالية
 
 - اختر منصتك: [متصفحات الويب](/docs/platforms/web)، أو [تطبيقات الأجهزة المحمولة](/docs/platforms/mobile)، أو [تطبيقات سطح المكتب](/docs/platforms/desktop)، أو [الإضافات والمحررات](/docs/platforms/apps-and-extensions)
 - تعلّم كيفية [تحديد العناصر](/docs/selectors) وكتابة [التأكيدات](/docs/assertion)
 - اضبط مشغّل الاختبارات في [`wdio.conf.ts`](/docs/configurationfile)
-- احصل على المساعدة على [Discord](https://discord.webdriver.io)
+- احصل على المساعدة عبر [Discord](https://discord.webdriver.io)

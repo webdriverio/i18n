@@ -8,12 +8,12 @@ WebdriverIO ti permette di eseguire più sessioni automatizzate in un singolo te
 
 Invece di creare un paio di istanze remote in cui devi eseguire comandi comuni come [`newSession`](/docs/api/webdriver#newsession) o [`url`](/docs/api/browser/url) su ciascuna istanza, puoi semplicemente creare un'istanza **multi-remote** e controllare tutti i browser contemporaneamente.
 
-Per farlo, usa semplicemente la funzione `multiRemote()` e passale un oggetto con dei nomi come chiavi e delle `capabilities` come valori. Dando un nome a ciascuna capability, puoi facilmente selezionare e accedere a quella singola istanza quando esegui comandi su una singola istanza.
+Per farlo, usa semplicemente la funzione `multiRemote()` e passa un oggetto con dei nomi come chiavi e delle `capabilities` come valori. Assegnando un nome a ciascuna capability, puoi facilmente selezionare e accedere a quella singola istanza quando esegui comandi su una sola istanza.
 
 :::info
 
 MultiRemote _non_ è pensato per eseguire tutti i tuoi test in parallelo.
-È destinato ad aiutare a coordinare più browser e/o dispositivi mobili per test di integrazione speciali (ad es. applicazioni di chat).
+È pensato per aiutare a coordinare più browser e/o dispositivi mobili per test di integrazione speciali (ad es. applicazioni di chat).
 
 :::
 
@@ -81,7 +81,7 @@ export const config = {
 
 Questo creerà due sessioni WebDriver con Chrome e Firefox. Invece di solo Chrome e Firefox puoi anche avviare due dispositivi mobili usando [Appium](http://appium.io) oppure un dispositivo mobile e un browser.
 
-Puoi anche eseguire multi-remote in parallelo inserendo l'oggetto delle capability del browser in un array. Assicurati di includere il campo `capabilities` in ciascun browser, poiché è così che distinguiamo le due modalità.
+Puoi anche eseguire multi-remote in parallelo inserendo l'oggetto delle capability dei browser in un array. Assicurati di includere il campo `capabilities` in ciascun browser, poiché è così che distinguiamo le due modalità.
 
 ```js
 export const config = {
@@ -150,7 +150,7 @@ Ad esempio, se apri un URL:
 browser.url('https://socketio-chat-h9jt.herokuapp.com/')
 ```
 
-Il risultato di ogni comando sarà un oggetto con i nomi dei browser come chiave e il risultato del comando come valore, in questo modo:
+Il risultato di ciascun comando sarà un oggetto con i nomi dei browser come chiave e il risultato del comando come valore, in questo modo:
 
 ```js
 // esempio con il testrunner wdio
@@ -184,9 +184,9 @@ assert.true(
 )
 ```
 
-In questo esempio, l'istanza `myFirefoxBrowser` inizierà ad attendere un messaggio non appena l'istanza `myChromeBrowser` avrà cliccato sul pulsante `#send`.
+In questo esempio, l'istanza `myFirefoxBrowser` inizierà ad attendere un messaggio una volta che l'istanza `myChromeBrowser` avrà cliccato sul pulsante `#send`.
 
-MultiRemote rende facile e comodo controllare più browser, sia che tu voglia che facciano la stessa cosa in parallelo, sia che facciano cose diverse in modo coordinato.
+MultiRemote rende facile e comodo controllare più browser, sia che tu voglia far fare loro la stessa cosa in parallelo, sia cose diverse in modo coordinato.
 
 ### Cosa restituisce `$`
 
@@ -207,7 +207,7 @@ Su un browser multi-remote, `$$` restituisce un `MultiRemoteElementArray`. Ogni 
 ```js
 const messages = await $$('.messages')
 
-messages.length      // il numero massimo di elementi trovati da una singola istanza
+messages.length      // il numero più alto di elementi trovati da una singola istanza
 messages[0]          // un MultiRemoteElement, che si rivolge a tutte le istanze
 messages.selector    // '.messages'
 messages.foundWith   // '$$'
@@ -219,7 +219,7 @@ await messages.map((m) => m.getText())
 await messages.filter(async (m) => await m.isDisplayed())
 ```
 
-Quando le istanze trovano un numero diverso di elementi, una voce non ha alcun elemento per un'istanza che ne ha trovati meno. Per quell'istanza, `getInstance()` genera un errore, e un comando sulla voce fallisce. Usa `select()` con le istanze che hanno l'elemento. Un matcher `expect` sull'intera lista verifica ciascuna istanza con i propri elementi:
+Quando le istanze trovano un numero diverso di elementi, una voce non ha alcun elemento per un'istanza che ne ha trovati di meno. Per quell'istanza, `getInstance()` genera un'eccezione e un comando sulla voce fallisce. Usa `select()` con le istanze che hanno l'elemento. Un matcher `expect` sull'intera lista verifica ciascuna istanza con i propri elementi:
 
 ```js
 // myChromeBrowser trova 3 messaggi, myFirefoxBrowser ne trova 2
@@ -235,7 +235,7 @@ await expect(messages).toBeElementsArrayOfSize(expect.multiRemote({
 
 :::info
 
-Prima della v10 veniva restituito un semplice array a meno che non fosse impostato `WDIO_ENABLE_MULTI_REMOTE_ELEMENT_ARRAY=true`. L'array è ora il comportamento predefinito e la variabile d'ambiente è stata rimossa. L'accesso tramite indice è invariato, quindi il codice che leggeva solo `elements[0]` continua a funzionare.
+Prima della v10 veniva restituito un semplice array, a meno che non fosse impostato `WDIO_ENABLE_MULTI_REMOTE_ELEMENT_ARRAY=true`. L'array è ora il comportamento predefinito e la variabile d'ambiente è stata rimossa. L'accesso tramite indice è invariato, quindi il codice che legge solo `elements[0]` continua a funzionare.
 
 :::
 
@@ -253,7 +253,7 @@ const chromeCalls = mock.getInstance('myChromeBrowser').calls
 const firefoxCalls = mock.getInstance('myFirefoxBrowser').calls
 ```
 
-`examples/bidi/multiremote-mock.js` esegue questo esempio su due sessioni Chrome headless.
+`examples/bidi/multiremote-mock.js` esegue questo esempio su due sessioni di Chrome headless.
 
 `instances` segue l'ordine in cui i mock sono stati creati. Dopo `select()`, tale ordine può differire da `browser.instances`:
 
@@ -261,19 +261,19 @@ const firefoxCalls = mock.getInstance('myFirefoxBrowser').calls
 const selected = await browser.select('myFirefoxBrowser', 'myChromeBrowser').mock('*/users/list')
 
 selected.instances // ['myFirefoxBrowser', 'myChromeBrowser']
-selected.getInstance('myChromeBrowser') // il mock di Chrome, qualunque sia l'ordine
+selected.getInstance('myChromeBrowser') // il mock di Chrome, indipendentemente dall'ordine
 ```
 
 `getInstance` genera l'errore `Multi-remote object has no instance named "<name>"` quando `name` non è presente in `instances`.
 
-Per eseguire il mock di un solo browser, chiama `mock()` su quell'istanza:
+Per eseguire il mock su un solo browser, chiama `mock()` su quell'istanza:
 
 ```ts
 const chromeOnly = await browser.getInstance('myChromeBrowser').mock('*/users/list')
 ```
 
 ## Accedere alle istanze del browser tramite stringhe attraverso l'oggetto browser
-Oltre ad accedere all'istanza del browser tramite le relative variabili globali (ad es. `myChromeBrowser`, `myFirefoxBrowser`), puoi accedervi anche tramite l'oggetto `browser`, ad es. `browser["myChromeBrowser"]` o `browser["myFirefoxBrowser"]`. Puoi ottenere una lista di tutte le tue istanze tramite `browser.instances`. Questo è particolarmente utile quando si scrivono step di test riutilizzabili che possono essere eseguiti in uno qualsiasi dei browser, ad es.:
+Oltre ad accedere all'istanza del browser tramite le loro variabili globali (ad es. `myChromeBrowser`, `myFirefoxBrowser`), puoi anche accedervi tramite l'oggetto `browser`, ad es. `browser["myChromeBrowser"]` o `browser["myFirefoxBrowser"]`. Puoi ottenere una lista di tutte le tue istanze tramite `browser.instances`. Questo è particolarmente utile quando si scrivono step di test riutilizzabili che possono essere eseguiti in entrambi i browser, ad es.:
 
 wdio.conf.js:
 ```js
@@ -330,7 +330,7 @@ Per tutti i matcher supportati e la configurazione richiesta, consulta la [guida
 
 ## Accedere a una singola istanza
 
-I nomi delle istanze non sono proprietà del browser multi-remote né di un elemento multi-remote. `browser.myChromeBrowser` ed `elem.myChromeDriver` non sono impostati. Richiedi la sessione con `getInstance`, oppure restringi l'oggetto multi-remote con `select`:
+I nomi delle istanze non sono proprietà del browser multi-remote né di un elemento multi-remote. `browser.myChromeBrowser` e `elem.myChromeDriver` non sono impostati. Richiedi la sessione con `getInstance`, oppure restringi l'oggetto multi-remote con `select`:
 
 ```ts
 const myChromeBrowser = browser.getInstance('myChromeBrowser')
@@ -342,4 +342,4 @@ await myChromeElement.click()
 await browser.select('myChromeBrowser').url('https://webdriver.io')
 ```
 
-Il testrunner assegna comunque ciascun nome di istanza come variabile globale propria quando `injectGlobals` è lasciato attivo, quindi un test può chiamare `myChromeBrowser.$('button')` senza passare per `browser`. Quella variabile globale è la singola sessione ottenuta da `getInstance`, non un campo dell'oggetto multi-remote.
+Il testrunner assegna comunque ciascun nome di istanza come variabile globale a sé stante quando `injectGlobals` resta attivo, così un test può chiamare `myChromeBrowser.$('button')` senza passare per `browser`. Quella variabile globale è la singola sessione restituita da `getInstance`, non un campo dell'oggetto multi-remote.

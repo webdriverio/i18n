@@ -3,7 +3,7 @@ id: wdiocommands
 title: Comandi WDIO
 description: "Segui i diagrammi di flusso che mostrano come i comandi run, repl, install e config di @wdio/cli analizzano gli argomenti e vengono eseguiti."
 ---
-Questo diagramma di flusso fornisce una panoramica di alto livello dei comandi run, repl, config e install di @wdio/cli.
+Questo diagramma di flusso fornisce una panoramica generale dei comandi run, repl, config e install di @wdio/cli.
 
 ## Analisi degli argomenti CLI
 

@@ -1,13 +1,13 @@
 ---
 id: browser
-title: L'oggetto Browser
+title: L'Oggetto Browser
 ---
 
 __Estende:__ [EventEmitter](https://nodejs.org/api/events.html#class-eventemitter)
 
 L'oggetto browser è l'istanza di sessione che utilizzi per controllare il browser o il dispositivo mobile. Se utilizzi il test runner WDIO, puoi accedere all'istanza WebDriver tramite l'oggetto globale `browser` o `driver` oppure importarla utilizzando [`@wdio/globals`](/docs/api/globals). Se utilizzi WebdriverIO in modalità standalone, l'oggetto browser viene restituito dal metodo [`remote`](/docs/api/modules#remoteoptions-modifier).
 
-La sessione viene inizializzata dal test runner. Lo stesso vale per la chiusura della sessione, anch'essa eseguita dal processo del test runner.
+La sessione viene inizializzata dal test runner. Lo stesso vale per la chiusura della sessione. Anche questa viene eseguita dal processo del test runner.
 
 ## Proprietà
 
@@ -24,12 +24,12 @@ Un oggetto browser ha le seguenti proprietà:
 | `isFirefox` | `Boolean` | Indica se si tratta di un'istanza Firefox |
 | `isBidi` | `Boolean` | Indica se questa sessione utilizza Bidi |
 | `isSauce` | `Boolean` | Indica se questa sessione è in esecuzione su Sauce Labs |
-| `isMacApp` | `Boolean` | Indica se questa sessione è in esecuzione per un'App Mac nativa |
-| `isWindowsApp` | `Boolean` | Indica se questa sessione è in esecuzione per un'App Windows nativa |
+| `isMacApp` | `Boolean` | Indica se questa sessione è in esecuzione per un'app nativa Mac |
+| `isWindowsApp` | `Boolean` | Indica se questa sessione è in esecuzione per un'app nativa Windows |
 | `isMobile` | `Boolean` | Indica una sessione mobile. Vedi di più in [Flag Mobile](#mobile-flags). |
 | `isIOS` | `Boolean` | Indica una sessione iOS. Vedi di più in [Flag Mobile](#mobile-flags). |
 | `isAndroid` | `Boolean` | Indica una sessione Android. Vedi di più in [Flag Mobile](#mobile-flags). |
-| `isNativeContext` | `Boolean`  | Indica se il dispositivo mobile è nel contesto `NATIVE_APP`. Vedi di più in [Flag Mobile](#mobile-flags). |
+| `isNativeContext` | `Boolean`  | Indica se il dispositivo mobile si trova nel contesto `NATIVE_APP`. Vedi di più in [Flag Mobile](#mobile-flags). |
 | `mobileContext` | `string`  | Fornisce il contesto **attuale** in cui si trova il driver, ad esempio `NATIVE_APP`, `WEBVIEW_<packageName>` per Android o `WEBVIEW_<pid>` per iOS. Risparmia una chiamata WebDriver aggiuntiva a `driver.getContext()`. Vedi di più in [Flag Mobile](#mobile-flags). |
 
 
@@ -37,17 +37,17 @@ Un oggetto browser ha le seguenti proprietà:
 
 In base al backend di automazione utilizzato per la tua sessione, WebdriverIO identifica quali [Comandi di Protocollo](/docs/api/protocols) verranno associati all'[oggetto browser](/docs/api/browser). Ad esempio, se esegui una sessione automatizzata in Chrome, avrai accesso a comandi specifici di Chromium come [`elementHover`](/docs/api/chromium#elementhover) ma non a nessuno dei [comandi Appium](/docs/api/appium).
 
-Inoltre, WebdriverIO fornisce un insieme di metodi pratici di cui si consiglia l'uso per interagire con il [browser](/docs/api/browser) o con gli [elementi](/docs/api/element) della pagina.
+Inoltre WebdriverIO fornisce un insieme di metodi pratici di cui si consiglia l'utilizzo per interagire con il [browser](/docs/api/browser) o con gli [elementi](/docs/api/element) della pagina.
 
-In aggiunta a ciò, sono disponibili i seguenti comandi:
+Oltre a ciò, sono disponibili i seguenti comandi:
 
 | Nome | Parametri | Dettagli |
 | ---- | ---------- | ------- |
-| `addCommand` | - `commandName` (Tipo: `String`)<br />- `fn` (Tipo: `Function`)<br />- `attachToElement` (Tipo: `boolean`) | Consente di definire comandi personalizzati che possono essere chiamati dall'oggetto browser a scopo di composizione. Leggi di più nella guida [Comandi Personalizzati](/docs/customcommands). |
-| `overwriteCommand` | - `commandName` (Tipo: `String`)<br />- `fn` (Tipo: `Function`)<br />- `attachToElement` (Tipo: `boolean`) | Consente di sovrascrivere qualsiasi comando del browser con funzionalità personalizzate. Usalo con attenzione perché può confondere gli utenti del framework. Leggi di più nella guida [Comandi Personalizzati](/docs/customcommands#overwriting-native-commands). |
-| `addLocatorStrategy` | - `strategyName` (Tipo: `String`)<br />- `fn` (Tipo: `Function`) | Consente di definire una strategia di selezione personalizzata, leggi di più nella guida [Selettori](/docs/selectors#custom-selector-strategies). |
+| `addCommand` | - `commandName` (Tipo: `String`)<br />- `fn` (Tipo: `Function`)<br />- `attachToElement` (Tipo: `boolean`) | Consente di definire comandi personalizzati che possono essere chiamati dall'oggetto browser a scopo di composizione. Leggi di più nella guida ai [Comandi Personalizzati](/docs/customcommands). |
+| `overwriteCommand` | - `commandName` (Tipo: `String`)<br />- `fn` (Tipo: `Function`)<br />- `attachToElement` (Tipo: `boolean`) | Consente di sovrascrivere qualsiasi comando del browser con funzionalità personalizzate. Usare con attenzione poiché può confondere gli utenti del framework. Leggi di più nella guida ai [Comandi Personalizzati](/docs/customcommands#overwriting-native-commands). |
+| `addLocatorStrategy` | - `strategyName` (Tipo: `String`)<br />- `fn` (Tipo: `Function`) | Consente di definire una strategia di selezione personalizzata, leggi di più nella guida ai [Selettori](/docs/selectors#custom-selector-strategies). |
 
-## Note
+## Osservazioni
 
 ### Flag Mobile
 
@@ -75,12 +75,12 @@ Puoi accedere a questi flag nel tuo test in questo modo:
 ```js
 // Nota: `driver` è l'equivalente dell'oggetto `browser` ma semanticamente più corretto
 // puoi scegliere quale variabile globale vuoi utilizzare
-console.log(driver.isMobile) // outputs: true
-console.log(driver.isIOS) // outputs: true
-console.log(driver.isAndroid) // outputs: false
+console.log(driver.isMobile) // restituisce: true
+console.log(driver.isIOS) // restituisce: true
+console.log(driver.isAndroid) // restituisce: false
 ```
 
-Questo può essere utile se, ad esempio, vuoi definire i selettori nei tuoi [page object](../pageobjects) in base al tipo di dispositivo, in questo modo:
+Questo può essere utile se, ad esempio, vuoi definire selettori nei tuoi [page object](../pageobjects) in base al tipo di dispositivo, in questo modo:
 
 ```js
 // mypageobject.page.js
@@ -99,7 +99,7 @@ class LoginPage extends Page {
 }
 ```
 
-Puoi anche usare questi flag per eseguire solo determinati test per determinati tipi di dispositivi:
+Puoi anche utilizzare questi flag per eseguire solo determinati test per determinati tipi di dispositivo:
 
 ```js
 // mytest.e2e.js
@@ -116,10 +116,10 @@ describe('my test', () => {
 ```
 
 ### Eventi
-L'oggetto browser è un EventEmitter e alcuni eventi vengono emessi per i tuoi casi d'uso.
+L'oggetto browser è un EventEmitter e vengono emessi diversi eventi per i tuoi casi d'uso.
 
 Ecco un elenco di eventi. Tieni presente che questo non è ancora l'elenco completo degli eventi disponibili.
-Sentiti libero di contribuire all'aggiornamento del documento aggiungendo qui le descrizioni di altri eventi.
+Sentiti libero di contribuire ad aggiornare il documento aggiungendo qui le descrizioni di altri eventi.
 
 #### `command`
 
@@ -132,7 +132,7 @@ Questo evento viene emesso ogni volta che WebdriverIO invia un comando WebDriver
 
 #### `result`
 
-Questo evento viene emesso ogni volta che WebdriverIO riceve il risultato di un comando WebDriver Classic. Contiene le stesse informazioni dell'evento `command` con l'aggiunta delle seguenti informazioni:
+Questo evento viene emesso ogni volta che WebdriverIO riceve il risultato di un comando WebDriver Classic. Contiene le stesse informazioni dell'evento `command` con l'aggiunta della seguente informazione:
 
 - `result`: il risultato del comando
 
@@ -142,10 +142,11 @@ Questo evento viene emesso ogni volta che WebdriverIO invia un comando WebDriver
 
 - `method`: metodo del comando WebDriver Bidi
 - `params`: parametro del comando associato (vedi [API](/docs/api/webdriverBidi))
+- `id`: l'id del comando, lo stesso dell'evento `bidiResult` di questo comando
 
 #### `bidiResult`
 
-In caso di esecuzione del comando riuscita, il payload dell'evento sarà:
+In caso di esecuzione riuscita del comando, il payload dell'evento sarà:
 
 - `type`: `success`
 - `id`: l'id del comando
@@ -169,7 +170,7 @@ browser.on('request.start', (ev: RequestInit) => {
 ```
 
 #### `request.end`
-Questo evento viene attivato quando la richiesta al driver ha ricevuto una risposta. L'oggetto evento contiene il corpo della risposta come risultato oppure un errore se il comando WebDriver non è riuscito.
+Questo evento viene attivato quando la richiesta al driver ha ricevuto una risposta. L'oggetto evento contiene il corpo della risposta come risultato oppure un errore se il comando WebDriver è fallito.
 
 ```ts
 browser.on('request.end', (ev: { result: unknown, error?: Error }) => {
@@ -190,10 +191,10 @@ browser.on('request.retry', (ev: { error: Error, retryCount: number }) => {
 Questo è un evento per misurare le operazioni a livello WebDriver. Ogni volta che WebdriverIO invia una richiesta al backend WebDriver, questo evento verrà emesso con alcune informazioni utili:
 
 - `durationMillisecond`: Durata della richiesta in millisecondi.
-- `error`: Oggetto Error se la richiesta non è riuscita.
+- `error`: Oggetto Error se la richiesta è fallita.
 - `request`: Oggetto Request. Puoi trovare url, metodo, header, ecc.
-- `retryCount`: Se è `0`, la richiesta era il primo tentativo. Aumenterà quando WebDriverIO effettua nuovi tentativi internamente.
-- `success`: Boolean che indica se la richiesta è riuscita o meno. Se è `false`, verrà fornita anche la proprietà `error`.
+- `retryCount`: Se è `0`, la richiesta era il primo tentativo. Aumenterà quando WebDriverIO effettua nuovi tentativi in background.
+- `success`: Booleano che indica se la richiesta è riuscita o meno. Se è `false`, verrà fornita anche la proprietà `error`.
 
 Un esempio di evento:
 ```js
@@ -208,4 +209,4 @@ Object {
 
 ### Comandi Personalizzati
 
-Puoi impostare comandi personalizzati nello scope del browser per astrarre flussi di lavoro di uso comune. Consulta la nostra guida sui [Comandi Personalizzati](/docs/customcommands#adding-custom-commands) per maggiori informazioni.
+Puoi impostare comandi personalizzati nello scope del browser per astrarre i flussi di lavoro di uso comune. Consulta la nostra guida sui [Comandi Personalizzati](/docs/customcommands#adding-custom-commands) per maggiori informazioni.

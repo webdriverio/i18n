@@ -3,39 +3,39 @@ id: mock
 title: मॉक ऑब्जेक्ट
 ---
 
-मॉक ऑब्जेक्ट एक ऐसा ऑब्जेक्ट है जो एक नेटवर्क मॉक का प्रतिनिधित्व करता है और इसमें उन रिक्वेस्ट के बारे में जानकारी होती है जो दिए गए `url` और `filterOptions` से मेल खाती थीं। इसे [`mock`](/docs/api/browser/mock) कमांड का उपयोग करके प्राप्त किया जा सकता है।
+मॉक ऑब्जेक्ट एक ऐसा ऑब्जेक्ट है जो नेटवर्क मॉक को दर्शाता है और उन रिक्वेस्ट्स के बारे में जानकारी रखता है जो दिए गए `url` और `filterOptions` से मेल खाती थीं। इसे [`mock`](/docs/api/browser/mock) कमांड का उपयोग करके प्राप्त किया जा सकता है।
 
 :::info
 
 ध्यान दें कि `mock` कमांड का उपयोग करने के लिए Chrome DevTools प्रोटोकॉल का समर्थन आवश्यक है।
-यह समर्थन तब उपलब्ध होता है जब आप Chromium आधारित ब्राउज़र में लोकली टेस्ट चलाते हैं या
-यदि आप Selenium Grid v4 या उससे ऊपर का उपयोग करते हैं। क्लाउड में ऑटोमेटेड टेस्ट चलाते समय इस कमांड का उपयोग __नहीं__
-किया जा सकता। [ऑटोमेशन प्रोटोकॉल](/docs/automationProtocols) सेक्शन में और जानें।
+यह समर्थन तब मिलता है जब आप Chromium आधारित ब्राउज़र में स्थानीय रूप से टेस्ट चलाते हैं या
+Selenium Grid v4 या उससे उच्च संस्करण का उपयोग करते हैं। क्लाउड में ऑटोमेटेड टेस्ट चलाते समय इस कमांड का
+उपयोग __नहीं__ किया जा सकता। अधिक जानकारी के लिए [Automation Protocols](/docs/automationProtocols) सेक्शन देखें।
 
 :::
 
-आप WebdriverIO में रिक्वेस्ट और रिस्पॉन्स को मॉक करने के बारे में हमारी [मॉक्स और स्पाइज़](/docs/mocksandspies) गाइड में और पढ़ सकते हैं।
+आप WebdriverIO में रिक्वेस्ट्स और रिस्पॉन्स को मॉक करने के बारे में हमारी [Mocks and Spies](/docs/mocksandspies) गाइड में और पढ़ सकते हैं।
 
 ## मल्टी-रिमोट
 
-[मल्टी-रिमोट](/docs/multiremote) ब्राउज़र पर, [`browser.mock()`](/docs/api/browser/mock) इस ऑब्जेक्ट के बजाय एक `MultiRemoteMock` लौटाता है। `instances` ब्राउज़र के नामों की सूची देता है, और `getInstance(name)` उस ब्राउज़र के लिए `Mock` लौटाता है। `respond()`, `restore()`, और नीचे दिए गए अन्य मेथड हर इंस्टेंस पर चलते हैं। `calls` प्रत्येक इंस्टेंस के मॉक पर ही रहता है: `mock.getInstance('myChromeBrowser').calls`।
+[मल्टी-रिमोट](/docs/multiremote) ब्राउज़र पर, [`browser.mock()`](/docs/api/browser/mock) इस ऑब्जेक्ट के बजाय एक `MultiRemoteMock` लौटाता है। `instances` ब्राउज़र के नामों की सूची देता है, और `getInstance(name)` उस ब्राउज़र के लिए `Mock` लौटाता है। `respond()`, `restore()`, और नीचे दिए गए अन्य मेथड्स हर इंस्टेंस पर चलते हैं। `calls` प्रत्येक इंस्टेंस के मॉक पर ही रहता है: `mock.getInstance('myChromeBrowser').calls`।
 
-जब `name`, `instances` में से एक नहीं होता है, तो `getInstance` यह एरर थ्रो करता है: `Multi-remote object has no instance named "<name>"`।
+जब `name`, `instances` में से कोई एक नहीं होता, तो `getInstance` यह एरर थ्रो करता है: `Multi-remote object has no instance named "<name>"`।
 
 ## प्रॉपर्टीज़
 
 एक मॉक ऑब्जेक्ट में निम्नलिखित प्रॉपर्टीज़ होती हैं:
 
-| नाम | टाइप | विवरण |
+| नाम | प्रकार | विवरण |
 | ---- | ---- | ------- |
 | `url` | `String` | मॉक कमांड में पास किया गया url |
 | `filterOptions` | `Object` | मॉक कमांड में पास किए गए रिसोर्स फ़िल्टर विकल्प |
-| `browser` | `Object` | मॉक ऑब्जेक्ट प्राप्त करने के लिए उपयोग किया गया [ब्राउज़र ऑब्जेक्ट](/docs/api/browser)। |
-| `calls` | `Object[]` | मेल खाने वाली ब्राउज़र रिक्वेस्ट के बारे में जानकारी, जिसमें `url`, `method`, `headers`, `initialPriority`, `referrerPolic`, `statusCode`, `responseHeaders` और `body` जैसी प्रॉपर्टीज़ होती हैं |
+| `browser` | `Object` | मॉक ऑब्जेक्ट प्राप्त करने के लिए उपयोग किया गया [Browser Object](/docs/api/browser)। |
+| `calls` | `Object[]` | मेल खाने वाली ब्राउज़र रिक्वेस्ट्स के बारे में जानकारी, जिसमें `url`, `method`, `headers`, `initialPriority`, `referrerPolic`, `statusCode`, `responseHeaders` और `body` जैसी प्रॉपर्टीज़ शामिल हैं |
 
 ## मेथड्स
 
-मॉक ऑब्जेक्ट विभिन्न कमांड प्रदान करते हैं, जो `mock` सेक्शन में सूचीबद्ध हैं, जो उपयोगकर्ताओं को रिक्वेस्ट या रिस्पॉन्स के व्यवहार को बदलने की अनुमति देते हैं।
+मॉक ऑब्जेक्ट्स विभिन्न कमांड्स प्रदान करते हैं, जो `mock` सेक्शन में सूचीबद्ध हैं, जो उपयोगकर्ताओं को रिक्वेस्ट या रिस्पॉन्स के व्यवहार को संशोधित करने की अनुमति देते हैं।
 
 - [`abort`](/docs/api/mock/abort)
 - [`abortOnce`](/docs/api/mock/abortOnce)
@@ -69,7 +69,7 @@ interface RequestEvent {
 
 ### `overwrite`
 
-यह इवेंट तब एमिट होता है जब नेटवर्क रिस्पॉन्स को [`respond`](/docs/api/mock/respond) या [`respondOnce`](/docs/api/mock/respondOnce) से ओवरराइट किया जाता है। रिस्पॉन्स को इवेंट कॉलबैक में पास किया जाता है।
+यह इवेंट तब एमिट होता है जब नेटवर्क रिस्पॉन्स को [`respond`](/docs/api/mock/respond) या [`respondOnce`](/docs/api/mock/respondOnce) के साथ ओवरराइट किया जाता है। रिस्पॉन्स को इवेंट कॉलबैक में पास किया जाता है।
 
 रिस्पॉन्स इंटरफ़ेस:
 ```ts
@@ -83,7 +83,7 @@ interface OverwriteEvent {
 
 ### `fail`
 
-यह इवेंट तब एमिट होता है जब नेटवर्क रिक्वेस्ट को [`abort`](/docs/api/mock/abort) या [`abortOnce`](/docs/api/mock/abortOnce) से रद्द किया जाता है। Fail को इवेंट कॉलबैक में पास किया जाता है।
+यह इवेंट तब एमिट होता है जब नेटवर्क रिक्वेस्ट को [`abort`](/docs/api/mock/abort) या [`abortOnce`](/docs/api/mock/abortOnce) के साथ रद्द किया जाता है। Fail को इवेंट कॉलबैक में पास किया जाता है।
 
 Fail इंटरफ़ेस:
 ```ts
@@ -95,9 +95,9 @@ interface FailEvent {
 
 ### `match`
 
-यह इवेंट तब एमिट होता है जब `continue` या `overwrite` से पहले कोई नया मैच जोड़ा जाता है। मैच को इवेंट कॉलबैक में पास किया जाता है।
+यह इवेंट तब एमिट होता है जब कोई नया मैच जोड़ा जाता है, `continue` या `overwrite` से पहले। Match को इवेंट कॉलबैक में पास किया जाता है।
 
-मैच इंटरफ़ेस:
+Match इंटरफ़ेस:
 ```ts
 interface MatchEvent {
     url: string // रिक्वेस्ट URL (फ़्रैगमेंट के बिना)।
@@ -106,10 +106,10 @@ interface MatchEvent {
     headers: Record<string, string> // HTTP रिक्वेस्ट हेडर्स।
     postData?: string // HTTP POST रिक्वेस्ट डेटा।
     hasPostData?: boolean // True जब रिक्वेस्ट में POST डेटा हो।
-    mixedContentType?: MixedContentType // रिक्वेस्ट का मिक्स्ड कंटेंट एक्सपोर्ट टाइप।
+    mixedContentType?: MixedContentType // रिक्वेस्ट का मिक्स्ड कंटेंट एक्सपोर्ट प्रकार।
     initialPriority: ResourcePriority // रिक्वेस्ट भेजे जाने के समय रिसोर्स रिक्वेस्ट की प्राथमिकता।
     referrerPolicy: ReferrerPolicy // रिक्वेस्ट की रेफ़रर पॉलिसी, जैसा कि https://www.w3.org/TR/referrer-policy/ में परिभाषित है
-    isLinkPreload?: boolean // क्या यह लिंक प्रीलोड के माध्यम से लोड किया गया है।
+    isLinkPreload?: boolean // क्या यह लिंक प्रीलोड के माध्यम से लोड हुआ है।
     body: string | Buffer | JsonCompatible // वास्तविक रिसोर्स का बॉडी रिस्पॉन्स।
     responseHeaders: Record<string, string> // HTTP रिस्पॉन्स हेडर्स।
     statusCode: number // HTTP रिस्पॉन्स स्टेटस कोड।
@@ -123,11 +123,11 @@ interface MatchEvent {
 
 ## उदाहरण
 
-लंबित रिक्वेस्ट की संख्या प्राप्त करना:
+लंबित रिक्वेस्ट्स की संख्या प्राप्त करना:
 
 ```js
 let pendingRequests = 0
-const mock = await browser.mock('**') // सभी रिक्वेस्ट को मैच करना महत्वपूर्ण है, अन्यथा परिणामी मान बहुत भ्रामक हो सकता है।
+const mock = await browser.mock('**') // सभी रिक्वेस्ट्स को मैच करना महत्वपूर्ण है, अन्यथा परिणामी मान बहुत भ्रामक हो सकता है।
 mock.on('request', ({request}) => {
     pendingRequests++
     console.log(`matched request to ${request.url}, pending ${pendingRequests} requests`)
@@ -152,7 +152,7 @@ browser.addCommand('loadPageWithout404', (url, {selector, predicate}) => new Pro
 
     await this.url(url).catch(reject)
 
-    // यहाँ प्रतीक्षा कर रहे हैं, क्योंकि कुछ रिक्वेस्ट अभी भी लंबित हो सकती हैं
+    // यहाँ प्रतीक्षा कर रहे हैं, क्योंकि कुछ रिक्वेस्ट्स अभी भी लंबित हो सकती हैं
     if (selector) {
         await this.$(selector).waitForExist().catch(reject)
     }
@@ -179,14 +179,14 @@ secondMock.respond({id: 4, title: 'four'})
 firstMock.on('overwrite', () => {
     // '**/foo/**' की पहली रिक्वेस्ट के लिए ट्रिगर होता है
 }).on('continue', () => {
-    // '**/foo/**' की बाकी रिक्वेस्ट के लिए ट्रिगर होता है
+    // '**/foo/**' की बाकी रिक्वेस्ट्स के लिए ट्रिगर होता है
 })
 
 secondMock.on('continue', () => {
     // '**/foo/bar/**' की पहली रिक्वेस्ट के लिए ट्रिगर होता है
 }).on('overwrite', () => {
-    // '**/foo/bar/**' की बाकी रिक्वेस्ट के लिए ट्रिगर होता है
+    // '**/foo/bar/**' की बाकी रिक्वेस्ट्स के लिए ट्रिगर होता है
 })
 ```
 
-इस उदाहरण में, `firstMock` को पहले परिभाषित किया गया था और इसमें एक `respondOnce` कॉल है, इसलिए `secondMock` के रिस्पॉन्स मान का उपयोग पहली रिक्वेस्ट के लिए नहीं किया जाएगा, लेकिन बाकी सभी रिक्वेस्ट के लिए किया जाएगा।
+इस उदाहरण में, `firstMock` को पहले परिभाषित किया गया था और इसमें एक `respondOnce` कॉल है, इसलिए पहली रिक्वेस्ट के लिए `secondMock` रिस्पॉन्स मान का उपयोग नहीं किया जाएगा, लेकिन बाकी रिक्वेस्ट्स के लिए इसका उपयोग किया जाएगा।

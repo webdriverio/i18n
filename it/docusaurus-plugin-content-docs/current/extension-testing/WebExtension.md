@@ -1,10 +1,10 @@
 ---
 id: web-extensions
 title: Test delle Web Extension
-description: "Carica una web extension in Chrome o Firefox per una sessione WebdriverIO, inclusa l'installazione e la disinstallazione tramite BiDi a sessione in corso."
+description: "Caricare una web extension in Chrome o Firefox per una sessione WebdriverIO, inclusi l'installazione e la disinstallazione tramite BiDi durante la sessione."
 ---
 
-WebdriverIO è lo strumento ideale per automatizzare un browser. Le Web Extension fanno parte del browser e possono essere automatizzate allo stesso modo. Ogni volta che la tua web extension utilizza content script per eseguire JavaScript sui siti web o offre un popup modale, puoi eseguire un test e2e utilizzando WebdriverIO.
+WebdriverIO è lo strumento ideale per automatizzare un browser. Le Web Extension fanno parte del browser e possono essere automatizzate allo stesso modo. Ogni volta che la tua web extension utilizza content script per eseguire JavaScript sui siti web o offre una finestra popup, puoi eseguire un test e2e utilizzando WebdriverIO.
 
 Carica l'estensione prima della prima navigazione con la configurazione delle capability riportata di seguito. Per installarne e rimuoverne una durante una sessione [WebDriver BiDi](https://w3c.github.io/webdriver-bidi/#module-webExtension), usa [`installExtension`](/docs/api/browser/installExtension) e [`uninstallExtension`](/docs/api/browser/uninstallExtension).
 
@@ -14,13 +14,13 @@ Come primo passo dobbiamo caricare l'estensione da testare nel browser come part
 
 :::info
 
-Questa documentazione non tratta le web extension di Safari, poiché il loro supporto è molto indietro e la richiesta degli utenti non è elevata. Inoltre Safari non dispone di una sessione WebDriver BiDi, quindi [`installExtension`](/docs/api/browser/installExtension) non copre Safari. Se stai sviluppando una web extension per Safari, [apri una issue](https://github.com/webdriverio/webdriverio/issues/new?assignees=&labels=Docs+%F0%9F%93%96%2CNeeds+Triaging+%E2%8F%B3&template=documentation.yml&title=%5B%F0%9F%93%96+Docs%5D%3A+%3Ctitle%3E) e collabora per includerla anche qui.
+Questa documentazione non tratta le web extension di Safari, poiché il loro supporto è molto indietro e la richiesta degli utenti non è elevata. Safari inoltre non dispone di una sessione WebDriver BiDi, quindi [`installExtension`](/docs/api/browser/installExtension) non copre Safari. Se stai sviluppando una web extension per Safari, per favore [apri una issue](https://github.com/webdriverio/webdriverio/issues/new?assignees=&labels=Docs+%F0%9F%93%96%2CNeeds+Triaging+%E2%8F%B3&template=documentation.yml&title=%5B%F0%9F%93%96+Docs%5D%3A+%3Ctitle%3E) e collabora per includerla anche qui.
 
 :::
 
 ### Chrome
 
-Il caricamento di una web extension in Chrome può essere effettuato fornendo una stringa codificata in `base64` del file `crx` oppure fornendo un percorso alla cartella della web extension. La soluzione più semplice è la seconda, definendo le capability di Chrome come segue:
+Il caricamento di una web extension in Chrome può essere effettuato fornendo una stringa codificata in `base64` del file `crx` oppure fornendo un percorso alla cartella della web extension. Il modo più semplice è la seconda opzione, definendo le capability di Chrome come segue:
 
 ```js wdio.conf.js
 import path from 'node:path'
@@ -43,7 +43,7 @@ export const config = {
 
 :::info
 
-Se automatizzi un browser diverso da Chrome, ad esempio Brave, Edge o Opera, è probabile che le opzioni del browser corrispondano all'esempio sopra, utilizzando semplicemente un nome di capability diverso, ad esempio `ms:edgeOptions`.
+Se automatizzi un browser diverso da Chrome, ad esempio Brave, Edge o Opera, è probabile che le opzioni del browser corrispondano all'esempio precedente, utilizzando semplicemente un nome di capability diverso, ad esempio `ms:edgeOptions`.
 
 :::
 
@@ -70,7 +70,7 @@ export const config = {
 
 ### Firefox
 
-Per creare un profilo Firefox che includa estensioni puoi utilizzare il [Firefox Profile Service](/docs/firefox-profile-service) per configurare la tua sessione di conseguenza. Tuttavia potresti riscontrare problemi per cui la tua estensione sviluppata localmente non può essere caricata a causa di problemi di firma. In questo caso puoi anche caricare un'estensione nell'hook `before` tramite il comando [`installAddOn`](/docs/api/gecko#installaddon), ad esempio:
+Per creare un profilo Firefox che includa le estensioni puoi utilizzare il [Firefox Profile Service](/docs/firefox-profile-service) per configurare la tua sessione di conseguenza. Tuttavia potresti incontrare problemi per cui la tua estensione sviluppata localmente non può essere caricata a causa di problemi di firma. In questo caso puoi anche caricare un'estensione nell'hook `before` tramite il comando [`installAddOn`](/docs/api/gecko#installaddon), ad esempio:
 
 ```js wdio.conf.js
 import path from 'node:path'
@@ -101,7 +101,7 @@ npx web-ext build -s dist/ -a . -n web-extension-firefox.xpi
 
 Dalla v10, [`browser.installExtension`](/docs/api/browser/installExtension) e [`browser.uninstallExtension`](/docs/api/browser/uninstallExtension) installano una web extension durante una sessione WebDriver BiDi e ne restituiscono l'id. Usali quando l'estensione non deve essere presente all'avvio, oppure quando lo stesso test la installa, la utilizza e la rimuove.
 
-La configurazione delle capability e `installAddOn` descritti sopra restano il modo per caricare un'estensione prima della prima navigazione. `installExtension` non li sostituisce. `browser.webExtensionInstall` e `browser.webExtensionUninstall` restano disponibili quando vuoi gestire tu stesso il [payload della specifica](https://w3c.github.io/webdriver-bidi/#command-webExtension-install).
+La configurazione delle capability e `installAddOn` descritti sopra restano il modo per caricare un'estensione prima della prima navigazione. `installExtension` non li sostituisce. `browser.webExtensionInstall` e `browser.webExtensionUninstall` restano disponibili quando vuoi fornire tu stesso il [payload della specifica](https://w3c.github.io/webdriver-bidi/#command-webExtension-install).
 
 ```ts title="test/specs/extension.e2e.ts"
 import path from 'node:path'
@@ -128,23 +128,23 @@ describe('web extension', () => {
 
 | Input | Payload inviato al browser |
 | --- | --- |
-| Un percorso di directory | `{ type: 'path', path }` dopo `path.resolve`. Il browser deve poter leggere quella directory. |
+| Un percorso di directory | `{ type: 'path', path }` dopo `path.resolve`. Il browser deve essere in grado di leggere quella directory. |
 | Un percorso `.zip`, `.xpi` o `.crx` | `{ type: 'archivePath', path }` dopo `path.resolve`. |
 | `{ base64: string }` | `{ type: 'base64', value }`. Byte dell'archivio. Qualsiasi altro oggetto viene rifiutato. |
 
-Un percorso stringa viene sempre risolto sul test runner. In una sessione remota — un hostname diverso da `localhost`, `127.0.0.1` o `::1`, oppure con `user` e `key` di un servizio cloud — quel percorso non è un percorso sulla macchina del browser. Il comando legge un archivio, oppure comprime una directory in memoria, e invia `base64`. Non devi distinguere tu stesso tra locale e remoto. Le sessioni locali inviano `path` o `archivePath` e non leggono i byte.
+Un percorso fornito come stringa viene sempre risolto sul test runner. In una sessione remota — un hostname diverso da `localhost`, `127.0.0.1` o `::1`, oppure con `user` e `key` di un servizio cloud — quel percorso non è un percorso sulla macchina del browser. Il comando legge un archivio, o comprime una directory in memoria, e invia `base64`. Non devi gestire tu stesso la distinzione tra locale e remoto. Le sessioni locali inviano `path` o `archivePath` e non leggono i byte.
 
-Fai puntare una directory alla radice dell'estensione, ovvero la cartella che contiene `manifest.json`.
+Fai puntare la directory alla radice dell'estensione, ovvero la cartella che contiene `manifest.json`.
 
-La sessione deve supportare WebDriver BiDi. Una sessione classica genera l'errore `installExtension requires a WebDriver BiDi session (webExtension.install)`. Un browser che implementa BiDi ma non questo modulo fa fallire il comando con `unsupported operation` (o `unknown command` quando il modulo è assente). Un archivio non valido fallisce con `invalid web extension`. La disinstallazione di un id che il browser non conosce fallisce con `no such web extension`.
+La sessione deve supportare WebDriver BiDi. Una sessione classica genera l'errore `installExtension requires a WebDriver BiDi session (webExtension.install)`. Un browser che implementa BiDi ma non questo modulo fa fallire il comando con `unsupported operation` (oppure `unknown command` quando il modulo è assente). Un archivio non valido fallisce con `invalid web extension`. La disinstallazione di un id che il browser non conosce fallisce con `no such web extension`.
 
 `uninstallExtension` accetta la stringa id restituita da `installExtension`.
 
 ### Chromium
 
-Chrome ed Edge implementano `webExtension.install` ma lo lasciano disattivato finché non avvii il browser con `--enable-unsafe-extension-debugging` e `--remote-debugging-pipe`. Chrome 136 e versioni successive richiedono inoltre `--user-data-dir` ogni volta che è impostato `--remote-debugging-pipe`. Senza questi argomenti il comando fallisce con `unknown error - Method not available`.
+Chrome ed Edge implementano `webExtension.install` ma lo mantengono disattivato finché non avvii il browser con `--enable-unsafe-extension-debugging` e `--remote-debugging-pipe`. Chrome 136 e versioni successive richiedono inoltre `--user-data-dir` ogni volta che è impostato `--remote-debugging-pipe`. Senza questi argomenti il comando fallisce con `unknown error - Method not available`.
 
-`--remote-debugging-pipe` è la pipe tra il driver e il browser. La sessione BiDi continua a utilizzare `webSocketUrl`.
+`--remote-debugging-pipe` è la pipe tra il driver e il browser. La sessione BiDi utilizza comunque `webSocketUrl`.
 
 ```ts title="wdio.conf.ts"
 import fs from 'node:fs'
@@ -168,17 +168,17 @@ export const config: WebdriverIO.Config = {
 }
 ```
 
-Usa `ms:edgeOptions` per Edge. Firefox carica l'estensione in una normale sessione BiDi e non necessita di questi argomenti.
+Usa `ms:edgeOptions` per Edge. Firefox carica l'estensione in una normale sessione BiDi e non ha bisogno di questi argomenti.
 
 ## Suggerimenti e Trucchi
 
-La sezione seguente contiene una serie di suggerimenti e trucchi utili durante il test di una web extension.
+La sezione seguente contiene una serie di suggerimenti e trucchi utili che possono essere d'aiuto durante il test di una web extension.
 
-### Testare il Popup Modale in Chrome
+### Testare la Finestra Popup in Chrome
 
-Se definisci una voce browser action `default_popup` nel tuo [manifest dell'estensione](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/browser_action) puoi testare direttamente quella pagina HTML, poiché fare clic sull'icona dell'estensione nella barra superiore del browser non funzionerà. Devi invece aprire direttamente il file html del popup.
+Se definisci una voce `default_popup` per la browser action nel [manifest dell'estensione](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/browser_action) puoi testare direttamente quella pagina HTML, poiché fare clic sull'icona dell'estensione nella barra superiore del browser non funzionerà. Devi invece aprire direttamente il file html del popup.
 
-In Chrome questo funziona recuperando l'ID dell'estensione e aprendo la pagina del popup tramite `browser.url('...')`. Il comportamento su quella pagina sarà lo stesso che all'interno del popup. Per farlo, consigliamo di scrivere il seguente comando personalizzato:
+In Chrome questo funziona recuperando l'ID dell'estensione e aprendo la pagina del popup tramite `browser.url('...')`. Il comportamento su quella pagina sarà lo stesso che all'interno del popup. A tal fine consigliamo di scrivere il seguente comando personalizzato:
 
 ```ts customCommand.ts
 export async function openExtensionPopup (this: WebdriverIO.Browser, extensionName: string, popupUrl = 'index.html') {

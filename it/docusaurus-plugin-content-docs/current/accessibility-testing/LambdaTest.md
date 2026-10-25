@@ -15,8 +15,8 @@ TestMu AI Accessibility Testing ti aiuta a identificare e risolvere i problemi d
 * Si integra perfettamente con la tua automazione dei test WebdriverIO esistente.
 * Scansione automatizzata dell'accessibilità durante l'esecuzione dei test.
 * Report completi sulla conformità WCAG.
-* Tracciamento dettagliato dei problemi con indicazioni per la correzione.
-* Supporto per più standard WCAG (WCAG 2.0, WCAG 2.1, WCAG 2.2).
+* Tracciamento dettagliato dei problemi con indicazioni per la risoluzione.
+* Supporto per diversi standard WCAG (WCAG 2.0, WCAG 2.1, WCAG 2.2).
 * Informazioni sull'accessibilità in tempo reale nella dashboard di TestMu AI.
 
 ## Iniziare con TestMu AI Accessibility Testing
@@ -70,23 +70,23 @@ npx wdio run wdio.conf.js
 
 L'oggetto `accessibilityOptions` supporta i seguenti parametri:
 
-* **wcagVersion**: Specifica la versione dello standard WCAG rispetto a cui eseguire i test
+* **wcagVersion**: Specifica la versione dello standard WCAG rispetto alla quale eseguire i test
   - `wcag20` - WCAG 2.0 Livello A
   - `wcag21a` - WCAG 2.1 Livello A
   - `wcag21aa` - WCAG 2.1 Livello AA (predefinito)
   - `wcag22aa` - WCAG 2.2 Livello AA
 
-* **bestPractice**: Includi le raccomandazioni sulle best practice (predefinito: `false`)
+* **bestPractice**: Include le raccomandazioni sulle best practice (predefinito: `false`)
 
-* **needsReview**: Includi i problemi che richiedono una revisione manuale (predefinito: `true`)
+* **needsReview**: Include i problemi che richiedono una revisione manuale (predefinito: `true`)
 
 ## Visualizzare i report di accessibilità
 
-Al termine dei test, puoi visualizzare report di accessibilità dettagliati nella [Dashboard di TestMu AI](https://automation.lambdatest.com/):
+Al termine dei test, puoi visualizzare report di accessibilità dettagliati nella [TestMu AI Dashboard](https://automation.lambdatest.com/):
 
 1. Vai all'esecuzione del tuo test
 2. Fai clic sulla scheda "Accessibility"
 3. Esamina i problemi identificati con i relativi livelli di gravità
-4. Ottieni indicazioni per la correzione di ciascun problema
+4. Ottieni indicazioni per la risoluzione di ciascun problema
 
 Per informazioni più dettagliate, visita la [documentazione di TestMu AI Accessibility Automation](https://www.testmuai.com/support/docs/accessibility-automation-settings/).

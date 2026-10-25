@@ -1,10 +1,10 @@
 ---
 id: desktop
-title: App Desktop
-description: Scegli la configurazione di WebdriverIO più adatta per le app native macOS e per le app Electron, Tauri e Dioxus su macOS, Windows e Linux, ed esegui un primo test.
+title: App desktop
+description: Scegli la configurazione WebdriverIO più adatta per le app native macOS e per le app Electron, Tauri e Dioxus su macOS, Windows e Linux, ed esegui un primo test.
 ---
 
-Il modo in cui WebdriverIO automatizza un'app desktop dipende da come l'app è stata realizzata. Le app native macOS vengono automatizzate tramite [Appium](/docs/appium) con il driver Mac2 (`'appium:automationName': 'Mac2'`), che richiede Xcode. Le app realizzate con un framework basato sul web vengono pilotate attraverso il loro motore browser integrato da un servizio WebdriverIO dedicato. Il [servizio Electron](/docs/desktop-testing/electron) utilizza Chromium tramite un Chromedriver installato automaticamente e può anche richiamare le API del processo principale di Electron. Il [servizio Tauri](/docs/desktop-testing/tauri) e il [servizio Dioxus](/docs/desktop-testing/dioxus) pilotano la webview del sistema operativo: WebView2 su Windows, WKWebView su macOS e WebKitGTK su Linux. Questi tre servizi eseguono la stessa suite su Windows, macOS e Linux. Per le app native Windows al momento non esiste un driver consigliato: il Windows Driver di Appium si basa su WinAppDriver di Microsoft, che non è più mantenuto. Non esiste supporto documentato per l'automazione di app native Linux arbitrarie.
+Il modo in cui WebdriverIO automatizza un'app desktop dipende da come è costruita l'app. Le app native macOS vengono automatizzate tramite [Appium](/docs/appium) con il driver Mac2 (`'appium:automationName': 'Mac2'`), che richiede Xcode. Le app costruite con un framework basato sul web vengono pilotate tramite il loro motore browser integrato da un servizio WebdriverIO dedicato. Il [servizio Electron](/docs/desktop-testing/electron) utilizza Chromium tramite un Chromedriver installato automaticamente e può anche richiamare le API del processo principale di Electron. Il [servizio Tauri](/docs/desktop-testing/tauri) e il [servizio Dioxus](/docs/desktop-testing/dioxus) pilotano la webview del sistema operativo: WebView2 su Windows, WKWebView su macOS e WebKitGTK su Linux. Questi tre servizi eseguono la stessa suite su Windows, macOS e Linux. Per le app native Windows attualmente non esiste un driver consigliato: il Windows Driver di Appium si basa su WinAppDriver di Microsoft, che non è più mantenuto. Non esiste un supporto documentato per l'automazione di app native Linux arbitrarie.
 
 | Tipo di app | macOS | Windows | Linux | Come |
 |----------|-------|---------|-------|-----|
@@ -15,7 +15,7 @@ Il modo in cui WebdriverIO automatizza un'app desktop dipende da come l'app è s
 
 ## Avvio rapido
 
-`npm create wdio@latest ./` genera la struttura per tutte queste configurazioni. Scegli "Desktop Testing - of Electron, Tauri, Dioxus, or macOS Applications" e poi il tuo framework. Ogni configurazione riportata di seguito richiede inoltre `@wdio/cli @wdio/local-runner @wdio/mocha-framework @wdio/spec-reporter tsx` e un `tsconfig.json` con `"types": ["node", "@wdio/globals/types", "@wdio/mocha-framework"]`.
+`npm create wdio@latest ./` crea lo scaffolding per tutti questi casi. Scegli "Desktop Testing - of Electron, Tauri, Dioxus, or macOS Applications" e poi il tuo framework. Ogni configurazione riportata di seguito richiede inoltre `@wdio/cli @wdio/local-runner @wdio/mocha-framework @wdio/spec-reporter tsx` e un `tsconfig.json` con `"types": ["node", "@wdio/globals/types", "@wdio/mocha-framework"]`.
 
 ### Electron (macOS, Windows, Linux)
 
@@ -31,7 +31,7 @@ export const config: WebdriverIO.Config = {
     capabilities: [{
         browserName: 'electron',
         'wdio:electronServiceOptions': {
-            // necessario solo se il rilevamento automatico dell'output di Electron Forge / electron-builder non riesce
+            // necessario solo se il rilevamento automatico dell'output di Electron Forge / electron-builder fallisce
             // appBinaryPath: './dist-electron/linux-unpacked/myApp',
             appArgs: []
         }
@@ -122,18 +122,18 @@ Su Linux, WebdriverIO pilota app Electron, Tauri e Dioxus. Cose da sapere:
 
 - CI headless: queste app necessitano di un display server. Quando non è presente alcun display, il testrunner avvia Weston, oppure Xvfb come alternativa. Imposta `displayServerAutoInstall: true` per installarne uno se nessuno dei due è installato. In alternativa, avvia il testrunner tramite xvfb-run, ad esempio `xvfb-run -a npx wdio run wdio.conf.ts`. Consulta [Headless & Display Servers](/docs/headless-and-display-servers).
 - Tauri con il provider `official` richiede WebKitWebDriver (pacchetto `webkit2gtk-driver`). Il provider `embedded` non richiede alcun driver esterno.
-- Dioxus supporta solo il provider `embedded` su Linux, e la compilazione delle app Dioxus richiede le librerie di sviluppo di WebKitGTK.
-- Electron su Ubuntu 24.04+ e altre distribuzioni con AppArmor abilitato: imposta l'opzione del servizio `apparmorAutoInstall` se Electron non riesce ad avviarsi.
+- Su Linux, Dioxus supporta solo il provider `embedded`, e la compilazione delle app Dioxus richiede le librerie di sviluppo di WebKitGTK.
+- Electron su Ubuntu 24.04+ e altre distribuzioni con AppArmor abilitato: imposta l'opzione del servizio `apparmorAutoInstall` se Electron non si avvia.
 
 ## Risoluzione dei problemi
 
-- Electron: [Problemi comuni](/docs/desktop-testing/electron/common-issues), ad esempio "DevToolsActivePort file doesn't exist" in CI.
-- Tauri: [Risoluzione dei problemi](/docs/desktop-testing/tauri/troubleshooting), incluse le incompatibilità di versione tra Edge WebDriver e WebView2.
-- Dioxus: [Risoluzione dei problemi](/docs/desktop-testing/dioxus/troubleshooting).
-- macOS: consulta il progetto [Appium Mac2 Driver](https://github.com/appium/appium-mac2-driver) per la configurazione specifica del driver, come Xcode.
+- Electron: [Common Issues](/docs/desktop-testing/electron/common-issues), ad esempio "DevToolsActivePort file doesn't exist" in CI.
+- Tauri: [Troubleshooting](/docs/desktop-testing/tauri/troubleshooting), incluse le discrepanze di versione tra Edge WebDriver e WebView2.
+- Dioxus: [Troubleshooting](/docs/desktop-testing/dioxus/troubleshooting).
+- macOS: consulta il progetto [Appium Mac2 Driver](https://appium.github.io/appium-mac2-driver/) per la configurazione specifica del driver, come Xcode.
 
-## Passi successivi
+## Prossimi passi
 
-- Riferimento della [Configurazione](/docs/configuration) per ogni opzione di `wdio.conf.ts`.
+- Riferimento della [configurazione](/docs/configuration) per ogni opzione di `wdio.conf.ts`.
 - Opzioni dell'[Appium Service](/docs/appium-service) per la configurazione Mac2.
 - Altre piattaforme: [Browser web](/docs/platforms/web), [App mobili](/docs/platforms/mobile), [Estensioni ed editor](/docs/platforms/apps-and-extensions).

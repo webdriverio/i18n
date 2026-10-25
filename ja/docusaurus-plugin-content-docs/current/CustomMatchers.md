@@ -4,17 +4,17 @@ title: カスタムマッチャー
 description: "expect.extend を使用してカスタムのブラウザマッチャーおよび要素マッチャーを登録し、それらに TypeScript の型を追加します。"
 ---
 
-WebdriverIO は Jest スタイルの [`expect`](https://webdriver.io/docs/api/expect-webdriverio) アサーションライブラリを使用しており、Web およびモバイルテストの実行に特化した特別な機能とカスタムマッチャーを備えています。マッチャーのライブラリは大規模ですが、あらゆる状況に対応できるわけではありません。そのため、独自に定義したカスタムマッチャーで既存のマッチャーを拡張することができます。
+WebdriverIO は Jest スタイルの [`expect`](https://webdriver.io/docs/api/expect-webdriverio) アサーションライブラリを使用しており、Web およびモバイルテストの実行に特化した特別な機能とカスタムマッチャーを備えています。マッチャーのライブラリは充実していますが、あらゆる状況に対応できるわけではありません。そのため、独自に定義したカスタムマッチャーで既存のマッチャーを拡張することができます。
 
 :::warning
 
-現在のところ、[`browser`](/docs/api/browser) オブジェクトに固有のマッチャーと [element](/docs/api/element) インスタンスに固有のマッチャーの定義方法に違いはありませんが、これは将来変更される可能性があります。この開発に関する詳細については、[`webdriverio/expect-webdriverio#1408`](https://github.com/webdriverio/expect-webdriverio/issues/1408) を注視してください。
+現在のところ、[`browser`](/docs/api/browser) オブジェクト固有のマッチャーと[要素](/docs/api/element)インスタンス固有のマッチャーの定義方法に違いはありませんが、これは将来変更される可能性があります。この開発に関する詳細については、[`webdriverio/expect-webdriverio#1408`](https://github.com/webdriverio/expect-webdriverio/issues/1408) を注視してください。
 
 :::
 
 :::info Jasmine
 
-Jasmine フレームワークでは、テストが実行される前に、スペックファイル内または `before` フックで `expect.extend` を呼び出してください。マッチャーは Jasmine の非同期マッチャーになるため、`await` してください。Jasmine の同期マッチャーと同じ名前を持つマッチャーは、WebdriverIO のマッチャーと同様に、WebdriverIO の値に対してのみ実行されます。カスタムの非対称マッチャー（`expect.myMatcher()`）は使用できません。同期マッチャーには `jasmine.addMatchers` を、非同期マッチャーには `jasmine.addAsyncMatchers` を使用することもできます。詳しくは [Jasmine カスタムマッチャーのチュートリアル](https://jasmine.github.io/tutorials/custom_matchers)を参照してください。
+Jasmine フレームワークでは、テストが実行される前に、スペックファイル内または `before` フックで `expect.extend` を呼び出してください。マッチャーは Jasmine の非同期マッチャーになるため、`await` する必要があります。Jasmine の同期マッチャーと同じ名前のマッチャーは、WebdriverIO のマッチャーと同様に、WebdriverIO の値に対してのみ実行されます。カスタムの非対称マッチャー（`expect.myMatcher()`）は使用できません。同期マッチャーには `jasmine.addMatchers` を、非同期マッチャーには `jasmine.addAsyncMatchers` を使用することもできます。詳しくは [Jasmine カスタムマッチャーのチュートリアル](https://jasmine.github.io/tutorials/custom_matchers)を参照してください。
 
 :::
 
@@ -26,7 +26,7 @@ Jasmine フレームワークでは、テストが実行される前に、スペ
 https://github.com/webdriverio/example-recipes/blob/e719632df8f241f923c8d9301aab6bccee5cb109/customMatchers/example.ts#L3-L18
 ```
 
-例に示されているように、マッチャー関数は第1引数として期待されるオブジェクト（例：browser オブジェクトまたは element オブジェクト）を、第2引数として期待値を受け取ります。その後、次のようにマッチャーを使用できます：
+例に示すように、マッチャー関数は第 1 引数として期待されるオブジェクト（ブラウザオブジェクトや要素オブジェクトなど）を、第 2 引数として期待値を受け取ります。その後、次のようにマッチャーを使用できます：
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e719632df8f241f923c8d9301aab6bccee5cb109/customMatchers/example.ts#L50-L52
@@ -48,19 +48,19 @@ https://github.com/webdriverio/example-recipes/blob/e719632df8f241f923c8d9301aab
 
 ## TypeScript サポート
 
-TypeScript を使用している場合、カスタムマッチャーの型安全性を確保するためにもう1つの手順が必要です。カスタムマッチャーで `Matcher` インターフェースを拡張することで、すべての型の問題が解消されます：
+TypeScript を使用している場合、カスタムマッチャーの型安全性を確保するためにもう 1 つの手順が必要です。カスタムマッチャーで `Matcher` インターフェースを拡張することで、すべての型の問題が解消されます：
 
 ```js reference useHTTPS
 https://github.com/webdriverio/example-recipes/blob/e719632df8f241f923c8d9301aab6bccee5cb109/customMatchers/example.ts#L40-L47
 ```
 
-カスタムの[非対称マッチャー](https://jestjs.io/docs/expect#expectextendmatchers)を作成した場合は、同様に次のように `expect` の型を拡張できます：
+カスタムの[非対称マッチャー](https://jestjs.io/docs/expect#expectextendmatchers)を作成した場合は、同様に次のようにして `expect` の型を拡張できます：
 
 ```ts
 declare global {
   namespace ExpectWebdriverIO {
     interface AsymmetricMatchers {
-      myCustomMatcher(value: string): ExpectWebdriverIO.PartialMatcher;
+      myCustomMatcher(value: string): ExpectWebdriverIO.PartialMatcher<string>;
     }
   }
 }

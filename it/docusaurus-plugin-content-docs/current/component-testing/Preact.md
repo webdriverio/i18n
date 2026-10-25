@@ -27,7 +27,7 @@ Se stai già utilizzando [Vite](https://vitejs.dev/) come server di sviluppo, pu
 
 :::
 
-Il preset Preact richiede che `@preact/preset-vite` sia installato. Inoltre, consigliamo di utilizzare [Testing Library](https://testing-library.com/) per renderizzare il componente nella pagina di test. Pertanto dovrai installare le seguenti dipendenze aggiuntive:
+Il preset Preact richiede l'installazione di `@preact/preset-vite`. Inoltre, consigliamo di utilizzare [Testing Library](https://testing-library.com/) per il rendering del componente nella pagina di test. Pertanto dovrai installare le seguenti dipendenze aggiuntive:
 
 ```sh npm2yarn
 npm install --save-dev @testing-library/preact @preact/preset-vite
@@ -39,7 +39,7 @@ Puoi quindi avviare i test eseguendo:
 npx wdio run ./wdio.conf.js
 ```
 
-## Scrivere i test
+## Scrivere i Test
 
 Supponendo di avere il seguente componente Preact:
 
@@ -65,7 +65,7 @@ export function Counter({ initialCount }: Props) {
 
 ```
 
-Nel tuo test usa il metodo `render` di `@testing-library/preact` per collegare il componente alla pagina di test. Per interagire con il componente consigliamo di utilizzare i comandi di WebdriverIO, poiché si comportano in modo più simile alle interazioni reali dell'utente, ad esempio:
+Nel tuo test utilizza il metodo `render` di `@testing-library/preact` per collegare il componente alla pagina di test. Per interagire con il componente consigliamo di utilizzare i comandi di WebdriverIO, poiché si comportano in modo più simile alle reali interazioni dell'utente, ad esempio:
 
 ```ts title="app.test.tsx"
 import { expect } from 'expect'

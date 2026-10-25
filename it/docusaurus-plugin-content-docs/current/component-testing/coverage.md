@@ -4,19 +4,19 @@ title: Copertura
 description: "Raccogli la copertura del codice per i test dei componenti con il browser runner, che strumenta il tuo codice con istanbul tramite Vite."
 ---
 
-Il browser runner di WebdriverIO supporta la generazione di report sulla copertura del codice utilizzando [`istanbul`](https://istanbul.js.org/). Il testrunner strumenterà automaticamente il tuo codice utilizzando Vite e raccoglierà la copertura del codice per te.
+Il browser runner di WebdriverIO supporta la reportistica della copertura del codice utilizzando [`istanbul`](https://istanbul.js.org/). Il testrunner strumenterà automaticamente il tuo codice utilizzando Vite e acquisirà la copertura del codice per te.
 
 ## Come Funziona
 
 Il `@wdio/browser-runner` utilizza Vite per servire la tua applicazione. Quando abiliti la copertura, aggiunge un plugin al server Vite che tenta di strumentare il tuo codice sorgente al volo, man mano che viene richiesto dal browser.
 
 :::warning Importante
-**Non allontanarti dal test runner!**
+**Non navigare al di fuori del test runner!**
 
 La copertura del codice si basa sui file serviti e strumentati dal server Vite locale avviato da WebdriverIO.
 Se utilizzi `browser.url('http://...')` o `browser.url('file://...')` per navigare verso una pagina diversa, stai abbandonando l'ambiente strumentato. Il tuo codice verrà eseguito, ma **non verrà raccolta alcuna copertura**.
 
-**Approccio Corretto (Component Testing):**
+**Approccio Corretto (Test dei Componenti):**
 Esegui il rendering del tuo componente o importa il tuo modulo direttamente nel file di test.
 
 ```js
@@ -38,7 +38,7 @@ it('will not have coverage', async () => {
 
 ## Configurazione
 
-Per abilitare la generazione di report sulla copertura del codice, abilitala tramite la configurazione del browser runner di WebdriverIO, ad esempio:
+Per abilitare la reportistica della copertura del codice, abilitala tramite la configurazione del browser runner di WebdriverIO, ad esempio:
 
 ```js title=wdio.conf.js
 export const config = {
@@ -53,10 +53,10 @@ export const config = {
 }
 ```
 
-Consulta tutte le [opzioni di copertura](/docs/runner#coverage-options) per imparare come configurarla correttamente.
+Consulta tutte le [opzioni di copertura](/docs/runner#coverage-options) per imparare a configurarla correttamente.
 
 :::tip Suggerimenti di Configurazione
-Se stai testando file non standard (come script inline in file `.html`) o se i tuoi file non vengono rilevati, potrebbe essere necessario verificare esplicitamente le opzioni `include` ed `extension`:
+Se stai testando file non standard (come script inline in `.html`) o se i tuoi file non vengono rilevati, potrebbe essere necessario verificare esplicitamente le opzioni `include` ed `extension`:
 
 ```js
 coverage: {
@@ -71,7 +71,7 @@ coverage: {
 
 ## Ignorare il Codice
 
-Potrebbero esserci alcune sezioni del tuo codebase che desideri escludere intenzionalmente dal monitoraggio della copertura; per farlo puoi utilizzare i seguenti suggerimenti di parsing:
+Potrebbero esserci alcune sezioni della tua codebase che desideri escludere intenzionalmente dal tracciamento della copertura; per farlo puoi utilizzare i seguenti suggerimenti di parsing:
 
 - `/* istanbul ignore if */`: ignora la successiva istruzione if.
 - `/* istanbul ignore else */`: ignora la parte else di un'istruzione if.
@@ -80,7 +80,7 @@ Potrebbero esserci alcune sezioni del tuo codebase che desideri escludere intenz
 
 :::info
 
-Si consiglia di escludere i file di test dal report sulla copertura, poiché potrebbero causare errori, ad esempio quando si chiama il comando `execute`. Se desideri mantenerli nel tuo report, assicurati di escluderli dalla strumentazione tramite:
+Si consiglia di escludere i file di test dalla reportistica della copertura poiché potrebbero causare errori, ad esempio quando si chiama il comando `execute`. Se desideri mantenerli nel tuo report, assicurati di escluderli dalla strumentazione tramite:
 
 ```ts
 await browser.execute(/* istanbul ignore next */() => {

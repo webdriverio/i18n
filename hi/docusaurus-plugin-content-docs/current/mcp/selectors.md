@@ -8,7 +8,7 @@ WebdriverIO MCP सर्वर वेब पेजों और मोबाइ
 
 :::info
 
-सभी WebdriverIO सेलेक्टर रणनीतियों सहित विस्तृत सेलेक्टर दस्तावेज़ीकरण के लिए, मुख्य [Selectors](/docs/selectors) गाइड देखें। यह पेज MCP सर्वर के साथ आमतौर पर उपयोग किए जाने वाले सेलेक्टर्स पर केंद्रित है।
+सभी WebdriverIO सेलेक्टर रणनीतियों सहित विस्तृत सेलेक्टर दस्तावेज़ीकरण के लिए, मुख्य [Selectors](/docs/selectors) गाइड देखें। यह पेज उन सेलेक्टर्स पर केंद्रित है जो आमतौर पर MCP सर्वर के साथ उपयोग किए जाते हैं।
 
 :::
 
@@ -16,15 +16,15 @@ WebdriverIO MCP सर्वर वेब पेजों और मोबाइ
 
 ब्राउज़र ऑटोमेशन के लिए, MCP सर्वर सभी मानक WebdriverIO सेलेक्टर्स का समर्थन करता है। सबसे अधिक उपयोग किए जाने वाले सेलेक्टर्स में शामिल हैं:
 
-| सेलेक्टर | उदाहरण                        | विवरण                  |
-| -------- | ------------------------------ | ---------------------------- |
-| CSS      | `#login-button`, `.submit-btn` | मानक CSS सेलेक्टर्स       |
-| XPath    | `//button[@id='submit']`       | XPath एक्सप्रेशन्स            |
-| Text     | `button=Submit`, `a*=Click`    | WebdriverIO टेक्स्ट सेलेक्टर्स   |
-| ARIA     | `aria/Submit Button`           | एक्सेसिबिलिटी नाम सेलेक्टर्स |
-| Test ID  | `[data-testid="submit"]`       | टेस्टिंग के लिए अनुशंसित      |
+| सेलेक्टर | उदाहरण                         | विवरण                           |
+| -------- | ------------------------------ | ------------------------------- |
+| CSS      | `#login-button`, `.submit-btn` | मानक CSS सेलेक्टर्स             |
+| XPath    | `//button[@id='submit']`       | XPath एक्सप्रेशन्स              |
+| Text     | `button=Submit`, `a*=Click`    | WebdriverIO टेक्स्ट सेलेक्टर्स  |
+| ARIA     | `aria/Submit Button`           | एक्सेसिबिलिटी नाम सेलेक्टर्स   |
+| Test ID  | `[data-testid="submit"]`       | टेस्टिंग के लिए अनुशंसित        |
 
-विस्तृत उदाहरणों और सर्वोत्तम प्रथाओं के लिए, [Selectors](/docs/selectors) दस्तावेज़ीकरण देखें।
+विस्तृत उदाहरणों और सर्वोत्तम अभ्यासों के लिए, [Selectors](/docs/selectors) दस्तावेज़ीकरण देखें।
 
 ## मोबाइल सेलेक्टर्स
 
@@ -32,7 +32,7 @@ WebdriverIO MCP सर्वर वेब पेजों और मोबाइ
 
 ### Accessibility ID (अनुशंसित)
 
-Accessibility IDs **सबसे विश्वसनीय क्रॉस-प्लेटफ़ॉर्म सेलेक्टर** हैं। ये iOS और Android दोनों पर काम करते हैं और ऐप अपडेट के दौरान भी स्थिर रहते हैं।
+Accessibility IDs **सबसे विश्वसनीय क्रॉस-प्लेटफ़ॉर्म सेलेक्टर** हैं। ये iOS और Android दोनों पर काम करते हैं और ऐप अपडेट्स के दौरान स्थिर रहते हैं।
 
 ```text
 # सिंटैक्स
@@ -44,7 +44,7 @@ Accessibility IDs **सबसे विश्वसनीय क्रॉस-प
 ~usernameField
 ```
 
-:::tip सर्वोत्तम प्रथा
+:::tip सर्वोत्तम अभ्यास
 उपलब्ध होने पर हमेशा accessibility IDs को प्राथमिकता दें। ये प्रदान करते हैं:
 - क्रॉस-प्लेटफ़ॉर्म संगतता (iOS + Android)
 - UI परिवर्तनों के दौरान स्थिरता
@@ -145,27 +145,27 @@ iOS Predicate Strings iOS ऑटोमेशन के लिए तेज़ �
 
 **Predicate ऑपरेटर्स:**
 
-| ऑपरेटर     | विवरण        |
-| ------------ | ------------------ |
-| `==`         | बराबर             |
-| `!=`         | बराबर नहीं         |
-| `CONTAINS`   | सबस्ट्रिंग शामिल है |
-| `BEGINSWITH` | से शुरू होता है        |
-| `ENDSWITH`   | पर समाप्त होता है          |
-| `LIKE`       | वाइल्डकार्ड मिलान     |
-| `MATCHES`    | Regex मिलान        |
-| `AND`        | लॉजिकल AND        |
-| `OR`         | लॉजिकल OR         |
+| ऑपरेटर       | विवरण                    |
+| ------------ | ------------------------ |
+| `==`         | बराबर                    |
+| `!=`         | बराबर नहीं               |
+| `CONTAINS`   | सबस्ट्रिंग शामिल है      |
+| `BEGINSWITH` | से शुरू होता है          |
+| `ENDSWITH`   | पर समाप्त होता है        |
+| `LIKE`       | वाइल्डकार्ड मिलान        |
+| `MATCHES`    | Regex मिलान              |
+| `AND`        | तार्किक AND              |
+| `OR`         | तार्किक OR               |
 
 #### Class Chain
 
 iOS Class Chains अच्छे प्रदर्शन के साथ पदानुक्रमित एलिमेंट लोकेशन प्रदान करते हैं।
 
 ```text
-# प्रत्यक्ष चाइल्ड
+# सीधा चाइल्ड
 -ios class chain:**/XCUIElementTypeButton[`label == "Login"`]
 
-# कोई भी वंशज
+# कोई भी डिसेंडेंट
 -ios class chain:**/XCUIElementTypeButton
 
 # इंडेक्स द्वारा
@@ -201,7 +201,7 @@ XPath iOS पर काम करता है लेकिन predicate strings
 
 ## क्रॉस-प्लेटफ़ॉर्म सेलेक्टर रणनीति
 
-ऐसे टेस्ट लिखते समय जिन्हें iOS और Android दोनों पर काम करना हो, इस प्राथमिकता क्रम का उपयोग करें:
+जब ऐसे टेस्ट लिख रहे हों जिन्हें iOS और Android दोनों पर काम करना हो, तो इस प्राथमिकता क्रम का उपयोग करें:
 
 ### 1. Accessibility ID (सर्वोत्तम)
 
@@ -242,46 +242,46 @@ XPath दोनों प्लेटफ़ॉर्म पर काम कर�
 
 ### Android एलिमेंट प्रकार
 
-| प्रकार                          | विवरण      |
-| ----------------------------- | ---------------- |
-| `android.widget.Button`       | बटन           |
-| `android.widget.EditText`     | टेक्स्ट इनपुट       |
+| प्रकार                        | विवरण              |
+| ----------------------------- | ------------------ |
+| `android.widget.Button`       | बटन                |
+| `android.widget.EditText`     | टेक्स्ट इनपुट      |
 | `android.widget.TextView`     | टेक्स्ट लेबल       |
-| `android.widget.ImageView`    | इमेज            |
-| `android.widget.ImageButton`  | इमेज बटन     |
-| `android.widget.CheckBox`     | चेकबॉक्स         |
-| `android.widget.RadioButton`  | रेडियो बटन     |
-| `android.widget.Switch`       | टॉगल स्विच    |
-| `android.widget.Spinner`      | ड्रॉपडाउन         |
-| `android.widget.ListView`     | लिस्ट व्यू        |
-| `android.widget.RecyclerView` | रीसाइकलर व्यू    |
-| `android.widget.ScrollView`   | स्क्रॉल कंटेनर |
+| `android.widget.ImageView`    | इमेज               |
+| `android.widget.ImageButton`  | इमेज बटन           |
+| `android.widget.CheckBox`     | चेकबॉक्स           |
+| `android.widget.RadioButton`  | रेडियो बटन         |
+| `android.widget.Switch`       | टॉगल स्विच         |
+| `android.widget.Spinner`      | ड्रॉपडाउन          |
+| `android.widget.ListView`     | लिस्ट व्यू         |
+| `android.widget.RecyclerView` | रीसाइक्लर व्यू     |
+| `android.widget.ScrollView`   | स्क्रॉल कंटेनर     |
 
 ### iOS एलिमेंट प्रकार
 
-| प्रकार                             | विवरण     |
-| -------------------------------- | --------------- |
-| `XCUIElementTypeButton`          | बटन          |
+| प्रकार                           | विवरण              |
+| -------------------------------- | ------------------ |
+| `XCUIElementTypeButton`          | बटन                |
 | `XCUIElementTypeTextField`       | टेक्स्ट इनपुट      |
-| `XCUIElementTypeSecureTextField` | पासवर्ड इनपुट  |
-| `XCUIElementTypeStaticText`      | टेक्स्ट लेबल      |
-| `XCUIElementTypeImage`           | इमेज           |
-| `XCUIElementTypeSwitch`          | टॉगल स्विच   |
-| `XCUIElementTypeSlider`          | स्लाइडर          |
-| `XCUIElementTypePicker`          | पिकर व्हील    |
-| `XCUIElementTypeTable`           | टेबल व्यू      |
-| `XCUIElementTypeCell`            | टेबल सेल      |
-| `XCUIElementTypeCollectionView`  | कलेक्शन व्यू |
-| `XCUIElementTypeScrollView`      | स्क्रॉल व्यू     |
+| `XCUIElementTypeSecureTextField` | पासवर्ड इनपुट      |
+| `XCUIElementTypeStaticText`      | टेक्स्ट लेबल       |
+| `XCUIElementTypeImage`           | इमेज               |
+| `XCUIElementTypeSwitch`          | टॉगल स्विच         |
+| `XCUIElementTypeSlider`          | स्लाइडर            |
+| `XCUIElementTypePicker`          | पिकर व्हील         |
+| `XCUIElementTypeTable`           | टेबल व्यू          |
+| `XCUIElementTypeCell`            | टेबल सेल           |
+| `XCUIElementTypeCollectionView`  | कलेक्शन व्यू       |
+| `XCUIElementTypeScrollView`      | स्क्रॉल व्यू       |
 
-## सर्वोत्तम प्रथाएँ
+## सर्वोत्तम अभ्यास
 
 ### करें
 
 - स्थिर, क्रॉस-प्लेटफ़ॉर्म सेलेक्टर्स के लिए **accessibility IDs का उपयोग करें**
 - टेस्टिंग के लिए वेब एलिमेंट्स में **data-testid एट्रिब्यूट्स जोड़ें**
-- जब accessibility IDs उपलब्ध न हों, तो Android पर **resource IDs का उपयोग करें**
-- iOS पर XPath की बजाय **predicate strings को प्राथमिकता दें**
+- जब accessibility IDs उपलब्ध न हों तो Android पर **resource IDs का उपयोग करें**
+- iOS पर XPath की तुलना में **predicate strings को प्राथमिकता दें**
 - **सेलेक्टर्स को सरल** और विशिष्ट रखें
 
 ### न करें
@@ -313,7 +313,7 @@ android=new UiSelector().resourceId("com.app:id/submit")
 android=new UiSelector().text("Submit")
 ```
 
-## सेलेक्टर्स की डीबगिंग
+## सेलेक्टर्स की डिबगिंग
 
 ### वेब (Chrome DevTools)
 
@@ -337,7 +337,7 @@ MCP सर्वर का `get_elements` टूल प्रत्येक ए
 Ask: "Get all visible elements on the screen"
 ```
 
-यह पहले से जेनरेट किए गए सेलेक्टर्स के साथ एलिमेंट्स लौटाता है जिनका आप सीधे उपयोग कर सकते हैं।
+यह पहले से जनरेट किए गए सेलेक्टर्स के साथ एलिमेंट्स लौटाता है जिनका आप सीधे उपयोग कर सकते हैं।
 
 #### उन्नत विकल्प
 
@@ -347,13 +347,13 @@ Ask: "Get all visible elements on the screen"
 # केवल इमेज और विज़ुअल एलिमेंट्स प्राप्त करें
 Get visible elements with elementType "visual"
 
-# लेआउट डीबगिंग के लिए एलिमेंट्स को उनके निर्देशांकों के साथ प्राप्त करें
+# लेआउट डिबगिंग के लिए एलिमेंट्स को उनके कोऑर्डिनेट्स के साथ प्राप्त करें
 Get visible elements with includeBounds enabled
 
 # अगले 20 एलिमेंट्स प्राप्त करें (पेजिनेशन)
 Get visible elements with limit 20 and offset 20
 
-# डीबगिंग के लिए लेआउट कंटेनर्स शामिल करें
+# डिबगिंग के लिए लेआउट कंटेनर्स शामिल करें
 Get visible elements with includeContainers enabled
 ```
 

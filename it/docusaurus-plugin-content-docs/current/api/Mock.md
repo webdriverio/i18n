@@ -3,7 +3,7 @@ id: mock
 title: L'oggetto Mock
 ---
 
-L'oggetto mock è un oggetto che rappresenta un mock di rete e contiene informazioni sulle richieste che corrispondono a determinati `url` e `filterOptions`. Può essere ottenuto utilizzando il comando [`mock`](/docs/api/browser/mock).
+L'oggetto mock è un oggetto che rappresenta un mock di rete e contiene informazioni sulle richieste che corrispondevano a determinati `url` e `filterOptions`. Può essere ottenuto utilizzando il comando [`mock`](/docs/api/browser/mock).
 
 :::info
 
@@ -14,13 +14,13 @@ test automatizzati nel cloud. Scopri di più nella sezione [Protocolli di automa
 
 :::
 
-Puoi leggere di più sul mocking di richieste e risposte in WebdriverIO nella nostra guida [Mock e Spy](/docs/mocksandspies).
+Puoi leggere di più sul mocking di richieste e risposte in WebdriverIO nella nostra guida [Mock e Spie](/docs/mocksandspies).
 
 ## Multi-remote
 
-Su un browser [multi-remote](/docs/multiremote), [`browser.mock()`](/docs/api/browser/mock) restituisce un `MultiRemoteMock` invece di questo oggetto. `instances` elenca i nomi dei browser e `getInstance(name)` restituisce il `Mock` per quel browser. `respond()`, `restore()` e gli altri metodi seguenti vengono eseguiti su ogni istanza. `calls` resta sul mock di ciascuna istanza: `mock.getInstance('myChromeBrowser').calls`.
+Su un browser [multi-remote](/docs/multiremote), [`browser.mock()`](/docs/api/browser/mock) restituisce un `MultiRemoteMock` invece di questo oggetto. `instances` elenca i nomi dei browser e `getInstance(name)` restituisce il `Mock` per quel browser. `respond()`, `restore()` e gli altri metodi riportati di seguito vengono eseguiti su ogni istanza. `calls` rimane sul mock di ciascuna istanza: `mock.getInstance('myChromeBrowser').calls`.
 
-`getInstance` genera l'errore `Multi-remote object has no instance named "<name>"` quando `name` non è uno dei valori di `instances`.
+`getInstance` genera l'errore `Multi-remote object has no instance named "<name>"` quando `name` non è tra le `instances`.
 
 ## Proprietà
 
@@ -30,7 +30,7 @@ Un oggetto mock contiene le seguenti proprietà:
 | ---- | ---- | ------- |
 | `url` | `String` | L'url passato al comando mock |
 | `filterOptions` | `Object` | Le opzioni di filtro delle risorse passate al comando mock |
-| `browser` | `Object` | L'[oggetto Browser](/docs/api/browser) utilizzato per ottenere l'oggetto mock. |
+| `browser` | `Object` | L'[Oggetto Browser](/docs/api/browser) utilizzato per ottenere l'oggetto mock. |
 | `calls` | `Object[]` | Informazioni sulle richieste del browser corrispondenti, contenenti proprietà come `url`, `method`, `headers`, `initialPriority`, `referrerPolic`, `statusCode`, `responseHeaders` e `body` |
 
 ## Metodi
@@ -105,11 +105,11 @@ interface MatchEvent {
     method: string // Metodo della richiesta HTTP.
     headers: Record<string, string> // Header della richiesta HTTP.
     postData?: string // Dati della richiesta HTTP POST.
-    hasPostData?: boolean // True quando la richiesta ha dati POST.
+    hasPostData?: boolean // True quando la richiesta contiene dati POST.
     mixedContentType?: MixedContentType // Il tipo di contenuto misto della richiesta.
     initialPriority: ResourcePriority // Priorità della richiesta della risorsa al momento dell'invio della richiesta.
     referrerPolicy: ReferrerPolicy // La referrer policy della richiesta, come definita in https://www.w3.org/TR/referrer-policy/
-    isLinkPreload?: boolean // Se viene caricata tramite link preload.
+    isLinkPreload?: boolean // Indica se è caricata tramite link preload.
     body: string | Buffer | JsonCompatible // Body della risposta della risorsa effettiva.
     responseHeaders: Record<string, string> // Header della risposta HTTP.
     statusCode: number // Codice di stato della risposta HTTP.

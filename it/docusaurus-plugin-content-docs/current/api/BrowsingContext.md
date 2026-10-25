@@ -4,7 +4,7 @@ title: L'oggetto BrowsingContext
 description: Gestisci una scheda, una finestra o un frame come oggetto ed esegui comandi direttamente al suo interno, senza dover spostare la sessione su di esso.
 ---
 
-Un browsing context è una scheda, una finestra o un frame che gestisci come oggetto. I comandi che chiami su di esso vengono eseguiti in quella scheda o in quel frame, mentre la sessione e tutti gli altri contesti restano dove sono. Dalla v10, WebdriverIO gestisce così schede, finestre e frame in una sessione WebDriver BiDi, dove questo approccio sostituisce `switchWindow()` e `switchFrame()`.
+Un browsing context è una scheda, una finestra o un frame che gestisci come oggetto. I comandi che chiami su di esso vengono eseguiti in quella scheda o in quel frame, mentre la sessione e tutti gli altri contesti restano dove sono. Dalla v10 è questo il modo in cui WebdriverIO gestisce schede, finestre e frame in una sessione WebDriver BiDi, e in queste sessioni sostituisce `switchWindow()` e `switchFrame()`.
 
 ```ts title="test/specs/tabs.e2e.ts"
 import { browser, expect } from '@wdio/globals'
@@ -29,11 +29,11 @@ describe('browsing contexts', () => {
 | Chiamata | Restituisce |
 | --- | --- |
 | [`browser.url(url)`](/docs/api/browser/url) | Il primo contesto top-level della sessione, dopo averlo navigato. `browser.url()` naviga sempre questo contesto. |
-| [`browser.newWindow(url, { type })`](/docs/api/browser/newWindow) | Una nuova scheda (`type: 'tab'`) o finestra, una volta caricata la sua pagina. La sessione non si sposta su di essa. |
+| [`browser.newWindow(url, { type })`](/docs/api/browser/newWindow) | Una nuova scheda (`type: 'tab'`) o finestra, una volta caricata la pagina. La sessione non si sposta su di essa. |
 | [`browser.browsingContexts()`](/docs/api/browser/browsingContexts) | Tutti i contesti top-level aperti (schede e finestre, non i frame), ad esempio una scheda aperta dalla pagina stessa. |
 | [`context.frame(query)`](/docs/api/browsingContext/frame) | Un frame di un contesto, anche cross-origin e annidato. |
 
-Conserva l'oggetto e chiama i comandi su di esso. Non esiste una scheda o un frame "corrente" tra cui passare, quindi i contesti possono essere usati anche in parallelo:
+Conserva l'oggetto e chiama i comandi su di esso. Non esiste una scheda o un frame "corrente" tra cui spostarsi, quindi i contesti possono essere usati anche in parallelo:
 
 ```ts
 const [titleA, titleB] = await Promise.all([pageA.getTitle(), pageB.getTitle()])
@@ -41,7 +41,7 @@ const [titleA, titleB] = await Promise.all([pageA.getTitle(), pageB.getTitle()])
 
 ## Sessioni WebDriver BiDi e Classic
 
-I browsing context richiedono una sessione WebDriver BiDi, che dalla v10 è quella predefinita per Chrome, Edge e Firefox. In una sessione WebDriver Classic, ad esempio con Appium o Safari, esiste solo il contesto corrente della sessione. In questo caso:
+I browsing context richiedono una sessione WebDriver BiDi, che dalla v10 è il default per Chrome, Edge e Firefox. In una sessione WebDriver Classic, ad esempio con Appium o Safari, esiste solo il contesto corrente della sessione. In questo caso:
 
 - `browser.url()` restituisce un sostituto del browser. Comandi come `$`, `execute` o `getTitle` vengono eseguiti sul browser, `url`, `isFrame` e `parent` descrivono la pagina corrente e `contextId` è `undefined`.
 - `frame()`, `navigate()` e `activate()` vengono rifiutati e indicano il comando Classic da usare al loro posto: [`browser.switchFrame()`](/docs/api/browser/switchFrame), [`browser.url()`](/docs/api/browser/url) o [`browser.switchWindow()`](/docs/api/browser/switchWindow).
@@ -53,11 +53,11 @@ Controlla `browser.isBidi` quando lo stesso codice viene eseguito in entrambi i 
 | Nome | Tipo | Dettagli |
 | ---- | ---- | ------- |
 | `contextId` | `String` | L'id del browsing context WebDriver BiDi. `undefined` in una sessione Classic. |
-| `url` | `String` | L'URL a cui il contesto è stato navigato l'ultima volta con `browser.url()`, `navigate()` o `newWindow()`. Le navigazioni effettuate dalla pagina stessa (link, `location`, `history.pushState`) sono visibili solo dopo [`getUrl()`](/docs/api/browsingContext/getUrl). |
+| `url` | `String` | L'URL verso cui il contesto è stato navigato l'ultima volta con `browser.url()`, `navigate()` o `newWindow()`. Le navigazioni effettuate dalla pagina stessa (link, `location`, `history.pushState`) sono visibili solo dopo [`getUrl()`](/docs/api/browsingContext/getUrl). |
 | `isFrame` | `Boolean` | `true` per un frame, `false` per una scheda o una finestra. |
 | `parent` | `BrowsingContext \| undefined` | Per un frame, il contesto su cui è stato chiamato `frame()` (o il frame intermedio, per un frame annidato più in profondità). `undefined` per una scheda o una finestra. |
 | `browser` | `Browser` | L'[oggetto browser](/docs/api/browser) della sessione. |
-| `request` | `Request \| undefined` | Informazioni di caricamento dell'ultima navigazione tramite `browser.url()` o `navigate()`: URL, header, risposta, reindirizzamenti e le richieste effettuate dalla pagina. |
+| `request` | `Request \| undefined` | Informazioni di caricamento dell'ultima navigazione tramite `browser.url()` o `navigate()`: URL, header, risposta, redirect e le richieste effettuate dalla pagina. |
 | `sessionId` | `String` | Id della sessione, uguale a `browser.sessionId`. |
 | `capabilities` | `Object` | Capabilities della sessione, uguali a `browser.capabilities`. |
 | `options` | `Object` | Opzioni di WebdriverIO, uguali a `browser.options`. |
@@ -83,18 +83,18 @@ Questi comandi agiscono sul contesto su cui vengono chiamati. Ognuno ha la propr
 
 ### Comandi del browser eseguiti in un contesto
 
-Questi sono gli omonimi [comandi del browser](/docs/api/browser), applicati a questo contesto anziché al primo della sessione. Accettano gli stessi argomenti.
+Si tratta degli omonimi [comandi del browser](/docs/api/browser), applicati a questo contesto invece che al primo contesto della sessione. Accettano gli stessi argomenti.
 
 | Comando | In un browsing context |
 | --- | --- |
-| [`$`](/docs/api/browser/$), [`$$`](/docs/api/browser/$$), [`custom$`](/docs/api/browser/custom$), [`custom$$`](/docs/api/browser/custom$$), [`react$`](/docs/api/browser/react$), [`react$$`](/docs/api/browser/react$$) | Trovano elementi nel documento di questo contesto. |
+| [`$`](/docs/api/browser/$), [`$$`](/docs/api/browser/$$), [`custom$`](/docs/api/browser/custom$), [`custom$$`](/docs/api/browser/custom$$), [`react$`](/docs/api/browser/react$), [`react$$`](/docs/api/browser/react$$) | Trova elementi nel documento di questo contesto. |
 | [`execute`](/docs/api/browser/execute) | Esegue uno script nel documento di questo contesto. |
-| [`action`](/docs/api/browser/action), [`actions`](/docs/api/browser/actions), [`keys`](/docs/api/browser/keys), [`scroll`](/docs/api/browser/scroll) | Inviano input a questo contesto, anche quando è una scheda in background. |
-| [`saveScreenshot`](/docs/api/browser/saveScreenshot), [`savePDF`](/docs/api/browser/savePDF) | Catturano questo contesto. |
-| [`getCookies`](/docs/api/browser/getCookies), [`setCookies`](/docs/api/browser/setCookies), [`deleteCookies`](/docs/api/browser/deleteCookies) | Leggono e modificano i cookie della partizione di storage di questo contesto. |
+| [`action`](/docs/api/browser/action), [`actions`](/docs/api/browser/actions), [`keys`](/docs/api/browser/keys), [`scroll`](/docs/api/browser/scroll) | Invia input a questo contesto, anche quando si tratta di una scheda in background. |
+| [`saveScreenshot`](/docs/api/browser/saveScreenshot), [`savePDF`](/docs/api/browser/savePDF) | Cattura questo contesto. |
+| [`getCookies`](/docs/api/browser/getCookies), [`setCookies`](/docs/api/browser/setCookies), [`deleteCookies`](/docs/api/browser/deleteCookies) | Legge e modifica i cookie della partizione di storage di questo contesto. |
 | [`setViewport`](/docs/api/browser/setViewport) | Ridimensiona il viewport di questa scheda o finestra. |
 | [`addInitScript`](/docs/api/browser/addInitScript) | Esegue uno script prima degli script della pagina, solo in questa scheda o finestra. |
-| [`mock`](/docs/api/browser/mock), [`mockClearAll`](/docs/api/browser/mockClearAll), [`mockRestoreAll`](/docs/api/browser/mockRestoreAll) | Simulano le richieste solo di questa scheda o finestra. Un mock termina quando la sua scheda viene chiusa. |
+| [`mock`](/docs/api/browser/mock), [`mockClearAll`](/docs/api/browser/mockClearAll), [`mockRestoreAll`](/docs/api/browser/mockRestoreAll) | Simula (mock) le richieste solo di questa scheda o finestra. Un mock termina quando la sua scheda viene chiusa. |
 | [`emulate`](/docs/api/browser/emulate) | Emula una proprietà del dispositivo, ad esempio la geolocalizzazione o l'orologio, solo in questa scheda o finestra. |
 | [`restore`](/docs/api/browser/restore) | Ripristina le emulazioni, come `browser.restore()`. |
 | [`waitUntil`](/docs/api/browser/waitUntil), [`pause`](/docs/api/browser/pause) | Come sul browser. |
@@ -109,7 +109,7 @@ it('mocks the requests of one tab only', async () => {
     const mock = await tab.mock('**/api/users')
     mock.respond([{ name: 'Mocked user' }])
 
-    // le richieste di `tab` ricevono la risposta simulata, quelle di `page` raggiungono il server
+    // le richieste di `tab` ricevono la risposta simulata, le richieste di `page` raggiungono il server
 })
 ```
 
@@ -129,7 +129,7 @@ I comandi di sessione, come `deleteSession`, `newWindow` o `browsingContexts`, s
 
 ## Elementi di un browsing context
 
-Un elemento ottenuto tramite un contesto appartiene a quel contesto. I comandi degli elementi come `click`, `setValue` o `getText` vengono eseguiti nel documento di quel contesto, anche quando si tratta di una scheda in background o di un frame. Seguono la specifica WebDriver come fanno i driver, quindi restituiscono gli stessi risultati e gli stessi errori (ad esempio `element click intercepted`) di un elemento della pagina in primo piano. `getComputedRole` e `getComputedLabel` vengono rifiutati per un elemento di un contesto diverso dal primo della sessione.
+Un elemento ottenuto tramite un contesto appartiene a quel contesto. I comandi degli elementi come `click`, `setValue` o `getText` vengono eseguiti nel documento di quel contesto, anche quando si tratta di una scheda in background o di un frame. Seguono la specifica WebDriver come fanno i driver, quindi restituiscono gli stessi risultati e gli stessi errori (ad esempio `element click intercepted`) di un elemento della pagina in primo piano. `getComputedRole` e `getComputedLabel` vengono rifiutati per un elemento di un contesto diverso dal primo contesto della sessione.
 
 ```ts
 const page = await browser.url('https://the-internet.herokuapp.com/nested_frames')
@@ -147,7 +147,7 @@ console.log(await body.getText()) // restituisce: "BOTTOM"
 | `` `frame()` needs a WebDriver BiDi session, but this session uses WebDriver Classic `` | La sessione è una sessione Classic (ad esempio Appium o Safari). Usa il comando Classic indicato nel messaggio. |
 | `` `<command>` is only available on a top-level browsing context `` | Il comando è stato chiamato su un frame. Chiamalo sulla scheda del frame, vedi [Solo top-level](#top-level-only). |
 | `` `addCommand` is only available on the browser, not on a browsing context `` | Registra i comandi personalizzati su `browser`. |
-| `no such frame: the frame "…" was discarded because the page it belongs to navigated away` | La pagina che conteneva il frame ha navigato altrove. Ottieni di nuovo il frame con `frame()` sulla nuova pagina. |
+| `no such frame: the frame "…" was discarded because the page it belongs to navigated away` | La pagina che conteneva il frame ha effettuato una navigazione. Ottieni di nuovo il frame con `frame()` sulla nuova pagina. |
 
 ## Correlati
 

@@ -13,7 +13,7 @@ await $('aria/Cart (1)').waitForDisplayed()
 JS
 ```
 
-Usa sempre `await` con i comandi. `$` restituisce un elemento e genera un errore quando non è presente. `$$` restituisce una lista. Non esiste una modalità sincrona né `browser.element`.
+Usa sempre `await` con i comandi. `$` restituisce un elemento e genera un errore quando è assente. `$$` restituisce una lista. Non esiste una modalità sincrona né `browser.element`.
 
 I nomi che dichiari restano disponibili nel successivo `exec`. Un `import` di primo livello viene caricato dalla directory del progetto.
 
@@ -31,11 +31,11 @@ Usa `visual check <tag>` quando la domanda riguarda l'aspetto dello schermo. Que
 npx wdio session visual check cart
 ```
 
-`visual accept cart` copia l'immagine attuale più recente per quel tag sopra la baseline. Non copia le immagini più vecchie che condividono il prefisso del tag.
+`visual accept cart` copia l'ultima immagine effettiva per quel tag sopra la baseline. Non copia le immagini precedenti che condividono il prefisso del tag.
 
 ## Quando usare invece una scorciatoia
 
-`click`, `fill`, `type`, `press` e `tap` sono più brevi di `exec` per una singola interazione, e stampano la riga WebdriverIO che hanno eseguito. Preferiscili con un ref dall'ultimo [snapshot](/docs/session/snapshots). Usa `exec` per attese, asserzioni e qualsiasi cosa che richieda più di un comando.
+`click`, `fill`, `type`, `press` e `tap` sono più brevi di `exec` per una singola interazione, e stampano la riga WebdriverIO che hanno eseguito. Preferiscili con un ref dall'ultimo [snapshot](/docs/session/snapshots). Usa `exec` per le attese, le asserzioni e tutto ciò che richiede più di un comando.
 
 ## Prossimi passi
 
