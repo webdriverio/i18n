@@ -21,6 +21,7 @@ export const TRANSLATION_INSTRUCTIONS = {
         'The document is a Docusaurus documentation page and separated in frontmatter and body.',
         'The frontmatter is the first block of the document, and the body is the rest of the document.',
         'Only translate the "title" and "description" fields in the frontmatter.',
+        'If the "description" field in the frontmatter is empty or missing, either draft a concise translated description of the document or omit the "description" key entirely. Never leave "description" empty or set to null.',
         'In the body: keep all Markdown formatting intact, don\'t add any headings if they don\'t exist in the original content',
         'Also ignore any links, code blocks (except comments), and other syntax within tick characters (`).',
         'Do not translate code inside code blocks, variable names, or technical terms that should remain in English.',

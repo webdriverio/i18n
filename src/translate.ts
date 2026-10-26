@@ -19,6 +19,10 @@ const model = 'claude-opus-5-5'
 // I18N_CACHE_FILE: another cache file, for tests
 const CACHE_FILE_PATH = process.env.I18N_CACHE_FILE ?? path.join(ROOT_DIR, 'src', 'cache.json');
 const CONTENT_SEPARATOR = '---'
+const FRONTMATTER_REGEX = /^---\r?\n([\s\S]*?)\r?\n---(?=\r?\n|$)/m
+const EMPTY_DESCRIPTION_REGEX = /^\s*description\s*:\s*(?:null|~|""|'')?\s*$/i
+const EMPTY_FRONTMATTER_FIELD_REGEX = /^\s*(id|title|description|sidebar_label|custom_edit_url)\s*:\s*(?:null|~|""|'')?\s*$/m
+const REQUIRED_FRONTMATTER_KEY_REGEX = /^\s*(?:id|title)\s*:\s*\S+/m
 const MAX_TOKENS = 128 * 1000
 const BATCH_CHECK_INTERVAL = 5000 // 5 seconds
 
@@ -75,6 +79,57 @@ export function updateCache(cacheKey: string, contentShasum: string, language: s
 // Calculate SHA-256 hash of content
 function calculateShasum(content: string): string {
     return crypto.createHash('sha256').update(content).digest('hex');
+}
+
+/**
+ * Strip any LLM preamble before the frontmatter, drop empty/null description
+ * lines, and validate the resulting frontmatter block.
+ */
+export function sanitizeMarkdown(text: string): string {
+    const match = FRONTMATTER_REGEX.exec(text)
+    if (!match || match.index === undefined) {
+        throw new Error('Translated Markdown is missing a valid frontmatter block')
+    }
+
+    const cleanedFrontmatterLines = match[1]
+        .split(/\r?\n/)
+        .filter((line) => !EMPTY_DESCRIPTION_REGEX.test(line))
+
+    const restOfDocument = text.slice(match.index + match[0].length)
+    const normalized = [
+        CONTENT_SEPARATOR,
+        ...cleanedFrontmatterLines,
+        CONTENT_SEPARATOR,
+    ].join('\n') + restOfDocument
+
+    validateFrontmatter(normalized)
+    return normalized
+}
+
+/**
+ * Validate that a Markdown document starts with a frontmatter block and has no
+ * empty or null frontmatter fields (such as `description:` or `description: null`).
+ */
+export function validateFrontmatter(markdown: string, filePath?: string): void {
+    const location = filePath ? ` in ${filePath}` : ''
+    if (!markdown.startsWith(`${CONTENT_SEPARATOR}\n`) && !markdown.startsWith(`${CONTENT_SEPARATOR}\r\n`)) {
+        throw new Error(`Markdown does not start with frontmatter${location}`)
+    }
+
+    const match = FRONTMATTER_REGEX.exec(markdown)
+    if (!match || match.index !== 0) {
+        throw new Error(`Markdown has an unclosed frontmatter block${location}`)
+    }
+
+    const frontmatter = match[1]
+    if (!REQUIRED_FRONTMATTER_KEY_REGEX.test(frontmatter)) {
+        throw new Error(`Frontmatter is missing required "id" or "title" field${location}`)
+    }
+
+    const emptyFieldMatch = EMPTY_FRONTMATTER_FIELD_REGEX.exec(frontmatter)
+    if (emptyFieldMatch) {
+        throw new Error(`Frontmatter contains an empty or null "${emptyFieldMatch[1]}" field${location}`)
+    }
 }
 
 /**
@@ -198,10 +253,11 @@ async function translateContent(content: string, language: string, extension: st
 
         /**
          * Remove anything that the LLM prepends to the frontmatter,
-         * e.g. "I'll translate the Markdown content from English to German as requested:"
+         * e.g. "I'll translate the Markdown content from English to German as requested:",
+         * drop empty/null description lines, and validate the frontmatter block.
          */
         if (extension === DocumentType.MARKDOWN) {
-            return text.slice(text.indexOf(CONTENT_SEPARATOR))
+            return sanitizeMarkdown(text)
         }
 
         try {
