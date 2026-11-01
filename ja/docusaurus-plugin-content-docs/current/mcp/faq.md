@@ -93,7 +93,7 @@ Chrome、Firefox、Edge、Safariのすべてがサポートされています。
 
 はい！`navigationUrl`パラメータを使用してください：
 
-「Chromeを起動してhttps://webdriver.ioに移動して」
+「Chromeを起動してhttps://webdriver.io に移動して」
 
 これは、ブラウザを起動してから別途ナビゲーションするよりも効率的です。
 

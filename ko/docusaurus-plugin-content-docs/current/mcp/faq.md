@@ -94,7 +94,7 @@ Claude Desktop 설정에 다음을 추가하세요:
 
 네! `navigationUrl` 매개변수를 사용하세요:
 
-"Chrome을 시작하고 https://webdriver.io로 이동해줘"
+"Chrome을 시작하고 https://webdriver.io 로 이동해줘"
 
 브라우저를 시작한 다음 별도로 탐색하는 것보다 더 효율적입니다.
 

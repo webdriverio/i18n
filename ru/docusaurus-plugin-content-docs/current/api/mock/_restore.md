@@ -25,4 +25,3 @@ it('should demonstrate the addValue command', async () => {
     await browser.url('https://google.com') // shows normal Google logo again
 })
 ```
-```

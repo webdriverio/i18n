@@ -1697,7 +1697,7 @@ driver.gsmSignal(signalStrength, signalStrengh)
     <tr>
       <td><code><var>signalStrengh</var></code><br /><span className="label labelWarning">可选</span></td>
       <td>string</td>
-      <td>范围 [0, 4] 内的信号强度。如果您使用 Appium v1.11.0 或更低版本，请同样使用相同的值设置此参数（参见 https://github.com/appium/appium/issues/12234）。</td>
+      <td>范围 [0, 4] 内的信号强度。如果您使用 Appium v1.11.0 或更低版本，请同样使用相同的值设置此参数（参见 https://github.com/appium/appium/issues/12234 ）。</td>
     </tr>
   </tbody>
 </table>

@@ -607,7 +607,7 @@ pnpm run test.local.desktop
 pnpm run test.local.desktop.storybook
 ```
 
-これにより、ヘッドレスモードのChromeを使用してhttps://govuk-react.github.io/govuk-react/にあるデモStorybookリポジトリに対してStorybookテストが実行されます。
+これにより、ヘッドレスモードのChromeを使用してhttps://govuk-react.github.io/govuk-react/ にあるデモStorybookリポジトリに対してStorybookテストが実行されます。
 
 より多くのブラウザでテストを実行するには、次のように実行できます：
 

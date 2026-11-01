@@ -41,4 +41,3 @@ $(selector).moveTo({ xOffset, yOffset })
     </tr>
   </tbody>
 </table>
-```

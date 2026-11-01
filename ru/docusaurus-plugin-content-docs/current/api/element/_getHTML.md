@@ -104,4 +104,3 @@ it('allows to snapshot shadow dom', async () => {
 
 - **&lt;String&gt;**
             **<code><var>return</var></code>:**   HTML указанного элемента    
-```
