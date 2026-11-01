@@ -31,7 +31,7 @@ interface CacheEntry {
     languages: string[]
 }
 
-const translationCache = cache as unknown as Map<string, CacheEntry>;
+const translationCache = cache as Record<string, CacheEntry>;
 const batchStatuses = new Map<string, {
     resolve: (value: void) => void,
     reject: (reason?: any) => void,
@@ -56,7 +56,7 @@ const client = new Anthropic({
 async function writeCacheEntry(cacheKey: string, contentShasum: string, language: string) {
     // read again for the earlier updates (queued in this process only)
     const cacheFile = await fs.readFile(CACHE_FILE_PATH, 'utf-8');
-    const cache = JSON.parse(cacheFile) as unknown as Map<string, CacheEntry>;
+    const cache = JSON.parse(cacheFile) as Record<string, CacheEntry>;
     const entry = cache[cacheKey] as CacheEntry | undefined;
     // a new version of the page needs new translations
     const languages = entry?.hash === contentShasum ? entry.languages : [];
@@ -194,7 +194,7 @@ async function translateFile(sourcePath: string, targetPath: string, language: s
 
         console.log(`Successfully translated ${path.basename(sourcePath)} to ${language}`);
     } catch (error) {
-        console.error(`Error translating file ${sourcePath}:`, error.message);
+        console.error(`Error translating file ${sourcePath}:`, (error as Error).message);
     }
 }
 
@@ -311,7 +311,7 @@ function getMessages(language: string, content: string, extension: string) {
     return [{
         role: 'user',
         content: [
-            `Translate the following ${documentName} content from English to ${LANGUAGES_TO_TRANSLATE[language]}.`,
+            `Translate the following ${documentName} content from English to ${LANGUAGES_TO_TRANSLATE[language as keyof typeof LANGUAGES_TO_TRANSLATE]}.`,
             instructions,
             'Here is the content to translate:',
             '',
