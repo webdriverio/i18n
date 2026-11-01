@@ -4,6 +4,8 @@ updates:
   directory: "/"
   schedule:
     interval: weekly
+    # not Monday, the day of the other webdriverio repos: they share the org runners
+    day: wednesday
     time: "11:00"
   open-pull-requests-limit: 10
   versioning-strategy: increase-if-necessary
@@ -25,6 +27,8 @@ updates:
   directory: "/"
   schedule:
     interval: weekly
+    # not Monday, the day of the other webdriverio repos: they share the org runners
+    day: wednesday
     time: "11:00"
   open-pull-requests-limit: 10
   groups:
