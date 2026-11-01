@@ -9,9 +9,12 @@
         "cancel-all-batches": "tsx src/cancelAllBatches.ts"
     },
     "type": "module",
+    "engines": {
+        "node": ">=22.23.4 <23 || >=24.22.1 <25 || >=26.12.1"
+    },
     "dependencies": {
         "@anthropic-ai/sdk": "^0.82.0",
-        "@types/node": "^25.0.3",
+        "@types/node": "^24.19.2",
         "ai": "^6.0.1",
         "dotenv": "^17.2.3",
         "tsx": "^4.21.0",

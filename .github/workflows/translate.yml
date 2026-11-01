@@ -17,6 +17,9 @@ jobs:
         uses: actions/setup-node@v7
         with:
           node-version-file: '.nvmrc'
+          # keep .nvmrc a major (v24), never a full version, so CI always takes the latest 24.x;
+          # the runner cache can hold one below 24.22.1 (October 2026 security release)
+          check-latest: true
           cache: 'npm'
 
       - name: Install dependencies

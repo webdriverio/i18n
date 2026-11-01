@@ -7,6 +7,10 @@ updates:
     time: "11:00"
   open-pull-requests-limit: 10
   versioning-strategy: increase-if-necessary
+  ignore:
+    # the @types/node major follows the Node major in .nvmrc
+    - dependency-name: "@types/node"
+      update-types: ["version-update:semver-major"]
   groups:
     patch-deps-updates-main:
       update-types:
