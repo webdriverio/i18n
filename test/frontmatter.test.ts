@@ -89,6 +89,114 @@ test('validateFrontmatter rejects empty or null frontmatter fields', () => {
     )
 })
 
+test('sanitizeMarkdown removes stray post-frontmatter code fences, body labels, and outer trailing fences', () => {
+    const faCapabilitiesRaw = [
+        '```yaml',
+        '---',
+        'id: capabilities',
+        'title: قابلیت‌ها',
+        '---',
+        '```',
+        '',
+        'بخش body:',
+        'قابلیت، تعریفی برای یک رابط راه دور است.',
+    ].join('\n')
+
+    assert.equal(
+        sanitizeMarkdown(faCapabilitiesRaw),
+        [
+            '---',
+            'id: capabilities',
+            'title: قابلیت‌ها',
+            '---',
+            '',
+            'قابلیت، تعریفی برای یک رابط راه دور است.',
+        ].join('\n')
+    )
+
+    const outerFencedRaw = [
+        '```markdown',
+        '---',
+        'id: moveto',
+        'title: moveTo',
+        '---',
+        '',
+        '```js',
+        'await $(selector).moveTo()',
+        '```',
+        '',
+        '<table><tbody><tr><td>Text</td></tr></tbody></table>',
+        '```',
+    ].join('\n')
+
+    assert.equal(
+        sanitizeMarkdown(outerFencedRaw),
+        [
+            '---',
+            'id: moveto',
+            'title: moveTo',
+            '---',
+            '',
+            '```js',
+            'await $(selector).moveTo()',
+            '```',
+            '',
+            '<table><tbody><tr><td>Text</td></tr></tbody></table>',
+            '',
+        ].join('\n')
+    )
+})
+
+test('sanitizeMarkdown separates bare URLs from trailing non-ASCII text while preserving Markdown links and code', () => {
+    const jaBoilerplateRaw = [
+        '---',
+        'id: boilerplate-projects',
+        'title: ボイラープレートプロジェクト',
+        '---',
+        '',
+        '- http://the-internet.herokuapp.comでのログインと[WebdriverIOネイティブデモアプリ](https://github.com/webdriverio/native-demo-app)のテスト例',
+        '- Headspin Cloud（https://www.headspin.io/）でWebdriverIOテストを実行します。',
+        '- `https://webdriver.ioに移動して`',
+        '',
+        '```js',
+        '// https://webdriver.ioに移動して',
+        '```',
+    ].join('\n')
+
+    assert.equal(
+        sanitizeMarkdown(jaBoilerplateRaw),
+        [
+            '---',
+            'id: boilerplate-projects',
+            'title: ボイラープレートプロジェクト',
+            '---',
+            '',
+            '- http://the-internet.herokuapp.com でのログインと[WebdriverIOネイティブデモアプリ](https://github.com/webdriverio/native-demo-app)のテスト例',
+            '- Headspin Cloud（https://www.headspin.io/ ）でWebdriverIOテストを実行します。',
+            '- `https://webdriver.ioに移動して`',
+            '',
+            '```js',
+            '// https://webdriver.ioに移動して',
+            '```',
+        ].join('\n')
+    )
+})
+
+test('validateFrontmatter rejects unbalanced code fences and bare URLs glued to non-ASCII text', () => {
+    assert.throws(
+        () => validateFrontmatter('---\nid: capabilities\ntitle: قابلیت‌ها\n---\n```\n\nBody text', 'fa/Capabilities.md'),
+        /stray code fence or Body label after frontmatter in fa\/Capabilities\.md/
+    )
+    assert.throws(
+        () => validateFrontmatter('---\nid: moveto\ntitle: moveTo\n---\n\nBody text\n```', 'fa/_moveTo.md'),
+        /unbalanced fenced code blocks in fa\/_moveTo\.md/
+    )
+    assert.throws(
+        () => validateFrontmatter('---\nid: boilerplate\ntitle: ボイラープレート\n---\n\nhttp://the-internet.herokuapp.comでのログインと[WebdriverIO](https://webdriver.io)', 'ja/BoilerplateProjects.md'),
+        /bare URL without space before non-ASCII text in ja\/BoilerplateProjects\.md/
+    )
+})
+
 test('all translated Markdown files have valid frontmatter without empty descriptions', async () => {
     for (const language of Object.keys(LANGUAGES_TO_TRANSLATE)) {
         const langDir = path.join(ROOT_DIR, language)

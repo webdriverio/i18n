@@ -23,6 +23,10 @@ const FRONTMATTER_REGEX = /^---\r?\n([\s\S]*?)\r?\n---(?=\r?\n|$)/m
 const EMPTY_DESCRIPTION_REGEX = /^\s*description\s*:\s*(?:null|~|""|'')?\s*$/i
 const EMPTY_FRONTMATTER_FIELD_REGEX = /^\s*(id|title|description|sidebar_label|custom_edit_url)\s*:\s*(?:null|~|""|'')?\s*$/m
 const REQUIRED_FRONTMATTER_KEY_REGEX = /^\s*(?:id|title)\s*:\s*\S+/m
+const CODE_FENCE_LINE_REGEX = /^\s*```/gm
+const STRAY_POST_FRONTMATTER_FENCE_REGEX = /^\r?\n[ \t]*```[ \t]*(?=\r?\n|$)/
+const STRAY_BODY_LABEL_REGEX = /^(\r?\n)+[^\r\n:`*#<>\[\]]*\bbody\s*:\s*(\r?\n)+/i
+const BARE_URL_GLUED_TO_NON_ASCII_REGEX = /(https?:\/\/[A-Za-z0-9\-._~:/?#[\]@!$&*+,;=%]+)(?=[^\x00-\x7F])/g
 const MAX_TOKENS = 128 * 1000
 const BATCH_CHECK_INTERVAL = 5000 // 5 seconds
 
@@ -81,9 +85,26 @@ function calculateShasum(content: string): string {
     return crypto.createHash('sha256').update(content).digest('hex');
 }
 
+function separateBareUrlsFromNonAscii(markdown: string): string {
+    return markdown
+        .split(/(^\s*```[\s\S]*?^\s*```|`[^`\r\n]+`|\[[^\]]*\]\([^)\r\n]*\)|<https?:\/\/[^>\r\n]+>|["']https?:\/\/[^"'\r\n]+["'])/gm)
+        .map((segment, index) => (index % 2 === 1 ? segment : segment.replace(BARE_URL_GLUED_TO_NON_ASCII_REGEX, '$1 ')))
+        .join('')
+}
+
+function hasBareUrlGluedToNonAscii(markdown: string): boolean {
+    const nonCodeAndLinks = markdown
+        .split(/(^\s*```[\s\S]*?^\s*```|`[^`\r\n]+`|\[[^\]]*\]\([^)\r\n]*\)|<https?:\/\/[^>\r\n]+>|["']https?:\/\/[^"'\r\n]+["'])/gm)
+        .filter((_, index) => index % 2 === 0)
+        .join('')
+    return /(https?:\/\/[A-Za-z0-9\-._~:/?#[\]@!$&*+,;=%]+)(?=[^\x00-\x7F])/.test(nonCodeAndLinks)
+}
+
 /**
  * Strip any LLM preamble before the frontmatter, drop empty/null description
- * lines, and validate the resulting frontmatter block.
+ * lines, remove stray outer/post-frontmatter code fences or "Body:" labels,
+ * separate bare URLs from adjacent non-ASCII text, and validate the resulting
+ * Markdown document.
  */
 export function sanitizeMarkdown(text: string): string {
     const match = FRONTMATTER_REGEX.exec(text)
@@ -95,20 +116,31 @@ export function sanitizeMarkdown(text: string): string {
         .split(/\r?\n/)
         .filter((line) => !EMPTY_DESCRIPTION_REGEX.test(line))
 
-    const restOfDocument = text.slice(match.index + match[0].length)
-    const normalized = [
+    let restOfDocument = text
+        .slice(match.index + match[0].length)
+        .replace(STRAY_POST_FRONTMATTER_FENCE_REGEX, '')
+        .replace(STRAY_BODY_LABEL_REGEX, '\n\n')
+
+    const fenceCount = (restOfDocument.match(CODE_FENCE_LINE_REGEX) ?? []).length
+    if (fenceCount % 2 !== 0 && /\r?\n\s*```\s*$/.test(restOfDocument)) {
+        restOfDocument = restOfDocument.replace(/\r?\n\s*```\s*$/, '\n')
+    }
+
+    const normalized = separateBareUrlsFromNonAscii([
         CONTENT_SEPARATOR,
         ...cleanedFrontmatterLines,
         CONTENT_SEPARATOR,
-    ].join('\n') + restOfDocument
+    ].join('\n') + restOfDocument)
 
     validateFrontmatter(normalized)
     return normalized
 }
 
 /**
- * Validate that a Markdown document starts with a frontmatter block and has no
- * empty or null frontmatter fields (such as `description:` or `description: null`).
+ * Validate that a Markdown document starts with a frontmatter block, has no
+ * empty or null frontmatter fields (such as `description:` or `description: null`),
+ * has balanced fenced code blocks, and has no bare URLs glued directly to
+ * trailing non-ASCII text.
  */
 export function validateFrontmatter(markdown: string, filePath?: string): void {
     const location = filePath ? ` in ${filePath}` : ''
@@ -129,6 +161,20 @@ export function validateFrontmatter(markdown: string, filePath?: string): void {
     const emptyFieldMatch = EMPTY_FRONTMATTER_FIELD_REGEX.exec(frontmatter)
     if (emptyFieldMatch) {
         throw new Error(`Frontmatter contains an empty or null "${emptyFieldMatch[1]}" field${location}`)
+    }
+
+    const restOfDocument = markdown.slice(match[0].length)
+    if (STRAY_POST_FRONTMATTER_FENCE_REGEX.test(restOfDocument) || STRAY_BODY_LABEL_REGEX.test(restOfDocument)) {
+        throw new Error(`Markdown contains a stray code fence or Body label after frontmatter${location}`)
+    }
+
+    const fenceCount = (restOfDocument.match(CODE_FENCE_LINE_REGEX) ?? []).length
+    if (fenceCount % 2 !== 0) {
+        throw new Error(`Markdown has unbalanced fenced code blocks${location}`)
+    }
+
+    if (hasBareUrlGluedToNonAscii(restOfDocument)) {
+        throw new Error(`Markdown contains a bare URL without space before non-ASCII text${location}`)
     }
 }
 

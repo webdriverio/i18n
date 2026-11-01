@@ -19,4 +19,3 @@ graph TD
     CONTROLPASSEDTORUNNERINDEXJS["Control passed to @wdio/runner:index"]-->
     TESTINITCOMPLETE("All services, reports and services are setup. The tests are them executed.<br>See Test Execution flow chart for more information.")
 ```
-```

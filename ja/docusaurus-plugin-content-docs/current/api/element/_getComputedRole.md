@@ -26,4 +26,3 @@ it('should demonstrate the getComputedRole command', async () => {
 
 - **&lt;String&gt;**
             **<code><var>return</var></code>:**  計算されたWAI-ARIAロール    
-```

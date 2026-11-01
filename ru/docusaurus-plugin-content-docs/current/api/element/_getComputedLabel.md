@@ -26,4 +26,3 @@ it('should demonstrate the getComputedLabel command', async () => {
 
 - **&lt;String&gt;**
             **<code><var>return</var></code>:**  вычисленную WAI-ARIA метку
-```

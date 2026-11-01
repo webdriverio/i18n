@@ -38,4 +38,3 @@ browser.setWindowSize(width, height)
 
 - **&lt;Null|Object&gt;**
             **<code><var>return</var></code>:** Null für *NO*W3C Browser und Objekt `{x, y, width, height}` für W3C Browser
-```
