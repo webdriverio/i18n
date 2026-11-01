@@ -104,7 +104,7 @@ async function processRepoItem(octokit: Octokit, item: any, outputDir: string, r
                 MAX_CONCURRENT_OPERATIONS
             );
         } catch (error) {
-            console.warn(`Warning: Could not process directory ${item.path}: ${error.message}`);
+            console.warn(`Warning: Could not process directory ${item.path}: ${(error as Error).message}`);
         }
     } else if (item.type === 'file') {
         // Download the file content
