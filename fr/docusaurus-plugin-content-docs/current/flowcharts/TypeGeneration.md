@@ -37,4 +37,3 @@ graph TD
 Voir aussi [Vue d'ensemble](/docs/flowcharts/highleveloverview). Les spécifications de protocole
 appartiennent à `packages/wdio-protocols` ; le plugin du compilateur se trouve dans
 `infra/compiler/src/type-generation`.
-```

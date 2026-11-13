@@ -27,7 +27,9 @@ export const TRANSLATION_INSTRUCTIONS = {
         'Do not translate code inside code blocks, variable names, or technical terms that should remain in English.',
         'Do not translate HTML tags or attributes.',
         'Do not change URLs.',
+        'Keep bare URLs (http:// or https://) separated by spaces from surrounding translated text and punctuation (especially in languages without word spaces such as Japanese, Chinese, and Korean) so Markdown autolinks do not swallow adjacent text.',
         'Do not change Markdown image references. Keep the entire image syntax exactly as-is, including the file path/URL. For example, `![Console Logs](/img/devtools/console-logs.gif)` must remain unchanged — do not translate the alt text or modify the path.',
+        'Return the raw translated Markdown directly starting with the "---" frontmatter delimiter. Do not wrap the output or the frontmatter in a ```markdown code fence, and do not add section labels like "Frontmatter:" or "Body:".',
     ].join('\n'),
     [DocumentType.JSON]: [
         'The document is a JSON file that contains documentation for a WebdriverIO project.',

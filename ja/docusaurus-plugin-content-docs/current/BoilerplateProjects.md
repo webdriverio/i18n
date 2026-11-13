@@ -241,7 +241,7 @@ project-root/
     - ESLint
 
 ## [Muralijc/wdio-headspin-boilerplate](https://github.com/Muralijc/Wdio-Headspin-boilerplate/)
-Cucumberのフィーチャーとページオブジェクトパターンを使用して、Headspin Cloud（https://www.headspin.io/）でWebdriverIOテストを実行するためのボイラープレートプロジェクトです。
+Cucumberのフィーチャーとページオブジェクトパターンを使用して、Headspin Cloud（https://www.headspin.io/ ）でWebdriverIOテストを実行するためのボイラープレートプロジェクトです。
 - フレームワーク
     - WebdriverIO (v8)
     - Cucumber (v8)
